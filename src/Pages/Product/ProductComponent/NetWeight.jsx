@@ -17,16 +17,16 @@ export default function NetWeight({ Product, SetProduct }) {
 
 
     React.useEffect(() => {
-        Axios("http://34.201.114.126:8000/AdminPanel/Get-NetWeight/", {
+        Axios("http://34.201.114.126:8000/AdminPanel/ActiveNetWeight/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
             }
 
         }).then(response => {
-            SetNet_Weight(response.data)
+            SetNet_Weight(response.data.data)
             if(Product.net_weight === "")
-            SetProduct(Product => ({ ...Product, net_weight: response.data[0].id }))
+            SetProduct(Product => ({ ...Product, net_weight: response.data.data[0].id }))
 
         })
 

@@ -10,17 +10,17 @@ export default function ProductCategory({ Product, SetProduct }) {
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     React.useEffect(() => {
-        axios("http://34.201.114.126:8000/AdminPanel/Get-SubCategory/", {
+        axios("http://34.201.114.126:8000/AdminPanel/ActiveSubCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
             }
 
         }).then(response => {
-            SetSubCategory(response.data)
+            SetSubCategory(response.data.data)
            
             if (Product.Sub_Category_id === "")
-            SetProduct(Product => ({ ...Product, Sub_Category_id: response.data[0].id }))
+            SetProduct(Product => ({ ...Product, Sub_Category_id: response.data.data[0].id }))
         })
     },[SetProduct,token_data,Product.Sub_Category_id])
 
