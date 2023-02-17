@@ -1089,6 +1089,18 @@ input:focus + label {
   position:absolute;
 }
 }
+/* 16th feburaary */
+.sub_category_main_row{
+  position: relative;
+  left:16%;
+}
+@media(max-width:991px){
+  .sub_category_main_row{
+    width: 100%;
+    left: 0%;
+    position:absolute;
+  }
+  }
 
 
 
