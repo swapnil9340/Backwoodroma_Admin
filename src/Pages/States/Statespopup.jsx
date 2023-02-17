@@ -72,7 +72,7 @@ export default function StatePopUp() {
 
 
     React.useEffect(() => {
-        axios("http://34.201.114.126:8000/AdminPanel/Get-Country", {
+        axios(process.env.REACT_APP_ACTIVE_COUNTRY, {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -80,8 +80,8 @@ export default function StatePopUp() {
 
         }).then(response => {
            
-            setCountry(response.data)
-            setCountry_id(response.data[0].id)
+            setCountry(response.data.data)
+            setCountry_id(response.data.data[0].id)
           
         })
     }, [token_data])

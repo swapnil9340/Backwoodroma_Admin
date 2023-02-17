@@ -69,15 +69,16 @@ export default function SubCategoryEdit(props) {
     };
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
+    console.log(process.env.REACT_APP_ACTIVE_CATEGORY)
     useEffect(() => {
 
-        axios("http://34.201.114.126:8000/AdminPanel/Get-Category/", {
+        axios(process.env.REACT_APP_ACTIVE_CATEGORY, {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
             }
         }).then(response => {
-            setCategory(response.data)
+            setCategory(response.data.data)
         })
     }, [token_data])
 

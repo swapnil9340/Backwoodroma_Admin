@@ -65,10 +65,19 @@ export default function CityEdit(props) {
     };
 
 
-useEffect(()=>{
-    SetState([...props.city])
-},[city ,props.city])
+    React.useEffect(() => {
+        Axios(process.env.REACT_APP_ACTIVE_STATE, {
 
+            headers: {
+                'Authorization': `Bearer ${token_data}`
+            }
+
+        }).then(response => {
+            SetState(response.data.data)
+            // setState(response.data.data[0].id)
+            
+        })
+    }, [token_data])
 
 
     const Submit = () => {
