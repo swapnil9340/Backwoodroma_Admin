@@ -8,16 +8,7 @@ import StoreRadialbars from './StoreRadialbars';
 export default function RightPenalscore() {
     return (
         <div className='container-fluid '>
-            <div className='row'>
-                <div className='col  standard'>
-                    <TfiGallery></TfiGallery>
-                    <span>Mr.Jack</span>
-                    <p>standard Member</p>
-                </div>
-                <div className='col center'>
-                    <button className="btn btn_color"> <h5>Upgrade to Pro </h5></button>
-                </div>
-            </div>
+            
             <div className='row standard top '>
                 <div className='col-12 Store'>
                     <div className='col-6'>

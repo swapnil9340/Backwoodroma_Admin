@@ -98,9 +98,7 @@ function Navbar() {
                   </div>
                 </div>
               }
-              <div className='col-12 margin center' style={{ fontsize: "initial" }}>
-                <h5>NAVIGATIONS</h5>
-              </div>
+             
             </div>
 
           </div>
