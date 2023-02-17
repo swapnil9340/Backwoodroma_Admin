@@ -215,33 +215,33 @@ export default function EditProducts(props) {
         }).then(response => {
             SetDiscount(response.data)
         })
-        Axios("http://34.201.114.126:8000/AdminPanel/ActiveTax/", {
+        Axios("http://34.201.114.126:8000/AdminPanel/Get-Tax/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
             }
 
         }).then(response => {
-            SetTaxs(response.data.data)
+            SetTaxs(response.data)
           
         })
-        Axios("http://34.201.114.126:8000/AdminPanel/ActiveStores/", {
+        Axios("http://34.201.114.126:8000/AdminPanel/Get-Stores/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
             }
 
         }).then(response => {
-            Setstore(response.data.data)
+            Setstore(response.data)
         })
-        Axios("http://34.201.114.126:8000/AdminPanel/ActiveNetWeight/", {
+        Axios("http://34.201.114.126:8000/AdminPanel/Get-NetWeight/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
             }
 
         }).then(response => {
-            SetNet_Weight(response.data.data)
+            SetNet_Weight(response.data)
         })
 
 

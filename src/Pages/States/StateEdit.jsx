@@ -66,13 +66,13 @@ export default function StateEdit(props) {
     };
     useEffect(() => {
 
-        axios(process.env.REACT_APP_ACTIVE_COUNTRY, {
+        axios("http://34.201.114.126:8000/AdminPanel/Get-Country/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
             }
         }).then(response => {
-            setCountrydorp([...response.data.data])
+            setCountrydorp([...response.data])
         })
     }, [token_data])
     const Submit = () => {

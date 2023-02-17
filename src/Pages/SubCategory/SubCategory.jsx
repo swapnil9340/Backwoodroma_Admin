@@ -78,10 +78,10 @@ export default function SubCategory() {
         )
     };
     const columns = [
-        { field: 'name', headerName: 'Name', width: 200, editable: true, headerClassName: 'super-app-theme--header' },
-        { field: 'category_name', headerName: 'category', type: 'text', editable: true, width: 200, headerClassName: 'super-app-theme--header' },
+        { field: 'name', headerName: 'Name', maxWidth: 150, minWidth: 90, flex: 1, editable: true, headerClassName: 'super-app-theme--header' },
+        { field: 'category_name', headerName: 'category',maxWidth: 150, minWidth: 90, flex:1,type: 'text', editable: true,  headerClassName: 'super-app-theme--header',headerAlign: 'left' },
         {
-            field: 'Status', headerName: 'Status', type: 'action', editable: false, width: 200, headerClassName: 'super-app-theme--header',
+            field: 'Status', headerName: 'Status', type: 'action',maxWidth: 150, minWidth: 80,flex: 1, editable: false,  headerClassName: 'super-app-theme--header', headerAlign: 'center', align:"center",
 
             renderCell: (params) => {
 
@@ -117,7 +117,7 @@ export default function SubCategory() {
             }
         },
         {
-            field: 'Edit', headerName: 'Edit', type: 'button', headerClassName: 'super-app-theme--header', cellClassName: 'Edit',
+            field: 'Edit', headerName: 'Edit', type: 'button',maxWidth: 150, minWidth: 90,flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'center', cellClassName: 'Edit',align:"center",
             renderCell: (params) => (
                 <>
                     <Box
@@ -160,10 +160,8 @@ export default function SubCategory() {
         <div className='container-fluid'>
             <div className='row'>
 
-                <div className='col-sm-2 '>
-
-                </div>
-                <div className='col-8' >
+              
+                <div className='col-10 sub_category_main_row'>
 
                     <div className='col-12 Add_Category mb-4 mt-4 m-2'>
                         <div className="col"> <h2>  SubCategory
@@ -172,20 +170,51 @@ export default function SubCategory() {
                     </div>
 
                     <div className='col-12' >
-                        <Box sx={{
-
+                        <Box 
+                         sx={{
                             height: 400,
                             width: '100%',
                             '& .MuiDataGrid-columnHeaders': {
                                 backgroundColor: '#E1FFED',
                             },
-                            // '& .MuiButton-root': {
-                            //     // color: '#000000',
-                            //     color:"#FFFFFF",
-                            //     display: "flex",
-                            // },
+                            '& .MuiButton-root': {
+                                color: "#FFFFFF",
+                                display: "flex",
+                                width: "200px"
+                            },
 
+                            "@media(max-width:767px)": {
+                                '& .MuiButton-root': {
+                                    display: "contents",
+                                    width: "150px",
+                                    margin: "2px",
+                                    fontSize: "14px"
+                                },
 
+                            },
+                            "@media(max-width:546px)": {
+                                '& .MuiButton-root': {
+                                    display: "contents",
+                                    width: "150px",
+                                    fontSize: "9px"
+                                },
+
+                            },
+
+                            "@media(min-width:768px)": {
+                                '& .MuiButton-root': {
+                                    width: "110px",
+                                    margin: "2px",
+                                    fontSize: "14px"
+                                },
+
+                                "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                                    width: "120px"
+                                },
+                                "&.MuiDataGrid-root .MuiDataGrid-columnHeader":{
+                                    width:"50px"
+                                }
+                            }
                         }}>
                             <ThemeProvider theme={CustomFontTheme}>
                                 <div style={{ height: 400, width: '100%', }}>
@@ -196,35 +225,52 @@ export default function SubCategory() {
                                             "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
                                                 outline: "none",
                                             },
-                                            "&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus": {
+                                            "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
                                                 outline: "none"
                                             },
-                                            "&.MuiDataGrid-root .MuiDataGrid-row:hover": { backgroundColor: "#FFFFFF" },
+                                            "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
+                                                outline: "none",
+
+                                            },
+                                            "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
+                                                backgroundColor: "#FFFFFF"
+                                            },
                                             height: 400,
                                             width: '100%',
-                                            '& .MuiDataGrid-columnHeaders': {
-                                                backgroundColor: '#E1FFED',
+                                            "@media(max-width:768px)": {
+                                                ".MuiDataGrid-toolbarContainer": {
+                                                    gap: "10px",
+
+                                                }
                                             },
-                                            '& .css-e07ewl-MuiButtonBase-root-MuiButton-root': {
-                                                color: '#000000',
-                                                display: "flex",
+                                            "@media(max-width:546px)": {
+                                                ".MuiDataGrid-toolbarContainer": {
+                                                    gap: "5px",
+
+                                                }
                                             },
                                             ".MuiDataGrid-toolbarContainer": {
-                                                backgroundColor: "#31B665"
+                                                flexDirection: "block",
+
+                                                backgroundColor: "#31B665",
+                                                width: {
+                                                    xs: "100%",
+                                                    sm: "100%",
+                                                    md: "100%",
+                                                    lg: "100%",
+                                                    xl: "100%"
+
+                                                },
                                             },
-                                            '& .MuiButton-root': {
-                                                // color: '#000000',
-                                                color: "#FFFFFF",
-                                                display: "flex",
-                                                width:"200px"
+                                            "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
+                                                visibility: "hidden"
                                             },
-                                            "&.MuiDataGrid-root .MuiDataGrid-columnSeparator":{
-                                                visibility:"hidden"
-                                            },
-                                            // "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer":{
-                                            //     width:"200px"
-                                            // }
+                                            "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                                                width: "120px"
+                                            }
+
                                         }}
+
                                     />
                                 </div>
                             </ThemeProvider>

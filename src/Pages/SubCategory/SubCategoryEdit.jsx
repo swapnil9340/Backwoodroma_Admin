@@ -69,16 +69,15 @@ export default function SubCategoryEdit(props) {
     };
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
-    console.log(process.env.REACT_APP_ACTIVE_CATEGORY)
     useEffect(() => {
 
-        axios(process.env.REACT_APP_ACTIVE_CATEGORY, {
+        axios("http://34.201.114.126:8000/AdminPanel/Get-Category/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
             }
         }).then(response => {
-            setCategory(response.data.data)
+            setCategory(response.data)
         })
     }, [token_data])
 
@@ -132,6 +131,30 @@ export default function SubCategoryEdit(props) {
                             width: "60%",
                             height: "60%",
                             maxWidth: "none",  // Set your width here
+                        },
+                    },
+                    "& .MuiDialog-container": {
+                        "& .MuiPaper-root": {
+                            width: {
+                                xs: "60%",
+                                sm: "60%",
+                                md: "50%",
+                                lg: "40%",
+                                xl: "40%"
+
+                            },
+                            height: {
+                                xs: "55%",
+                                sm: "55%",
+                                md: "50%",
+                                lg: "50%",
+                                xl: "60%"
+                            },
+                            maxWidth: "none",
+                            borderRadius: "15px",
+                            overflowX: "hidden",
+                            border: "1px solid #31B665"
+                            // Set your width here
                         },
                     },
                 }}
@@ -194,7 +217,7 @@ export default function SubCategoryEdit(props) {
                                         value={SubCategory.Category_id}
                                         onChange={handleChange}
                                         displayEmpty
-                                        inputProps={{ 'aria-label': 'Without label' }} style={{minWidth: 190 , fontSize:15}}
+                                        inputProps={{ 'aria-label': 'Without label' }} style={{minWidth: "40%", height: "5vh", fontSize: 15, }}
                                     >
                                         {
                                             Category.map((category ,index)=>{
@@ -219,7 +242,7 @@ export default function SubCategoryEdit(props) {
                                         value={SubCategory.Status}
                                         onChange={handleChange}
                                         displayEmpty
-                                        inputProps={{ 'aria-label': 'Without label' }} style={{minWidth: 190 , fontSize:15}}
+                                        inputProps={{ 'aria-label': 'Without label' }}  style={{minWidth: "40%", height: "5vh", fontSize: 15, }}
                                     >
                                         
                                         <MenuItem value={"Active"} style={{ fontSize:15}}>Active</MenuItem>

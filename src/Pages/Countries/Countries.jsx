@@ -14,7 +14,7 @@ import { AiFillEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import CountryEdit from "./CountryEdit"
 import Createcontext from "../../Hooks/Context/Context"
 import DeleteCountry from "../Countries/DeleteCountry"
-
+import Tooltip from '@mui/material/Tooltip';
 export default function Countries() {
     const { state ,dispatch} = useContext(Createcontext)
     const { enqueueSnackbar } = useSnackbar();
@@ -76,13 +76,14 @@ export default function Countries() {
 
 
     const columns = [
-        { field: 'CountryName', headerName: 'Country Name', width: 200, editable: false, headerClassName: 'super-app-theme--header' },
+        { field: 'CountryName', headerName: 'Country Name',  maxWidth: 150, minWidth: 110, flex: 1, editable: false, headerClassName: 'super-app-theme--header' },
         {
-            field: 'Status', headerName: 'Status', type: 'number', editable: false, headerClassName: 'super-app-theme--header', headerAlign: 'center',
+            field: 'Status', headerName: 'Status', maxWidth: 150, minWidth: 110, flex: 1, type: 'number', editable: false, headerClassName: 'super-app-theme--header', headerAlign: 'center', align:"center",
             renderCell: (params) => {
 
                 if (params.formattedValue === "Active") {
                     return (
+                        <Tooltip title="Active" enterDelay={300} leaveDelay={200} arrow placement="right-start">
                         <p
                             style={{ color: "#31B665 ", fontSize: 25, cursor: "pointer" }}
                             variant="contained"
@@ -91,10 +92,12 @@ export default function Countries() {
                             Submit(params);
                             }}
                         ><AiFillEye /> </p>
+                        </Tooltip>
 
                     )
                 }
                 return (
+                    <Tooltip title="Hide" enterDelay={300} leaveDelay={200} arrow placement="right-start">
                     <p
                     style={{ color: "red ", fontSize: 25, cursor: "pointer" }}
                     variant="contained"
@@ -103,27 +106,37 @@ export default function Countries() {
                     Submit(params);
                     }}
                 ><AiOutlineEyeInvisible/></p>
+                </Tooltip>
 
                 )
             }
         },
-        { field: 'Edit', headerName: 'Edit', type: 'button', editable: true, headerClassName: 'super-app-theme--header',
+        { field: 'Edit', headerName: 'Edit', type: 'button', maxWidth: 150, minWidth: 110, flex: 1, editable: true, headerClassName: 'super-app-theme--header', headerAlign: 'center',align:"center",
         renderCell: (params) => (
             <>
                 <Box
                  sx={{
-                    '& .MuiOutlinedInput-root': {
-                        '&.Mui-focused fieldset': {
-                            borderWidth: "1px",
-                            borderColor: 'black',
-                        },
+                  
+                    '& .MuiDataGrid-columnHeaders': {
+                        backgroundColor: '#E1FFED',
                     },
-                   '& . MuiDataGrid-root .MuiDataGrid-cell:focus' : {
-                        outline: "solid #0f1010 1px"
-                    }
+                   
+
+                    
+
+                   
+
                 }}
                  >
-                    <Select IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
+                    <Select  sx={{
+                            boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
+                            "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
+                            "&:hover": {
+                                ".MuiSelect-icon": {
+                                    color: "#31B665"
+                                }
+                            },
+                        }} IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
                         <MenuItem ><CountryEdit data={params.row} ></CountryEdit></MenuItem>
                         <MenuItem  > <DeleteCountry data={params.row}></DeleteCountry></MenuItem>
                     </Select>
@@ -142,10 +155,8 @@ export default function Countries() {
         <div className='container-fluid'>
             <div className='row'>
 
-                <div className='col-sm-2 '>
-
-                </div>
-                <div className='col-8 border   ' >
+              
+                <div className='col-10 category_main_row' >
 
                     <div className='col-12 Add_Category'>
                         <div className="col"> <h2>  Countries
@@ -155,22 +166,102 @@ export default function Countries() {
 
                     <div className='col-12' >
                   
-                            
+                    <Box sx={{
+                            height: 400,
+                            width: '100%',
+                            '& .MuiDataGrid-columnHeaders': {
+                                backgroundColor: '#E1FFED',
+                            },
+                            '& .MuiButton-root': {
+                                color: "#FFFFFF",
+                                display: "flex",
+                                width: "200px"
+                            },
+
+                            "@media(max-width:767px)": {
+                                '& .MuiButton-root': {
+                                    display: "contents",
+                                    width: "150px",
+                                    margin: "2px",
+                                    fontSize: "14px"
+                                },
+
+                            },
+                            "@media(max-width:546px)": {
+                                '& .MuiButton-root': {
+                                    display: "contents",
+                                    width: "150px",
+                                    fontSize: "9px"
+                                },
+
+                            },
+
+                            "@media(min-width:768px)": {
+                                '& .MuiButton-root': {
+                                    width: "110px",
+                                    margin: "2px",
+                                    fontSize: "14px"
+                                },
+
+                                "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                                    width: "120px"
+                                }
+                            }
+                        }}> 
                         <ThemeProvider theme={CustomFontTheme}>
                             <div style={{ height: 400, width: '100%', }}>
                                 <DataGrid rows={rows} columns={columns}  components={{ Toolbar: GridToolbar }}  
                                 sx={{
                                     "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                       outline: "1px solid black ",
+                                       outline: "none",
                                     },
+                                   
                                     '& .MuiButton-root': {
-                                        color: '#000000',
-                                        display: "flex",
+                                        // color: "#FFFFFF",
+                                    
                                     },
+                                    "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
+                                        backgroundColor: "#FFFFFF"
+                                    },
+                                    height: 400,
+                                    width: '100%',
+                                    "@media(max-width:768px)": {
+                                        ".MuiDataGrid-toolbarContainer": {
+                                            gap: "10px",
+
+                                        }
+                                    },
+                                    "@media(max-width:546px)": {
+                                        ".MuiDataGrid-toolbarContainer": {
+                                            gap: "5px",
+
+                                        }
+                                    },
+                                    ".MuiDataGrid-toolbarContainer": {
+                                        flexDirection: "block",
+
+                                        backgroundColor: "#31B665",
+                                        width: {
+                                            xs: "100%",
+                                            sm: "100%",
+                                            md: "100%",
+                                            lg: "100%",
+                                            xl: "100%"
+
+                                        },
+                                    },
+                                    "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
+                                        visibility: "hidden"
+                                    },
+                                    "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                                        width: "120px"
+                                    }
+
                                  }}
                                 />
                             </div>
                         </ThemeProvider>
+                        </Box>
                  
                     </div>
                 </div>
