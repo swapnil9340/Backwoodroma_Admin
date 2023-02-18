@@ -27,7 +27,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         '& .MuiButtonBase-root': {
             fontSize: "1.5625rem",
             color: "#31B665"
-        },
+        }
   },
 }));
 
@@ -87,7 +87,11 @@ export default function CountriesPopUp() {
                 
                 setmassage( error.response.data.Country)
                
-                seterror("red");
+                seterror("red")
+               
+            
+
+                
             }
         )
     };
@@ -104,8 +108,22 @@ export default function CountriesPopUp() {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            width: "60%",
-                            height: "60%",
+                            width:{
+                                xs:"60%",
+                                sm:"60%",
+                                md:"50%",
+                                lg:"40%",
+                                xl:"40%"
+   
+                               },
+                               height: {
+                                xs:"50%",
+                                sm:"50%",
+                                md:"50%",
+                                lg:"50%",
+                                xl:"60%"
+                               },
+                            border: "1px solid #31B665",
                             maxWidth: "none",  // Set your width here
                         },
                     },
@@ -114,11 +132,17 @@ export default function CountriesPopUp() {
                 <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
                     Modal title
                 </BootstrapDialogTitle>
-                <DialogContent dividers>
+                <DialogContent dividers 
+                 sx={{
+                    "&.MuiDialogContent-root": {
+                        overflowX: "hidden",
+                        overflowY: "hidden",
+                    }
+                }}>
                     <div className='container-fluid '>
                         <div className='row '>
 
-                            <div className='col-12    ' >
+                            <div className='col-12' style={{marginTop:"6%"}} >
 
                                 <div className='col-12 Add_countries Add_Category center'>
                                     <div className="col "> <h2> Add Countries
@@ -167,7 +191,7 @@ export default function CountriesPopUp() {
                                         value={Status}
                                         onChange={handleStatus}
                                         displayEmpty
-                                        inputProps={{ 'aria-label': 'Without label' }} style={{minWidth: 190 , fontSize:15}}>
+                                        inputProps={{ 'aria-label': 'Without label' }} style={{minWidth: "25%", height: "5vh", fontSize: 15, }}>
                                         <MenuItem value={"Active"} style={{ fontSize:15}}>Active</MenuItem>
                                         <MenuItem value={"Hide"} style={{ fontSize:15}}>  Hide</MenuItem>
                                     </Select>
@@ -176,7 +200,7 @@ export default function CountriesPopUp() {
                                
                                 <div className='col-12 center top' >
                                     <button className='btn Sub_button' autoFocus onClick={Submit} style={{ fontSize:15}}>
-                                        Save changes
+                                        Add Countries
                                     </button>
                                 </div>
 
@@ -187,7 +211,7 @@ export default function CountriesPopUp() {
                     </div>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleClose}>
+                    <Button   sx={{color:"#31B665"}} autoFocus onClick={handleClose}>
                         Exit
                     </Button>
                 </DialogActions>

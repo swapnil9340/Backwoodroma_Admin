@@ -83,7 +83,7 @@ console.log(data)
                                                 <label htmlFor="myCheck">{data.name}</label>
 
                                               </div>
-                                                <div id={data.name}>
+                                                <div id="JDF">
                                                     <label for="first">
                                                         <input type="checkbox" id="first" />
                                                         checkBox1

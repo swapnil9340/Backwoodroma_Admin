@@ -21,14 +21,14 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
     '& .MuiOutlinedInput-root': {
         '&.Mui-focused fieldset': {
-          borderWidth: "1px",
-          borderColor: 'black',
+            borderWidth: "1px",
+            borderColor: 'black',
         },
         '& .MuiButtonBase-root': {
             fontSize: "1.5625rem",
             color: "#31B665"
         },
-  },
+    },
 }));
 
 function BootstrapDialogTitle(props) {
@@ -38,9 +38,9 @@ export default function CountryEdit(props) {
     const { enqueueSnackbar } = useSnackbar();
     const { dispatch } = useContext(Createcontext)
     const [open, setOpen] = React.useState(false);
-    const [error , seterror] = React.useState('') 
+    const [error, seterror] = React.useState('')
     const [Country, SetCountry] = React.useState({
-        id: props.data.id, 
+        id: props.data.id,
         Countryname: props.data.CountryName.toUpperCase(),
         Status: props.data.Status
     });
@@ -71,7 +71,7 @@ export default function CountryEdit(props) {
         };
 
         const data = {
-            "id" : Country.id,
+            "id": Country.id,
             "CountryName": Country.Countryname.toUpperCase(),
             "Status": Country.Status
         }
@@ -85,12 +85,12 @@ export default function CountryEdit(props) {
             enqueueSnackbar('Edit Countries success !', { variant: 'success' });
         }).catch(
             function (error) {
-               
+
                 setmassage(error.response.data.Country)
                 seterror("red")
-              
 
-                
+
+
             }
         )
     };
@@ -106,8 +106,22 @@ export default function CountryEdit(props) {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            width: "60%",
-                            height: "60%",
+                            width: {
+                                xs: "60%",
+                                sm: "60%",
+                                md: "50%",
+                                lg: "40%",
+                                xl: "40%"
+
+                            },
+                            height: {
+                                xs: "55%",
+                                sm: "55%",
+                                md: "50%",
+                                lg: "50%",
+                                xl: "60%"
+                            },
+                            border: "1px solid #31B665",
                             maxWidth: "none",  // Set your width here
                         },
                     },
@@ -116,12 +130,18 @@ export default function CountryEdit(props) {
                 <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
                     Modal title
                 </BootstrapDialogTitle>
-                <DialogContent dividers>
-                  
+                <DialogContent dividers
+                    sx={{
+                        "&.MuiDialogContent-root": {
+                            overflowX: "hidden",
+                            overflowY: "hidden",
+                        }
+                    }}>
+
                     <div className='container-fluid '>
                         <div className='row '>
 
-                            <div className='col-12    ' >
+                            <div className='col-12 ' style={{ marginTop: "6%" }} >
 
                                 <div className='col-12 Add_Category center'>
                                     <div className="col "> <h2> Edit country
@@ -131,14 +151,14 @@ export default function CountryEdit(props) {
                                 <div className='col-12 top label  con  '>
                                     <div className='col'>
                                         <label className='label'>
-                                        <span className='required'>*</span>
-                                        Country Name:
+                                            <span className='required'>*</span>
+                                            Country Name:
                                         </label>
                                     </div>
                                     <div className='col'>
-                                        <TextField placeholder='Country' 
-                                        InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
-                                         id="outlined-basic" variant="outlined" name='Countryname' value={Country.Countryname.toUpperCase()} style={{ minWidth: 190, fontSize: 15 }}
+                                        <TextField placeholder='Country'
+                                            InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
+                                            id="outlined-basic" variant="outlined" name='Countryname' value={Country.Countryname.toUpperCase()} style={{ minWidth: 160, fontSize: 15 }}
                                             onChange={handleChange}
                                             label={massage}
                                             sx={{
@@ -157,10 +177,10 @@ export default function CountryEdit(props) {
                                                     }
                                                 }
                                             }}
-                                             />
+                                        />
                                     </div>
                                 </div>
-                                
+
                                 <div className='col-12 top label  con'>
                                     <div className='col'>
                                         <label className='label'>
@@ -169,15 +189,15 @@ export default function CountryEdit(props) {
                                     </div>
                                     <div className='col'>
                                         <Select
-                                        name='Status'
-                                        value={Country.Status}
-                                        onChange={handleChange}
-                                        displayEmpty
-                                        inputProps={{ 'aria-label': 'Without label' }} style={{minWidth: 190 , fontSize:15}}>
-                                        <MenuItem value={"Active"} style={{ fontSize:15}}>Active</MenuItem>
-                                        <MenuItem value={"Hide"} style={{ fontSize:15}}>Hide</MenuItem>
+                                            name='Status'
+                                            value={Country.Status}
+                                            onChange={handleChange}
+                                            displayEmpty
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: "40%", height: "5vh", fontSize: 15, }}>
+                                            <MenuItem value={"Active"} style={{ fontSize: 15 }}>Active</MenuItem>
+                                            <MenuItem value={"Hide"} style={{ fontSize: 15 }}>Hide</MenuItem>
 
-                                    </Select>
+                                        </Select>
                                     </div>
                                 </div>
                                 <div className='col-12 center top' >
@@ -191,7 +211,7 @@ export default function CountryEdit(props) {
                         </div>
 
                     </div>
-                    
+
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={handleClose}>

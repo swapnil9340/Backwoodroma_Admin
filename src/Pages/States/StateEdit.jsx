@@ -66,13 +66,13 @@ export default function StateEdit(props) {
     };
     useEffect(() => {
 
-        axios("http://34.201.114.126:8000/AdminPanel/ActiveCountry/", {
+        axios("http://34.201.114.126:8000/AdminPanel/Get-Country/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
             }
         }).then(response => {
-            setCountrydorp([...response.data.data])
+            setCountrydorp([...response.data])
         })
     }, [token_data])
     const Submit = () => {
@@ -125,9 +125,26 @@ export default function StateEdit(props) {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            width: "60%",
-                            height: "60%",
-                            maxWidth: "none",  // Set your width here
+                            width: {
+                                xs: "60%",
+                                sm: "60%",
+                                md: "50%",
+                                lg: "40%",
+                                xl: "40%"
+
+                            },
+                            height: {
+                                xs: "55%",
+                                sm: "55%",
+                                md: "50%",
+                                lg: "50%",
+                                xl: "60%"
+                            },
+                            maxWidth: "none",
+                            borderRadius: "15px",
+                            overflowX: "hidden",
+                            border: "1px solid #31B665"
+                            // Set your width here
                         },
                     },
                    
@@ -141,7 +158,7 @@ export default function StateEdit(props) {
                     <div className='container-fluid '>
                         <div className='row '>
 
-                            <div className='col-12    ' >
+                            <div className='col-12 '  style={{marginTop:"6%"}}  >
 
                                 <div className='col-12 Add_Category center'>
                                     <div className="col "> <h2> Edit State
@@ -194,7 +211,7 @@ export default function StateEdit(props) {
                                             value={State.Country_id}
                                             onChange={handleChange}
                                             displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: "42%", height: "5vh", fontSize: 15}}
                                         >
                                             {
                                                 dropCountry.map((country, index) => {
@@ -221,7 +238,7 @@ export default function StateEdit(props) {
                                             value={State.Status}
                                             onChange={handleChange}
                                             displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}>
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{minWidth: "42%", height: "5vh", fontSize: 15 }}>
                                             <MenuItem value={"Active"} style={{ fontSize: 15 }}>Active</MenuItem>
                                             <MenuItem value={"Hide"} style={{ fontSize: 15 }}>Hide</MenuItem>
 

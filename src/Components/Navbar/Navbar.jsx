@@ -18,6 +18,9 @@ import PresetDropDown from "./SideBarDropdown/PresetDropDown"
 import SpecialOfferDropDown from "./SideBarDropdown/SpecialOfferDropDowm"
 import NewsDropDown from './SideBarDropdown/NewsDropDown'
 import SettingDropDown from "./SideBarDropdown/SettingDropDown"
+import {IoIosMenu} from "react-icons/io"
+
+
 function Navbar() {
   const [windowSize, setWindowSize] = React.useState([
     window.innerWidth,
@@ -171,7 +174,7 @@ function Navbar() {
                     ?
                     <div className='search_left'>
                       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
+                        <span className='menu_logo' > <IoIosMenu></IoIosMenu></span>
                       </button>
                     </div>
                     :

@@ -65,23 +65,9 @@ export default function CityEdit(props) {
     };
 
 
-// useEffect(()=>{
-//     SetState([...props.city])
-// },[city ,props.city])
-
-React.useEffect(() => {
-    Axios("http://34.201.114.126:8000/AdminPanel/ActiveCities/", {
-
-        headers: {
-            'Authorization': `Bearer ${token_data}`
-        }
-
-    }).then(response => {
-        SetState(response.data.data)
-        // setState(response.data.data[0].id)
-        
-    })
-}, [token_data])
+useEffect(()=>{
+    SetState([...props.city])
+},[city ,props.city])
 
 
 
@@ -134,9 +120,23 @@ React.useEffect(() => {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            width: "60%",
-                            height: "60%",
-                            maxWidth: "none",  // Set your width here
+                            width: {
+                                xs: "60%",
+                                sm: "60%",
+                                md: "50%",
+                                lg: "40%",
+                                xl: "40%"
+
+                            },
+                            height: {
+                                xs: "55%",
+                                sm: "55%",
+                                md: "50%",
+                                lg: "50%",
+                                xl: "60%"
+                            },
+                            maxWidth: "none", 
+                            border: "1px solid #31B665", // Set your width here
                         },
                     },
                 }}
@@ -149,7 +149,7 @@ React.useEffect(() => {
                     <div className='container-fluid '>
                         <div className='row '>
 
-                            <div className='col-12    ' >
+                            <div className='col-12'  style={{ marginTop: "6%" }} >
 
                                 <div className='col-12 Add_Category center'>
                                     <div className="col "> <h2> Edit City
@@ -202,7 +202,7 @@ React.useEffect(() => {
                                             value={city.States_id}
                                             onChange={handleChange}
                                            
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}
+                                            inputProps={{ 'aria-label': 'Without label' }}  style={{ minWidth: "40%", height: "5vh", fontSize: 15, }}
                                         >
                                             {
                                                 States.map((States, index) => {
@@ -229,7 +229,7 @@ React.useEffect(() => {
                                             value={city.Status}
                                             onChange={handleChange}
                                             displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}>
+                                            inputProps={{ 'aria-label': 'Without label' }}  style={{ minWidth: "40%", height: "5vh", fontSize: 15, }}>
                                             <MenuItem value={"Active"} style={{ fontSize: 15 }}>Active</MenuItem>
                                             <MenuItem value={"Hide"} style={{ fontSize: 15 }}>Hide</MenuItem>
 

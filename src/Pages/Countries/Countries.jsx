@@ -76,7 +76,7 @@ export default function Countries() {
 
 
     const columns = [
-        { field: 'CountryName', headerName: 'Country Name',  maxWidth: 150, minWidth: 110, flex: 1, editable: false, headerClassName: 'super-app-theme--header' },
+        { field: 'CountryName', headerName: 'Country',  maxWidth: 150, minWidth: 110, flex: 1, editable: false, headerClassName: 'super-app-theme--header' },
         {
             field: 'Status', headerName: 'Status', maxWidth: 150, minWidth: 110, flex: 1, type: 'number', editable: false, headerClassName: 'super-app-theme--header', headerAlign: 'center', align:"center",
             renderCell: (params) => {
@@ -91,7 +91,7 @@ export default function Countries() {
                             onClick={() => { 
                             Submit(params);
                             }}
-                        ><AiFillEye /> </p>
+                        ><AiFillEye autoFocus /> </p>
                         </Tooltip>
 
                     )
@@ -105,7 +105,7 @@ export default function Countries() {
                     onClick={() => {
                     Submit(params);
                     }}
-                ><AiOutlineEyeInvisible/></p>
+                ><AiOutlineEyeInvisible autoFocus/></p>
                 </Tooltip>
 
                 )
@@ -159,9 +159,9 @@ export default function Countries() {
                 <div className='col-10 category_main_row' >
 
                     <div className='col-12 Add_Category'>
-                        <div className="col"> <h2>  Countries
+                        <div className="col m-4"> <h2>  Countries
                         </h2></div>
-                        <div className="col cat_but" >  <span className='btn'> <h2><CountriesPopup></CountriesPopup></h2></span></div>
+                        <div className="col cat_but m-4" >  <span className='btn country_pop_btn'> <h2><CountriesPopup></CountriesPopup></h2></span></div>
                     </div>
 
                     <div className='col-12' >
@@ -212,14 +212,18 @@ export default function Countries() {
                             <div style={{ height: 400, width: '100%', }}>
                                 <DataGrid rows={rows} columns={columns}  components={{ Toolbar: GridToolbar }}  
                                 sx={{
+                                  
+                                    "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
+                                        outline: "none"
+                                    },
+                                    "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
+                                        outline: "none",
+                                    },
                                     "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
                                        outline: "none",
                                     },
                                    
-                                    '& .MuiButton-root': {
-                                        // color: "#FFFFFF",
-                                    
-                                    },
+                                   
                                     "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
                                         backgroundColor: "#FFFFFF"
                                     },

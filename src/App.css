@@ -163,7 +163,7 @@ ul li path {
   
 }
 .link_Name:hover{
-  background-color: #cecece;
+  color: #31B665;
 }
 
 .side_penal_link{
@@ -1101,6 +1101,59 @@ input:focus + label {
     position:absolute;
   }
   }
+
+
+/* menu_logo */
+.menu_logo{
+  color: white;
+  font-size: 25px;
+}
+.navbar-toggler:hover {
+  border-color: white;
+  text-decoration: none;
+} 
+.navbar-light .navbar-toggler {
+  color: rgb(241 240 240 / 55%);
+  border-color: rgba(0,0,0,.1);
+}
+
+
+/* 18/02/23 */
+.city_main_row{
+  position: relative;
+  left:16%
+}
+
+@media(max-width:991px){
+  .city_main_row{
+    width: 100%;
+    left: 0%;
+    position:absolute;
+  }
+}
+
+  .country_pop_btn{
+    border: none;
+  
+  }
+  .state_main_row{
+    position: relative;
+    left:16%
+  }
+  @media(max-width:991px){
+    .state_main_row{
+      width: 100%;
+      left: 0%;
+      position:absolute;
+    }
+    }
+
+
+    /* end */
+
+
+
+
 
 
   /* product Category */

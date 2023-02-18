@@ -67,15 +67,15 @@ export default function CityPopUp() {
     };
 
     React.useEffect(() => {
-        axios("http://34.201.114.126:8000/AdminPanel/ActiveStates/", {
+        axios("http://34.201.114.126:8000/AdminPanel/Get-States", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
             }
 
         }).then(response => {
-            setTotal(response.data.data)
-            setState(response.data.data[0].id)
+            setTotal(response.data)
+            setState(response.data[0].id)
             
         })
     }, [token_data])
@@ -130,8 +130,22 @@ export default function CityPopUp() {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            width: "60%",
-                            height: "60%",
+                            width:{
+                                xs:"60%",
+                                sm:"60%",
+                                md:"50%",
+                                lg:"40%",
+                                xl:"40%"
+   
+                               },
+                               height: {
+                                xs:"50%",
+                                sm:"50%",
+                                md:"50%",
+                                lg:"50%",
+                                xl:"60%"
+                               },
+                               border: "1px solid #31B665",
                             maxWidth: "none",  // Set your width here
                         },
                     },
@@ -144,14 +158,14 @@ export default function CityPopUp() {
                     <div className='container-fluid '>
                         <div className='row '>
 
-                            <div className='col-12    ' >
+                            <div className='col-12    'style={{marginTop:"6%"}} >
 
                                 <div className='col-12 Add_countries Add_Category center'>
                                     <div className="col "> <h2> Add Cities
                                     </h2>
                                     </div>
                                 </div>
-                                <div className='col-12 top label  con  '>
+                                <div className='col-12 top label  con'>
                                     <div className='col'>
                                         <label className='label'>
                                         <span className='required'>*</span>
@@ -196,7 +210,7 @@ export default function CityPopUp() {
                                             value={State}
                                             onChange={handleState}
                                             displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}>
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{minWidth: "20%", height: "5vh", fontSize: 15, }}>
                                             <MenuItem value="" disabled style={{ fontSize: 15 }}>
                                                 <em>Select option</em>
                                             </MenuItem>
@@ -224,7 +238,7 @@ export default function CityPopUp() {
                                             value={Status}
                                             onChange={handleStatus}
                                             displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}>
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{minWidth: "25%", height: "5vh", fontSize: 15, }}>
                                             <MenuItem value="" disabled style={{ fontSize: 15 }}>
                                                 <em>Select option</em>
                                             </MenuItem>
@@ -239,7 +253,7 @@ export default function CityPopUp() {
 
                                 <div className='col-12 center top' >
                                     <button className='btn Sub_button' autoFocus onClick={Submit} style={{ fontSize: 15 }}>
-                                        Save changes
+                                        Add Cities
                                     </button>
                                 </div>
 
@@ -250,7 +264,7 @@ export default function CityPopUp() {
                     </div>
                 </DialogContent>
                 <DialogActions>
-                <Button autoFocus style={{ fontSize: 15 }} color="success" onClick={handleClose}>
+                <Button autoFocus sx={{ fontSize: 15,color:"#31B665" }}  onClick={handleClose}>
                         Exit
                     </Button>
                 </DialogActions>
