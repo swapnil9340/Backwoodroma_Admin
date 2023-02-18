@@ -1,10 +1,4 @@
 
-// const initialUser = {  
-//   Name: '',  
-//   Age: '',  
-//   Gender: 'logout'  
-// }  
-
 const reducer = (state, action) => {  
   switch (action.type) { 
       case 'Login':  
