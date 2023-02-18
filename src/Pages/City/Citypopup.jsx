@@ -67,15 +67,15 @@ export default function CityPopUp() {
     };
 
     React.useEffect(() => {
-        axios("http://34.201.114.126:8000/AdminPanel/Get-States", {
+        axios("http://34.201.114.126:8000/AdminPanel/ActiveStates/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
             }
 
         }).then(response => {
-            setTotal(response.data)
-            setState(response.data[0].id)
+            setTotal(response.data.data)
+            setState(response.data.data[0].id)
             
         })
     }, [token_data])

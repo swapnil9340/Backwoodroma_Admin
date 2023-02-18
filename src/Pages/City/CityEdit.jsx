@@ -65,9 +65,23 @@ export default function CityEdit(props) {
     };
 
 
-useEffect(()=>{
-    SetState([...props.city])
-},[city ,props.city])
+// useEffect(()=>{
+//     SetState([...props.city])
+// },[city ,props.city])
+
+React.useEffect(() => {
+    Axios("http://34.201.114.126:8000/AdminPanel/ActiveCities/", {
+
+        headers: {
+            'Authorization': `Bearer ${token_data}`
+        }
+
+    }).then(response => {
+        SetState(response.data.data)
+        // setState(response.data.data[0].id)
+        
+    })
+}, [token_data])
 
 
 
