@@ -173,7 +173,7 @@ export default function PopUp() {
                                 <div className='' style={{ marginTop: "5%" }}>
                                     <div className='col-10 top label  con  '>
                                         <div className='col'>
-                                            
+                                        
 
 
                                             <label className='label'>
