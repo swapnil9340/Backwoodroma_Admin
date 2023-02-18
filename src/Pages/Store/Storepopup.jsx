@@ -117,7 +117,7 @@ export default function Storepopup() {
     React.useEffect(() => {
 
 
-        axios("http://34.201.114.126:8000/AdminPanel/Get-Country/", {
+        axios("http://34.201.114.126:8000/AdminPanel/ActiveCountry/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -126,7 +126,7 @@ export default function Storepopup() {
         }).then(response => {
 
        
-            Setcountry(response.data)
+            Setcountry(response.data.data)
         })
         if(Store.Country_id!=="") {
             axios.get(`http://34.201.114.126:8000/AdminPanel/FilterStatesByCountry/${Store.Country_id}`, {

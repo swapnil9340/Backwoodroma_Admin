@@ -203,39 +203,39 @@ export default function ProductPopUp(props) {
 
 
     React.useEffect(() => {
-        Axios("http://34.201.114.126:8000/AdminPanel/Get-Discount/", {
+        Axios("http://34.201.114.126:8000/AdminPanel/ActiveDiscount/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
             }
 
         }).then(response => {
-            SetDiscount(response.data)
-            SetProduct(Product => ({ ...Product, discount: response.data[0].id }))
+            SetDiscount(response.data.data)
+            SetProduct(Product => ({ ...Product, discount: response.data.data[0].id }))
             
 
         })
-        Axios("http://34.201.114.126:8000/AdminPanel/Get-Tax/", {
+        Axios("http://34.201.114.126:8000/AdminPanel/ActiveTax/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
             }
 
         }).then(response => {
-            SetTaxs(response.data)
-            SetProduct(Product => ({ ...Product, tax: response.data[0].id }))
+            SetTaxs(response.data.data)
+            SetProduct(Product => ({ ...Product, tax: response.data.data[0].id }))
 
         })
-        Axios("http://34.201.114.126:8000/AdminPanel/Get-Stores/", {
+        Axios("http://34.201.114.126:8000/AdminPanel/ActiveStores/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
             }
 
         }).then(response => {
-            Setstore(response.data)
+            Setstore(response.data.data)
        
-            SetProduct(Product => ({ ...Product, Store_id: response.data[0].id }))
+            SetProduct(Product => ({ ...Product, Store_id: response.data.data[0].id }))
         })
         
 

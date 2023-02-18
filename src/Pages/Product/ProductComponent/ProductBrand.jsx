@@ -12,16 +12,16 @@ export default function ProductBrand({ Product, SetProduct }) {
     const token_data = cookies.get('Token_access')
 
     React.useEffect(() => {
-        axios("http://34.201.114.126:8000/AdminPanel/Get-Brand/", {
+        axios("http://34.201.114.126:8000/AdminPanel/ActiveBrand/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
             }
-
+   
         }).then(response => {
-            SetBrand(response.data)
+            SetBrand(response.data.data)
             if(Product.Brand_id==="")
-            SetProduct(Product => ({ ...Product, Brand_id: response.data[0].id }))
+            SetProduct(Product => ({ ...Product, Brand_id: response.data.data[0].id }))
 
         })
 

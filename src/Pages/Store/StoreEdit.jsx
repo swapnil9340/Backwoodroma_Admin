@@ -87,13 +87,13 @@ export default function StoreEdit(props) {
     const token_data = cookies.get('Token_access')
     useEffect(() => {
 
-        axios("http://34.201.114.126:8000/AdminPanel/Get-Cities/", {
+        axios("http://34.201.114.126:8000/AdminPanel/ActiveCities/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
             }
         }).then(response => {
-            setCities(response.data)
+            setCities(response.data.data)
         })
     }, [token_data])
 
