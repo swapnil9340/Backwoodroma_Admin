@@ -209,7 +209,7 @@ export default function PopUp() {
                                             {/* <div className='col-sm-4'> */}
 
                                             <label className='label'>
-                                                Main Category:
+                                            Main Category:
                                             </label>
                                         </div>
                                         <div className='col'>
