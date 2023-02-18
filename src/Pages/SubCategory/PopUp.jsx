@@ -70,7 +70,7 @@ export default function PopUp() {
         const cookies = new Cookies();
         const token_data = cookies.get('Token_access')
 
-        axios("http://34.201.114.126:8000/AdminPanel/Get-Category/", {
+        axios("http://34.201.114.126:8000/AdminPanel/ActiveCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -78,8 +78,8 @@ export default function PopUp() {
 
         }).then(response => {
 
-            setSubCategory(response.data)
-            setCategory(response.data[0].id)
+            setSubCategory(response.data.data)
+            setCategory(response.data.data[0].id)
 
         })
     }, [])

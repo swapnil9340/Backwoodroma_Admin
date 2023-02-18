@@ -71,13 +71,13 @@ export default function SubCategoryEdit(props) {
     const token_data = cookies.get('Token_access')
     useEffect(() => {
 
-        axios("http://34.201.114.126:8000/AdminPanel/Get-Category/", {
+        axios("http://34.201.114.126:8000/AdminPanel/ActiveCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
             }
         }).then(response => {
-            setCategory(response.data)
+            setCategory(response.data.data)
         })
     }, [token_data])
 
