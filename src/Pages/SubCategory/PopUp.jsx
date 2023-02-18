@@ -149,7 +149,7 @@ export default function PopUp() {
                             borderRadius: "15px",
                             overflowX: "hidden",
                             border: "1px solid #31B665"
-                            // Set your width here
+                      
                         },
                     },
                 }}
