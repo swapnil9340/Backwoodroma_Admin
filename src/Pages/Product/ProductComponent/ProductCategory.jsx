@@ -5,22 +5,23 @@ import Cookies from 'universal-cookie';
 
 export default function ProductCategory({ Product, SetProduct }) {
   
-    const [SubCategory ,  SetSubCategory] = React.useState([])
+    const [Category ,  SetCategory] = React.useState([])
     
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     React.useEffect(() => {
-        axios("http://34.201.114.126:8000/AdminPanel/Get-SubCategory/", {
+        axios("http://34.201.114.126:8000/AdminPanel/ActiveCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
             }
 
         }).then(response => {
-            SetSubCategory(response.data)
+            SetCategory(response.data.data)
+            // console.log(response.data.data[0].name)
            
-            if (Product.Sub_Category_id === "")
-            SetProduct(Product => ({ ...Product, Sub_Category_id: response.data[0].id }))
+            // if (Product.Sub_Category_id === "")
+            // SetProduct(Product => ({ ...Product, Sub_Category_id: response.data[0].id }))
         })
     },[SetProduct,token_data,Product.Sub_Category_id])
 
@@ -34,28 +35,38 @@ export default function ProductCategory({ Product, SetProduct }) {
   return (
     <div>
     <div className='col background'>
-        <div className='col-10   '>
-            <label className=''>
-            Sub Category
+        <div className='col-10  center '>
+            <label className=' '>
+              Category
             </label>
             <div className='col justify  Add_Category center'>
                 <div className='col-2' >
-                    <Select
-                        name='Sub_Category_id'
-                        onChange={handleChange}
-                        value={Product.Sub_Category_id}
-                        displayEmpty
-                        inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15, background: "#AAAAAA" }}>
-                        <MenuItem style={{ fontSize: 15 }}>
-                            <em>No Tax</em>
-                        </MenuItem>
-                        {
-                            SubCategory.map((data, index) => {
-                                return (<MenuItem value={data.id} style={{ fontSize: 15 }} key={index}>{data.name}</MenuItem>)
-                            })
-                        }
+                    {
+                        Category.map((data,index)=>{
 
-                    </Select>
+                            return(
+                                <Select
+                            name='Sub_Category_id'
+                            onChange={handleChange}
+                            value={data.name}
+                            displayEmpty
+                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15, background: "#AAAAAA" }}>
+                           {/* {
+                                Category.map((data, index) => {
+                                    return (<MenuItem value={data.id} style={{ fontSize: 15 }} key={index}>{data.name}</MenuItem>)
+                                })
+                            } 
+     */}
+                        </Select>
+
+                            )
+
+
+
+
+                            
+                        })
+                    }
                 </div>
             </div>
         </div>

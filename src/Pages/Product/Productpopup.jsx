@@ -233,9 +233,13 @@ export default function ProductPopUp(props) {
             }
 
         }).then(response => {
+          try {
             Setstore(response.data.data)
        
             SetProduct(Product => ({ ...Product, Store_id: response.data.data[0].id }))
+          } catch (error) {
+            console.trace(error)
+          }
         })
         
 
