@@ -87,11 +87,7 @@ export default function CountriesPopUp() {
                 
                 setmassage( error.response.data.Country)
                
-                seterror("red")
-               
-            
-
-                
+                seterror("red");
             }
         )
     };
