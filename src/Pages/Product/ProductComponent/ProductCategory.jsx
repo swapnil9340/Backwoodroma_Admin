@@ -33,29 +33,12 @@ export default function ProductCategory({ Product, SetProduct }) {
         
         onebyone.addEventListener("click", function () {
             formcontrolcheckbox.forEach((onebyone) => {
-                
                 onebyone.checked = false
-                // SetSubCategory(false);
-                // SetSubCategory({
-                //     ...SubCategory,
-                //     [onebyone.id]: false
-                // });
-                
             })
             onebyone.checked = true
-            // SetSubCategory(onebyone.value)
-            // SetSubCategory(true)
-              
-              SetSubCategory(false);
-            SetSubCategory({
-                ...SubCategory,
-                [onebyone.id]: true
-            });
-
-            
+            SetSubCategory({[onebyone.id]: true});
         })
     })
-    console.log(SubCategory)
     
 
 // const handleChange = (event) => {
