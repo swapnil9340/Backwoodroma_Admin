@@ -134,9 +134,24 @@ export default function FlavorPopUp() {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            width: "60%",
-                            height: "60%",
+                            width:{
+                                xs:"60%",
+                                sm:"60%",
+                                md:"50%",
+                                lg:"40%",
+                                xl:"40%"
+   
+                               },
+                               height: {
+                                xs:"50%",
+                                sm:"50%",
+                                md:"50%",
+                                lg:"50%",
+                                xl:"60%"
+                               },
+                               border: "1px solid #31B665",
                             maxWidth: "none",  // Set your width here
+
                         },
 
                     },
@@ -150,7 +165,7 @@ export default function FlavorPopUp() {
                     <div className='container-fluid '>
                         <div className='row '>
 
-                            <div className='col-12    ' >
+                            <div className='col-12' style={{marginTop:"6%"}} >
 
                                 <div className='col-12 Add_State Add_Category center'>
                                     <div className="col "> <h2> Flavour
@@ -165,7 +180,7 @@ export default function FlavorPopUp() {
                                         </label>
                                     </div>
                                     <div className='col'>
-                                        <TextField placeholder='Add flavour' id="outlined-basic" name='flavour_Name' value={Flavour.flavour_Name} style={{ minWidth: 190 }}
+                                        <TextField placeholder='Add flavour' id="outlined-basic" name='flavour_Name' value={Flavour.flavour_Name} style={{ minWidth: 150 }}
                                             onChange={handleChange} 
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                             label={massage.flavour_Name}
@@ -197,7 +212,7 @@ export default function FlavorPopUp() {
                                         </label>
                                     </div>
                                     <div className='col'>
-                                        <TextField type="number" placeholder='Price' name='Price' value={Price} id="outlined-basic" variant="outlined"  style={{ minWidth: 190, fontSize: 15 }}
+                                        <TextField type="number" placeholder='Price' name='Price' value={Price} id="outlined-basic" variant="outlined"  style={{ minWidth: 150, fontSize: 15 }}
                                             onChange={handlePrice}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                             label={massage.Price}
@@ -247,7 +262,7 @@ export default function FlavorPopUp() {
                                 </div>
                                 <div className='col-12 center top' >
                                     <button className='btn Sub_button' autoFocus onClick={Submit} >
-                                        Save changes
+                                        Add Flavours
                                     </button>
                                 </div>
 
