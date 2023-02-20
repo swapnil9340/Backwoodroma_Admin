@@ -1158,14 +1158,35 @@ input:focus + label {
 
   /* product Category */
 
-  .Product_category{
-    /* display: grid; */
+  .product_category{
+   font-size: 22px;
+   font-weight: 500;
   }
 
+.Product_Checkbox{
 
+  gap: 20px;
+  display: grid;
 
+}
+.form-group-checkboxdev{
+  background: #F5F5F5;
+  font-size: 20px;
+  justify-content: left;
+    display: flex;
+    gap: 10px;
 
+}
+.Product_subCategory{
+  /* display: flex; */
+  /* justify-content: end; */
 
+  display: inline-flex;
+}
+
+.checkbox:checked::after{
+  background-color:green;
+  }
 
   .multipleSelection {
     width: 300px;
