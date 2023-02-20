@@ -101,7 +101,8 @@ export default function GiftVoucherpopup() {
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
                             width: "60%",
-                            height: "60%",
+                            height: "70%",
+                            border: "1px solid #31B665",
                             maxWidth: "none",  // Set your width here
                         },
                     },
@@ -114,10 +115,10 @@ export default function GiftVoucherpopup() {
                     <div className='container-fluid '>
                         <div className='row '>
 
-                            <div className='col-12    ' >
+                            <div className='col-12 ' >
 
-                                <div className='col-12    center'>
-                                    <div className="col "> <h2> Add Gift Voucher
+                                <div className='col-12 '>
+                                    <div className="col " > <h2> Add Gift Voucher
                                     </h2>
                                     </div>
                                 </div>
@@ -212,7 +213,7 @@ export default function GiftVoucherpopup() {
                                 </div>
                                 <div className='col-12 center top' >
                                     <button className='btn Sub_button' autoFocus onClick={Submit} >
-                                        Save changes
+                                      Add Gift Voucher
                                     </button>
                                 </div>
 
@@ -224,7 +225,7 @@ export default function GiftVoucherpopup() {
 
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleClose}>
+                    <Button sx={{color:"#31B665"}} autoFocus onClick={handleClose}>
                         Exit
                     </Button>
                 </DialogActions>
