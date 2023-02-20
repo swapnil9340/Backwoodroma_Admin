@@ -129,9 +129,23 @@ export default function NetwegihtEdit(props) {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            width: "60%",
-                            height: "60%",
+                            width: {
+                                xs: "55%",
+                                sm: "55%",
+                                md: "55%",
+                                lg: "55%",
+                                xl: "55%"
+
+                            },
+                            height: {
+                                xs: "55%",
+                                sm: "55%",
+                                md: "70%",
+                                lg: "70%",
+                                xl: "70%"
+                            },
                             maxWidth: "none",  // Set your width here
+                            border: "1px solid #31B665",
                         },
                     },
                 }}
@@ -144,7 +158,7 @@ export default function NetwegihtEdit(props) {
                     <div className='container-fluid '>
                         <div className='row '>
 
-                            <div className='col-12    ' >
+                            <div className='col-12' style={{ marginTop: "2%" }} >
 
                                 <div className='col-12 Add_Category center'>
                                     <div className="col "> <h2> Edit Net Weight
@@ -159,7 +173,7 @@ export default function NetwegihtEdit(props) {
                                         </label>
                                     </div>
                                     <div className='col'>
-                                    <TextField type="text" id="outlined-basic" variant="outlined" name='Weight_type' value={netWegiht.Weight_type} style={{ minWidth: 190, fontSize: 15 }}
+                                    <TextField type="text" id="outlined-basic" variant="outlined" name='Weight_type' value={netWegiht.Weight_type} style={{ minWidth: 150, fontSize: 15 }}
                                            onChange={handleChange}
                                            InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                            label={massage.Weight_type}
@@ -192,7 +206,7 @@ export default function NetwegihtEdit(props) {
                                         </label>
                                     </div>
                                     <div className='col'>
-                                    <TextField  type="number"  id="outlined-basic" variant="outlined"  name='Weight_Price' value={Size.Weight_Price} style={{ minWidth: 190, fontSize: 15 }}
+                                    <TextField  type="number"  id="outlined-basic" variant="outlined"  name='Weight_Price' value={Size.Weight_Price} style={{ minWidth: 150, fontSize: 15 }}
                                             onChange={handleValue}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                             label={massage.Weight_Price}
@@ -228,7 +242,7 @@ export default function NetwegihtEdit(props) {
                                             value={netWegiht.Status}
                                             onChange={handleChange}
                                             displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}>
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}>
                                             <MenuItem value={"Active"} style={{ fontSize: 15 }}>Active</MenuItem>
                                             <MenuItem value={"Hide"} style={{ fontSize: 15 }}>Hide</MenuItem>
 
