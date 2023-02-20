@@ -182,6 +182,10 @@ export default function SubCategory() {
                                 display: "flex",
                                 width: "200px"
                             },
+                             // check
+                             ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
+                                outline:"none"
+                              },
 
                             "@media(max-width:767px)": {
                                 '& .MuiButton-root': {
