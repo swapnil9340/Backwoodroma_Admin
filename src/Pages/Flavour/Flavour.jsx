@@ -50,13 +50,13 @@ export default function State() {
 
     const columns = [
         {
-            field: 'FlavoursImage', headerName: 'Flavours Image', type: 'text', editable: true, width: 200,
+            field: 'FlavoursImage', headerName: 'Flavours Image',maxWidth: 150, minWidth: 80, flex: 1, type: 'text', editable: true,
             renderCell: (params) => <img src={"http://34.201.114.126:8000/" + params.value} alt="flavoursImage" width="35" height="30" />,
             headerClassName: 'super-app-theme--header'
         },
-        { field: 'flavour_Name', headerName: 'flavour Name', width: 200, editable: true, headerClassName: 'super-app-theme--header' },
-        { field: 'Price', headerName: 'Price', width: 200, editable: true, headerClassName: 'super-app-theme--header' },
-        { field: 'Edit', headerName: 'Edit', type: 'button', editable: true, headerClassName: 'super-app-theme--header',
+        { field: 'flavour_Name', headerName: 'flavour Name',maxWidth: 150, minWidth: 80, flex: 1, editable: true, headerClassName: 'super-app-theme--header' },
+        { field: 'Price', headerName: 'Price',maxWidth: 150, minWidth: 80, flex: 1, editable: true, headerClassName: 'super-app-theme--header' },
+        { field: 'Edit', headerName: 'Edit', type: 'button',maxWidth: 150, minWidth: 80, flex: 1, editable: true, headerClassName: 'super-app-theme--header',
         renderCell: (params) => (
             <>
                 <Box 
@@ -68,11 +68,21 @@ export default function State() {
                         },
                     },
                    '& . MuiDataGrid-root .MuiDataGrid-cell:focus' : {
-                        outline: "solid #0f1010 1px"
+                        outline: "none"
                     }
                 }}
                 >
-                    <Select IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
+                    <Select
+                      sx={{
+                        boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
+                        "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
+                        "&:hover": {
+                            ".MuiSelect-icon": {
+                                color: "#31B665"
+                            }
+                        },
+                    }}
+                    IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
                         <MenuItem><FlavoursEdit data={params.row} ></FlavoursEdit></MenuItem>
                         <MenuItem> <FlavourDelete data={params.row}></FlavourDelete>  </MenuItem>
                     </Select>
@@ -89,16 +99,13 @@ export default function State() {
     return (
         <div className='container-fluid'>
             <div className='row'>
+               
+                <div className='col-10 flavour_main_col ' >
 
-                <div className='col-sm-2 '>
-
-                </div>
-                <div className='col-8 border   ' >
-
-                    <div className='col-12 Add_Category'>
+                    <div className='col-12 Add_Category m-2'>
                         <div className="col"> <h2> Flavour
                         </h2></div>
-                        <div className="col cat_but" >  <span className='btn'> <h2> <FlavorPopUp></FlavorPopUp> </h2></span></div>
+                        <div className="col cat_but" >  <span className='btn cat_pop_btn '> <h2> <FlavorPopUp></FlavorPopUp> </h2></span></div>
                     </div>
 
                     <div className='col-12' >
@@ -108,9 +115,42 @@ export default function State() {
                             '& .MuiDataGrid-columnHeaders': {
                                 backgroundColor: '#E1FFED',
                             },
+                             // check
+                             ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
+                                outline:"none"
+                              },
+
                             '& .MuiButton-root': {
-                                color: '#000000',
+                                color: '#FFFFFF',
                                 display: "flex",
+                            },
+                            "@media(max-width:767px)": {
+                                '& .MuiButton-root': {
+                                    display: "contents",
+                                    width: "150px",
+                                    margin: "2px",
+                                    fontSize: "14px"
+                                },
+
+                            },
+                            "@media(max-width:546px)": {
+                                '& .MuiButton-root': {
+                                    display: "contents",
+                                    width: "150px",
+                                    fontSize: "9px"
+                                },
+
+                            },
+                            "@media(min-width:768px)": {
+                                '& .MuiButton-root': {
+                                    width: "110px",
+                                    margin: "2px",
+                                    fontSize: "14px"
+                                },
+
+                                "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                                    width: "120px"
+                                }
                             }
                         }}>
                         <ThemeProvider theme={CustomFontTheme}>
@@ -118,9 +158,36 @@ export default function State() {
                             
                                 <DataGrid rows={rows} columns={columns}  components={{ Toolbar: GridToolbar }}  checkboxSelection
                                  sx={{
-                                    "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                       outline: "1px solid black ",
+                                    ".MuiDataGrid-toolbarContainer":{
+                                      backgroundColor:"#31B665"
                                     },
+                                    "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
+                                        outline: "none"
+                                    },
+                                    "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
+                                        outline: "none ",
+
+                                    },
+                                    
+                                    "@media(max-width:768px)": {
+                                        ".MuiDataGrid-toolbarContainer": {
+                                            gap: "10px",
+
+                                        }
+                                    },
+                                    "@media(max-width:546px)": {
+                                        ".MuiDataGrid-toolbarContainer": {
+                                            gap: "5px",
+
+                                        }
+                                    },
+                                    "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
+                                        visibility: "hidden"
+                                    },
+                                    "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
+                                        backgroundColor: "#FFFFFF"
+                                    },
+                                   
                                  }}
                                 />
                             </div>
