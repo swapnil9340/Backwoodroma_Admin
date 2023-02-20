@@ -47,17 +47,15 @@ export default function Gift_Voucher() {
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
       }, []);
     const columns = [
-        {
-            field: 'User', headerName: 'User', editable: true, headerClassName: 'super-app-theme--header', width: 120,
-        },
-        { field: 'type', headerName: 'Type', editable: true, headerClassName: 'super-app-theme--header', width: 120 },
-
-        { field: 'expires', headerName: 'Expire', type: 'text', editable: true, headerClassName: 'super-app-theme--header', width: 150 },
+    
         {
             field: 'code', headerName: 'Code', type: 'text', editable: true, width: 180, headerClassName: 'super-app-theme--header',
             renderCell: (params) => <span dangerouslySetInnerHTML={{ __html: params.formattedValue }} />
         },
-        { field: 'bound', headerName: 'Bound', type: 'text', editable: true, width: 90, headerClassName: 'super-app-theme--header' },
+        { field: 'type', headerName: 'Type', editable: true, headerClassName: 'super-app-theme--header', width: 120 },
+
+        { field: 'expires', headerName: 'Expire', type: 'text', editable: true, headerClassName: 'super-app-theme--header', width: 150 },
+       
         { field: 'Edit', headerName: 'Edit', type: 'button', editable: true, headerClassName: 'super-app-theme--header' ,
         renderCell: (params) => (
             <>
