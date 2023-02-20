@@ -1261,5 +1261,46 @@ input:focus + label {
 .tax_pop_up_Main_row{
 margin-top: 6%;
 }
+.flavour_main_col {
+  position: relative;
+  left: 16%
+}
+
+@media(max-width:991px) {
+  .flavour_main_col {
+    width: 100%;
+    left: 0%;
+    position: absolute;
+    
+  }
+}
+.netWeight_main_col{
+  position: relative;
+  left: 16%
+}
+@media(max-width:991px) {
+  .netWeight_main_col {
+    width: 100%;
+    left: 0%;
+    position: absolute;
+  }
+}
+.rightPanelSpan1{
+  margin-left: 17px;
+}
+.tax_main_row{
+  position: relative;
+  left: 16% 
+}
+@media(max-width:991px) {
+  .tax_main_row {
+    width: 100%;
+    left: 0%;
+    position: absolute;
+  }
+}
+.tax_pop_up_Main_row{
+margin-top: 6%;
+}
 
 
