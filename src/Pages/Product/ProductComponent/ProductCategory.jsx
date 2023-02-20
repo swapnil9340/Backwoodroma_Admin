@@ -32,6 +32,11 @@ export default function ProductCategory({ Product, SetProduct }) {
     const handleSubCategory = (event) =>{
 
         setSubCagetoryselected(parseInt(event.target.value));
+        SetProduct({
+                    ...Product, [event.target.name]: event.target.value
+                });
+
+
     }
 
 
@@ -68,22 +73,23 @@ export default function ProductCategory({ Product, SetProduct }) {
     return (
         <div>
             <div className='col background'>
-                <div className='col-10  center '>
-                    <label className=' '>
+                <div className='col-12  center '>
+                    <label className='product_category'>
                         Category
                     </label>
                     <div className='col justify  Add_Category center'>
-                        <div className='col' >
-                            <div className="Product_category">
+                        <div className='col-6' >
+                            <div className="Product_Checkbox  ">
 
                                 {
                                     Category.map((data, index) => {
                                         return (
-                                            <div key={index}>
+                                            <div className='col-12 center'   key={index}>
 
                                                 <div className='form-group-checkboxdev' key={index.id} >
 
                                                     <input
+                                                    className='checkbox'
                                                         type="checkbox"
                                                         value={data.id}
                                                         checked={selectedValue === parseInt(data.id)}
@@ -91,8 +97,8 @@ export default function ProductCategory({ Product, SetProduct }) {
                                                     />
 
                                                     <span> {data.name} </span>
-
                                                 </div>
+                                                   
                                                 {
                                                     selectedValue === data.id ?
 
@@ -100,8 +106,9 @@ export default function ProductCategory({ Product, SetProduct }) {
                                                         SubCategory.map((data, index) => {
                                                             return (
 
-                                                                <div key={index}>
-                                                                    <input
+                                                                <div className='col-8    Product_subCategory' key={index}>
+                                                                    <input 
+                                                                    name='Sub_Category_id'
                                                                         type="checkbox"
                                                                         value={data.id}
                                                                         checked={SubCagetoryselected === parseInt(data.id)}
@@ -109,8 +116,7 @@ export default function ProductCategory({ Product, SetProduct }) {
                                                                     />
 
                                                                     <span>{data.name}</span>
-
-
+                                                                    
                                                                 </div>
 
                                                             )
@@ -120,7 +126,11 @@ export default function ProductCategory({ Product, SetProduct }) {
                                                         : null
                                                 }
 
+
+<hr></hr>
                                             </div>
+                                            
+                                            
                                         )
                                     })
                                 }

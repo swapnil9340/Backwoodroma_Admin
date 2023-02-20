@@ -26,7 +26,7 @@ export default function Strain({ Product, SetProduct }) {
     
     return (
         <div>
-            <label className=''>
+            <label className=' center'>
                 Strain
             </label>
             <div className='col-12   ' >
