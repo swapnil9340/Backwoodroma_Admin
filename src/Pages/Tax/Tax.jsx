@@ -14,7 +14,7 @@ import Select from '@mui/material/Select';
 import TaxEdit from "./TaxEdit"
 import TexDelete from './TaxDelete';
 import { useSnackbar } from 'notistack';
-
+import Tooltip from '@mui/material/Tooltip';
 
 export default function Tax() {
     const { enqueueSnackbar } = useSnackbar();
@@ -78,13 +78,14 @@ export default function Tax() {
 
 
     const columns = [
-        { field: 'tax_value', headerName: 'Tax Value', width: 200, editable: true, headerClassName: 'super-app-theme--header' },
-        { field: 'tax_type', headerName: 'Tax Type', width: 200, editable: true, headerClassName: 'super-app-theme--header' },
-        { field: 'Status', headerName: 'Status', type: 'text', editable: true, width: 300, headerClassName: 'super-app-theme--header',
+        { field: 'tax_type', headerName: 'Name',maxWidth: 150, minWidth: 80, flex: 1, editable: false, headerClassName: 'super-app-theme--header' },
+        { field: 'tax_value', headerName: 'Tax',maxWidth: 150, minWidth: 80, flex: 1, editable: false, headerClassName: 'super-app-theme--header' },
+        { field: 'Status', headerName: 'Status', type: 'text', editable: false,maxWidth: 150, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',
         renderCell: (params) => {
 
             if (params.formattedValue === "Active") {
                 return (
+                    <Tooltip title="Active" enterDelay={300} leaveDelay={200} arrow placement="right-start">
                     <p
                         style={{ color: "#31B665 ", fontSize: 25, cursor: "pointer" }}
                         variant="contained"
@@ -93,10 +94,12 @@ export default function Tax() {
                             Submit(params);
                         }}
                     ><AiFillEye /> </p>
+                    </Tooltip>
 
                 )
             }
             return (
+                <Tooltip title="Hide" enterDelay={300} leaveDelay={200} arrow placement="right-start">
                 <p
                     style={{ color: "red ", fontSize: 25, cursor: "pointer" }}
                     variant="contained"
@@ -105,11 +108,12 @@ export default function Tax() {
                         Submit(params);
                     }}
                 ><AiOutlineEyeInvisible /></p>
+                </Tooltip>
 
             )
         }
      },
-        { field: 'Edit', headerName: 'Edit', type: 'button', editable: true, headerClassName: 'super-app-theme--header',
+        { field: 'Edit', headerName: 'Edit',maxWidth: 150, minWidth: 70, flex: 1, type: 'button', editable: false, headerClassName: 'super-app-theme--header',headerAlign: 'center',align:"center",
         renderCell: (params) => (
             <>
                 <Box
@@ -123,7 +127,15 @@ export default function Tax() {
                    
                 }}
                  >
-                    <Select IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
+                    <Select   sx={{
+                        boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
+                        "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
+                        "&:hover": {
+                            ".MuiSelect-icon": {
+                                color: "#31B665"
+                            }
+                        },
+                    }} IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
                         <MenuItem  ><TaxEdit data={params.row}></TaxEdit></MenuItem>
                         <MenuItem  >  <TexDelete data={params.row}></TexDelete></MenuItem>
                     </Select>
@@ -140,29 +152,40 @@ export default function Tax() {
     return (
         <div className='container-fluid'>
             <div className='row'>
+                <div className='col-10 tax_main_row'>
 
-                <div className='col-sm-2 '>
-
-                </div>
-                <div className='col-8 border   ' >
-
-                    <div className='col-12 Add_Category'>
+                    <div className='col-12 Add_Category mt-2'>
                         <div className="col"> <h2> Tax
                         </h2></div>
-                        <div className="col cat_but" >  <span className='btn'> <h2> <Taxpop></Taxpop> </h2></span></div>
+                        <div className="col cat_but" >  <span className='btn cat_pop_btn'> <h2> <Taxpop></Taxpop> </h2></span></div>
                     </div>
 
                     <div className='col-12' >
                     <Box sx={{
                             height: 400,
                             width: '100%',
+                            overflowX:"hidden",
+                             // check
+                             ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
+                                outline:"none"
+                              },
                             '& .MuiDataGrid-columnHeaders': {
                                 backgroundColor: '#E1FFED',
                             },
                             '& .MuiButton-root': {
-                                color: '#000000',
+                                color: '#FFFFFF',
                                 display: "flex",
                             },
+                            "@media(max-width:436px)": {
+                                '& .MuiButton-root': {
+                                    display: "contents",
+                                    width: "150px",
+                                    fontSize: "9px"
+                                },
+
+                            },
+                          
+                           
                         }}>
 
                         <ThemeProvider theme={CustomFontTheme}>
@@ -170,7 +193,27 @@ export default function Tax() {
                                 <DataGrid rows={rows} columns={columns} components={{ Toolbar: GridToolbar }} checkboxSelection
                                   sx={{
                                     "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                        outline: "1px solid black ",
+                                        outline: "none",
+                                      
+                                    },
+                                    ".MuiDataGrid-toolbarContainer":{
+                                       backgroundColor:"#31B665"     
+                                    },
+                                    "@media(max-width:436px)": {
+                                        ".MuiDataGrid-toolbarContainer": {
+                                            gap: "5px",
+
+                                        }
+                                    },
+                                  
+                                    "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
+                                        outline: "none"
+                                    },
+                                    "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
+                                        visibility: "hidden"
+                                    },
+                                    "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
+                                        backgroundColor: "#FFFFFF"
                                     },
                                 }}
                                 
