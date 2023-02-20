@@ -91,10 +91,10 @@ export default function Taxpop() {
             dispatch({ type: 'api', api: true })
             settaxs('')
             settype('')
-            seterrorMassager({ y: ""})
+            seterrorMassager({ y: "" })
             seterror({ y: "" })
 
-            
+
 
         }).catch(
             function (error) {
@@ -110,11 +110,11 @@ export default function Taxpop() {
 
                 }
                 else {
-                    seterrorMassager({y:error.response.data.error.tax_type[0]})
+                    seterrorMassager({ y: error.response.data.error.tax_type[0] })
                     seterror({ y: "red" })
                 }
 
-              
+
             }
         )
     };
@@ -131,8 +131,24 @@ export default function Taxpop() {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            width: "60%",
-                            height: "60%",
+                            width: {
+                                xs: "60%",
+                                sm: "60%",
+                                md: "50%",
+                                lg: "35%",
+                                xl: "35%"
+
+                            },
+                            height: {
+                                xs: "65%",
+                                sm: "40%",
+                                md: "50%",
+                                lg: "50%",
+                                xl: "60%"
+                            },
+                            overflowX: "hidden",
+
+                            border: "1px solid #31B665",
                             maxWidth: "none",  // Set your width here
                         },
                     },
@@ -143,7 +159,7 @@ export default function Taxpop() {
                 </BootstrapDialogTitle>
                 <DialogContent dividers>
                     <div className='container-fluid '>
-                        <div className='row '>
+                        <div className='row tax_pop_up_Main_row'>
 
                             <div className='col-12    ' >
 
@@ -155,7 +171,7 @@ export default function Taxpop() {
                                 <div className='col-12 top label  con  '>
                                     <div className='col'>
                                         <label className='label'>
-                                        <span className='required'>*</span>
+                                            <span className='required'>*</span>
                                             Tax Value:
                                         </label>
                                     </div>
@@ -189,13 +205,13 @@ export default function Taxpop() {
                                 <div className='col-12 top label  con'>
                                     <div className='col'>
                                         <label className='label'>
-                                        <span className='required'>*</span>
+                                            <span className='required'>*</span>
                                             Tax Type:
                                         </label>
                                     </div>
                                     <div className='col'>
 
-                                        <TextField type="text" placeholder='Add  Tax Type' id="outlined-basic" variant="outlined" value={type} style={{ minWidth: 190, fontSize: 15 }}
+                                        <TextField  type="text" placeholder='Add  Tax Type' id="outlined-basic" variant="outlined" value={type} style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleTex}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                             label={errorMassager.y}
@@ -222,7 +238,7 @@ export default function Taxpop() {
                                     </div>
                                 </div>
                                 <div className='col-12 top label  con'>
-                                    <div className='col'>
+                                    <div className='col mt-4'>
                                         <label className='label'>
                                             Status:
                                         </label>
@@ -230,9 +246,10 @@ export default function Taxpop() {
                                     <div className='col'>
                                         <Select
                                             value={Status}
+                                            size="small"
                                             onChange={handleStatus}
                                             displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}
                                         >
                                             <MenuItem value="" style={{ fontSize: 15 }}>
                                                 <em>Select option</em>
@@ -245,7 +262,7 @@ export default function Taxpop() {
                                 </div>
                                 <div className='col-12 center top' >
                                     <button className='btn Sub_button' autoFocus onClick={Submit} >
-                                        Save changes
+                                       Add Tax
                                     </button>
                                 </div>
 
