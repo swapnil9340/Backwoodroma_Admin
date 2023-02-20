@@ -126,13 +126,7 @@ export default function SubCategoryEdit(props) {
                 aria-labelledby="customized-dialog-title"
                 open={open}
                 sx={{
-                    "& .MuiDialog-container": {
-                        "& .MuiPaper-root": {
-                            width: "60%",
-                            height: "60%",
-                            maxWidth: "none",  // Set your width here
-                        },
-                    },
+                  
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
                             width: {
