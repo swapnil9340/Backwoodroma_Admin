@@ -8,9 +8,31 @@ export default function ProductCategory({ Product, SetProduct }) {
 
     const [Category, SetCategory] = React.useState([])
     const [selectedValue, setSelectedValue] = React.useState(0);
+    const [SubCategory, SetSubCatgory] = React.useState([])
+    const [SubCagetoryselected, setSubCagetoryselected] = React.useState(0);
+
     const handleCheckboxChange = (event) => {
         setSelectedValue(parseInt(event.target.value));
-    };
+        axios(`http://34.201.114.126:8000/AdminPanel/FilterbyCategory/${event.target.value}`, {
+
+            headers: {
+                'Authorization': `Bearer ${token_data}`
+            }
+
+        }).then(response => {
+            SetSubCatgory(response.data.data)
+            // console.log(response.data.data[0].name)
+
+            // if (Product.Sub_Category_id === "")
+            // SetProduct(Product => ({ ...Product, Sub_Category_id: response.data[0].id }))
+        })
+
+    }
+
+    const handleSubCategory = (event) =>{
+
+        setSubCagetoryselected(parseInt(event.target.value));
+    }
 
 
 
@@ -72,7 +94,30 @@ export default function ProductCategory({ Product, SetProduct }) {
 
                                                 </div>
                                                 {
-                                                    selectedValue === data.id ? "ghh" : null
+                                                    selectedValue === data.id ?
+
+
+                                                        SubCategory.map((data, index) => {
+                                                            return (
+
+                                                                <div key={index}>
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        value={data.id}
+                                                                        checked={SubCagetoryselected === parseInt(data.id)}
+                                                                        onChange={handleSubCategory}
+                                                                    />
+
+                                                                    <span>{data.name}</span>
+
+
+                                                                </div>
+
+                                                            )
+                                                        })
+
+
+                                                        : null
                                                 }
 
                                             </div>
