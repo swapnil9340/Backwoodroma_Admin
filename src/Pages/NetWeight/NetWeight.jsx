@@ -14,6 +14,8 @@ import Select from '@mui/material/Select';
 import NetwegihtEdit from "./NetWeightEdit"
 import NetWetDelete from "./NetWeightDelete"
 import { useSnackbar } from 'notistack';
+import Tooltip from '@mui/material/Tooltip';
+
 export default function State() {
     const { enqueueSnackbar } = useSnackbar()
     const { state , dispatch} = useContext(Createcontext)
@@ -76,13 +78,15 @@ export default function State() {
 
 
     const columns = [
-        { field: 'Weight_type', headerName: 'Weight type', width: 200, editable: true, headerClassName: 'super-app-theme--header' },
-        { field: 'Weight_Price', headerName: 'Weight Price', width: 200, editable: true, headerClassName: 'super-app-theme--header' },
-        { field: 'Status', headerName: 'Status', type: 'text', editable: true, width: 300, headerClassName: 'super-app-theme--header',
+        { field: 'Weight_type', headerName: 'Weight type',maxWidth: 150,minWidth: 80, flex: 1,  editable: true, headerClassName: 'super-app-theme--header' },
+        { field: 'Weight_Price', headerName: 'Weight Price',maxWidth: 150,minWidth: 80, flex: 1, editable: true, headerClassName: 'super-app-theme--header' },
+        { field: 'Status', headerName: 'Status', type: 'text',maxWidth: 150, minWidth: 80, flex: 1,editable: true, headerClassName: 'super-app-theme--header',
         renderCell: (params) => {
 
             if (params.formattedValue === "Active") {
                 return (
+                    <Tooltip title="Active" enterDelay={300} leaveDelay={200} arrow placement="right-start">
+
                     <p
                         style={{ color: "#31B665 ", fontSize: 25, cursor: "pointer" }}
                         variant="contained"
@@ -91,10 +95,13 @@ export default function State() {
                             Submit(params);
                         }}
                     ><AiFillEye /> </p>
+                    </Tooltip>
 
                 )
             }
             return (
+                <Tooltip title="Hide" enterDelay={300} leaveDelay={200} arrow placement="right-start">
+
                 <p
                     style={{ color: "red ", fontSize: 25, cursor: "pointer" }}
                     variant="contained"
@@ -103,11 +110,12 @@ export default function State() {
                         Submit(params);
                     }}
                 ><AiOutlineEyeInvisible /></p>
+                </Tooltip>
 
             )
         }
      },
-        { field: 'Edit', headerName: 'Edit', type: 'button', editable: true, headerClassName: 'super-app-theme--header',
+        { field: 'Edit', headerName: 'Edit',maxWidth: 150,minWidth: 80, flex: 1, type: 'button', editable: true, headerClassName: 'super-app-theme--header',
         renderCell: (params) => (
             <>
                 <Box 
@@ -123,7 +131,13 @@ export default function State() {
                     }
                 }}
                  >
-                    <Select IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
+                    <Select  sx={{   boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
+                        "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
+                        "&:hover": {
+                            ".MuiSelect-icon": {
+                                color: "#31B665"
+                            }
+                        },}} IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
                         <MenuItem  > <NetwegihtEdit data={params.row}></NetwegihtEdit></MenuItem>
                         <MenuItem  > <NetWetDelete data={params.row}></NetWetDelete> </MenuItem>
                     </Select>
@@ -141,15 +155,13 @@ export default function State() {
         <div className='container-fluid'>
             <div className='row'>
 
-                <div className='col-sm-2 '>
-
-                </div>
-                <div className='col-8 border   ' >
+               
+                <div className='col-10 netWeight_main_col m-2'>
 
                     <div className='col-12 Add_Category'>
                         <div className="col"> <h2> NetWeight
                         </h2></div>
-                        <div className="col cat_but" >  <span className='btn'> <h2> <NetWegihtPopUp></NetWegihtPopUp></h2></span></div>
+                        <div className="col cat_but" >  <span className='btn cat_pop_btn'> <h2> <NetWegihtPopUp></NetWegihtPopUp></h2></span></div>
                     </div>
 
                     <div className='col-12' >
@@ -159,10 +171,43 @@ export default function State() {
                             '& .MuiDataGrid-columnHeaders': {
                                 backgroundColor: '#E1FFED',
                             },
+                            ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
+                                outline:"none"
+                              },
                             '& .MuiButton-root': {
-                                color: '#000000',
+                                color: '#FFFFFF',
                                 display: "flex",
                             },
+                            "@media(max-width:767px)": {
+                                '& .MuiButton-root': {
+                                    display: "contents",
+                                    width: "150px",
+                                    margin: "2px",
+                                    fontSize: "14px"
+                                },
+
+                            },
+                            "@media(max-width:546px)": {
+                                '& .MuiButton-root': {
+                                    display: "contents",
+                                    width: "150px",
+                                    fontSize: "9px"
+                                },
+
+                            },
+                            "@media(min-width:768px)": {
+                                '& .MuiButton-root': {
+                                    width: "110px",
+                                    margin: "2px",
+                                    fontSize: "14px"
+                                },
+
+                                "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                                    width: "120px"
+                                }
+                            }
+
+                           
                             
                         }}>
 
@@ -170,9 +215,35 @@ export default function State() {
                                 <div style={{ height: 400, width: '100%', }}>
                                     <DataGrid rows={rows} columns={columns} components={{ Toolbar: GridToolbar }} checkboxSelection 
                                      sx={{
-                                        "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                           outline: "1px solid black ",
-                                        },
+                                        ".MuiDataGrid-toolbarContainer":{
+                                            backgroundColor:"#31B665"
+                                          },
+                                          "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
+                                              outline: "none"
+                                          },
+                                          "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
+                                              outline: "none ",
+      
+                                          },
+                                          
+                                          "@media(max-width:768px)": {
+                                              ".MuiDataGrid-toolbarContainer": {
+                                                  gap: "10px",
+      
+                                              }
+                                          },
+                                          "@media(max-width:546px)": {
+                                              ".MuiDataGrid-toolbarContainer": {
+                                                  gap: "5px",
+      
+                                              }
+                                          },
+                                          "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
+                                              visibility: "hidden"
+                                          },
+                                          "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
+                                              backgroundColor: "#FFFFFF"
+                                          },
                                      }}
                                     />
                                 </div>
