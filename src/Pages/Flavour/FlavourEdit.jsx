@@ -134,9 +134,26 @@ export default function FlavoursEdit(props) {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            width: "60%",
-                            height: "60%",
-                            maxWidth: "none",  // Set your width here
+                            width: {
+                                xs: "55%",
+                                sm: "55%",
+                                md: "55%",
+                                lg: "55%",
+                                xl: "55%"
+
+                            },
+                            height: {
+                                xs: "55%",
+                                sm: "55%",
+                                md: "70%",
+                                lg: "70%",
+                                xl: "70%"
+                            },
+                            maxWidth: "none",
+                            border: "1px solid #31B665",  // Set your width here
+                            overflow:"hidden"
+                            // overflowY: "hidden",
+
                         },
                     },
                 }}
@@ -149,7 +166,7 @@ export default function FlavoursEdit(props) {
                     <div className='container-fluid '>
                         <div className='row '>
 
-                            <div className='col-12    ' >
+                            <div className='col-12' style={{ marginTop: "2%" }} >
 
                                 <div className='col-12 Add_Category center'>
                                     <div className="col "> <h2> Edit Flavours
@@ -164,7 +181,7 @@ export default function FlavoursEdit(props) {
                                         </label>
                                     </div>
                                     <div className='col'>
-                                        <TextField type="text" id="outlined-basic" variant="outlined" name='flavour_Name' value={Flavour.flavour_Name} style={{ minWidth: 190, fontSize: 15 }}
+                                        <TextField type="text" id="outlined-basic" variant="outlined" name='flavour_Name' value={Flavour.flavour_Name} style={{ minWidth: 150, fontSize: 15 }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                             label={massage.flavour_Name}
@@ -196,7 +213,7 @@ export default function FlavoursEdit(props) {
                                         </label>
                                     </div>
                                     <div className='col'>
-                                        <TextField type="number" id="outlined-basic" variant="outlined" name='Price' value={Flavour.Price} style={{ minWidth: 190, fontSize: 15 }}
+                                        <TextField type="number" id="outlined-basic" variant="outlined" name='Price' value={Flavour.Price} style={{ minWidth: 150, fontSize: 15 }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                             label={massage.Price}
@@ -229,21 +246,21 @@ export default function FlavoursEdit(props) {
                                     <div className='col'>
                                         {
                                             image ? <> <img src={URL.createObjectURL(image)} alt="" style={{ width: "120px", height: "110px" }} />
-                                                <Button onClick={resetFileInput} color='success' >Cancell </Button></>
+                                                <Button  onClick={resetFileInput} color='success' >Cancell </Button></>
                                                 :
                                                 <>
                                                     <img src={"http://34.201.114.126:8000/" + Flavour.FlavoursImage} alt="" style={{ width: "120px", height: "110px" }} />
-                                                    <Button name="FlavoursImage" value="" color='success' onClick={handleChange} >Cancell </Button>
+                                                    <Button  name="FlavoursImage" value="" color='success' onClick={handleChange} >Cancell </Button>
                                                 </>
                                         }
-                                        <input type="file" ref={inputRef} id="formFile" accept="image/*" variant="outlined" style={{ Width: "10%", fontSize: 15 }}
+                                        <input className='mt-2' type="file" ref={inputRef} id="formFile" accept="image/*" variant="outlined" style={{ Width: "10%", fontSize: 15 }}
                                             onChange={handleimage}
                                         />
 
                                     </div>
                                 </div>
                                 <div className='col-12 center top' >
-                                    <button className='btn Sub_button' autoFocus onClick={Submit} >
+                                    <button className='btn Sub_button m-2' autoFocus onClick={Submit} >
                                         Save changes
                                     </button>
                                 </div>
