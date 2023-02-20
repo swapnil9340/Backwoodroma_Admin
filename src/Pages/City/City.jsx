@@ -178,6 +178,10 @@ export default function City() {
                                 color: '#FFFFFF',
                                 display: "flex",
                             },
+                             // check
+                             ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
+                                outline:"none"
+                              },
                             "@media(max-width:767px)": {
                                 '& .MuiButton-root': {
                                     display: "contents",
