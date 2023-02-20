@@ -1152,10 +1152,6 @@ input:focus + label {
     /* end */
 
 
-
-
-
-
   /* product Category */
 
   .product_category{
@@ -1180,7 +1176,7 @@ input:focus + label {
 .Product_subCategory{
   /* display: flex; */
   /* justify-content: end; */
-
+  gap: 5px;
   display: inline-flex;
 }
 

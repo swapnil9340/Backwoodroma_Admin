@@ -12,6 +12,7 @@ export default function ProductCategory({ Product, SetProduct }) {
     const [SubCagetoryselected, setSubCagetoryselected] = React.useState(0);
 
     const handleCheckboxChange = (event) => {
+      
         setSelectedValue(parseInt(event.target.value));
         axios(`http://34.201.114.126:8000/AdminPanel/FilterbyCategory/${event.target.value}`, {
 
@@ -20,6 +21,7 @@ export default function ProductCategory({ Product, SetProduct }) {
             }
 
         }).then(response => {
+
             SetSubCatgory(response.data.data)
             // console.log(response.data.data[0].name)
 
@@ -30,13 +32,11 @@ export default function ProductCategory({ Product, SetProduct }) {
     }
 
     const handleSubCategory = (event) =>{
-
+ 
         setSubCagetoryselected(parseInt(event.target.value));
         SetProduct({
                     ...Product, [event.target.name]: event.target.value
                 });
-
-
     }
 
 
@@ -107,6 +107,7 @@ export default function ProductCategory({ Product, SetProduct }) {
                                                             return (
 
                                                                 <div className='col-8    Product_subCategory' key={index}>
+                                                                   
                                                                     <input 
                                                                     name='Sub_Category_id'
                                                                         type="checkbox"
@@ -114,9 +115,7 @@ export default function ProductCategory({ Product, SetProduct }) {
                                                                         checked={SubCagetoryselected === parseInt(data.id)}
                                                                         onChange={handleSubCategory}
                                                                     />
-
                                                                     <span>{data.name}</span>
-                                                                    
                                                                 </div>
 
                                                             )

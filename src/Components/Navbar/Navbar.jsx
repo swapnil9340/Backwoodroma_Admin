@@ -4,7 +4,7 @@ import Search from "./Search";
 import { RiDashboardFill } from "react-icons/ri"
 import { IoMdMailUnread } from 'react-icons/io';
 import { IoStorefrontOutline } from "react-icons/io5"
-import { MdOutlineAddShoppingCart } from "react-icons/md"
+// import { MdOutlineAddShoppingCart } from "react-icons/md"
 import {RiDragMoveFill} from "react-icons/ri"
 import {HiOutlineReceiptTax} from "react-icons/hi"
 import { VscBellDot } from 'react-icons/vsc';
@@ -58,9 +58,7 @@ function Navbar() {
 
 
 
-  function close() {
-    // document.getElementById("navbarSupportedContent").className="collapse('hide');
-  }
+
   //jquery for toggle sub menus
   var dropdown = document.getElementsByClassName("dropdown-btn");
   var i;
@@ -119,13 +117,13 @@ function Navbar() {
                 </div>
               </Link>
               <ProductDropDown></ProductDropDown>
-              <Link to="/" className="list-group-item list-group-item-action py-2 ripple">
+              {/* <Link to="/" className="list-group-item list-group-item-action py-2 ripple">
                 <div className='side_bar_option'>
                   <span><MdOutlineAddShoppingCart></MdOutlineAddShoppingCart></span>
                   <span className='side_penal_link'>Order</span>
                 </div>
 
-              </Link>
+              </Link> */}
               <CategoryDropDown></CategoryDropDown>
               <LocationDropDown></LocationDropDown>
               <PresetDropDown></PresetDropDown>
