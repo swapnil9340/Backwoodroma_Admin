@@ -120,8 +120,22 @@ export default function NetWegihtPopUp() {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            width: "60%",
-                            height: "60%",
+                            width:{
+                                xs:"60%",
+                                sm:"60%",
+                                md:"50%",
+                                lg:"35%",
+                                xl:"35%"
+   
+                               },
+                               height: {
+                                xs:"50%",
+                                sm:"50%",
+                                md:"50%",
+                                lg:"50%",
+                                xl:"60%"
+                               },
+                               border: "1px solid #31B665",
                             maxWidth: "none",  // Set your width here
                         },
                     },
@@ -134,7 +148,7 @@ export default function NetWegihtPopUp() {
                     <div className='container-fluid '>
                         <div className='row '>
 
-                            <div className='col-12    ' >
+                            <div className='col-12' style={{marginTop:"4%"}}>
 
                                 <div className='col-12 Add_State center Add_Category'>
                                     <div className="col "> <h2> NetWeight
@@ -213,9 +227,10 @@ export default function NetWegihtPopUp() {
                                     <div className='col'>
                                     <Select
                                         value={Status}
+                                        size="small"
                                         onChange={handleStatus}
                                         displayEmpty
-                                        inputProps={{ 'aria-label': 'Without label' }} style={{minWidth: 190 , fontSize:15}}
+                                        inputProps={{ 'aria-label': 'Without label' }} style={{minWidth: 120 , fontSize:15}}
                                     >
                                         <MenuItem value="" style={{ fontSize:15}}>
                                             <em>Select option</em>
@@ -228,7 +243,7 @@ export default function NetWegihtPopUp() {
                                 </div>
                                 <div className='col-12 center top' >
                                     <button className='btn Sub_button' autoFocus onClick={Submit} >
-                                        Save changes
+                                       Add NetWeight
                                     </button>
                                 </div>
 
