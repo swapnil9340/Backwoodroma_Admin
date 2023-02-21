@@ -137,7 +137,7 @@ export default function GiftVoucherpopup() {
                                     </h2>
                                     </div>
                                 </div>
-                                <div className='col-12 top  Add_Category_pop  con  '>
+                                <div className='col-10 top  Add_Category_pop  con  '>
                                     <div className='col'>
                                         <label className='label'>
                                             User:
@@ -148,13 +148,13 @@ export default function GiftVoucherpopup() {
                                             onChange={handleChange} />
                                     </div>
                                 </div>
-                                <div className='col-12 top  Add_Category_pop'>
-                                    <div className='col-2'>
-                                        <label >
+                                <div className='col-10 top  Add_Category_pop'>
+                                    <div className='col'>
+                                        <label className='label'>
                                             Type :
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                     <Select
                                             value={Gift_Voucher.type}
                                             name="type"
@@ -167,13 +167,13 @@ export default function GiftVoucherpopup() {
                                         </Select>
                                     </div>
                                 </div>
-                                <div className='col-12 top   Add_Category_pop'>
-                                    <div className='col-2'>
-                                        <label className=''>
+                                <div className='col-10 top   Add_Category_pop'>
+                                    <div className='col'>
+                                        <label className='label'>
                                             Expires:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                     <TextField
                                             id="date"
                                             value={expires}
@@ -191,36 +191,36 @@ export default function GiftVoucherpopup() {
                                     </div>
                                 </div>
                            
-                                <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col-2'>
-                                        <label className=''>
+                                <div className='col-10 top  Add_Category_pop '>
+                                    <div className='col'>
+                                        <label className='label'>
                                             Percentage:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <TextField type="number" placeholder='Add Percentage' name='percentage' value={Gift_Voucher.percentage} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange} />
                                     </div>
                                 </div>
                                
-                                <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col-2'>
-                                        <label >
+                                <div className='col-10 top  Add_Category_pop '>
+                                    <div className='col'>
+                                        <label className='label'>
                                             Repeat:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <TextField type="number" placeholder='Add repeat' id="outlined-basic" variant="outlined" name='repeat' value={Gift_Voucher.repeat} style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange} />
                                     </div>
                                 </div>
-                                <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col-2 '>
-                                    <label >
+                                <div className='col-10 top  Add_Category_pop '>
+                                    <div className='col'>
+                                    <label className='label' >
                                             Bound
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         
                                         
                                     <Checkbox    defaultChecked={false}    value={bound}  name="bound" onChange={handleChangeCheckbox}  />
