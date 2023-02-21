@@ -1,4 +1,4 @@
-import React , {useRef ,useContext} from 'react';
+import React, { useRef, useContext } from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
@@ -24,14 +24,14 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
     '& .MuiOutlinedInput-root': {
         '&.Mui-focused fieldset': {
-          borderWidth: "1px",
-          borderColor: 'black',
+            borderWidth: "1px",
+            borderColor: 'black',
         },
         '& .MuiButtonBase-root': {
             fontSize: "1.5625rem",
             color: "#31B665"
         },
-  },
+    },
 }));
 
 function BootstrapDialogTitle(props) {
@@ -54,7 +54,7 @@ const getInitialState = (defaultValue) => {
 
 export default function BrandEdit(props) {
     const defaultValue = props.data.Brand_description
-    const { dispatch} = useContext(Createcontext)
+    const { dispatch } = useContext(Createcontext)
     const inputRef = useRef(null);
     const [editorState, setEditorState] = React.useState(getInitialState(defaultValue));
     const [convertedContent, setConvertedContent] = React.useState(null);
@@ -63,8 +63,8 @@ export default function BrandEdit(props) {
     const [Brand, setBrand] = React.useState({
         Link: props.data.Link,
         Status: props.data.Status,
-        name:  props.data.name,
-        Brand_Logo : props.data.Brand_Logo
+        name: props.data.name,
+        Brand_Logo: props.data.Brand_Logo
     });
     React.useEffect(() => {
         let html = convertToHTML(editorState.getCurrentContent());
@@ -83,7 +83,7 @@ export default function BrandEdit(props) {
 
     };
 
-   
+
 
 
     const handleClickOpen = () => {
@@ -97,18 +97,18 @@ export default function BrandEdit(props) {
         // resetting the input value
         inputRef.current.value = null;
         SetImage('')
-      };
+    };
     const formdata = new FormData();
-   
-    image ? formdata.append('Brand_Logo',image)  :  Brand.Brand_Logo ==="" &&  formdata.append('Brand_Logo',Brand.Brand_Logo)
-   
-        
-  
-    formdata.append('Brand_description',convertedContent);
-    formdata.append('Link',Brand.Link);
-    formdata.append('Status',Brand.Status);
-    formdata.append('name',Brand.name);
-   
+
+    image ? formdata.append('Brand_Logo', image) : Brand.Brand_Logo === "" && formdata.append('Brand_Logo', Brand.Brand_Logo)
+
+
+
+    formdata.append('Brand_description', convertedContent);
+    formdata.append('Link', Brand.Link);
+    formdata.append('Status', Brand.Status);
+    formdata.append('name', Brand.name);
+
     const Submit = () => {
         const cookies = new Cookies();
         const token_data = cookies.get('Token_access')
@@ -123,12 +123,12 @@ export default function BrandEdit(props) {
         ).then(() => {
             setOpen(false);
 
-            dispatch({type:'api',api: true})
+            dispatch({ type: 'api', api: true })
         })
     };
     return (
         <div>
-             <Button color='success' onClick={handleClickOpen}>
+            <Button color='success' onClick={handleClickOpen}>
                 Edit
             </Button>
             <BootstrapDialog
@@ -137,10 +137,27 @@ export default function BrandEdit(props) {
                 open={open}
                 sx={{
                     "& .MuiDialog-container": {
-                        "& .MuiPaper-root": {
-                            width: "90%",
-                            height: "100%",
+                        "& .MuiPaper-root": {                        
+                            width: {
+                                xs: "100%",
+                                sm: "100%",
+                                md: "100%",
+                                lg: "70%",
+                                xl: "70%"
+
+                            },
+                            height: {
+                                xs: "75%",
+                                sm: "75%",
+                                md: "75%",
+                                lg: "100%",
+                                xl: "100%"
+                            },
                             maxWidth: "none",  // Set your width here
+                            border: "1px solid #31B665",
+                            borderRadius: "15px",
+
+
                         },
                     },
                 }}
@@ -160,7 +177,7 @@ export default function BrandEdit(props) {
                                     </div>
                                 </div>
                                 <div className='col-12 top label  con  '>
-                                    <div className='col'>
+                                    <div className='col m-2'>
                                         <label className='label'>
                                             Brand Name:
                                         </label>
@@ -172,7 +189,7 @@ export default function BrandEdit(props) {
                                 </div>
 
                                 <div className='col-12 top label  con'>
-                                    <div className='col'>
+                                    <div className='col m-2'>
                                         <label className='label'>
                                             Brand Link:
                                         </label>
@@ -186,7 +203,7 @@ export default function BrandEdit(props) {
                                 </div>
 
                                 <div className='col-12 top label  con'>
-                                    <div className='col'>
+                                    <div className='col m-2'>
                                         <label className='label'>
                                             Brand Logo:
                                         </label>
@@ -195,46 +212,23 @@ export default function BrandEdit(props) {
 
                                         <input type="file" ref={inputRef} onChange={handleimage} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }} />
                                     </div>
-                                   
-                                </div>
-                                <div className='col center'>
-                                        {
-                                            image ?  <><img src={URL.createObjectURL(image)} alt="" style={{ width: "120px", height: "110px" }} />
-                                            <Button  onClick={resetFileInput} color='success' >Cancell </Button></>
-                                             : 
-                                             <>
-                                             <img src={"http://34.201.114.126:8000/" + (Brand.Brand_Logo)} alt="" style={{ width: "120px", height: "110px" }} />
-                                             <Button name="Brand_Logo" value="" color='success'  onClick={handleChange } >Cancell </Button>
-                                             </>
-                                        }
-                                    </div>
-
-                                <div className='col-12 top label  con'>
-                                    <div className='col'>
-                                        <label className='label'>
-                                            Status:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-                                        <Select
-                                            name='Status'
-                                            value={Brand.Status}
-                                            onChange={handleChange}
-                                            displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}
-                                        >
-                                            <MenuItem value="" style={{ fontSize: 15 }}>
-                                                <em>Select option</em>
-                                            </MenuItem>
-                                            <MenuItem value={"Active"} style={{ fontSize: 15 }}>Active</MenuItem>
-                                            <MenuItem value={"Hide"} style={{ fontSize: 15 }}>Hide</MenuItem>
-
-                                        </Select>
-                                    </div>
 
                                 </div>
+                                <div className='col  brand_edit_img'>
+                                    {
+                                        image ? <><img src={URL.createObjectURL(image)} alt="" style={{ width: "50px", height: "50px" }} />
+                                            <Button onClick={resetFileInput} color='success' >Cancell </Button></>
+                                            :
+                                            <>
+                                                <img src={"http://34.201.114.126:8000/" + (Brand.Brand_Logo)} alt="" style={{ width: "50px", height: "50px" }} />
+                                                <Button name="Brand_Logo" value="" color='success' onClick={handleChange} >Cancell </Button>
+                                            </>
+                                    }
+                                </div>
+
+
                                 <div className='col-12 top label  con'>
-                                    <div className='col'>
+                                    <div className='col m-2'>
                                         <label className='label'>
                                             Brand Description:
                                         </label>
@@ -249,6 +243,31 @@ export default function BrandEdit(props) {
                                             editorClassName="editorClassName"
                                         />
                                     </div>
+                                </div>
+                                <div className='col-12 top label  con'>
+                                    <div className='col m-2'>
+                                        <label className='label'>
+                                            Status:
+                                        </label>
+                                    </div>
+                                    <div className='col'>
+                                        <Select
+                                            name='Status'
+                                            value={Brand.Status}
+                                            onChange={handleChange}
+                                            displayEmpty
+                                            size='small'
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}
+                                        >
+                                            <MenuItem value="" style={{ fontSize: 15 }}>
+                                                <em>Select option</em>
+                                            </MenuItem>
+                                            <MenuItem value={"Active"} style={{ fontSize: 15 }}>Active</MenuItem>
+                                            <MenuItem value={"Hide"} style={{ fontSize: 15 }}>Hide</MenuItem>
+
+                                        </Select>
+                                    </div>
+
                                 </div>
                                 <div className='col-12 center top' >
                                     <button className='btn Sub_button' autoFocus onClick={Submit} >

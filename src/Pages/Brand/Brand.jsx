@@ -16,17 +16,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import BrandEdit from "./BrandEdit"
 import BrandDelete from "./BrandDelete"
-
-
-const StyledPaper = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(2),
-    maxWidth: "65%",
-    color: theme.palette.text.primary,
-}));
-
-
+import Tooltip from '@mui/material/Tooltip';
 
 export default function Brand() {
     const cookies = new Cookies();
@@ -79,20 +69,21 @@ export default function Brand() {
 
     const columns = [
         {
-            field: 'Brand_Logo', headerName: 'Brand Logo', editable: true, headerClassName: 'super-app-theme--header', width: 120,
+            field: 'Brand_Logo', headerName: 'Logo', editable: true, headerClassName: 'super-app-theme--header',maxWidth: 150, minWidth: 80, flex: 1,
             renderCell: (params) => <img src={"http://34.201.114.126:8000/" + params.value} alt="flavoursImage" width="35" height="30" />,
         },
-        { field: 'name', headerName: 'Brand Name', editable: true, headerClassName: 'super-app-theme--header', width: 120 },
-        { field: 'Link', headerName: 'Link', editable: true, headerClassName: 'super-app-theme--header', width: 150 },
-        {
-            field: 'Brand_description', headerName: 'Brand Description',  editable: true, width: 180, headerClassName: 'super-app-theme--header',
-            renderCell: (params) => <span dangerouslySetInnerHTML={{ __html: params.formattedValue }} />
-        },
-        { field: 'Status', headerName: 'Status', editable: false, width: 90, headerClassName: 'super-app-theme--header' ,
+        { field: 'name', headerName: 'Name', editable: true, headerClassName: 'super-app-theme--header', maxWidth: 150, minWidth: 80, flex: 1,},
+        // { field: 'Link', headerName: 'Link', editable: true, headerClassName: 'super-app-theme--header', width: 150 },
+        // {
+        //     field: 'Brand_description', headerName: 'Brand Description',  editable: true, width: 180, headerClassName: 'super-app-theme--header',
+        //     renderCell: (params) => <span dangerouslySetInnerHTML={{ __html: params.formattedValue }} />
+        // },
+        { field: 'Status', headerName: 'Status', editable: false,maxWidth: 150, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header' ,
         renderCell: (params) => {
 
             if (params.formattedValue === "Active") {
                 return (
+                    <Tooltip title="Active" enterDelay={300} leaveDelay={200} arrow placement="right-start">
                     <p
                         style={{ color: "#31B665 ", fontSize: 25, cursor: "pointer" }}
                         variant="contained"
@@ -101,10 +92,14 @@ export default function Brand() {
                         Submit(params);
                         }}
                     ><AiFillEye /> </p>
+                    </Tooltip>
 
                 )
             }
             return (
+                <Tooltip title="Hide" enterDelay={300} leaveDelay={200} arrow placement="right-start">
+
+
                 <p
                     style={{ color: "red ", fontSize: 25, cursor: "pointer" }}
                     variant="contained"
@@ -113,11 +108,12 @@ export default function Brand() {
                     Submit(params);
                     }}
                 ><AiOutlineEyeInvisible /></p>
+                </Tooltip>
 
             )
         }
     },
-        { field: 'Edit', headerName: 'Edit', type: 'button' ,editable: true, headerClassName: 'super-app-theme--header',
+        { field: 'Edit', headerName: 'Edit', type: 'button' ,maxWidth: 150, minWidth: 80, flex: 1,editable: true, headerClassName: 'super-app-theme--header',
         renderCell: (params) => (
            
             <>
@@ -135,7 +131,17 @@ export default function Brand() {
                 }}
                 
                 >
-                    <Select IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
+                    <Select 
+                     sx={{
+                        boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
+                        "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
+                        "&:hover": {
+                            ".MuiSelect-icon": {
+                                color: "#31B665"
+                            }
+                        },
+                    }}
+                    IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
                         <MenuItem> <BrandEdit data={params.row} ></BrandEdit></MenuItem>
                         <MenuItem> <BrandDelete data={params.row} ></BrandDelete> </MenuItem>
                     </Select>
@@ -168,49 +174,94 @@ export default function Brand() {
     return (
         <>
             <div className='container-fluid'>
-                <div className='row'>
-                <div className='col-12 Add_Category margin_top '>
-                        <div className="col hadding_al "> <h2>Brand
+                <div className='row mt-4'>
+                <div className='col-10  category_main_row' >
+                <div className='col-12 Add_Category  margin_top m-2 mt-5 mb-5'>
+                        <div className="col"> <h2>Brand
                         </h2></div>
-                        <div className="col cat_but popup_A" >  <span className='btn'> <h2> <Brandpopup></Brandpopup> </h2></span></div>
+                        <div className="col cat_but popup_A" ><span className='btn cat_pop_btn'> <h2> <Brandpopup></Brandpopup> </h2></span></div>
                     </div>
 
-                </div>
+                
             
-             <Box sx={{
-                    height: 400,
-                    width: '100%',
-                    '& .MuiDataGrid-columnHeaders': {
-                        backgroundColor: '#E1FFED',
-                    },
-                    '& .MuiButton-root': {
-                        color: '#000000',
-                        display: "flex",
-                    }
-                }}>
-                <StyledPaper sx={{ my: 11, mx: 'auto', p: 2, }}>
-                    <Grid container wrap="nowrap" spacing={2}>
-                    
-                        <Grid item xs>
+         
 
-                            <div className='col-12' >
+                            {/* <div className='col-10 brand_main_col'> */}
+                            <div className='col-12 '>
+
+                                <Box sx={{
+                                    '& .MuiButton-root': {
+                                        color: '#FFFFFF',
+                                        display: "flex",
+                                    },
+                                    ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within": {
+                                        outline: "none"
+                                    },
+
+                                    "@media(max-width:767px)": {
+                                        '& .MuiButton-root': {
+                                            display: "contents",
+                                            width: "150px",
+                                            margin: "2px",
+                                            fontSize: "14px"
+                                        },
+        
+                                    },
+                                    "@media(max-width:546px)": {
+                                        '& .MuiButton-root': {
+                                            display: "contents",
+                                            width: "150px",
+                                            fontSize: "9px"
+                                        },
+        
+                                    },
+        
+                                    "@media(min-width:768px)": {
+                                        '& .MuiButton-root': {
+                                            width: "110px",
+                                            margin: "2px",
+                                            fontSize: "14px"
+                                        },
+        
+                                        "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                                            width: "120px"
+                                        }
+                                    }
+                                }}>
                                 <ThemeProvider theme={CustomFontTheme}>
                                     <div style={{ height: 500, width: '100%', }}>
                                         <DataGrid rows={rows} columns={columns} components={{ Toolbar: GridToolbar }} checkboxSelection
                                         sx={{
                                             "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                                outline: "1px solid black ",
+                                                outline: "none ",
+                                            },
+                                            ".MuiDataGrid-toolbarContainer": {
+                                                backgroundColor: "#31B665"
+                                            },
+                                            "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
+                                                visibility: "hidden"
+                                            },
+                                            "@media(max-width:768px)": {
+                                                ".MuiDataGrid-toolbarContainer": {
+                                                    gap: "10px",
+
+                                                }
+                                            },
+                                            "@media(max-width:546px)": {
+                                                ".MuiDataGrid-toolbarContainer": {
+                                                    gap: "5px",
+
+                                                }
                                             },
                                         }}
                                         
                                         />
                                     </div>
                                 </ThemeProvider>
+                                </Box>
+                                </div>
                             </div>
-                        </Grid>
-                    </Grid>
-                </StyledPaper>
-            </Box>
+                            </div>
             </div>
         </>
     );

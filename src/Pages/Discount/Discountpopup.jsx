@@ -154,16 +154,16 @@ export default function StatePopUp() {
                 <DialogContent dividers>
                     <div className='container-fluid '>
                         <div className='row '>
+                         
+                            <div className='col-12' >
 
-                            <div className='col-12    ' >
-
-                                <div className='col-12 Add_State Add_Category center'>
+                                <div className='col-12 Add_State Add_Category center '>
                                     <div className="col "> <h2> Discount
                                     </h2>
                                     </div>
                                 </div>
                                 <div className='col-12 top label  con  '>
-                                    <div className='col'>
+                                    <div className='col '>
                                     <label className='label'>
                                     <span className='required'>*</span>
                                     Discount value:

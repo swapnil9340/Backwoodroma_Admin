@@ -101,8 +101,23 @@ export default function Couponpopup() {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            width: "60%",
-                            height: "60%",
+                            // width: "60%",
+                            // height: "60%",
+                            width:{
+                                xs:"60%",
+                                sm:"60%",
+                                md:"60%",
+                                lg:"38%",
+                                xl:"38%"
+   
+                               },
+                            height: {
+                                xs:"80%",
+                                sm:"80%",
+                                md:"80%",
+                                lg:"80%",
+                                xl:"80%"
+                               },
                             maxWidth: "none",  // Set your width here
                             borderRadius: "15px",
                             overflowX: "hidden",
@@ -119,42 +134,42 @@ export default function Couponpopup() {
                     <div className='container-fluid '>
                         <div className='row '>
 
-                            <div className='col-12    ' >
+                            <div className='col-12' >
 
-                                <div className='col-12    center'>
+                                <div className='col-12  Add_Category center' style={{marginTop:"6%"}}>
                                     <div className="col "> <h2> Add Coupon
                                     </h2>
                                     </div>
                                 </div>
-                                <div className='col-12 top  Add_Category_pop  con  '>
-                                    <div className='col-2'>
-                                        <label className=''>
+                                <div className='col-10 top  Add_Category_pop  con  '>
+                                    <div className='col'>
+                                        <label className='label'>
                                             code:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <TextField type="text" placeholder='Add code' id="outlined-basic" name='code' value={Coupon.code} variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange} />
                                     </div>
                                 </div>
-                                <div className='col-12 top  Add_Category_pop  '>
-                                    <div className='col-2'>
-                                        <label >
+                                <div className='col-10 top  Add_Category_pop  '>
+                                    <div className='col'>
+                                        <label className='label'>
                                             code L:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <TextField type="text" placeholder='Add  code L' value={Coupon.code_l} name="code_l" id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange} />
                                     </div>
                                 </div>
-                                <div className='col-12 top   Add_Category_pop'>
-                                    <div className='col-2'>
-                                        <label className=''>
+                                <div className='col-10 top   Add_Category_pop'>
+                                    <div className='col'>
+                                        <label className='label'>
                                             Type:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col '>
                                         <Select
                                             value={Coupon.type}
                                             name="type"
@@ -167,13 +182,13 @@ export default function Couponpopup() {
                                         </Select>
                                     </div>
                                 </div>
-                                <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col-2'>
-                                        <label className=''>
+                                <div className='col-10 top  Add_Category_pop '>
+                                    <div className='col'>
+                                        <label className='label'>
                                             Expires:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <TextField
                                             id="date"
                                             value={expires}
@@ -190,42 +205,43 @@ export default function Couponpopup() {
                                             ></TextField>
                                     </div>
                                 </div>
-                                <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col-2'>
-                                        <label className=''>
+                                <div className='col-10 top  Add_Category_pop '>
+                                    <div className='col'>
+                                        <label className='label'>
                                             Percentage:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <TextField type="number" placeholder='Add Percentage' value={Coupon.percentage} name="percentage" id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange} />
                                     </div>
                                 </div>
-                                <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col-2'>
-                                        <label >
+                                <div className='col-10 top  Add_Category_pop '>
+                                    <div className='col'>
+                                        <label className='label'>
                                             Repeat:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <TextField type="number" placeholder='Repeat ' value={Coupon.repeat} name="repeat" id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange} />
                                     </div>
                                 </div>
-                                <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col-2 center'>
-                                   
-                                        <Checkbox    defaultChecked={false}    value={bound}  name="bound" onChange={handleChangeCheckbox}  />
-                                    </div>
-                                    <div className='col-10 '>
-                                        <label >
+                                <div className='col-10 top  Add_Category_pop '>
+                                <div className='col'>
+                                        <label className='label'>
                                             Bound
                                         </label>
                                     </div>
+                                    <div className='col'>
+                                   
+                                        <Checkbox    defaultChecked={false}    value={bound}  name="bound" onChange={handleChangeCheckbox}  />
+                                    </div>
+                                   
                                 </div>
                                 <div className='col-12 center top' >
                                     <button className='btn Sub_button' autoFocus onClick={Submit} >
-                                     Add Coupan
+                                     Add Coupon
                                     </button>
                                 </div>
 

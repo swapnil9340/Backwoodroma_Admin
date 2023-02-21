@@ -104,8 +104,8 @@ export default function GiftVoucherpopup() {
                                 xs:"60%",
                                 sm:"60%",
                                 md:"60%",
-                                lg:"60%",
-                                xl:"60%"
+                                lg:"38%",
+                                xl:"38%"
    
                                },
                             height: {
@@ -130,9 +130,9 @@ export default function GiftVoucherpopup() {
                     <div className='container-fluid '>
                         <div className='row '>
 
-                            <div className='col-12 center'>
+                            <div className='col-12'>
 
-                                <div className='col-12 center'>
+                                <div className='col-12 center Add_Category' style={{marginTop:"6%"}}>
                                     <div className="col" > <h2> Add Gift Voucher
                                     </h2>
                                     </div>
@@ -143,7 +143,7 @@ export default function GiftVoucherpopup() {
                                             User:
                                         </label>
                                     </div>
-                                    <div className='col '>
+                                    <div className='col'>
                                         <TextField type="number" placeholder='Add code' id="outlined-basic" variant="outlined"  style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange} />
                                     </div>

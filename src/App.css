@@ -635,6 +635,7 @@ a{
   justify-content: flex-end;
   color: #3C3C3C;
   align-items: center;
+  /* margin: 0px; */
 
 }
 @media (max-width: 500px) {
@@ -1359,4 +1360,31 @@ margin-top: 6%;
     
   }
 }
+.top_discount{
+  position: relative;
+  margin-top: 12%;
+}
+.brand_main_col {
+  position: relative;
+  left: 16.5%
+}
 
+@media(max-width:991px) {
+  .brand_main_col {
+    width: 98%;
+    left: 1%;
+    position: absolute;
+    
+  }
+}
+.brand_edit_img{
+ display: flex;
+ justify-content: center;
+}
+@media(max-width:600px) {
+  .brand_edit_img{
+    display: flex;
+    justify-content: start;
+    margin-top: 10px;
+   }
+}

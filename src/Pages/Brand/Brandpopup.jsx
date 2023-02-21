@@ -153,9 +153,26 @@ export default function Brandpopup() {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            width: "90%",
-                            height: "100%",
+                            // width: "90%",
+                            // height: "100%",
+                            width: {
+                                xs: "100%",
+                                sm: "100%",
+                                md: "100%",
+                                lg: "70%",
+                                xl: "70%"
+
+                            },
+                            height: {
+                                xs: "75%",
+                                sm: "75%",
+                                md: "75%",
+                                lg: "100%",
+                                xl: "100%"
+                            },
                             maxWidth: "none",  // Set your width here
+                            border: "1px solid #31B665",
+                            borderRadius: "15px"
                         },
                     },
                 }}
@@ -175,7 +192,7 @@ export default function Brandpopup() {
                                     </div>
                                 </div>
                                 <div className='col-12 top label  con  '>
-                                    <div className='col'>
+                                    <div className='col m-2'>
                                         <label className='label'>
                                             Brand Name:
                                         </label>
@@ -206,7 +223,7 @@ export default function Brandpopup() {
                                 </div>
 
                                 <div className='col-12 top label  con'>
-                                    <div className='col'>
+                                    <div className='col m-2'>
                                         <label className='label'>
                                             Brand Link:
                                         </label>
@@ -223,7 +240,7 @@ export default function Brandpopup() {
                                 </div>
 
                                 <div className='col-12 top label  con'>
-                                    <div className='col'>
+                                    <div className='col m-2'>
                                         <label className='label'>
                                             Brand Logo:
                                         </label>
@@ -243,29 +260,9 @@ export default function Brandpopup() {
                                     }
                                 </div>
 
+                              
                                 <div className='col-12 top label  con'>
-                                    <div className='col'>
-                                        <label className='label'>
-                                            Status:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-                                        <Select
-                                            name='Status'
-                                            value={Brand.Status}
-                                            onChange={handleChange}
-                                            displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}
-                                        >
-                                            <MenuItem value={"Active"} style={{ fontSize: 15 }}>Active</MenuItem>
-                                            <MenuItem value={"Hide"} style={{ fontSize: 15 }}>Hide</MenuItem>
-
-                                        </Select>
-                                    </div>
-
-                                </div>
-                                <div className='col-12 top label  con'>
-                                    <div className='col'>
+                                    <div className='col m-2'>
                                         <label className='label'>
                                             Brand Description:
                                         </label>
@@ -281,9 +278,31 @@ export default function Brandpopup() {
                                         />
                                     </div>
                                 </div>
+                                <div className='col-12 top label  con'>
+                                    <div className='col m-2'>
+                                        <label className='label'>
+                                            Status:
+                                        </label>
+                                    </div>
+                                    <div className='col'>
+                                        <Select
+                                            name='Status'
+                                            value={Brand.Status}
+                                            onChange={handleChange}
+                                            displayEmpty
+                                            size='small'
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}
+                                        >
+                                            <MenuItem value={"Active"} style={{ fontSize: 15 }}>Active</MenuItem>
+                                            <MenuItem value={"Hide"} style={{ fontSize: 15 }}>Hide</MenuItem>
+
+                                        </Select>
+                                    </div>
+
+                                </div>
                                 <div className='col-12 center top' >
                                     <button className='btn Sub_button' autoFocus onClick={Submit} >
-                                        Save changes
+                                        Add Brand
                                     </button>
                                 </div>
 
