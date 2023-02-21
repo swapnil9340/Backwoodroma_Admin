@@ -1317,4 +1317,46 @@ margin-top: 6%;
     
   }
 }
+ /* 20 feb  */
+.discount_main_row{
+  position: relative;
+  left: 16% 
+}
+@media(max-width:991px) {
+  .discount_main_row {
+    width: 100%;
+    left: 0%;
+    position: absolute;
+  }
+}
+
+
+
+
+.gift_main_col {
+  position: relative;
+  left: 16.5%
+}
+
+@media(max-width:991px) {
+  .gift_main_col {
+    width: 98%;
+    left: 1%;
+    position: absolute;
+    
+  }
+}
+
+.coupan_main_col{
+  position: relative;
+  left: 16.5%
+}
+@media(max-width:991px) {
+  .gift_main_col {
+    width: 98%;
+    left: 1%;
+    position: absolute;
+    
+  }
+}
 

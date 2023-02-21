@@ -147,7 +147,7 @@ export default function Categorypopup() {
                     <div className='container-fluid ' >
                         <div className='row'>
                             
-                            <div className='col-12  ' >
+                            <div className='col-12' >
                                 <div className='col-12 Add_Category center' style={{marginTop:"6%"}}>
                                     <div className="col "> <h2> Add Category
                                     </h2>

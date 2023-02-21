@@ -104,6 +104,10 @@ export default function Couponpopup() {
                             width: "60%",
                             height: "60%",
                             maxWidth: "none",  // Set your width here
+                            borderRadius: "15px",
+                            overflowX: "hidden",
+
+                            border: "1px solid #31B665"
                         },
                     },
                 }}
@@ -155,7 +159,7 @@ export default function Couponpopup() {
                                             value={Coupon.type}
                                             name="type"
                                             onChange={handleChange}
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15, background: "#AAAAAA" }}
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15, background: "#FFFFFF" }}
                                         >
                                             <MenuItem value={"percent"} style={{ fontSize: 15 }}>Persent</MenuItem>
                                             <MenuItem value={"value"} style={{ fontSize: 15 }}>Value</MenuItem>
@@ -221,7 +225,7 @@ export default function Couponpopup() {
                                 </div>
                                 <div className='col-12 center top' >
                                     <button className='btn Sub_button' autoFocus onClick={Submit} >
-                                        Save changes
+                                     Add Coupan
                                     </button>
                                 </div>
 
@@ -233,7 +237,7 @@ export default function Couponpopup() {
 
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleClose}>
+                    <Button sx={{color:"#31B665"}} autoFocus onClick={handleClose}>
                         Exit
                     </Button>
                 </DialogActions>

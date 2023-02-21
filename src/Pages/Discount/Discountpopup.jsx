@@ -122,9 +122,28 @@ export default function StatePopUp() {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            width: "60%",
-                            height: "60%",
+                            // width: "60%",
+                            // height: "60%",
+                            width:{
+                                xs:"60%",
+                                sm:"60%",
+                                md:"50%",
+                                lg:"40%",
+                                xl:"40%"
+   
+                               },
+                               height: {
+                                xs:"60%",
+                                sm:"60%",
+                                md:"50%",
+                                lg:"50%",
+                                xl:"60%"
+                               },
                             maxWidth: "none",  // Set your width here
+                            borderRadius: "15px",
+                            overflowX: "hidden",
+
+                            border: "1px solid #31B665"
                         },
                     },
                 }}
@@ -214,9 +233,10 @@ export default function StatePopUp() {
                                     <div className='col'>
                                     <Select
                                         value={Status}
+                                        size="small"
                                         onChange={handleStatus}
                                         displayEmpty
-                                        inputProps={{ 'aria-label': 'Without label' }} style={{minWidth: 190 , fontSize:15}}
+                                        inputProps={{ 'aria-label': 'Without label' }} style={{minWidth: 120 , fontSize:15}}
                                     >
                                         <MenuItem value="" style={{ fontSize:15}}>
                                             <em>Select option</em>
@@ -229,7 +249,7 @@ export default function StatePopUp() {
                                 </div>
                                 <div className='col-12 center top' >
                                     <button className='btn Sub_button' autoFocus onClick={Submit} >
-                                        Save changes
+                                        Add Discount
                                     </button>
                                 </div>
 

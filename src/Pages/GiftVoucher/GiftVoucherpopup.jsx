@@ -100,10 +100,28 @@ export default function GiftVoucherpopup() {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            width: "60%",
-                            height: "70%",
+                            // width: "50%",
+                            // height: "60%",
+
+                            width:{
+                                xs:"60%",
+                                sm:"60%",
+                                md:"60%",
+                                lg:"60%",
+                                xl:"60%"
+   
+                               },
+                            height: {
+                                xs:"80%",
+                                sm:"80%",
+                                md:"80%",
+                                lg:"80%",
+                                xl:"80%"
+                               },
                             border: "1px solid #31B665",
                             maxWidth: "none",  // Set your width here
+                            borderRadius: "15px",
+                            
                         },
                     },
                 }}
@@ -115,25 +133,25 @@ export default function GiftVoucherpopup() {
                     <div className='container-fluid '>
                         <div className='row '>
 
-                            <div className='col-12 ' >
+                            <div className='col-12 center'>
 
-                                <div className='col-12 '>
-                                    <div className="col " > <h2> Add Gift Voucher
+                                <div className='col-12 center'>
+                                    <div className="col" > <h2> Add Gift Voucher
                                     </h2>
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop  con  '>
-                                    <div className='col-2'>
-                                        <label className=''>
+                                    <div className='col'>
+                                        <label className='label'>
                                             User:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col '>
                                         <TextField type="number" placeholder='Add code' id="outlined-basic" variant="outlined"  style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange} />
                                     </div>
                                 </div>
-                                <div className='col-12 top  Add_Category_pop  '>
+                                <div className='col-12 top  Add_Category_pop'>
                                     <div className='col-2'>
                                         <label >
                                             Type :
@@ -144,7 +162,7 @@ export default function GiftVoucherpopup() {
                                             value={Gift_Voucher.type}
                                             name="type"
                                             onChange={handleChange}
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15, background: "#AAAAAA" }}
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15}}
                                         >
                                             <MenuItem value={"percent"} style={{ fontSize: 15 }}>Persent</MenuItem>
                                             <MenuItem value={"value"} style={{ fontSize: 15 }}>Value</MenuItem>
