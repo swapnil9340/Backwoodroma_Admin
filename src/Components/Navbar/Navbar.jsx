@@ -145,12 +145,6 @@ function Navbar() {
                <SpecialOfferDropDown></SpecialOfferDropDown>
                <NewsDropDown></NewsDropDown>
                <SettingDropDown></SettingDropDown>
-           
-
-              
-              
-            
-
             </div>
           </div>
         </nav>
