@@ -14,7 +14,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState } from 'draft-js';
 import { convertToHTML } from 'draft-convert';
 import InputAdornment from '@mui/material/InputAdornment';
-import { MdFileUpload } from 'react-icons/md';
+import { AiOutlineCloudUpload } from 'react-icons/ai';
 import Createcontext from "../../Hooks/Context/Context"
 import Box from '@mui/material/Box';
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -515,22 +515,23 @@ export default function Storepopup() {
                                             onChange={handleimage} />
                                     </div>
                                     <div className='col-10 '>
-                                        <div className='col img_store '>
-                                            <div className='col img_store1'>
+                                        <div className={'col   '+ image?"":"img_store"}>
+                                            <div className='col img_store1 '>
+                                                
                                                 {
-                                                    image ? <div >
-                                                        <img src={URL.createObjectURL(image)} alt="" className='center' style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
+                                                    image ? <div>
+                                                        <img src={URL.createObjectURL(image)} alt="" className='center' style={{ width: "100px", height: "100px", borderRadius: "10px" }} />
                                                         <Button color='success' onClick={resetFileInput}>Cancell </Button>
                                                     </div> :
                                                         <div>
-                                                            <MdFileUpload style={{ backgroundColor: "#31B665", borderradius: "66px" }} ></MdFileUpload >
+                                                            <AiOutlineCloudUpload style={{fontSize:"30px", borderradius: "66px" }} ></AiOutlineCloudUpload >
                                                         </div>
                                                 }
 
 
                                             </div>
                                             <label htmlFor="file"  >
-                                                <span className='img_store1' >UPLOAD</span> <span style={{ color: "red" }}>{massage.Image}</span>
+                                                <span className=' upload_img' >UPLOAD</span> <span style={{ color: "red" }}>{massage.Image}</span>
                                                 <p className="file-name"></p>
                                             </label>
                                         </div>
@@ -631,7 +632,7 @@ export default function Storepopup() {
                                 <div className='col-12 top label  con '>
                                     <div className='col-2 '>
                                         <label className='label'>
-                                            Store Image:
+                                            Licence doc:
                                         </label>
                                         <input type="file" placeholder='Add Store Image:' id="Licence" ref={Licence} className="file" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleimage} />
@@ -645,7 +646,7 @@ export default function Storepopup() {
                                                         <Button color='success' onClick={resetFileInput}>Cancell </Button>
                                                     </div> :
                                                         <div>
-                                                            <MdFileUpload style={{ backgroundColor: "#31B665", borderradius: "66px" }} ></MdFileUpload >
+                                                            <AiOutlineCloudUpload style={{ backgroundColor: "#31B665", borderradius: "66px" }} ></AiOutlineCloudUpload >
                                                         </div>
                                                 }
 

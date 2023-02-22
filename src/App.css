@@ -955,7 +955,7 @@ input:focus + label {
   outline: -webkit-focus-ring-color auto 2px;
 }
 
-.img_store {
+/* .img_store {
   width: 40%;
     background: #EEEEEE;
     height: 150px;
@@ -963,11 +963,23 @@ input:focus + label {
     padding: 57px;
     display: inline-block;
     justify-items: center;
+} */
+.img_store {
+  width: 21%;
+  height: 119px;
+  border: 2px dashed #9e9b9b;
+  padding: 57px;
 }
-.img_store1{
+/* .img_store1{
   position: relative;
   bottom: 50px;
   cursor: pointer;
+} */
+.img_store1{
+  position: relative;
+    bottom: 28px;
+    left: 29px;
+
 }
 .Store_country{
   width: 117rem;
@@ -1470,4 +1482,19 @@ margin-top: 6%;
     left: 0px;
   }
 }
-
+.main_img_store{
+  width: 21%;
+  height: 119px;
+  border: 2px dashed #9e9b9b;
+  padding: 57px;
+}
+.img_store2{
+  position: relative;
+    bottom: 28px;
+    left: 29px;
+}
+.upload_img{
+  position: relative;
+  bottom: 27px;
+  left: 20px;
+}
