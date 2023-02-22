@@ -651,7 +651,7 @@ export default function Storepopup() {
 
 
                                             </div>
-                                            <label htmlFor="Licence"  >
+                                            <label htmlFor="Licence">
                                                 <span className='img_store1' >UPLOAD</span> <span style={{ color: "red" }}>{massage.Image}</span>
                                                 <p className="file-name"></p>
                                             </label>
