@@ -100,6 +100,7 @@ export default function Storepopup() {
     };
 
     const Licenseimage = (event) => {
+        console.log(event.target.files[0])
         SetLicenceImage(event.target.files[0])
     };
     const handleClickOpen = () => {
@@ -641,7 +642,7 @@ export default function Storepopup() {
                                             Licence doc:
                                         </label>
                                         <input type="file" placeholder='Add Store Image:' id="Licence" ref={Licence} className="file" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
-                                            onChange={handleimage} />
+                                            onChange={Licenseimage} />
                                     </div>
                                     <div className='col-10  center'>
                                         <div className='col img_store_lince '>
