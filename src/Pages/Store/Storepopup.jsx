@@ -515,9 +515,14 @@ export default function Storepopup() {
                                             onChange={handleimage} />
                                     </div>
                                     <div className='col-10 '>
+<<<<<<< HEAD
                                         <div className={'col   '+ image?"":"img_store"}>
                                             <div className='col img_store1 '>
                                                 
+=======
+                                        <div className={'col  ' + (image ? null : "img_store")}>
+                                            <div className='col img_store1'>
+>>>>>>> 5d0d5aed552f132ab0ccbf47d8219b65a50fc980
                                                 {
                                                     image ? <div>
                                                         <img src={URL.createObjectURL(image)} alt="" className='center' style={{ width: "100px", height: "100px", borderRadius: "10px" }} />
@@ -643,7 +648,7 @@ export default function Storepopup() {
                                                 {
                                                     LicenceImage ? <div >
                                                         <img src={URL.createObjectURL(LicenceImage)} alt="" className='center' style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
-                                                        <Button color='success' onClick={resetFileInput}>Cancell </Button>
+                                                        <Button color='success' onClick={licenceFileInput}>Cancell </Button>
                                                     </div> :
                                                         <div>
                                                             <AiOutlineCloudUpload style={{ backgroundColor: "#31B665", borderradius: "66px" }} ></AiOutlineCloudUpload >
@@ -652,7 +657,7 @@ export default function Storepopup() {
 
 
                                             </div>
-                                            <label htmlFor="Licence"  >
+                                            <label htmlFor="Licence">
                                                 <span className='img_store1' >UPLOAD</span> <span style={{ color: "red" }}>{massage.Image}</span>
                                                 <p className="file-name"></p>
                                             </label>
