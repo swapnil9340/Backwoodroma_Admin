@@ -39,11 +39,13 @@ export default function Storepopup() {
     const { dispatch } = useContext(Createcontext)
     const cookies = new Cookies();
     const inputRef = useRef(null);
+    const Licence = useRef(null);
     const token_data = cookies.get('Token_access')
     const [open, setOpen] = React.useState(false);
     const [editorState, setEditorState] = React.useState(() => EditorState.createEmpty());
     const [convertedContent, setConvertedContent] = React.useState(null);
     const [image, SetImage] = React.useState('');
+    const [LicenceImage, SetLicenceImage] = React.useState('');
     const [country, Setcountry] = React.useState([])
     const [State , SetState] = React.useState ([]);
     const [City , SetCity] = React.useState ([]);
@@ -96,6 +98,10 @@ export default function Storepopup() {
     const handleimage = (event) => {
         SetImage(event.target.files[0])
     };
+
+    const Licenseimage = (event) => {
+        SetLicenceImage(event.target.files[0])
+    };
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -111,6 +117,10 @@ export default function Storepopup() {
     const resetFileInput = () => {
         inputRef.current.value = null;
         SetImage(null)
+    };
+    const licenceFileInput = () => {
+        Licence.current.value = null;
+        LicenceImage(null)
     };
 
 
@@ -491,7 +501,7 @@ export default function Storepopup() {
                                             Store Image:
                                         </label>
                                         <input type="file" placeholder='Add Store Image:' id="file" ref={inputRef} className="file" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
-                                            onChange={handleimage} />
+                                            onChange={Licenseimage} />
                                     </div>
                                     <div className='col-10  center'>
                                         <div className='col img_store '>
@@ -612,15 +622,15 @@ export default function Storepopup() {
                                         <label className='label'>
                                             Store Image:
                                         </label>
-                                        <input type="file" placeholder='Add Store Image:' id="file" ref={inputRef} className="file" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
+                                        <input type="file" placeholder='Add Store Image:' id="Licence" ref={Licence} className="file" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleimage} />
                                     </div>
                                     <div className='col-10  center'>
                                         <div className='col img_store_lince '>
                                             <div className='col img_store1'>
                                                 {
-                                                    image ? <div >
-                                                        <img src={URL.createObjectURL(image)} alt="" className='center' style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
+                                                    LicenceImage ? <div >
+                                                        <img src={URL.createObjectURL(LicenceImage)} alt="" className='center' style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
                                                         <Button color='success' onClick={resetFileInput}>Cancell </Button>
                                                     </div> :
                                                         <div>
@@ -630,7 +640,7 @@ export default function Storepopup() {
 
 
                                             </div>
-                                            <label htmlFor="file"  >
+                                            <label htmlFor="Licence"  >
                                                 <span className='img_store1' >UPLOAD</span> <span style={{ color: "red" }}>{massage.Image}</span>
                                                 <p className="file-name"></p>
                                             </label>
