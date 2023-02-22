@@ -100,7 +100,6 @@ export default function Storepopup() {
     };
 
     const Licenseimage = (event) => {
-        console.log(event.target.files[0])
         SetLicenceImage(event.target.files[0])
     };
     const handleClickOpen = () => {
@@ -121,7 +120,7 @@ export default function Storepopup() {
     };
     const licenceFileInput = () => {
         Licence.current.value = null;
-        LicenceImage(null)
+        SetLicenceImage(null)
     };
 
 
