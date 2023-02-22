@@ -500,6 +500,7 @@ export default function Storepopup() {
                                             onEditorStateChange={setEditorState}
                                             toolbarClassName="toolbarClassName"
                                             wrapperClassName="wrapperClassName"
+                                            
                                             editorClassName="editorClassName"
                                             
                                         />
