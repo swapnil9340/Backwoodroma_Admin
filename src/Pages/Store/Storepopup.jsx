@@ -120,7 +120,7 @@ export default function Storepopup() {
     };
     const licenceFileInput = () => {
         Licence.current.value = null;
-        SetLicenceImage(null)
+        LicenceImage(null)
     };
 
 
