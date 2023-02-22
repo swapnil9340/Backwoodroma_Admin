@@ -642,7 +642,7 @@ export default function Storepopup() {
                                                 {
                                                     LicenceImage ? <div >
                                                         <img src={URL.createObjectURL(LicenceImage)} alt="" className='center' style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
-                                                        <Button color='success' onClick={resetFileInput}>Cancell </Button>
+                                                        <Button color='success' onClick={licenceFileInput}>Cancell </Button>
                                                     </div> :
                                                         <div>
                                                             <MdFileUpload style={{ backgroundColor: "#31B665", borderradius: "66px" }} ></MdFileUpload >
