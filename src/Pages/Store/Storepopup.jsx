@@ -515,7 +515,7 @@ export default function Storepopup() {
                                             onChange={handleimage} />
                                     </div>
                                     <div className='col-10 '>
-                                        <div className='col img_store '>
+                                        <div className={'col  ' + (image ? null : "img_store")}>
                                             <div className='col img_store1'>
                                                 {
                                                     image ? <div >
