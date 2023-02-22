@@ -517,14 +517,8 @@ export default function Storepopup() {
                                             onChange={handleimage} />
                                     </div>
                                     <div className='col-10 '>
-<<<<<<< HEAD
-                                        <div className={'col   '+ image?"":"img_store"}>
-                                            <div className='col img_store1 '>
-                                                
-=======
                                         <div className={'col  ' + (image ? null : "img_store")}>
                                             <div className='col img_store1'>
->>>>>>> 5d0d5aed552f132ab0ccbf47d8219b65a50fc980
                                                 {
                                                     image ? <div>
                                                         <img src={URL.createObjectURL(image)} alt="" className='center' style={{ width: "100px", height: "100px", borderRadius: "10px" }} />
