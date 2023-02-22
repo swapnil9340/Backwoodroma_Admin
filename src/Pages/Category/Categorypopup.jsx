@@ -169,6 +169,22 @@ export default function Categorypopup() {
                                             placeholder='Add Category' id="outlined-basic" variant="outlined" value={NameCategory || ""}
                                             onChange={handleName}
                                             label={massage}
+                                            sx={{
+                                                '& .MuiOutlinedInput-root': {
+                                                    '& fieldset': {
+                                                        borderColor: error,
+                                                        height: 55,
+                                                    },
+                                                },
+                                                "& label": {
+                                                    fontSize: 13,
+                                                    color: "red",
+                                                    "&.Mui-focused": {
+                                                        marginLeft: 0,
+                                                        color: "red",
+                                                    }
+                                                }
+                                            }}
                                           
                                         />
 

@@ -16,7 +16,7 @@ import { convertToHTML } from 'draft-convert';
 import InputAdornment from '@mui/material/InputAdornment';
 import { MdFileUpload } from 'react-icons/md';
 import Createcontext from "../../Hooks/Context/Context"
-
+import Box from '@mui/material/Box';
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
         padding: theme.spacing(2),
@@ -235,6 +235,8 @@ export default function Storepopup() {
                             width: "70%",
                             height: "100%",
                             maxWidth: "none",  // Set your width here
+                            border: "1px solid #31B665",
+                            borderRadius: "15px"
                         },
                     },
                 }}
@@ -254,7 +256,7 @@ export default function Storepopup() {
                                     </div>
                                 </div>
                                 <div className='col-12 top label  con  '>
-                                    <div className='col-2'>
+                                    <div className='col-2 m-2'>
                                         <label className='label'>
                                             Store Name:
                                         </label>
@@ -291,6 +293,7 @@ export default function Storepopup() {
                                     </div>
                                     <div className='col-10'>
                                         <Select
+                                        className='store_type'
                                             name='Store_Type'
                                             value={Store.Store_Type}
                                             onChange={handleChange}
@@ -306,13 +309,13 @@ export default function Storepopup() {
                                         </Select>
                                     </div>
                                 </div>
-                                <div className='col-12 top label  Store_country '>
-                                    <div className='col-2'>
+                                <div className='col-12  top label  con  Store_country'>
+                                    <div className='col-2 country_label'>
                                         <label className='label'>
                                         Country:
                                         </label>
                                     </div>
-                                    <div className='col'>
+                                    <div className='col  country_select'>
                                         <Select
 
                                             name='Country_id'
@@ -340,7 +343,7 @@ export default function Storepopup() {
                                         State:
                                         </label>
                                     </div>
-                                    <div className='col-2'>
+                                    <div className='col'>
                                         <Select
 
                                             name='State_id'
@@ -363,7 +366,7 @@ export default function Storepopup() {
                                             }
                                         </Select>
                                     </div>
-                                    <div className='col'>
+                                    <div className='col-2'>
                                         <label className='label'>
                                             City :
                                         </label>
@@ -424,12 +427,12 @@ export default function Storepopup() {
                                     </div>
                                 </div>
                                 <div className='col-12 top label  con'>
-                                    <div className='col'>
+                                    <div className='col-2'>
                                         <label className='label'>
                                             Stores Website:
                                         </label>
                                     </div>
-                                    <div className='col'>
+                                    <div className='col store_website'>
 
                                         <TextField type="text" placeholder='Add Stores Website:' id="outlined-basic" variant="outlined" name='Stores_Website' value={Store.Stores_Website} style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange}
@@ -442,7 +445,7 @@ export default function Storepopup() {
                                             Stores MobileNo:
                                         </label>
                                     </div>
-                                    <div className='col'>
+                                    <div className='col store_mobile'>
 
                                         <TextField type="text" placeholder='Add Stores MobileNo:' id="outlined-basic" variant="outlined" name='Stores_MobileNo' value={Store.Stores_MobileNo} style={{ minWidth: 190 }}
                                             onChange={handleChange}
@@ -475,14 +478,22 @@ export default function Storepopup() {
                                         </label>
                                     </div>
                                     <div className='col-10' >
-
+                                         <Box
+                                         sx={{
+                                            "& .rdw-editor-toolbar":{
+                                                width:"90%"
+                                            }
+                                        }}
+                                         >
                                         <Editor
                                             editorState={editorState}
                                             onEditorStateChange={setEditorState}
                                             toolbarClassName="toolbarClassName"
                                             wrapperClassName="wrapperClassName"
                                             editorClassName="editorClassName"
+                                            
                                         />
+                                        </Box>
                                     </div>
                                 </div>
                                 <div className='col-12 top label  con '>
@@ -490,10 +501,10 @@ export default function Storepopup() {
                                         <label className='label'>
                                             Store Image:
                                         </label>
-                                        <input type="file" placeholder='Add Store Image:' id="file" ref={inputRef} className="file" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
+                                        <input  type="file" placeholder='Add Store Image:' id="file" ref={inputRef} className="file " variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleimage} />
                                     </div>
-                                    <div className='col-10  center'>
+                                    <div className='col-10 '>
                                         <div className='col img_store '>
                                             <div className='col img_store1'>
                                                 {
@@ -555,13 +566,13 @@ export default function Storepopup() {
                                 </div>
 
 
-                                <div className='col-8 top label  con'>
+                                <div className='col-12 top label  con'>
                                     <div className='col-2'>
                                         <label className='label'>
                                             License Type:
                                         </label>
                                     </div>
-                                    <div className='col-2'>
+                                    <div className='col licence_type_col'>
                                         <Select
                                             name='License_Type'
                                             value={Store.License_Type}
@@ -585,12 +596,12 @@ export default function Storepopup() {
                                     </div>
 
 
-                                    <div className='col-2 '>
+                                    <div className='col-2 expire_label_col'>
                                         <label className='label'>
                                             Expires:
                                         </label>
                                     </div>
-                                    <div className='col-2 '>
+                                    <div className='col expires_col'>
                                         <TextField
                                             id="date"
                                             value={Store.expires}
@@ -650,10 +661,11 @@ export default function Storepopup() {
                                     <div className='col'>
                                         <Select
                                             name='Status'
+                                           size='small'
                                             value={Store.Status}
                                             onChange={handleChange}
 
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}
                                         >
 
                                             <MenuItem value={"Active"} style={{ fontSize: 15 }}>Active</MenuItem>
@@ -676,7 +688,7 @@ export default function Storepopup() {
                     </div>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleClose}>
+                    <Button sx={{color:"#31B665"}} autoFocus onClick={handleClose}>
                         Exit
                     </Button>
                 </DialogActions>

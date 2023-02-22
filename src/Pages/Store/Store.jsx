@@ -85,7 +85,7 @@ export default function Store() {
         //     renderCell: (params) => <img src={"http://34.201.114.126:8000/" + params.value} alt="flavoursImage" width="35" height="30" />,
         // },
         { field: 'Store_Name', headerName: 'Name', editable: true,maxWidth: 150, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'city_name', headerName: 'City', editable: true,maxWidth: 150, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'Store_Type', headerName: 'Store Type', editable: true,maxWidth: 150, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header' },
         // { field: 'Store_Address', headerName: 'Store Address', editable: true, headerClassName: 'super-app-theme--header', width: 150 },
         // {
         //     field: 'Stores_Description', headerName: 'Stores Description', editable: true, width: 180, headerClassName: 'super-app-theme--header',

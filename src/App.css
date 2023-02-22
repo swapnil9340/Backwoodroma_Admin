@@ -669,7 +669,7 @@ a{
 }
 .popup_A{
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 .hide{
   font-size: larger;
@@ -1383,8 +1383,91 @@ margin-top: 6%;
 }
 @media(max-width:600px) {
   .brand_edit_img{
+    /* display: flex; */
     display: flex;
-    justify-content: start;
+
+    justify-content: flex-start;
     margin-top: 10px;
    }
 }
+.country_select{
+  position: relative;
+    left: 44px;
+}
+@media(max-width:600px) {
+  .country_select{
+    position: relative;
+    left: 0px;
+  }
+}
+.country_label{
+  position: relative;
+    left: 38px;
+}
+@media(max-width:600px) {
+  .country_label{
+    position: relative;
+      left: 0px;
+  }
+}
+.store_website{
+  position: relative;
+  left:-9px;
+}
+@media(max-width:600px) {
+  .store_website{
+    position: relative;
+    left:0px;
+  }
+}
+.store_mobile{
+  position: relative;
+    left: 30px;
+}
+@media(max-width:600px) {
+  .store_mobile{
+    position: relative;
+      left: 0px;
+  }
+}
+@media(max-width:600px) {
+  .store_type{
+    min-width: 100%;
+  }
+}
+.store_img{
+  position: relative;
+      left: 0px;
+
+}
+.licence_type_col{
+  position: relative;
+  left: -8px;
+}
+@media(max-width:600px) {
+  .licence_type_col{
+    position: relative;
+    left: 0px;
+  }
+}
+.expires_col{
+  position: relative;
+  left: 115px;
+}
+@media(max-width:600px) {
+  .expires_col{
+    position: relative;
+    left: 0px;
+  }
+}
+.expire_label_col{
+  position: relative;
+  left: 115px; 
+}
+@media(max-width:600px) {
+  .expire_label_col{
+    position: relative;
+    left: 0px;
+  }
+}
+
