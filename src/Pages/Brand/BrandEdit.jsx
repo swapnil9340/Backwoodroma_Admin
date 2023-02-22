@@ -167,9 +167,9 @@ export default function BrandEdit(props) {
                 </BootstrapDialogTitle>
                 <DialogContent dividers>
                     <div className='container-fluid '>
-                        <div className='row '>
+                        <div className='row'>
 
-                            <div className='col-12    ' >
+                            <div className='col-12' >
 
                                 <div className='col-12 Add_State Add_Category center'>
                                     <div className="col "> <h2> Edit Brand

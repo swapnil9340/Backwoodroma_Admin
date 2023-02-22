@@ -1,9 +1,6 @@
-import React , {useContext}from 'react'
+import React, { useContext } from 'react'
 import Createcontext from "../../Hooks/Context/Context"
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
@@ -20,10 +17,10 @@ import Tooltip from '@mui/material/Tooltip';
 
 export default function Brand() {
     const cookies = new Cookies();
-    const { state ,dispatch} = useContext(Createcontext)
+    const { state, dispatch } = useContext(Createcontext)
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
-   
+
     React.useEffect(() => {
         axios("http://34.201.114.126:8000/AdminPanel/Get-Brand/", {
 
@@ -38,17 +35,17 @@ export default function Brand() {
 
 
 
-    }, [token_data ,state])
+    }, [token_data, state])
 
 
- 
+
     const Submit = (params) => {
         const formdata = new FormData();
-        formdata.append('Brand_description',params.row.Brand_description);
-        formdata.append('Link',params.row.Link);
+        formdata.append('Brand_description', params.row.Brand_description);
+        formdata.append('Link', params.row.Link);
         formdata.append("Status", params.row.Status === "Active" ? "Hide" : "Active");
-        formdata.append('name',params.row.name);
-    
+        formdata.append('name', params.row.name);
+
 
         const config = {
             headers: { Authorization: `Bearer ${token_data}` }
@@ -58,9 +55,9 @@ export default function Brand() {
             formdata,
             config
         ).then(() => {
-            
 
-            dispatch({type:'api',api: true})
+
+            dispatch({ type: 'api', api: true })
         })
     };
 
@@ -69,87 +66,84 @@ export default function Brand() {
 
     const columns = [
         {
-            field: 'Brand_Logo', headerName: 'Logo', editable: true, headerClassName: 'super-app-theme--header',maxWidth: 150, minWidth: 80, flex: 1,
+            field: 'Brand_Logo', headerName: 'Logo', editable: true, headerClassName: 'super-app-theme--header', maxWidth: 150, minWidth: 80, flex: 1,
             renderCell: (params) => <img src={"http://34.201.114.126:8000/" + params.value} alt="flavoursImage" width="35" height="30" />,
         },
-        { field: 'name', headerName: 'Name', editable: true, headerClassName: 'super-app-theme--header', maxWidth: 150, minWidth: 80, flex: 1,},
-        // { field: 'Link', headerName: 'Link', editable: true, headerClassName: 'super-app-theme--header', width: 150 },
-        // {
-        //     field: 'Brand_description', headerName: 'Brand Description',  editable: true, width: 180, headerClassName: 'super-app-theme--header',
-        //     renderCell: (params) => <span dangerouslySetInnerHTML={{ __html: params.formattedValue }} />
-        // },
-        { field: 'Status', headerName: 'Status', editable: false,maxWidth: 150, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header' ,
-        renderCell: (params) => {
+        { field: 'name', headerName: 'Name', editable: true, headerClassName: 'super-app-theme--header', maxWidth: 150, minWidth: 80, flex: 1, },
+        {
+            field: 'Status', headerName: 'Status', editable: false, maxWidth: 150, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',
+            renderCell: (params) => {
 
-            if (params.formattedValue === "Active") {
+                if (params.formattedValue === "Active") {
+                    return (
+                        <Tooltip title="Active" enterDelay={300} leaveDelay={200} arrow placement="right-start">
+                            <p
+                                style={{ color: "#31B665 ", fontSize: 25, cursor: "pointer" }}
+                                variant="contained"
+                                color="primary"
+                                onClick={() => {
+                                    Submit(params);
+                                }}
+                            ><AiFillEye /> </p>
+                        </Tooltip>
+
+                    )
+                }
                 return (
-                    <Tooltip title="Active" enterDelay={300} leaveDelay={200} arrow placement="right-start">
-                    <p
-                        style={{ color: "#31B665 ", fontSize: 25, cursor: "pointer" }}
-                        variant="contained"
-                        color="primary"
-                        onClick={() => {
-                        Submit(params);
-                        }}
-                    ><AiFillEye /> </p>
+                    <Tooltip title="Hide" enterDelay={300} leaveDelay={200} arrow placement="right-start">
+
+
+                        <p
+                            style={{ color: "red ", fontSize: 25, cursor: "pointer" }}
+                            variant="contained"
+                            color="primary"
+                            onClick={() => {
+                                Submit(params);
+                            }}
+                        ><AiOutlineEyeInvisible /></p>
                     </Tooltip>
 
                 )
             }
-            return (
-                <Tooltip title="Hide" enterDelay={300} leaveDelay={200} arrow placement="right-start">
+        },
+        {
+            field: 'Edit', headerName: 'Edit', type: 'button', maxWidth: 150, minWidth: 80, flex: 1, editable: true, headerClassName: 'super-app-theme--header',
+            renderCell: (params) => (
 
+                <>
+                    <Box
+                        sx={{
+                            '& .MuiOutlinedInput-root': {
+                                '&.Mui-focused fieldset': {
+                                    borderWidth: "1px",
+                                    borderColor: 'black',
+                                },
+                            },
+                            '& . MuiDataGrid-root .MuiDataGrid-cell:focus': {
+                                outline: "solid #0f1010 1px"
+                            }
+                        }}
 
-                <p
-                    style={{ color: "red ", fontSize: 25, cursor: "pointer" }}
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                    Submit(params);
-                    }}
-                ><AiOutlineEyeInvisible /></p>
-                </Tooltip>
+                    >
+                        <Select
+                            sx={{
+                                boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
+                                "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
+                                "&:hover": {
+                                    ".MuiSelect-icon": {
+                                        color: "#31B665"
+                                    }
+                                },
+                            }}
+                            IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
+                            <MenuItem> <BrandEdit data={params.row} ></BrandEdit></MenuItem>
+                            <MenuItem> <BrandDelete data={params.row} ></BrandDelete> </MenuItem>
+                        </Select>
+                    </Box>
+                </>
 
             )
-        }
-    },
-        { field: 'Edit', headerName: 'Edit', type: 'button' ,maxWidth: 150, minWidth: 80, flex: 1,editable: true, headerClassName: 'super-app-theme--header',
-        renderCell: (params) => (
-           
-            <>
-                <Box 
-                 sx={{
-                    '& .MuiOutlinedInput-root': {
-                        '&.Mui-focused fieldset': {
-                            borderWidth: "1px",
-                            borderColor: 'black',
-                        },
-                    },
-                    '& . MuiDataGrid-root .MuiDataGrid-cell:focus': {
-                        outline: "solid #0f1010 1px"
-                    }
-                }}
-                
-                >
-                    <Select 
-                     sx={{
-                        boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
-                        "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
-                        "&:hover": {
-                            ".MuiSelect-icon": {
-                                color: "#31B665"
-                            }
-                        },
-                    }}
-                    IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                        <MenuItem> <BrandEdit data={params.row} ></BrandEdit></MenuItem>
-                        <MenuItem> <BrandDelete data={params.row} ></BrandDelete> </MenuItem>
-                    </Select>
-                </Box>
-            </>
-
-        )
-    },
+        },
 
     ];
 
@@ -175,93 +169,95 @@ export default function Brand() {
         <>
             <div className='container-fluid'>
                 <div className='row mt-4'>
-                <div className='col-10  category_main_row' >
-                <div className='col-12 Add_Category  margin_top m-2 mt-5 mb-5'>
-                        <div className="col"> <h2>Brand
-                        </h2></div>
-                        <div className="col cat_but popup_A" ><span className='btn cat_pop_btn'> <h2> <Brandpopup></Brandpopup> </h2></span></div>
-                    </div>
+                    <div className='col-10  category_main_row' >
+                        <div className='col-12 Add_Category  margin_top m-2 mt-5 mb-5'>
+                            <div className="col"> <h2>Brand
+                            </h2></div>
+                            <div className="col cat_but popup_A" ><span className='btn cat_pop_btn'> <h2> <Brandpopup></Brandpopup> </h2></span></div>
+                        </div>
 
-                
-            
-         
 
-                            {/* <div className='col-10 brand_main_col'> */}
-                            <div className='col-12 '>
 
-                                <Box sx={{
+
+
+                        <div className='col-12 '>
+
+                            <Box sx={{
+                                '& .MuiButton-root': {
+                                    color: '#FFFFFF',
+                                    display: "flex",
+                                },
+                                ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within": {
+                                    outline: "none"
+                                },
+
+                                "@media(max-width:767px)": {
                                     '& .MuiButton-root': {
-                                        color: '#FFFFFF',
-                                        display: "flex",
-                                    },
-                                    ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within": {
-                                        outline: "none"
+                                        display: "contents",
+                                        width: "150px",
+                                        margin: "2px",
+                                        fontSize: "14px"
                                     },
 
-                                    "@media(max-width:767px)": {
-                                        '& .MuiButton-root': {
-                                            display: "contents",
-                                            width: "150px",
-                                            margin: "2px",
-                                            fontSize: "14px"
-                                        },
-        
+                                },
+                                "@media(max-width:546px)": {
+                                    '& .MuiButton-root': {
+                                        display: "contents",
+                                        width: "150px",
+                                        fontSize: "9px"
                                     },
-                                    "@media(max-width:546px)": {
-                                        '& .MuiButton-root': {
-                                            display: "contents",
-                                            width: "150px",
-                                            fontSize: "9px"
-                                        },
-        
+
+                                },
+
+                                "@media(min-width:768px)": {
+                                    '& .MuiButton-root': {
+                                        width: "110px",
+                                        margin: "2px",
+                                        fontSize: "14px"
                                     },
-        
-                                    "@media(min-width:768px)": {
-                                        '& .MuiButton-root': {
-                                            width: "110px",
-                                            margin: "2px",
-                                            fontSize: "14px"
-                                        },
-        
-                                        "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                            width: "120px"
-                                        }
+
+                                    "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                                        width: "120px"
                                     }
-                                }}>
+                                }
+                            }}>
                                 <ThemeProvider theme={CustomFontTheme}>
                                     <div style={{ height: 500, width: '100%', }}>
                                         <DataGrid rows={rows} columns={columns} components={{ Toolbar: GridToolbar }} checkboxSelection
-                                        sx={{
-                                            "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                                outline: "none ",
-                                            },
-                                            ".MuiDataGrid-toolbarContainer": {
-                                                backgroundColor: "#31B665"
-                                            },
-                                            "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                                                visibility: "hidden"
-                                            },
-                                            "@media(max-width:768px)": {
+                                            sx={{
+                                                "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
+                                                    outline: "none ",
+                                                },
+                                                "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
+                                                    backgroundColor: "#FFFFFF"
+                                                },
                                                 ".MuiDataGrid-toolbarContainer": {
-                                                    gap: "10px",
+                                                    backgroundColor: "#31B665"
+                                                },
+                                                "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
+                                                    visibility: "hidden"
+                                                },
+                                                "@media(max-width:768px)": {
+                                                    ".MuiDataGrid-toolbarContainer": {
+                                                        gap: "10px",
 
-                                                }
-                                            },
-                                            "@media(max-width:546px)": {
-                                                ".MuiDataGrid-toolbarContainer": {
-                                                    gap: "5px",
+                                                    }
+                                                },
+                                                "@media(max-width:546px)": {
+                                                    ".MuiDataGrid-toolbarContainer": {
+                                                        gap: "5px",
 
-                                                }
-                                            },
-                                        }}
-                                        
+                                                    }
+                                                },
+                                            }}
+
                                         />
                                     </div>
                                 </ThemeProvider>
-                                </Box>
-                                </div>
-                            </div>
-                            </div>
+                            </Box>
+                        </div>
+                    </div>
+                </div>
             </div>
         </>
     );

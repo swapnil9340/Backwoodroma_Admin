@@ -1,7 +1,6 @@
 import  React , {useContext} from 'react';
 import Createcontext from "../../Hooks/Context/Context"
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
@@ -12,11 +11,6 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select'; 
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import CouponDelete from './CouponDelete';
-
-
-
-
-
 export default function Coupon() {
     const { state} = useContext(Createcontext)
     const cookies = new Cookies();
@@ -40,9 +34,7 @@ export default function Coupon() {
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
       }, []);
     const columns = [
-        // {
-        //     field: 'code_l', headerName: 'Code L', editable: true, headerClassName: 'super-app-theme--header', width: 120,
-        // },
+       
         { field: 'type', headerName: 'Type',maxWidth: 150, minWidth: 80, flex: 1, editable: true, headerClassName: 'super-app-theme--header' },
 
         { field: 'expires', headerName: 'Expire', type: 'text',maxWidth: 150, minWidth: 80, flex: 1, editable: true, headerClassName: 'super-app-theme--header',
@@ -52,7 +44,6 @@ export default function Coupon() {
             field: 'code', headerName: 'Code', type: 'text', maxWidth: 150, minWidth: 80, flex: 1,editable: true, headerClassName: 'super-app-theme--header',
             renderCell: (params) => <span dangerouslySetInnerHTML={{ __html: params.formattedValue }} />
         },
-        // { field: 'bound', headerName: 'Bound', type: 'text', editable: true, width: 90, headerClassName: 'super-app-theme--header' },
         { field: 'Edit', headerName: 'Edit', type: 'button',maxWidth: 150, minWidth: 80, flex: 1, editable: true, headerClassName: 'super-app-theme--header',
         renderCell: (params) => (
             <>
@@ -101,18 +92,16 @@ export default function Coupon() {
         <>
             <div className='container-fluid'>
                 <div className='row'>
-                    <div className='col-12 Add_Category margin_top '>
-                        <div className="col hadding_al "> <h2>Coupon   
+                <div className='col-10  category_main_row' >
+
+                    <div className='col-12 Add_Category margin_top m-2 mt-5 mb-5'>
+                        <div className="col"> <h2>Coupon   
                         </h2></div>
                         <div className="col cat_but popup_A" >  <span className='btn cat_pop_btn'> <h2> <Couponpopup></Couponpopup></h2></span></div>
                     </div>
 
-                </div>            
-                        <Grid container wrap="nowrap" spacing={2}>
 
-                            <Grid item xs>
-
-                                <div className='col-10 gift_main_col coupan_main_col' >
+                                <div className='col-12'>
                                     <Box sx={{ 
                                         height: 400,
                                     width: '100%',
@@ -197,8 +186,9 @@ export default function Coupon() {
                                     </ThemeProvider>
                                     </Box>
                                 </div>
-                            </Grid>
-                        </Grid>
+                            
+            </div>
+            </div>
             </div>
         </>
     );
