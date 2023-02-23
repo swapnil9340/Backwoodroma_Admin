@@ -652,7 +652,7 @@ export default function Storepopup() {
                                             onChange={Licenseimage} />
                                     </div>
                                     <div className='col-10  center'>
-                                        <div className='col img_store_lince '>
+                                        <div className='col img_store_lince'>
                                         {/* <div className={'col'+(LicenceImage===""?'':'img_store_lince')}> */}
 
                                             <div className='col img_store2'>
