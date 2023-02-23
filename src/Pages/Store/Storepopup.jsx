@@ -32,6 +32,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
 }));
 
+
 function BootstrapDialogTitle(props) {
 
 }
@@ -120,8 +121,9 @@ export default function Storepopup() {
     };
     const licenceFileInput = () => {
         Licence.current.value = null;
-        LicenceImage(null)
+        SetLicenceImage("")
     };
+    console.log(LicenceImage==="")
 
 
     React.useEffect(() => {
@@ -491,8 +493,17 @@ export default function Storepopup() {
                                          <Box
                                          sx={{
                                             "& .rdw-editor-toolbar":{
-                                                width:"90%"
+                                                width:"90%",
+                                               
+                                              
+                                            },
+                                            ".rdw-editor-main":{
+                                                border:"1px solid #EEEEEE",
+                                                width:"90%",
+                                                padding:"4px",
+                                                backgroundColor:"#ECECEC"
                                             }
+                                            
                                         }}
                                          >
                                         <Editor
@@ -500,10 +511,13 @@ export default function Storepopup() {
                                             onEditorStateChange={setEditorState}
                                             toolbarClassName="toolbarClassName"
                                             wrapperClassName="wrapperClassName"
-                                            
+                                           
                                             editorClassName="editorClassName"
+                                           
                                             
+                                           
                                         />
+                                      
                                         </Box>
                                     </div>
                                 </div>
@@ -639,21 +653,23 @@ export default function Storepopup() {
                                     </div>
                                     <div className='col-10  center'>
                                         <div className='col img_store_lince '>
-                                            <div className='col img_store1'>
+                                        {/* <div className={'col'+(LicenceImage===""?'':'img_store_lince')}> */}
+
+                                            <div className='col img_store2'>
                                                 {
                                                     LicenceImage ? <div >
                                                         <img src={URL.createObjectURL(LicenceImage)} alt="" className='center' style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
                                                         <Button color='success' onClick={licenceFileInput}>Cancell </Button>
                                                     </div> :
                                                         <div>
-                                                            <AiOutlineCloudUpload style={{ backgroundColor: "#31B665", borderradius: "66px" }} ></AiOutlineCloudUpload >
+                                                            <AiOutlineCloudUpload style={{ fontSize:"30px", borderradius: "66px" }} ></AiOutlineCloudUpload >
                                                         </div>
                                                 }
 
 
                                             </div>
                                             <label htmlFor="Licence">
-                                                <span className='img_store1' >UPLOAD</span> <span style={{ color: "red" }}>{massage.Image}</span>
+                                                <span className='img_store2' >UPLOAD</span> <span style={{ color: "red" }}>{massage.Image}</span>
                                                 <p className="file-name"></p>
                                             </label>
                                         </div>
@@ -688,7 +704,7 @@ export default function Storepopup() {
 
                                 <div className='col-12 center top' >
                                     <button className='btn Sub_button' autoFocus onClick={Submit} >
-                                        Save changes
+                                       Add Stores
                                     </button>
                                 </div>
 

@@ -981,16 +981,15 @@ input:focus + label {
     left: 29px;
 }
 
+
 .Store_country{
   width: 117rem;
 }
 .img_store_lince{
-  width: 20%;
-  background: #EEEEEE;
-  height: 100px;
+  width: 21%;
+  height: 119px;
   border: 2px dashed #9e9b9b;
   padding: 57px;
-  justify-items: center;
 }
 
 
@@ -1493,7 +1492,7 @@ margin-top: 6%;
 .img_store2{
   position: relative;
     bottom: 28px;
-    left: 29px;
+    left: 0px;
 }
 .upload_img{
   position: relative;
