@@ -1,4 +1,4 @@
-import React, { useRef ,useContext} from 'react';
+import React, { useRef, useContext } from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
@@ -32,6 +32,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
 }));
 
+
 function BootstrapDialogTitle(props) {
 
 }
@@ -45,8 +46,8 @@ export default function Storepopup() {
     const [convertedContent, setConvertedContent] = React.useState(null);
     const [image, SetImage] = React.useState('');
     const [country, Setcountry] = React.useState([])
-    const [State , SetState] = React.useState ([]);
-    const [City , SetCity] = React.useState ([]);
+    const [State, SetState] = React.useState([]);
+    const [City, SetCity] = React.useState([]);
 
     const [error, seterror] = React.useState({
         Store_Name: "",
@@ -74,13 +75,13 @@ export default function Storepopup() {
         Store_Address: "",
         Stores_Website: "",
         Stores_MobileNo: "",
-        Status: "Active" , 
-        Country_id:"" , 
-        State_id : "",
-        City_id : "",
-        License_Type:"None",
-        expires : new Date().toISOString().slice(0, 16),
-        
+        Status: "Active",
+        Country_id: "",
+        State_id: "",
+        City_id: "",
+        License_Type: "None",
+        expires: new Date().toISOString().slice(0, 16),
+
     });
 
 
@@ -112,6 +113,10 @@ export default function Storepopup() {
         inputRef.current.value = null;
         SetImage(null)
     };
+    const licenceFileInput = () => {
+        Licence.current.value = null;
+        LicenceImage(null)
+    };
 
 
     React.useEffect(() => {
@@ -125,40 +130,40 @@ export default function Storepopup() {
 
         }).then(response => {
 
-       
+
             Setcountry(response.data.data)
         })
-        if(Store.Country_id!=="") {
+        if (Store.Country_id !== "") {
             axios.get(`http://34.201.114.126:8000/AdminPanel/FilterStatesByCountry/${Store.Country_id}`, {
 
-            headers: {
-                'Authorization': `Bearer ${token_data}`
-            }
+                headers: {
+                    'Authorization': `Bearer ${token_data}`
+                }
 
-        }).then(response => {
-            SetState(response.data.data)
-            SetStore(Store => ({ ...Store, State_id: response.data.data[0].id }))
-        })
+            }).then(response => {
+                SetState(response.data.data)
+                SetStore(Store => ({ ...Store, State_id: response.data.data[0].id }))
+            })
         }
 
-        if(Store.State_id!=="") {
+        if (Store.State_id !== "") {
             axios.get(`http://34.201.114.126:8000/AdminPanel/FilterCitiesByStates/${Store.State_id}`, {
 
-            headers: {
-                'Authorization': `Bearer ${token_data}`
-            }
+                headers: {
+                    'Authorization': `Bearer ${token_data}`
+                }
 
-        }).then(response => {
-            SetCity(response.data.data)
-            SetStore(Store => ({ ...Store, city_id: response.data.data[0].id }))
-        })
+            }).then(response => {
+                SetCity(response.data.data)
+                SetStore(Store => ({ ...Store, city_id: response.data.data[0].id }))
+            })
         }
 
 
 
-    }, [token_data,Store.Country_id,Store.State_id]);
-  
- 
+    }, [token_data, Store.Country_id, Store.State_id]);
+
+
 
     const formdata = new FormData();
     formdata.append('Store_Name', Store.Store_Name);
@@ -291,6 +296,7 @@ export default function Storepopup() {
                                     </div>
                                     <div className='col-10'>
                                         <Select
+                                        className='store_type'
                                             name='Store_Type'
                                             value={Store.Store_Type}
                                             onChange={handleChange}
@@ -306,38 +312,41 @@ export default function Storepopup() {
                                         </Select>
                                     </div>
                                 </div>
-                                <div className='col-12 top label  Store_country '>
-                                    <div className='col-2'>
+                                <div className='col-12  top label  con  Store_country'>
+                                    <div className='col-2 country_label'>
                                         <label className='label'>
                                         Country:
                                         </label>
                                     </div>
-                                    <div className='col'>
+                                    <div className='col  country_select'>
                                         <Select
 
-                                            name='Country_id'
-                                            value={Store.Country_id}
-                                            onChange={handleChange}
-                                            displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}
-                                        >
-                                           
-                                           <MenuItem disabled value="" style={{ fontSize: 15 }}>
-                                                <em>Select Country</em>
-                                            </MenuItem>
-                                            {
-                                                country.map((data, index) => {
+                                                name='Country_id'
+                                                value={Store.Country_id}
+                                                onChange={handleChange}
+                                                displayEmpty
+                                                inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: "100%", fontSize: 15 }}
+                                            >
 
-                                                    return (
-                                                        <MenuItem key={index} value={data.id} style={{ fontSize: 15 }}>{data.CountryName}</MenuItem>
-                                                    )
-                                                })
-                                            }
-                                        </Select>
+                                                <MenuItem disabled value="" style={{ fontSize: 15 }}>
+                                                    <em>Select Country</em>
+                                                </MenuItem>
+                                                {
+                                                    country.map((data, index) => {
+
+                                                        return (
+                                                            <MenuItem key={index} value={data.id} style={{ fontSize: 15 }}>{data.CountryName}</MenuItem>
+                                                        )
+                                                    })
+                                                }
+                                            </Select>
+                                        </div>
+
                                     </div>
-                                    <div className='col-2'>
+                                   <div className='col-4 display'>
+                                   <div className='col'>
                                         <label className='label'>
-                                        State:
+                                            State:
                                         </label>
                                     </div>
                                     <div className='col-2'>
@@ -347,7 +356,7 @@ export default function Storepopup() {
                                             value={Store.State_id}
                                             onChange={handleChange}
                                             displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: "100%", fontSize: 15 }}
                                         >
                                             <MenuItem disabled value="" style={{ fontSize: 15 }}>
                                                 <em>Select</em>
@@ -363,7 +372,7 @@ export default function Storepopup() {
                                             }
                                         </Select>
                                     </div>
-                                    <div className='col'>
+                                    <div className='col-2'>
                                         <label className='label'>
                                             City :
                                         </label>
@@ -375,7 +384,7 @@ export default function Storepopup() {
                                             value={Store.city_id}
                                             onChange={handleChange}
                                             displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: "100%", fontSize: 15 }}
                                         >
                                             <MenuItem disabled value="" style={{ fontSize: 15 }}>
                                                 <em>Select City</em>
@@ -391,6 +400,7 @@ export default function Storepopup() {
                                             }
                                         </Select>
                                     </div>
+                                  </div>
                                 </div>
                                 <div className='col-12 top label  con'>
                                     <div className='col-2'>
@@ -475,14 +485,23 @@ export default function Storepopup() {
                                         </label>
                                     </div>
                                     <div className='col-10' >
-
+                                         <Box
+                                         sx={{
+                                            "& .rdw-editor-toolbar":{
+                                                width:"90%"
+                                            }
+                                        }}
+                                         >
                                         <Editor
                                             editorState={editorState}
                                             onEditorStateChange={setEditorState}
                                             toolbarClassName="toolbarClassName"
                                             wrapperClassName="wrapperClassName"
+                                            
                                             editorClassName="editorClassName"
+                                            
                                         />
+                                        </Box>
                                     </div>
                                 </div>
                                 <div className='col-12 top label  con '>
@@ -493,31 +512,31 @@ export default function Storepopup() {
                                         <input type="file" placeholder='Add Store Image:' id="file" ref={inputRef} className="file" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleimage} />
                                     </div>
-                                    <div className='col-10  center'>
-                                        <div className='col img_store '>
+                                    <div className='col-10 '>
+                                        <div className={'col  ' + (image ? null : "img_store")}>
                                             <div className='col img_store1'>
                                                 {
-                                                    image ? <div >
-                                                        <img src={URL.createObjectURL(image)} alt="" className='center' style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
+                                                    image ? <div>
+                                                        <img src={URL.createObjectURL(image)} alt="" className='center' style={{ width: "100px", height: "100px", borderRadius: "10px" }} />
                                                         <Button color='success' onClick={resetFileInput}>Cancell </Button>
                                                     </div> :
                                                         <div>
-                                                            <MdFileUpload style={{ backgroundColor: "#31B665", borderradius: "66px" }} ></MdFileUpload >
+                                                            <AiOutlineCloudUpload style={{fontSize:"30px", borderradius: "66px" }} ></AiOutlineCloudUpload >
                                                         </div>
                                                 }
 
 
                                             </div>
                                             <label htmlFor="file"  >
-                                                <span className='img_store1' >UPLOAD</span> <span style={{ color: "red" }}>{massage.Image}</span>
+                                                <span className=' upload_img' >UPLOAD</span> <span style={{ color: "red" }}>{massage.Image}</span>
                                                 <p className="file-name"></p>
                                             </label>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className='col-12 Add_State Add_Category '>
-                                    <div className="col "> <h2> LicenceNo
+                                <div className='col-12 Add_State Add_Category'>
+                                    <div className="col " style={{ display: "flex", justifyContent: "center" }}> <h2> Licence Information
                                     </h2>
                                     </div>
                                 </div>
@@ -616,21 +635,25 @@ export default function Storepopup() {
                                             onChange={handleimage} />
                                     </div>
                                     <div className='col-10  center'>
-                                        <div className='col img_store_lince '>
-                                            <div className='col img_store1'>
+                                        {/* <div className='col img_store_lince '> */}
+                                        <div className={'col ' + (LicenceImage === "" ? 'img_store_lince' : '')}>
+
+                                            {/* <div className='col img_store2'> */}
+                                            <div className={'col ' + (LicenceImage === "" ? 'img_store2' : '')}>
+
                                                 {
-                                                    image ? <div >
-                                                        <img src={URL.createObjectURL(image)} alt="" className='center' style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
-                                                        <Button color='success' onClick={resetFileInput}>Cancell </Button>
+                                                    LicenceImage ? <div >
+                                                        <img src={URL.createObjectURL(LicenceImage)} alt="" className='center' style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
+                                                        <Button color='success' onClick={licenceFileInput}>Cancell </Button>
                                                     </div> :
                                                         <div>
-                                                            <MdFileUpload style={{ backgroundColor: "#31B665", borderradius: "66px" }} ></MdFileUpload >
+                                                            <AiOutlineCloudUpload style={{ backgroundColor: "#31B665", borderradius: "66px" }} ></AiOutlineCloudUpload >
                                                         </div>
                                                 }
 
 
                                             </div>
-                                            <label htmlFor="file"  >
+                                            <label htmlFor="Licence">
                                                 <span className='img_store1' >UPLOAD</span> <span style={{ color: "red" }}>{massage.Image}</span>
                                                 <p className="file-name"></p>
                                             </label>
@@ -650,6 +673,7 @@ export default function Storepopup() {
                                     <div className='col'>
                                         <Select
                                             name='Status'
+                                           size='small'
                                             value={Store.Status}
                                             onChange={handleChange}
 
@@ -665,7 +689,7 @@ export default function Storepopup() {
 
                                 <div className='col-12 center top' >
                                     <button className='btn Sub_button' autoFocus onClick={Submit} >
-                                        Save changes
+                                        Add Stores
                                     </button>
                                 </div>
 
@@ -676,7 +700,7 @@ export default function Storepopup() {
                     </div>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleClose}>
+                    <Button sx={{color:"#31B665"}} autoFocus onClick={handleClose}>
                         Exit
                     </Button>
                 </DialogActions>
