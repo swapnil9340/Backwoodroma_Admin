@@ -122,9 +122,24 @@ export default function AddNewsCategory() {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            width: "60%",
-                            height: "60%",
+                            width: {
+                                xs: "60%",
+                                sm: "60%",
+                                md: "50%",
+                                lg: "40%",
+                                xl: "40%"
+
+                            },
+                            height: {
+                                xs: "55%",
+                                sm: "55%",
+                                md: "50%",
+                                lg: "50%",
+                                xl: "60%"
+                            },
                             maxWidth: "none",  // Set your width here
+                            border: "1px solid #31B665",
+                            borderRadius: "15px",
                         },
                     },
                 }}
@@ -136,14 +151,14 @@ export default function AddNewsCategory() {
                     <div className='container-fluid '>
                         <div className='row '>
 
-                            <div className='col-12    ' >
+                            <div className='col-12'style={{marginTop:"7%"}} >
 
                                 <div className='col-12 Add_Category center'>
                                     <div className="col "> <h2> Add News Sub Category
                                     </h2>
                                     </div>
                                 </div>
-                                <div className='col-12 top label  con margn_top '>
+                                <div className='col-8 top label  con' style={{marginTop:"7%"}}>
                                     <div className='col'>
                                     <label className='label'>
                                         Name:
@@ -173,7 +188,7 @@ export default function AddNewsCategory() {
                                          />
                                   </div>
                                 </div>
-                                <div className='col-12 top label  con'>
+                                <div className='col-8 top label  con'>
                                    <div className='col'>
                                    <label className='label'>
                                         Main Category:
@@ -185,7 +200,8 @@ export default function AddNewsCategory() {
                                         value={Category}
                                         onChange={handleChange}
                                         displayEmpty
-                                        inputProps={{ 'aria-label': 'Without label' }} style={{minWidth: 190 , fontSize:15}}>
+                                        size='small'
+                                        inputProps={{ 'aria-label': 'Without label' }} style={{minWidth: 120 , fontSize:15}}>
                                             <MenuItem value="" disabled style={{ fontSize:15}}>
                                             <em>Select option</em>
                                         </MenuItem>
