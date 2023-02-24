@@ -483,7 +483,7 @@ export default function Storepopup() {
                                             wrapperClassName="wrapperClassName"
                                             editorClassName="editorClassName"
                                         />
-                                    </div>
+                                    </div>   
                                 </div>
                                 <div className='col-12 top label  con '>
                                     <div className='col-2 '>
