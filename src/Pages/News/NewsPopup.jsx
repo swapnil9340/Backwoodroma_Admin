@@ -17,6 +17,7 @@ import { convertToHTML } from 'draft-convert';
 import { MdFileUpload } from 'react-icons/md';
 import InputAdornment from '@mui/material/InputAdornment';
 import Createcontext from "../../Hooks/Context/Context"
+import Box from '@mui/material/Box';
 
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -279,9 +280,24 @@ export default function Newspop() {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            width: "60%",
-                            height: "60%",
+                            width: {
+                                xs: "100%",
+                                sm: "100%",
+                                md: "100%",
+                                lg: "70%",
+                                xl: "70%"
+
+                            },
+                            height: {
+                                xs: "75%",
+                                sm: "75%",
+                                md: "75%",
+                                lg: "100%",
+                                xl: "100%"
+                            },
                             maxWidth: "none",  // Set your width here
+                            border: "1px solid #31B665",
+                            borderRadius: "15px",
                         },
                     },
                 }}
@@ -295,19 +311,19 @@ export default function Newspop() {
 
                             <div className='col-12    ' >
 
-                                <div className='col-12    center'>
+                                <div className='col-12 Add_Category center'>
                                     <div className="col "> <h2> Add News
                                     </h2>
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop  con  '>
-                                    <div className='col-2'>
+                                    <div className='col m-2'>
                                         <label className='label'>
                                     <span className='required'>*</span>
                                             Title:
                                         </label>
                                     </div>
-                                    <div className='col-10  '>
+                                    <div className='col'>
                                         <TextField type="Text" placeholder=' Title' id="outlined-basic" name='Title' variant="outlined" value={News.Title.toUpperCase()} style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
@@ -332,13 +348,13 @@ export default function Newspop() {
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop  con  '>
-                                    <div className='col-2'>
+                                    <div className='col m-2'>
                                         <label className='label'>
                                         <span className='required'>*</span>
                                             Meta Title:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <TextField type="Text" placeholder='Meta Title' id="outlined-basic" name='Meta_title' variant="outlined" value={News.Meta_title.toUpperCase()} style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange}
 
@@ -364,18 +380,19 @@ export default function Newspop() {
                                     </div>
                                 </div>
                                 <div className='col-12 top   Add_Category_pop'>
-                                    <div className='col-2'>
+                                    <div className='col m-2'>
                                         <label className='label'>
                                             Category:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <Select
                                             name='Category_id'
                                             value={News.Category_id}
                                             onChange={handleChange}
                                             displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15, background: "#AAAAAA" }}
+                                            size='small'
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}
                                         >
                                             <MenuItem value="" style={{ fontSize: 15 }}>
                                                 <em>Select option</em>
@@ -393,18 +410,19 @@ export default function Newspop() {
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col-2'>
+                                    <div className='col m-2'>
                                         <label className='label'>
                                             Sub Category:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <Select
                                             name='SubCategory_id'
                                             value={News.SubCategory_id}
                                             onChange={handleChange}
                                             displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15, background: "#AAAAAA" }}
+                                            size='small'
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 130, fontSize: 15 }}
                                         >
                                             <MenuItem value="" style={{ fontSize: 15 }}>
                                                 <em>Select option</em>
@@ -424,18 +442,19 @@ export default function Newspop() {
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col-2'>
+                                    <div className='col m-2'>
                                         <label className='label'>
                                             Strain Type:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <Select
                                             name='StrainType'
                                             value={News.StrainType}
                                             onChange={handleChange}
                                             displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15, background: "#AAAAAA" }}
+                                            size='small'
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}
                                         >
 
                                             <MenuItem value={"N"} style={{ fontSize: 15 }}>None</MenuItem>
@@ -447,13 +466,13 @@ export default function Newspop() {
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col-2'>
+                                    <div className='col m-2'>
                                         <label className='label'>
                                         <span className='required'>*</span>
                                             Featured Image:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <div className=' col-2 image_uploade center' style={{ border: '1px solid ' + error.Image }}>
 
                                             <div className='top MdFileUpload'>
@@ -481,13 +500,13 @@ export default function Newspop() {
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col-2'>
+                                    <div className='col m-2'>
                                         <label className='label'>
                                         <span className='required'>*</span>
                                             Alt Text:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <TextField type="text" placeholder='Add Alt Text' name='Alt_Text' value={News.Alt_Text} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
@@ -513,12 +532,12 @@ export default function Newspop() {
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col-2'>
+                                    <div className='col m-2'>
                                         <label className='label'>
                                             Link:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <TextField type="Text" placeholder='Add Link' name='Link' value={News.Link} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
@@ -545,13 +564,13 @@ export default function Newspop() {
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col-2'>
+                                    <div className='col m-2'>
                                         <label className='label'>
                                         <span className='required'>*</span>
                                             Url slug :
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <TextField type="Text" placeholder=' Url slug' name='Url_slug' value={News.Url_slug} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
@@ -577,13 +596,13 @@ export default function Newspop() {
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop  con  '>
-                                    <div className='col-2'>
+                                    <div className='col m-2'>
                                         <label className='label'>
                                         <span className='required'>*</span>
                                             Meta Description :
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <TextField type="Text" placeholder='Meta Description' id="outlined-basic" name='Meta_Description' variant="outlined" value={News.Meta_Description.toUpperCase()} style={{ minWidth: 400, fontSize: 15 }}
                                             onChange={handleChange}
 
@@ -609,14 +628,25 @@ export default function Newspop() {
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop  '>
-                                    <div className='col-2'>
+                                    <div className='col m-2'>
                                         <label className='label'>
                                         <span className='required'>*</span>
                                             Description:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
-
+                                    <div className='col'>
+                                    <Box
+                                         sx={{
+                                            "& .rdw-editor-toolbar":{
+                                                width:"100%"
+                                            },
+                                            ".rdw-editor-main":{
+                                                background:"",
+                                                border:"1px solid #c4c4c4",
+                                                padding:"3px"
+                                            }
+                                        }}
+                                         >
                                         <Editor
                                             editorState={editorState}
                                             onEditorStateChange={setEditorState}
@@ -624,11 +654,12 @@ export default function Newspop() {
                                             wrapperClassName="wrapperClassName"
                                             editorClassName="editorClassName"
                                         />
+                                        </Box>
                                     </div>
                                 </div>
                                 <div className='col-12 center top' >
                                     <button className='btn Sub_button' autoFocus onClick={Submit} >
-                                        Save changes
+                                        Add News
                                     </button>
                                 </div>
 

@@ -157,7 +157,6 @@ export default function BrandEdit(props) {
                             border: "1px solid #31B665",
                             borderRadius: "15px",
 
-
                         },
                     },
                 }}
@@ -171,7 +170,7 @@ export default function BrandEdit(props) {
 
                             <div className='col-12' >
 
-                                <div className='col-12 Add_State Add_Category center'>
+                                <div className='col-12 Add_State  center'>
                                     <div className="col "> <h2> Edit Brand
                                     </h2>
                                     </div>
