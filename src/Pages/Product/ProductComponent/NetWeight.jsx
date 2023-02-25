@@ -36,7 +36,7 @@ export default function NetWeight({ Product, SetProduct }) {
     return (
         <div>
             <div className='col-4 Weight_Type '>
-                <label className=''>
+                <label className='label'>
                     Weight Type:
                 </label>
             </div>
@@ -47,7 +47,8 @@ export default function NetWeight({ Product, SetProduct }) {
                     name='net_weight'
                     onChange={handleChange}
                     displayEmpty
-                    inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}>
+                    size='small'
+                    inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}>
 
                     {
                         net_weight.map((data, index) => {

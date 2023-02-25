@@ -53,8 +53,8 @@ export default function ProductGiftVocher({Product ,SetProduct}) {
 
     return (
         <div>
-            <div className='col background'>
-                <div className='col-10   '>
+            <div className='col background p-4'>
+                <div className='col-10  mb-2 '>
                     <label className=''>
                         Gift Voucher / Coupon
                     </label>
@@ -66,7 +66,8 @@ export default function ProductGiftVocher({Product ,SetProduct}) {
                                 onChange={handleChange}
                                 value={Product.GiftVoucher}
                                 displayEmpty
-                                inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15, background: "#AAAAAA" }}>
+                                size="small"
+                                inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15, }}>
                               
                                 {
                                     GiftVocher.map((data, index) => {
@@ -77,7 +78,7 @@ export default function ProductGiftVocher({Product ,SetProduct}) {
                             </Select>
                         </div>
                     </div>
-                    <div className='col justify  Add_Category center'>
+                    <div className='col justify  Add_Category center p-4'>
                         <div className='col-2' >
                             <p>Coupon</p>
                             <Select
@@ -85,7 +86,8 @@ export default function ProductGiftVocher({Product ,SetProduct}) {
                                 onChange={handleChange}
                                 value={Product.Claimed_Coupoun}
                                 displayEmpty
-                                inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15, background: "#AAAAAA" }}>
+                                size="small"
+                                inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}>
                                 
                                 {
                                     Coupoun.map((data, index) => {

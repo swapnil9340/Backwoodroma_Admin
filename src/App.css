@@ -704,6 +704,30 @@ a{
     display: block;
   }
 }
+.product_image_Col{
+  display: flex;
+}
+@media (max-width: 1114px) {
+  .product_image_Col{
+    display: block;
+
+  }
+  .product_imagebox {
+    height: 100px;
+    width: 100px;
+}
+}
+@media(max-width:405px){
+  .background{
+    width: 252px;
+  }
+}
+@media(max-width:370px){
+  .background{
+    width: 220px;
+  }
+}
+
 @media (max-width: 570px) {
   .background{
     
