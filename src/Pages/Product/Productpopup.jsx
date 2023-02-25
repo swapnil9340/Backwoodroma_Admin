@@ -376,19 +376,19 @@ export default function ProductPopUp(props) {
                                     <p className='product_title'> Product </p>
                                 </div>
                             </div>
-                            <div className='col-12 Add_Category_pop ' >
-                                <div className='col-sm-8  top  gap  border  ' >
+                            <div className='col-12 Add_Category_pop mt-2 ml-2 ' >
+                                <div className='col-sm-8  top  gap  border p-3' >
 
-                                    <div className='col  product_Col '>
-                                        <div className='col-2  '>
-                                            <label className=''>
+                                    <div className='col  product_Col mt-2'>
+                                        <div className='col-2   mt-2 mb-2'>
+                                            <label className='label'>
                                                 Product Name:
                                             </label>
                                         </div>
                                         <div className='col-8'>
                                             <TextField
 
-                                                placeholder='Add Product' id="outlined-basic" name='Product_Name' variant="outlined" value={Product.Product_Name} style={{ minWidth: "90%", fontSize: 15 }}
+                                                placeholder='Add Product' id="outlined-basic" name='Product_Name' variant="outlined" value={Product.Product_Name} style={{ minWidth: "72%", fontSize: 15 }}
                                                 onChange={handleChange}
 
                                                 InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
@@ -412,14 +412,14 @@ export default function ProductPopUp(props) {
                                             />
                                         </div>
                                     </div>
-                                    <div className='col product_Col '>
-                                        <div className='col-2 '>
+                                    <div className='col product_Col mt-2 '>
+                                        <div className='col-2 mt-2 mb-2'>
                                             <label className=''>
                                                 Product Description:
                                             </label>
                                         </div>
                                         <div className='col-8 gap'>
-                                            <TextField  placeholder='Add  Product Description' id="outlined-basic" variant="outlined" name='Product_Description' value={Product.Product_Description} style={{ width: "90%", fontSize: 15 }}
+                                            <TextField  placeholder='Add  Product Description' id="outlined-basic" variant="outlined" name='Product_Description' value={Product.Product_Description} style={{ width: "72%", fontSize: 15 }}
                                                 onChange={handleChange}
                                                 InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                                 label={massage.Product_Description}
@@ -615,7 +615,8 @@ export default function ProductPopUp(props) {
                                                     name='discount'
                                                     value={Product.discount}
                                                     onChange={handleChange}
-                                                    inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15, background: "#AAAAAA" }}>
+                                                    size="small"
+                                                    inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15, }}>
                                                     {
                                                         discount.map((data, index) => {
                                                             return (<MenuItem value={data.id} style={{ fontSize: 15 }} key={index}>{data.Discount_type}</MenuItem>)
@@ -637,7 +638,8 @@ export default function ProductPopUp(props) {
                                                     onChange={handleChange}
                                                     value={Product.tax}
                                                     displayEmpty
-                                                    inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15, background: "#AAAAAA" }}>
+                                                    size='small'
+                                                    inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}>
                                                     <MenuItem style={{ fontSize: 15 }}>
                                                         <em>No Tax</em>
                                                     </MenuItem>
@@ -665,7 +667,7 @@ export default function ProductPopUp(props) {
 
                                                     </div>
                                                       
-                                                    <div className='btn '  >
+                                                    <div className='btn cat_pop_btn'  >
                                                             <NetWeightpopup></NetWeightpopup>
                                                         </div>
                                                     {/* </div> */}
@@ -698,7 +700,7 @@ export default function ProductPopUp(props) {
                                                         </div>
 
                                                     </div>
-                                                    <div className='btn '  >
+                                                    <div className='btn cat_pop_btn'  >
                                                             <Flavourpopup></Flavourpopup>
                                                         </div>
                                                    
@@ -816,8 +818,8 @@ export default function ProductPopUp(props) {
                                     </div>
 
                                 </div>
-                                <div className='col-sm-4 top' >
-                                    <div className='col   Store   '>
+                                <div className='col-sm-4 top p-4' >
+                                    <div className='col   Store'>
                                         <label className=''>
                                             Show in Online Store:
                                         </label>
@@ -825,7 +827,7 @@ export default function ProductPopUp(props) {
                                             <ToggleButton Product={Product} SetProduct={SetProduct} />
                                         </div>
                                     </div>
-                                    <div className='col Store top border '>
+                                    <div className='col Store top border p-2'>
                                         <Strain Product={Product} SetProduct={SetProduct}></Strain>
                                     </div>
 
