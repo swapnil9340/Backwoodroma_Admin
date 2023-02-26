@@ -993,15 +993,16 @@ input:focus + label {
   height: 119px;
   border: 2px dashed #9e9b9b;
   padding: 57px;
+  opacity: 0.5;
 }
-/* @media(max-width:600px){
+@media(max-width:1320px){
   .img_store {
-    width: 100%;
+    width: 178px;
     height: 119px;
     border: 2px dashed #9e9b9b;
     padding: 57px;
   }
-  } */
+  }
 
 /* .img_store1{
   position: relative;
@@ -1011,12 +1012,15 @@ input:focus + label {
 .img_store1{
   position: relative;
     bottom: 28px;
-    left: 29px;
+    left: 8px;
 }
 
 
 .Store_country{
-  width: 117rem;
+  width: 100%;
+}
+.country_main_div{
+  width: 100%;
 }
 .img_store_lince{
   width: 21%;

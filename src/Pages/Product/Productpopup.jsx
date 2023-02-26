@@ -495,8 +495,8 @@ export default function ProductPopUp(props) {
                                         </div>
                                     </div>
 
-                                    <div className='col-12 product_Col background'>
-                                        <div className='col  product_Col top'>
+                                    <div className='col-12 product_Col background p-4'>
+                                        <div className='col  product_Col top '>
                                             <div className='col-4  '>
                                                 <label className='label Sku'>
                                                     SKU ?
@@ -670,7 +670,7 @@ export default function ProductPopUp(props) {
 
                                                     </div>
                                                       
-                                                    <div className='btn cat_pop_btn'  >
+                                                    <div className='btn cat_pop_btn '  >
                                                             <NetWeightpopup></NetWeightpopup>
                                                         </div>
                                                     {/* </div> */}
@@ -777,7 +777,7 @@ export default function ProductPopUp(props) {
                                                 <TextField id="outlined-basic" variant="outlined" name='CBN' value={Product.CBN} style={{ fontSize: 15,minWidth:90,marginLeft:"4px" }}
                                                     onChange={handleChange} />
                                             </div>
-                                            <div className='col-4'>
+                                            <div className='col-4 mt-4'>
                                                 <Labresult Product={Product} SetProduct={SetProduct} ></Labresult>
                                             </div>
                                         </div>
