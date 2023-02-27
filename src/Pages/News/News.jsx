@@ -35,13 +35,13 @@ export default function News() {
     }, [token_data, state])
 
     const columns = [
-        {
-            field: 'Image', headerName: 'Post Image', editable: false, headerClassName: 'super-app-theme--header',maxWidth: 150, minWidth: 80, flex: 1,
-            renderCell: (params) => <img src={"http://34.201.114.126:8000/" + params.value} alt="Alt_Text" width="35" height="30" />,
-        },
+        // {
+        //     field: 'Image', headerName: 'Post Image', editable: false, headerClassName: 'super-app-theme--header',maxWidth: 150, minWidth: 80, flex: 1,
+        //     renderCell: (params) => <img src={"http://34.201.114.126:8000/" + params.value} alt="Alt_Text" width="35" height="30" />,
+        // },
         { field: 'Title', headerName: 'Post Title', editable: false, headerClassName: 'super-app-theme--header',maxWidth: 150, minWidth: 80, flex: 1,},
 
-        { field: 'Link', headerName: 'Link', editable: false, headerClassName: 'super-app-theme--header',maxWidth: 150, minWidth: 80, flex: 1, },
+        // { field: 'Link', headerName: 'Link', editable: false, headerClassName: 'super-app-theme--header',maxWidth: 150, minWidth: 80, flex: 1, },
         {
             field: 'created', headerName: 'Publish Date', editable: false, maxWidth: 150, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',
             renderCell: (params) => params.row.created.slice(0, 10)

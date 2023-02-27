@@ -388,7 +388,7 @@ export default function ProductPopUp(props) {
                                                 Product Name:
                                             </label>
                                         </div>
-                                        <div className='col-8'>
+                                        <div className='col-8 gap'>
                                             <TextField
 
                                                 placeholder='Add Product' id="outlined-basic" name='Product_Name' variant="outlined" value={Product.Product_Name} style={{ minWidth: "72%", fontSize: 15 }}
@@ -417,12 +417,12 @@ export default function ProductPopUp(props) {
                                     </div>
                                     <div className='col product_Col mt-2 '>
                                         <div className='col-2 mt-2 mb-2'>
-                                            <label className=''>
+                                            <label className='label'>
                                                 Product Description:
                                             </label>
                                         </div>
                                         <div className='col-8 gap'>
-                                            <TextField  placeholder='Add  Product Description' id="outlined-basic" variant="outlined" name='Product_Description' value={Product.Product_Description} style={{ width: "72%", fontSize: 15 }}
+                                            <TextField  placeholder='Add  Product Description' id="outlined-basic" variant="outlined" name='Product_Description' value={Product.Product_Description} style={{ width: "100%", fontSize: 15 }}
                                                 onChange={handleChange}
                                                 InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                                 label={massage.Product_Description}
@@ -444,26 +444,29 @@ export default function ProductPopUp(props) {
                                                 }}
 
                                             />
-                                            <p>Product Additional Description</p>
                                         </div>
                                     </div>
-                                    <div className='col background'>
-                                        <div className='col-10  p-4 '>
-                                            <label className=''>
-                                                Product Image & Video:
+                                    <div className='col-12 background  product_main_img '>
+                                        <div className='col-2  p-2 '>
+                                            <label className='label my-2'>
+                                                Product Image:
                                             </label>
-                                            <div className='col justify product_image_Col Add_Category center'>
-                                                <div className='col-2' >
+                                        </div>
+
+                                            {/* <div className='col justify product_image_Col Add_Category center'> */}
+
+                                                <div className='col-2 my-4' >
                                                     <input type="file" id="file" accept="image/*" variant="outlined" style={{ Width: "10%", fontSize: 15 }}
                                                         onChange={handleimage} ref={inputRef}
                                                     />
 
-                                                    <div className='border product_imagebox image_logosize mt-2 ' >
+                                                    <div className='border product_imagebox image_logosize1 mt-2'>
 
                                                         {
                                                             Image ? <div style={{ display: "flex" }}>
-                                                                <img src={URL.createObjectURL(Image)} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
+                                                                <img src={URL.createObjectURL(Image)}  alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
                                                                 <Button color='success' onClick={resetFileInput}>Cancell </Button>
+                                                                
                                                             </div> :
                                                                 <IoImagesOutline ></IoImagesOutline>
                                                         }
@@ -472,7 +475,7 @@ export default function ProductPopUp(props) {
                                                     </div>
 
                                                 </div>
-                                                <div className='col-2 ' >
+                                                {/* <div className='col-2 ' >
                                                     <input type="file" id="file" variant="outlined" style={{ Width: "10%", fontSize: 15,marginTop:"5px" }}
                                                         onChange={handlevideo} ref={inputVideo} />
                                                     <div className='border product_imagebox  image_logosize mt-2'>
@@ -490,9 +493,9 @@ export default function ProductPopUp(props) {
 
 
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                </div> */}
+                                            {/* </div> */}
+                                        {/* </div> */}
                                     </div>
 
                                     <div className='col-12 product_Col background p-4'>
@@ -570,20 +573,17 @@ export default function ProductPopUp(props) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='col background p-4'>
-                                        <div className='col-10  product_price  '>
-                                            <label className=''>
-                                                Pricing
-                                            </label>
-                                        </div>
-                                        <div className='col  product_Col top '>
-                                            <div className='col-2   '>
-                                                <label className=''>
+                                    <p className='product_title '>  Pricing</p>
+                                    <div className='col-12 d-flex product_pop_main_col'>                          
+                                        
+                                    
+                                               <div className='col-2'>
+                                                <label className='label tax_label'>
                                                     prices:
                                                 </label>
-                                            </div>
-                                            <div className='col-8'>
-                                                <TextField placeholder='Add Price' id="outlined-basic" variant="outlined" name='prices' value={Product.prices} style={{ minWidth: "50%", fontSize: 15 }}
+                                                </div>
+                                            <div className='col-2'>
+                                                <TextField placeholder='Add Price' id="outlined-basic" variant="outlined" name='prices' value={Product.prices} style={{ minWidth: 100, fontSize: 15 }}
                                                     onChange={handleChange}
                                                     InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                                     label={massage.prices}
@@ -605,20 +605,20 @@ export default function ProductPopUp(props) {
                                                     }}
 
                                                 />
-                                            </div>
-                                        </div>
-                                        <div className='col  product_Col top '>
-                                            <div className='col-2   '>
-                                                <label className=''>
+                                                </div>
+                                            
+                                        
+                                         <div className='col-2'>
+                                                <label className='label tax_label'>
                                                     Discount:
                                                 </label>
-                                            </div>
-                                            <div className='col-8'>
+                                                </div>
+                                            <div className='col-2'>
                                                 <Select
                                                     name='discount'
                                                     value={Product.discount}
                                                     onChange={handleChange}
-                                                    size="small"
+                                                 
                                                     inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15, }}>
                                                     {
                                                         discount.map((data, index) => {
@@ -627,22 +627,21 @@ export default function ProductPopUp(props) {
                                                     }
 
                                                 </Select>
-                                            </div>
-                                        </div>
-                                        <div className='col  product_Col top '>
-                                            <div className='col-2   '>
-                                                <label className=''>
+                                                </div>
+                                           
+                                            <div className='col-2'>
+                                                <label className='label tax_label'>
                                                     Tax:
                                                 </label>
-                                            </div>
-                                            <div className='col-8'>
+                                                </div>
+                                           <div className='col-2'>
                                                 <Select
                                                     name='tax'
                                                     onChange={handleChange}
                                                     value={Product.tax}
                                                     displayEmpty
-                                                    size='small'
-                                                    inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}>
+                                                  
+                                                    inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}>
                                                     <MenuItem style={{ fontSize: 15 }}>
                                                         <em>No Tax</em>
                                                     </MenuItem>
@@ -653,14 +652,15 @@ export default function ProductPopUp(props) {
                                                     }
 
                                                 </Select>
-                                            </div>
-                                        </div>
+                                                </div>
+                                          
+                                  
                                     </div>
                                     <div className='col background p-4'>
                                         <div className='col-12  product_price  '>
-                                            <label className=''>
-                                                Product weight / Flavour
-                                            </label>
+                                            {/* <label className=''> */}            
+                                            <p className='product_title'> Product weight / Flavour</p>
+                                            {/* </label> */}
                                         </div>
                                         <div className='col-12  product_Col top '>
                                             <div className='col-10 justify  Add_Category_pop center'>
@@ -718,8 +718,8 @@ export default function ProductPopUp(props) {
                                     </div>
                                     <div className='col-12 product_Col background p-4'>
                                         <div className='col  product_Col top'>
-                                            <div className='col-4  '>
-                                                <label className=''>
+                                            <div className='col-2  '>
+                                                <label className='label'>
                                                     Quantity:
                                                 </label>
                                             </div>
@@ -751,7 +751,7 @@ export default function ProductPopUp(props) {
                                     </div>
                                     <div className='col-12   background p-4'>
                                         <div className='col-12 Sku   '>
-                                            <p className=''>
+                                            <p className='product_title'>
                                                 Lab Result
                                             </p>
                                         </div>
@@ -785,9 +785,9 @@ export default function ProductPopUp(props) {
 
                                     <div className='col background p-4'>
                                         <div className='col-10  product_price  '>
-                                            <label className='label Sku'>
+                                            <p  className='product_title'>
                                                 Store Details
-                                            </label>
+                                            </p>
                                         </div>
 
                                         <div className='col  product_Col  top  '>
