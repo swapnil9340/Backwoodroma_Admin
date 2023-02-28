@@ -34,13 +34,14 @@ export default function NetWeight({ Product, SetProduct }) {
     },[token_data,Product.net_weight,SetProduct])
 
     return (
-        <div>
-            <div className='col-4 Weight_Type '>
+  
+       <>
+            <div className='col-4'>
                 <label className='label'>
                     Weight Type:
                 </label>
             </div>
-            <div className='col-8 Weight_Type'>
+            <div className='col-4'>
 
                 <Select
                     value={Product.net_weight}
@@ -57,6 +58,7 @@ export default function NetWeight({ Product, SetProduct }) {
                     }
                 </Select>
             </div>
-        </div>
+       
+       </>
     )
 }

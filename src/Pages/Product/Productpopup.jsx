@@ -498,14 +498,14 @@ export default function ProductPopUp(props) {
                                         {/* </div> */}
                                     </div>
 
-                                    <div className='col-12 product_Col background p-4'>
-                                        <div className='col  product_Col top '>
-                                            <div className='col-4  '>
-                                                <label className='label Sku'>
+                                    <div className='col-12 product_Col background py-4'>
+                                        {/* <div className='col  product_Col top '> */}
+                                            <div className='col-2  mt-2'>
+                                                <label className='label my-2 '>
                                                     SKU ?
                                                 </label>
                                             </div>
-                                            <div className='col-8'>
+                                            <div className='col-2'>
                                                 <TextField
                                                 
                                                     type='number' placeholder='Add SKU ?' id="outlined-basic" variant="outlined" name='SKU' value={Product.SKU} style={{ minWidth: "20%", fontSize: 15 }}
@@ -536,14 +536,14 @@ export default function ProductPopUp(props) {
                                                     }}
                                                 />
                                             </div>
-                                        </div>
-                                        <div className='col  product_Col top'>
-                                            <div className='col-4 '>
-                                                <label className='label Sku'>
+                                        {/* </div> */}
+                                        {/* <div className='col  product_Col top'> */}
+                                            <div className='col-2 mt-2'>
+                                                <label className='label my-4 '>
                                                     UPC  ?
                                                 </label>
                                             </div>
-                                            <div className='col-8'>
+                                            <div className='col-2 mt-2'>
                                                 <TextField placeholder='Add UPC ?' id="outlined-basic" variant="outlined" name='UPC' value={Product.UPC} style={{ minWidth: "20%", fontSize: 15 }}
                                                     onChange={handleChange}
                                                     
@@ -571,7 +571,7 @@ export default function ProductPopUp(props) {
                                                     }}
                                                 />
                                             </div>
-                                        </div>
+                                        {/* </div> */}
                                     </div>
                                     <p className='product_title '>  Pricing</p>
                                     <div className='col-12 d-flex product_pop_main_col'>                          
@@ -657,20 +657,20 @@ export default function ProductPopUp(props) {
                                   
                                     </div>
                                     <div className='col background p-4'>
-                                        <div className='col-12  product_price  '>
+                                        <div className='col-12  product_price'>
                                             {/* <label className=''> */}            
                                             <p className='product_title'> Product weight / Flavour</p>
                                             {/* </label> */}
                                         </div>
-                                        <div className='col-12  product_Col top '>
-                                            <div className='col-10 justify  Add_Category_pop center'>
+                                        <div className='col-12  product_Col top'>
+                                            <div className='col-10 justify  d-flex prod_weight_pop center'>
                                                 <div className='col-sm-4  ' >
                                                     <div className='  product_Col top'>
                                                        <NetWeight Product={Product} SetProduct={SetProduct}></NetWeight>
 
                                                     </div>
                                                       
-                                                    <div className='btn cat_pop_btn d-flex justify-content-start'  >
+                                                    <div className='btn cat_pop_btn d-flex justify-content-center' style={{marginLeft:"22px"}} >
                                                             <NetWeightpopup></NetWeightpopup>
                                                         </div>
                                                     {/* </div> */}
@@ -679,8 +679,8 @@ export default function ProductPopUp(props) {
                                                 <div className='col-sm-4  ' >
                                                     {/* bordershedow */}
                                                     <div className='  product_Col top '>
-                                                        <div className='col-4 Weight_Type '>
-                                                            <label className=''>
+                                                        <div className='col-4  '>
+                                                            <label className='label'>
                                                                 Flavour Type:
                                                             </label>
                                                         </div>
@@ -704,7 +704,7 @@ export default function ProductPopUp(props) {
                                                         </div>
 
                                                     </div>
-                                                    <div className='btn cat_pop_btn d-flex justify-content-end'  >
+                                                    <div className='btn cat_pop_btn'  style={{marginLeft:"12px"}} >
                                                             <Flavourpopup></Flavourpopup>
                                                         </div>
                                                    
@@ -755,7 +755,7 @@ export default function ProductPopUp(props) {
                                                 Lab Result
                                             </p>
                                         </div>
-                                        <div className=' col-12 product_Col'>
+                                        <div className=' col-12 product_Col lab_res'>
                                             <div className='col-2'>
                                                 <label className=''>
                                                     THC:
