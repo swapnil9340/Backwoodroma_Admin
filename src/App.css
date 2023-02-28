@@ -826,7 +826,7 @@ flex-direction: column;
 }
 
 .active{
-  background-color: #7C7C7C;
+  background-color: #FFFFFF;
 }
 .btton{
   width: 90px;
@@ -835,9 +835,10 @@ flex-direction: column;
 }
 
 .btton:hover{
-  background-color: #7C7C7C;
-  color: black;
-  border-color: #31B665;
+  background-color: #31B665;
+  
+  color: white;
+  border-color: white;
 }
 
 
