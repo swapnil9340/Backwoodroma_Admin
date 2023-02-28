@@ -16,7 +16,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ProductBrand from "./ProductComponent/ProductBrand"
 // import FormControlLabel from '@mui/material/FormControlLabel';
 // import Radio from '@mui/material/Radio';
-// import FormControl from '@mui/material/FormControl';
+import FormControl from '@mui/material/FormControl';
 // import RadioGroup from '@mui/material/RadioGroup';
 import InputAdornment from '@mui/material/InputAdornment';
 import ToggleButton from './ProductComponent/ToggleButton';
@@ -743,10 +743,8 @@ export default function ProductPopUp(props) {
                                                 <label className=''>
                                                     THC:
                                                 </label>
-                                                <TextField id="outlined-basic" variant="outlined" name="THC" value={Product.THC} style={{ fontSize: 15, minWidth: 90 }}
+                                                <TextField id="outlined-basic" type="number" variant="outlined" name="THC" value={Product.THC} style={{ fontSize: 15, minWidth: 90 }}
                                                     onChange={handleChange} 
-                                                    
-                                                    
                                                     
                                                     />
                                             </div>
@@ -819,7 +817,7 @@ export default function ProductPopUp(props) {
                                             <ToggleButton Product={Product} SetProduct={SetProduct} />
                                         </div>
                                     </div>
-                                    <div className='col Store top border p-2'>
+                                    <div className='col-12  top border '>
                                         <Strain Product={Product} SetProduct={SetProduct}></Strain>
                                     </div>
 

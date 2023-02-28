@@ -25,39 +25,39 @@ export default function Strain({ Product, SetProduct }) {
 
 
     return (
-      
+
         <div>
-        <label className=' center mt-4 ' style={{marginLeft:"10px"}}>
-              Strain
-          </label>
-  <div className="col-12 d-flex m-4">
+            <label className=' center mt-4 ' style={{ marginLeft: "10px" }}>
+                Strain
+            </label>
+            <div className="col-12 d-flex ">
 
-      <div className="col-4">
-         
-          <button name="strain" value={'N'} onClick={handleChange} className={` btton + ${Strain.N}`}> None</button>
+                <div className="col-4">
 
-      </div>
-    
-      <div className="col-4">
-      <button name="strain" value={'i'} onClick={handleChange} className={`btn btton + ${Strain.i}`} > Indica</button>
-      </div>
-      <div className="col-4">
-      <button name="strain" value={'s'} onClick={handleChange} className={`btn btton + ${Strain.s}`} > Sativa</button>
-      </div>
+                    <button name="strain" value={'N'} onClick={handleChange} className={` btton + ${Strain.N}`}> None</button>
 
-  </div>
+                </div>
 
- 
-  <div className='col-12 d-flex m-4  ' >
-      <div className='col-4'>
-          <button name="strain" value={'c'} onClick={handleChange} className={`btn btton + ${Strain.c}`} > CBD</button>
-      </div>
-      <div className='col-4'>
-          <button name="strain" value={'h'} onClick={handleChange} className={`btn btton + ${Strain.h}`} > Hybrid</button>
-      </div>
+                <div className="col-4">
+                    <button name="strain" value={'i'} onClick={handleChange} className={`btn btton + ${Strain.i}`} > Indica</button>
+                </div>
+                <div className="col-4">
+                    <button name="strain" value={'s'} onClick={handleChange} className={`btn btton + ${Strain.s}`} > Sativa</button>
+                </div>
 
-  </div>
-</div>
+            </div>
+
+
+            <div className='col-8 d-flex m-4  ' >
+                <div className='col-4'>
+                    <button name="strain" value={'c'} onClick={handleChange} className={`btn btton + ${Strain.c}`} > CBD</button>
+                </div>
+                <div className='col-4'>
+                    <button name="strain" value={'h'} onClick={handleChange} className={`btn btton + ${Strain.h}`} > Hybrid</button>
+                </div>
+
+            </div>
+        </div>
     )
 
 }
