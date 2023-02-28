@@ -48,7 +48,7 @@ function BootstrapDialogTitle(props) {
 
 }
 export default function ProductPopUp(props) {
-    const {state, dispatch } = useContext(Createcontext)
+    const { state, dispatch } = useContext(Createcontext)
     const inputRef = useRef(null);
     const inputVideo = useRef(null);
     const cookies = new Cookies();
@@ -59,7 +59,7 @@ export default function ProductPopUp(props) {
     const [store, Setstore] = React.useState([])
     const [Image, SetImage] = React.useState('')
     const [video, Setvideo] = React.useState('')
-  
+
     const [Flavours, SetFlavours] = React.useState([])
 
     // const [subType, setSubType] = React.useState("Active");
@@ -79,7 +79,7 @@ export default function ProductPopUp(props) {
 
     })
     // const min = 0;
-  
+
 
     const [Product, SetProduct] = React.useState({
         Product_Name: "",
@@ -88,7 +88,7 @@ export default function ProductPopUp(props) {
         prices: "",
         discount: "",
         tax: "",
-        
+
         Brand_id: "",
         Multiple_Image: "",
         Product_Video: "",
@@ -123,50 +123,50 @@ export default function ProductPopUp(props) {
     })
     const handleChange = (event) => {
         var value = event.target.value;
-        if(event.target.name==="SKU"){
-            if (event.target.value.length<=2){
-                
-               
-        SetProduct({
-            ...Product, [event.target.name]: value
-        });
-                
+        if (event.target.name === "SKU") {
+            if (event.target.value.length <= 2) {
+
+
+                SetProduct({
+                    ...Product, [event.target.name]: value
+                });
+
             }
         }
-        else if(event.target.name==="UPC"){
-            if (event.target.value.length<=3){
-               
-        SetProduct({
-            ...Product, [event.target.name]: value
-        });
-                
+        else if (event.target.name === "UPC") {
+            if (event.target.value.length <= 3) {
+
+                SetProduct({
+                    ...Product, [event.target.name]: value
+                });
+
             }
         }
-        else if(event.target.name==="prices"){
-            if (event.target.value.length<=5){
-                
-        SetProduct({
-            ...Product, [event.target.name]: value
-        });
-                
+        else if (event.target.name === "prices") {
+            if (event.target.value.length <= 5) {
+
+                SetProduct({
+                    ...Product, [event.target.name]: value
+                });
+
             }
         }
-        else if(event.target.name==="quantity"){
-            if (event.target.value.length<=3){
-                
-              
-        SetProduct({
-            ...Product, [event.target.name]: value
-        });
-                
+        else if (event.target.name === "quantity") {
+            if (event.target.value.length <= 3) {
+
+
+                SetProduct({
+                    ...Product, [event.target.name]: value
+                });
+
             }
         }
-     
-       else{
-        SetProduct({
-            ...Product, [event.target.name]: value
-        });
-       }
+
+        else {
+            SetProduct({
+                ...Product, [event.target.name]: value
+            });
+        }
         setmassage("")
         seterror("")
 
@@ -212,7 +212,7 @@ export default function ProductPopUp(props) {
         }).then(response => {
             SetDiscount(response.data.data)
             SetProduct(Product => ({ ...Product, discount: response.data.data[0].id }))
-            
+
 
         })
         Axios("http://34.201.114.126:8000/AdminPanel/ActiveTax/", {
@@ -233,15 +233,15 @@ export default function ProductPopUp(props) {
             }
 
         }).then(response => {
-          try {
-            Setstore(response.data.data)
-       
-            SetProduct(Product => ({ ...Product, Store_id: response.data.data[0].id }))
-          } catch (error) {
-            console.trace(error)
-          }
+            try {
+                Setstore(response.data.data)
+
+                SetProduct(Product => ({ ...Product, Store_id: response.data.data[0].id }))
+            } catch (error) {
+                console.trace(error)
+            }
         })
-        
+
 
 
         Axios("http://34.201.114.126:8000/AdminPanel/Get-Flavours/", {
@@ -251,7 +251,7 @@ export default function ProductPopUp(props) {
             }
 
         }).then(response => {
-        
+
             SetFlavours(response.data)
             SetProduct(Product => ({ ...Product, flavour_id: response.data[0].id }))
 
@@ -259,7 +259,7 @@ export default function ProductPopUp(props) {
         })
 
 
-    }, [token_data,state])
+    }, [token_data, state])
 
 
     const formdata = new FormData();
@@ -285,7 +285,7 @@ export default function ProductPopUp(props) {
     formdata.append('strain', Product.strain);
     formdata.append('Sub_Category', Product.Sub_Category);
     formdata.append('Status', Product.Status);
-    formdata.append('Store_id',Product.Store_id );
+    formdata.append('Store_id', Product.Store_id);
     formdata.append("tag", "");
     formdata.append('DiscountedAmount', "");
     formdata.append('Product_Image', Image)
@@ -363,7 +363,7 @@ export default function ProductPopUp(props) {
                             maxWidth: "none",  // Set your width here
                             border: "1px solid #31B665",
                             borderRadius: "15px",
-                            
+
                         },
                     },
                 }}
@@ -422,7 +422,7 @@ export default function ProductPopUp(props) {
                                             </label>
                                         </div>
                                         <div className='col-8 gap'>
-                                            <TextField  placeholder='Add  Product Description' id="outlined-basic" variant="outlined" name='Product_Description' value={Product.Product_Description} style={{ width: "100%", fontSize: 15 }}
+                                            <TextField placeholder='Add  Product Description' id="outlined-basic" variant="outlined" name='Product_Description' value={Product.Product_Description} style={{ width: "100%", fontSize: 15 }}
                                                 onChange={handleChange}
                                                 InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                                 label={massage.Product_Description}
@@ -453,29 +453,29 @@ export default function ProductPopUp(props) {
                                             </label>
                                         </div>
 
-                                            {/* <div className='col justify product_image_Col Add_Category center'> */}
+                                        {/* <div className='col justify product_image_Col Add_Category center'> */}
 
-                                                <div className='col-2 my-4' >
-                                                    <input type="file" id="file" accept="image/*" variant="outlined" style={{ Width: "10%", fontSize: 15 }}
-                                                        onChange={handleimage} ref={inputRef}
-                                                    />
+                                        <div className='col-2 my-4' >
+                                            <input type="file" id="file" accept="image/*" variant="outlined" style={{ Width: "10%", fontSize: 15 }}
+                                                onChange={handleimage} ref={inputRef}
+                                            />
 
-                                                    <div className='border product_imagebox image_logosize1 mt-2'>
+                                            <div className='border product_imagebox image_logosize1 mt-2'>
 
-                                                        {
-                                                            Image ? <div style={{ display: "flex" }}>
-                                                                <img src={URL.createObjectURL(Image)}  alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
-                                                                <Button color='success' onClick={resetFileInput}>Cancell </Button>
-                                                                
-                                                            </div> :
-                                                                <IoImagesOutline ></IoImagesOutline>
-                                                        }
+                                                {
+                                                    Image ? <div style={{ display: "flex" }}>
+                                                        <img src={URL.createObjectURL(Image)} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
+                                                        <Button color='success' onClick={resetFileInput}>Cancell </Button>
+
+                                                    </div> :
+                                                        <IoImagesOutline ></IoImagesOutline>
+                                                }
 
 
-                                                    </div>
+                                            </div>
 
-                                                </div>
-                                                {/* <div className='col-2 ' >
+                                        </div>
+                                        {/* <div className='col-2 ' >
                                                     <input type="file" id="file" variant="outlined" style={{ Width: "10%", fontSize: 15,marginTop:"5px" }}
                                                         onChange={handlevideo} ref={inputVideo} />
                                                     <div className='border product_imagebox  image_logosize mt-2'>
@@ -494,223 +494,206 @@ export default function ProductPopUp(props) {
 
                                                     </div>
                                                 </div> */}
-                                            {/* </div> */}
+                                        {/* </div> */}
                                         {/* </div> */}
                                     </div>
 
                                     <div className='col-12 product_Col background py-4'>
                                         {/* <div className='col  product_Col top '> */}
-                                            <div className='col-2  mt-2'>
-                                                <label className='label my-2 '>
-                                                    SKU ?
-                                                </label>
-                                            </div>
-                                            <div className='col-2'>
-                                                <TextField
-                                                
-                                                    type='number' placeholder='Add SKU ?' id="outlined-basic" variant="outlined" name='SKU' value={Product.SKU} style={{ minWidth: "20%", fontSize: 15 }}
-                                                    onChange={handleChange}
-                                                    InputProps={{
-                                                        startAdornment: <InputAdornment position="start"> </InputAdornment>,
-                                                        style: { fontSize: 14 }
-                                                        
-                                                    
-                                                    } }
+                                        <div className='col-2  mt-2'>
+                                            <label className='label my-2 '>
+                                                SKU ?
+                                            </label>
+                                        </div>
+                                        <div className='col-2'>
+                                            <TextField
+
+                                                type='number' placeholder='Add SKU ?' id="outlined-basic" variant="outlined" name='SKU' value={Product.SKU} style={{ minWidth: "20%", fontSize: 15 }}
+                                                onChange={handleChange}
+                                                InputProps={{
+                                                    startAdornment: <InputAdornment position="start"> </InputAdornment>,
+                                                    style: { fontSize: 14 }
 
 
-                                                    sx={{
-                                                        '& .MuiOutlinedInput-root': {
-                                                            '& fieldset': {
+                                                }}
 
-                                                                height: 55,
-                                                            },
+
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        '& fieldset': {
+
+                                                            height: 55,
                                                         },
-                                                        "& label": {
-                                                            fontSize: 13,
+                                                    },
+                                                    "& label": {
+                                                        fontSize: 13,
+                                                        color: "red",
+                                                        "&.Mui-focused": {
+                                                            marginLeft: 0,
                                                             color: "red",
-                                                            "&.Mui-focused": {
-                                                                marginLeft: 0,
-                                                                color: "red",
-                                                            }
                                                         }
-                                                    }}
-                                                />
-                                            </div>
+                                                    }
+                                                }}
+                                            />
+                                        </div>
                                         {/* </div> */}
                                         {/* <div className='col  product_Col top'> */}
-                                            <div className='col-2 mt-2'>
-                                                <label className='label my-4 '>
-                                                    UPC  ?
-                                                </label>
-                                            </div>
-                                            <div className='col-2 mt-2'>
-                                                <TextField placeholder='Add UPC ?' id="outlined-basic" variant="outlined" name='UPC' value={Product.UPC} style={{ minWidth: "20%", fontSize: 15 }}
-                                                    onChange={handleChange}
-                                                    
-                                                    InputProps={{
-                                                        startAdornment: <InputAdornment position="start"> </InputAdornment>,
-                                                        style: { fontSize: 14 }
-                                                    }}
+                                        <div className='col-2 mt-2'>
+                                            <label className='label my-4 '>
+                                                UPC  ?
+                                            </label>
+                                        </div>
+                                        <div className='col-2 mt-2'>
+                                            <TextField placeholder='Add UPC ?' id="outlined-basic" variant="outlined" name='UPC' value={Product.UPC} style={{ minWidth: "20%", fontSize: 15 }}
+                                                onChange={handleChange}
+
+                                                InputProps={{
+                                                    startAdornment: <InputAdornment position="start"> </InputAdornment>,
+                                                    style: { fontSize: 14 }
+                                                }}
 
 
-                                                    sx={{
-                                                        '& .MuiOutlinedInput-root': {
-                                                            '& fieldset': {
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        '& fieldset': {
 
-                                                                height: 55,
-                                                            },
+                                                            height: 55,
                                                         },
-                                                        "& label": {
-                                                            fontSize: 13,
+                                                    },
+                                                    "& label": {
+                                                        fontSize: 13,
+                                                        color: "red",
+                                                        "&.Mui-focused": {
+                                                            marginLeft: 0,
                                                             color: "red",
-                                                            "&.Mui-focused": {
-                                                                marginLeft: 0,
-                                                                color: "red",
-                                                            }
                                                         }
-                                                    }}
-                                                />
-                                            </div>
+                                                    }
+                                                }}
+                                            />
+                                        </div>
                                         {/* </div> */}
                                     </div>
                                     <p className='product_title '>  Pricing</p>
-                                    <div className='col-12 d-flex product_pop_main_col'>                          
-                                        
-                                    
-                                               <div className='col-2'>
-                                                <label className='label tax_label'>
-                                                    prices:
-                                                </label>
-                                                </div>
-                                            <div className='col-2'>
-                                                <TextField placeholder='Add Price' id="outlined-basic" variant="outlined" name='prices' value={Product.prices} style={{ minWidth: 100, fontSize: 15 }}
-                                                    onChange={handleChange}
-                                                    InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
-                                                    label={massage.prices}
-                                                    sx={{
-                                                        '& .MuiOutlinedInput-root': {
-                                                            '& fieldset': {
-                                                                borderColor: error.prices,
-                                                                height: 55,
-                                                            },
+                                    <div className='col-12 d-flex product_pop_main_col'>
+
+
+                                        <div className='col-2'>
+                                            <label className='label tax_label'>
+                                                prices:
+                                            </label>
+                                        </div>
+                                        <div className='col-2'>
+                                            <TextField placeholder='Add Price' id="outlined-basic" variant="outlined" name='prices' value={Product.prices} style={{ minWidth: 100, fontSize: 15 }}
+                                                onChange={handleChange}
+                                                InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
+                                                label={massage.prices}
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        '& fieldset': {
+                                                            borderColor: error.prices,
+                                                            height: 55,
                                                         },
-                                                        "& label": {
-                                                            fontSize: 13,
+                                                    },
+                                                    "& label": {
+                                                        fontSize: 13,
+                                                        color: "red",
+                                                        "&.Mui-focused": {
+                                                            marginLeft: 0,
                                                             color: "red",
-                                                            "&.Mui-focused": {
-                                                                marginLeft: 0,
-                                                                color: "red",
-                                                            }
                                                         }
-                                                    }}
-
-                                                />
-                                                </div>
-                                            
-                                        
-                                         <div className='col-2'>
-                                                <label className='label tax_label'>
-                                                    Discount:
-                                                </label>
-                                                </div>
-                                            <div className='col-2'>
-                                                <Select
-                                                    name='discount'
-                                                    value={Product.discount}
-                                                    onChange={handleChange}
-                                                 
-                                                    inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15, }}>
-                                                    {
-                                                        discount.map((data, index) => {
-                                                            return (<MenuItem value={data.id} style={{ fontSize: 15 }} key={index}>{data.Discount_type}</MenuItem>)
-                                                        })
                                                     }
+                                                }}
 
-                                                </Select>
-                                                </div>
-                                           
-                                            <div className='col-2'>
-                                                <label className='label tax_label'>
-                                                    Tax:
-                                                </label>
-                                                </div>
-                                           <div className='col-2'>
-                                                <Select
-                                                    name='tax'
-                                                    onChange={handleChange}
-                                                    value={Product.tax}
-                                                    displayEmpty
-                                                  
-                                                    inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}>
-                                                    <MenuItem style={{ fontSize: 15 }}>
-                                                        <em>No Tax</em>
-                                                    </MenuItem>
-                                                    {
-                                                        Taxs.map((data, index) => {
-                                                            return (<MenuItem value={data.id} style={{ fontSize: 15 }} key={index}>{data.tax_type}</MenuItem>)
-                                                        })
-                                                    }
+                                            />
+                                        </div>
 
-                                                </Select>
-                                                </div>
-                                          
-                                  
+
+                                        <div className='col-2'>
+                                            <label className='label tax_label'>
+                                                Discount:
+                                            </label>
+                                        </div>
+                                        <div className='col-2'>
+                                            <Select
+                                                name='discount'
+                                                value={Product.discount}
+                                                onChange={handleChange}
+
+                                                inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15, }}>
+                                                {
+                                                    discount.map((data, index) => {
+                                                        return (<MenuItem value={data.id} style={{ fontSize: 15 }} key={index}>{data.Discount_type}</MenuItem>)
+                                                    })
+                                                }
+
+                                            </Select>
+                                        </div>
+
+                                        <div className='col-2'>
+                                            <label className='label tax_label'>
+                                                Tax:
+                                            </label>
+                                        </div>
+                                        <div className='col-2'>
+                                            <Select
+                                                name='tax'
+                                                onChange={handleChange}
+                                                value={Product.tax}
+                                                displayEmpty
+
+                                                inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}>
+                                                <MenuItem style={{ fontSize: 15 }}>
+                                                    <em>No Tax</em>
+                                                </MenuItem>
+                                                {
+                                                    Taxs.map((data, index) => {
+                                                        return (<MenuItem value={data.id} style={{ fontSize: 15 }} key={index}>{data.tax_type}</MenuItem>)
+                                                    })
+                                                }
+
+                                            </Select>
+                                        </div>
+
+
                                     </div>
                                     <div className='col background p-4'>
                                         <div className='col-12  product_price'>
-                                            {/* <label className=''> */}            
                                             <p className='product_title'> Product weight / Flavour</p>
-                                            {/* </label> */}
                                         </div>
-                                        <div className='col-12  product_Col top'>
-                                            <div className='col-10 justify  d-flex prod_weight_pop center'>
-                                                <div className='col-sm-4  ' >
-                                                    <div className='  product_Col top'>
-                                                       <NetWeight Product={Product} SetProduct={SetProduct}></NetWeight>
+                                        <div className='col-12  product_Col top '>
+                                            <NetWeight Product={Product} SetProduct={SetProduct}></NetWeight>
+                                            <div className='col-2  '>
+                                                <label className='label'>
+                                                    Flavour Type:
+                                                </label>
+                                            </div>
+                                            <div className='col-2 Weight_Type '>
+                                                <Select
+                                                    value={Product.flavour_id}
+                                                    name='flavour_id'
+                                                    onChange={handleChange}
+                                                    displayEmpty
+                                                    size='small'
+                                                    inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}>
+                                                    <MenuItem style={{ fontSize: 15 }}>
+                                                        <em><Flavourpopup></Flavourpopup></em>
+                                                    </MenuItem>
+                                                    {
+                                                        Flavours.map((data, index) => {
+                                                            return (<MenuItem value={data.id} style={{ fontSize: 15 }} key={index}>{data.flavour_Name}</MenuItem>)
+                                                        })
+                                                    }
+                                                </Select>
+                                            </div>
 
-                                                    </div>
-                                                      
-                                                    <div className='btn cat_pop_btn d-flex justify-content-center' style={{marginLeft:"22px"}} >
-                                                            <NetWeightpopup></NetWeightpopup>
-                                                        </div>
-                                                    {/* </div> */}
 
-                                                </div>
-                                                <div className='col-sm-4  ' >
-                                                    {/* bordershedow */}
-                                                    <div className='  product_Col top '>
-                                                        <div className='col-4  '>
-                                                            <label className='label'>
-                                                                Flavour Type:
-                                                            </label>
-                                                        </div>
-                                                        <div className='col-8 Weight_Type '>
-                                                            {/* <TextField id="outlined-basic" variant="outlined" value={NameState} style={{ minWidth: "50%", fontSize: 15 }}
-                                                                onChange={handleChange} /> */}
-                                                            <Select
-                                                                value={Product.flavour_id}
-                                                                name='flavour_id'
-                                                                onChange={handleChange}
-                                                                displayEmpty
-                                                                size='small'
-                                                                inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}>
-
-                                                                {
-                                                                    Flavours.map((data, index) => {
-                                                                        return (<MenuItem value={data.id} style={{ fontSize: 15 }} key={index}>{data.flavour_Name}</MenuItem>)
-                                                                    })
-                                                                }
-                                                            </Select>
-                                                        </div>
-
-                                                    </div>
-                                                    <div className='btn cat_pop_btn'  style={{marginLeft:"12px"}} >
+                                            {/* <div className='btn cat_pop_btn'  style={{marginLeft:"12px"}} >
                                                             <Flavourpopup></Flavourpopup>
                                                         </div>
                                                    
-                                                </div>
+                                                */}
 
-                                            </div>
+                                            {/* </div> */}
 
                                         </div>
 
@@ -760,21 +743,21 @@ export default function ProductPopUp(props) {
                                                 <label className=''>
                                                     THC:
                                                 </label>
-                                                <TextField id="outlined-basic" variant="outlined" name="THC" value={Product.THC} style={{ fontSize: 15,minWidth:90 }}
+                                                <TextField id="outlined-basic" variant="outlined" name="THC" value={Product.THC} style={{ fontSize: 15, minWidth: 90 }}
                                                     onChange={handleChange} />
                                             </div>
                                             <div className='col-2'>
-                                                <label className=''style={{marginLeft:"4px"}}>
+                                                <label className='' style={{ marginLeft: "4px" }}>
                                                     CBD:
                                                 </label>
-                                                <TextField id="outlined-basic" variant="outlined" name='CBD' value={Product.CBD} style={{ fontSize: 15 ,minWidth:90,marginLeft:"4px"}}
+                                                <TextField id="outlined-basic" variant="outlined" name='CBD' value={Product.CBD} style={{ fontSize: 15, minWidth: 90, marginLeft: "4px" }}
                                                     onChange={handleChange} />
                                             </div>
                                             <div className='col-2'>
-                                                <label className='' style={{marginLeft:"4px"}}>
+                                                <label className='' style={{ marginLeft: "4px" }}>
                                                     CBN:
                                                 </label>
-                                                <TextField id="outlined-basic" variant="outlined" name='CBN' value={Product.CBN} style={{ fontSize: 15,minWidth:90,marginLeft:"4px" }}
+                                                <TextField id="outlined-basic" variant="outlined" name='CBN' value={Product.CBN} style={{ fontSize: 15, minWidth: 90, marginLeft: "4px" }}
                                                     onChange={handleChange} />
                                             </div>
                                             <div className='col-4 mt-4'>
@@ -785,7 +768,7 @@ export default function ProductPopUp(props) {
 
                                     <div className='col background p-4'>
                                         <div className='col-10  product_price  '>
-                                            <p  className='product_title'>
+                                            <p className='product_title'>
                                                 Store Details
                                             </p>
                                         </div>
@@ -818,8 +801,8 @@ export default function ProductPopUp(props) {
                                     </div>
                                     <div className='col  p-4'>
 
-                                  <Checkbox Product={Product} SetProduct={SetProduct}></Checkbox>
-                                     
+                                        <Checkbox Product={Product} SetProduct={SetProduct}></Checkbox>
+
                                     </div>
 
                                 </div>
@@ -837,7 +820,7 @@ export default function ProductPopUp(props) {
                                     </div>
 
                                     <div className=' top'>
-                                      <ProductCategory Product={Product} SetProduct={SetProduct}></ProductCategory>
+                                        <ProductCategory Product={Product} SetProduct={SetProduct}></ProductCategory>
                                     </div>
                                     <div className='col top'>
                                         <ProductBrand Product={Product} SetProduct={SetProduct} ></ProductBrand>
@@ -863,7 +846,7 @@ export default function ProductPopUp(props) {
                     </div>
                 </DialogContent>
                 <DialogActions>
-                    <Button sx={{color:"#31B665"}} autoFocus onClick={handleClose}>
+                    <Button sx={{ color: "#31B665" }} autoFocus onClick={handleClose}>
                         Exit
                     </Button>
                 </DialogActions>

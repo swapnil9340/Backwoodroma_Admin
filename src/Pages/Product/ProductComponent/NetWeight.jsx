@@ -3,6 +3,7 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Cookies from 'universal-cookie';
 import Axios from "axios"
+import  AddNetWeight from "../../NetWeight/NetWeightpopup"
 
 export default function NetWeight({ Product, SetProduct }) {
     const cookies = new Cookies();
@@ -25,31 +26,33 @@ export default function NetWeight({ Product, SetProduct }) {
 
         }).then(response => {
             SetNet_Weight(response.data.data)
-            if(Product.net_weight === "")
-            SetProduct(Product => ({ ...Product, net_weight: response.data.data[0].id }))
+            if (Product.net_weight === "")
+                SetProduct(Product => ({ ...Product, net_weight: response.data.data[0].id }))
 
         })
 
 
-    },[token_data,Product.net_weight,SetProduct])
+    }, [token_data, Product.net_weight, SetProduct])
 
     return (
-  
-       <>
-            <div className='col-4'>
+
+        <>
+            <div className='col-2'>
                 <label className='label'>
                     Weight Type:
                 </label>
             </div>
-            <div className='col-4'>
+            <div className='col-2'>
 
                 <Select
                     value={Product.net_weight}
                     name='net_weight'
                     onChange={handleChange}
                     displayEmpty
-                    size='small'
                     inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}>
+                    <MenuItem style={{ fontSize: 15 }}>
+                        <em><AddNetWeight></AddNetWeight></em>
+                    </MenuItem>
 
                     {
                         net_weight.map((data, index) => {
@@ -58,7 +61,7 @@ export default function NetWeight({ Product, SetProduct }) {
                     }
                 </Select>
             </div>
-       
-       </>
+
+        </>
     )
 }
