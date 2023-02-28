@@ -670,7 +670,7 @@ export default function ProductPopUp(props) {
 
                                                     </div>
                                                       
-                                                    <div className='btn cat_pop_btn '  >
+                                                    <div className='btn cat_pop_btn d-flex justify-content-start'  >
                                                             <NetWeightpopup></NetWeightpopup>
                                                         </div>
                                                     {/* </div> */}
@@ -704,7 +704,7 @@ export default function ProductPopUp(props) {
                                                         </div>
 
                                                     </div>
-                                                    <div className='btn cat_pop_btn'  >
+                                                    <div className='btn cat_pop_btn d-flex justify-content-end'  >
                                                             <Flavourpopup></Flavourpopup>
                                                         </div>
                                                    
