@@ -1106,7 +1106,7 @@ input:focus + label {
 }
 
 .mask-box .mask {
-  width: 100px;
+  width: 63px;
   height: 40px;
   border-radius: 20px;
   background: #31B665;
@@ -1116,8 +1116,9 @@ input:focus + label {
 }
 
 .mask-box .MuiButton-root {
+  color: black;
   border-radius: 20px;
-  width: 100px;
+  width: 63px;
   height: 40px;
   font-weight: bold;
   transition: all 0.2s 0.1s ease;
@@ -1125,6 +1126,7 @@ input:focus + label {
 
 .mask-box .MuiButton-root:hover {
   opacity: 0.5;
+ 
 }
 
 /* labresult Product */

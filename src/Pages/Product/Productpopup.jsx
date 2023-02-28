@@ -744,7 +744,11 @@ export default function ProductPopUp(props) {
                                                     THC:
                                                 </label>
                                                 <TextField id="outlined-basic" variant="outlined" name="THC" value={Product.THC} style={{ fontSize: 15, minWidth: 90 }}
-                                                    onChange={handleChange} />
+                                                    onChange={handleChange} 
+                                                    
+                                                    
+                                                    
+                                                    />
                                             </div>
                                             <div className='col-2'>
                                                 <label className='' style={{ marginLeft: "4px" }}>
