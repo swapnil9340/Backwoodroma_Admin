@@ -871,6 +871,14 @@ justify-content: space-around;
 
 
 
+.MultipulImage {
+  position: relative;
+  bottom: 38%;
+
+}
+.storeImage{
+  bottom: 38%;
+}
 
 
 
@@ -1075,7 +1083,7 @@ input:focus + label {
   height: 119px;
   border: 2px dashed #9e9b9b;
   padding: 57px;
-  opacity: 0.5;
+
 }
 @media(max-width:1320px){
   .img_store {
@@ -1113,13 +1121,13 @@ input:focus + label {
   width: 100%;
 }
 .country_main_div{
-  width: 100%;
+  width: 98%;
 }
 .img_store_lince{
-  width: 21%;
+  width: 200px;
   height: 119px;
   border: 2px dashed #9e9b9b;
-  padding: 57px;
+  /* padding: 57px; */
 }
 
 
@@ -1638,8 +1646,8 @@ margin-top: 6%;
   padding: 57px;
 }
 .img_store2{
-  position: relative;
-    bottom: 28px;
+  /* position: relative; */
+    /* bottom: 28px; */
     left: 0px;
 }
 .upload_img{

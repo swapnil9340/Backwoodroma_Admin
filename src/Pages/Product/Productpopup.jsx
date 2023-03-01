@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react';
+import React, { useContext } from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
@@ -8,16 +8,9 @@ import TextField from '@mui/material/TextField';
 import Cookies from 'universal-cookie';
 import Axios from "axios"
 import Strain from "./ProductComponent/Strain"
-import { IoImagesOutline } from 'react-icons/io5';
-import { RxVideo } from "react-icons/rx"
-import NetWeightpopup from "../NetWeight/NetWeightpopup"
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import ProductBrand from "./ProductComponent/ProductBrand"
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import Radio from '@mui/material/Radio';
-import FormControl from '@mui/material/FormControl';
-// import RadioGroup from '@mui/material/RadioGroup';
 import InputAdornment from '@mui/material/InputAdornment';
 import ToggleButton from './ProductComponent/ToggleButton';
 import ProductGiftVocher from './ProductComponent/ProductGiftVocher';
@@ -27,7 +20,8 @@ import Createcontext from "../../Hooks/Context/Context"
 import ProductCategory from './ProductComponent/ProductCategory';
 import NetWeight from './ProductComponent/NetWeight';
 import Checkbox from './ProductComponent/CheckBox';
-
+import MultiImage from "./ProductComponent/Multimage"
+import { useForm, Controller } from "react-hook-form";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -48,9 +42,9 @@ function BootstrapDialogTitle(props) {
 
 }
 export default function ProductPopUp(props) {
+ 
+    const { register, handleSubmit, errors, control, reset } = useForm();
     const { state, dispatch } = useContext(Createcontext)
-    const inputRef = useRef(null);
-    const inputVideo = useRef(null);
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [open, setOpen] = React.useState(false);
@@ -58,7 +52,6 @@ export default function ProductPopUp(props) {
     const [Taxs, SetTaxs] = React.useState([])
     const [store, Setstore] = React.useState([])
     const [Image, SetImage] = React.useState('')
-    const [video, Setvideo] = React.useState('')
 
     const [Flavours, SetFlavours] = React.useState([])
 
@@ -172,26 +165,6 @@ export default function ProductPopUp(props) {
 
     };
 
-    const handleimage = (event) => {
-
-        SetImage(event.target.files[0])
-    }
-    const handlevideo = (event) => {
-
-        Setvideo(event.target.files[0])
-    }
-    const resetFileInput = () => {
-        // resetting the input value
-        inputRef.current.value = null;
-        SetImage(null)
-    };
-    const resetFileInputVideo = () => {
-        // resetting the input value
-        inputVideo.current.value = null;
-        Setvideo(null)
-    };
-
-
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -272,7 +245,7 @@ export default function ProductPopUp(props) {
     formdata.append('quantity', Product.quantity);
     formdata.append('prices', Product.prices);
     formdata.append('Multiple_Image', "");
-    formdata.append('Product_Video', video);
+    formdata.append('Product_Video', "");
     formdata.append('SKU', Product.SKU);
     formdata.append('UPC', Product.UPC);
     formdata.append('net_weight_id', Product.net_weight);
@@ -455,47 +428,16 @@ export default function ProductPopUp(props) {
 
                                         {/* <div className='col justify product_image_Col Add_Category center'> */}
 
-                                        <div className='col-2 my-4' >
-                                            <input type="file" id="file" accept="image/*" variant="outlined" style={{ Width: "10%", fontSize: 15 }}
-                                                onChange={handleimage} ref={inputRef}
-                                            />
+                                        <div className='col-10 my-4 '  >
+                                            
 
-                                            <div className='border product_imagebox image_logosize1 mt-2'>
-
-                                                {
-                                                    Image ? <div style={{ display: "flex" }}>
-                                                        <img src={URL.createObjectURL(Image)} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
-                                                        <Button color='success' onClick={resetFileInput}>Cancell </Button>
-
-                                                    </div> :
-                                                        <IoImagesOutline ></IoImagesOutline>
-                                                }
-
-
-                                            </div>
+                                            <MultiImage
+                                            Image={Image}
+                                             SetImage={SetImage}
+                                            ></MultiImage>
 
                                         </div>
-                                        {/* <div className='col-2 ' >
-                                                    <input type="file" id="file" variant="outlined" style={{ Width: "10%", fontSize: 15,marginTop:"5px" }}
-                                                        onChange={handlevideo} ref={inputVideo} />
-                                                    <div className='border product_imagebox  image_logosize mt-2'>
-
-                                                        {
-                                                            video ? <div style={{ display: "flex" }}>
-                                                                <img src={URL.createObjectURL(video)} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
-                                                                <Button color='success' onClick={resetFileInputVideo}>Cancell </Button>
-                                                            </div> :
-                                                                <RxVideo></RxVideo>
-                                                        }
-
-
-
-
-
-                                                    </div>
-                                                </div> */}
-                                        {/* </div> */}
-                                        {/* </div> */}
+                                       
                                     </div>
 
                                     <div className='col-12 product_Col background py-4'>
@@ -738,14 +680,30 @@ export default function ProductPopUp(props) {
                                                 Lab Result
                                             </p>
                                         </div>
-                                        <div className=' col-12 product_Col lab_res'>
+                                      <form onSubmit={handleSubmit(Submit)}>
+                                      <div className=' col-12 product_Col lab_res'>
                                             <div className='col-2'>
                                                 <label className=''>
                                                     THC:
                                                 </label>
-                                                <TextField id="outlined-basic" type="number" variant="outlined" name="THC" value={Product.THC} style={{ fontSize: 15, minWidth: 90 }}
-                                                    onChange={handleChange} 
-                                                    
+                                                <TextField 
+                                              
+                                                id="outlined-basic" type="number" variant="outlined" name="THC" value={Product.THC} style={{ fontSize: 15, minWidth: 90 }}
+                                              
+                                                //    onChange={(e) => {
+                                                //     const min = 0;
+                                                //     const max = 2;
+                                                //      console.log(min ,  max , e.target.value)
+                                                //     var value = parseInt(e.target.value);
+                                          
+                                                //     if (value === max) value = max;
+                                                //     if (value === min) value = min;
+                                          
+                                                //     SetProduct({
+                                                //         ...Product, [e.target.name]: value
+                                                //     });
+                                                //   }}
+                                                 
                                                     />
                                             </div>
                                             <div className='col-2'>
@@ -766,6 +724,7 @@ export default function ProductPopUp(props) {
                                                 <Labresult Product={Product} SetProduct={SetProduct} ></Labresult>
                                             </div>
                                         </div>
+                                      </form>
                                     </div>
 
                                     <div className='col background p-4'>

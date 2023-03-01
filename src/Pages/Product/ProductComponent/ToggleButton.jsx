@@ -2,7 +2,6 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { makeStyles } from '@material-ui/styles';
-import { color } from "@mui/system";
 
 
 
@@ -38,7 +37,7 @@ export default function ToggleButton({ Product, SetProduct }) {
                     value="Active"
                     color="success"
                     // sx={{
-                    //     color: Product.Status === "Active" ? "#ffffff" : "#5316AE",
+                    //     backgroundColor: Product.Status === "Active" ? "yellow" : "black",
                         
                     // }}
                     onClick={handleChange}
@@ -50,8 +49,10 @@ export default function ToggleButton({ Product, SetProduct }) {
                     variant="text"
                     name="Status"
                     value="Hide"
-                    color="success"
-                    // sx={{ color: Product.Status === "Hide" ? "#ffffff" : "#5316AE" }}
+                    // color="danger"
+                    // sx={{ backgroundColor: Product.Status === "Hide" ? "yellow" : "black" }}
+                    // sx={{ color: 'yellow', backgroundColor: 'orange', borderColor: 'green' }}
+
                       onClick={handleChange} 
                 >
                     Hide
