@@ -43,7 +43,7 @@ export default function ProductBrand({ Product, SetProduct }) {
         <div>
             <div className='col background p-4'>
                 <div className='col-10   '>
-                    <label className=''>
+                    <label className='product_title'>
                         Brand
                     </label>
                     <div className='col justify  Add_Category center'>

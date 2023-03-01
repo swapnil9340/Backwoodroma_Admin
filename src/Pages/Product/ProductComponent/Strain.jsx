@@ -27,10 +27,10 @@ export default function Strain({ Product, SetProduct }) {
     return (
 
         <div>
-            <label className=' center mt-4 ' style={{ marginLeft: "10px" }}>
+            <label className='product_title center mt-4 ' style={{ marginLeft: "10px" }}>
                 Strain
             </label>
-            <div className="col-12 d-flex ">
+            <div className="col-12 d-flex center first_strain_row">
 
                 <div className="col-4">
 
@@ -39,21 +39,21 @@ export default function Strain({ Product, SetProduct }) {
                 </div>
 
                 <div className="col-4">
-                    <button name="strain" value={'i'} onClick={handleChange} className={`btn btton + ${Strain.i}`} > Indica</button>
+                    <button name="strain" value={'i'} onClick={handleChange} className={` btton + ${Strain.i}`} > Indica</button>
                 </div>
                 <div className="col-4">
-                    <button name="strain" value={'s'} onClick={handleChange} className={`btn btton + ${Strain.s}`} > Sativa</button>
+                    <button name="strain" value={'s'} onClick={handleChange} className={` btton + ${Strain.s}`} > Sativa</button>
                 </div>
 
             </div>
 
 
-            <div className='col-8 d-flex m-4  ' >
+            <div className='col-12 d-flex mt-2 mb-4 center sec_strain_row ' >
                 <div className='col-4'>
-                    <button name="strain" value={'c'} onClick={handleChange} className={`btn btton + ${Strain.c}`} > CBD</button>
+                    <button name="strain" value={'c'} onClick={handleChange} className={` btton + ${Strain.c}`} > CBD</button>
                 </div>
                 <div className='col-4'>
-                    <button name="strain" value={'h'} onClick={handleChange} className={`btn btton + ${Strain.h}`} > Hybrid</button>
+                    <button name="strain" value={'h'} onClick={handleChange} className={` btton + ${Strain.h}`} > Hybrid</button>
                 </div>
 
             </div>

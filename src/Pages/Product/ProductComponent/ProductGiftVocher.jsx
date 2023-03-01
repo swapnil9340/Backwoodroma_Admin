@@ -55,7 +55,7 @@ export default function ProductGiftVocher({Product ,SetProduct}) {
         <div>
             <div className='col background p-4'>
                 <div className='col-10  mb-2 '>
-                    <label className=''>
+                    <label className='product_title'>
                         Gift Voucher / Coupon
                     </label>
                     <div className='col justify  Add_Category '>
