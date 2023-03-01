@@ -38,7 +38,7 @@ export default function Strain({ Product, SetProduct }) {
 
                 </div>
 
-                <div className="col-4">
+                <div className="col-4 ">
                     <button name="strain" value={'i'} onClick={handleChange} className={` btton + ${Strain.i}`} > Indica</button>
                 </div>
                 <div className="col-4">

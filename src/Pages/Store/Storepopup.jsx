@@ -235,11 +235,12 @@ export default function Storepopup() {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            width: "70%",
+                            width: "75%",
                             height: "100%",
                             maxWidth: "none",  // Set your width here
                             border: "1px solid #31B665",
                             borderRadius: "15px",
+                            overflowX: "hidden",
                         },
                     },
                 }}
@@ -264,7 +265,7 @@ export default function Storepopup() {
                                             Store Name:
                                         </label>
                                     </div>
-                                    <div className='col-10'>
+                                    <div className='col-10 mt-2 mb-2'>
                                         <TextField type="text" placeholder='Add  Store Name' id="outlined-basic" variant="outlined" name='Store_Name' value={Store.Store_Name} style={{ minWidth: "90%" }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
@@ -294,7 +295,7 @@ export default function Storepopup() {
                                             Store Type:
                                         </label>
                                     </div>
-                                    <div className='col-10'>
+                                    <div className='col-10 mt-2 mb-2'>
                                         <Select
                                             name='Store_Type'
                                             value={Store.Store_Type}
@@ -318,7 +319,7 @@ export default function Storepopup() {
                                             Country:
                                         </label>
                                     </div>
-                                    <div className='col'>
+                                    <div className='col mt-2 mb-2'>
                                         <Select
 
                                             name='Country_id'
@@ -347,7 +348,7 @@ export default function Storepopup() {
                                             State:
                                         </label>
                                     </div>
-                                    <div className='col'>
+                                    <div className='col mt-2 mb-2'>
                                         <Select
 
                                             name='State_id'
@@ -376,7 +377,7 @@ export default function Storepopup() {
                                             City :
                                         </label>
                                     </div>
-                                    <div className='col'>
+                                    <div className='col mt-2 mb-2'>
                                         <Select
 
                                             name='city_id'
@@ -407,7 +408,7 @@ export default function Storepopup() {
                                             Store Address:
                                         </label>
                                     </div>
-                                    <div className='col-10'>
+                                    <div className='col-10 mt-2 mb-2'>
 
                                         <TextField type="text" placeholder='Add Store Address:' id="outlined-basic" variant="outlined" name='Store_Address' value={Store.Store_Address} style={{ minWidth: "90%", fontSize: 15 }}
                                             onChange={handleChange}
@@ -438,7 +439,7 @@ export default function Storepopup() {
                                             Stores Website:
                                         </label>
                                     </div>
-                                    <div className='col-4'>
+                                    <div className='col-4 mt-2 mb-2'>
 
                                         <TextField type="text" placeholder='Add Stores Website:' id="outlined-basic" variant="outlined" name='Stores_Website' value={Store.Stores_Website} style={{ minWidth: 120, fontSize: 15 }}
                                             onChange={handleChange}
@@ -451,7 +452,7 @@ export default function Storepopup() {
                                             Stores MobileNo:
                                         </label>
                                     </div>
-                                    <div className='col-4'>
+                                    <div className='col-4 mt-2 mb-2'>
 
                                         <TextField type="text" placeholder='Add Stores MobileNo:' id="outlined-basic" variant="outlined" name='Stores_MobileNo' value={Store.Stores_MobileNo} style={{ minWidth: 120 }}
                                             onChange={handleChange}
@@ -496,18 +497,19 @@ export default function Storepopup() {
                                                         width: "100%",
                                                         
                                                     },
+                                                    "& .rdw-editor-main": {
+                                                        width: "100%",
+                                                        
+                                                    },
                                                 },
                                                 ".rdw-editor-main": {
                                                     background: "",
                                                     width: "90%",
                                                     border: "1px solid #c4c4c4",
                                                     padding: "3px"
-                                                }, "@media(max-width:600px)":{
-                                                    "& .rdw-editor-main": {
-                                                        width: "100%",
-                                                        
-                                                    },
                                                 },
+                                                
+                                               
                                             }}
                                         >
 
@@ -563,7 +565,7 @@ export default function Storepopup() {
                                             Licence Doc:
                                         </label>
                                     </div>
-                                    <div className='col-10'>
+                                    <div className='col-10 mt-2 mb-2'>
 
                                         <TextField type="text" placeholder='Add LicenceNo' id="outlined-basic" variant="outlined" name='LicenceNo' value={Store.LicenceNo} style={{ minWidth: "90%", fontSize: 15 }}
                                             onChange={handleChange}
@@ -597,12 +599,12 @@ export default function Storepopup() {
                                             License Type:
                                         </label>
                                     </div>
-                                    <div className='col-4'>
+                                    <div className='col-4 mt-2 mb-2'>
                                         <Select
                                             name='License_Type'
                                             value={Store.License_Type}
                                             onChange={handleChange}
-                                            size="small"
+                                            
                                             inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: "40%", fontSize: 15 }}
                                         >
                                             <MenuItem value={"None"} style={{ fontSize: 15 }}>None</MenuItem>
@@ -627,7 +629,7 @@ export default function Storepopup() {
                                             Expires:
                                         </label>
                                     </div>
-                                    <div className='col-4'>
+                                    <div className='col-4 mt-2 mb-2'>
                                         <TextField
                                             id="date"
                                             value={Store.expires}
@@ -652,7 +654,7 @@ export default function Storepopup() {
                                         <input type="file" placeholder='Add Store Image:' id="file" ref={inputRef} className="file" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleimage} />
                                     </div>
-                                    <div className='col-10  '>
+                                    <div className='col-10 mt-2 mb-2 '>
                                         {/* <div className='col img_store_lince '> */}
                                         <div className={'col  ' + (image ? null : "img_store")}>
 
@@ -686,7 +688,7 @@ export default function Storepopup() {
                                             Status:
                                         </label>
                                     </div>
-                                    <div className='col'>
+                                    <div className='col mt-2 mb-2'>
                                         <Select
                                             name='Status'
                                             value={Store.Status}

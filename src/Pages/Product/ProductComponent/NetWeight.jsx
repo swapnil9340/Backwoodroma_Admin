@@ -37,8 +37,8 @@ export default function NetWeight({ Product, SetProduct }) {
     return (
 
         <>
-            <div className='col-2'>
-                <label className='label'>
+            <div className='col-2  my-auto'>
+                <label className='label sku_label'>
                     Weight Type:
                 </label>
             </div>

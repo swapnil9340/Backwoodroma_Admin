@@ -384,7 +384,7 @@ export default function ProductPopUp(props) {
 
                                     <div className='col  product_Col mt-2'>
                                         <div className='col-2   mt-2 mb-2'>
-                                            <label className='label'>
+                                            <label className='prod_label'>
                                                 Product Name:
                                             </label>
                                         </div>
@@ -417,7 +417,7 @@ export default function ProductPopUp(props) {
                                     </div>
                                     <div className='col product_Col mt-2 '>
                                         <div className='col-2 mt-2 mb-2'>
-                                            <label className='label'>
+                                            <label className='prod_label'>
                                                 Product Description:
                                             </label>
                                         </div>
@@ -447,8 +447,8 @@ export default function ProductPopUp(props) {
                                         </div>
                                     </div>
                                     <div className='col-12 background  product_main_img '>
-                                        <div className='col-2  p-2 '>
-                                            <label className='label my-2'>
+                                        <div className='col-2  p-2'>
+                                            <label className='prod_label my-2'>
                                                 Product Image:
                                             </label>
                                         </div>
@@ -500,15 +500,15 @@ export default function ProductPopUp(props) {
 
                                     <div className='col-12 product_Col background py-4'>
                                         {/* <div className='col  product_Col top '> */}
-                                        <div className='col-2  mt-2'>
-                                            <label className='label my-2 '>
+                                        <div className='col-2   my-auto'>
+                                            <label className='label sku_label my-2 '>
                                                 SKU ?
                                             </label>
                                         </div>
-                                        <div className='col-2'>
+                                        <div className='col-2 mt-2 mb-2'>
                                             <TextField
 
-                                                type='number' placeholder='Add SKU ?' id="outlined-basic" variant="outlined" name='SKU' value={Product.SKU} style={{ minWidth: "20%", fontSize: 15 }}
+                                                type='number' placeholder='SKU ?' id="outlined-basic" variant="outlined" name='SKU' value={Product.SKU} style={{ minWidth: 100, fontSize: 15 }}
                                                 onChange={handleChange}
                                                 InputProps={{
                                                     startAdornment: <InputAdornment position="start"> </InputAdornment>,
@@ -538,13 +538,13 @@ export default function ProductPopUp(props) {
                                         </div>
                                         {/* </div> */}
                                         {/* <div className='col  product_Col top'> */}
-                                        <div className='col-2 mt-2'>
-                                            <label className='label my-4 '>
+                                        <div className='col-2  my-auto'>
+                                            <label className='label sku_label  my-2 '>
                                                 UPC  ?
                                             </label>
                                         </div>
-                                        <div className='col-2 mt-2'>
-                                            <TextField placeholder='Add UPC ?' id="outlined-basic" variant="outlined" name='UPC' value={Product.UPC} style={{ minWidth: "20%", fontSize: 15 }}
+                                        <div className='col-2 mt-2 mb-2'>
+                                            <TextField placeholder='UPC ?' id="outlined-basic" variant="outlined" name='UPC' value={Product.UPC} style={{ minWidth: 100, fontSize: 15 }}
                                                 onChange={handleChange}
 
                                                 InputProps={{
@@ -577,13 +577,13 @@ export default function ProductPopUp(props) {
                                     <div className='col-12 d-flex product_pop_main_col'>
 
 
-                                        <div className='col-2'>
-                                            <label className='label tax_label'>
+                                        <div className='col-2 my-auto'>
+                                            <label className='label sku_label tax_label'>
                                                 prices:
                                             </label>
                                         </div>
-                                        <div className='col-2'>
-                                            <TextField placeholder='Add Price' id="outlined-basic" variant="outlined" name='prices' value={Product.prices} style={{ minWidth: 100, fontSize: 15 }}
+                                        <div className='col-2  mt-2 mb-2'>
+                                            <TextField placeholder='Price' id="outlined-basic" variant="outlined" name='prices' value={Product.prices} style={{ minWidth: 100, fontSize: 15 }}
                                                 onChange={handleChange}
                                                 InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                                 label={massage.prices}
@@ -608,12 +608,12 @@ export default function ProductPopUp(props) {
                                         </div>
 
 
-                                        <div className='col-2'>
-                                            <label className='label tax_label'>
+                                        <div className='col-2 my-auto'>
+                                            <label className='label sku_label  tax_label'>
                                                 Discount:
                                             </label>
                                         </div>
-                                        <div className='col-2'>
+                                        <div className='col-2  mt-2 mb-2'>
                                             <Select
                                                 name='discount'
                                                 value={Product.discount}
@@ -629,12 +629,12 @@ export default function ProductPopUp(props) {
                                             </Select>
                                         </div>
 
-                                        <div className='col-2'>
-                                            <label className='label tax_label'>
+                                        <div className='col-2 my-auto'>
+                                            <label className='label sku_label tax_label'>
                                                 Tax:
                                             </label>
                                         </div>
-                                        <div className='col-2'>
+                                        <div className='col-2  mt-2 mb-2'>
                                             <Select
                                                 name='tax'
                                                 onChange={handleChange}
@@ -662,12 +662,12 @@ export default function ProductPopUp(props) {
                                         </div>
                                         <div className='col-12  product_Col top '>
                                             <NetWeight Product={Product} SetProduct={SetProduct}></NetWeight>
-                                            <div className='col-2  '>
-                                                <label className='label'>
+                                            <div className='col-2   my-auto'>
+                                                <label className='label sku_label'>
                                                     Flavour Type:
                                                 </label>
                                             </div>
-                                            <div className='col-2 Weight_Type '>
+                                            <div className='col-2 Weight_Type mt-2 mb-2'>
                                                 <Select
                                                     value={Product.flavour_id}
                                                     name='flavour_id'
@@ -701,8 +701,8 @@ export default function ProductPopUp(props) {
                                     </div>
                                     <div className='col-12 product_Col background p-4'>
                                         <div className='col  product_Col top'>
-                                            <div className='col-2  '>
-                                                <label className='label'>
+                                            <div className='col-2   my-auto'>
+                                                <label className='label sku_label'>
                                                     Quantity:
                                                 </label>
                                             </div>
@@ -752,14 +752,14 @@ export default function ProductPopUp(props) {
                                                 <label className='' style={{ marginLeft: "4px" }}>
                                                     CBD:
                                                 </label>
-                                                <TextField id="outlined-basic" variant="outlined" name='CBD' value={Product.CBD} style={{ fontSize: 15, minWidth: 90, marginLeft: "4px" }}
+                                                <TextField id="outlined-basic" variant="outlined" type="number" name='CBD' value={Product.CBD} style={{ fontSize: 15, minWidth: 90, marginLeft: "4px" }}
                                                     onChange={handleChange} />
                                             </div>
                                             <div className='col-2'>
                                                 <label className='' style={{ marginLeft: "4px" }}>
                                                     CBN:
                                                 </label>
-                                                <TextField id="outlined-basic" variant="outlined" name='CBN' value={Product.CBN} style={{ fontSize: 15, minWidth: 90, marginLeft: "4px" }}
+                                                <TextField id="outlined-basic" variant="outlined" type="number" name='CBN' value={Product.CBN} style={{ fontSize: 15, minWidth: 90, marginLeft: "4px" }}
                                                     onChange={handleChange} />
                                             </div>
                                             <div className='col-4 mt-4'>
@@ -776,8 +776,8 @@ export default function ProductPopUp(props) {
                                         </div>
 
                                         <div className='col  product_Col  top  '>
-                                            <div className='col-2   '>
-                                                <label className=''>
+                                            <div className='col-2 '>
+                                                <label className='sku_label'>
                                                     Store Name:
                                                 </label>
                                             </div>

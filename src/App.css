@@ -643,6 +643,12 @@ a{
   /* margin: 0px; */
 
 }
+.sku_label{
+  display: flex;
+  justify-content: center;
+  color: #3C3C3C;
+  align-items: center; 
+}
 
 
 @media (max-width: 500px) {
@@ -765,6 +771,12 @@ a{
     flex-direction: column;
   }
  
+}
+.prod_label{
+  display: flex;
+  /* justify-content: flex-end; */
+  color: #3C3C3C;
+  align-items: center;
 }
 
 
