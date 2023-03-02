@@ -335,9 +335,9 @@ export default function Storepopup() {
                                             value={Store.Country_id}
                                             onChange={handleChange}
                                             displayEmpty
-                                        
+
                                             fullWidth
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{  fontSize: 15 }}
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ fontSize: 15 }}
                                         >
 
                                             <MenuItem disabled value="" style={{ fontSize: 15 }}>
@@ -365,9 +365,9 @@ export default function Storepopup() {
                                             value={Store.State_id}
                                             onChange={handleChange}
                                             displayEmpty
-                                  
+
                                             fullWidth
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{  fontSize: 15 }}
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ fontSize: 15 }}
                                         >
                                             <MenuItem disabled value="" style={{ fontSize: 15 }}>
                                                 <em>Select</em>
@@ -383,7 +383,7 @@ export default function Storepopup() {
                                             }
                                         </Select>
                                     </div>
-                                    <div className='col-2'> 
+                                    <div className='col-2'>
                                         <label className='label'>
                                             City :
                                         </label>
@@ -395,7 +395,7 @@ export default function Storepopup() {
                                             value={Store.city_id}
                                             onChange={handleChange}
                                             displayEmpty
-fullWidth
+                                            fullWidth
                                             inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: "60%", fontSize: 15 }}
                                         >
                                             <MenuItem disabled value="" style={{ fontSize: 15 }}>
@@ -510,7 +510,7 @@ fullWidth
                                                     },
                                                     "& .rdw-editor-main": {
                                                         width: "100%",
-                                                        
+
                                                     },
                                                 },
                                                 ".rdw-editor-main": {
@@ -518,14 +518,14 @@ fullWidth
                                                     width: "90%",
                                                     border: "1px solid #c4c4c4",
                                                     padding: "3px"
-                                                }, "@media(max-width:600px)":{
+                                                }, "@media(max-width:600px)": {
                                                     "& .rdw-editor-main": {
                                                         width: "100%",
-                                                        
+
                                                     },
                                                 },
-                                                
-                                               
+
+
                                             }}
                                         >
 
@@ -553,14 +553,14 @@ fullWidth
                                                 {
                                                     image ? <div className='center'  >
                                                         <img src={URL.createObjectURL(image)} alt="" className='center' style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
-                                                        <IconButton onClick={resetFileInput} style={{position:" relative ",top: "-20px"}}>
-                                                                <CloseIcon />
-                                                            </IconButton>
+                                                        <IconButton onClick={resetFileInput} style={{ position: " relative ", top: "-20px" }}>
+                                                            <CloseIcon />
+                                                        </IconButton>
                                                     </div> :
                                                         <div>
-                                                             <label htmlFor="file"  >
-                                                          <AiOutlineCloudUpload style={{ fontSize: "50px", borderradius: "66px", color: "green" }} ></AiOutlineCloudUpload >
-                                                          </label>
+                                                            <label htmlFor="file"  >
+                                                                <AiOutlineCloudUpload style={{ fontSize: "50px", borderradius: "66px", color: "green" }} ></AiOutlineCloudUpload >
+                                                            </label>
                                                         </div>
                                                 }
 
@@ -618,7 +618,7 @@ fullWidth
                                             name='License_Type'
                                             value={Store.License_Type}
                                             onChange={handleChange}
-                                            
+
                                             inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: "40%", fontSize: 15 }}
                                         >
                                             <MenuItem value={"None"} style={{ fontSize: 15 }}>None</MenuItem>
@@ -674,17 +674,17 @@ fullWidth
 
                                             <div className={'col  ' + (image ? null : "img_store1")}>
                                                 {
-                                                    LicenceImage ? <div  className='center'>
+                                                    LicenceImage ? <div className='center'>
                                                         <img src={URL.createObjectURL(LicenceImage)} alt="" className=' ' style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
                                                         <span   >
-                                                            <IconButton onClick={licenceFileInput} style={{position:" relative ",top: "-20px"}}>
+                                                            <IconButton onClick={licenceFileInput} style={{ position: " relative ", top: "-20px" }}>
                                                                 <CloseIcon />
                                                             </IconButton>
                                                         </span>
                                                     </div> :
                                                         <div >
                                                             <label htmlFor="Licence">
-                                                                <AiOutlineCloudUpload style={{ fontSize: "50px", borderradius: "66px", color: "green" ,position: "relative" ,bottom: "-34px" }} ></AiOutlineCloudUpload >
+                                                                <AiOutlineCloudUpload style={{ fontSize: "50px", borderradius: "66px", color: "green", position: "relative", bottom: "-34px" }} ></AiOutlineCloudUpload >
                                                             </label>
                                                         </div>
                                                 }
