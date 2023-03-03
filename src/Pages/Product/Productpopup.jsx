@@ -690,19 +690,19 @@ export default function ProductPopUp(props) {
                                               
                                                 id="outlined-basic" type="number" variant="outlined" name="THC" value={Product.THC} style={{ fontSize: 15, minWidth: 90 }}
                                               
-                                                //    onChange={(e) => {
-                                                //     const min = 0;
-                                                //     const max = 2;
-                                                //      console.log(min ,  max , e.target.value)
-                                                //     var value = parseInt(e.target.value);
+                                                   onChange={(e) => {
+                                                    const min = 0;
+                                                    const max = 2;
+                                                     console.log(min ,  max , e.target.value)
+                                                    var value = parseInt(e.target.value);
                                           
-                                                //     if (value === max) value = max;
-                                                //     if (value === min) value = min;
+                                                    if (value === max) value = max;
+                                                    if (value === min) value = min;
                                           
-                                                //     SetProduct({
-                                                //         ...Product, [e.target.name]: value
-                                                //     });
-                                                //   }}
+                                                    SetProduct({
+                                                        ...Product, [e.target.name]: value
+                                                    });
+                                                  }}
                                                  
                                                     />
                                             </div>
