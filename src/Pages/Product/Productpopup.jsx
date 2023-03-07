@@ -51,7 +51,7 @@ export default function ProductPopUp(props) {
     const [discount, SetDiscount] = React.useState([])
     const [Taxs, SetTaxs] = React.useState([])
     const [store, Setstore] = React.useState([])
-    const [Image, SetImage] = React.useState('')
+    const [Image, SetImage] = React.useState([])
 
     const [Flavours, SetFlavours] = React.useState([])
 
@@ -244,7 +244,11 @@ export default function ProductPopUp(props) {
     formdata.append('GiftVoucher', Product.GiftVoucher);
     formdata.append('quantity', Product.quantity);
     formdata.append('prices', Product.prices);
-    formdata.append('Multiple_Image', "");
+    Image.forEach(image =>{
+        formdata.append('Multiple_Image',image);
+    })
+
+    // formdata.append('Multiple_Image',Image);
     formdata.append('Product_Video', "");
     formdata.append('SKU', Product.SKU);
     formdata.append('UPC', Product.UPC);
@@ -261,7 +265,7 @@ export default function ProductPopUp(props) {
     formdata.append('Store_id', Product.Store_id);
     formdata.append("tag", "");
     formdata.append('DiscountedAmount', "");
-    formdata.append('Product_Image', Image)
+    formdata.append('Product_Image', "")
     formdata.append('Allow_tax', "")
     formdata.append('Allow_discount', "")
     formdata.append('Additional_Description', "")

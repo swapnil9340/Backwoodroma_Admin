@@ -2,16 +2,33 @@ import { IoImagesOutline } from 'react-icons/io5';
 import CloseIcon from '@mui/icons-material/Close';
 import { BsPlusSquare } from "react-icons/bs"
 import IconButton from '@material-ui/core/IconButton';
+import React from 'react';
 function MultiImage({ Image, SetImage }) {
-    // const [file, setFile] = useState([]);
+    const [file, setFile] = React.useState([]);
 
     function uploadSingleFile(e) {
-        let ImagesArray = Object.entries(e.target.files).map((e) =>
+        // let ImagesArray = Object.entries(e.target.files).map((e) =>
+        //     URL.createObjectURL(e[1])
+        // );
+        // console.log(e.target.files[0]);
+        let ImagesArray=e.target.files
+        console.log(ImagesArray)
+
+
+        SetImage([...Image ,...ImagesArray]);
+           
+
+        const d =  Object.entries(Image).map((e) => {
             URL.createObjectURL(e[1])
-        );
-        console.log(ImagesArray);
-        SetImage([...Image, ...ImagesArray]);
+        })
+        setFile(d)
+       
+        
     }
+
+    console.log(Image,file)
+
+
 
    
 
@@ -61,7 +78,7 @@ function MultiImage({ Image, SetImage }) {
                         Image.map((item, index) => {
                             return (
                                 <div key={item} className="product_Col">
-                                    <img src={item} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
+                                    <img src={URL.createObjectURL(Image[0])} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
                                     {/* <button type="button" onClick={() => deleteFile(index)}>
                                         delete
                                     </button> */}
