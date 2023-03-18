@@ -95,7 +95,7 @@ export default function NetwegihtEdit(props) {
             "Status": netWegiht.Status
         }
         Axios.post(
-            `http://34.201.114.126:8000/AdminPanel/update-NetWeight/${props.data.id}`,
+            `http://52.3.255.128:8000/AdminPanel/update-NetWeight/${props.data.id}`,
             data,
             config
         ).then(() => {

@@ -26,9 +26,6 @@ function MultiImage({ Image, SetImage }) {
         
     }
 
-    console.log(Image,file)
-
-
 
    
 
@@ -79,9 +76,7 @@ function MultiImage({ Image, SetImage }) {
                             return (
                                 <div key={item} className="product_Col">
                                     <img src={URL.createObjectURL(Image[0])} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
-                                    {/* <button type="button" onClick={() => deleteFile(index)}>
-                                        delete
-                                    </button> */}
+                                    
                                    <span className="MultipulImage">
                                    <IconButton onClick={() => deleteFile(index)}>
                                         <CloseIcon />
@@ -93,13 +88,7 @@ function MultiImage({ Image, SetImage }) {
                 </div>
 
             </div>
-            {/* <button
-                type="button"
-                className="btn btn-primary btn-block"
-                onClick={upload}
-            >
-                Upload
-            </button> */}
+       
         </form>
     );
 };

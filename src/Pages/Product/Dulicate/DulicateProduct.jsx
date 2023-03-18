@@ -206,7 +206,7 @@ export default function EditProducts(props) {
 
 
     React.useEffect(() => {
-        Axios("http://34.201.114.126:8000/AdminPanel/Get-Discount/", {
+        Axios("http://52.3.255.128:8000/AdminPanel/Get-Discount/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -217,7 +217,7 @@ export default function EditProducts(props) {
             // SetProduct(Product => ({ ...Product, discount: response.data[0].id }))
 
         })
-        Axios("http://34.201.114.126:8000/AdminPanel/Get-Tax/", {
+        Axios("http://52.3.255.128:8000/AdminPanel/Get-Tax/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -228,7 +228,7 @@ export default function EditProducts(props) {
             // SetProduct(Product => ({ ...Product, tax: response.data[0].id }))
 
         })
-        Axios("http://34.201.114.126:8000/AdminPanel/Get-Stores/", {
+        Axios("http://52.3.255.128:8000/AdminPanel/Get-Stores/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -238,7 +238,7 @@ export default function EditProducts(props) {
             Setstore(response.data)
             // SetProduct(Product => ({ ...Product, Store_id: response.data[0].id }))
         })
-        Axios("http://34.201.114.126:8000/AdminPanel/Get-NetWeight/", {
+        Axios("http://52.3.255.128:8000/AdminPanel/Get-NetWeight/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -251,7 +251,7 @@ export default function EditProducts(props) {
         })
 
 
-        Axios("http://34.201.114.126:8000/AdminPanel/Get-Flavours/", {
+        Axios("http://52.3.255.128:8000/AdminPanel/Get-Flavours/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -265,7 +265,7 @@ export default function EditProducts(props) {
         })
 
 
-        Axios("http://34.201.114.126:8000/AdminPanel/FilterbyCategory/", {
+        Axios("http://52.3.255.128:8000/AdminPanel/FilterbyCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -335,7 +335,7 @@ export default function EditProducts(props) {
 
 
         Axios.post(
-            `http://34.201.114.126:8000/AdminPanel/Edit-Product/${props.data.id}`,
+            `http://52.3.255.128:8000/AdminPanel/Edit-Product/${props.data.id}`,
             formdata,
             config
         ).then(() => {

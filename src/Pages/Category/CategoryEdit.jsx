@@ -71,7 +71,7 @@ export default function CategEditbox(props) {
             "name": data.Category,
             "Status": data.Status
         }
-        axios.post(`http://34.201.114.126:8000/AdminPanel/update-Category/${data.id}`, form, {
+        axios.post(`http://52.3.255.128:8000/AdminPanel/update-Category/${data.id}`, form, {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`

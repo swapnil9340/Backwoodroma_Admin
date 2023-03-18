@@ -17,7 +17,7 @@ export default function Gift_Voucher() {
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
-        axios("http://34.201.114.126:8000/AdminPanel/GiftVoucherViewSet/", {
+        axios("http://52.3.255.128:8000/AdminPanel/GiftVoucherViewSet/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`

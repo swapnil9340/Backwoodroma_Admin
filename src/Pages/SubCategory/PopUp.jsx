@@ -70,7 +70,7 @@ export default function PopUp() {
         const cookies = new Cookies();
         const token_data = cookies.get('Token_access')
 
-        axios("http://34.201.114.126:8000/AdminPanel/ActiveCategory/", {
+        axios("http://52.3.255.128:8000/AdminPanel/ActiveCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -100,7 +100,7 @@ export default function PopUp() {
             "Status": Status
         }
         Axios.post(
-            'http://34.201.114.126:8000/AdminPanel/Add-SubCategory/',
+            'http://52.3.255.128:8000/AdminPanel/Add-SubCategory/',
             data,
             config
         ).then(() => {

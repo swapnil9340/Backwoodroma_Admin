@@ -137,7 +137,7 @@ export default function NewsEdit(props) {
     };
 
     React.useEffect(() => {
-        axios("http://34.201.114.126:8000/AdminPanel/Get-NewsCategory/", {
+        axios("http://52.3.255.128:8000/AdminPanel/Get-NewsCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -149,7 +149,7 @@ export default function NewsEdit(props) {
         })
 
 
-        axios("http://34.201.114.126:8000/AdminPanel/Get-NewsSubCategory/", {
+        axios("http://52.3.255.128:8000/AdminPanel/Get-NewsSubCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -193,7 +193,7 @@ export default function NewsEdit(props) {
             }
         };
         Axios.post(
-            `http://34.201.114.126:8000/AdminPanel/update-News/${props.data.id}`,
+            `http://52.3.255.128:8000/AdminPanel/update-News/${props.data.id}`,
             formdata,
             config
         ).then(() => {
@@ -482,7 +482,7 @@ export default function NewsEdit(props) {
                                                         (
                                                             News.Image!=="" ?
                                                                 <div style={{display : "flex"}}>
-                                                                    <img src={"http://34.201.114.126:8000/" + (News.Image)} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
+                                                                    <img src={"http://52.3.255.128:8000/" + (News.Image)} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
                                                                     <Button name="Image" value="" onClick={handleChange} color='success' >Cancell </Button>
                                                                 </div>
                                                                 :

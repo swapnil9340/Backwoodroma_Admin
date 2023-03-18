@@ -117,7 +117,7 @@ export default function BrandEdit(props) {
             headers: { Authorization: `Bearer ${token_data}` }
         };
         Axios.post(
-            `http://34.201.114.126:8000/AdminPanel/update-Brand/${props.data.id}`,
+            `http://52.3.255.128:8000/AdminPanel/update-Brand/${props.data.id}`,
             formdata,
             config
         ).then(() => {
@@ -219,7 +219,7 @@ export default function BrandEdit(props) {
                                             <Button onClick={resetFileInput} color='success' >Cancell </Button></>
                                             :
                                             <>
-                                                <img src={"http://34.201.114.126:8000/" + (Brand.Brand_Logo)} alt="" style={{ width: "50px", height: "50px" }} />
+                                                <img src={"http://52.3.255.128:8000/" + (Brand.Brand_Logo)} alt="" style={{ width: "50px", height: "50px" }} />
                                                 <Button name="Brand_Logo" value="" color='success' onClick={handleChange} >Cancell </Button>
                                             </>
                                     }

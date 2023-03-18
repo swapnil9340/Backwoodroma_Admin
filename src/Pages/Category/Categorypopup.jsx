@@ -79,7 +79,7 @@ export default function Categorypopup() {
             "Status": Category
         }
         Axios.post(
-            'http://34.201.114.126:8000/AdminPanel/Add-Category/',
+            'http://52.3.255.128:8000/AdminPanel/Add-Category/',
             data,
             config
         ).then(() => {

@@ -31,7 +31,7 @@ export default function Net_Wet_Delete(props) {
   const Delete = () => {
 
     const id = props.data.id
-       axios.delete(`http://34.201.114.126:8000/AdminPanel/delete-NetWeight/${id}`, {
+       axios.delete(`http://52.3.255.128:8000/AdminPanel/delete-NetWeight/${id}`, {
 
            headers: {
                'Authorization': `Bearer ${token_data}`

@@ -67,7 +67,7 @@ export default function AddNewsCategory() {
         const cookies = new Cookies();
         const token_data = cookies.get('Token_access')
 
-        axios("http://34.201.114.126:8000/AdminPanel/Get-NewsCategory/", {
+        axios("http://52.3.255.128:8000/AdminPanel/Get-NewsCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -95,7 +95,7 @@ export default function AddNewsCategory() {
             "category_id": Category ,
            }
         Axios.post( 
-          'http://34.201.114.126:8000/AdminPanel/Add-NewsSubCategory/',
+          'http://52.3.255.128:8000/AdminPanel/Add-NewsSubCategory/',
           data,
           config
         ).then(()=>{

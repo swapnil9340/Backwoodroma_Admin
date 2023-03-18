@@ -12,7 +12,7 @@ export default function ProductBrand({ Product, SetProduct }) {
     const token_data = cookies.get('Token_access')
 
     React.useEffect(() => {
-        axios("http://34.201.114.126:8000/AdminPanel/ActiveBrand/", {
+        axios("http://52.3.255.128:8000/AdminPanel/ActiveBrand/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`

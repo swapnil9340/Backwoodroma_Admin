@@ -13,7 +13,7 @@ export default function ProductGiftVocher({Product ,SetProduct}) {
     const token_data = cookies.get('Token_access')
 
     React.useEffect(() => {
-        axios("http://34.201.114.126:8000/AdminPanel/GiftVoucherViewSet/", {
+        axios("http://52.3.255.128:8000/AdminPanel/GiftVoucherViewSet/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -25,7 +25,7 @@ export default function ProductGiftVocher({Product ,SetProduct}) {
             SetProduct(Product => ({ ...Product, GiftVoucher: response.data[0].id }))
 
         })
-        axios("http://34.201.114.126:8000/AdminPanel/CouponViewSet/", {
+        axios("http://52.3.255.128:8000/AdminPanel/CouponViewSet/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`

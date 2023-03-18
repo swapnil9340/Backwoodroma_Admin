@@ -176,7 +176,7 @@ export default function ProductPopUp(props) {
 
 
     React.useEffect(() => {
-        Axios("http://34.201.114.126:8000/AdminPanel/ActiveDiscount/", {
+        Axios("http://52.3.255.128:8000/AdminPanel/ActiveDiscount/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -188,7 +188,7 @@ export default function ProductPopUp(props) {
 
 
         })
-        Axios("http://34.201.114.126:8000/AdminPanel/ActiveTax/", {
+        Axios("http://52.3.255.128:8000/AdminPanel/ActiveTax/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -199,7 +199,7 @@ export default function ProductPopUp(props) {
             SetProduct(Product => ({ ...Product, tax: response.data.data[0].id }))
 
         })
-        Axios("http://34.201.114.126:8000/AdminPanel/ActiveStores/", {
+        Axios("http://52.3.255.128:8000/AdminPanel/ActiveStores/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -217,7 +217,7 @@ export default function ProductPopUp(props) {
 
 
 
-        Axios("http://34.201.114.126:8000/AdminPanel/Get-Flavours/", {
+        Axios("http://52.3.255.128:8000/AdminPanel/Get-Flavours/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -288,7 +288,7 @@ export default function ProductPopUp(props) {
 
 
         Axios.post(
-            'http://34.201.114.126:8000/AdminPanel/Add-Product/',
+            'http://52.3.255.128:8000/AdminPanel/Add-Product/',
             formdata,
             config
         ).then(() => {
