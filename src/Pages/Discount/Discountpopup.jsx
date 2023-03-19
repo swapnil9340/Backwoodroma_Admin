@@ -86,7 +86,7 @@ export default function StatePopUp() {
            "Status":Status
            }
         Axios.post( 
-          'http://34.201.114.126:8000/AdminPanel/Add-Discount/',
+          'http://52.3.255.128:8000/AdminPanel/Add-Discount/',
           data,
           config
         ).then(()=>{

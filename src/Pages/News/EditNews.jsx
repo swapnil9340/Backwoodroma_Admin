@@ -19,6 +19,7 @@ import { MdFileUpload } from 'react-icons/md';
 import htmlToDraft from 'html-to-draftjs';
 import Createcontext from "../../Hooks/Context/Context"
 import InputAdornment from '@mui/material/InputAdornment';
+import Box from '@mui/material/Box';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -136,7 +137,7 @@ export default function NewsEdit(props) {
     };
 
     React.useEffect(() => {
-        axios("http://34.201.114.126:8000/AdminPanel/Get-NewsCategory/", {
+        axios("http://52.3.255.128:8000/AdminPanel/Get-NewsCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -148,7 +149,7 @@ export default function NewsEdit(props) {
         })
 
 
-        axios("http://34.201.114.126:8000/AdminPanel/Get-NewsSubCategory/", {
+        axios("http://52.3.255.128:8000/AdminPanel/Get-NewsSubCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -192,7 +193,7 @@ export default function NewsEdit(props) {
             }
         };
         Axios.post(
-            `http://34.201.114.126:8000/AdminPanel/update-News/${props.data.id}`,
+            `http://52.3.255.128:8000/AdminPanel/update-News/${props.data.id}`,
             formdata,
             config
         ).then(() => {
@@ -271,9 +272,24 @@ export default function NewsEdit(props) {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            width: "60%",
-                            height: "60%",
+                            width: {
+                                xs: "100%",
+                                sm: "100%",
+                                md: "100%",
+                                lg: "70%",
+                                xl: "70%"
+
+                            },
+                            height: {
+                                xs: "75%",
+                                sm: "75%",
+                                md: "75%",
+                                lg: "100%",
+                                xl: "100%"
+                            },
                             maxWidth: "none",  // Set your width here
+                            border: "1px solid #31B665",
+                            borderRadius: "15px",
                         },
                     },
                 }}
@@ -286,21 +302,21 @@ export default function NewsEdit(props) {
                     <div className='container-fluid '>
                         <div className='row '>
 
-                            <div className='col-12    ' >
+                            <div className='col-12' >
 
-                                <div className='col-12    center'>
+                                <div className='col-12  Add_Category  center'>
                                     <div className="col "> <h2> Edit News
                                     </h2>
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop  con  '>
-                                    <div className='col-2'>
-                                        <label className=''>
+                                    <div className='col m-2'>
+                                        <label className='label'>
                                             Title:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
-                                        <TextField type="Text" placeholder=' Title' id="outlined-basic" name='Title' variant="outlined" value={News.Title.toUpperCase()} style={{ minWidth: 190, fontSize: 15 }}
+                                    <div className='col '>
+                                        <TextField type="Text" placeholder=' Title' id="outlined-basic" name='Title' variant="outlined" value={News.Title.toUpperCase()} style={{ minWidth: 100, fontSize: 15 }}
                                             onChange={handleChange}
 
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
@@ -326,12 +342,12 @@ export default function NewsEdit(props) {
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop  con  '>
-                                    <div className='col-2'>
-                                        <label className=''>
+                                    <div className='col m-2'>
+                                        <label className='label'>
                                             Meta Title:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <TextField type="Text" placeholder='Meta Title' id="outlined-basic" name='Meta_title' variant="outlined" value={News.Meta_title.toUpperCase()} style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
@@ -356,18 +372,19 @@ export default function NewsEdit(props) {
                                     </div>
                                 </div>
                                 <div className='col-12 top   Add_Category_pop'>
-                                    <div className='col-2'>
-                                        <label className=''>
+                                    <div className='col m-2'>
+                                        <label className='label'>
                                             Category:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <Select
                                             name='Category_id'
                                             value={News.Category_id}
                                             onChange={handleChange}
                                             displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15, background: "#AAAAAA" }}
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}
+                                            size="small"
                                         >
                                             <MenuItem value="" style={{ fontSize: 15 }}>
                                                 <em>Select option</em>
@@ -383,18 +400,19 @@ export default function NewsEdit(props) {
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col-2'>
-                                        <label className=''>
+                                    <div className='col m-2'>
+                                        <label className='label'>
                                             Sub Category:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <Select
                                             name='SubCategory_id'
                                             value={News.SubCategory_id}
                                             onChange={handleChange}
                                             displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15, background: "#AAAAAA" }}
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: "34%", fontSize: 15 }}
+                                            size="small"
                                         >
                                             <MenuItem value="" style={{ fontSize: 15 }}>
                                                 <em>Select option</em>
@@ -414,18 +432,19 @@ export default function NewsEdit(props) {
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col-2'>
-                                        <label className=''>
+                                    <div className='col m-2'>
+                                        <label className='label'>
                                             Strain Type:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <Select
                                             name='StrainType'
                                             value={News.StrainType}
                                             onChange={handleChange}
                                             displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15, background: "#AAAAAA" }}
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: "34%", fontSize: 15 }}
+                                            size="small"
                                         >
                                             <MenuItem value="" style={{ fontSize: 15 }}>
                                                 <em>Select option</em>
@@ -439,12 +458,12 @@ export default function NewsEdit(props) {
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col-2'>
-                                        <label >
+                                    <div className='col m-2'>
+                                        <label className='label'>
                                             Featured Image:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <div className=' col-2 image_uploade center'>
 
                                             <div className='top MdFileUpload'>
@@ -463,7 +482,7 @@ export default function NewsEdit(props) {
                                                         (
                                                             News.Image!=="" ?
                                                                 <div style={{display : "flex"}}>
-                                                                    <img src={"http://34.201.114.126:8000/" + (News.Image)} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
+                                                                    <img src={"http://52.3.255.128:8000/" + (News.Image)} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
                                                                     <Button name="Image" value="" onClick={handleChange} color='success' >Cancell </Button>
                                                                 </div>
                                                                 :
@@ -487,12 +506,12 @@ export default function NewsEdit(props) {
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col-2'>
-                                        <label className=''>
+                                    <div className='col m-2'>
+                                        <label className='label'>
                                             Alt Text:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <TextField type="text" placeholder='Add Alt Text' name='Alt_Text' value={News.Alt_Text} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
@@ -518,12 +537,12 @@ export default function NewsEdit(props) {
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col-2'>
-                                        <label className=''>
+                                    <div className='col m-2'>
+                                        <label className='label'>
                                             Link:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <TextField type="Text" placeholder='Add Link' name='Link' value={News.Link} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
@@ -548,12 +567,12 @@ export default function NewsEdit(props) {
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col-2'>
-                                        <label className=''>
+                                    <div className='col m-2'>
+                                        <label className='label'>
                                             Url slug :
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
+                                    <div className='col'>
                                         <TextField type="Text" placeholder=' Url slug' name='Url_slug' value={News.Url_slug} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
@@ -578,13 +597,13 @@ export default function NewsEdit(props) {
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop  con  '>
-                                    <div className='col-2'>
-                                        <label className=''>
+                                    <div className='col m-2'>
+                                        <label className='label'>
                                             Meta Description :
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
-                                        <TextField type="Text" placeholder='Meta Description' id="outlined-basic" name='Meta_Description' variant="outlined" value={News.Meta_Description.toUpperCase()} style={{ minWidth: 400, fontSize: 15 }}
+                                    <div className='col'>
+                                        <TextField type="Text" placeholder='Meta Description' id="outlined-basic" name='Meta_Description' variant="outlined" value={News.Meta_Description.toUpperCase()} style={{ minWidth: "100%", fontSize: 15 }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                             label={massage.Meta_Description}
@@ -608,13 +627,24 @@ export default function NewsEdit(props) {
                                     </div>
                                 </div>
                                 <div className='col-12 top  Add_Category_pop  '>
-                                    <div className='col-2'>
-                                        <label className=''>
+                                    <div className='col m-2'>
+                                        <label className='label'>
                                             Description:
                                         </label>
                                     </div>
-                                    <div className='col-10 '>
-
+                                    <div className='col'>
+                                    <Box
+                                         sx={{
+                                            "& .rdw-editor-toolbar":{
+                                                width:"100%"
+                                            },
+                                            ".rdw-editor-main":{
+                                                background:"",
+                                                border:"1px solid #c4c4c4",
+                                                padding:"3px"
+                                            }
+                                        }}
+                                         >
                                         <Editor
                                             editorState={editorState}
                                             onEditorStateChange={setEditorState}
@@ -622,6 +652,7 @@ export default function NewsEdit(props) {
                                             wrapperClassName="wrapperClassName"
                                             editorClassName="editorClassName"
                                         />
+                                        </Box>
                                     </div>
                                 </div>
                                 <div className='col-12 center top' >
@@ -638,7 +669,7 @@ export default function NewsEdit(props) {
                     </div>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleClose}>
+                    <Button sx={{color:"#31B665"}} autoFocus onClick={handleClose}>
                         Exit
                     </Button>
                 </DialogActions>

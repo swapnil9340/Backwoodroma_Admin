@@ -40,6 +40,11 @@ ul li path {
   margin-inline: 20px;
   display: inline-block;
 } 
+/* @media(max-width:600px){
+  .priceLabel1{
+    justify-content:start ;
+  }
+} */
 .otp{
   width: -webkit-fill-available;
 }
@@ -638,6 +643,14 @@ a{
   /* margin: 0px; */
 
 }
+.sku_label{
+  display: flex;
+  justify-content: center;
+  color: #3C3C3C;
+  align-items: center; 
+}
+
+
 @media (max-width: 500px) {
   .label {
     display: contents;
@@ -699,11 +712,43 @@ a{
 .Add_Category_pop{
   display: flex;
 }
+.product_main_img{
+  display: flex;
+}
+@media (max-width: 1114px) {
+  .product_main_img{
+    display: block;
+  }
+}
 @media (max-width: 1114px) {
   .product_Col{
     display: block;
   }
 }
+.product_image_Col{
+  display: flex;
+}
+@media (max-width: 1114px) {
+  .product_image_Col{
+    display: block;
+
+  }
+  .product_imagebox {
+    height: 100px;
+    width: 100px;
+}
+}
+@media(max-width:405px){
+  .background{
+    width: 252px;
+  }
+}
+@media(max-width:370px){
+  .background{
+    width: 220px;
+  }
+}
+
 @media (max-width: 570px) {
   .background{
     
@@ -713,8 +758,33 @@ a{
     display: block;
   }
 }
+@media (max-width: 570px) {
+  .product_pop_main_col{
+    
+    flex-direction: column;
+  }
+ 
+}
+@media (max-width: 1390px) {
+  .product_pop_main_col{
+    
+    flex-direction: column;
+  }
+ 
+}
+.prod_label{
+  display: flex;
+  /* justify-content: flex-end; */
+  color: #3C3C3C;
+  align-items: center;
+}
+
+
 .product_imagebox{
   height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .justify{
   justify-content: space-around;
@@ -727,6 +797,11 @@ a{
   top: 20px;
   color: #E8E8E8;
 }
+.image_logosize1 svg{
+  color: #E8E8E8;
+  font-size: 30px;
+
+}
 .background{
 
   background-color:#FAFAFA ;
@@ -737,6 +812,20 @@ a{
 .Weight_Type{
   display:contents;
 }
+@media(max-width:1122px){
+  .prod_weight_pop{
+flex-direction: column;
+  }
+}
+@media(min-width:1206px){
+  .lab_res{
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+
+
 
 .Add_button{
   background-color: #31B665;
@@ -749,22 +838,47 @@ a{
 }
 
 .active{
-  background-color: #7C7C7C;
+  background-color: #B0B0B0;
 }
 .btton{
   width: 90px;
   height: 50px;
   font-size: 20px;
+  border: 1px solid #FFFFFF;
+  border-color: #FFFFFF;
 }
 
 .btton:hover{
-  background-color: #7C7C7C;
-  color: black;
-  border-color: #31B665;
+  background-color: #31B665;
+  
+  color: white;
+  border-color: white;
+}
+
+@media(max-width:897px){
+  .first_strain_row{
+flex-direction: column;
+margin-left: 20px;
+margin-top: 4px;
+justify-content: space-around;
+  }
+  .sec_strain_row{
+    flex-direction: column;
+    margin-left: 20px;
+    margin-top: 4px;
+  }
 }
 
 
 
+.MultipulImage {
+  position: relative;
+  bottom: 38%;
+
+}
+.storeImage{
+  bottom: 38%;
+}
 
 
 
@@ -969,16 +1083,21 @@ input:focus + label {
   height: 119px;
   border: 2px dashed #9e9b9b;
   padding: 57px;
+
 }
-/* @media(max-width:600px){
+@media(max-width:1320px){
   .img_store {
-    width: 100%;
+    width: 178px;
     height: 119px;
     border: 2px dashed #9e9b9b;
     padding: 57px;
   }
-  } */
-
+  }
+  @media(max-width:768px){
+    .prod_checkBox {
+      display: block;
+    }
+    }
 /* .img_store1{
   position: relative;
   bottom: 50px;
@@ -987,18 +1106,28 @@ input:focus + label {
 .img_store1{
   position: relative;
     bottom: 28px;
-    left: 29px;
+    left: 8px;
 }
+@media(min-width:1100px){
+ .img_store1{
+  position: relative;
+  bottom: 28px;
+  left: 30px;
+}
+  }
 
 
 .Store_country{
-  width: 117rem;
+  width: 100%;
+}
+.country_main_div{
+  width: 98%;
 }
 .img_store_lince{
-  width: 21%;
+  width: 200px;
   height: 119px;
   border: 2px dashed #9e9b9b;
-  padding: 57px;
+  /* padding: 57px; */
 }
 
 
@@ -1013,7 +1142,7 @@ input:focus + label {
 }
 
 .mask-box .mask {
-  width: 100px;
+  width: 63px;
   height: 40px;
   border-radius: 20px;
   background: #31B665;
@@ -1023,8 +1152,9 @@ input:focus + label {
 }
 
 .mask-box .MuiButton-root {
+  color: black;
   border-radius: 20px;
-  width: 100px;
+  width: 63px;
   height: 40px;
   font-weight: bold;
   transition: all 0.2s 0.1s ease;
@@ -1032,6 +1162,7 @@ input:focus + label {
 
 .mask-box .MuiButton-root:hover {
   opacity: 0.5;
+ 
 }
 
 /* labresult Product */
@@ -1066,6 +1197,22 @@ input:focus + label {
   color: #000000;
   font-size: 25px;
   font-weight: 700;
+}
+@media (max-width:768px) {
+  .product_title{
+    
+    font-size: 20px;
+    font-weight: 600;
+  }
+ 
+}
+@media (max-width:600px) {
+  .product_title{
+    
+    font-size: 18px;
+    font-weight: 550;
+  }
+ 
 }
 
 
@@ -1499,8 +1646,8 @@ margin-top: 6%;
   padding: 57px;
 }
 .img_store2{
-  position: relative;
-    bottom: 28px;
+  /* position: relative; */
+    /* bottom: 28px; */
     left: 0px;
 }
 .upload_img{

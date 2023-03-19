@@ -13,7 +13,7 @@ export default function ProductGiftVocher({Product ,SetProduct}) {
     const token_data = cookies.get('Token_access')
 
     React.useEffect(() => {
-        axios("http://34.201.114.126:8000/AdminPanel/GiftVoucherViewSet/", {
+        axios("http://52.3.255.128:8000/AdminPanel/GiftVoucherViewSet/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -25,7 +25,7 @@ export default function ProductGiftVocher({Product ,SetProduct}) {
             SetProduct(Product => ({ ...Product, GiftVoucher: response.data[0].id }))
 
         })
-        axios("http://34.201.114.126:8000/AdminPanel/CouponViewSet/", {
+        axios("http://52.3.255.128:8000/AdminPanel/CouponViewSet/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -53,9 +53,9 @@ export default function ProductGiftVocher({Product ,SetProduct}) {
 
     return (
         <div>
-            <div className='col background'>
-                <div className='col-10   '>
-                    <label className=''>
+            <div className='col background p-4'>
+                <div className='col-10  mb-2 '>
+                    <label className='product_title'>
                         Gift Voucher / Coupon
                     </label>
                     <div className='col justify  Add_Category '>
@@ -66,7 +66,8 @@ export default function ProductGiftVocher({Product ,SetProduct}) {
                                 onChange={handleChange}
                                 value={Product.GiftVoucher}
                                 displayEmpty
-                                inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15, background: "#AAAAAA" }}>
+                                size="small"
+                                inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15, }}>
                               
                                 {
                                     GiftVocher.map((data, index) => {
@@ -77,7 +78,7 @@ export default function ProductGiftVocher({Product ,SetProduct}) {
                             </Select>
                         </div>
                     </div>
-                    <div className='col justify  Add_Category center'>
+                    <div className='col justify  Add_Category center p-4'>
                         <div className='col-2' >
                             <p>Coupon</p>
                             <Select
@@ -85,7 +86,8 @@ export default function ProductGiftVocher({Product ,SetProduct}) {
                                 onChange={handleChange}
                                 value={Product.Claimed_Coupoun}
                                 displayEmpty
-                                inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15, background: "#AAAAAA" }}>
+                                size="small"
+                                inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}>
                                 
                                 {
                                     Coupoun.map((data, index) => {

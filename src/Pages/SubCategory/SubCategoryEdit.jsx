@@ -71,7 +71,7 @@ export default function SubCategoryEdit(props) {
     const token_data = cookies.get('Token_access')
     useEffect(() => {
 
-        axios("http://34.201.114.126:8000/AdminPanel/ActiveCategory/", {
+        axios("http://52.3.255.128:8000/AdminPanel/ActiveCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -96,7 +96,7 @@ export default function SubCategoryEdit(props) {
             "Status": SubCategory.Status
         }
         Axios.post(
-            `http://34.201.114.126:8000/AdminPanel/update-SubCategory/${data.id}`,
+            `http://52.3.255.128:8000/AdminPanel/update-SubCategory/${data.id}`,
             data,
             config
         ).then(() => {

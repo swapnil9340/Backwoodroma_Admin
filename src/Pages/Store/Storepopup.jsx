@@ -1,4 +1,4 @@
-import React, { useRef ,useContext} from 'react';
+import React, { useRef, useContext } from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
@@ -14,8 +14,12 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState } from 'draft-js';
 import { convertToHTML } from 'draft-convert';
 import InputAdornment from '@mui/material/InputAdornment';
-import { MdFileUpload } from 'react-icons/md';
+import { AiOutlineCloudUpload } from 'react-icons/ai';
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@material-ui/core/IconButton';
+
 import Createcontext from "../../Hooks/Context/Context"
+import Box from '@mui/material/Box';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -37,6 +41,7 @@ function BootstrapDialogTitle(props) {
 }
 export default function Storepopup() {
     const { dispatch } = useContext(Createcontext)
+    const Licence = useRef(null);
     const cookies = new Cookies();
     const inputRef = useRef(null);
     const token_data = cookies.get('Token_access')
@@ -45,9 +50,9 @@ export default function Storepopup() {
     const [convertedContent, setConvertedContent] = React.useState(null);
     const [image, SetImage] = React.useState('');
     const [country, Setcountry] = React.useState([])
-    const [State , SetState] = React.useState ([]);
-    const [City , SetCity] = React.useState ([]);
-
+    const [State, SetState] = React.useState([]);
+    const [City, SetCity] = React.useState([]);
+    const [LicenceImage, SetLicenceImage] = React.useState('');
     const [error, seterror] = React.useState({
         Store_Name: "",
         Store_Address: "",
@@ -74,13 +79,13 @@ export default function Storepopup() {
         Store_Address: "",
         Stores_Website: "",
         Stores_MobileNo: "",
-        Status: "Active" , 
-        Country_id:"" , 
-        State_id : "",
-        City_id : "",
-        License_Type:"None",
-        expires : new Date().toISOString().slice(0, 16),
-        
+        Status: "Active",
+        Country_id: "",
+        State_id: "",
+        City_id: "",
+        License_Type: "None",
+        expires: new Date().toISOString().slice(0, 16),
+
     });
 
 
@@ -95,6 +100,13 @@ export default function Storepopup() {
     };
     const handleimage = (event) => {
         SetImage(event.target.files[0])
+    };
+    const licenceFileInput = () => {
+        Licence.current.value = null;
+        SetLicenceImage(null)
+    };
+    const Licenseimage = (event) => {
+        SetLicenceImage(event.target.files[0])
     };
     const handleClickOpen = () => {
         setOpen(true);
@@ -117,7 +129,7 @@ export default function Storepopup() {
     React.useEffect(() => {
 
 
-        axios("http://34.201.114.126:8000/AdminPanel/ActiveCountry/", {
+        axios("http://52.3.255.128:8000/AdminPanel/ActiveCountry/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -125,40 +137,40 @@ export default function Storepopup() {
 
         }).then(response => {
 
-       
+
             Setcountry(response.data.data)
         })
-        if(Store.Country_id!=="") {
-            axios.get(`http://34.201.114.126:8000/AdminPanel/FilterStatesByCountry/${Store.Country_id}`, {
+        if (Store.Country_id !== "") {
+            axios.get(`http://52.3.255.128:8000/AdminPanel/FilterStatesByCountry/${Store.Country_id}`, {
 
-            headers: {
-                'Authorization': `Bearer ${token_data}`
-            }
+                headers: {
+                    'Authorization': `Bearer ${token_data}`
+                }
 
-        }).then(response => {
-            SetState(response.data.data)
-            SetStore(Store => ({ ...Store, State_id: response.data.data[0].id }))
-        })
+            }).then(response => {
+                SetState(response.data.data)
+                SetStore(Store => ({ ...Store, State_id: response.data.data[0].id }))
+            })
         }
 
-        if(Store.State_id!=="") {
-            axios.get(`http://34.201.114.126:8000/AdminPanel/FilterCitiesByStates/${Store.State_id}`, {
+        if (Store.State_id !== "") {
+            axios.get(`http://52.3.255.128:8000/AdminPanel/FilterCitiesByStates/${Store.State_id}`, {
 
-            headers: {
-                'Authorization': `Bearer ${token_data}`
-            }
+                headers: {
+                    'Authorization': `Bearer ${token_data}`
+                }
 
-        }).then(response => {
-            SetCity(response.data.data)
-            SetStore(Store => ({ ...Store, city_id: response.data.data[0].id }))
-        })
+            }).then(response => {
+                SetCity(response.data.data)
+                SetStore(Store => ({ ...Store, city_id: response.data.data[0].id }))
+            })
         }
 
 
 
-    }, [token_data,Store.Country_id,Store.State_id]);
-  
- 
+    }, [token_data, Store.Country_id, Store.State_id]);
+
+
 
     const formdata = new FormData();
     formdata.append('Store_Name', Store.Store_Name);
@@ -177,7 +189,7 @@ export default function Storepopup() {
             headers: { Authorization: `Bearer ${token_data}` }
         };
         axios.post(
-            'http://34.201.114.126:8000/AdminPanel/Add-Stores/',
+            'http://52.3.255.128:8000/AdminPanel/Add-Stores/',
             formdata,
             config
         ).then((response) => {
@@ -232,9 +244,12 @@ export default function Storepopup() {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            width: "70%",
+                            width: "75%",
                             height: "100%",
                             maxWidth: "none",  // Set your width here
+                            border: "1px solid #31B665",
+                            borderRadius: "15px",
+                            overflowX: "hidden",
                         },
                     },
                 }}
@@ -259,7 +274,7 @@ export default function Storepopup() {
                                             Store Name:
                                         </label>
                                     </div>
-                                    <div className='col-10'>
+                                    <div className='col-10 mt-2 mb-2'>
                                         <TextField type="text" placeholder='Add  Store Name' id="outlined-basic" variant="outlined" name='Store_Name' value={Store.Store_Name} style={{ minWidth: "90%" }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
@@ -289,7 +304,7 @@ export default function Storepopup() {
                                             Store Type:
                                         </label>
                                     </div>
-                                    <div className='col-10'>
+                                    <div className='col-10 mt-2 mb-2'>
                                         <Select
                                             name='Store_Type'
                                             value={Store.Store_Type}
@@ -306,23 +321,26 @@ export default function Storepopup() {
                                         </Select>
                                     </div>
                                 </div>
-                                <div className='col-12 top label  Store_country '>
+                                <div className='col-11 top label   country_main_div'>
+
                                     <div className='col-2'>
                                         <label className='label'>
-                                        Country:
+                                            Country:
                                         </label>
                                     </div>
-                                    <div className='col'>
+                                    <div className='col-2'>
                                         <Select
 
                                             name='Country_id'
                                             value={Store.Country_id}
                                             onChange={handleChange}
                                             displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}
+
+                                            fullWidth
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ fontSize: 15 }}
                                         >
-                                           
-                                           <MenuItem disabled value="" style={{ fontSize: 15 }}>
+
+                                            <MenuItem disabled value="" style={{ fontSize: 15 }}>
                                                 <em>Select Country</em>
                                             </MenuItem>
                                             {
@@ -337,17 +355,19 @@ export default function Storepopup() {
                                     </div>
                                     <div className='col-2'>
                                         <label className='label'>
-                                        State:
+                                            State:
                                         </label>
                                     </div>
-                                    <div className='col-2'>
+                                    <div className='col'>
                                         <Select
 
                                             name='State_id'
                                             value={Store.State_id}
                                             onChange={handleChange}
                                             displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}
+
+                                            fullWidth
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ fontSize: 15 }}
                                         >
                                             <MenuItem disabled value="" style={{ fontSize: 15 }}>
                                                 <em>Select</em>
@@ -363,7 +383,7 @@ export default function Storepopup() {
                                             }
                                         </Select>
                                     </div>
-                                    <div className='col'>
+                                    <div className='col-2'>
                                         <label className='label'>
                                             City :
                                         </label>
@@ -375,7 +395,8 @@ export default function Storepopup() {
                                             value={Store.city_id}
                                             onChange={handleChange}
                                             displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}
+                                            fullWidth
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: "60%", fontSize: 15 }}
                                         >
                                             <MenuItem disabled value="" style={{ fontSize: 15 }}>
                                                 <em>Select City</em>
@@ -398,7 +419,7 @@ export default function Storepopup() {
                                             Store Address:
                                         </label>
                                     </div>
-                                    <div className='col-10'>
+                                    <div className='col-10 mt-2 mb-2'>
 
                                         <TextField type="text" placeholder='Add Store Address:' id="outlined-basic" variant="outlined" name='Store_Address' value={Store.Store_Address} style={{ minWidth: "90%", fontSize: 15 }}
                                             onChange={handleChange}
@@ -423,28 +444,28 @@ export default function Storepopup() {
                                         />
                                     </div>
                                 </div>
-                                <div className='col-12 top label  con'>
-                                    <div className='col'>
+                                <div className='col-12 top label  '>
+                                    <div className='col-2'>
                                         <label className='label'>
                                             Stores Website:
                                         </label>
                                     </div>
-                                    <div className='col'>
+                                    <div className='col-4 mt-2 mb-2'>
 
-                                        <TextField type="text" placeholder='Add Stores Website:' id="outlined-basic" variant="outlined" name='Stores_Website' value={Store.Stores_Website} style={{ minWidth: 190, fontSize: 15 }}
+                                        <TextField type="text" placeholder='Add Stores Website:' id="outlined-basic" variant="outlined" name='Stores_Website' value={Store.Stores_Website} style={{ minWidth: 120, fontSize: 15 }}
                                             onChange={handleChange}
                                             InputProps={{ style: { fontSize: 14 } }}
                                         />
                                     </div>
 
-                                    <div className='col'>
+                                    <div className='col-2'>
                                         <label className='label'>
                                             Stores MobileNo:
                                         </label>
                                     </div>
-                                    <div className='col'>
+                                    <div className='col-4 mt-2 mb-2'>
 
-                                        <TextField type="text" placeholder='Add Stores MobileNo:' id="outlined-basic" variant="outlined" name='Stores_MobileNo' value={Store.Stores_MobileNo} style={{ minWidth: 190 }}
+                                        <TextField type="text" placeholder='Add Stores MobileNo:' id="outlined-basic" variant="outlined" name='Stores_MobileNo' value={Store.Stores_MobileNo} style={{ minWidth: 120 }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                             label={massage.Stores_MobileNo}
@@ -475,16 +496,49 @@ export default function Storepopup() {
                                         </label>
                                     </div>
                                     <div className='col-10' >
+                                        <Box
+                                            sx={{
+                                                "& .rdw-editor-toolbar": {
+                                                    width: "90%",
+                                                    border: "1px solid #c4c4c4",
 
-                                        <Editor
-                                            editorState={editorState}
-                                            onEditorStateChange={setEditorState}
-                                            toolbarClassName="toolbarClassName"
-                                            wrapperClassName="wrapperClassName"
-                                            editorClassName="editorClassName"
-                                        />
-                                    </div>   
-                                </div>   
+                                                },
+                                                "@media(max-width:600px)": {
+                                                    "& .rdw-editor-toolbar": {
+                                                        width: "100%",
+
+                                                    },
+                                                    "& .rdw-editor-main": {
+                                                        width: "100%",
+
+                                                    },
+                                                },
+                                                ".rdw-editor-main": {
+                                                    background: "",
+                                                    width: "90%",
+                                                    border: "1px solid #c4c4c4",
+                                                    padding: "3px"
+                                                }, "@media(max-width:600px)": {
+                                                    "& .rdw-editor-main": {
+                                                        width: "100%",
+
+                                                    },
+                                                },
+
+
+                                            }}
+                                        >
+
+                                            <Editor
+                                                editorState={editorState}
+                                                onEditorStateChange={setEditorState}
+                                                toolbarClassName="toolbarClassName"
+                                                wrapperClassName="wrapperClassName"
+                                                editorClassName="editorClassName"
+                                            />
+                                        </Box>
+                                    </div>
+                                </div>
                                 <div className='col-12 top label  con '>
                                     <div className='col-2 '>
                                         <label className='label'>
@@ -493,41 +547,41 @@ export default function Storepopup() {
                                         <input type="file" placeholder='Add Store Image:' id="file" ref={inputRef} className="file" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleimage} />
                                     </div>
-                                    <div className='col-10  center'>
-                                        <div className='col img_store '>
-                                            <div className='col img_store1'>
+                                    <div className='col-10  '>
+                                        <div className={'col-4  ' + (image ? null : "img_store")}>
+                                            <div className={'col-12  ' + (image ? null : "img_store1")}>
                                                 {
-                                                    image ? <div >
+                                                    image ? <div className='center'  >
                                                         <img src={URL.createObjectURL(image)} alt="" className='center' style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
-                                                        <Button color='success' onClick={resetFileInput}>Cancell </Button>
+                                                        <IconButton onClick={resetFileInput} style={{ position: " relative ", top: "-20px" }}>
+                                                            <CloseIcon />
+                                                        </IconButton>
                                                     </div> :
                                                         <div>
-                                                            <MdFileUpload style={{ backgroundColor: "#31B665", borderradius: "66px" }} ></MdFileUpload >
+                                                            <label htmlFor="file"  >
+                                                                <AiOutlineCloudUpload style={{ fontSize: "50px", borderradius: "66px", color: "green" }} ></AiOutlineCloudUpload >
+                                                            </label>
                                                         </div>
                                                 }
 
 
                                             </div>
-                                            <label htmlFor="file"  >
-                                                <span className='img_store1' >UPLOAD</span> <span style={{ color: "red" }}>{massage.Image}</span>
-                                                <p className="file-name"></p>
-                                            </label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className='col-12 Add_State Add_Category '>
-                                    <div className="col "> <h2> LicenceNo
+                                    <div className="col center m-4 "> <h2> Licence Information
                                     </h2>
                                     </div>
                                 </div>
                                 <div className='col-12 top label  con'>
                                     <div className='col-2'>
                                         <label className='label'>
-                                            LicenceNo:
+                                            Licence Doc:
                                         </label>
                                     </div>
-                                    <div className='col-10'>
+                                    <div className='col-10 mt-2 mb-2'>
 
                                         <TextField type="text" placeholder='Add LicenceNo' id="outlined-basic" variant="outlined" name='LicenceNo' value={Store.LicenceNo} style={{ minWidth: "90%", fontSize: 15 }}
                                             onChange={handleChange}
@@ -553,20 +607,19 @@ export default function Storepopup() {
                                     </div>
 
                                 </div>
-
-
-                                <div className='col-8 top label  con'>
+                                <div className='col-12 top label'>
                                     <div className='col-2'>
                                         <label className='label'>
                                             License Type:
                                         </label>
                                     </div>
-                                    <div className='col-2'>
+                                    <div className='col-4 mt-2 mb-2'>
                                         <Select
                                             name='License_Type'
                                             value={Store.License_Type}
                                             onChange={handleChange}
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}
+
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: "40%", fontSize: 15 }}
                                         >
                                             <MenuItem value={"None"} style={{ fontSize: 15 }}>None</MenuItem>
                                             <MenuItem value={"Adult-Use Cultivation"} style={{ fontSize: 15 }}>Adult-Use Cultivation</MenuItem>
@@ -585,12 +638,12 @@ export default function Storepopup() {
                                     </div>
 
 
-                                    <div className='col-2 '>
+                                    <div className='col-2'>
                                         <label className='label'>
                                             Expires:
                                         </label>
                                     </div>
-                                    <div className='col-2 '>
+                                    <div className='col-4 mt-2 mb-2'>
                                         <TextField
                                             id="date"
                                             value={Store.expires}
@@ -612,28 +665,35 @@ export default function Storepopup() {
                                         <label className='label'>
                                             Store Image:
                                         </label>
-                                        <input type="file" placeholder='Add Store Image:' id="file" ref={inputRef} className="file" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
-                                            onChange={handleimage} />
+                                        <input type="file" placeholder='Add Store Image:' id="Licence" ref={Licence} className="file" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
+                                            onChange={Licenseimage} />
                                     </div>
-                                    <div className='col-10  center'>
-                                        <div className='col img_store_lince '>
-                                            <div className='col img_store1'>
+                                    <div className='col-10  '>
+                                        {/* <div className='col img_store_lince '> */}
+                                        <div className={'col  ' + (image ? null : "img_store")}>
+
+                                            <div className={'col  ' + (image ? null : "img_store1")}>
                                                 {
-                                                    image ? <div >
-                                                        <img src={URL.createObjectURL(image)} alt="" className='center' style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
-                                                        <Button color='success' onClick={resetFileInput}>Cancell </Button>
+                                                    LicenceImage ? <div className='center'>
+                                                        <img src={URL.createObjectURL(LicenceImage)} alt="" className=' ' style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
+                                                        <span   >
+                                                            <IconButton onClick={licenceFileInput} style={{ position: " relative ", top: "-20px" }}>
+                                                                <CloseIcon />
+                                                            </IconButton>
+                                                        </span>
                                                     </div> :
-                                                        <div>
-                                                            <MdFileUpload style={{ backgroundColor: "#31B665", borderradius: "66px" }} ></MdFileUpload >
+                                                        <div >
+                                                            <label htmlFor="Licence">
+                                                                <AiOutlineCloudUpload style={{ fontSize: "50px", borderradius: "66px", color: "green", position: "relative", bottom: "-34px" }} ></AiOutlineCloudUpload >
+                                                            </label>
                                                         </div>
                                                 }
 
 
                                             </div>
-                                            <label htmlFor="file"  >
-                                                <span className='img_store1' >UPLOAD</span> <span style={{ color: "red" }}>{massage.Image}</span>
-                                                <p className="file-name"></p>
-                                            </label>
+
+                                            <p className="file-name"></p>
+
                                         </div>
                                     </div>
                                 </div>
@@ -641,19 +701,19 @@ export default function Storepopup() {
 
 
 
-                                <div className='col-4 top label  con'>
+                                <div className='col-4 top label  '>
                                     <div className='col'>
                                         <label className='label'>
                                             Status:
                                         </label>
                                     </div>
-                                    <div className='col'>
+                                    <div className='col mt-2 mb-2'>
                                         <Select
                                             name='Status'
                                             value={Store.Status}
                                             onChange={handleChange}
-
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15 }}
+                                            size="small"
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}
                                         >
 
                                             <MenuItem value={"Active"} style={{ fontSize: 15 }}>Active</MenuItem>
@@ -665,7 +725,7 @@ export default function Storepopup() {
 
                                 <div className='col-12 center top' >
                                     <button className='btn Sub_button' autoFocus onClick={Submit} >
-                                        Save changes
+                                        Add Store
                                     </button>
                                 </div>
 
@@ -676,7 +736,7 @@ export default function Storepopup() {
                     </div>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleClose}>
+                    <Button sx={{ color: "#31B665" }} autoFocus onClick={handleClose}>
                         Exit
                     </Button>
                 </DialogActions>

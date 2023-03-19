@@ -71,7 +71,7 @@ export default function CategEditbox(props) {
             "name": data.Category,
             "Status": data.Status
         }
-        axios.post(`http://34.201.114.126:8000/AdminPanel/update-Category/${data.id}`, form, {
+        axios.post(`http://52.3.255.128:8000/AdminPanel/update-Category/${data.id}`, form, {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -104,13 +104,7 @@ export default function CategEditbox(props) {
                 aria-labelledby="customized-dialog-title"
                 open={open}
                 sx={{
-                    "& .MuiDialog-container": {
-                        "& .MuiPaper-root": {
-                            width: "60%",
-                            height: "60%",
-                            maxWidth: "none",  // Set your width here
-                        },
-                    },
+                  
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
                             width: {

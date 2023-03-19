@@ -98,7 +98,7 @@ export default function TaxEdit(props) {
             "Status": Tax.Status
         }
         Axios.post(
-            `http://34.201.114.126:8000/AdminPanel/update-Tax/${props.data.id}`,
+            `http://52.3.255.128:8000/AdminPanel/update-Tax/${props.data.id}`,
             data,
             config
         ).then(() => {

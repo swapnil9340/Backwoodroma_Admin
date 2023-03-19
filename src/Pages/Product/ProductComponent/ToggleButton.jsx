@@ -20,13 +20,13 @@ export default function ToggleButton({ Product, SetProduct }) {
 
     return (
 
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex"  }}>
             <Box className="mask-box">
                 <Box
                     color="success"
                     className="mask"
                     style={{
-                        transform: `translateX(${Product.Status === "Active" ? 0 : "100px"})`
+                        transform: `translateX(${Product.Status === "Active" ? 0 : "63px"})`
                     }}
                 />
                 <Button
@@ -35,9 +35,11 @@ export default function ToggleButton({ Product, SetProduct }) {
                     variant="text"
                     name="Status"
                     value="Active"
-                    sx={{
-                        color: Product.Status === "Active" ? "#ffffff" : "#5316AE"
-                    }}
+                    color="success"
+                    // sx={{
+                    //     backgroundColor: Product.Status === "Active" ? "yellow" : "black",
+                        
+                    // }}
                     onClick={handleChange}
                 >
                     Active
@@ -47,7 +49,10 @@ export default function ToggleButton({ Product, SetProduct }) {
                     variant="text"
                     name="Status"
                     value="Hide"
-                    sx={{ color: Product.Status === "Hide" ? "#ffffff" : "#5316AE" }}
+                    // color="danger"
+                    // sx={{ backgroundColor: Product.Status === "Hide" ? "yellow" : "black" }}
+                    // sx={{ color: 'yellow', backgroundColor: 'orange', borderColor: 'green' }}
+
                       onClick={handleChange} 
                 >
                     Hide

@@ -92,7 +92,7 @@ export default function FlavoursEdit(props) {
         };
 
         Axios.post(
-            `http://34.201.114.126:8000/AdminPanel/update-Flavours/${Flavour.id}`,
+            `http://52.3.255.128:8000/AdminPanel/update-Flavours/${Flavour.id}`,
             formdata,
             config,
             { headers: { "Content-Type": "multipart/form-data" } }
@@ -249,7 +249,7 @@ export default function FlavoursEdit(props) {
                                                 <Button  onClick={resetFileInput} color='success' >Cancell </Button></>
                                                 :
                                                 <>
-                                                    <img src={"http://34.201.114.126:8000/" + Flavour.FlavoursImage} alt="" style={{ width: "120px", height: "110px" }} />
+                                                    <img src={"http://52.3.255.128:8000/" + Flavour.FlavoursImage} alt="" style={{ width: "120px", height: "110px" }} />
                                                     <Button  name="FlavoursImage" value="" color='success' onClick={handleChange} >Cancell </Button>
                                                 </>
                                         }

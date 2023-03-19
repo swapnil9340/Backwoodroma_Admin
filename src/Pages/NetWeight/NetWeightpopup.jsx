@@ -82,7 +82,7 @@ export default function NetWegihtPopUp() {
            "Status":Status
            }
         Axios.post( 
-          'http://34.201.114.126:8000/AdminPanel/Add-NetWeight/',
+          'http://52.3.255.128:8000/AdminPanel/Add-NetWeight/',
           data,
           config
         ).then(()=>{

@@ -74,7 +74,7 @@ export default function CountriesPopUp() {
            "Status":Status
            }
         Axios.post( 
-          'http://34.201.114.126:8000/AdminPanel/Add-Country/',
+          'http://52.3.255.128:8000/AdminPanel/Add-Country/',
           data,
           config
         ).then(()=>{

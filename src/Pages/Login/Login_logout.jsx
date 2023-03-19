@@ -50,7 +50,7 @@ export default function Login_logout() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        axios.post("http://34.201.114.126:8000/AdminPanel/Login/", data,
+        axios.post("http://52.3.255.128:8000/AdminPanel/Login/", data,
 
             loading(true)
         ).then((response) => {
@@ -81,7 +81,7 @@ export default function Login_logout() {
     const otp_send = () => {
 
         setOpen(false);
-        axios.post("http://34.201.114.126:8000/AdminPanel/VerifyOtp/", otp_data,
+        axios.post("http://52.3.255.128:8000/AdminPanel/VerifyOtp/", otp_data,
 
         ).then((response) => {
             if (response.data.data === "invalid Otp") {

@@ -41,7 +41,7 @@ export default function NewsCategory(props) {
         const cookies = new Cookies();
         const token_data = cookies.get('Token_access')
 
-        axios("http://34.201.114.126:8000/AdminPanel/Get-NewsCategory/", {
+        axios("http://52.3.255.128:8000/AdminPanel/Get-NewsCategory/", {
 
         headers: {
             'Authorization': `Bearer ${token_data}`
@@ -58,9 +58,9 @@ export default function NewsCategory(props) {
 
 
     const columns = [
-        { field: 'name', headerName: 'Name', editable: true, width: 180, headerClassName: 'super-app-theme--header', headerAlign: 'center', },
+        { field: 'name', headerName: 'Name', editable: true, maxWidth: 150, minWidth: 110, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'left', },
         {
-            field: 'Edit', headerName: 'Edit', type: 'button', editable: false, headerClassName: 'super-app-theme--header', headerAlign: 'center',
+            field: 'Edit', headerName: 'Edit', type: 'button', editable: false,maxWidth: 150, minWidth: 110, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'left',
             renderCell: (params) => (
                 <>
                     <Box
@@ -76,7 +76,17 @@ export default function NewsCategory(props) {
                         }
                     }}
                      >
-                        <Select IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
+                        <Select
+                        sx={{
+                            boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
+                            "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
+                            "&:hover": {
+                                ".MuiSelect-icon": {
+                                    color: "#31B665"
+                                }
+                            },
+                        }}
+                        IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
                             <MenuItem  > <NewsCategoryEditbox data={params.row}></NewsCategoryEditbox></MenuItem>
                             <MenuItem  > <NewsCategoryDelete data={params.row}></NewsCategoryDelete></MenuItem>
                         </Select>
@@ -94,15 +104,13 @@ export default function NewsCategory(props) {
         <div className='container-fluid '>
             <div className='row'>
 
-                <div className='col-sm-2 border  '>
+              
+                <div className='col-10 category_main_row' >
 
-                </div>
-                <div className='col-8 border   ' >
-
-                    <div className='col-12 Add_Category'>
+                    <div className='col-12 Add_Category m-2 mt-5 mb-5'>
                         <div className="col"> <h2>News Category
                         </h2></div>
-                        <div className="col cat_but " >   <span className='btn'>{<AddNewsCategory></AddNewsCategory>}</span> </div>
+                        <div className="col cat_but " >   <span className='btn cat_pop_btn'>{<AddNewsCategory></AddNewsCategory>}</span> </div>
                     </div>
 
                     <div className='col-12'>
@@ -113,8 +121,41 @@ export default function NewsCategory(props) {
                         backgroundColor: '#E1FFED',
                     },
                     '& .MuiButton-root': {
-                        color: '#000000',
+                        color: "#FFFFFF",
                         display: "flex",
+                        width: "200px"
+                    },
+                    ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
+                        outline:"none"
+                      },
+                      "@media(max-width:767px)": {
+                        '& .MuiButton-root': {
+                            display: "contents",
+                            width: "150px",
+                            margin: "2px",
+                            fontSize: "14px"
+                        },
+
+                    },
+                    "@media(max-width:546px)": {
+                        '& .MuiButton-root': {
+                            display: "contents",
+                            width: "150px",
+                            fontSize: "9px"
+                        },
+
+                    },
+
+                    "@media(min-width:768px)": {
+                        '& .MuiButton-root': {
+                            width: "110px",
+                            margin: "2px",
+                            fontSize: "14px"
+                        },
+
+                        "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                            width: "120px"
+                        }
                     }
               
                     
@@ -125,8 +166,51 @@ export default function NewsCategory(props) {
                                     <DataGrid rows={rows} columns={columns} components={{ Toolbar: GridToolbar, }}
                                     sx={{
                                         "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                            outline: "1px solid black ",
+                                            outline: "none",
                                         },
+                                        "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
+                                            outline: "none"
+                                        },
+                                        "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
+                                            outline: "none",
+
+                                        },
+                                        "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
+                                            backgroundColor: "#FFFFFF"
+                                        },
+                                        height: 400,
+                                        width: '100%',
+                                        "@media(max-width:768px)": {
+                                            ".MuiDataGrid-toolbarContainer": {
+                                                gap: "10px",
+
+                                            }
+                                        },
+                                        "@media(max-width:546px)": {
+                                            ".MuiDataGrid-toolbarContainer": {
+                                                gap: "5px",
+
+                                            }
+                                        },
+                                        ".MuiDataGrid-toolbarContainer": {
+                                            flexDirection: "block",
+
+                                            backgroundColor: "#31B665",
+                                            width: {
+                                                xs: "100%",
+                                                sm: "100%",
+                                                md: "100%",
+                                                lg: "100%",
+                                                xl: "100%"
+
+                                            },
+                                        },
+                                        "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
+                                            visibility: "hidden"
+                                        },
+                                        "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                                            width: "120px"
+                                        }
                                     }}
                                     />
                                 </div>

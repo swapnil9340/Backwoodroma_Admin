@@ -15,6 +15,8 @@ import { EditorState } from 'draft-js';
 import { convertToHTML } from 'draft-convert';
 import InputAdornment from '@mui/material/InputAdornment';
 import Createcontext from "../../Hooks/Context/Context"
+import Box from '@mui/material/Box';
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
         padding: theme.spacing(2),
@@ -114,7 +116,7 @@ export default function Brandpopup() {
             headers: { Authorization: `Bearer ${token_data}` }
         };
         Axios.post(
-            'http://34.201.114.126:8000/AdminPanel/Add-Brand/',
+            'http://52.3.255.128:8000/AdminPanel/Add-Brand/',
             formdata,
             config
         ).then(() => {
@@ -268,7 +270,18 @@ export default function Brandpopup() {
                                         </label>
                                     </div>
                                     <div className='col'>
-
+                                    <Box
+                                         sx={{
+                                            "& .rdw-editor-toolbar":{
+                                                width:"100%"
+                                            },
+                                            ".rdw-editor-main":{
+                                                background:"",
+                                                border:"1px solid #c4c4c4",
+                                                padding:"3px"
+                                            }
+                                        }}
+                                         >
                                         <Editor
                                             editorState={editorState}
                                             onEditorStateChange={setEditorState}
@@ -276,6 +289,7 @@ export default function Brandpopup() {
                                             wrapperClassName="wrapperClassName"
                                             editorClassName="editorClassName"
                                         />
+                                        </Box>
                                     </div>
                                 </div>
                                 <div className='col-12 top label  con'>

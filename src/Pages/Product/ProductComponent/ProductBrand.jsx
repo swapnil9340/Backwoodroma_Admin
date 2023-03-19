@@ -12,7 +12,7 @@ export default function ProductBrand({ Product, SetProduct }) {
     const token_data = cookies.get('Token_access')
 
     React.useEffect(() => {
-        axios("http://34.201.114.126:8000/AdminPanel/ActiveBrand/", {
+        axios("http://52.3.255.128:8000/AdminPanel/ActiveBrand/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -41,9 +41,9 @@ export default function ProductBrand({ Product, SetProduct }) {
 
     return (
         <div>
-            <div className='col background'>
+            <div className='col background p-4'>
                 <div className='col-10   '>
-                    <label className=''>
+                    <label className='product_title'>
                         Brand
                     </label>
                     <div className='col justify  Add_Category center'>
@@ -53,7 +53,8 @@ export default function ProductBrand({ Product, SetProduct }) {
                                 onChange={handleChange}
                                 value={Product.Brand_id}
                                 displayEmpty
-                                inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 190, fontSize: 15, background: "#AAAAAA" }}>
+                                size="small"
+                                inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15, }}>
                                 <MenuItem style={{ fontSize: 15 }}>
                                     <em>No Tax</em>
                                 </MenuItem>

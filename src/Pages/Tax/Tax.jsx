@@ -40,7 +40,7 @@ export default function Tax() {
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
-        axios("http://34.201.114.126:8000/AdminPanel/Get-Tax/", {
+        axios("http://52.3.255.128:8000/AdminPanel/Get-Tax/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -67,7 +67,7 @@ export default function Tax() {
             "Status": params.row.Status === "Active" ? "Hide" : "Active"
         }
         axios.post(
-            `http://34.201.114.126:8000/AdminPanel/update-Tax/${params.row.id}`,
+            `http://52.3.255.128:8000/AdminPanel/update-Tax/${params.row.id}`,
             data,
             config
         ).then(() => {
