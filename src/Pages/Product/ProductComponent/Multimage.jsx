@@ -1,7 +1,7 @@
 import { IoImagesOutline } from 'react-icons/io5';
 import CloseIcon from '@mui/icons-material/Close';
 import { BsPlusSquare } from "react-icons/bs"
-import IconButton from '@material-ui/core/IconButton';
+import { IconButton } from '@mui/material';
 import React from 'react';
 function MultiImage({ Image, SetImage }) {
     const [file, setFile] = React.useState([]);
