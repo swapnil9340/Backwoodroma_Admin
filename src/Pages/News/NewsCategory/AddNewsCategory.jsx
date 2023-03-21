@@ -61,6 +61,7 @@ export default function NewsCategorypopup() {
         const data = {
             "name": NameCategory,
         }
+      try {
         Axios.post(
             'http://52.3.255.128:8000/AdminPanel/Add-NewsCategory/',
             data,
@@ -76,6 +77,9 @@ export default function NewsCategorypopup() {
 
             }
         )
+      } catch (error) {
+         console.log(error)
+      }
     };
 
     return (
