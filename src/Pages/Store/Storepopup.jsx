@@ -519,12 +519,8 @@ export default function Storepopup() {
                                                     width: "90%",
                                                     border: "1px solid #c4c4c4",
                                                     padding: "3px"
-                                                }, "@media(max-width:600px)": {
-                                                    "& .rdw-editor-main": {
-                                                        width: "100%",
-
-                                                    },
                                                 },
+                                                
 
 
                                             }}

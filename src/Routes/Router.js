@@ -22,6 +22,7 @@ import Coupon from "../Pages/Coupon/Coupon"
 import  GiftVoucher from "../Pages/GiftVoucher/GiftVoucher"
 import NewsCategory from "../Pages/News/NewsCategory/NewsCategory"
 import NewsSubCategory from "../Pages/News/NewsSubCategory/NewsSubCategory"
+import Vendor from "../Pages/Vendor/Vendor"
 import Pagenotfound from "../Pages/Pagenotfound"
 export default function Router() {
  
@@ -50,9 +51,13 @@ export default function Router() {
          <Route  path="/News" element ={<Protected Component ={News}/>}/>
          <Route  path="/NewsCategory" element ={<Protected Component ={NewsCategory}/>}/>
          <Route  path="/NewsSubCategory" element ={<Protected Component ={NewsSubCategory}/>}/>
+         <Route  path="/Vendor" element ={<Protected Component ={Vendor}/>}/>
+
+
         <Route   path="/Coupon" element ={<Protected Component ={Coupon}/>}/>
         <Route   path="/GiftVoucher" element = {<Protected Component = {GiftVoucher} />} />
         <Route   path='/Forgot' element={<Forgot />}/>
+
         <Route   path='*' element={ <Pagenotfound></Pagenotfound>} />
        
         </Routes>

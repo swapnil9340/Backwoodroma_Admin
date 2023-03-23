@@ -144,6 +144,13 @@ function Navbar() {
               </Link>
                <SpecialOfferDropDown></SpecialOfferDropDown>
                <NewsDropDown></NewsDropDown>
+               <Link to="/Vendor" className="list-group-item list-group-item-action py-2 ripple">
+                <div className='side_bar_option'>
+                  <span><HiOutlineReceiptTax></HiOutlineReceiptTax></span>
+                  <span className='side_penal_link'>Vendor</span>
+                </div>
+
+              </Link>
                <SettingDropDown></SettingDropDown>
             </div>
           </div>
