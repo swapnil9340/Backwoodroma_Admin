@@ -21,7 +21,7 @@ import ProductCategory from './ProductComponent/ProductCategory';
 import NetWeight from './ProductComponent/NetWeight';
 import Checkbox from './ProductComponent/CheckBox';
 import MultiImage from "./ProductComponent/Multimage"
-import { useForm, Controller } from "react-hook-form";
+import { useForm,  } from "react-hook-form";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -43,7 +43,7 @@ function BootstrapDialogTitle(props) {
 }
 export default function ProductPopUp(props) {
  
-    const { register, handleSubmit, errors, control, reset } = useForm();
+    const { handleSubmit} = useForm();
     const { state, dispatch } = useContext(Createcontext)
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')

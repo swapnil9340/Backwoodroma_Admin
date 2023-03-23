@@ -67,7 +67,7 @@ const Vendor = () => {
             headerName: 'Name',
             maxWidth: 150, minWidth: 120, flex: 1,
             "@media(max-width:540px)": {
-                maxWidth: 90, minWidth: 80, flex: 1,
+                maxWidth: 90, minWidth: 40, flex: 1,
 
             },
             editable: true,

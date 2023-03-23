@@ -4,7 +4,7 @@ import { BsPlusSquare } from "react-icons/bs"
 import { IconButton } from '@mui/material';
 import React from 'react';
 function MultiImage({ Image, SetImage }) {
-    const [file, setFile] = React.useState([]);
+    const [setFile] = React.useState([]);
 
     function uploadSingleFile(e) {
         // let ImagesArray = Object.entries(e.target.files).map((e) =>
@@ -19,7 +19,7 @@ function MultiImage({ Image, SetImage }) {
            
 
         const d =  Object.entries(Image).map((e) => {
-            URL.createObjectURL(e[1])
+            return URL.createObjectURL(e[1])
         })
         setFile(d)
        

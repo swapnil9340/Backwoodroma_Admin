@@ -60,7 +60,7 @@ export default function EditProducts(props) {
     const [store, Setstore] = React.useState([])
     const [Image, SetImage] = React.useState('')
     const [video, Setvideo] = React.useState('')
-    const [net_weight, SetNet_Weight] = React.useState([])
+    const [SetNet_Weight] = React.useState([])
     const [Flavours, SetFlavours] = React.useState([])
 
     const [error, seterror] = React.useState({
@@ -254,13 +254,7 @@ export default function EditProducts(props) {
         }).then(response => {
             SetFlavours(response.data)
         })
-
-
-       
-
-
-
-
+        
     }, [token_data, state])
 
 

@@ -9,7 +9,6 @@ import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 import Box from '@mui/material/Box';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import CategoryEditbox from "./CategoryEdit"
 import Eelete from "../Category/Delete";
@@ -138,8 +137,8 @@ export default function Category(props) {
                                 }
                             },
                         }} IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                            <MenuItem  ><CategoryEditbox data={params.row} ></CategoryEditbox></MenuItem>
-                            <MenuItem  ><Eelete data={params.row}></Eelete> </MenuItem>
+                          <CategoryEditbox data={params.row} ></CategoryEditbox>
+                           <Eelete data={params.row}></Eelete> 
                         </Select>
                     </Box>
                 </>
