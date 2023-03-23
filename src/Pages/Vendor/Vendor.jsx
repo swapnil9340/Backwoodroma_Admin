@@ -224,8 +224,8 @@ const Vendor = () => {
                         <div className="col-12 mb-4 mt-4">
                             <Box
                                 sx={{
-                                    height: 400, width: '100%', height: 400,
-                                    width: '100%',
+                                  width: '100%', height: 400,
+                                  
                                     '& .MuiDataGrid-columnHeaders': {
                                         backgroundColor: '#E1FFED',
                                     },
