@@ -59,9 +59,9 @@ const Vendor = () => {
     }, [state, token_data])
 
     const columns = [
-        {
-            field: 'id', headerName: 'ID', maxWidth: 90, flex: 1, minWidth: 90,
-        },
+        // {
+        //     field: 'id', headerName: 'ID', maxWidth: 90, flex: 1, minWidth: 90,
+        // },
         {
             field: 'username',
             headerName: 'Name',
@@ -254,7 +254,7 @@ const Vendor = () => {
                                             },
                                         }}
                                         pageSizeOptions={[5]}
-                                        checkboxSelection
+                                       
                                         disableRowSelectionOnClick
                                         sx={{
                                             "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
