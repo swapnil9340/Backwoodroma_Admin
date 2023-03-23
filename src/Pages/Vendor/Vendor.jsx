@@ -10,8 +10,9 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import axios from "axios"
 import Cookies from 'universal-cookie';
-
+import Createcontext from "../../Hooks/Context/Context"
 import { useSnackbar } from 'notistack';
+import UserDelete from './DeleteVendor';
 
 
 const CustomFontTheme = createTheme({
@@ -38,7 +39,7 @@ const CustomFontTheme = createTheme({
 // const rows = 
 
 const Vendor = () => {
-
+    const { state, dispatch } = React.useContext(Createcontext)
     const { enqueueSnackbar } = useSnackbar();
     const [totel, setTotal] = React.useState([])
     const cookies = new Cookies();
@@ -55,7 +56,7 @@ const Vendor = () => {
             setTotal([...response.data.data])
         })
 
-    }, [ token_data])
+    }, [state, token_data])
 
     const columns = [
         {
@@ -171,8 +172,8 @@ const Vendor = () => {
                                 }
                             },
                         }} IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                            <MenuItem >Item1</MenuItem>
-                            <MenuItem >Item2</MenuItem>
+                            <MenuItem ><UserDelete></UserDelete></MenuItem>
+                          
                         </Select>
                     </Box>
                 )
@@ -187,7 +188,7 @@ const Vendor = () => {
         const form = {
 
             "name": params.row.name,
-            "Status": params.row.Status === "Active" ? "Hide" : "Active"
+            "status": params.row.status === "Active" ? "Hide" : "Active"
         }
         axios.post(`http://52.3.255.128:8000/AdminPanel/UpdateProfileForVendor/${params.row.id}`, form, {
 
@@ -197,6 +198,7 @@ const Vendor = () => {
 
         }).then(response => {
             if (response) {
+                dispatch({ type: 'api', api: true })
                 enqueueSnackbar('Edit Category Status success  !', { variant: 'success' });
 
             }
@@ -216,9 +218,7 @@ const Vendor = () => {
                                 <h2>Vendor</h2>
 
                             </div>
-                            <div className="col text-end">
-                                <span>Add Vendor</span>
-                            </div>
+                           
 
                         </div>
                         <div className="col-12 mb-4 mt-4">
