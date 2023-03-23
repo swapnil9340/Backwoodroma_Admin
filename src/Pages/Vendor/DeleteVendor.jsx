@@ -55,7 +55,7 @@ export default function UserDelete(props) {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{"Delete Tax?"}</DialogTitle>
+        <DialogTitle>{"Delete User?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
           Are you sure you want to delete this User?

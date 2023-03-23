@@ -148,7 +148,7 @@ const Vendor = () => {
             sortable: false,
             maxWidth: 150, minWidth: 120, flex: 1,
             headerAlign: 'center', align: "center",
-            renderCell: () => {
+            renderCell: (params) => {
                 return (
                     <Box
                         sx={{
@@ -171,8 +171,8 @@ const Vendor = () => {
                                     color: "#31B665"
                                 }
                             },
-                        }} IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                            <MenuItem ><UserDelete></UserDelete></MenuItem>
+                        }} IconComponent={BsThreeDotsVertical} labelId="">
+                           <UserDelete data={params.row}></UserDelete>
                           
                         </Select>
                     </Box>
