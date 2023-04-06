@@ -58,7 +58,7 @@ export default function Gift_Voucher() {
                                 },
                             }}
                             IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                            <MenuItem > <DeleteGift data={params.row}></DeleteGift> </MenuItem>
+                       <DeleteGift data={params.row}></DeleteGift> 
 
                         </Select>
                     </Box>

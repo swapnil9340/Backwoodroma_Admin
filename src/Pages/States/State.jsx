@@ -147,8 +147,8 @@ export default function State() {
                             },
                         }}
                         IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                            <MenuItem  > <StateEdit data={params.row} ></StateEdit></MenuItem>
-                            <MenuItem  > <StateDelete data={params.row} ></StateDelete></MenuItem>
+                            <StateEdit data={params.row} ></StateEdit>
+                            <StateDelete data={params.row} ></StateDelete>
                         </Select>
                     </Box>
                 </>

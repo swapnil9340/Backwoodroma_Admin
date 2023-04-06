@@ -140,8 +140,8 @@ export default function City() {
                                 },
                             }}
                             IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                            <MenuItem > <CityEdit data={params.row} city={totel}  ></CityEdit></MenuItem>
-                            <MenuItem  > <CityDelete data={params.row}></CityDelete></MenuItem>
+                             <CityEdit data={params.row} city={totel}  ></CityEdit>
+                          <CityDelete data={params.row}></CityDelete>
                         </Select>
                     </Box>
                 </>

@@ -87,8 +87,8 @@ export default function NewsCategory(props) {
                             },
                         }}
                         IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                            <MenuItem  > <NewsCategoryEditbox data={params.row}></NewsCategoryEditbox></MenuItem>
-                            <MenuItem  > <NewsCategoryDelete data={params.row}></NewsCategoryDelete></MenuItem>
+                           <NewsCategoryEditbox data={params.row}></NewsCategoryEditbox>
+                           <NewsCategoryDelete data={params.row}></NewsCategoryDelete>
                         </Select>
                     </Box>
                 </>

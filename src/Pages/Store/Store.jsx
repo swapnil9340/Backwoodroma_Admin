@@ -146,9 +146,9 @@ export default function Store() {
                             },
                         }}
                         IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                            <MenuItem ><StoreEdit data={params.row}></StoreEdit></MenuItem>
-                            <MenuItem  >  <StoreDelete data={params.row} ></StoreDelete></MenuItem>
-                            <MenuItem><StoreView></StoreView></MenuItem>
+                         <StoreEdit data={params.row}></StoreEdit>
+                            <StoreDelete data={params.row} ></StoreDelete>
+                           <StoreView></StoreView>
                         </Select>
                     </Box>
                 </>

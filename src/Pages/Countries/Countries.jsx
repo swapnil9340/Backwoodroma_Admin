@@ -138,8 +138,8 @@ export default function Countries() {
                                 }
                             },
                         }} IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                            <MenuItem ><CountryEdit data={params.row} ></CountryEdit></MenuItem>
-                            <MenuItem  > <DeleteCountry data={params.row}></DeleteCountry></MenuItem>
+                            <CountryEdit data={params.row} ></CountryEdit>
+                            <DeleteCountry data={params.row}></DeleteCountry>
                         </Select>
                     </Box>
                 </>

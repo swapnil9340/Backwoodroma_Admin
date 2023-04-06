@@ -76,8 +76,8 @@ export default function News() {
                             },
                         }}
                         IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                            <MenuItem  > <NewsEdit data={params.row}></NewsEdit></MenuItem>
-                            <MenuItem  > <DeleteNews data={params.row}></DeleteNews> </MenuItem>
+                         <NewsEdit data={params.row}></NewsEdit>
+                         <DeleteNews data={params.row}></DeleteNews> 
                         </Select>
                     </Box>
                 </>

@@ -83,8 +83,8 @@ export default function State() {
                         },
                     }}
                     IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                        <MenuItem><FlavoursEdit data={params.row} ></FlavoursEdit></MenuItem>
-                        <MenuItem> <FlavourDelete data={params.row}></FlavourDelete>  </MenuItem>
+                        <FlavoursEdit data={params.row} ></FlavoursEdit>
+                         <FlavourDelete data={params.row}></FlavourDelete>  
                     </Select>
                 </Box>
             </>

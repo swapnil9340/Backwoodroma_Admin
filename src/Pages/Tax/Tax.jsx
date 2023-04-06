@@ -136,8 +136,8 @@ export default function Tax() {
                             }
                         },
                     }} IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                        <MenuItem  ><TaxEdit data={params.row}></TaxEdit></MenuItem>
-                        <MenuItem  >  <TexDelete data={params.row}></TexDelete></MenuItem>
+                        <TaxEdit data={params.row}></TaxEdit>
+                  <TexDelete data={params.row}></TexDelete>
                     </Select>
                 </Box>
             </>

@@ -65,8 +65,8 @@ export default function NewsSubCategory() {
                         }}
                         
                         IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                            <MenuItem ><NewsSubCategoryEdit data={params.row} ></NewsSubCategoryEdit></MenuItem>
-                            <MenuItem  > <DeleteSubCategory data={params.row}></DeleteSubCategory> </MenuItem>
+                           <NewsSubCategoryEdit data={params.row} ></NewsSubCategoryEdit>
+                       <DeleteSubCategory data={params.row}></DeleteSubCategory> 
                         </Select>
                     </Box>
                 </>

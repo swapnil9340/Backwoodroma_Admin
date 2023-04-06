@@ -28,7 +28,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         fontSize: "1.5625rem",
         color: "#31B665"
     },
-    
+
 
 }));
 
@@ -45,7 +45,7 @@ export default function Categorypopup() {
     const [NameCategory, setNameCategory] = React.useState('');
     const [error, seterror] = React.useState()
     const [massage, setmassage] = React.useState()
-
+    const [Imgs, SetImgs] = React.useState(true)
     const handleChange = (event) => {
         setCategory(event.target.value);
     };
@@ -111,20 +111,20 @@ export default function Categorypopup() {
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
                             // width: "40%",
-                            width:{
-                             xs:"60%",
-                             sm:"60%",
-                             md:"50%",
-                             lg:"40%",
-                             xl:"40%"
+                            width: {
+                                xs: "60%",
+                                sm: "60%",
+                                md: "50%",
+                                lg: "40%",
+                                xl: "40%"
 
                             },
                             height: {
-                             xs:"50%",
-                             sm:"50%",
-                             md:"50%",
-                             lg:"50%",
-                             xl:"60%"
+                                xs: "50%",
+                                sm: "50%",
+                                md: "50%",
+                                lg: "50%",
+                                xl: "60%"
                             },
                             maxWidth: "none",
                             borderRadius: "15px",
@@ -135,7 +135,7 @@ export default function Categorypopup() {
                         },
                     },
                 }}
-                >
+            >
                 <DialogContent dividers
                     sx={{
                         "&.MuiDialogContent-root": {
@@ -146,73 +146,92 @@ export default function Categorypopup() {
                 >
                     <div className='container-fluid ' >
                         <div className='row'>
-                            
+
                             <div className='col-12' >
-                                <div className='col-12 Add_Category center' style={{marginTop:"6%"}}>
+                                <div className='col-12 Add_Category center' style={{ marginTop: "6%" }}>
                                     <div className="col "> <h2> Add Category
                                     </h2>
                                     </div>
                                 </div>
-                                <div className='' style={{marginTop:"6%"}}>
-                                <div className='col-10 top label  con'>
+                                <div className='' style={{ marginTop: "6%" }}>
+                                    <div className='col-10 top label  con'>
                                         <div className='col '>
 
-                                        <label className='label'>
-                                            <span className='required'>*</span>
-                                            Name:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-
-                                        <TextField
-                                         InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 ,height:40 } }}
-                                            placeholder='Add Category' id="outlined-basic" variant="outlined" value={NameCategory || ""}
-                                            onChange={handleName}
-                                            label={massage}
-                                            sx={{
-                                                '& .MuiOutlinedInput-root': {
-                                                    '& fieldset': {
-                                                        borderColor: error,
-                                                        height: 55,
-                                                    },
-                                                },
-                                                "& label": {
-                                                    fontSize: 13,
-                                                    color: "red",
-                                                    "&.Mui-focused": {
-                                                        marginLeft: 0,
-                                                        color: "red",
-                                                    }
-                                                }
-                                            }}
-                                          
-                                        />
-
-
-                                    </div>
-                                </div>
-                                <div className='col-10 top label  con'>
+                                            <label className='label'>
+                                                <span className='required'>*</span>
+                                                Name:
+                                            </label>
+                                        </div>
                                         <div className='col'>
 
-                                        <label className='label'>
-                                            Status:
-                                        </label>
-                                    </div>
-                                    <div className='col ' >
-                                        <Select value={Category} onChange={handleChange} displayEmpty inputProps={{ 'aria-label': 'Without label', }}
-                                            style={{minWidth: "20%", height: "5vh", fontSize: 15, }}>
+                                            <TextField
+                                                InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14, height: 40 } }}
+                                                placeholder='Add Category' id="outlined-basic" variant="outlined" value={NameCategory || ""}
+                                                onChange={handleName}
+                                                label={massage}
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        '& fieldset': {
+                                                            borderColor: error,
+                                                            height: 55,
+                                                        },
+                                                    },
+                                                    "& label": {
+                                                        fontSize: 13,
+                                                        color: "red",
+                                                        "&.Mui-focused": {
+                                                            marginLeft: 0,
+                                                            color: "red",
+                                                        }
+                                                    }
+                                                }}
 
-                                            <MenuItem value={"Active"} style={{ fontSize: 15, backgroundColor: "#A3A3A3" }}>Active</MenuItem>
-                                            <MenuItem value={"Hide"} style={{ fontSize: 15 }}>  Hide</MenuItem>
+                                            />
 
-                                        </Select>
+
+                                        </div>
                                     </div>
-                                </div>
-                                <div className='col center top' >
-                                    <button className='btn Sub_button' onClick={handlechanges}>
-                                       Add Category
-                                    </button>
-                                </div>
+                                    <div className='col-10 top label  con'>
+                                        <div className='col'>
+
+                                            <label className='label'>
+                                                Image:
+                                            </label>
+                                        </div>
+                                        <div className='col'>
+                                            <input type='file' variant="outlined" style={{ Width: "10%", fontSize: 15 }} />
+                                        </div>
+                                    </div>
+                                    <div className='col-10 top label  con center'>
+                                        <div className='col'>
+                                            {Imgs && <><img src='./image/blank_Image.webp' alt='not found'  style={{ width: "120px", height: "110px" }} />
+                                                <Button>Cancel</Button>
+                                            </>}
+                                        </div>
+
+                                    </div>
+                                    <div className='col-10 top label  con'>
+                                        <div className='col'>
+
+                                            <label className='label'>
+                                                Status:
+                                            </label>
+                                        </div>
+                                        <div className='col ' >
+                                            <Select value={Category} onChange={handleChange} displayEmpty inputProps={{ 'aria-label': 'Without label', }}
+                                                style={{ minWidth: "20%", height: "5vh", fontSize: 15, }}>
+
+                                                <MenuItem value={"Active"} style={{ fontSize: 15, backgroundColor: "#A3A3A3" }}>Active</MenuItem>
+                                                <MenuItem value={"Hide"} style={{ fontSize: 15 }}>  Hide</MenuItem>
+
+                                            </Select>
+                                        </div>
+                                    </div>
+                                    <div className='col center top' >
+                                        <button className='btn Sub_button' onClick={handlechanges}>
+                                            Add Category
+                                        </button>
+                                    </div>
                                 </div>
 
                             </div>

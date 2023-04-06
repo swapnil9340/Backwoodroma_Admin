@@ -136,8 +136,8 @@ export default function Brand() {
                                 },
                             }}
                             IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                            <MenuItem> <BrandEdit data={params.row} ></BrandEdit></MenuItem>
-                            <MenuItem> <BrandDelete data={params.row} ></BrandDelete> </MenuItem>
+                           <BrandEdit data={params.row} ></BrandEdit>
+                           <BrandDelete data={params.row} ></BrandDelete> 
                         </Select>
                     </Box>
                 </>

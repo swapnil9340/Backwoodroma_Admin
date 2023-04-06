@@ -140,8 +140,8 @@ export default function State() {
                         },
                     }}
                     IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                        <MenuItem><DiscountEdit data={params.row} ></DiscountEdit></MenuItem>
-                        <MenuItem> <DiscountDelete data={params.row}></DiscountDelete>  </MenuItem>
+                        <DiscountEdit data={params.row} ></DiscountEdit>
+                         <DiscountDelete data={params.row}></DiscountDelete>  
                     </Select>
                 </Box>
             </>

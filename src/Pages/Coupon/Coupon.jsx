@@ -59,7 +59,7 @@ export default function Coupon() {
                         },
                     }}
                     IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                        <MenuItem > <CouponDelete data={params.row}></CouponDelete> </MenuItem>
+                       <CouponDelete data={params.row}></CouponDelete>
                        
                     </Select>
                 </Box>

@@ -138,8 +138,8 @@ export default function State() {
                                 color: "#31B665"
                             }
                         },}} IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                        <MenuItem  > <NetwegihtEdit data={params.row}></NetwegihtEdit></MenuItem>
-                        <MenuItem  > <NetWetDelete data={params.row}></NetWetDelete> </MenuItem>
+                         <NetwegihtEdit data={params.row}></NetwegihtEdit>
+                         <NetWetDelete data={params.row}></NetWetDelete> 
                     </Select>
                 </Box>
             </>
