@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, {useRef, useContext } from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Axios from "axios"
@@ -35,17 +35,16 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 
 export default function Categorypopup() {
-
+    const inputRef = useRef(null);
     const { dispatch } = useContext(Createcontext)
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [open, setOpen] = React.useState(false);
     const [Category, setCategory] = React.useState('Active');
-
+    const [image, SetImage] = React.useState('');
     const [NameCategory, setNameCategory] = React.useState('');
     const [error, seterror] = React.useState()
     const [massage, setmassage] = React.useState()
-    const [Imgs, SetImgs] = React.useState(true)
     const handleChange = (event) => {
         setCategory(event.target.value);
     };
@@ -54,7 +53,15 @@ export default function Categorypopup() {
         setmassage("")
     };
 
-
+    const handleimage = (event) => {
+        SetImage(event.target.files[0])
+    };
+    const resetFileInput = () => {
+        // resetting the input value
+        inputRef.current.value = null;
+        SetImage(null)
+      };
+    
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -68,19 +75,18 @@ export default function Categorypopup() {
 
 
     const handlechanges = () => {
-
-
+        const formdata = new FormData();
+        formdata.append( "name", NameCategory);
+        formdata.append("Status", Category);
+        formdata.append('categoryImages',image );
         const config = {
             headers: { Authorization: `Bearer ${token_data}` }
         };
 
-        const data = {
-            "name": NameCategory,
-            "Status": Category
-        }
+      
         Axios.post(
             'http://52.3.255.128:8000/AdminPanel/Add-Category/',
-            data,
+            formdata,
             config
         ).then(() => {
             setOpen(false);
@@ -199,14 +205,18 @@ export default function Categorypopup() {
                                             </label>
                                         </div>
                                         <div className='col'>
-                                            <input type='file' variant="outlined" style={{ Width: "10%", fontSize: 15 }} />
+                                        <input  type="file" id="formFile" ref={inputRef} accept="image/*"  variant="outlined" style={{ Width: "10%", fontSize: 15 }}
+                                            onChange={handleimage}
+                                        />
                                         </div>
                                     </div>
                                     <div className='col-10 top label  con center'>
                                         <div className='col'>
-                                            {Imgs && <><img src='./image/blank_Image.webp' alt='not found'  style={{ width: "120px", height: "110px" }} />
-                                                <Button>Cancel</Button>
-                                            </>}
+                                        {
+                                            image && <><img src={URL.createObjectURL(image)} alt="" style={{ width: "120px", height: "110px" }} />
+                                            <Button  onClick={resetFileInput}>Cancell </Button></>
+                                            
+                                        }
                                         </div>
 
                                     </div>
