@@ -184,7 +184,7 @@ export default function ProductPopUp(props) {
 
         }).then(response => {
             SetDiscount(response.data.data)
-            SetProduct(Product => ({ ...Product, discount: response.data.data[0].id }))
+            SetProduct(Product => ({ ...Product, discount: response.data.data[0]?.id }))
 
 
         })
@@ -196,7 +196,7 @@ export default function ProductPopUp(props) {
 
         }).then(response => {
             SetTaxs(response.data.data)
-            SetProduct(Product => ({ ...Product, tax: response.data.data[0].id }))
+            SetProduct(Product => ({ ...Product, tax: response.data.data[0]?.id }))
 
         })
         Axios("http://52.3.255.128:8000/AdminPanel/ActiveStores/", {
@@ -209,7 +209,7 @@ export default function ProductPopUp(props) {
             try {
                 Setstore(response.data.data)
 
-                SetProduct(Product => ({ ...Product, Store_id: response.data.data[0].id }))
+                SetProduct(Product => ({ ...Product, Store_id: response.data.data[0]?.id }))
             } catch (error) {
                 console.trace(error)
             }
@@ -226,7 +226,7 @@ export default function ProductPopUp(props) {
         }).then(response => {
 
             SetFlavours(response.data)
-            SetProduct(Product => ({ ...Product, flavour_id: response.data[0].id }))
+            SetProduct(Product => ({ ...Product, flavour_id: response.data[0]?.id }))
 
 
         })
