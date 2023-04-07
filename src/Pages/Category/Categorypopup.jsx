@@ -118,7 +118,7 @@ export default function Categorypopup() {
                         "& .MuiPaper-root": {
                             // width: "40%",
                             width: {
-                                xs: "60%",
+                                xs: "80%",
                                 sm: "60%",
                                 md: "50%",
                                 lg: "40%",
@@ -126,12 +126,13 @@ export default function Categorypopup() {
 
                             },
                             height: {
-                                xs: "50%",
+                                xs: "80%",
                                 sm: "50%",
                                 md: "50%",
                                 lg: "50%",
                                 xl: "60%"
                             },
+                            // overflow:"scroll",
                             maxWidth: "none",
                             borderRadius: "15px",
                             overflowX: "hidden",
@@ -146,7 +147,7 @@ export default function Categorypopup() {
                     sx={{
                         "&.MuiDialogContent-root": {
                             overflowX: "hidden",
-                            overflowY: "hidden",
+                            overflowY: "scroll",
                         }
                     }}
                 >
@@ -197,8 +198,8 @@ export default function Categorypopup() {
 
                                         </div>
                                     </div>
-                                    <div className='col-10 top label  con'>
-                                        <div className='col'>
+                                    <div className='col-10 top label  con '>
+                                        <div className='col top'>
 
                                             <label className='label'>
                                                 Image:
@@ -211,7 +212,7 @@ export default function Categorypopup() {
                                         </div>
                                     </div>
                                     <div className='col-10 top label  con center'>
-                                        <div className='col'>
+                                        <div className='col mt-4'>
                                         {
                                             image && <><img src={URL.createObjectURL(image)} alt="" style={{ width: "120px", height: "110px" }} />
                                             <Button  onClick={resetFileInput}>Cancell </Button></>
@@ -221,7 +222,7 @@ export default function Categorypopup() {
 
                                     </div>
                                     <div className='col-10 top label  con'>
-                                        <div className='col'>
+                                        <div className='col top'>
 
                                             <label className='label'>
                                                 Status:
