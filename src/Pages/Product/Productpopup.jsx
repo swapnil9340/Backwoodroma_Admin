@@ -184,7 +184,7 @@ export default function ProductPopUp(props) {
 
         }).then(response => {
             SetDiscount(response.data.data)
-            SetProduct(Product => ({ ...Product, discount: response.data.data[0]?.id }))
+            SetProduct(Product => ({ ...Product, discount: response.data.data.id }))
 
 
         })
