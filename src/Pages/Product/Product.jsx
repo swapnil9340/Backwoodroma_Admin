@@ -93,8 +93,8 @@ export default function Product() {
                             },
                         }}
                         IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                            <MenuItem><EditProducts data={params.row}></EditProducts></MenuItem>
-                            <MenuItem><ProductDelete data={params.row}></ProductDelete></MenuItem>
+                            <EditProducts data={params.row}></EditProducts>
+                            <ProductDelete data={params.row}></ProductDelete>
                         </Select>
                     </Box>
                 </>
