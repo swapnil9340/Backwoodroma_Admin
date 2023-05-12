@@ -94,7 +94,7 @@ export default function DiscountEdit(props) {
             "Status": Discount.Status
         }
         Axios.post(
-            `http://52.3.255.128:8000/AdminPanel/update-Discount/${data.id}`,
+            `http://backend.sweede.net/AdminPanel/update-Discount/${data.id}`,
             data,
             config
         ).then(() => {

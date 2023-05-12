@@ -42,7 +42,7 @@ export default function Product() {
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
-        axios("http://52.3.255.128:8000/AdminPanel/Get-Product/", {
+        axios("http://backend.sweede.net/AdminPanel/Get-Product/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -57,7 +57,7 @@ export default function Product() {
     const columns = [
         // {
         //     field: 'Product_Image', headerName: 'Image',maxWidth: 150, minWidth: 80, flex: 1, editable: true, headerClassName: 'super-app-theme--header',
-        //     renderCell: (params) => <img src={"http://52.3.255.128:8000/" + params.value} alt="flavoursImage" width="35" height="30" />,
+        //     renderCell: (params) => <img src={"http://backend.sweede.net/" + params.value} alt="flavoursImage" width="35" height="30" />,
         // },
         { field: 'Product_Name', headerName: 'Name',maxWidth: 150, minWidth: 60, flex: 1, editable: true, headerClassName: 'super-app-theme--header', headerAlign: 'left', align:"left",},
         { field: 'SubCategory_name', headerName: 'Sub Category', type: 'text', editable: true,maxWidth: 150, minWidth: 70, flex: 1, headerClassName: 'super-app-theme--header',headerAlign: 'left', align:"center", },

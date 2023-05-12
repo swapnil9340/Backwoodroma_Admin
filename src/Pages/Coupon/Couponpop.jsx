@@ -78,7 +78,7 @@ export default function Couponpopup() {
       }
 
         Axios.post(
-            'http://52.3.255.128:8000/AdminPanel/CouponViewSet/',
+            'http://backend.sweede.net/AdminPanel/CouponViewSet/',
             data,
             config
         ).then(() => {

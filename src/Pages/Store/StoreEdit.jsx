@@ -87,7 +87,7 @@ export default function StoreEdit(props) {
     const token_data = cookies.get('Token_access')
     useEffect(() => {
 
-        axios("http://52.3.255.128:8000/AdminPanel/ActiveCities/", {
+        axios("http://backend.sweede.net/AdminPanel/ActiveCities/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -130,7 +130,7 @@ export default function StoreEdit(props) {
 
 
         Axios.post(
-            `http://52.3.255.128:8000/AdminPanel/update-Stores/${props.data.id}`,
+            `http://backend.sweede.net/AdminPanel/update-Stores/${props.data.id}`,
             formdata,
             config
         ).then(() => {
@@ -327,7 +327,7 @@ export default function StoreEdit(props) {
                                                 : 
                                                 
                                                <>
-                                                <img src={"http://52.3.255.128:8000/" + (Store.Store_Image)} alt="" style={{ width: "120px", height: "110px" }} />
+                                                <img src={"http://backend.sweede.net/" + (Store.Store_Image)} alt="" style={{ width: "120px", height: "110px" }} />
                                                 <Button name="Store_Image" value="" color='success' onClick={handleChange} >Cancell </Button>
                                                </>
                                             }

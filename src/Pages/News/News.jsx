@@ -21,7 +21,7 @@ export default function News() {
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
-        axios("http://52.3.255.128:8000/AdminPanel/Get-News/", {
+        axios("http://backend.sweede.net/AdminPanel/Get-News/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -37,7 +37,7 @@ export default function News() {
     const columns = [
         // {
         //     field: 'Image', headerName: 'Post Image', editable: false, headerClassName: 'super-app-theme--header',maxWidth: 150, minWidth: 80, flex: 1,
-        //     renderCell: (params) => <img src={"http://52.3.255.128:8000/" + params.value} alt="Alt_Text" width="35" height="30" />,
+        //     renderCell: (params) => <img src={"http://backend.sweede.net/" + params.value} alt="Alt_Text" width="35" height="30" />,
         // },
         { field: 'Title', headerName: 'Post Title', editable: false, headerClassName: 'super-app-theme--header',maxWidth: 150, minWidth: 80, flex: 1,},
 

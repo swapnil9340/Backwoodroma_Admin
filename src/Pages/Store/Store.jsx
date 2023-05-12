@@ -36,7 +36,7 @@ export default function Store() {
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
-        axios("http://52.3.255.128:8000/AdminPanel/Get-Stores/", {
+        axios("http://backend.sweede.net/AdminPanel/Get-Stores/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -70,7 +70,7 @@ export default function Store() {
 
 
         axios.post(
-            `http://52.3.255.128:8000/AdminPanel/update-Stores/${params.row.id}`,
+            `http://backend.sweede.net/AdminPanel/update-Stores/${params.row.id}`,
             formdata,
             config
         ).then(() => {
@@ -82,7 +82,7 @@ export default function Store() {
     const columns = [
         // {
         //     field: 'Store_Image', headerName: 'Store Image', editable: true, headerClassName: 'super-app-theme--header', width: 110,
-        //     renderCell: (params) => <img src={"http://52.3.255.128:8000/" + params.value} alt="flavoursImage" width="35" height="30" />,
+        //     renderCell: (params) => <img src={"http://backend.sweede.net/" + params.value} alt="flavoursImage" width="35" height="30" />,
         // },
         { field: 'Store_Name', headerName: 'Name', editable: true,maxWidth: 150, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header' },
         { field: 'Store_Type', headerName: 'Store Type', editable: true,maxWidth: 150, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header' },

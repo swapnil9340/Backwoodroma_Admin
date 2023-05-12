@@ -31,7 +31,7 @@ export default function GiftDelete(props) {
   
   const Delete = () => {
     const id = props.data.id
-       axios.delete(`http://52.3.255.128:8000/AdminPanel/DeleteGiftvoucher/${id}`, {
+       axios.delete(`http://backend.sweede.net/AdminPanel/DeleteGiftvoucher/${id}`, {
 
            headers: {
                'Authorization': `Bearer ${token_data}`

@@ -31,7 +31,7 @@ export default function BrandDelete (props) {
   };
 
   const Delete = () => {
-       axios.delete(`http://52.3.255.128:8000/AdminPanel/delete-Brand/${props.data.id}`, {
+       axios.delete(`http://backend.sweede.net/AdminPanel/delete-Brand/${props.data.id}`, {
 
            headers: {
                'Authorization': `Bearer ${token_data}`

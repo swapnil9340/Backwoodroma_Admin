@@ -14,7 +14,7 @@ export default function ProductCategory({ Product, SetProduct }) {
     const handleCheckboxChange = (event) => {
       
         setSelectedValue(parseInt(event.target.value));
-        axios(`http://52.3.255.128:8000/AdminPanel/FilterbyCategory/${event.target.value}`, {
+        axios(`http://backend.sweede.net/AdminPanel/FilterbyCategory/${event.target.value}`, {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -44,7 +44,7 @@ export default function ProductCategory({ Product, SetProduct }) {
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     React.useEffect(() => {
-        axios("http://52.3.255.128:8000/AdminPanel/ActiveCategory/", {
+        axios("http://backend.sweede.net/AdminPanel/ActiveCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`

@@ -22,7 +22,7 @@ export default function Brand() {
     const [totel, setTotal] = React.useState([])
 
     React.useEffect(() => {
-        axios("http://52.3.255.128:8000/AdminPanel/Get-Brand/", {
+        axios("http://backend.sweede.net/AdminPanel/Get-Brand/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -51,7 +51,7 @@ export default function Brand() {
             headers: { Authorization: `Bearer ${token_data}` }
         };
         axios.post(
-            `http://52.3.255.128:8000/AdminPanel/update-Brand/${params.row.id}`,
+            `http://backend.sweede.net/AdminPanel/update-Brand/${params.row.id}`,
             formdata,
             config
         ).then(() => {
@@ -67,7 +67,7 @@ export default function Brand() {
     const columns = [
         {
             field: 'Brand_Logo', headerName: 'Logo', editable: true, headerClassName: 'super-app-theme--header', maxWidth: 150, minWidth: 80, flex: 1,
-            renderCell: (params) => <img src={"http://52.3.255.128:8000/" + params.value} alt="flavoursImage" width="35" height="30" />,
+            renderCell: (params) => <img src={"http://backend.sweede.net/" + params.value} alt="flavoursImage" width="35" height="30" />,
         },
         { field: 'name', headerName: 'Name', editable: true, headerClassName: 'super-app-theme--header', maxWidth: 150, minWidth: 80, flex: 1, },
         {

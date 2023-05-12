@@ -40,7 +40,7 @@ export default function State() {
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     React.useEffect(() => {
-        axios("http://52.3.255.128:8000/AdminPanel/Get-States/", {
+        axios("http://backend.sweede.net/AdminPanel/Get-States/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -60,7 +60,7 @@ export default function State() {
             " country_name": params.row.CountryName,
             "Status": params.row.Status === "Active" ? "Hide" : "Active"
         }
-        axios.post(`http://52.3.255.128:8000/AdminPanel/update-States/${params.row.id}`, form, {
+        axios.post(`http://backend.sweede.net/AdminPanel/update-States/${params.row.id}`, form, {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`

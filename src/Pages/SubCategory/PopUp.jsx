@@ -38,7 +38,7 @@ export default function PopUp() {
 
     const { dispatch } = useContext(Createcontext)
     const [open, setOpen] = React.useState(false);
-    const [image, SetImage] = React.useState('');
+    const [image, SetImage] = React.useState();
     const [SubCategory, setSubCategory] = React.useState([]);
     const [Category, setCategory] = React.useState([]);
     const [Status, setStatus] = React.useState('Active');
@@ -46,12 +46,14 @@ export default function PopUp() {
     const [error, seterror] = React.useState('')
     const [massage, setmassage] = React.useState()
     const handleimage = (event) => {
+        console.log(event.target.files[0])
         SetImage(event.target.files[0])
     };
     const handleStatus = (event) => {
         setStatus(event.target.value);
     };
     const handleChange = (event) => {
+       
         setCategory(event.target.value);
 
 
@@ -81,7 +83,7 @@ export default function PopUp() {
         const cookies = new Cookies();
         const token_data = cookies.get('Token_access')
 
-        axios("http://52.3.255.128:8000/AdminPanel/ActiveCategory/", {
+        axios("http://backend.sweede.net/AdminPanel/ActiveCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -104,15 +106,15 @@ export default function PopUp() {
         const config = {
             headers: { Authorization: `Bearer ${token_data}` }
         };
-
-        const data = {
-            "name": NameCategory,
-            "category_id": Category,
-            "Status": Status
-        }
+        const formdata = new FormData();
+        formdata.append( "name", NameCategory);
+        formdata.append("category_id", Category);
+        formdata.append('Status',Status );
+        formdata.append('SubCategoryImage',image );
+ 
         Axios.post(
-            'http://52.3.255.128:8000/AdminPanel/Add-SubCategory/',
-            data,
+            'http://backend.sweede.net/AdminPanel/Add-SubCategory/',
+            formdata,
             config
         ).then(() => {
             setOpen(false);
@@ -126,7 +128,7 @@ export default function PopUp() {
             }
         )
     };
-
+console.log(image)
     return (
         <div>
             <Button size='large' variant="outlined" onClick={handleClickOpen}>

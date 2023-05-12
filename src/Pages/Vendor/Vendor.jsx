@@ -46,7 +46,7 @@ const Vendor = () => {
     const token_data = cookies.get('Token_access')
     React.useEffect(() => {
 
-        axios("http://52.3.255.128:8000/AdminPanel/GetAllUsers/", {
+        axios("http://backend.sweede.net/AdminPanel/GetAllUsers/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -190,7 +190,7 @@ const Vendor = () => {
             "name": params.row.name,
             "status": params.row.status === "Active" ? "Hide" : "Active"
         }
-        axios.post(`http://52.3.255.128:8000/AdminPanel/UpdateProfileForVendor/${params.row.id}`, form, {
+        axios.post(`http://backend.sweede.net/AdminPanel/UpdateProfileForVendor/${params.row.id}`, form, {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`

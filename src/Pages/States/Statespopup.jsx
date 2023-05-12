@@ -72,7 +72,7 @@ export default function StatePopUp() {
 
 
     React.useEffect(() => {
-        axios("http://52.3.255.128:8000/AdminPanel/Get-Country", {
+        axios("http://backend.sweede.net/AdminPanel/Get-Country", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -104,7 +104,7 @@ export default function StatePopUp() {
            "Status":Status
            }
         Axios.post( 
-          'http://52.3.255.128:8000/AdminPanel/Add-States/',
+          'http://backend.sweede.net/AdminPanel/Add-States/',
           data,
           config
         ).then(()=>{

@@ -85,7 +85,7 @@ export default function Categorypopup() {
 
       
         Axios.post(
-            'http://52.3.255.128:8000/AdminPanel/Add-Category/',
+            'http://backend.sweede.net/AdminPanel/Add-Category/',
             formdata,
             config
         ).then(() => {

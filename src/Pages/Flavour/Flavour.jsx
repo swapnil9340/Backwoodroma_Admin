@@ -36,7 +36,7 @@ export default function State() {
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
-        axios("http://52.3.255.128:8000/AdminPanel/Get-Flavours/", {
+        axios("http://backend.sweede.net/AdminPanel/Get-Flavours/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -51,7 +51,7 @@ export default function State() {
     const columns = [
         {
             field: 'FlavoursImage', headerName: 'Flavours Image',maxWidth: 150, minWidth: 80, flex: 1, type: 'text', editable: true,
-            renderCell: (params) => <img src={"http://52.3.255.128:8000/" + params.value} alt="flavoursImage" width="35" height="30" />,
+            renderCell: (params) => <img src={"http://backend.sweede.net/" + params.value} alt="flavoursImage" width="35" height="30" />,
             headerClassName: 'super-app-theme--header'
         },
         { field: 'flavour_Name', headerName: 'flavour Name',maxWidth: 150, minWidth: 80, flex: 1, editable: true, headerClassName: 'super-app-theme--header' },
