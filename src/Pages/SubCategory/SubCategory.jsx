@@ -9,7 +9,6 @@ import axios from "axios";
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { useSnackbar } from 'notistack';
 import { AiFillEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import SubCategoryEdit from "./SubCategoryEdit"
 import Createcontext from "../../Hooks/Context/Context"
@@ -143,8 +142,8 @@ export default function SubCategory() {
                                 }
                             },
                         }} IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                            <MenuItem ><SubCategoryEdit data={params.row} ></SubCategoryEdit></MenuItem>
-                            <MenuItem  > <SubCategoryDelete data={params.row}></SubCategoryDelete></MenuItem>
+                            <SubCategoryEdit data={params.row} ></SubCategoryEdit>
+                      <SubCategoryDelete data={params.row}></SubCategoryDelete>
                         </Select>
                     </Box>
                 </>

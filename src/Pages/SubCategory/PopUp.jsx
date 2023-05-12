@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext ,useRef} from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
@@ -34,14 +34,20 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 
 export default function PopUp() {
+    const inputRef = useRef(null);
+
     const { dispatch } = useContext(Createcontext)
     const [open, setOpen] = React.useState(false);
+    const [image, SetImage] = React.useState('');
     const [SubCategory, setSubCategory] = React.useState([]);
     const [Category, setCategory] = React.useState([]);
     const [Status, setStatus] = React.useState('Active');
     const [NameCategory, setNameCategory] = React.useState([]);
     const [error, seterror] = React.useState('')
     const [massage, setmassage] = React.useState()
+    const handleimage = (event) => {
+        SetImage(event.target.files[0])
+    };
     const handleStatus = (event) => {
         setStatus(event.target.value);
     };
@@ -50,6 +56,11 @@ export default function PopUp() {
 
 
     };
+    const resetFileInput = () => {
+        // resetting the input value
+        inputRef.current.value = null;
+        SetImage(null)
+      };
     const handleName = (event) => {
         setNameCategory(event.target.value.toUpperCase());
         setmassage("")
@@ -131,16 +142,16 @@ export default function PopUp() {
                             // width: "50%",
                             // height: "65%",
                             width: {
-                                xs: "60%",
-                                sm: "60%",
+                                xs: "80%",
+                                sm: "70%",
                                 md: "50%",
                                 lg: "40%",
                                 xl: "40%"
 
                             },
                             height: {
-                                xs: "55%",
-                                sm: "55%",
+                                xs: "80%",
+                                sm: "50%",
                                 md: "50%",
                                 lg: "50%",
                                 xl: "60%"
@@ -158,7 +169,7 @@ export default function PopUp() {
                 <DialogContent sx={{
                     "&.MuiDialogContent-root": {
                         overflowX: "hidden",
-                        overflowY: "hidden",
+                        overflowY: "scroll",
                     }
                 }} dividers>
                     <div className='container-fluid '>
@@ -203,6 +214,29 @@ export default function PopUp() {
                                                 }}
                                             />
                                         </div>
+                                    </div>
+                                    <div className='col-10 top label  con '>
+                                        <div className='col top'>
+
+                                            <label className='label'>
+                                                Image:
+                                            </label>
+                                        </div>
+                                        <div className='col'>
+                                        <input  type="file" id="formFile" ref={inputRef} accept="image/*"  variant="outlined" style={{ Width: "10%", fontSize: 15 }}
+                                            onChange={handleimage}
+                                        />
+                                        </div>
+                                    </div>
+                                    <div className='col-10 top label  con center'>
+                                        <div className='col mt-4'>
+                                        {
+                                            image && <><img src={URL.createObjectURL(image)} alt="" style={{ width: "120px", height: "110px" }} />
+                                            <Button  onClick={resetFileInput}>Cancell </Button></>
+                                            
+                                        }
+                                        </div>
+
                                     </div>
                                     <div className='col-10 top label  con'>
                                         <div className='col'>
