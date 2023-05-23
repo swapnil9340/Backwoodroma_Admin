@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext  , useRef} from 'react';
 import Button from '@mui/material/Button';
 import axios from "axios"
 import Cookies from 'universal-cookie';
@@ -31,6 +31,9 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 export default function CategEditbox(props) {
+  
+    const inputRef = useRef(null);
+    const [image, SetImage] = React.useState('');
     const { dispatch } = useContext(Createcontext)
     const { enqueueSnackbar } = useSnackbar();
     const cookies = new Cookies();
@@ -44,7 +47,15 @@ export default function CategEditbox(props) {
         Status: props.data.Status
     });
 
-
+    const handleimage = (event) => {
+        SetImage(event.target.files[0])
+    };
+    const resetFileInput = () => {
+        // resetting the input value
+        inputRef.current.value = null;
+        SetImage(null)
+      };
+    
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -175,6 +186,33 @@ export default function CategEditbox(props) {
                                         />
                                     </div>
                                 </div>
+                                <div className='col-10 top label  con '>
+                                        <div className='col top'>
+
+                                            <label className='label'>
+                                                Image:
+                                            </label>
+                                        </div>
+                                        <div className='col'>
+                                        <input  type="file" id="formFile" ref={inputRef} accept="image/*"  variant="outlined" style={{ Width: "10%", fontSize: 15 }}
+                                            onChange={handleimage}
+                                        />
+                                        </div>
+                                    </div>
+                                    <div className='col-10 top label  con center'>
+                                        <div className='col mt-4'>
+                                        {
+                                            image ? <> <img src={URL.createObjectURL(image)} alt="" style={{ width: "120px", height: "110px" }} />
+                                                <Button  onClick={resetFileInput} color='success' >Cancel </Button></>
+                                                :
+                                                <>
+                                                    <img src={"http://backend.sweede.net/" + props.data.categoryImages} alt="" style={{ width: "120px", height: "110px" }} />
+                                                    <Button  name="FlavoursImage" value="" color='success'onClick={resetFileInput} >Cancel </Button>
+                                                </>
+                                        }
+                                        </div>
+
+                                    </div>
                                 <div className='col-10 top label  con'>
                                     <div className='col'>
                                         <label className='label'>

@@ -46,7 +46,6 @@ export default function PopUp() {
     const [error, seterror] = React.useState('')
     const [massage, setmassage] = React.useState()
     const handleimage = (event) => {
-        console.log(event.target.files[0])
         SetImage(event.target.files[0])
     };
     const handleStatus = (event) => {
@@ -128,7 +127,6 @@ export default function PopUp() {
             }
         )
     };
-console.log(image)
     return (
         <div>
             <Button size='large' variant="outlined" onClick={handleClickOpen}>

@@ -1,4 +1,4 @@
-import React, { useEffect,useContext } from 'react';
+import React, { useEffect,useContext , useRef } from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
@@ -36,6 +36,8 @@ function BootstrapDialogTitle(props) {
 
 }
 export default function SubCategoryEdit(props) {
+    const inputRef = useRef(null);
+    const [image, SetImage] = React.useState();
     const { enqueueSnackbar } = useSnackbar();
     const { dispatch } = useContext(Createcontext)
     const [open, setOpen] = React.useState(false);
@@ -67,6 +69,14 @@ export default function SubCategoryEdit(props) {
         seterror("")
       
     };
+    const handleimage = (event) => {
+        SetImage(event.target.files[0])
+    };
+    const resetFileInput = () => {
+        // resetting the input value
+        inputRef.current.value = null;
+        SetImage(null)
+      };
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     useEffect(() => {
@@ -224,6 +234,33 @@ export default function SubCategoryEdit(props) {
                                     </Select>
                                     </div>
                                 </div>
+                                <div className='col-10 top label  con '>
+                                        <div className='col top'>
+
+                                            <label className='label'>
+                                                Image:
+                                            </label>
+                                        </div>
+                                        <div className='col'>
+                                        <input  type="file" id="formFile" ref={inputRef} accept="image/*"  variant="outlined" style={{ Width: "10%", fontSize: 15 }}
+                                            onChange={handleimage}
+                                        />
+                                        </div>
+                                    </div>
+                                    <div className='col-10 top label  con center'>
+                                        <div className='col mt-4'>
+                                        {
+                                            image ? <> <img src={URL.createObjectURL(image)} alt="" style={{ width: "120px", height: "110px" }} />
+                                                <Button  onClick={resetFileInput} color='success' >Cancel </Button></>
+                                                :
+                                                <>
+                                                    <img src={"http://backend.sweede.net/" + props.data.SubCategoryImage} alt="" style={{ width: "120px", height: "110px" }} />
+                                                    <Button  name="FlavoursImage" value="" color='success'onClick={resetFileInput} >Cancel </Button>
+                                                </>
+                                        }
+                                        </div>
+
+                                    </div>
                                 <div className='col-12 top label  con'>
                                     <div className='col'>
                                         <label className='label'>
