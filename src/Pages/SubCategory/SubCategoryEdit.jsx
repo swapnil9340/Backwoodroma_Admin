@@ -48,11 +48,13 @@ export default function SubCategoryEdit(props) {
         Category_id: props.data.category_id,
         name: props.data.name,
         categoryName: props.data.category_name,
-        Status: props.data.Status
+        Status: props.data.Status,
+        SubCategoryImage: props.data.SubCategoryImage
     });
     const [Category, setCategory] = React.useState([]);
 
     const handleChange = (event) => {
+        console.log(event.target.name)
         const value = event.target.value;
         setSubCategory({
             ...SubCategory,
@@ -98,16 +100,16 @@ export default function SubCategoryEdit(props) {
         const config = {
             headers: { Authorization: `Bearer ${token_data}` }
         };
-
-        const data = {
-            "id" : SubCategory.id,
-            "name": SubCategory.name.toUpperCase(),
-            "category_id": SubCategory.Category_id,
-            "Status": SubCategory.Status
-        }
+        const formdata = new FormData();
+     
+        formdata.append("id",SubCategory.id);
+        formdata.append("name",  SubCategory.name.toUpperCase());
+        formdata.append("category_id", SubCategory.Category_id);
+        formdata.append("Status",SubCategory.Status);
+        image ? formdata.append('SubCategoryImage',image)  :  SubCategory.SubCategoryImage ==="" &&  formdata.append('SubCategoryImage',SubCategory.SubCategoryImage)
         Axios.post(
-            `http://backend.sweede.net/AdminPanel/update-SubCategory/${data.id}`,
-            data,
+            `http://backend.sweede.net/AdminPanel/update-SubCategory/${SubCategory.id}`,
+            formdata,
             config
         ).then(() => {
             setOpen(false);
@@ -254,8 +256,8 @@ export default function SubCategoryEdit(props) {
                                                 <Button  onClick={resetFileInput} color='success' >Cancel </Button></>
                                                 :
                                                 <>
-                                                    <img src={"http://backend.sweede.net/" + props.data.SubCategoryImage} alt="" style={{ width: "120px", height: "110px" }} />
-                                                    <Button  name="FlavoursImage" value="" color='success'onClick={resetFileInput} >Cancel </Button>
+                                                    <img src={"http://backend.sweede.net/" +SubCategory.SubCategoryImage} alt="" style={{ width: "120px", height: "110px" }} />
+                                                    <Button  name="SubCategoryImage" value="" color='success'onClick={handleChange} >Cancel </Button>
                                                 </>
                                         }
                                         </div>

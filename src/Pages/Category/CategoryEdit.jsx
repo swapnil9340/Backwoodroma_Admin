@@ -44,7 +44,10 @@ export default function CategEditbox(props) {
     const [data, setdata] = React.useState({
         id: props.data.id,
         Category: props.data.name,
-        Status: props.data.Status
+        Status: props.data.Status,
+        categoryImages:props.data.categoryImages
+
+
     });
 
     const handleimage = (event) => {
@@ -67,6 +70,8 @@ export default function CategEditbox(props) {
 
     };
     const handlechanges = (event) => {
+
+        console.log(event.target.value , event.target.name)
         const value = event.target.value;
         setdata({
             ...data,
@@ -78,11 +83,17 @@ export default function CategEditbox(props) {
 
 
     function SubmitEditData() {
-        const form = {
-            "name": data.Category,
-            "Status": data.Status
-        }
-        axios.post(`http://backend.sweede.net/AdminPanel/update-Category/${data.id}`, form, {
+        // const form = {
+        //     "name": data.Category,
+        //     "Status": data.Status
+        // }
+        const formdata = new FormData();
+        formdata.append("name", data.Category.toUpperCase());
+        formdata.append("Status",data.Status);
+        image ? formdata.append('categoryImages',image)  :  data.categoryImages ==="" &&  formdata.append('categoryImages',data.categoryImages)
+
+
+        axios.post(`http://backend.sweede.net/AdminPanel/update-Category/${data.id}`, formdata, {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -206,8 +217,8 @@ export default function CategEditbox(props) {
                                                 <Button  onClick={resetFileInput} color='success' >Cancel </Button></>
                                                 :
                                                 <>
-                                                    <img src={"http://backend.sweede.net/" + props.data.categoryImages} alt="" style={{ width: "120px", height: "110px" }} />
-                                                    <Button  name="FlavoursImage" value="" color='success'onClick={resetFileInput} >Cancel </Button>
+                                                    <img src={"http://backend.sweede.net/" + data.categoryImages} alt="" style={{ width: "120px", height: "110px" }} />
+                                                    <Button  name="categoryImages" value={null} color='success'onClick={handlechanges} >Cancel </Button>
                                                 </>
                                         }
                                         </div>

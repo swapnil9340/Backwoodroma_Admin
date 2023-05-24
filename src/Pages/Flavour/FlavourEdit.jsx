@@ -82,7 +82,6 @@ export default function FlavoursEdit(props) {
 
     const formdata = new FormData();
     image ? formdata.append('FlavoursImage',image)  :  Flavour.FlavoursImage ==="" &&  formdata.append('FlavoursImage',Flavour.FlavoursImage)
-
     formdata.append("flavour_Name", Flavour.flavour_Name);
     formdata.append("Price", Flavour.Price);
 
