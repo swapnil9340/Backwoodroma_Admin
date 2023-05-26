@@ -71,7 +71,7 @@ export default function CategEditbox(props) {
     };
     const handlechanges = (event) => {
 
-        console.log(event.target.value , event.target.name)
+        
         const value = event.target.value;
         setdata({
             ...data,
@@ -90,7 +90,7 @@ export default function CategEditbox(props) {
         const formdata = new FormData();
         formdata.append("name", data.Category.toUpperCase());
         formdata.append("Status",data.Status);
-        image ? formdata.append('categoryImages',image)  :  data.categoryImages ==="" &&  formdata.append('categoryImages',data.categoryImages)
+         image ? formdata.append('categoryImages',image)  :  data.categoryImages ==='' &&  formdata.append('categoryImages',data.categoryImages)
 
 
         axios.post(`http://backend.sweede.net/AdminPanel/update-Category/${data.id}`, formdata, {
@@ -218,7 +218,7 @@ export default function CategEditbox(props) {
                                                 :
                                                 <>
                                                     <img src={"http://backend.sweede.net/" + data.categoryImages} alt="" style={{ width: "120px", height: "110px" }} />
-                                                    <Button  name="categoryImages" value={null} color='success'onClick={handlechanges} >Cancel </Button>
+                                                    <Button  name="categoryImages" value='' color='success'onClick={handlechanges} >Cancel </Button>
                                                 </>
                                         }
                                         </div>

@@ -84,8 +84,8 @@ export default function Store() {
         //     field: 'Store_Image', headerName: 'Store Image', editable: true, headerClassName: 'super-app-theme--header', width: 110,
         //     renderCell: (params) => <img src={"http://backend.sweede.net/" + params.value} alt="flavoursImage" width="35" height="30" />,
         // },
-        { field: 'Store_Name', headerName: 'Name', editable: true,maxWidth: 150, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'Store_Type', headerName: 'Store Type', editable: true,maxWidth: 150, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'Store_Name', headerName: 'Name', editable: true, maxWidth: 150, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'Store_Type', headerName: 'Store Type', editable: true, maxWidth: 150, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header' },
         // { field: 'Store_Address', headerName: 'Store Address', editable: true, headerClassName: 'super-app-theme--header', width: 150 },
         // {
         //     field: 'Stores_Description', headerName: 'Stores Description', editable: true, width: 180, headerClassName: 'super-app-theme--header',
@@ -102,14 +102,14 @@ export default function Store() {
                     return (
                         <Tooltip title="Active" enterDelay={300} leaveDelay={200} arrow placement="right-start">
 
-                        <p
-                            style={{ color: "#31B665 ", fontSize: 25, cursor: "pointer" }}
-                            variant="contained"
-                            color="primary"
-                            onClick={() => {
-                                Submit(params);
-                            }}
-                        ><AiFillEye /> </p>
+                            <p
+                                style={{ color: "#31B665 ", fontSize: 25, cursor: "pointer" }}
+                                variant="contained"
+                                color="primary"
+                                onClick={() => {
+                                    Submit(params);
+                                }}
+                            ><AiFillEye /> </p>
                         </Tooltip>
 
                     )
@@ -117,38 +117,38 @@ export default function Store() {
                 return (
                     <Tooltip title="Hide" enterDelay={300} leaveDelay={200} arrow placement="right-start">
 
-                    <p
-                        style={{ color: "red ", fontSize: 25, cursor: "pointer" }}
-                        variant="contained"
-                        color="primary"
-                        onClick={() => {
-                            Submit(params);
-                        }}
-                    ><AiOutlineEyeInvisible /></p>
+                        <p
+                            style={{ color: "red ", fontSize: 25, cursor: "pointer" }}
+                            variant="contained"
+                            color="primary"
+                            onClick={() => {
+                                Submit(params);
+                            }}
+                        ><AiOutlineEyeInvisible /></p>
                     </Tooltip>
 
                 )
             }
         },
         {
-            field: 'Edit', headerName: 'Edit', editable: true,maxWidth: 150, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',
+            field: 'Edit', headerName: 'Edit', editable: true, maxWidth: 150, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',
             renderCell: (params) => (
                 <>
                     <Box >
                         <Select
-                        sx={{
-                            boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
-                            "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
-                            "&:hover": {
-                                ".MuiSelect-icon": {
-                                    color: "#31B665"
-                                }
-                            },
-                        }}
-                        IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                         <StoreEdit data={params.row}></StoreEdit>
+                            sx={{
+                                boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
+                                "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
+                                "&:hover": {
+                                    ".MuiSelect-icon": {
+                                        color: "#31B665"
+                                    }
+                                },
+                            }}
+                            IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
+                            <StoreEdit data={params.row}></StoreEdit>
                             <StoreDelete data={params.row} ></StoreDelete>
-                           <StoreView></StoreView>
+                            <StoreView></StoreView>
                         </Select>
                     </Box>
                 </>
@@ -181,7 +181,7 @@ export default function Store() {
             <div className='container-fluid'>
                 <div className='row'>
                     <div className='col-10  category_main_row' >
-                        
+
 
                         <div className='col-12 Add_Category margin_top m-2 mt-5 mb-5'>
                             <div className="col"> <h2>Store
@@ -203,7 +203,7 @@ export default function Store() {
                                 color: '#FFFFFF',
                                 display: "flex",
                             },
-                            
+
                             "@media(max-width:767px)": {
                                 '& .MuiButton-root': {
                                     display: "contents",
@@ -233,44 +233,44 @@ export default function Store() {
                                     width: "120px"
                                 }
                             }
-                           
+
                         }}>
 
                             <div className='col-12' >
                                 <Box>
-                                <ThemeProvider theme={CustomFontTheme}>
-                                    <div style={{ height: 500, width: '100%', }}>
-                                        <DataGrid rows={rows} columns={columns} components={{ Toolbar: GridToolbar }} checkboxSelection
-                                        sx={{
-                                            ".MuiDataGrid-toolbarContainer": {
-                                                backgroundColor: "#31B665"
-                                            },
-                                            "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                                outline: "none ",
-                                            },
-                                            "@media(max-width:768px)": {
-                                                ".MuiDataGrid-toolbarContainer": {
-                                                    gap: "10px",
+                                    <ThemeProvider theme={CustomFontTheme}>
+                                        <div style={{ height: 500, width: '100%', }}>
+                                            <DataGrid rows={rows} columns={columns} components={{ Toolbar: GridToolbar }} checkboxSelection
+                                                sx={{
+                                                    ".MuiDataGrid-toolbarContainer": {
+                                                        backgroundColor: "#31B665"
+                                                    },
+                                                    "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
+                                                        outline: "none ",
+                                                    },
+                                                    "@media(max-width:768px)": {
+                                                        ".MuiDataGrid-toolbarContainer": {
+                                                            gap: "10px",
 
-                                                }
-                                            },
-                                            "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                                                visibility: "hidden"
-                                            },
-                                            "@media(max-width:546px)": {
-                                                ".MuiDataGrid-toolbarContainer": {
-                                                    gap: "5px",
+                                                        }
+                                                    },
+                                                    "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
+                                                        visibility: "hidden"
+                                                    },
+                                                    "@media(max-width:546px)": {
+                                                        ".MuiDataGrid-toolbarContainer": {
+                                                            gap: "5px",
 
-                                                }
-                                            },
-                                            "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
-                                                backgroundColor: "#FFFFFF"
-                                            },
-                                        }}
-                                        
-                                        />
-                                    </div>
-                                </ThemeProvider>
+                                                        }
+                                                    },
+                                                    "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
+                                                        backgroundColor: "#FFFFFF"
+                                                    },
+                                                }}
+
+                                            />
+                                        </div>
+                                    </ThemeProvider>
                                 </Box>
                             </div>
 

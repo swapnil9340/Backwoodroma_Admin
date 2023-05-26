@@ -70,6 +70,7 @@ export default function StoreEdit(props) {
         setConvertedContent(html);
 
     }, [editorState]);
+
     const handleChange = (event) => {
         const value = event.target.value;
         setStore({

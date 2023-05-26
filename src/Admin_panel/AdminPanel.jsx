@@ -6,7 +6,6 @@ import StatusBarCard from './StatusBarCard'
 import TotalUserLineChart from './TotalUserLineChart'
 
 export default function AdminPanel() {
-  console.log(process.env.REACT_APP_MY_ENV_VARIABLE )
   return (
     <div className='container-fluid'>
       <div className='row'>
