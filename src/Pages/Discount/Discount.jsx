@@ -40,7 +40,7 @@ export default function State() {
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
-        axios("https://sweede.app/AdminPanel/register/Get-Discount/", {
+        axios("https://sweede.app/AdminPanel/Get-Discount/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -65,7 +65,7 @@ export default function State() {
             "Status": params.row.Status === "Active" ? "Hide" : "Active"
         }
         axios.post(
-            `https://sweede.app/AdminPanel/register/update-Discount/${params.row.id}`,
+            `https://sweede.app/AdminPanel/update-Discount/${params.row.id}`,
             data,
             config
         ).then(() => {

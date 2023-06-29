@@ -74,7 +74,7 @@ export default function CountriesPopUp() {
            "Status":Status
            }
         Axios.post( 
-          'https://sweede.app/AdminPanel/register/Add-Country/',
+          'https://sweede.app/AdminPanel/Add-Country/',
           data,
           config
         ).then(()=>{

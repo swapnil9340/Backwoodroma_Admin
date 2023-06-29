@@ -7,7 +7,7 @@ export default function StatusBarCard() {
     const token_data = cookies.get('Token_access')
     const [totel , setTotal] = useState([])
     useEffect(() => {
-        axios("https://sweede.app/AdminPanel/register/Get-TotalCount/" ,{
+        axios("https://sweede.app/AdminPanel/Get-TotalCount/" ,{
             
         headers: {
             'Authorization': `Bearer ${token_data}`

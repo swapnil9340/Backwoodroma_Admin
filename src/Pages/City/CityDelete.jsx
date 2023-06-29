@@ -31,7 +31,7 @@ export default function CityDelete(props) {
   
   const Delete = () => {
     const id = props.data.id
-       axios.delete(`https://sweede.app/AdminPanel/register/delete-Cities/${id}`, {
+       axios.delete(`https://sweede.app/AdminPanel/delete-Cities/${id}`, {
 
            headers: {
                'Authorization': `Bearer ${token_data}`

@@ -95,7 +95,7 @@ export default function NetwegihtEdit(props) {
             "Status": netWegiht.Status
         }
         Axios.post(
-            `https://sweede.app/AdminPanel/register/update-NetWeight/${props.data.id}`,
+            `https://sweede.app/AdminPanel/update-NetWeight/${props.data.id}`,
             data,
             config
         ).then(() => {

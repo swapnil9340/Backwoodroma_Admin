@@ -82,7 +82,7 @@ export default function PopUp() {
         const cookies = new Cookies();
         const token_data = cookies.get('Token_access')
 
-        axios("https://sweede.app/AdminPanel/register/ActiveCategory/", {
+        axios("https://sweede.app/AdminPanel/ActiveCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -112,7 +112,7 @@ export default function PopUp() {
         formdata.append('SubCategoryImage',image );
  
         Axios.post(
-            'https://sweede.app/AdminPanel/register/Add-SubCategory/',
+            'https://sweede.app/AdminPanel/Add-SubCategory/',
             formdata,
             config
         ).then(() => {

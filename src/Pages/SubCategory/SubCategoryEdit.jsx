@@ -82,7 +82,7 @@ export default function SubCategoryEdit(props) {
     const token_data = cookies.get('Token_access')
     useEffect(() => {
 
-        axios("https://sweede.app/AdminPanel/register/ActiveCategory/", {
+        axios("https://sweede.app/AdminPanel/ActiveCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -107,7 +107,7 @@ export default function SubCategoryEdit(props) {
         formdata.append("Status",SubCategory.Status);
         image ? formdata.append('SubCategoryImage',image)  :  SubCategory.SubCategoryImage ==="" &&  formdata.append('SubCategoryImage',SubCategory.SubCategoryImage)
         Axios.post(
-            `https://sweede.app/AdminPanel/register/update-SubCategory/${SubCategory.id}`,
+            `https://sweede.app/AdminPanel/update-SubCategory/${SubCategory.id}`,
             formdata,
             config
         ).then(() => {

@@ -37,7 +37,7 @@ export default function SubCategory() {
     React.useEffect(() => {
         const cookies = new Cookies();
         const token_data = cookies.get('Token_access')
-        axios("https://sweede.app/AdminPanel/register/Get-SubCategory/", {
+        axios("https://sweede.app/AdminPanel/Get-SubCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -63,7 +63,7 @@ export default function SubCategory() {
             "Status": params.row.Status === "Active" ? "Hide" : "Active"
         }
         axios.post(
-            `https://sweede.app/AdminPanel/register/update-SubCategory/${data.id}`,
+            `https://sweede.app/AdminPanel/update-SubCategory/${data.id}`,
             data,
             config
         ).then(() => {

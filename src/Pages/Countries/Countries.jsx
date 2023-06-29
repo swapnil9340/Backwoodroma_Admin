@@ -38,7 +38,7 @@ export default function Countries() {
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
-        axios("https://sweede.app/AdminPanel/register/Get-Country", {
+        axios("https://sweede.app/AdminPanel/Get-Country", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -60,7 +60,7 @@ export default function Countries() {
             "Status": params.row.Status === "Active" ? "Hide" : "Active"
         }
         axios.post(
-            `https://sweede.app/AdminPanel/register/update-Country/${params.row.id}`,
+            `https://sweede.app/AdminPanel/update-Country/${params.row.id}`,
             data,
             config
         ).then(() => {

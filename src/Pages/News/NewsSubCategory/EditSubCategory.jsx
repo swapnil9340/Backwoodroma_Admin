@@ -54,7 +54,7 @@ export default function NewsSubCategoryEdit(props) {
     const token_data = cookies.get('Token_access')
     useEffect(() => {
 
-        axios("https://sweede.app/AdminPanel/register/Get-NewsCategory/", {
+        axios("https://sweede.app/AdminPanel/Get-NewsCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -79,7 +79,7 @@ export default function NewsSubCategoryEdit(props) {
           
         }
         Axios.post(
-            `https://sweede.app/AdminPanel/register/update-NewsSubCategory/${data.id}`,
+            `https://sweede.app/AdminPanel/update-NewsSubCategory/${data.id}`,
             data,
             config
         ).then(() => {

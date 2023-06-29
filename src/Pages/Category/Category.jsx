@@ -38,7 +38,7 @@ export default function Category(props) {
     const token_data = cookies.get('Token_access')
     useEffect(() => {
 
-        axios("https://sweede.app/AdminPanel/register/Get-Category/", {
+        axios("https://sweede.app/AdminPanel/Get-Category/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -56,7 +56,7 @@ export default function Category(props) {
             "name": params.row.name,
             "Status": params.row.Status === "Active" ? "Hide" : "Active"
         }
-        axios.post(`https://sweede.app/AdminPanel/register/update-Category/${params.row.id}`, form, {
+        axios.post(`https://sweede.app/AdminPanel/update-Category/${params.row.id}`, form, {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`

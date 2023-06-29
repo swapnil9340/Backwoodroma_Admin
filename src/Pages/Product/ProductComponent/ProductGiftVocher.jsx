@@ -13,7 +13,7 @@ export default function ProductGiftVocher({Product ,SetProduct}) {
     const token_data = cookies.get('Token_access')
 
     React.useEffect(() => {
-        axios("https://sweede.app/AdminPanel/register/GiftVoucherViewSet/", {
+        axios("https://sweede.app/AdminPanel/GiftVoucherViewSet/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -25,7 +25,7 @@ export default function ProductGiftVocher({Product ,SetProduct}) {
             SetProduct(Product => ({ ...Product, GiftVoucher: response.data[0].id }))
 
         })
-        axios("https://sweede.app/AdminPanel/register/CouponViewSet/", {
+        axios("https://sweede.app/AdminPanel/CouponViewSet/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`

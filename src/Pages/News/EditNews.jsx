@@ -137,7 +137,7 @@ export default function NewsEdit(props) {
     };
 
     React.useEffect(() => {
-        axios("https://sweede.app/AdminPanel/register/Get-NewsCategory/", {
+        axios("https://sweede.app/AdminPanel/Get-NewsCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -149,7 +149,7 @@ export default function NewsEdit(props) {
         })
 
 
-        axios("https://sweede.app/AdminPanel/register/Get-NewsSubCategory/", {
+        axios("https://sweede.app/AdminPanel/Get-NewsSubCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -193,7 +193,7 @@ export default function NewsEdit(props) {
             }
         };
         Axios.post(
-            `https://sweede.app/AdminPanel/register/update-News/${props.data.id}`,
+            `https://sweede.app/AdminPanel/update-News/${props.data.id}`,
             formdata,
             config
         ).then(() => {

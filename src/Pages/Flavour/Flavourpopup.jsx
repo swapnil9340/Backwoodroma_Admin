@@ -94,7 +94,7 @@ export default function FlavorPopUp() {
         formdata.append("Price",Price &&  parseInt(Price));
 
         Axios.post(
-            'https://sweede.app/AdminPanel/register/Add-Flavours/',
+            'https://sweede.app/AdminPanel/Add-Flavours/',
             formdata,
             config
         )

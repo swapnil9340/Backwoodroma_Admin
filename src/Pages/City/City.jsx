@@ -40,7 +40,7 @@ export default function City() {
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
-        axios("https://sweede.app/AdminPanel/register/Get-Cities/", {
+        axios("https://sweede.app/AdminPanel/Get-Cities/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -65,7 +65,7 @@ export default function City() {
             "Status": params.row.Status === "Active" ? "Hide" : "Active"
         }
         axios.post(
-            `https://sweede.app/AdminPanel/register/update-Cities/${params.row.id}`,
+            `https://sweede.app/AdminPanel/update-Cities/${params.row.id}`,
             data,
             config
         ).then(() => {

@@ -206,7 +206,7 @@ export default function EditProducts(props) {
 
 
     React.useEffect(() => {
-        Axios("https://sweede.app/AdminPanel/register/Get-Discount/", {
+        Axios("https://sweede.app/AdminPanel/Get-Discount/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -215,7 +215,7 @@ export default function EditProducts(props) {
         }).then(response => {
             SetDiscount(response.data)
         })
-        Axios("https://sweede.app/AdminPanel/register/Get-Tax/", {
+        Axios("https://sweede.app/AdminPanel/Get-Tax/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -225,7 +225,7 @@ export default function EditProducts(props) {
             SetTaxs(response.data)
           
         })
-        Axios("https://sweede.app/AdminPanel/register/Get-Stores/", {
+        Axios("https://sweede.app/AdminPanel/Get-Stores/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -234,7 +234,7 @@ export default function EditProducts(props) {
         }).then(response => {
             Setstore(response.data)
         })
-        Axios("https://sweede.app/AdminPanel/register/Get-NetWeight/", {
+        Axios("https://sweede.app/AdminPanel/Get-NetWeight/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -245,7 +245,7 @@ export default function EditProducts(props) {
         })
 
 
-        Axios("https://sweede.app/AdminPanel/register/Get-Flavours/", {
+        Axios("https://sweede.app/AdminPanel/Get-Flavours/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -310,7 +310,7 @@ export default function EditProducts(props) {
 
 
         Axios.post(
-            `https://sweede.app/AdminPanel/register/update-Product/${props.data.id}`,
+            `https://sweede.app/AdminPanel/update-Product/${props.data.id}`,
             formdata,
             config
         ).then(() => {

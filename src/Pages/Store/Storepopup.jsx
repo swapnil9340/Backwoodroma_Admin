@@ -130,7 +130,7 @@ export default function Storepopup() {
     React.useEffect(() => {
 
 
-        axios("https://sweede.app/AdminPanel/register/ActiveCountry/", {
+        axios("https://sweede.app/AdminPanel/ActiveCountry/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -142,7 +142,7 @@ export default function Storepopup() {
             Setcountry(response.data.data)
         })
         if (Store.Country_id !== "") {
-            axios.get(`https://sweede.app/AdminPanel/register/FilterStatesByCountry/${Store.Country_id}`, {
+            axios.get(`https://sweede.app/AdminPanel/FilterStatesByCountry/${Store.Country_id}`, {
 
                 headers: {
                     'Authorization': `Bearer ${token_data}`
@@ -155,7 +155,7 @@ export default function Storepopup() {
         }
 
         if (Store.State_id !== "") {
-            axios.get(`https://sweede.app/AdminPanel/register/FilterCitiesByStates/${Store.State_id}`, {
+            axios.get(`https://sweede.app/AdminPanel/FilterCitiesByStates/${Store.State_id}`, {
 
                 headers: {
                     'Authorization': `Bearer ${token_data}`
@@ -190,7 +190,7 @@ export default function Storepopup() {
             headers: { Authorization: `Bearer ${token_data}` }
         };
         axios.post(
-            'https://sweede.app/AdminPanel/register/Add-Stores/',
+            'https://sweede.app/AdminPanel/Add-Stores/',
             formdata,
             config
         ).then((response) => {
