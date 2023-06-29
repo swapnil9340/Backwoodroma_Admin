@@ -83,7 +83,7 @@ export default function Taxpop() {
             "Status": Status
         }
         Axios.post(
-            'https://backend.sweede.net/AdminPanel/Add-Tax/',
+            'https://sweede.app/AdminPanel/register/Add-Tax/',
             data,
             config
         ).then(() => {

@@ -22,7 +22,7 @@ export default function Brand() {
     const [totel, setTotal] = React.useState([])
 
     React.useEffect(() => {
-        axios("https://backend.sweede.net/AdminPanel/Get-Brand/", {
+        axios("https://sweede.app/AdminPanel/register/Get-Brand/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -51,7 +51,7 @@ export default function Brand() {
             headers: { Authorization: `Bearer ${token_data}` }
         };
         axios.post(
-            `https://backend.sweede.net/AdminPanel/update-Brand/${params.row.id}`,
+            `https://sweede.app/AdminPanel/register/update-Brand/${params.row.id}`,
             formdata,
             config
         ).then(() => {

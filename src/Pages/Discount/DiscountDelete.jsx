@@ -29,7 +29,7 @@ export default function DiscountDelete(props) {
   };
   const Delete = () => {
     const id = props.data.id
-       axios.delete(`https://backend.sweede.net/AdminPanel/delete-Discount/${id}`, {
+       axios.delete(`https://sweede.app/AdminPanel/register/delete-Discount/${id}`, {
 
            headers: {
                'Authorization': `Bearer ${token_data}`

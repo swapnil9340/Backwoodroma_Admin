@@ -91,7 +91,7 @@ export default function FlavoursEdit(props) {
         };
 
         Axios.post(
-            `https://backend.sweede.net/AdminPanel/update-Flavours/${Flavour.id}`,
+            `https://sweede.app/AdminPanel/register/update-Flavours/${Flavour.id}`,
             formdata,
             config,
             { headers: { "Content-Type": "multipart/form-data" } }

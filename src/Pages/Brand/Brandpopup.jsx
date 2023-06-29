@@ -116,7 +116,7 @@ export default function Brandpopup() {
             headers: { Authorization: `Bearer ${token_data}` }
         };
         Axios.post(
-            'https://backend.sweede.net/AdminPanel/Add-Brand/',
+            'https://sweede.app/AdminPanel/register/Add-Brand/',
             formdata,
             config
         ).then(() => {

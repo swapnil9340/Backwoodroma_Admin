@@ -31,7 +31,7 @@ export default function FlavourDelete(props) {
   const Delete = () => {
 
     const id = props.data.id
-       axios.delete(`https://backend.sweede.net/AdminPanel/delete-Flavours/${id}`, {
+       axios.delete(`https://sweede.app/AdminPanel/register/delete-Flavours/${id}`, {
 
            headers: {
                'Authorization': `Bearer ${token_data}`

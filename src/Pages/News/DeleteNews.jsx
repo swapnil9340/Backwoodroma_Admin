@@ -31,7 +31,7 @@ export default function DeleteNews(props) {
   const Delete = () => {
 
     const id = props.data.id
-       axios.delete(`https://backend.sweede.net/AdminPanel/delete-News/${id}`, {
+       axios.delete(`https://sweede.app/AdminPanel/register/delete-News/${id}`, {
 
            headers: {
                'Authorization': `Bearer ${token_data}`

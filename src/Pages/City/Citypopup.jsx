@@ -67,7 +67,7 @@ export default function CityPopUp() {
     };
 
     React.useEffect(() => {
-        axios("https://backend.sweede.net/AdminPanel/Get-States", {
+        axios("https://sweede.app/AdminPanel/register/Get-States", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -93,7 +93,7 @@ export default function CityPopUp() {
             "States_id": State
         }
         Axios.post(
-            'https://backend.sweede.net/AdminPanel/Add-Cities/',
+            'https://sweede.app/AdminPanel/register/Add-Cities/',
             data,
             config
         ).then(() => {

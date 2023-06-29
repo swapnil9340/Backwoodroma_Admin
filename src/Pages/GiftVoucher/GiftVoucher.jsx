@@ -17,7 +17,7 @@ export default function Gift_Voucher() {
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
-        axios("https://backend.sweede.net/AdminPanel/GiftVoucherViewSet/", {
+        axios("https://sweede.app/AdminPanel/register/GiftVoucherViewSet/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`

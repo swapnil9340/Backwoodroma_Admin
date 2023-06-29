@@ -31,7 +31,7 @@ export default function ProductDelete(props) {
   const Delete = () => {
 
     const id = props.data.id
-       axios.delete(`https://backend.sweede.net/AdminPanel/delete-Product/${id}`, {
+       axios.delete(`https://sweede.app/AdminPanel/register/delete-Product/${id}`, {
 
            headers: {
                'Authorization': `Bearer ${token_data}`

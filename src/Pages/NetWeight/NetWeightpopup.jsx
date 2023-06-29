@@ -82,7 +82,7 @@ export default function NetWegihtPopUp() {
            "Status":Status
            }
         Axios.post( 
-          'https://backend.sweede.net/AdminPanel/Add-NetWeight/',
+          'https://sweede.app/AdminPanel/register/Add-NetWeight/',
           data,
           config
         ).then(()=>{

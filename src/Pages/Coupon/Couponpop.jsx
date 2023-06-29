@@ -78,7 +78,7 @@ export default function Couponpopup() {
       }
 
         Axios.post(
-            'https://backend.sweede.net/AdminPanel/CouponViewSet/',
+            'https://sweede.app/AdminPanel/register/CouponViewSet/',
             data,
             config
         ).then(() => {

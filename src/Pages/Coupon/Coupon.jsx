@@ -17,7 +17,7 @@ export default function Coupon() {
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
-        axios("https://backend.sweede.net/AdminPanel/CouponViewSet/", {
+        axios("https://sweede.app/AdminPanel/register/CouponViewSet/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`

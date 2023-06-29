@@ -63,7 +63,7 @@ export default function NewsCategorypopup() {
         }
       try {
         Axios.post(
-            'https://backend.sweede.net/AdminPanel/Add-NewsCategory/',
+            'https://sweede.app/AdminPanel/register/Add-NewsCategory/',
             data,
             config
         ).then(() => {

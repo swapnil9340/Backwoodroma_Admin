@@ -36,7 +36,7 @@ export default function State() {
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
-        axios("https://backend.sweede.net/AdminPanel/Get-Flavours/", {
+        axios("https://sweede.app/AdminPanel/register/Get-Flavours/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`

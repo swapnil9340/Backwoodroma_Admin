@@ -31,7 +31,7 @@ export default function Net_Wet_Delete(props) {
   const Delete = () => {
 
     const id = props.data.id
-       axios.delete(`https://backend.sweede.net/AdminPanel/delete-NetWeight/${id}`, {
+       axios.delete(`https://sweede.app/AdminPanel/register/delete-NetWeight/${id}`, {
 
            headers: {
                'Authorization': `Bearer ${token_data}`

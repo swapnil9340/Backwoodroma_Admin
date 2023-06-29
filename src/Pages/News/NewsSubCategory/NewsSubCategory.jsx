@@ -33,7 +33,7 @@ export default function NewsSubCategory() {
     React.useEffect(() => {
         const cookies = new Cookies();
         const token_data = cookies.get('Token_access')
-        axios("https://backend.sweede.net/AdminPanel/Get-NewsSubCategory", {
+        axios("https://sweede.app/AdminPanel/register/Get-NewsSubCategory", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`

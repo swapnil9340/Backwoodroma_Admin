@@ -12,7 +12,7 @@ export default function ProductBrand({ Product, SetProduct }) {
     const token_data = cookies.get('Token_access')
 
     React.useEffect(() => {
-        axios("https://backend.sweede.net/AdminPanel/ActiveBrand/", {
+        axios("https://sweede.app/AdminPanel/register/ActiveBrand/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
