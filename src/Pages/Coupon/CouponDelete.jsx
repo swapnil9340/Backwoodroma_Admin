@@ -31,7 +31,7 @@ export default function CouponDelete(props) {
   
   const Delete = () => {
     const id = props.data.id
-       axios.delete(`http://backend.sweede.net/AdminPanel/DeleteCoupoun/${id}`, {
+       axios.delete(`https://backend.sweede.net/AdminPanel/DeleteCoupoun/${id}`, {
 
            headers: {
                'Authorization': `Bearer ${token_data}`

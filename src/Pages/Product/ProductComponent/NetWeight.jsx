@@ -18,7 +18,7 @@ export default function NetWeight({ Product, SetProduct }) {
 
 
     React.useEffect(() => {
-        Axios("http://backend.sweede.net/AdminPanel/ActiveNetWeight/", {
+        Axios("https://backend.sweede.net/AdminPanel/ActiveNetWeight/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`

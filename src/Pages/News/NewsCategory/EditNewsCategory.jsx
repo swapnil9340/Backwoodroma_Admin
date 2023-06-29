@@ -72,7 +72,7 @@ export default function NewsCategoryEditbox(props) {
         const form = {
             "name": data.Category.toUpperCase(),
         }
-        axios.post(`http://backend.sweede.net/AdminPanel/update-NewsCategory/${data.id}`, form, {
+        axios.post(`https://backend.sweede.net/AdminPanel/update-NewsCategory/${data.id}`, form, {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`

@@ -88,7 +88,7 @@ export default function StoreEdit(props) {
     const token_data = cookies.get('Token_access')
     useEffect(() => {
 
-        axios("http://backend.sweede.net/AdminPanel/ActiveCities/", {
+        axios("https://backend.sweede.net/AdminPanel/ActiveCities/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -131,7 +131,7 @@ export default function StoreEdit(props) {
 
 
         Axios.post(
-            `http://backend.sweede.net/AdminPanel/update-Stores/${props.data.id}`,
+            `https://backend.sweede.net/AdminPanel/update-Stores/${props.data.id}`,
             formdata,
             config
         ).then(() => {

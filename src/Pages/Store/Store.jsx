@@ -36,7 +36,7 @@ export default function Store() {
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
-        axios("http://backend.sweede.net/AdminPanel/Get-Stores/", {
+        axios("https://backend.sweede.net/AdminPanel/Get-Stores/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -70,7 +70,7 @@ export default function Store() {
 
 
         axios.post(
-            `http://backend.sweede.net/AdminPanel/update-Stores/${params.row.id}`,
+            `https://backend.sweede.net/AdminPanel/update-Stores/${params.row.id}`,
             formdata,
             config
         ).then(() => {

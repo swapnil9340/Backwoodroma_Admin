@@ -76,7 +76,7 @@ export default function CountryEdit(props) {
             "Status": Country.Status
         }
         Axios.post(
-            `http://backend.sweede.net/AdminPanel/update-Country/${data.id}`,
+            `https://backend.sweede.net/AdminPanel/update-Country/${data.id}`,
             data,
             config
         ).then(() => {

@@ -176,7 +176,7 @@ export default function ProductPopUp(props) {
 
 
     React.useEffect(() => {
-        Axios("http://backend.sweede.net/AdminPanel/ActiveDiscount/", {
+        Axios("https://backend.sweede.net/AdminPanel/ActiveDiscount/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -188,7 +188,7 @@ export default function ProductPopUp(props) {
 
 
         })
-        Axios("http://backend.sweede.net/AdminPanel/ActiveTax/", {
+        Axios("https://backend.sweede.net/AdminPanel/ActiveTax/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -199,7 +199,7 @@ export default function ProductPopUp(props) {
             SetProduct(Product => ({ ...Product, tax: response.data.data[0]?.id }))
 
         })
-        Axios("http://backend.sweede.net/AdminPanel/ActiveStores/", {
+        Axios("https://backend.sweede.net/AdminPanel/ActiveStores/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -217,7 +217,7 @@ export default function ProductPopUp(props) {
 
 
 
-        Axios("http://backend.sweede.net/AdminPanel/Get-Flavours/", {
+        Axios("https://backend.sweede.net/AdminPanel/Get-Flavours/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -288,7 +288,7 @@ export default function ProductPopUp(props) {
 
 
         Axios.post(
-            'http://backend.sweede.net/AdminPanel/Add-Product/',
+            'https://backend.sweede.net/AdminPanel/Add-Product/',
             formdata,
             config
         ).then(() => {

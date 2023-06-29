@@ -67,7 +67,7 @@ export default function AddNewsCategory() {
         const cookies = new Cookies();
         const token_data = cookies.get('Token_access')
 
-        axios("http://backend.sweede.net/AdminPanel/Get-NewsCategory/", {
+        axios("https://backend.sweede.net/AdminPanel/Get-NewsCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -95,7 +95,7 @@ export default function AddNewsCategory() {
             "category_id": Category ,
            }
         Axios.post( 
-          'http://backend.sweede.net/AdminPanel/Add-NewsSubCategory/',
+          'https://backend.sweede.net/AdminPanel/Add-NewsSubCategory/',
           data,
           config
         ).then(()=>{

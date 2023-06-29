@@ -40,7 +40,7 @@ export default function State() {
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
-        axios("http://backend.sweede.net/AdminPanel/Get-NetWeight/", {
+        axios("https://backend.sweede.net/AdminPanel/Get-NetWeight/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -67,7 +67,7 @@ export default function State() {
             "Status": params.row.Status ==="Active"  ? "Hide" : "Active"
         }
         axios.post(
-            `http://backend.sweede.net/AdminPanel/update-NetWeight/${params.row.id}`,
+            `https://backend.sweede.net/AdminPanel/update-NetWeight/${params.row.id}`,
             data,
             config
         ).then(() => {

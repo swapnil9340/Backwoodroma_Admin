@@ -117,7 +117,7 @@ export default function BrandEdit(props) {
             headers: { Authorization: `Bearer ${token_data}` }
         };
         Axios.post(
-            `http://backend.sweede.net/AdminPanel/update-Brand/${props.data.id}`,
+            `https://backend.sweede.net/AdminPanel/update-Brand/${props.data.id}`,
             formdata,
             config
         ).then(() => {

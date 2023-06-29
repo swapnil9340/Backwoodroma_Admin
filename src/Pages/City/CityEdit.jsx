@@ -83,7 +83,7 @@ useEffect(()=>{
             "Status": city.Status
         }
         Axios.post(
-            `http://backend.sweede.net/AdminPanel/update-Cities/${data.id}`,
+            `https://backend.sweede.net/AdminPanel/update-Cities/${data.id}`,
             data,
             config
         ).then(() => {

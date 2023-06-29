@@ -31,7 +31,7 @@ export default function TexDelete(props) {
   const Delete = () => {
 
     const id = props.data.id
-       axios.delete(`http://backend.sweede.net/AdminPanel/delete-Tax/${id}`, {
+       axios.delete(`https://backend.sweede.net/AdminPanel/delete-Tax/${id}`, {
 
            headers: {
                'Authorization': `Bearer ${token_data}`

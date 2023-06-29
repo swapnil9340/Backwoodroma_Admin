@@ -93,7 +93,7 @@ export default function CategEditbox(props) {
          image ? formdata.append('categoryImages',image)  :  data.categoryImages ==='' &&  formdata.append('categoryImages',data.categoryImages)
 
 
-        axios.post(`http://backend.sweede.net/AdminPanel/update-Category/${data.id}`, formdata, {
+        axios.post(`https://backend.sweede.net/AdminPanel/update-Category/${data.id}`, formdata, {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`

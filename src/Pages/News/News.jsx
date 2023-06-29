@@ -21,7 +21,7 @@ export default function News() {
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
-        axios("http://backend.sweede.net/AdminPanel/Get-News/", {
+        axios("https://backend.sweede.net/AdminPanel/Get-News/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`

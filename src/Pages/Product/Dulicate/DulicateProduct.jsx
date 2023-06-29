@@ -206,7 +206,7 @@ export default function EditProducts(props) {
 
 
     React.useEffect(() => {
-        Axios("http://backend.sweede.net/AdminPanel/Get-Discount/", {
+        Axios("https://backend.sweede.net/AdminPanel/Get-Discount/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -217,7 +217,7 @@ export default function EditProducts(props) {
             // SetProduct(Product => ({ ...Product, discount: response.data[0].id }))
 
         })
-        Axios("http://backend.sweede.net/AdminPanel/Get-Tax/", {
+        Axios("https://backend.sweede.net/AdminPanel/Get-Tax/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -228,7 +228,7 @@ export default function EditProducts(props) {
             // SetProduct(Product => ({ ...Product, tax: response.data[0].id }))
 
         })
-        Axios("http://backend.sweede.net/AdminPanel/Get-Stores/", {
+        Axios("https://backend.sweede.net/AdminPanel/Get-Stores/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -238,7 +238,7 @@ export default function EditProducts(props) {
             Setstore(response.data)
             // SetProduct(Product => ({ ...Product, Store_id: response.data[0].id }))
         })
-        Axios("http://backend.sweede.net/AdminPanel/Get-NetWeight/", {
+        Axios("https://backend.sweede.net/AdminPanel/Get-NetWeight/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -251,7 +251,7 @@ export default function EditProducts(props) {
         })
 
 
-        Axios("http://backend.sweede.net/AdminPanel/Get-Flavours/", {
+        Axios("https://backend.sweede.net/AdminPanel/Get-Flavours/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -265,7 +265,7 @@ export default function EditProducts(props) {
         })
 
 
-        Axios("http://backend.sweede.net/AdminPanel/FilterbyCategory/", {
+        Axios("https://backend.sweede.net/AdminPanel/FilterbyCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -335,7 +335,7 @@ export default function EditProducts(props) {
 
 
         Axios.post(
-            `http://backend.sweede.net/AdminPanel/Edit-Product/${props.data.id}`,
+            `https://backend.sweede.net/AdminPanel/Edit-Product/${props.data.id}`,
             formdata,
             config
         ).then(() => {

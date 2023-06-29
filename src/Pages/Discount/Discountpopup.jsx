@@ -86,7 +86,7 @@ export default function StatePopUp() {
            "Status":Status
            }
         Axios.post( 
-          'http://backend.sweede.net/AdminPanel/Add-Discount/',
+          'https://backend.sweede.net/AdminPanel/Add-Discount/',
           data,
           config
         ).then(()=>{

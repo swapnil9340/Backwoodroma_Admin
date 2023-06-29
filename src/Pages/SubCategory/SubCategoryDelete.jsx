@@ -30,7 +30,7 @@ export default function Delete(props) {
 
   const Delete = () => {
     const id = props.data.id
-    axios.delete(`http://backend.sweede.net/AdminPanel/delete-SubCategory/${id}`, {
+    axios.delete(`https://backend.sweede.net/AdminPanel/delete-SubCategory/${id}`, {
       headers: {
         'Authorization': `Bearer ${token_data}`
       }

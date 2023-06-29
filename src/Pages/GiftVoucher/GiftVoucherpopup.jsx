@@ -75,7 +75,7 @@ export default function GiftVoucherpopup() {
             type :Gift_Voucher.type
         }
         Axios.post(
-            'http://backend.sweede.net/AdminPanel/GiftVoucherViewSet/',
+            'https://backend.sweede.net/AdminPanel/GiftVoucherViewSet/',
             data,
             config
         ).then(() => {

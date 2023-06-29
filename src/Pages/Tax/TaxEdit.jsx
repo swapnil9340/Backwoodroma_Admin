@@ -98,7 +98,7 @@ export default function TaxEdit(props) {
             "Status": Tax.Status
         }
         Axios.post(
-            `http://backend.sweede.net/AdminPanel/update-Tax/${props.data.id}`,
+            `https://backend.sweede.net/AdminPanel/update-Tax/${props.data.id}`,
             data,
             config
         ).then(() => {

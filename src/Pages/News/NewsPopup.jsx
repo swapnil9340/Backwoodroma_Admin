@@ -140,7 +140,7 @@ export default function Newspop() {
     };
 
     React.useEffect(() => {
-        axios("http://backend.sweede.net/AdminPanel/Get-NewsCategory/", {
+        axios("https://backend.sweede.net/AdminPanel/Get-NewsCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -154,7 +154,7 @@ export default function Newspop() {
         })
 
 
-        axios("http://backend.sweede.net/AdminPanel/Get-NewsSubCategory/", {
+        axios("https://backend.sweede.net/AdminPanel/Get-NewsSubCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -189,7 +189,7 @@ export default function Newspop() {
             headers: { Authorization: `Bearer ${token_data}` }
         };
         Axios.post(
-            'http://backend.sweede.net/AdminPanel/Add-News/',
+            'https://backend.sweede.net/AdminPanel/Add-News/',
             formdata,
             config
         ).then(() => {

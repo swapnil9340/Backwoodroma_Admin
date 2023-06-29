@@ -82,7 +82,7 @@
 //         }
 
 //         Axios.post(
-//             `http://backend.sweede.net/AdminPanel/CouponViewSet/${data.id} `,
+//             `https://backend.sweede.net/AdminPanel/CouponViewSet/${data.id} `,
 //             data,
 //             config
 //         ).then(() => {

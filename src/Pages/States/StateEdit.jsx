@@ -66,7 +66,7 @@ export default function StateEdit(props) {
     };
     useEffect(() => {
 
-        axios("http://backend.sweede.net/AdminPanel/Get-Country/", {
+        axios("https://backend.sweede.net/AdminPanel/Get-Country/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -89,7 +89,7 @@ export default function StateEdit(props) {
             "Status": State.Status
         }
         Axios.post(
-            `http://backend.sweede.net/AdminPanel/update-States/${data.id}`,
+            `https://backend.sweede.net/AdminPanel/update-States/${data.id}`,
             data,
             config
         ).then(() => {
