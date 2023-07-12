@@ -1,6 +1,5 @@
 
 const Buttons=({bgCol,onChange,children})=>{
-   
     return(
         <div>
 
