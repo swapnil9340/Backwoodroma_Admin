@@ -1,5 +1,6 @@
 import React from "react"
 import { AiFillDelete } from "react-icons/ai"
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 const UserAndOwnerReview = () => {
     return (
         <React.Fragment>
@@ -11,9 +12,10 @@ const UserAndOwnerReview = () => {
                     </div>
                     <div className="col-12 userReviewContainer">
                         <section className="userReviewLeftSection">
-
+                           <LazyLoadImage src="./image/blank_Image.webp" width={"100px"} height={"100px"} alt="imgnotavailable"/>
                         </section>
                         <section className="userReviewRightSection">
+                            
 
                         </section>
 
