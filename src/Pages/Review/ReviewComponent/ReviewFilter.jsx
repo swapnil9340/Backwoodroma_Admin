@@ -17,8 +17,9 @@ const ReviewFilter = () => {
                                 width:"120px"
                             }
                         }}
+                        endIcon={<HiArrowsUpDown size={18} color='#31B665'/>}
                         size="large" variant="outlined" >
-                      <HiArrowsUpDown size={18}/>
+               
                     </LoadingButton>
                 </div>
             </div>

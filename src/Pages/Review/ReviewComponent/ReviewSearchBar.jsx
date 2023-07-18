@@ -17,6 +17,19 @@ const ReviewSearchBar = () => {
                 <div className="col-6">
                     <TextField 
                     placeholder="Search by User Name,Shop Name"
+                    sx={{
+                        '& .MuiOutlinedInput-root': { 
+                            '& fieldset': {            
+                                borderColor: '#A1A1A1',
+                            },
+                            '&:hover fieldset': {
+                                borderColor: '#31B665',
+                            },
+                            '&.Mui-focused fieldset': { 
+                                borderColor: '#31B665',
+                            },
+                        },
+                    }}
                     InputProps={{
                         endAdornment:(
                             <InputAdornment position="end">
@@ -30,7 +43,7 @@ const ReviewSearchBar = () => {
                             ><AiOutlineClose/></IconButton>
                           )
                     }}
-                    id="outlined-basic" type="search" variant="outlined" fullWidth />
+                    id="outlined-basic" type="text" variant="outlined" fullWidth />
                 </div>
                 <div className="col-4 reviewButtonView">
                     <LoadingButton 

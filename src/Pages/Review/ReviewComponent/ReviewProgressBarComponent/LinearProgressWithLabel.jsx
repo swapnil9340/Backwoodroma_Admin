@@ -8,12 +8,18 @@ const LinearProgressWithLabel=(props)=>{
        <React.Fragment>
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
       <Box sx={{ width: '100%', mr: 1 }}>
-        <LinearProgress variant="determinate" {...props} />
+        <LinearProgress 
+        sx={{
+          ".css-5xe99f-MuiLinearProgress-bar1":{
+            backgroundColor:"#31B665"
+          }
+        }}
+        variant="determinate" {...props} />
       </Box>
       <Box sx={{ minWidth: 35 }}>
-        <Typography variant="body2" color="text.secondary">{`${Math.round(
-          props.value,
-        )}%`}</Typography>
+        <Typography variant="body2" color="#31B665">
+          {`${props.value}k`}
+        </Typography>
       </Box>
     </Box>
 

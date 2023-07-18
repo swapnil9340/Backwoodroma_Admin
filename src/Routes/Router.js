@@ -25,6 +25,7 @@ import NewsSubCategory from "../Pages/News/NewsSubCategory/NewsSubCategory"
 import Vendor from "../Pages/Vendor/Vendor"
 import Pagenotfound from "../Pages/Pagenotfound"
 import Review from '../Pages/Review/Review';
+import Signup from '../Pages/Signup/Signup';
 export default function Router() {
  
  
@@ -51,7 +52,7 @@ export default function Router() {
          <Route  path="/Product" element={<Protected Component={Product} />} /> 
          <Route  path="/News" element ={<Protected Component ={News}/>}/>
         <Route path='/Review' element={<Protected Component ={Review}/>}/>
-
+        <Route path='/Signup' element={<Protected Component={Signup}/>} />
          <Route  path="/NewsCategory" element ={<Protected Component ={NewsCategory}/>}/>
          <Route  path="/NewsSubCategory" element ={<Protected Component ={NewsSubCategory}/>}/>
          <Route  path="/Vendor" element ={<Protected Component ={Vendor}/>}/>

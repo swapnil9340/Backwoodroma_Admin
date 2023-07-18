@@ -4,16 +4,9 @@ import Box from '@mui/material/Box';
 import LinearProgressWithLabel from "./ReviewProgressBarComponent/LinearProgressWithLabel";
 import { AiFillStar } from "react-icons/ai"
 const NumberOfReviews = () => {
-    const [progress, setProgress] = React.useState(10);
+    const [progress, setProgress] = React.useState(100);
 
-    React.useEffect(() => {
-        const timer = setInterval(() => {
-            setProgress((prevProgress) => (prevProgress >= 100 ? 10 : prevProgress + 10));
-        }, 800);
-        return () => {
-            clearInterval(timer);
-        };
-    }, []);
+   
 
     return (
         <React.Fragment>
@@ -39,8 +32,10 @@ const NumberOfReviews = () => {
                         sx={{
                             '& .MuiRating-iconFilled': {
                                 color: '#31B665',
-                                size:"20px"
                               },
+                              "&.MuiRating-root":{
+                                fontSize:"20px"
+                              }
                         }}
                         name="read-only" value={4.5} precision={0.5} readOnly />
                     </div>

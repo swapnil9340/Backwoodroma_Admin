@@ -19,7 +19,7 @@ import SpecialOfferDropDown from "./SideBarDropdown/SpecialOfferDropDowm"
 import NewsDropDown from './SideBarDropdown/NewsDropDown'
 import SettingDropDown from "./SideBarDropdown/SettingDropDown"
 import {IoIosMenu} from "react-icons/io"
-
+import {FaUserAlt} from "react-icons/fa"
 
 function Navbar() {
   const [windowSize, setWindowSize] = React.useState([
@@ -141,6 +141,12 @@ function Navbar() {
                   <span className='side_penal_link'>Tax</span>
                 </div>
 
+              </Link>
+              <Link to="/Signup" className="list-group-item list-group-item-action py-2 ripple">
+              <div className='side_bar_option'>
+                  <span><FaUserAlt></FaUserAlt></span>
+                  <span className='side_penal_link'>Signup</span>
+                </div>
               </Link>
                <SpecialOfferDropDown></SpecialOfferDropDown>
                <NewsDropDown></NewsDropDown>
