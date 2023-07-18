@@ -45,7 +45,7 @@ const Vendor = () => {
     const token_data = cookies.get('Token_access')
     React.useEffect(() => {
 
-        axios("https://sweede.app/AdminPanel/GetAllUsers/", {
+        axios("https://sweede.app/AdminPanel/Get-AllVendor/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
