@@ -6,7 +6,13 @@ import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import TextField from '@mui/material/TextField';
 import { WidthFull } from "@mui/icons-material";
+import MuiPhoneNumber from 'mui-phone-number';
+import useStyles from "../../Style";
+import { AiFillEye } from "react-icons/ai"
+import { InputAdornment } from "@mui/material";
+import Checkbox from '@mui/material/Checkbox';
 const Signup = () => {
+    const classes = useStyles()
     const [Role, SetRole] = React.useState("")
     const HandleRole = (e) => {
         SetRole(e.target.value)
@@ -54,7 +60,10 @@ const Signup = () => {
 
                                         </div>
                                         <div className="col-12 signupNameFields">
-                                            <TextField variant="outlined"
+                                            <div>
+                                                <label htmlFor="name">Name</label>
+                                            </div>
+                                            <TextField id="name" variant="outlined"
                                                 sx={{ minWidth: "30%" }}
                                             />
                                         </div>
@@ -63,14 +72,85 @@ const Signup = () => {
                                 </div>
                                 <div className="col-12 mt-2">
                                     <div>
-                                    <label htmlFor="UserName">User Name</label>
+                                        <label htmlFor="UserName">User Name</label>
 
                                     </div>
                                     <TextField variant="outlined"
-                                      sx={{minWidth:"50%"}}
-                                      id="UserName"
-                                      placeholder="User Name"
+                                        sx={{ minWidth: "50%" }}
+                                        id="UserName"
+                                        placeholder="User Name"
                                     />
+                                </div>
+                                <div className="col-12 mt-4">
+                                    <MuiPhoneNumber
+                                        className={classes.signupMuiPhone}
+                                        defaultCountry={'in'}
+                                    />
+                                </div>
+                                <div className="col-12 userEmialFieldCol">
+                                    <div>
+                                        <label htmlFor="Useremail">Useremail</label>
+                                    </div>
+                                    <TextField variant="outlined"
+                                        sx={{ minWidth: "50%", marginTop: "10px" }}
+                                        id="Useremail"
+                                        placeholder="User email"
+                                    />
+                                </div>
+                                <div className="col-12 passwordFiledCol ">
+                                    <div>
+                                        <label htmlFor="password">Password</label>
+                                    </div>
+
+                                    <TextField variant="outlined"
+                                        sx={{ minWidth: "50%", marginTop: "10px" }}
+                                        id="password"
+                                        placeholder="Password"
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment position="end">
+                                                    <AiFillEye size={22} />
+                                                </InputAdornment>
+                                            )
+
+                                        }}
+                                    />
+                                </div>
+                                <div className="col-12 passwordFiledCol ">
+                                    <div>
+                                        <label htmlFor="ConfirmPassword">Confirm Password</label>
+                                    </div>
+
+                                    <TextField variant="outlined"
+                                        sx={{ minWidth: "50%", marginTop: "10px" }}
+                                        id="ConfirmPassword"
+                                        placeholder="Confirm Password"
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment position="end">
+                                                    <AiFillEye size={22} />
+                                                </InputAdornment>
+                                            )
+
+                                        }}
+                                    />
+                                </div>
+                                <div className="col-12 ">
+                                    <p className="statusead">Status</p>
+                                    <FormControl sx={{ minWidth: "50%" }}>
+                                        <Select
+                                            id="RoleDropdown"
+                                            value={Role}
+                                            onChange={HandleRole}
+                                        >
+                                            <MenuItem value={"Active"}>Active</MenuItem>
+                                            <MenuItem value={"Hide"}>Hide</MenuItem>
+                                        </Select>
+                                    </FormControl>
+
+                                </div>
+                                <div className="col-12">
+                                <Checkbox  defaultChecked/>
                                 </div>
                             </form>
                         </div>
