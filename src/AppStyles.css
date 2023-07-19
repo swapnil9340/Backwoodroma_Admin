@@ -354,6 +354,7 @@ color: #595959;
     left: 16.2%;
     margin-bottom: 20px;
     margin-top: 20px;
+    padding: 0px 0px;
 }
 .SignupHeading_container{
    height: 120px;
@@ -431,6 +432,60 @@ opacity: 1;
     height: 80px;
     margin-top: 30px; 
 }
+.signupConditionCol{
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.signTermCond{
+    color: #31B665;
+    font-size: 13px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.signup_name{
+    color: #000000;
+    font-size: 18px
+}
+.Useremail{
+    color: #000000;
+    font-size: 18px
+}
+.password{
+    color: #000000;
+    font-size: 18px;
+    margin-inline: 0px;
+}
+.status{
+    color: #000000;
+    font-size: 18px    
+}
+.signiningCondPara{
+    color: #000000;
+    font-size: 13px  ; 
+    margin-bottom: 0px;
+
+}
+.userName{
+    color: #000000;
+    font-size: 18px;
+}
+.signup_userNameCol{
+    height: 80px;
+}
+.signupPhoneCol{
+    height: 80px;
+}
+.signUp_loading_btn{
+    display: flex;
+    width: 50%;
+    justify-content: center;
+}
+.alreadyAccount{
+    height: 80px;
+    margin-top: 30px;
+}
 @media(max-width:1244px){
     .signup_image_mainContainer{
         width: 14%;
@@ -449,6 +504,9 @@ opacity: 1;
 }
 }
 @media(max-width:762px){
+    .alreadyAccount{
+        width: 100%;
+    }
     .signup_image_mainContainer{
         width: 18%;
     }
@@ -456,11 +514,14 @@ opacity: 1;
      width: 82%;
     }   
 }
-@media(max-width:558px){
+@media(max-width:700px){
     .signup_image_mainContainer{
         width: 28%;
         height: 98px;
         margin-top: 5px;
+    }
+    .signUp_loading_btn{
+        width: 100%;
     }
     .signupDropdown_rightSection{
      width: 72%;
