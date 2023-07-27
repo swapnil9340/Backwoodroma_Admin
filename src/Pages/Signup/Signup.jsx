@@ -95,7 +95,7 @@ const Signup = () => {
                                     </div>
                                     <div className="col-12 signupPhoneCol">
                                         <div>
-                                            <label htmlFor="phoneNo">Phone</label>
+                                            <label htmlFor="phoneNo">Phone Number</label>
                                         </div>
                                         <MuiPhoneNumber
                                             className={classes.signupMuiPhone}
@@ -105,7 +105,7 @@ const Signup = () => {
                                     </div>
                                     <div className="col-12 userEmialFieldCol">
                                         <div>
-                                            <label className="Useremail" htmlFor="Useremail">Useremail</label>
+                                            <label className="Useremail" htmlFor="Useremail">Email Address</label>
                                         </div>
                                         <TextField variant="outlined"
                                             className={classes.signupTextFieldWidth}
