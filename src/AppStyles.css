@@ -476,10 +476,10 @@ opacity: 1;
     font-size: 18px;
 }
 .signup_userNameCol{
-    height: 80px;
+    
 }
 .signupPhoneCol{
-    height: 80px;
+    margin-top: 30px;
 }
 .signUp_loading_btn{
     display: flex;
