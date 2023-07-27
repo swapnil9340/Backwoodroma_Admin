@@ -461,7 +461,8 @@ opacity: 1;
 }
 .status{
     color: #000000;
-    font-size: 18px    
+    font-size: 18px;
+    margin-top: 30px;
 }
 .signiningCondPara{
     color: #000000;
