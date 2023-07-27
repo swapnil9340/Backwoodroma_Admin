@@ -445,6 +445,7 @@ opacity: 1;
     font-size: 13px;
     text-decoration: underline;
     cursor: pointer;
+    margin-left: 7px;
 }
 .signup_name{
     color: #000000;
