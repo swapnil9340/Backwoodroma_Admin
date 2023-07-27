@@ -1,5 +1,15 @@
 import { makeStyles } from '@mui/styles';
 const useStyles = makeStyles({
+  textFieldFocusBorderColor: {
+    "& .MuiOutlinedInput-root": {
+      " &.Mui-focused fieldset": {
+        borderColor: "#31B665",
+      },
+      '&:hover fieldset': {
+        borderColor: '#31B665', // - Set the Input border when parent has :hover
+      },
+    }
+  },
     signupMuiPhone: {
         "&.MuiTextField-root": {
           width:"50%",
@@ -17,6 +27,14 @@ const useStyles = makeStyles({
     "&.MuiTextField-root":{
       width:"42%",
      
+    },
+    "& .MuiOutlinedInput-root": {
+      " &.Mui-focused fieldset": {
+        borderColor: "#31B665",
+      },
+      '&:hover fieldset': {
+        borderColor: '#31B665', // - Set the Input border when parent has :hover
+      },
     },
    
     "@media(max-width:700px)":{
@@ -36,6 +54,14 @@ const useStyles = makeStyles({
           width:"100%",
          
         },
+      },
+      "& .MuiOutlinedInput-root": {
+        " &.Mui-focused fieldset": {
+          borderColor: "#31B665",
+        },
+        '&:hover fieldset': {
+          borderColor: '#31B665', // - Set the Input border when parent has :hover
+        },
       }
       },
     signuproleSelectDropdown:{
@@ -45,6 +71,14 @@ const useStyles = makeStyles({
       "@media(max-width:700px)":{
         "&.MuiFormControl-root":{
           width:"100%"
+        },
+      },
+      "& .MuiOutlinedInput-root": {
+        " &.Mui-focused fieldset": {
+          borderColor: "#31B665",
+        },
+        '&:hover fieldset': {
+          borderColor: '#31B665', // - Set the Input border when parent has :hover
         },
       }
  
@@ -57,6 +91,14 @@ const useStyles = makeStyles({
       "@media(max-width:700px)":{
         "&.MuiFormControl-root":{
           width:"100%"
+        },
+      },
+      "& .MuiOutlinedInput-root": {
+        " &.Mui-focused fieldset": {
+          borderColor: "#31B665",
+        },
+        '&:hover fieldset': {
+          borderColor: '#31B665', // - Set the Input border when parent has :hover
         },
       }
  
