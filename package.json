@@ -24,6 +24,8 @@
     "apexcharts": "^3.36.3",
     "axios": "^1.2.1",
     "bootstrap": "^5.2.3",
+    "browserslist": "^4.21.9",
+    "caniuse-lite": "^1.0.30001517",
     "canvasjs-react-charts": "^1.0.5",
     "chart.js": "^4.1.1",
     "dotenv": "^16.0.3",
