@@ -33,7 +33,7 @@ const Signup = () => {
                             <div className="col-10  signupFieldInner_Container">
                                 <form>
                                     <div className="col-12 signup_headings">
-                                        <h1 className="signup_headings">Signup</h1>
+                                        <h1 className="signup_headings">SIGN UP</h1>
                                     </div>
                                     <div className="col-12 signup_user_main_container">
                                         <div className="section  signup_image_mainContainer">
