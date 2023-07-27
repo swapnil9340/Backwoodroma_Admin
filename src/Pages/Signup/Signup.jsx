@@ -172,14 +172,14 @@ const Signup = () => {
 
                                     </div>
                                     <div className="col-12 signupConditionCol">
-                                        <Checkbox defaultChecked /><p className="signiningCondPara">By signing UP I agree with<span className="signTermCond">Term and conditions</span> </p>
+                                        <Checkbox defaultChecked /><p className="signiningCondPara">By Signing Up I agree with<span className="signTermCond">Term and conditions</span> </p>
                                     </div>
                                     <Box className={`signUp_loading_btn ${classes.SignuploadingBtnTextAndBack}`}>
                                         <LoadingButton>Sign Up</LoadingButton>
 
                                     </Box>
                                     <div className="col-6 center alreadyAccount">
-                                        <p className="signiningCondPara">Already have an Account?<span className="signTermCond">Signin</span> </p>
+                                        <p className="signiningCondPara">Already have an Account?<span className="signTermCond">Sign In</span> </p>
                                     </div>
                                 </form>
                             </div>
