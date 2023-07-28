@@ -126,6 +126,7 @@ ul li path {
   gap: 10px;
   justify-content: center;
   display: flex;
+  margin-top: 10px;
 }
 
 .logout {
