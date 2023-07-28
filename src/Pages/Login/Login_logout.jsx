@@ -205,9 +205,9 @@ export default function Login_logout() {
                                 </span>
                             </div>
                         </div>
-                        <label className='top'> Remember me :
+                        <label className='top'> 
                             <input type="checkbox" name='checkbox' value={inputs.checkbox || ""} onChange={handleChange} />
-
+                            Remember me 
                         </label>
                         <div className='top'>
                             {isLoggedIn ? <>
@@ -240,7 +240,7 @@ export default function Login_logout() {
                                         <p>{otpvalid}</p>
                                     </div>
                                 }
-                                Please Enter Otp Which Is Sent Your Register Email
+                                Please Enter Otp Which Is Sent On Your Register Email
 
 
                             </DialogContentText>
