@@ -136,6 +136,13 @@ const useStyles = makeStyles({
       borderColor: "#31B665"
     },
   },
+  SubmitLoginButton:{
+    '& .MuiLoadingButton-root':{
+      color:'#31B665',
+      width: "25%",
+      marginTop:"10px",
+    }
+  }
 
 }
 )

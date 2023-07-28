@@ -59,7 +59,7 @@ export default function Newspop() {
         Link: "",
         Meta_Description: "",
         Meta_title: "",
-        StrainType: "N",
+        StrainType: "None",
         SubCategory_id: "",
         Url_slug: "",
         Alt_Text: "",
@@ -457,11 +457,11 @@ export default function Newspop() {
                                             inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}
                                         >
 
-                                            <MenuItem value={"N"} style={{ fontSize: 15 }}>None</MenuItem>
-                                            <MenuItem value={"i"} style={{ fontSize: 15 }}>Indica</MenuItem>
-                                            <MenuItem value={"s"} style={{ fontSize: 15 }}>Sativa</MenuItem>
-                                            <MenuItem value={"h"} style={{ fontSize: 15 }}>Hybrid</MenuItem>
-                                            <MenuItem value={"c"} style={{ fontSize: 15 }}>CBD</MenuItem>
+                                            <MenuItem value={"None"} style={{ fontSize: 15 }}>None</MenuItem>
+                                            <MenuItem value={"Indica"} style={{ fontSize: 15 }}>Indica</MenuItem>
+                                            <MenuItem value={"Sativa"} style={{ fontSize: 15 }}>Sativa</MenuItem>
+                                            <MenuItem value={"Hybrid"} style={{ fontSize: 15 }}>Hybrid</MenuItem>
+                                            <MenuItem value={"CBD"} style={{ fontSize: 15 }}>CBD</MenuItem>
                                         </Select>
                                     </div>
                                 </div>

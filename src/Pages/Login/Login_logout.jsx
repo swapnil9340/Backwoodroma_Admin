@@ -9,10 +9,11 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Cookies from 'universal-cookie';
 import { Link, useNavigate } from 'react-router-dom';
 import { TextField } from '@mui/material';
-import { AiFillEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { AiFillEye } from 'react-icons/ai';
 import { AiFillEyeInvisible } from "react-icons/ai"
 import InputAdornment from '@material-ui/core/InputAdornment';
 import useStyles from '../../Style'
+import { LoadingButton } from '@mui/lab';
 
 
 export default function Login_logout() {
@@ -80,7 +81,7 @@ export default function Login_logout() {
         setOpen(false);
     }
 
-    
+
     const otp_send = () => {
 
         setOpen(false);
@@ -104,8 +105,8 @@ export default function Login_logout() {
 
     const handleClose = () => {
         setOpen(false);
-    
-     
+
+
     }
 
 
@@ -133,7 +134,7 @@ export default function Login_logout() {
                                 </label>
                             </div>
                             <div className='col display'>
-                                <TextField  placeholder='User Name' id="outlined-basic" variant="outlined"
+                                <TextField placeholder='User Name' id="outlined-basic" variant="outlined"
                                     name="username" style={{ width: 286 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
                                     onChange={handleChange}
                                     value={inputs.username || ""}
@@ -152,7 +153,7 @@ export default function Login_logout() {
                             </div>
                             <div className='col display'>
                                 <TextField placeholder='Email Address ' id="outlined-basic" variant="outlined" name="Email"
-                                    type="email" style={{ width:286, fontSize: 15 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
+                                    type="email" style={{ width: 286, fontSize: 15 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
                                     value={inputs.Email || ""}
                                     onChange={handleChange}
                                     className={classes.Username}
@@ -172,37 +173,35 @@ export default function Login_logout() {
                                     name="password" style={{ minWidth: 190 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
                                     onChange={handleChange}
                                     className={classes.Username}
-                                    InputProps={{ endAdornment: (
-                                        <InputAdornment position='end'>
-                                            <IconButton
-                                                aria-label="toggle password visibility"
-                                                onClick={handleClickShowPassword}
-                                            >
-                                                {values.showPassword ? <AiFillEye size={20} color='#747474' /> : <AiFillEyeInvisible size={20} color='#747474' />}
-                                            </IconButton>
-                                        </InputAdornment>
-                                        
-                                    )}}
+                                    InputProps={{
+                                        endAdornment: (
+                                            <InputAdornment position='end'>
+                                                <IconButton
+                                                    aria-label="toggle password visibility"
+                                                    onClick={handleClickShowPassword}
+                                                >
+                                                    {values.showPassword ? <AiFillEye size={20} color='#747474' /> : <AiFillEyeInvisible size={20} color='#747474' />}
+                                                </IconButton>
+                                            </InputAdornment>
+
+                                        )
+                                    }}
 
                                     value={inputs.password || ""}
-                                    
+
                                 />
-                             
+
                             </div>
                         </div>
-                        <div className='top'> 
-                                <input type="checkbox" name='checkbox' value={inputs.checkbox || ""} onChange={handleChange} />
+                        <div className='top'>
+                            <input type="checkbox" name='checkbox' value={inputs.checkbox || ""} onChange={handleChange} />
                             <label className='RememberMeCheckBox'>
-                                Remember me 
+                                Remember me
                             </label>
                         </div>
-                        <div className='top'>
-                            {isLoggedIn ? <>
-                                <button className='color' id='Submit_but' type="submit" onClick={handleSubmit} > Submit</button>
-                                <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                <span className="visually-hidden">Loading...</span>
-                            </> : <button className='btn btn-success' id='Submit_but' type="submit" onClick={handleSubmit}  > Submit</button>}
+                        <div className={classes.SubmitLoginButton}>
 
+                            <LoadingButton  loading={isLoggedIn} onClick={handleSubmit}> Sumbit </LoadingButton>
 
                         </div>
 
@@ -215,7 +214,7 @@ export default function Login_logout() {
                 </div>
                 <div>
 
-                    <Dialog open={show} onClose={handleClose}  disableEscapeKeyDown>
+                    <Dialog open={show} onClose={handleClose} disableEscapeKeyDown>
                         <DialogTitle>Enter Otp</DialogTitle>
                         <DialogContent>
                             <DialogContentText>
