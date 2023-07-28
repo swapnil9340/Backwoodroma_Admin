@@ -475,9 +475,7 @@ opacity: 1;
     color: #000000;
     font-size: 18px;
 }
-.signup_userNameCol{
-    
-}
+
 .signupPhoneCol{
     margin-top: 30px;
 }
@@ -535,5 +533,11 @@ opacity: 1;
     width: 50px;
     border-radius: 50%;
     } 
+}
+/* end */
+/* Anshuman */
+.RememberMeCheckBox{
+    margin-left: 7px;
+    display: initial;
 }
 /* end */

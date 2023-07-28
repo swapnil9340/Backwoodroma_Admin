@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-
+import IconButton from '@mui/material/IconButton';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -10,7 +10,9 @@ import Cookies from 'universal-cookie';
 import { Link, useNavigate } from 'react-router-dom';
 import { TextField } from '@mui/material';
 import { AiFillEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-
+import { AiFillEyeInvisible } from "react-icons/ai"
+import InputAdornment from '@material-ui/core/InputAdornment';
+import useStyles from '../../Style'
 
 
 export default function Login_logout() {
@@ -25,6 +27,7 @@ export default function Login_logout() {
         password: "",
         showPassword: false,
     });
+    const classes = useStyles()
     const data = {
         email: inputs.Email,
         username: inputs.username,
@@ -130,18 +133,11 @@ export default function Login_logout() {
                                 </label>
                             </div>
                             <div className='col display'>
-                                <TextField placeholder='User Name' id="outlined-basic" variant="outlined"
-                                    name="username" style={{ minWidth: 190 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
+                                <TextField  placeholder='User Name' id="outlined-basic" variant="outlined"
+                                    name="username" style={{ width: 286 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
                                     onChange={handleChange}
                                     value={inputs.username || ""}
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            '&.Mui-focused fieldset': {
-                                                borderWidth: "1px",
-                                                borderColor: 'black',
-                                            },
-                                        },
-                                    }}
+                                    className={classes.Username}
                                 />
                             </div>
                         </div>
@@ -156,18 +152,10 @@ export default function Login_logout() {
                             </div>
                             <div className='col display'>
                                 <TextField placeholder='Email Address ' id="outlined-basic" variant="outlined" name="Email"
-                                    type="email" style={{ minWidth: 190, fontSize: 15 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
+                                    type="email" style={{ width:286, fontSize: 15 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
                                     value={inputs.Email || ""}
                                     onChange={handleChange}
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            '&.Mui-focused fieldset': {
-                                                borderWidth: "1px",
-                                                borderColor: 'black',
-                                            },
-                                        },
-
-                                    }}
+                                    className={classes.Username}
                                 />
                             </div>
                         </div>
@@ -183,32 +171,31 @@ export default function Login_logout() {
                                 <TextField placeholder='Password' type={values.showPassword ? "text" : "password"} id="outlined-basic" variant="outlined"
                                     name="password" style={{ minWidth: 190 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
                                     onChange={handleChange}
+                                    className={classes.Username}
+                                    InputProps={{ endAdornment: (
+                                        <InputAdornment position='end'>
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowPassword}
+                                            >
+                                                {values.showPassword ? <AiFillEye size={20} color='#747474' /> : <AiFillEyeInvisible size={20} color='#747474' />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                        
+                                    )}}
 
                                     value={inputs.password || ""}
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            '&.Mui-focused fieldset': {
-                                                borderWidth: "1px",
-                                                borderColor: 'black',
-                                            },
-                                        },
-                                        '& .MuiButtonBase-root': {
-                                            fontSize: "1.5625rem",
-                                            color: "#31B665"
-                                        }
-                                    }}
+                                    
                                 />
-                                <span >
-                                    {
-                                        values.showPassword === false ? <AiFillEye className='eye' onClick={handleClickShowPassword} ></AiFillEye> : <AiOutlineEyeInvisible className='eye' onClick={handleClickShowPassword}  ></AiOutlineEyeInvisible>
-                                    }
-                                </span>
+                             
                             </div>
                         </div>
-                        <label className='top'> 
-                            <input type="checkbox" name='checkbox' value={inputs.checkbox || ""} onChange={handleChange} />
-                            Remember me 
-                        </label>
+                        <div className='top'> 
+                                <input type="checkbox" name='checkbox' value={inputs.checkbox || ""} onChange={handleChange} />
+                            <label className='RememberMeCheckBox'>
+                                Remember me 
+                            </label>
+                        </div>
                         <div className='top'>
                             {isLoggedIn ? <>
                                 <button className='color' id='Submit_but' type="submit" onClick={handleSubmit} > Submit</button>
