@@ -18,7 +18,7 @@ import Store from '../Pages/Store/Store';
 import Brand from '../Pages/Brand/Brand';
 import News from '../Pages/News/News';
 import Coupon from "../Pages/Coupon/Coupon"
-import  GiftVoucher from "../Pages/GiftVoucher/GiftVoucher"
+import GiftVoucher from "../Pages/GiftVoucher/GiftVoucher"
 import NewsCategory from "../Pages/News/NewsCategory/NewsCategory"
 import NewsSubCategory from "../Pages/News/NewsSubCategory/NewsSubCategory"
 import Vendor from "../Pages/Vendor/Vendor"

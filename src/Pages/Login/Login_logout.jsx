@@ -201,7 +201,7 @@ export default function Login_logout() {
                         </div>
                         <div className={classes.SubmitLoginButton}>
 
-                            <LoadingButton  loading={isLoggedIn} onClick={handleSubmit}> Sumbit </LoadingButton>
+                            <LoadingButton  loading={isLoggedIn} onClick={handleSubmit}> Submit </LoadingButton>
 
                         </div>
 
