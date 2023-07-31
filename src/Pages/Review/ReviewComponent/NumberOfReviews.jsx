@@ -4,7 +4,8 @@ import Box from '@mui/material/Box';
 import LinearProgressWithLabel from "./ReviewProgressBarComponent/LinearProgressWithLabel";
 import { AiFillStar } from "react-icons/ai"
 const NumberOfReviews = () => {
-    const [progress, setProgress] = React.useState(100);
+    const [progress, setProgress] = React.useState();
+    setProgress(100)
 
    
 

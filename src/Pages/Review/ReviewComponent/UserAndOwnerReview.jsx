@@ -2,7 +2,6 @@ import React from "react"
 import { AiFillDelete } from "react-icons/ai"
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Rating from '@mui/material/Rating';
-import { Height } from "@mui/icons-material";
 import IconButton from '@mui/material/IconButton';
 
 const UserAndOwnerReview = () => {

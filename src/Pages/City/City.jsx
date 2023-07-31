@@ -7,7 +7,6 @@ import CityPopUp from "./Citypopup"
 import axios from "axios";
 import Box from '@mui/material/Box';
 import { AiFillEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import CityEdit from './CityEdit';

@@ -14,10 +14,8 @@ import axios from "axios"
 import draftToHtml from "draftjs-to-html";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { EditorState, ContentState } from 'draft-js';
-import { convertToHTML } from 'draft-convert';
+import { EditorState } from 'draft-js';
 import { MdFileUpload } from 'react-icons/md';
-import htmlToDraft from 'html-to-draftjs';
 import Createcontext from "../../Hooks/Context/Context"
 import InputAdornment from '@mui/material/InputAdornment';
 import Box from '@mui/material/Box';
@@ -45,16 +43,16 @@ function BootstrapDialogTitle(props) {
 
 }
 
-const getInitialState = (defaultValue) => {
-    if (defaultValue) {
-        const blocksFromHtml = htmlToDraft(defaultValue);
-        const { contentBlocks, entityMap } = blocksFromHtml;
-        const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
-        return EditorState.createWithContent(contentState);
-    } else {
-        return EditorState.createEmpty();
-    }
-};
+// const getInitialState = (defaultValue) => {
+//     if (defaultValue) {
+//         const blocksFromHtml = htmlToDraft(defaultValue);
+//         const { contentBlocks, entityMap } = blocksFromHtml;
+//         const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+//         return EditorState.createWithContent(contentState);
+//     } else {
+//         return EditorState.createEmpty();
+//     }
+// };
 export default function NewsEdit(props) {
     const defaultValue = props.data.Description
     const { dispatch } = useContext(Createcontext)
