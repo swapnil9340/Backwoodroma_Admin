@@ -719,7 +719,7 @@
     background-color: #E1FFED;
 }
 .rolesAndPermissionTableheader tr th{
-    width: 30%;
+    width: 25%;
 }
 .Rolesparagrpah {
     margin-bottom: 0px;
@@ -797,7 +797,72 @@
     display: flex;
     gap: 3px;
 }
+.showDropdown{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    border: 1px solid #B1B1B1;
+    width: 100%;
+    height: 32px;
+    padding: 0px 8px;
+    border-radius: 20px;
+}
+.showDropDownContainer{
+    display: flex;
+    gap: 8px;
+    height: 50px;
+    align-items: center;
+    position:relative;
+}
+.rolesAllDropdownMaincontainer{
+    display: flex;
+    gap: 10px;
+    padding-left: 5px;
+    flex-wrap: wrap;
+}
+.rolesAndpermission_Searchbar{
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+.showAllDropdownItem{
+    position: absolute;
+    top: 40px;
+    height: 160px;
+    z-index: 100;
+    left: 49px;
+    width: 160px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029, 0px 3px 6px #00000029;
+    border: 1px solid #B1B1B1;
+}
+.roleAndPermissionList{
+    display:flex;
+    height: auto;
+}
+.roleCreatelist{
+    padding-left: 0px;
+}
+.roleCreateLists{
+    color: #B1B1B1;
+}
+.rolesAndPermission_Ordelist{
+    padding-left: 0px;
+    padding-top: 5px;
+    width: 100%;
+    height: 30px;
+}
+.eachRoleList{
+ list-style: none;
+ display: block;
+ padding: 5px 5px;
 
+}
+.roleTdFlex{
+    display: grid;
+    align-items: center;
+    height: 80px;
+}
 @media(max-width:991px) {
     .RoleAndPermissionContainer {
         left: 0px;
@@ -810,7 +875,24 @@
         border-radius: 50%;
     }
     .rolesPermissionsubHeadingFont {
+        font-size: 13px;
+    }
+    .roleEmail {
+        font: 12px Open Sans;
+    }
+    .roleUserName{
         font-size: 12px;
+    }
+}
+@media(max-width:500px){
+    .rolesAndpermission_Searchbar{
+        justify-content: center;
+    }
+    .showAllDropdownItem{
+        width: 130px;
+    }
+    .rolesAndPermissionHeader_Container{
+        gap: 1px;
     }
 }
 
