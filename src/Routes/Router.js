@@ -11,14 +11,9 @@ import countries from "../Pages/Countries/Countries";
 import State from "../Pages/States/State";
 import City  from "../Pages/City/City"
 import  Tax from "../Pages/Tax/Tax"
-import Discount from "../Pages/Discount/Discount"
-import Flavour from "../Pages/Flavour/Flavour"
-import Netweight from "../Pages/NetWeight/NetWeight"
 import Store from '../Pages/Store/Store';
 import Brand from '../Pages/Brand/Brand';
 import News from '../Pages/News/News';
-import Coupon from "../Pages/Coupon/Coupon"
-import GiftVoucher from "../Pages/GiftVoucher/GiftVoucher"
 import NewsCategory from "../Pages/News/NewsCategory/NewsCategory"
 import NewsSubCategory from "../Pages/News/NewsSubCategory/NewsSubCategory"
 import Vendor from "../Pages/Vendor/Vendor"
@@ -46,9 +41,7 @@ export default function Router() {
          <Route  path="/States" element={<Protected Component={State} />} /> 
          <Route  path="/City" element={<Protected Component={City} />} /> 
          <Route  path="/Tax" element={<Protected Component={Tax} />} /> 
-         <Route  path="/Discount" element={<Protected Component={Discount} />} /> 
-         <Route  path="/Flavour" element={<Protected Component={Flavour} />} /> 
-         <Route  path="/Netweight" element={<Protected Component={Netweight} />} /> 
+
          <Route  path="/Store" element={<Protected Component={Store} />} />   
          <Route  path="/Brand" element={<Protected Component={Brand} />} />   
          <Route  path="/News" element ={<Protected Component ={News}/>}/>
@@ -59,8 +52,7 @@ export default function Router() {
          <Route  path="/Vendor" element ={<Protected Component ={Vendor}/>}/>
 
 
-        <Route   path="/Coupon" element ={<Protected Component ={Coupon}/>}/>
-        <Route   path="/GiftVoucher" element = {<Protected Component = {GiftVoucher} />} />
+
         <Route path='/Settings' element={<Protected Component={Settings}/>}/>
         <Route   path='/Forgot' element={<Forgot />}/>
         <Route path='/RoleAndPermission' element={<Protected Component={RoleAndPermission}/>}/>

@@ -1,5 +1,4 @@
 import React from 'react'
-import { TfiGallery } from 'react-icons/tfi';
 import { AiOutlineUserAdd } from 'react-icons/ai';
 import { BsBagCheck } from 'react-icons/bs'
 import { FaRegListAlt } from "react-icons/fa"

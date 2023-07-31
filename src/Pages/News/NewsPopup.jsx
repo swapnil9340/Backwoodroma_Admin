@@ -11,9 +11,9 @@ import Cookies from 'universal-cookie';
 import Axios from "axios"
 import axios from "axios"
 import { Editor } from "react-draft-wysiwyg";
+import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState } from 'draft-js';
-import { convertToHTML } from 'draft-convert';
 import { MdFileUpload } from 'react-icons/md';
 import InputAdornment from '@mui/material/InputAdornment';
 import Createcontext from "../../Hooks/Context/Context"
@@ -49,7 +49,7 @@ export default function Newspop() {
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [editorState, setEditorState] = React.useState(() => EditorState.createEmpty());
-    const [convertedContent, setConvertedContent] = React.useState(null);
+    const [convertedContent, setConvertedContent] = React.useState('');
     const [Category, SetCategory] = React.useState([])
     const [SubCategory, SetSubCategory] = React.useState([])
     const [Image, SetImage] = React.useState('')
@@ -84,16 +84,96 @@ export default function Newspop() {
         Alt_Text: "",
         Link: ""
     })
+    const toolbar = {
+        options: [
+            "blockType",
+            "inline",
+            "list",
+            // "textAlign",
+            "link",
+            // "embedded",
+            "image"
+        ],
+        blockType: {
+            inDropdown: true,
+            options: ["H2", "H3", "H4", "Normal", "Blockquote"],
+            className: undefined,
+            component: undefined,
+            dropdownClassName: undefined
+        },
+        inline: {
+            inDropdown: false,
+            className: undefined,
+            component: undefined,
+            dropdownClassName: undefined,
+            options: ["bold", "italic", "underline"]
+        },
+        link: {
+            options: ["link", "unlink"],
+            showOpenOptionOnHover: false
+        },
+        list: {
+            options: ["ordered", "unordered"]
+        },
+        image: {
+            className: undefined,
+            component: undefined,
+            popupClassName: undefined,
+            urlEnabled: true,
+            uploadEnabled: true,
+            alignmentEnabled: true,
+            uploadCallback: undefined,
+            previewImage: false,
+            inputAccept: 'application/pdf,text/plain,application/vnd.openxmlformatsofficedocument.wordprocessingml.document,application/msword,application/vnd.ms-excel',
+            alt: { present: true, mandatory: true },
+            defaultSize: {
+                height: "100",
+                width: "100"
+            }
+        }
+    };
+
+    const localization = {
+        locale: "en-us",
+        translations: {
+            "generic.add": "Add",
+            "generic.cancel": "Cancel",
+
+            "components.controls.blocktype.normal": "Normal",
+            "components.controls.blocktype.h2": "Heading 1",
+            "components.controls.blocktype.h3": "Heading 2",
+            "components.controls.blocktype.h4": "Heading 3",
+            "components.controls.blocktype.blockquote": "Blockquote",
+
+            "components.controls.embedded.embedded": "Embedded",
+            "components.controls.embedded.embeddedlink": "Embedded Link",
+            "components.controls.embedded.enterlink": "Enter link",
+
+            "components.controls.link.linkTitle": "Link Title",
+            "components.controls.link.linkTarget": "Link Target",
+            "components.controls.link.linkTargetOption": "Open link in new window",
+            "components.controls.link.link": "Link",
+            "components.controls.link.unlink": "Unlink",
+
+            "components.controls.image.image": "Image",
+            "components.controls.image.fileUpload": "File Upload",
+            "components.controls.image.byURL": "URL",
+            "components.controls.image.dropFileText": "Drop the file or click to upload"
+        }
+    };
+    const handleContentStateChange = (contentState) => {
+        setConvertedContent(draftToHtml(contentState));
+      };
+    
+      const handleEditorStateChange = (editorState) => {
+        setEditorState(editorState);
+      };
 
 
-
-
-
-
-    React.useEffect(() => {
-        let html = convertToHTML(editorState.getCurrentContent());
-        setConvertedContent(html);
-    }, [editorState]);
+    // React.useEffect(() => {
+    //     let html = convertToHTML(editorState.getCurrentContent());
+    //     setConvertedContent(html);
+    // }, [editorState]);
 
     const handleimage = (event) => {
 
@@ -122,7 +202,6 @@ export default function Newspop() {
     };
 
 
-
     const handleClose = () => {
         setOpen(false);
         setNews(Brand => ({
@@ -148,8 +227,8 @@ export default function Newspop() {
 
         }).then(response => {
             SetCategory(response.data)
-            
-            setNews(Category => ({ ...Category, Category_id: response.data[0].id })) 
+
+            setNews(Category => ({ ...Category, Category_id: response.data[0].id }))
 
         })
 
@@ -267,6 +346,9 @@ export default function Newspop() {
             document.querySelector('.file-name').textContent = fileNameAndSize;
         });
     }
+
+
+
     return (
         <div>
 
@@ -319,7 +401,7 @@ export default function Newspop() {
                                 <div className='col-12 top  Add_Category_pop  con  '>
                                     <div className='col m-2'>
                                         <label className='label'>
-                                    <span className='required'>*</span>
+                                            <span className='required'>*</span>
                                             Title:
                                         </label>
                                     </div>
@@ -350,7 +432,7 @@ export default function Newspop() {
                                 <div className='col-12 top  Add_Category_pop  con  '>
                                     <div className='col m-2'>
                                         <label className='label'>
-                                        <span className='required'>*</span>
+                                            <span className='required'>*</span>
                                             Meta Title:
                                         </label>
                                     </div>
@@ -468,7 +550,7 @@ export default function Newspop() {
                                 <div className='col-12 top  Add_Category_pop '>
                                     <div className='col m-2'>
                                         <label className='label'>
-                                        <span className='required'>*</span>
+                                            <span className='required'>*</span>
                                             Featured Image:
                                         </label>
                                     </div>
@@ -502,7 +584,7 @@ export default function Newspop() {
                                 <div className='col-12 top  Add_Category_pop '>
                                     <div className='col m-2'>
                                         <label className='label'>
-                                        <span className='required'>*</span>
+                                            <span className='required'>*</span>
                                             Alt Text:
                                         </label>
                                     </div>
@@ -566,7 +648,7 @@ export default function Newspop() {
                                 <div className='col-12 top  Add_Category_pop '>
                                     <div className='col m-2'>
                                         <label className='label'>
-                                        <span className='required'>*</span>
+                                            <span className='required'>*</span>
                                             Url slug :
                                         </label>
                                     </div>
@@ -598,7 +680,7 @@ export default function Newspop() {
                                 <div className='col-12 top  Add_Category_pop  con  '>
                                     <div className='col m-2'>
                                         <label className='label'>
-                                        <span className='required'>*</span>
+                                            <span className='required'>*</span>
                                             Meta Description :
                                         </label>
                                     </div>
@@ -630,30 +712,33 @@ export default function Newspop() {
                                 <div className='col-12 top  Add_Category_pop  '>
                                     <div className='col m-2'>
                                         <label className='label'>
-                                        <span className='required'>*</span>
+                                            <span className='required'>*</span>
                                             Description:
                                         </label>
                                     </div>
                                     <div className='col'>
-                                    <Box
-                                         sx={{
-                                            "& .rdw-editor-toolbar":{
-                                                width:"100%"
-                                            },
-                                            ".rdw-editor-main":{
-                                                background:"",
-                                                border:"1px solid #c4c4c4",
-                                                padding:"3px"
-                                            }
-                                        }}
-                                         >
-                                        <Editor
-                                            editorState={editorState}
-                                            onEditorStateChange={setEditorState}
-                                            toolbarClassName="toolbarClassName"
-                                            wrapperClassName="wrapperClassName"
-                                            editorClassName="editorClassName"
-                                        />
+                                        <Box
+                                            sx={{
+                                                "& .rdw-editor-toolbar": {
+                                                    width: "100%"
+                                                },
+                                                ".rdw-editor-main": {
+                                                    background: "",
+                                                    border: "1px solid #c4c4c4",
+                                                    padding: "3px"
+                                                }
+                                            }}
+                                        >
+                                            <Editor
+                                                editorState={editorState}
+                                                toolbar={toolbar}
+                                                localization={localization}
+                                                onEditorStateChange={handleEditorStateChange}
+                                                onContentStateChange={handleContentStateChange}
+                                                toolbarClassName="toolbarClassName"
+                                                wrapperClassName="wrapperClassName"
+                                                editorClassName="editorClassName"
+                                            />
                                         </Box>
                                     </div>
                                 </div>
