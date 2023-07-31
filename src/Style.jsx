@@ -168,6 +168,9 @@ const useStyles = makeStyles({
         height:"35px",
         
       },
+      '& .MuiLoadingButton-root:hover':{
+        border:"1px solid #31B665",
+      },
       "@media(max-width:600px)":{
         '& .MuiLoadingButton-root':{
         width:"79px",

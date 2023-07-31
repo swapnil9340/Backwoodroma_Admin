@@ -711,9 +711,56 @@
     left: 16%;
     height: auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
+.rolesAndPermissionTableheader {
+    background-color: #E1FFED;
+}
+.rolesAndPermissionTableheader tr th{
+    width: 30%;
+}
+.Rolesparagrpah {
+    margin-bottom: 0px;
+}
+
+.roleUserName {
+    font: 600 18px Open Sans;
+    color: #000000;
+}
+
+.roleEmail {
+    font: 18px Open Sans;
+    color: #5F5F5F;
+}
+
+.roleAndTableImageSize {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.rolesAndPermissionParagraphCol {
+    display: grid;
+    align-items: center;
+}
+
+.rolesAndPermissionParagraph {
+    height: 40px;
+}
+
+.rolesAndPermissionImage {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    height: 80px;
+
+}
+.rolesAndPermissionTableContainer{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029, 0px 3px 6px #00000029;
+}
 .rolesAndPermissionHeader_MainContainer {
     display: flex;
     height: auto;
@@ -729,10 +776,12 @@
     letter-spacing: 0.6px;
     color: #000000;
 }
-.rolesPermissionsubHeadingFont{
-    font:18px Open Sans;
+
+.rolesPermissionsubHeadingFont {
+    font: 18px Open Sans;
     color: #5F5F5F;
 }
+
 .learnMoreLink:hover {
     color: #31B665;
     margin-left: 8px;
@@ -743,17 +792,24 @@
     display: flex;
     gap: 10px;
 }
-.roleAndPermissionBtnContainer{
+
+.roleAndPermissionBtnContainer {
     display: flex;
     gap: 3px;
 }
+
 @media(max-width:991px) {
     .RoleAndPermissionContainer {
         left: 0px;
         display: flex-start;
         width: 100%;
     }
-    .rolesPermissionsubHeadingFont{
+    .roleAndTableImageSize {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+    .rolesPermissionsubHeadingFont {
         font-size: 12px;
     }
 }
