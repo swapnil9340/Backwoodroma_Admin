@@ -138,11 +138,19 @@ const useStyles = makeStyles({
   },
   SubmitLoginButton:{
     '& .MuiLoadingButton-root':{
-      color:'#31B665',
-      width: "25%",
-      marginTop:"10px",
+      
+        color:'#31B665',
+        marginTop:"10px",
+        fontSize:"15px",
+        
+      },
+     '& .MuiLoadingButton-outlined':{
+      outlined:"#31B665"
+     }
+   
+ 
     }
-  }
+
 
 }
 )
