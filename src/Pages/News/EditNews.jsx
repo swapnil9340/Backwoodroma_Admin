@@ -1,4 +1,4 @@
-import React, { useContext ,useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -11,9 +11,10 @@ import MenuItem from '@mui/material/MenuItem';
 import Cookies from 'universal-cookie';
 import Axios from "axios"
 import axios from "axios"
+import draftToHtml from "draftjs-to-html";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { EditorState,ContentState } from 'draft-js';
+import { EditorState, ContentState } from 'draft-js';
 import { convertToHTML } from 'draft-convert';
 import { MdFileUpload } from 'react-icons/md';
 import htmlToDraft from 'html-to-draftjs';
@@ -60,9 +61,9 @@ export default function NewsEdit(props) {
     const [open, setOpen] = React.useState(false);
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
-    const [editorState, setEditorState] = React.useState(getInitialState(defaultValue));
+    const [editorState, setEditorState] = React.useState(() => EditorState.createEmpty());
 
-    const [convertedContent, setConvertedContent] = React.useState(null);
+    const [convertedContent, setConvertedContent] = React.useState(defaultValue);
     const [Category, SetCategory] = React.useState([])
     const [SubCategory, SetSubCategory] = React.useState([])
     const [Image, SetImage] = React.useState('')
@@ -78,7 +79,7 @@ export default function NewsEdit(props) {
         Url_slug: props.data.Url_slug,
         Alt_Text: props.data.Alt_Text,
         Image: props.data.Image,
-        
+
 
     });
 
@@ -102,13 +103,101 @@ export default function NewsEdit(props) {
         Link: ""
     })
 
+    const handleContentStateChange = (contentState) => {
+        setConvertedContent(draftToHtml(contentState));
+    };
 
+    const handleEditorStateChange = (editorState) => {
+        setEditorState(editorState);
+    };
+    // React.useEffect(() => {
+    //     let html = draftToHtml();
+    //     setConvertedContent(html);
+    // }, [editorState]);
+  
+    console.log(draftToHtml(defaultValue))
+    const toolbar = {
+        options: [
+            "blockType",
+            "inline",
+            "list",
+            // "textAlign",
+            "link",
+            // "embedded",
+            "image"
+        ],
+        blockType: {
+            inDropdown: true,
+            options: ["H2", "H3", "H4", "Normal", "Blockquote"],
+            className: undefined,
+            component: undefined,
+            dropdownClassName: undefined
+        },
+        inline: {
+            inDropdown: false,
+            className: undefined,
+            component: undefined,
+            dropdownClassName: undefined,
+            options: ["bold", "italic", "underline"]
+        },
+        link: {
+            options: ["link", "unlink"],
+            showOpenOptionOnHover: false
+        },
+        list: {
+            options: ["ordered", "unordered"]
+        },
+        image: {
+            className: undefined,
+            component: undefined,
+            popupClassName: undefined,
+            urlEnabled: true,
+            uploadEnabled: true,
+            alignmentEnabled: true,
+            uploadCallback: undefined,
+            previewImage: false,
+            inputAccept: "image/gif,image/jpeg,image/jpg,image/png",
+            alt: { present: true, mandatory: true },
+            defaultSize: {
+                height: "100",
+                width: "100"
+            }
+        }
+    };
 
+    const localization = {
+        locale: "en-us",
+        translations: {
+            "generic.add": "Add",
+            "generic.cancel": "Cancel",
 
-    React.useEffect(() => {
-        let html = convertToHTML(editorState.getCurrentContent());
-        setConvertedContent(html);
-    }, [editorState]);
+            "components.controls.blocktype.normal": "Normal",
+            "components.controls.blocktype.h2": "Heading 1",
+            "components.controls.blocktype.h3": "Heading 2",
+            "components.controls.blocktype.h4": "Heading 3",
+            "components.controls.blocktype.blockquote": "Blockquote",
+
+            "components.controls.embedded.embedded": "Embedded",
+            "components.controls.embedded.embeddedlink": "Embedded Link",
+            "components.controls.embedded.enterlink": "Enter link",
+
+            "components.controls.link.linkTitle": "Link Title",
+            "components.controls.link.linkTarget": "Link Target",
+            "components.controls.link.linkTargetOption": "Open link in new window",
+            "components.controls.link.link": "Link",
+            "components.controls.link.unlink": "Unlink",
+
+            "components.controls.image.image": "Image",
+            "components.controls.image.fileUpload": "File Upload",
+            "components.controls.image.byURL": "URL",
+            "components.controls.image.dropFileText": "Drop the file or click to upload"
+        }
+    };
+
+    // React.useEffect(() => {
+    //     let html = convertToHTML(editorState.getCurrentContent());
+    //     setConvertedContent(html);
+    // }, [editorState]);
 
     const handleimage = (event) => {
 
@@ -127,7 +216,7 @@ export default function NewsEdit(props) {
         // resetting the input value
         inputRef.current.value = null;
         SetImage(null)
-      };
+    };
     const handleClickOpen = () => {
         setOpen(true);
 
@@ -175,11 +264,10 @@ export default function NewsEdit(props) {
     formdata.append('SubCategory_id', News.SubCategory_id);
     formdata.append('Url_slug', News.Url_slug);
     formdata.append('Alt_Text', News.Alt_Text);
-    if(News.Image==="")
-    {
-        formdata.append('Image',News.Image );
+    if (News.Image === "") {
+        formdata.append('Image', News.Image);
     }
-    Image && formdata.append('Image', Image );
+    Image && formdata.append('Image', Image);
 
 
 
@@ -471,17 +559,17 @@ export default function NewsEdit(props) {
 
                                                 {
                                                     Image ?
-                                                        <div style={{display : "flex"}}>
-                                                        <img src={URL.createObjectURL(Image)} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
+                                                        <div style={{ display: "flex" }}>
+                                                            <img src={URL.createObjectURL(Image)} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
                                                             <Button onClick={resetFileInput} color='success' >Cancell </Button>
-                                                            
-                                                            </div>
+
+                                                        </div>
 
                                                         :
 
                                                         (
-                                                            News.Image!=="" ?
-                                                                <div style={{display : "flex"}}>
+                                                            News.Image !== "" ?
+                                                                <div style={{ display: "flex" }}>
                                                                     <img src={"http://backend.sweede.net/" + (News.Image)} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
                                                                     <Button name="Image" value="" onClick={handleChange} color='success' >Cancell </Button>
                                                                 </div>
@@ -623,6 +711,7 @@ export default function NewsEdit(props) {
                                                     }
                                                 }
                                             }}
+
                                         />
                                     </div>
                                 </div>
@@ -633,25 +722,28 @@ export default function NewsEdit(props) {
                                         </label>
                                     </div>
                                     <div className='col'>
-                                    <Box
-                                         sx={{
-                                            "& .rdw-editor-toolbar":{
-                                                width:"100%"
-                                            },
-                                            ".rdw-editor-main":{
-                                                background:"",
-                                                border:"1px solid #c4c4c4",
-                                                padding:"3px"
-                                            }
-                                        }}
-                                         >
-                                        <Editor
-                                            editorState={editorState}
-                                            onEditorStateChange={setEditorState}
-                                            toolbarClassName="toolbarClassName"
-                                            wrapperClassName="wrapperClassName"
-                                            editorClassName="editorClassName"
-                                        />
+                                        <Box
+                                            sx={{
+                                                "& .rdw-editor-toolbar": {
+                                                    width: "100%"
+                                                },
+                                                ".rdw-editor-main": {
+                                                    background: "",
+                                                    border: "1px solid #c4c4c4",
+                                                    padding: "3px"
+                                                }
+                                            }}
+                                        >
+                                            <Editor
+                                                editorState={editorState}
+                                                toolbar={toolbar}
+                                                localization={localization}
+                                                onEditorStateChange={handleEditorStateChange}
+                                                onContentStateChange={handleContentStateChange}
+                                                toolbarClassName="toolbarClassName"
+                                                wrapperClassName="wrapperClassName"
+                                                editorClassName="editorClassName"
+                                            />
                                         </Box>
                                     </div>
                                 </div>
@@ -669,7 +761,7 @@ export default function NewsEdit(props) {
                     </div>
                 </DialogContent>
                 <DialogActions>
-                    <Button sx={{color:"#31B665"}} autoFocus onClick={handleClose}>
+                    <Button sx={{ color: "#31B665" }} autoFocus onClick={handleClose}>
                         Exit
                     </Button>
                 </DialogActions>
