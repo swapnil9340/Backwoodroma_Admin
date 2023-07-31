@@ -149,6 +149,37 @@ const useStyles = makeStyles({
      }
    
  
+    },
+    loadingBtnBoxHeight:{
+    height:"100%",
+    width:"100%",
+    display:"flex",
+    alignItems:"center"
+    },
+    rolePermissionLoadingBtn:{
+      '& .MuiLoadingButton-root':{
+      
+        color:'#31B665',
+        marginTop:"10px",
+        fontSize:"10px",
+        width:"100%",
+        border:"1px solid #31B665",
+        borderRadius:"20px",
+        height:"35px",
+        
+      },
+      "@media(max-width:600px)":{
+        '& .MuiLoadingButton-root':{
+        width:"79px",
+        height:"30px",
+        fontSize:"7px"
+
+
+        }
+      },
+     '& .MuiLoadingButton-outlined':{
+      outlined:"#31B665"
+     }
     }
 
 

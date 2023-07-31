@@ -1,353 +1,423 @@
-.reviewContainer{
+.reviewContainer {
     height: 100px;
 }
-.reviewMainContainer{
-    position:relative;
+
+.reviewMainContainer {
+    position: relative;
     left: 16%;
     padding: 0px 15px;
     height: auto;
 }
-.ReviewSearchBar_container{
+
+.ReviewSearchBar_container {
     height: 120px;
     display: flex;
     align-items: center;
 }
-.reviewContainer{
-    height:auto;
+
+.reviewContainer {
+    height: auto;
     position: relative;
-    left:16%; 
+    left: 16%;
 }
-.review_backBtn{
+
+.review_backBtn {
     font: normal normal 600 24px Open Sans;
     color: #000000;
 }
-.reviewSearchBar_backArrowBtn{
+
+.reviewSearchBar_backArrowBtn {
     display: flex;
     gap: 8px;
 }
-.reviewButtonView{
+
+.reviewButtonView {
     display: flex;
     justify-content: flex-end;
     height: 30px;
 }
-.reviewFilter{
+
+.reviewFilter {
     height: 80px;
     display: flex;
     align-items: center;
 }
-.reviewFilterHeadings{
+
+.reviewFilterHeadings {
     font: normal normal 600 24px Open Sans;
     color: #000000;
 }
-.reviewFilterBtns{
+
+.reviewFilterBtns {
     display: flex;
     justify-content: flex-end;
 }
-@media(max-width:600px){
-    .review_backBtn{
+
+@media(max-width:600px) {
+    .review_backBtn {
         font-size: 12px;
     }
 }
-@media(max-width:991px){
-  .reviewMainContainer{
-   left: 0px;
-   width: 100%;
-   padding: 0px
 
-  }  
+@media(max-width:991px) {
+    .reviewMainContainer {
+        left: 0px;
+        width: 100%;
+        padding: 0px
+    }
 }
+
 /* NumberOfReview */
-.NumberOfReview_container{
+.NumberOfReview_container {
     display: flex;
     height: auto;
-    border-top: 1px  solid #D1D1D1;
-    border-bottom: 1px  solid #D1D1D1;
+    border-top: 1px solid #D1D1D1;
+    border-bottom: 1px solid #D1D1D1;
     margin-top: 20px;
     padding: 30px 0px;
 }
-.NumberOfReview_container_Card1{
+
+.NumberOfReview_container_Card1 {
     border-right: 1px solid #D1D1D1;
 }
-.numberOfRatingsCol{
+
+.numberOfRatingsCol {
     height: 30px;
     display: flex;
     align-items: center;
 }
-.headingsCol{
+
+.headingsCol {
     /* border: 1px  solid #D1D1D1; */
     height: 35px;
 }
-.NumberOfReviewRating_Col{
+
+.NumberOfReviewRating_Col {
     height: 35px;
     gap: 8px;
     display: flex;
     align-items: center;
 }
-.avgBottomHeading{
+
+.avgBottomHeading {
     font: normal normal normal 20px Open Sans;
-color: #B1B1B1;
-}
-.totalReviewHeadings{
-    font: normal normal normal 20px Open Sans;
-color: #111111;
-}
-.totalReviwsCount{
-    font: normal normal bold 20px Open Sans;
-color: #111111;
-}
-.bottomHeadings{
-    font: normal normal normal 20px Open Sans;
-color: #B1B1B1;
-}
-.NumberOfReview_container_Card2{
-    height: auto;
-     padding-left: 20px;
-     border-right: 1px solid #D1D1D1;
+    color: #B1B1B1;
 }
 
-.NumberOfReviewHeading_Col{
+.totalReviewHeadings {
+    font: normal normal normal 20px Open Sans;
+    color: #111111;
+}
+
+.totalReviwsCount {
+    font: normal normal bold 20px Open Sans;
+    color: #111111;
+}
+
+.bottomHeadings {
+    font: normal normal normal 20px Open Sans;
+    color: #B1B1B1;
+}
+
+.NumberOfReview_container_Card2 {
+    height: auto;
+    padding-left: 20px;
+    border-right: 1px solid #D1D1D1;
+}
+
+.NumberOfReviewHeading_Col {
     height: 35px;
 }
-.avgRatingHeadings{
+
+.avgRatingHeadings {
     font: normal normal normal 20px Open Sans;
-color: #111111;
+    color: #111111;
 }
-.reviewRatingPoint{
+
+.reviewRatingPoint {
     font: normal normal bold 20px Open Sans;
-color: #595959;
+    color: #595959;
 }
-.linearProgressCol{
+
+.linearProgressCol {
     padding-left: 20px;
 }
-.eachLinearSearchBradiv{
+
+.eachLinearSearchBradiv {
     display: flex;
     align-items: center;
     gap: 15px;
     height: 35px;
 }
-@media(max-width:780px){
-    .totalReviewHeadings{
+
+@media(max-width:780px) {
+    .totalReviewHeadings {
         font-size: 14px;
     }
-    .totalReviwsCount{
+
+    .totalReviwsCount {
         font-size: 14px;
     }
-    .bottomHeadings{
+
+    .bottomHeadings {
         font-size: 14px;
-    } 
+    }
 }
-@media(max-width:562px){
-.NumberOfReview_container_Card2{
-    padding-left: 0px;
-    width: 100%;
-    border-right: 0px;
-    border-bottom: 1px solid #D1D1D1;
-}
-.linearProgressCol{
-    padding-left: 0px;
-    width: 100%;
-    border-bottom: 1px solid #D1D1D1;
-}
-    .NumberOfReview_container{
+
+@media(max-width:562px) {
+    .NumberOfReview_container_Card2 {
+        padding-left: 0px;
+        width: 100%;
+        border-right: 0px;
+        border-bottom: 1px solid #D1D1D1;
+    }
+
+    .linearProgressCol {
+        padding-left: 0px;
+        width: 100%;
+        border-bottom: 1px solid #D1D1D1;
+    }
+
+    .NumberOfReview_container {
         display: block;
     }
-    .NumberOfReview_container_Card1{
+
+    .NumberOfReview_container_Card1 {
         width: 100%;
         border-right: none;
         border-bottom: 1px solid #D1D1D1;
     }
 }
+
 /* end */
 /* UserAndOwnerReview */
-.UserAndOwnerReview_mainCol{
+.UserAndOwnerReview_mainCol {
     height: auto;
     margin-top: 50px;
 }
-.UserAndOwnerReview_innerCol{
+
+.UserAndOwnerReview_innerCol {
     border: 1px solid #D1D1D1;
     height: auto;
     margin-top: 15px;
 }
-.UserAndOwnerReview_deleteIconCol{
+
+.UserAndOwnerReview_deleteIconCol {
     display: flex;
     justify-content: flex-end;
     padding: 40px 40px;
 }
-.userReviewContainer{
+
+.userReviewContainer {
     display: flex;
     height: 250px;
     padding: 0px 40px;
     border-bottom: 1px solid #D1D1D1;
 }
-.userReviewLeftSection{
+
+.userReviewLeftSection {
     height: 100%;
     width: 10%;
     display: flex;
     justify-content: center;
 
 }
-.userReviewRightSection{
+
+.userReviewRightSection {
     height: 100%;
     width: 90%;
     padding: 0px 10px;
 }
-.userOwnerImgContainer{
+
+.userOwnerImgContainer {
     height: 80px;
     width: 80px;
     border-radius: 40px;
 }
-.userOwnerImg{
+
+.userOwnerImg {
     height: 78px;
     width: 78px;
     border-radius: 39px;
 }
-.userReviewRightHead_Col{
+
+.userReviewRightHead_Col {
     height: 40px;
 }
-.userReviewRighRating_col{
+
+.userReviewRighRating_col {
     height: 50px;
     display: flex;
     gap: 10px;
     align-items: center;
 }
-.userRevievCommentCol{
+
+.userRevievCommentCol {
     height: 50px;
     display: flex;
     gap: 10px;
-    align-items: center;  
+    align-items: center;
 }
-.userReviewRightHeading{
+
+.userReviewRightHeading {
     font: normal normal bold 30px Open Sans;
-color: #595959;
+    color: #595959;
 }
-.userReviewRight_Paragraph{
+
+.userReviewRight_Paragraph {
     font: normal normal normal 24px Open Sans;
-color: #747474;
+    color: #747474;
 }
-.reviewDate{
+
+.reviewDate {
     font: normal normal normal 24px Open Sans;
-color: #747474;
+    color: #747474;
 }
-.userReviewss{
+
+.userReviewss {
     font: normal normal normal 24px Open Sans;
-color: #747474;
+    color: #747474;
 }
-.ReviewOwner_container{
-    height:300px;
+
+.ReviewOwner_container {
+    height: 300px;
     display: flex;
     padding: 0px 40px;
 }
-.ownerReviewImage_section{
+
+.ownerReviewImage_section {
     width: 10%;
     height: 250px;
     display: flex;
     justify-content: center;
 }
-.ownerReviewImage{
+
+.ownerReviewImage {
     width: 80px;
     height: 80px;
     border-radius: 40px;
 }
-.ownerReviewImageCont{
+
+.ownerReviewImageCont {
     width: 80px;
     height: 80px;
-    border-radius: 40px;   
+    border-radius: 40px;
 }
-.ownerRightSectionss{
+
+.ownerRightSectionss {
     width: 90%;
     height: 300px;
     padding: 0px 10px;
 }
-.ownerParaa{
+
+.ownerParaa {
     font: normal normal normal 24px Open Sans;
     color: #747474;
 }
-.ownerRightHeading{
+
+.ownerRightHeading {
     font: normal normal bold 30px Open Sans;
-color: #595959;
+    color: #595959;
 }
-.ownerRightHeadingCont{
+
+.ownerRightHeadingCont {
     height: 35px;
 }
-@media(max-width:1300px){
-    .userReviewContainer{
+
+@media(max-width:1300px) {
+    .userReviewContainer {
         padding: 0px 2px;
     }
-    .ReviewOwner_container{
-    padding: 0px;
+
+    .ReviewOwner_container {
+        padding: 0px;
     }
 }
-@media(max-width:1205px){
-    .userReviewss{
+
+@media(max-width:1205px) {
+    .userReviewss {
         font-size: 16px;
     }
 }
-@media(max-width:911px){
-    .userOwnerImgContainer{
-        width:60px;
+
+@media(max-width:911px) {
+    .userOwnerImgContainer {
+        width: 60px;
         height: 60px;
         border-radius: 30px;
         display: flex;
         justify-content: center;
     }
 
-    .userOwnerImg{
-      height: 50px;
-      width: 50px;
-      border-radius: 25px;
+    .userOwnerImg {
+        height: 50px;
+        width: 50px;
+        border-radius: 25px;
     }
-    .ownerReviewImageCont{
-        width:60px;
+
+    .ownerReviewImageCont {
+        width: 60px;
         height: 60px;
         border-radius: 30px;
         display: flex;
         justify-content: center;
     }
-    .ownerReviewImage{
+
+    .ownerReviewImage {
         height: 50px;
         width: 50px;
         border-radius: 25px;
     }
 }
 
-@media(max-width:672px){
-    .userReviewLeftSection{
+@media(max-width:672px) {
+    .userReviewLeftSection {
         width: 24%;
 
     }
-    .reviewDate{
-     font-size: 12px;
+
+    .reviewDate {
+        font-size: 12px;
     }
-    .userReviewRightHeading{
+
+    .userReviewRightHeading {
         font-size: 18px;
     }
-    .userReviewRight_Paragraph{
+
+    .userReviewRight_Paragraph {
         font-size: 12px;
     }
-    .userReviewss{
+
+    .userReviewss {
         font-size: 12px;
     }
-    .userReviewRightSection{
+
+    .userReviewRightSection {
         width: 76%;
     }
-    .ownerReviewImage_section{
+
+    .ownerReviewImage_section {
         width: 24%;
 
     }
-    .ownerRightSectionss{
+
+    .ownerRightSectionss {
         width: 76%;
 
     }
-    .ownerParaa{
-      font-size: 12px;
+
+    .ownerParaa {
+        font-size: 12px;
     }
-    .ownerRightHeading{
-      font-size: 18px;
+
+    .ownerRightHeading {
+        font-size: 18px;
     }
 }
+
 /* end */
 /* Signup */
-.SignupContainer{
+.SignupContainer {
     height: auto;
     border: 1px solid #D1D1D1;
     position: relative;
@@ -356,48 +426,56 @@ color: #595959;
     margin-top: 20px;
     padding: 0px 0px;
 }
-.SignupHeading_container{
-   height: 120px;
-   border: 1px solid #D1D1D1; 
-   display: flex;
-   justify-content: center;
-   align-items: center;
+
+.SignupHeading_container {
+    height: 120px;
+    border: 1px solid #D1D1D1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.signupFields_container{
+
+.signupFields_container {
     display: flex;
     justify-content: center;
     height: auto;
 }
-.signupFieldInner_Container{
+
+.signupFieldInner_Container {
     height: auto;
 }
 
-.signupLogo_container{
+.signupLogo_container {
     height: 90px;
     width: 120px;
 }
-.signupLogo_image{
- height: 100%;
- width: 100%;
+
+.signupLogo_image {
+    height: 100%;
+    width: 100%;
 }
-.signup_headings{
+
+.signup_headings {
     font-size: 32px;
     height: 43px;
     color: #000000;
     margin-top: 35px;
 }
-.signup_user_main_container{
+
+.signup_user_main_container {
     display: flex;
     height: auto;
     margin-top: 20px;
 }
-.signup_image_mainContainer{
+
+.signup_image_mainContainer {
     height: 151px;
     width: 11%;
     padding-bottom: 10px;
     margin-top: 5px;
 }
-.siginup_imgCont{
+
+.siginup_imgCont {
     height: 100%;
     width: 100%;
     display: flex;
@@ -407,137 +485,277 @@ color: #595959;
     border-radius: 10px;
     background-color: #E9E9E9;
 }
-.signupUser_image{
+
+.signupUser_image {
     height: 60px;
     width: 60px;
     border-radius: 50%;
 }
-.signupDropdown_rightSection{
+
+.signupDropdown_rightSection {
     width: 90%;
     height: auto;
     padding-left: 40px;
 }
-.roleHead{
+
+.roleHead {
     font-size: 20px;
     color: #000000;
-opacity: 1;
+    opacity: 1;
 }
-.signupNameFields{
+
+.signupNameFields {
     margin-top: 20px;
     height: auto;
 }
-.userEmialFieldCol{
+
+.userEmialFieldCol {
     height: 80px;
     margin-top: 30px;
 }
-.passwordFiledCol{
+
+.passwordFiledCol {
     height: 80px;
-    margin-top: 30px; 
+    margin-top: 30px;
 }
-.signupConditionCol{
+
+.signupConditionCol {
     height: 80px;
     display: flex;
     align-items: center;
 }
 
-.signTermCond{
+.signTermCond {
     color: #31B665;
     font-size: 13px;
     text-decoration: underline;
     cursor: pointer;
     margin-left: 7px;
 }
-.signup_name{
+
+.signup_name {
     color: #000000;
     font-size: 18px
 }
-.Useremail{
+
+.Useremail {
     color: #000000;
     font-size: 18px
 }
-.password{
+
+.password {
     color: #000000;
     font-size: 18px;
     margin-inline: 0px;
 }
-.status{
+
+.status {
     color: #000000;
     font-size: 18px;
     margin-top: 30px;
 }
-.signiningCondPara{
+
+.signiningCondPara {
     color: #000000;
-    font-size: 13px  ; 
+    font-size: 13px;
     margin-bottom: 0px;
 
 }
-.userName{
+
+.userName {
     color: #000000;
     font-size: 18px;
 }
 
-.signupPhoneCol{
+.signupPhoneCol {
     margin-top: 30px;
 }
-.signUp_loading_btn{
+
+.signUp_loading_btn {
     display: flex;
     width: 50%;
     justify-content: center;
 }
-.alreadyAccount{
+
+.alreadyAccount {
     height: 80px;
     margin-top: 30px;
 }
-@media(max-width:1244px){
-    .signup_image_mainContainer{
+
+@media(max-width:1244px) {
+    .signup_image_mainContainer {
         width: 14%;
     }
-    .signupDropdown_rightSection{
-     width: 86%;
+
+    .signupDropdown_rightSection {
+        width: 86%;
     }
-    .signup_headings{
+
+    .signup_headings {
         font-size: 18px;
     }
 }
-@media(max-width:991px){
-.SignupContainer{
-    left: 0px;
-    width: 100%;
-}
-}
-@media(max-width:762px){
-    .alreadyAccount{
+
+@media(max-width:991px) {
+    .SignupContainer {
+        left: 0px;
         width: 100%;
     }
-    .signup_image_mainContainer{
+}
+
+@media(max-width:762px) {
+    .alreadyAccount {
+        width: 100%;
+    }
+
+    .signup_image_mainContainer {
         width: 18%;
     }
-    .signupDropdown_rightSection{
-     width: 82%;
-    }   
+
+    .signupDropdown_rightSection {
+        width: 82%;
+    }
 }
-@media(max-width:700px){
-    .signup_image_mainContainer{
+
+@media(max-width:700px) {
+    .signup_image_mainContainer {
         width: 28%;
         height: 98px;
         margin-top: 5px;
     }
-    .signUp_loading_btn{
+
+    .signUp_loading_btn {
         width: 100%;
     }
-    .signupDropdown_rightSection{
-     width: 72%;
-    }  
+
+    .signupDropdown_rightSection {
+        width: 72%;
+    }
+
     .signupUser_image {
         height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    } 
+        width: 50px;
+        border-radius: 50%;
+    }
 }
+
 /* end */
 /* Anshuman */
-.RememberMeCheckBox{
+.RememberMeCheckBox {
     margin-left: 7px;
     display: initial;
 }
+
+/* end */
+/* Settings */
+.Settings_container {
+    position: relative;
+    height: auto;
+    left: 16.2%;
+    display: flex;
+    justify-content: center;
+}
+
+.settingsHeadings {
+    font: 600 32px Open Sans;
+    color: #000000;
+
+}
+
+.settingsAllCard_container {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029, 0px 3px 6px #00000029;
+
+}
+
+.rolesAndContainerCard {
+    height: auto;
+    padding: 15px;
+
+}
+
+.rolesAndContainerCard:hover {
+    background-color: #E1FFED;
+}
+
+.rolesCard {
+    display: flex;
+    gap: 10px;
+
+}
+
+.roleHeadingFont {
+    font-size: 20px;
+    columns: #000000;
+}
+
+@media(max-width:991px) {
+    .Settings_container {
+        left: 0px;
+        width: 100%;
+        display: flex-start;
+    }
+
+    .settingHeading_contentContainer {
+        width: 100%;
+    }
+}
+
+/* end */
+/* RoleAndPermission */
+.RoleAndPermissionContainer {
+    position: relative;
+    left: 16%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.rolesAndPermissionHeader_MainContainer {
+    display: flex;
+    height: auto;
+    margin-top: 20px;
+}
+
+.learnMoreLink {
+    margin-left: 8px;
+}
+
+.rolesPermission {
+    font: 600 32px Open Sans;
+    letter-spacing: 0.6px;
+    color: #000000;
+}
+.rolesPermissionsubHeadingFont{
+    font:18px Open Sans;
+    color: #5F5F5F;
+}
+.learnMoreLink:hover {
+    color: #31B665;
+    margin-left: 8px;
+
+}
+
+.rolesAndPermissionHeader_Container {
+    display: flex;
+    gap: 10px;
+}
+.roleAndPermissionBtnContainer{
+    display: flex;
+    gap: 3px;
+}
+@media(max-width:991px) {
+    .RoleAndPermissionContainer {
+        left: 0px;
+        display: flex-start;
+        width: 100%;
+    }
+    .rolesPermissionsubHeadingFont{
+        font-size: 12px;
+    }
+}
+
 /* end */

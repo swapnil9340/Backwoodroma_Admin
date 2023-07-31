@@ -25,6 +25,9 @@ import Vendor from "../Pages/Vendor/Vendor"
 import Pagenotfound from "../Pages/Pagenotfound"
 import Review from '../Pages/Review/Review';
 import Signup from '../Pages/Signup/Signup';
+import Settings from '../Pages/Settings/Settings';
+import RolesAndPermissionHeader from '../Pages/Settings/RolesAndPermission/RolesAndPermissionComponent/RolesAndPermissionHeader';
+import RoleAndPermission from '../Pages/Settings/RolesAndPermission/RoleAndPermission';
 export default function Router() {
  
  
@@ -58,7 +61,9 @@ export default function Router() {
 
         <Route   path="/Coupon" element ={<Protected Component ={Coupon}/>}/>
         <Route   path="/GiftVoucher" element = {<Protected Component = {GiftVoucher} />} />
+        <Route path='/Settings' element={<Protected Component={Settings}/>}/>
         <Route   path='/Forgot' element={<Forgot />}/>
+        <Route path='/RoleAndPermission' element={<Protected Component={RoleAndPermission}/>}/>
         <Route   path='*' element={ <Pagenotfound></Pagenotfound>} />
        
         </Routes>

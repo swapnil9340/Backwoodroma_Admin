@@ -143,7 +143,7 @@ function Navbar() {
                 </div>
 
               </Link>
-              <Link to="/" className="list-group-item list-group-item-action py-2 ripple">
+              <Link to="/Settings" className="list-group-item list-group-item-action py-2 ripple">
                 <div className='side_bar_option'>
                   <span><FiSettings></FiSettings></span>
                   <span className='side_penal_link'>Settings</span>
