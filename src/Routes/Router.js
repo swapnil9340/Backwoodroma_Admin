@@ -16,7 +16,6 @@ import Flavour from "../Pages/Flavour/Flavour"
 import Netweight from "../Pages/NetWeight/NetWeight"
 import Store from '../Pages/Store/Store';
 import Brand from '../Pages/Brand/Brand';
-import Product from "../Pages/Product/Product"
 import News from '../Pages/News/News';
 import Coupon from "../Pages/Coupon/Coupon"
 import  GiftVoucher from "../Pages/GiftVoucher/GiftVoucher"
@@ -49,7 +48,6 @@ export default function Router() {
          <Route  path="/Netweight" element={<Protected Component={Netweight} />} /> 
          <Route  path="/Store" element={<Protected Component={Store} />} />   
          <Route  path="/Brand" element={<Protected Component={Brand} />} />   
-         <Route  path="/Product" element={<Protected Component={Product} />} /> 
          <Route  path="/News" element ={<Protected Component ={News}/>}/>
         <Route path='/Review' element={<Protected Component ={Review}/>}/>
         <Route path='/Signup' element={<Protected Component={Signup}/>} />

@@ -4,23 +4,18 @@ import Search from "./Search";
 import { RiDashboardFill } from "react-icons/ri"
 import { IoMdMailUnread } from 'react-icons/io';
 import { IoStorefrontOutline } from "react-icons/io5"
-// import { MdOutlineAddShoppingCart } from "react-icons/md"
-import {RiDragMoveFill} from "react-icons/ri"
-import {HiOutlineReceiptTax} from "react-icons/hi"
+import { RiDragMoveFill } from "react-icons/ri"
+import { HiOutlineReceiptTax } from "react-icons/hi"
 import { VscBellDot } from 'react-icons/vsc';
 import Cookies from 'universal-cookie';
 import { Link, useNavigate } from "react-router-dom";
 import Createcontext from "../../Hooks/Context/Context"
-import ProductDropDown from './SideBarDropdown/ProductDropdown';
 import CategoryDropDown from "./SideBarDropdown/CategoryDropDown"
 import LocationDropDown from "./SideBarDropdown/LocationDropDown"
-import PresetDropDown from "./SideBarDropdown/PresetDropDown"
-import SpecialOfferDropDown from "./SideBarDropdown/SpecialOfferDropDowm"
 import NewsDropDown from './SideBarDropdown/NewsDropDown'
-import SettingDropDown from "./SideBarDropdown/SettingDropDown"
-import {IoIosMenu} from "react-icons/io"
-import {FaUserAlt} from "react-icons/fa"
-
+import { FiSettings } from "react-icons/fi"
+import { IoIosMenu } from "react-icons/io"
+import { FaUserAlt } from "react-icons/fa"
 function Navbar() {
   const [windowSize, setWindowSize] = React.useState([
     window.innerWidth,
@@ -99,7 +94,7 @@ function Navbar() {
                   </div>
                 </div>
               }
-             
+
             </div>
 
           </div>
@@ -116,18 +111,10 @@ function Navbar() {
                   <span className='side_penal_link'>Store</span>
                 </div>
               </Link>
-              <ProductDropDown></ProductDropDown>
-              {/* <Link to="/" className="list-group-item list-group-item-action py-2 ripple">
-                <div className='side_bar_option'>
-                  <span><MdOutlineAddShoppingCart></MdOutlineAddShoppingCart></span>
-                  <span className='side_penal_link'>Order</span>
-                </div>
-
-              </Link> */}
+          
               <CategoryDropDown></CategoryDropDown>
               <LocationDropDown></LocationDropDown>
-              <PresetDropDown></PresetDropDown>
-             
+
               <Link to="/Brand" className="list-group-item list-group-item-action py-2 ripple">
                 <div className='side_bar_option'>
                   <span><RiDragMoveFill></RiDragMoveFill></span>
@@ -143,21 +130,26 @@ function Navbar() {
 
               </Link>
               <Link to="/Signup" className="list-group-item list-group-item-action py-2 ripple">
-              <div className='side_bar_option'>
+                <div className='side_bar_option'>
                   <span><FaUserAlt></FaUserAlt></span>
                   <span className='side_penal_link'>Signup</span>
                 </div>
               </Link>
-               <SpecialOfferDropDown></SpecialOfferDropDown>
-               <NewsDropDown></NewsDropDown>
-               <Link to="/Vendor" className="list-group-item list-group-item-action py-2 ripple">
+              <NewsDropDown></NewsDropDown>
+              <Link to="/Vendor" className="list-group-item list-group-item-action py-2 ripple">
                 <div className='side_bar_option'>
                   <span><HiOutlineReceiptTax></HiOutlineReceiptTax></span>
                   <span className='side_penal_link'>Vendor</span>
                 </div>
 
               </Link>
-               <SettingDropDown></SettingDropDown>
+              <Link to="/" className="list-group-item list-group-item-action py-2 ripple">
+                <div className='side_bar_option'>
+                  <span><FiSettings></FiSettings></span>
+                  <span className='side_penal_link'>Settings</span>
+                </div>
+              </Link>
+           
             </div>
           </div>
         </nav>
@@ -231,7 +223,7 @@ function Navbar() {
 
 
 
-{/*  */}
+      {/*  */}
     </>
 
   );
