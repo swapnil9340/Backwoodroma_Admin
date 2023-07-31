@@ -44,26 +44,6 @@ const useStyles = makeStyles({
       },
     }
   },
-  signupTextFieldWidth: {
-    "&.MuiTextField-root": {
-      width: "50%",
-      marginTop: "15px"
-    },
-    "@media(max-width:700px)": {
-      "&.MuiTextField-root": {
-        width: "100%",
-
-      },
-    },
-    "& .MuiOutlinedInput-root": {
-      " &.Mui-focused fieldset": {
-        borderColor: "#31B665",
-      },
-      '&:hover fieldset': {
-        borderColor: '#31B665', // - Set the Input border when parent has :hover
-      },
-    }
-  },
   signuproleSelectDropdown: {
     "&.MuiFormControl-root": {
       width: "42%"

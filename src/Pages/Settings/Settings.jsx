@@ -1,6 +1,6 @@
 import React from "react"
 import { BiUser } from "react-icons/bi"
-import { Link, useNavigate, Navigate } from "react-router-dom"
+import {  useNavigate } from "react-router-dom"
 const Settings = () => {
     const navigate= useNavigate()
     const array = [{ head: "Roles and Permission" }, { head: "Tax" }, { head: "Shipping" },]
