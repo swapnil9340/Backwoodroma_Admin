@@ -4,32 +4,32 @@ import { BiDotsHorizontalRounded } from "react-icons/bi"
 import useStyles from "../../../../../Style"
 import { IconButton } from "@mui/material"
 import React from "react"
-const GeneralRole = () => {
+const RoleType = ({GeneralRoleArray,role}) => {
     const classes = useStyles()
-    const GeneralRoleArray = [
-        {
-            items: "Admin(Co owner)",
-            description: "Has access to edit, publish and manage site, including billing, payment & financial info, domains and inviting people, but can't delete or transfer the site.",
-            request: "Not assigned"
-        },
-        {
-            items: "Website manager",
-            description: "Has access to manage, edit & publish site, but cannot manage billing, delete, duplicate or transfer site.",
-            request: "Not assigned"
+    // const GeneralRoleArray = [
+    //     {
+    //         items: "Admin(Co owner)",
+    //         description: "Has access to edit, publish and manage site, including billing, payment & financial info, domains and inviting people, but can't delete or transfer the site.",
+    //         request: "Not assigned"
+    //     },
+    //     {
+    //         items: "Website manager",
+    //         description: "Has access to manage, edit & publish site, but cannot manage billing, delete, duplicate or transfer site.",
+    //         request: "Not assigned"
 
-        },
-        {
-            items: "Back Office Manager",
-            description: "Can access the Dashboard to manage site settings and apps but cannot edit the site.",
-            request: "Not assigned"
+    //     },
+    //     {
+    //         items: "Back Office Manager",
+    //         description: "Can access the Dashboard to manage site settings and apps but cannot edit the site.",
+    //         request: "Not assigned"
 
-        }
+    //     }
 
-    ]
+    // ]
     return (
         <div className="col-12 GeneralRole_container">
             <div className="col-12 ">
-                <p className="generalRoleHeadings">General Role</p>
+                <p className="generalRoleHeadings">{role}</p>
             </div>
             <ol className="generalOl">
                 {GeneralRoleArray.map((val, index) => {
@@ -67,4 +67,4 @@ const GeneralRole = () => {
         </div>
     )
 }
-export default GeneralRole
+export default RoleType

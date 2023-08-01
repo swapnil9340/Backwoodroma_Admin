@@ -775,6 +775,7 @@
 
 .learnMoreLink {
     margin-left: 8px;
+    font-size: 15px;
 }
 
 .rolesPermission {
@@ -810,7 +811,9 @@
 }
 
 .roleAndPermissionTh_div_flex {
-    display: flex-start;
+    display: flex;
+    align-items: center;
+    width: 109px;
 }
 
 
@@ -924,6 +927,7 @@
 .manageRoleCenterContainer {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     margin-top: 20px;
 }
 
@@ -994,16 +998,26 @@
         display: flex-start;
     }
     .generalRoleListLeftList{
-        font-size: 14px;
-    }
-    .requestNotAssigned{
         font-size: 12px;
     }
+    .requestNotAssigned{
+        font-size: 10px;
+    }
     .generalBtn_ThreeDot{
-        gap: 2px;
+        gap: 1px;
+    }
+    .generalRoleListHeading_Style{
+        font-size: 14px;
     }
 }
-
+@media(max-width:380px){
+    .generalRoleListLeftList{
+        font-size: 9px;
+    }
+    .requestNotAssigned{
+        font-size: 7px
+    }
+}
 @media(max-width:991px) {
     .manageRoleContainer {
         width: 100%;
