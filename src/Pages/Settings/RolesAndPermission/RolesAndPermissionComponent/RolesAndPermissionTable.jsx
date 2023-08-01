@@ -35,7 +35,7 @@ const RoleAndPermissionTable = () => {
     }
     const RoleTableArray = [{ name: "selnox info" }, { name: "selnox infotech" }]
     return (
-        <div className="col-12  rolesAndPermissionTableContainer">
+        <div className="col-12  rolesAndPermissionTableContainer mt-4">
             <div className="col-12 rolesAllDropdownMaincontainer">
                 <div className="col-lg-2 col-5 showDropDownContainer">
                     <span>Show</span>
@@ -174,13 +174,13 @@ const RoleAndPermissionTable = () => {
                                         </td>
                                         <td>
                                             <div className="roleTdFlex">
-                                                <p>Owner</p>
+                                                <span className="roleTd_fontStyle">Owner</span>
                                             </div>
                                         </td>
                                         <td></td>
                                         <td>
                                             <div className="roleTdFlex">
-                                                Change Owner
+                                             <span className="roleTdChangeOwner_fontStyle">Change Owner</span>
                                             </div>
                                         </td>
 

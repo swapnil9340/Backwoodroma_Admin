@@ -153,10 +153,10 @@ const useStyles = makeStyles({
       },
       "@media(max-width:600px)":{
         '& .MuiLoadingButton-root':{
-          width: "74px",
+          width: "131px",
           height: "30px",
           fontSize:" 7px",
-          padding: "4px"
+          padding: "9px"
 
 
         }

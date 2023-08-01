@@ -763,6 +763,7 @@
 }
 .rolesAndPermissionHeader_MainContainer {
     display: flex;
+    flex-wrap: wrap;
     height: auto;
     margin-top: 20px;
 }
@@ -852,6 +853,19 @@
 }
 .roleCreateLists{
     color: #B1B1B1;
+    display: flex;
+    height: 30px;
+    align-items: center;
+}
+.roleTd_fontStyle{
+    color: #000000;
+}
+.roleTdChangeOwner_fontStyle{
+    color: #31B665;
+    cursor: pointer;
+}
+.roleTdChangeOwner_fontStyle:hover{
+    color: #92daae;
 }
 .rolesAndPermission_Ordelist{
     padding-left: 0px;
@@ -903,6 +917,15 @@
     }
     .showDropdown{
         height: 28px;
+    }
+    .roleAndPermissionBtnContainer {
+        display: flex;
+        justify-content: flex-start;
+        gap: 3px;
+        padding-left: 10px;
+    }
+    .roleTdChangeOwner_fontStyle{
+        font-size: 10px;
     }
 }
 
