@@ -23,6 +23,7 @@ import Signup from '../Pages/Signup/Signup';
 import Settings from '../Pages/Settings/Settings';
 import RoleAndPermission from '../Pages/Settings/RolesAndPermission/RoleAndPermission';
 import ManageRole from '../Pages/Settings/RolesAndPermission/ManageRole/ManageRole';
+import RoleDetailsAndPermission from '../Pages/Settings/RolesAndPermission/RoleDetailsAndPermission/RoleDetailsAndPermission';
 export default function Router() {
  
  
@@ -57,7 +58,8 @@ export default function Router() {
         <Route   path='/Forgot' element={<Forgot />}/>
         <Route path='/RoleAndPermission' element={<Protected Component={RoleAndPermission}/>}/>
         <Route path='/ManageRole' element={<Protected Component={ManageRole}/>}/>
-
+        <Route path='/RoleDetailsAndPermission' element={<Protected Component={RoleDetailsAndPermission}/>}/>
+        
         <Route   path='*' element={ <Pagenotfound></Pagenotfound>} />
        
         </Routes>

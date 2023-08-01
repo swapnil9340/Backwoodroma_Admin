@@ -4,8 +4,10 @@ import { BiDotsHorizontalRounded } from "react-icons/bi"
 import useStyles from "../../../../../Style"
 import { IconButton } from "@mui/material"
 import React from "react"
-const RoleType = ({GeneralRoleArray,role}) => {
+import { useNavigate } from "react-router-dom"
+const RoleType = ({RoleTypeArray,role}) => {
     const classes = useStyles()
+    const Navigate=useNavigate()
     // const GeneralRoleArray = [
     //     {
     //         items: "Admin(Co owner)",
@@ -32,10 +34,10 @@ const RoleType = ({GeneralRoleArray,role}) => {
                 <p className="generalRoleHeadings">{role}</p>
             </div>
             <ol className="generalOl">
-                {GeneralRoleArray.map((val, index) => {
+                {RoleTypeArray.map((val, index) => {
                     return (
                         <React.Fragment key={index}>
-                            <li className="generalListHeight">
+                            <li className="generalListHeight" onClick={()=>Navigate("/RoleDetailsAndPermission")}>
 
                                 <div className="col-12 generalRole_listContainer">
                                     <div className="col-lg-7 col-6 generalRoleListLeftList">

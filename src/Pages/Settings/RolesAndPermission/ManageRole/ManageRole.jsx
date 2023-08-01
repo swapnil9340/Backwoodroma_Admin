@@ -96,12 +96,12 @@ const ManageRole = () => {
                       />   
                    </div>
                     <div className="col-lg-10 col-12 ">
-                    <RoleType GeneralRoleArray={GeneralRoleArray} role={"General Role"}/>
-                    <RoleType GeneralRoleArray={CmsRoleArray} role={"CMS Role"}/>
-                    <RoleType GeneralRoleArray={MarketingAndCustomerRoleArray} role={"Marketing and Customer Management Roles"}/>
-                    <RoleType GeneralRoleArray={StoreRoleArray} role={"Store Roles"}/>
-                    <RoleType GeneralRoleArray={PointOfSaleRoleArray} role={"Point Of Sale Roles"}/>
-                    <RoleType GeneralRoleArray={PaymentsRoleArray} role={"Payments  Roles"}/>
+                    <RoleType RoleTypeArray={GeneralRoleArray} role={"General Role"}/>
+                    <RoleType RoleTypeArray={CmsRoleArray} role={"CMS Role"}/>
+                    <RoleType RoleTypeArray={MarketingAndCustomerRoleArray} role={"Marketing and Customer Management Roles"}/>
+                    <RoleType RoleTypeArray={StoreRoleArray} role={"Store Roles"}/>
+                    <RoleType RoleTypeArray={PointOfSaleRoleArray} role={"Point Of Sale Roles"}/>
+                    <RoleType RoleTypeArray={PaymentsRoleArray} role={"Payments  Roles"}/>
 
 
 
