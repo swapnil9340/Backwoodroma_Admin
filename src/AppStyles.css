@@ -719,7 +719,7 @@
     background-color: #E1FFED;
 }
 .rolesAndPermissionTableheader tr th{
-    width: 25%;
+    width: 250px;
 }
 .Rolesparagrpah {
     margin-bottom: 0px;
@@ -795,7 +795,14 @@
 
 .roleAndPermissionBtnContainer {
     display: flex;
+    justify-content: flex-end;
     gap: 3px;
+}
+.rolesAndPermissionJustify{
+    text-align: justify;
+}
+.roleAndPermissionTh_div_flex{
+    display: flex-start;
 }
 .showDropdown{
     display: flex;
@@ -893,6 +900,9 @@
     }
     .rolesAndPermissionHeader_Container{
         gap: 1px;
+    }
+    .showDropdown{
+        height: 28px;
     }
 }
 

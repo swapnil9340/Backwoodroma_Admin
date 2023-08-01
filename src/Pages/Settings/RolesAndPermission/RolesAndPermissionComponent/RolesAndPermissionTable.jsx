@@ -94,7 +94,7 @@ const RoleAndPermissionTable = () => {
                                             <span><IconButton><BsPlusLg /></IconButton></span><span>Create new role</span>
                                         </li>
                                         <li className="roleCreateLists">
-                                            <span><IconButton><CiSettings/></IconButton></span><span>Manage roles</span>
+                                            <span><IconButton><CiSettings /></IconButton></span><span>Manage roles</span>
                                         </li>
                                     </ol>
 
@@ -120,15 +120,36 @@ const RoleAndPermissionTable = () => {
 
                 </div>
             </div>
-            <div className="col-12 table-responsive">
+            <div className="col-12 table-responsive table-responsive-sm">
 
                 <table className="table">
                     <thead className="rolesAndPermissionTableheader">
                         <tr>
-                            <th scope="col">Name<span><IconButton><BsArrowUpShort /></IconButton></span></th>
-                            <th scope="col">Role<span><IconButton><BsArrowUpShort /></IconButton></span></th>
-                            <th scope="col">Joined On <span><IconButton><BsArrowUpShort /></IconButton></span></th>
-                            <th scope="col">Owner</th>
+                            <th scope="col">
+                               <div className="roleAndPermissionTh_div_flex">
+                               <span>Name</span> <span><IconButton><BsArrowUpShort size={16}/></IconButton></span>
+                               </div>
+                               
+                            </th>
+                            <th scope="col">
+                               <div className="roleAndPermissionTh_div_flex">
+
+                                <span>Role</span><span><IconButton><BsArrowUpShort size={16}/></IconButton></span>
+                                </div>
+                            </th>
+                            <th scope="col">
+                               <div className="roleAndPermissionTh_div_flex">
+                                
+                               <span> Joined On</span> <span><IconButton><BsArrowUpShort size={16}/></IconButton></span>
+                               </div>
+                            </th>
+                            <th scope="col">
+                               <div className="roleAndPermissionTh_div_flex">
+                                
+                            <span>Owner</span> <span><IconButton><BsArrowUpShort size={16}/></IconButton></span>
+                            </div>
+                          
+                            </th>
                         </tr>
 
                     </thead>
