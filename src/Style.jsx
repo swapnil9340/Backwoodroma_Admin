@@ -136,6 +136,36 @@ const useStyles = makeStyles({
     display:"flex",
     alignItems:"center"
     },
+    generalRoleViewBTn:{
+      '& .MuiLoadingButton-root':{
+      
+        color:'#31B665',
+        fontSize:"10px",
+        width:"30%",
+        border:"1px solid #31B665",
+        borderRadius:"20px",
+        height:"24px",
+        
+      },
+      '& .MuiLoadingButton-root:hover':{
+        border:"1px solid #31B665",
+        backgroundColor:"#31B665",
+        color:"#FFFFFF"
+      },
+      "@media(max-width:600px)":{
+        '& .MuiLoadingButton-root':{
+          width: "63px",
+          height: "20px",
+          fontSize:" 7px",
+          padding: "4px"
+
+
+        }
+      },
+     '& .MuiLoadingButton-outlined':{
+      outlined:"#31B665"
+     }
+    },
     rolePermissionLoadingBtn:{
       '& .MuiLoadingButton-root':{
       

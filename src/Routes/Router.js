@@ -21,8 +21,8 @@ import Pagenotfound from "../Pages/Pagenotfound"
 import Review from '../Pages/Review/Review';
 import Signup from '../Pages/Signup/Signup';
 import Settings from '../Pages/Settings/Settings';
-import RolesAndPermissionHeader from '../Pages/Settings/RolesAndPermission/RolesAndPermissionComponent/RolesAndPermissionHeader';
 import RoleAndPermission from '../Pages/Settings/RolesAndPermission/RoleAndPermission';
+import ManageRole from '../Pages/Settings/RolesAndPermission/ManageRole/ManageRole';
 export default function Router() {
  
  
@@ -56,6 +56,8 @@ export default function Router() {
         <Route path='/Settings' element={<Protected Component={Settings}/>}/>
         <Route   path='/Forgot' element={<Forgot />}/>
         <Route path='/RoleAndPermission' element={<Protected Component={RoleAndPermission}/>}/>
+        <Route path='/ManageRole' element={<Protected Component={ManageRole}/>}/>
+
         <Route   path='*' element={ <Pagenotfound></Pagenotfound>} />
        
         </Routes>

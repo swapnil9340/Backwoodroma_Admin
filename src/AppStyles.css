@@ -717,10 +717,13 @@
 
 .rolesAndPermissionTableheader {
     background-color: #E1FFED;
+    border-bottom: 2px solid #E1FFED;
 }
-.rolesAndPermissionTableheader tr th{
+
+.rolesAndPermissionTableheader tr th {
     width: 250px;
 }
+
 .Rolesparagrpah {
     margin-bottom: 0px;
 }
@@ -757,10 +760,12 @@
     height: 80px;
 
 }
-.rolesAndPermissionTableContainer{
+
+.rolesAndPermissionTableContainer {
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #00000029, 0px 3px 6px #00000029;
 }
+
 .rolesAndPermissionHeader_MainContainer {
     display: flex;
     flex-wrap: wrap;
@@ -799,133 +804,210 @@
     justify-content: flex-end;
     gap: 3px;
 }
-.rolesAndPermissionJustify{
+
+.rolesAndPermissionJustify {
     text-align: justify;
 }
-.roleAndPermissionTh_div_flex{
+
+.roleAndPermissionTh_div_flex {
     display: flex-start;
 }
-.showDropdown{
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-    border: 1px solid #B1B1B1;
-    width: 100%;
-    height: 32px;
-    padding: 0px 8px;
-    border-radius: 20px;
-}
-.showDropDownContainer{
-    display: flex;
-    gap: 8px;
-    height: 50px;
-    align-items: center;
-    position:relative;
-}
-.rolesAllDropdownMaincontainer{
+
+
+.rolesAllDropdownMaincontainer {
     display: flex;
     gap: 10px;
     padding-left: 5px;
     flex-wrap: wrap;
 }
-.rolesAndpermission_Searchbar{
+
+.rolesAndpermission_Searchbar {
     height: 50px;
     display: flex;
     align-items: center;
 }
-.showAllDropdownItem{
-    position: absolute;
-    top: 40px;
-    height: 160px;
-    z-index: 100;
-    left: 49px;
-    width: 160px;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 6px #00000029, 0px 3px 6px #00000029;
-    border: 1px solid #B1B1B1;
-}
-.roleAndPermissionList{
-    display:flex;
-    height: auto;
-}
-.roleCreatelist{
+
+
+
+.roleCreatelist {
     padding-left: 0px;
 }
-.roleCreateLists{
-    color: #B1B1B1;
-    display: flex;
-    height: 30px;
-    align-items: center;
-}
-.roleTd_fontStyle{
+
+.roleTd_fontStyle {
     color: #000000;
 }
-.roleTdChangeOwner_fontStyle{
+
+.roleTdChangeOwner_fontStyle {
     color: #31B665;
     cursor: pointer;
 }
-.roleTdChangeOwner_fontStyle:hover{
+
+.roleTdChangeOwner_fontStyle:hover {
     color: #92daae;
 }
-.rolesAndPermission_Ordelist{
-    padding-left: 0px;
-    padding-top: 5px;
-    width: 100%;
-    height: 30px;
-}
-.eachRoleList{
- list-style: none;
- display: block;
- padding: 5px 5px;
 
-}
-.roleTdFlex{
+
+.roleTdFlex {
     display: grid;
     align-items: center;
     height: 80px;
 }
+
 @media(max-width:991px) {
     .RoleAndPermissionContainer {
         left: 0px;
         display: flex-start;
         width: 100%;
     }
+
     .roleAndTableImageSize {
         width: 40px;
         height: 40px;
         border-radius: 50%;
     }
+
     .rolesPermissionsubHeadingFont {
         font-size: 13px;
     }
+
     .roleEmail {
         font: 12px Open Sans;
     }
-    .roleUserName{
+
+    .roleUserName {
         font-size: 12px;
     }
 }
-@media(max-width:500px){
-    .rolesAndpermission_Searchbar{
+
+.roelFirstSelectTagsContainer {
+    display: flex;
+    height: 50px;
+    align-items: center;
+    gap: 7px;
+}
+
+.roleSelectTags {
+    width: 70%;
+    height: 30px;
+    padding: 4px;
+    border-radius: 20px;
+}
+
+@media(max-width:500px) {
+    .rolesAndpermission_Searchbar {
         justify-content: center;
     }
-    .showAllDropdownItem{
-        width: 130px;
-    }
-    .rolesAndPermissionHeader_Container{
+
+    .rolesAndPermissionHeader_Container {
         gap: 1px;
     }
-    .showDropdown{
-        height: 28px;
-    }
+
     .roleAndPermissionBtnContainer {
         display: flex;
         justify-content: flex-start;
         gap: 3px;
         padding-left: 10px;
     }
-    .roleTdChangeOwner_fontStyle{
+
+    .roleTdChangeOwner_fontStyle {
         font-size: 10px;
+    }
+}
+
+/* end */
+/* manageRole */
+.manageRoleContainer {
+    position: relative;
+    left: 16%;
+}
+
+.manageRoleCenterContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.generalRole_listContainer {
+    display: flex;
+    padding-left: 7px;
+}
+
+.generalRoleListLeftList {
+    text-align: justify;
+    font: 20px Open Sans;
+    color: #5F5F5F;
+}
+.generalOl{
+    padding-left: 0px;
+}
+.requestNotAssigned{
+    margin-bottom: 0px;
+    color: #5F5F5F;
+}
+.generalListHeight{
+    list-style: none;
+    height: auto;
+    padding: 15px 0px;
+    display: block;
+    width: 100%;
+    border-top: 1px solid #E0E0E0;
+    border-bottom: 1px solid #E0E0E0;
+
+}
+.generalListHeight:hover{
+    background-color: #E1FFED;
+}
+.generalListCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generalBtn_ThreeDot {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+}
+
+.generalRoleListHeading_Style {
+    color: #000000;
+    font-size: 18px;
+}
+
+.generalRoleHeadings {
+    font: 22px Open Sans;
+    color: #000000;
+    padding-left: 7px;
+
+}
+
+.GeneralRole_container {
+    height: auto;
+   padding-top: 20px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029, 0px 3px 6px #00000029;
+}
+
+@media(max-width:500px) {
+    .manageRoleCenterContainer {
+        display: flex-start;
+    }
+    .generalRoleListLeftList{
+        font-size: 14px;
+    }
+    .requestNotAssigned{
+        font-size: 12px;
+    }
+    .generalBtn_ThreeDot{
+        gap: 2px;
+    }
+}
+
+@media(max-width:991px) {
+    .manageRoleContainer {
+        width: 100%;
+        left: 0px;
     }
 }
 
