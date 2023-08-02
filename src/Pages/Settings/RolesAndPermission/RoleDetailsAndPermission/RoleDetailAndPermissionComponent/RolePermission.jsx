@@ -33,94 +33,83 @@ const RolePermission = () => {
             RoleName: "Site Dashboard", 
             id: 2,
             key2: [{
-                roleTypeHeading: "Edit Content",
-                secSubHeading: "Can edit text, links and media sources. In older versions of the Editor, this is equivalent to the Edit Site permission.",
+                roleTypeHeading: "View Dashboard",
+                secSubHeading: "Can view the dashboard.",
                 editSite: "Edit Site",
             },
 
-            {
-                roleTypeHeading: "Edit Site",
-                secSubHeading: "Can edit content, site design and app settings.",
-            },
-            {
-                roleTypeHeading: "Publish Site",
-                secSubHeading: "Can publish site. ‘Edit Content’ or ‘Edit Site’ permissions are also required.",
-                editSite: "Manage privacy setting",
-            },]
+         
+        ]
 
         },
         {
-            RoleName: "Sites", 
+            RoleName: "Sites (1)", 
             id: 3,
             key2: [{
-                roleTypeHeading: "Edit Content",
-                secSubHeading: "Can edit text, links and media sources. In older versions of the Editor, this is equivalent to the Edit Site permission.",
-                editSite: "Edit Site",
+                roleTypeHeading: "Invite People",
+                secSubHeading: "Can invite people to work on a site, but can't edit their permissions.",
             },
 
-            {
-                roleTypeHeading: "Edit Site",
-                secSubHeading: "Can edit content, site design and app settings.",
-            },
-            {
-                roleTypeHeading: "Publish Site",
-                secSubHeading: "Can publish site. ‘Edit Content’ or ‘Edit Site’ permissions are also required.",
-                editSite: "Manage privacy setting",
-            },]
+          
+        ]
 
         },
         {
             RoleName: "CMS(02)", 
             id: 4,
             key2: [{
-                roleTypeHeading: "Edit Content",
-                secSubHeading: "Can edit text, links and media sources. In older versions of the Editor, this is equivalent to the Edit Site permission.",
-                editSite: "Edit Site",
+                roleTypeHeading: "View Content",
+                secSubHeading: "Can view content in collections.",
+                editSite: "Add content",
             },
 
             {
-                roleTypeHeading: "Edit Site",
-                secSubHeading: "Can edit content, site design and app settings.",
+                roleTypeHeading: "Add Content",
+                secSubHeading: "Can add and edit content in existing collections.",
             },
             {
-                roleTypeHeading: "Publish Site",
-                secSubHeading: "Can publish site. ‘Edit Content’ or ‘Edit Site’ permissions are also required.",
-                editSite: "Manage privacy setting",
-            },]
+                roleTypeHeading: "Manage Backups",
+                secSubHeading: "Can add, restore and delete backups for all collections.",
+            },
+            {
+                roleTypeHeading: "Manage Indexes",
+                secSubHeading: "Can add and delete indexes for all collections.",
+            },
+            {
+                roleTypeHeading: "Manage Collections",
+                secSubHeading: "Can add, delete and modify fields for all collections.",
+            },
+        ]
 
         },
         {
             RoleName: "Billing & Domains", 
             id: 5,
             key2: [{
-                roleTypeHeading: "Edit Content",
-                secSubHeading: "Can edit text, links and media sources. In older versions of the Editor, this is equivalent to the Edit Site permission.",
-                editSite: "Edit Site",
+                roleTypeHeading: "Manage Billing",
+                secSubHeading: "Can manage and purchase domains, subscriptions and business email, and view billing history.",
             },
 
             {
-                roleTypeHeading: "Edit Site",
-                secSubHeading: "Can edit content, site design and app settings.",
+                roleTypeHeading: "Manage Domains",
+                secSubHeading: "Can view and manage domains only.",
+                editSite:"Manage Billing"
             },
-            {
-                roleTypeHeading: "Publish Site",
-                secSubHeading: "Can publish site. ‘Edit Content’ or ‘Edit Site’ permissions are also required.",
-                editSite: "Manage privacy setting",
-            },]
+          
+        ]
 
         },
         {
             RoleName: "Stores", 
             id: 6,
             key2: [{
-                roleTypeHeading: "Edit Content",
-                secSubHeading: "Can edit text, links and media sources. In older versions of the Editor, this is equivalent to the Edit Site permission.",
-                editSite: "Edit Site",
+                roleTypeHeading: "Manage Store",
+                secSubHeading: "Can view and manage store products, categories, orders, sales channels, store settings, shipping and tax.",
             },
 
             {
-                roleTypeHeading: "Edit Site",
-                secSubHeading: "Can edit content, site design and app settings.",
+                roleTypeHeading: "Manage Store (Limited Access)",
+                secSubHeading: "Can view and manage store products, categories, settings and more, but cannot access sensitive data like orders and abandoned carts.",
             },
             {
                 roleTypeHeading: "Publish Site",
@@ -133,20 +122,60 @@ const RolePermission = () => {
             RoleName: "Point of Sale", 
             id: 7,
             key2: [{
-                roleTypeHeading: "Edit Content",
-                secSubHeading: "Can edit text, links and media sources. In older versions of the Editor, this is equivalent to the Edit Site permission.",
-                editSite: "Edit Site",
+                roleTypeHeading: "Checkout Customers with POS",
+                secSubHeading: "Can view & add products to cart and complete checkout.",
+       
             },
 
             {
-                roleTypeHeading: "Edit Site",
-                secSubHeading: "Can edit content, site design and app settings.",
+                roleTypeHeading: "Open Cash Drawer from POS",
+                secSubHeading: "Can access the cash drawer without processing sales.",
             },
             {
-                roleTypeHeading: "Publish Site",
-                secSubHeading: "Can publish site. ‘Edit Content’ or ‘Edit Site’ permissions are also required.",
-                editSite: "Manage privacy setting",
-            },]
+                roleTypeHeading: "Apply Coupons & Custom Discounts",
+                secSubHeading: "Can apply coupons and discounts with a custom amount during checkout.",
+            
+            },
+            {
+                roleTypeHeading: "View Current Day Report",
+                secSubHeading: "Can view reports for the current day.",
+                editSite: "View Prevoius day's report",
+
+            
+            },
+            {
+                roleTypeHeading: "View Previous Day's Report",
+                secSubHeading: "Can view reports history for any selected day.",
+            
+            },
+            {
+                roleTypeHeading: "Manage Cash Drawer",
+                secSubHeading: "Can open & close cash drawers, do pay in & pay outs, leave notes.",
+            
+            },
+            {
+                roleTypeHeading: "Manage Orders",
+                secSubHeading: "Can view and manage the orders list for today.",
+                editSite: "Manage Sales History History for any days",
+            
+            },
+            {
+                roleTypeHeading: "Manage Sales History for Any Day",
+                secSubHeading: "Can view and manage sales history for any selected day.",
+            
+            },
+            {
+                roleTypeHeading: "View and Create Customer's Profiles",
+                secSubHeading: "Can view and create customer's profiles.",
+                editSite:"Manage customer profile"
+            
+            },
+            {
+                roleTypeHeading: "Manage Orders",
+                secSubHeading: "Can view and manage the orders list for today.",
+            
+            },
+        ]
 
         },
         {
