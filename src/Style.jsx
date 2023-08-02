@@ -219,6 +219,11 @@ const useStyles = makeStyles({
     "&.MuiTextField-root":{
       width:"75%"
     },
+    "@media(max-width:500px)":{
+      "&.MuiTextField-root":{
+        width:"100%"
+      },
+    },
     "&.MuiTextField-root fieldset": {
       borderRadius:"25px",
     },
@@ -234,6 +239,16 @@ const useStyles = makeStyles({
       },
     }
   },
+  roleDetailsTextFieldStyle: {
+    "& .MuiOutlinedInput-root": {
+      " &.Mui-focused fieldset": {
+        borderColor: "#31B665",
+      },
+      '&:hover fieldset': {
+        borderColor: '#31B665', // - Set the Input border when parent has :hover
+      },
+    }
+  }, 
 
 
 }
