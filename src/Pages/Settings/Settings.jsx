@@ -1,6 +1,7 @@
 import React from "react"
 import { BiUser } from "react-icons/bi"
 import {  useNavigate } from "react-router-dom"
+import UserEditProfile from "../UserProfile/UserEditProfile"
 const Settings = () => {
     const navigate= useNavigate()
     const array = [{ head: "Roles and Permission" }]
@@ -11,6 +12,7 @@ const Settings = () => {
                 <div className="row">
                     <div className="col-10 Settings_container ">
                         <div className="col-10 settingHeading_contentContainer">
+                            <UserEditProfile/>
 
                             <div className="col-12 settings_heading_container">
                                 <h1 className="settingsHeadings">Settings</h1>

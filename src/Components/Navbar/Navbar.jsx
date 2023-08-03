@@ -179,7 +179,6 @@ function Navbar() {
                     <div className='display'>
 
                       <div className='col-6 center Brnd_logo '>
-                        {/* <UserEditProfile/> */}
                         <a className="navbar-brand" href="/">
                           <img src="./image/blank_Image.webp" alt="" className="d-inline-block align-text-top brand UserImage" />
                         </a>

@@ -1,5 +1,29 @@
 import { makeStyles } from '@mui/styles';
 const useStyles = makeStyles({
+  FilledTextFieldStyle: {
+    "& .MuiFilledInput-root:hover": {
+      background: "#F2F1F1"
+    },
+    "& .MuiInputBase-input.MuiFilledInput-input": {
+      padding: "18px",
+    },
+    "& .MuiFilledInput-underline:after": {
+      borderBottomColor: "#31B665"
+    },
+    "& input::placeholder": {
+      fontSize: "12px"
+    },
+  
+    " && .MuiFilledInput-underline:hover::before": {
+      borderColor: "#31B665",
+    },
+    "& input": {
+      "&:-webkit-autofill": {
+        WebkitBoxShadow: "0 0 0 1000px #F2F1F1 inset"
+
+      }
+    }
+  },
   textFieldFocusBorderColor: {
     "& .MuiOutlinedInput-root": {
       " &.Mui-focused fieldset": {
@@ -261,19 +285,23 @@ const useStyles = makeStyles({
 userEditProfileDialog: {
   "& .MuiDialog-container": {
     "& .MuiPaper-root": {
-      width: "50%",
-      height: "400px",  // Set your width here
+      minWidth: "42%",
+      padding:"50px",
+      height: "auto",  // Set your width here
       borderRadius: "20px",
       background: "#FFFFFF",
+      "@media(max-width:992px)": {
+        minWidth: "60%",
+        padding:"20px",
+        },
+      "@media(max-width:600px)": {
+      minWidth: "90%",
+      padding:"20px",
+      }
     },
+
   },
-  "@media(max-width:500px)": {
-    "& .MuiDialog-container": {
-      "& .MuiPaper-root": {
-        minWidth: "90%",
-      },
-    },
-  }
+
 },
 UserEditButton:{
   '& .MuiLoadingButton-root':{
@@ -292,7 +320,27 @@ UserEditButton:{
  
 
   },
-
+  userEdit_loadingBtn: {
+    "& .MuiButton-text": {
+      fontSize: ".5rem",
+    },
+    "& .MuiLoadingButton-root": {
+      width: "100%",
+      height: "50px",
+      borderRadius: "5px",
+      backgroundColor: "#FFFFFF",
+      color: "#707070",
+      textTransform: "none",
+      border: "1px solid #31B665",
+      fontWeight: "700",
+      fontSize: "14px"
+    },
+    "& .MuiButtonBase-root:hover": {
+      color: "#FFFFFF",
+      backgroundColor: "#31B665",
+      border: "1px solid #31B665"
+    },
+  },
 
 }
 )

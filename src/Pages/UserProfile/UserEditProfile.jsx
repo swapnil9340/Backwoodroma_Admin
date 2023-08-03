@@ -9,6 +9,9 @@ import { Box } from "@mui/material";
 import { MdModeEditOutline } from "react-icons/md";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import {FaUser} from "react-icons/fa"
+import {BiMobile} from "react-icons/bi"
+import {AiOutlineMail} from "react-icons/ai"
+
 const UserEditProfile = () => {
     const classes = useStyles()
     const [open, setOpen] = React.useState(false);
@@ -53,7 +56,7 @@ const UserEditProfile = () => {
                                     <div className=" inputLabel_image">
                                         <label htmlFor="Add photo" className="userEdit_photo_label">
                                             <div className='center'>
-                                                <AiFillCamera color="#000000" size={22} />
+                                                <AiFillCamera color="#000000" size={22}/>
                                             </div>
                                             <div className="changePhoto_title mx-0">Upload photo</div>
 
@@ -73,11 +76,52 @@ const UserEditProfile = () => {
                             </div>
                             <div className="col-12 userEditNameFlex">
                                 <div className="col-4 userEditNameIconFlex ">
-                                  <span><FaUser/></span><span>Name</span>
+                                  <span><FaUser color="#747474" size={18}/></span><span><label htmlFor="UserName">Name</label></span>
                                 </div>
                                 <div className="col-8">
-
+                                <TextField id="UserName"
+                                    type="text"
+                                    className={`${classes.FilledTextFieldStyle}`}
+                                 
+                                    variant="filled" fullWidth />
                                 </div>
+
+                            </div>
+                            <div className="col-12 userEditNameFlex">
+                                <div className="col-4 userEditNameIconFlex">
+                                  <span><BiMobile color="#747474" size={18}/></span><span><label htmlFor="">Mobile Number</label></span>
+                                </div>
+                                <div className="col-8">
+                              
+                                </div>
+
+                            </div>
+                            <div className="col-12 userEditNameFlex">
+                                <div className="col-4 userEditNameIconFlex ">
+                                  <span><AiOutlineMail color="#747474" size={18}/></span><span><label htmlFor="UserEmail">Email</label></span>
+                                </div>
+                                <div className="col-8">
+                                <TextField id="UserEmail"
+                                    type="text"
+                                    className={`${classes.FilledTextFieldStyle}`}
+                                    placeholder="maxwell@gmail.com"
+                                    variant="filled" fullWidth />
+                                </div>
+
+                            </div>
+                            <div className="col-12 userEditbtnFlex">
+                              <div className="col-4">
+                              <Box className={classes.userEdit_loadingBtn}>
+                                    <LoadingButton variant="outlined">Cancel</LoadingButton>
+                                </Box>
+
+                              </div>
+                              <div className="col-4">
+                              <Box className={classes.userEdit_loadingBtn}>
+                                    <LoadingButton>Save</LoadingButton>
+                                </Box>
+                              </div>
+                               
 
                             </div>
 

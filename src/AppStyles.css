@@ -1238,12 +1238,20 @@ textarea:focus {
     width: 100%;
 }
 .userEditNameFlex{
+    margin-top: 30px;
     display: flex;
     align-items: center;
 }
+.userEditbtnFlex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    gap: 20px;
+}
 .userEditNameIconFlex{
     display: flex;
-    gap: 7px;
+    gap: 10px;
     align-items: center;  
 }
 /* end */
