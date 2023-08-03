@@ -1170,6 +1170,7 @@ textarea:focus {
     padding-right: 10px;
 
 }
+
 .NvaListStyle{
     list-style: none;
 }
@@ -1186,4 +1187,66 @@ textarea:focus {
         font-size: 20px;
     }
 }
+.allColumn_Center{
+    display: flex;
+    justify-content: center;
+}
+.loginLOgOutHeadingCenter{
+    display: grid;
+    justify-content: center;
+}
+.editProfile_headings{
+    display: flex;
+    align-items: center;
+}
+.userEditProfileHeadingCol{
+    display: flex;
+    align-items: center;
+}
+.editProfileEdit_Icons{
+    display: flex;
+    justify-content: flex-end;
+}
+.EditProfileHeadingStyle{
+    color: #222B45;
+    margin-bottom: 0px;
+    font-weight: bold;
+    font-size: 20px;
+}
+.userProfileEdit_imageContainer{
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.inputLabel_image{
+    height: 120px;
+    width: 100px;
+    position: relative;
+    color: #747474;
+}
+.userEdit_photo_label{
+    position: absolute;
+    bottom: 10px;
+}
+.userEditProfleImage{
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+}
+.changePhoto_title{
+    width: 100%;
+}
+.userEditNameFlex{
+    display: flex;
+    align-items: center;
+}
+.userEditNameIconFlex{
+    display: flex;
+    gap: 7px;
+    align-items: center;  
+}
+/* end */
+/* userEditProfile */
+
 /* end */

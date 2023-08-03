@@ -16,6 +16,7 @@ import NewsDropDown from './SideBarDropdown/NewsDropDown'
 import { FiSettings } from "react-icons/fi"
 import { IoIosMenu } from "react-icons/io"
 import { FaUserAlt } from "react-icons/fa"
+import UserEditProfile from '../../Pages/UserProfile/UserEditProfile';
 function Navbar() {
   const [windowSize, setWindowSize] = React.useState([
     window.innerWidth,
@@ -178,6 +179,7 @@ function Navbar() {
                     <div className='display'>
 
                       <div className='col-6 center Brnd_logo '>
+                        {/* <UserEditProfile/> */}
                         <a className="navbar-brand" href="/">
                           <img src="./image/blank_Image.webp" alt="" className="d-inline-block align-text-top brand UserImage" />
                         </a>

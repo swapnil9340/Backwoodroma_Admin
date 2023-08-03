@@ -122,8 +122,17 @@ const useStyles = makeStyles({
         color:'#31B665',
         marginTop:"10px",
         fontSize:"15px",
+        textTransform:"none",
+      },
+      '& .MuiLoadingButton-root:hover':{
+      
+        color:'#FFFFFF',
+        backgroundColor:"#31B665",
+        marginTop:"10px",
+        fontSize:"15px",
         
       },
+
      '& .MuiLoadingButton-outlined':{
       outlined:"#31B665"
      }
@@ -249,6 +258,40 @@ const useStyles = makeStyles({
       },
     }
   }, 
+userEditProfileDialog: {
+  "& .MuiDialog-container": {
+    "& .MuiPaper-root": {
+      width: "50%",
+      height: "400px",  // Set your width here
+      borderRadius: "20px",
+      background: "#FFFFFF",
+    },
+  },
+  "@media(max-width:500px)": {
+    "& .MuiDialog-container": {
+      "& .MuiPaper-root": {
+        minWidth: "90%",
+      },
+    },
+  }
+},
+UserEditButton:{
+  '& .MuiLoadingButton-root':{
+      color:'#595959',
+      marginTop:"10px",
+      fontSize:"15px",
+      textTransform:"none",
+    },
+    '& .MuiLoadingButton-root:hover':{
+      color:'#595959',
+    },
+
+   '& .MuiLoadingButton-outlined':{
+    outlined:"#31B665"
+   }
+ 
+
+  },
 
 
 }

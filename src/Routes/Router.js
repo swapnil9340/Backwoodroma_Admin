@@ -21,10 +21,10 @@ import Pagenotfound from "../Pages/Pagenotfound"
 import Review from '../Pages/Review/Review';
 import Signup from '../Pages/Signup/Signup';
 import Settings from '../Pages/Settings/Settings';
-import RolesAndPermissionHeader from '../Pages/Settings/RolesAndPermission/RolesAndPermissionComponent/RolesAndPermissionHeader';
 import RoleAndPermission from '../Pages/Settings/RolesAndPermission/RoleAndPermission';
 import ManageRole from '../Pages/Settings/RolesAndPermission/ManageRole/ManageRole';
 import RoleDetailsAndPermission from '../Pages/Settings/RolesAndPermission/RoleDetailsAndPermission/RoleDetailsAndPermission';
+import UserEditProfile from '../Pages/UserProfile/UserEditProfile';
 export default function Router() {
  
  
@@ -60,6 +60,7 @@ export default function Router() {
         <Route path='/RoleAndPermission' element={<Protected Component={RoleAndPermission}/>}/>
         <Route path='/ManageRole' element={<Protected Component={ManageRole}/>}/>
         <Route path='/RoleDetailsAndPermission' element={<Protected Component={RoleDetailsAndPermission}/>}/>
+        <Route path='/UserEditProfile' element={<Protected Component={UserEditProfile}/>}/>
         
         <Route   path='*' element={ <Pagenotfound></Pagenotfound>} />
        
