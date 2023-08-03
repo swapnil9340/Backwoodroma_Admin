@@ -37,9 +37,10 @@ const RolePermission = () => {
                 <div className="col-12 rolePermissionLists_container">
                     <ol className="rolePermissionOrderList">
                         {RolePermissionArray.map((items, index) => {
+                            console.log(RolePermissionArray.length)
                             return (
-                                <li className="rolePermissionListsStyles" key={index}  onClick={() => SetValues({...Values, [items.id]:!Values[items.id]})}>
-                                    <div className="rolePermissionIcon_listContainer">
+                                <li className="rolePermissionListsStyles" key={index}  >
+                                    <div className="rolePermissionIcon_listContainer" onClick={() => SetValues({...Values, [items.id]:!Values[items.id]})}>
                                         <span><FiChevronRight color="31B665" size={18} /></span>
                                         <span className="rolePermissionListName">{items.RoleName}</span>
                                     </div>

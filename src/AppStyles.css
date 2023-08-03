@@ -1131,6 +1131,9 @@ textarea:focus {
 }
 /* end */
 /* RolePermissionListToggle */
+.rolePermissionLabel{
+    color: #000000;
+}
 .RolePermissionListToggle_container{
     height: auto;
     background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -1150,5 +1153,37 @@ textarea:focus {
     gap: 10px;
     height: auto;
     padding: 15px 10px;
+}
+/* end */
+/* Navbar */
+.navbarOredrListStyle{
+    /* display: flex;
+    justify-content: flex-end;
+    gap: 20px; */
+    display: flex;
+    justify-content: flex-end;
+    gap: 79px;
+    align-items: center;
+    margin-bottom: 15px;
+    position: relative;
+    top: 7px;
+    padding-right: 10px;
+
+}
+.NvaListStyle{
+    list-style: none;
+}
+@media(max-width:768px){
+    .navbarOredrListStyle{
+        gap: 30px;
+    }
+}
+@media(max-width:600px){
+    .navbarOredrListStyle{
+        gap: 14px;
+    }
+    .messagebox{
+        font-size: 20px;
+    }
 }
 /* end */

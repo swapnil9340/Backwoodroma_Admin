@@ -111,7 +111,7 @@ function Navbar() {
                   <span className='side_penal_link'>Store</span>
                 </div>
               </Link>
-          
+
               <CategoryDropDown></CategoryDropDown>
               <LocationDropDown></LocationDropDown>
 
@@ -149,7 +149,7 @@ function Navbar() {
                   <span className='side_penal_link'>Settings</span>
                 </div>
               </Link>
-           
+
             </div>
           </div>
         </nav>
@@ -189,31 +189,35 @@ function Navbar() {
                     </div>
                 }
               </div>
-
-              <div className="col-8">
-                <div className=" search_left  ">
-
-                  <div className="col-6  search  ">
-                    <Search></Search>
-                  </div>
-                  <div className="col-2 con  messagebox">
-                    <IoMdMailUnread></IoMdMailUnread>
-                  </div>
-                  <div className="col-2 con align-middle  messagebox">
-                    <VscBellDot></VscBellDot>
-                  </div>
-
-                </div>
-
+              <div className="col-md-4 col-5 search  ">
+                <Search></Search>
               </div>
-              <div className="col-2 con search_left">
 
-                {
-                  islogin.state.login === true &&
-                  <p className="louout" onClick={logout}>Logout</p>
-                }
+              <div className="col-md-6 col-5">
+                <ol className='navbarOredrListStyle'>
+                  <li className='NvaListStyle'>
+                    <span className=" con  messagebox">
+                      <IoMdMailUnread></IoMdMailUnread>
+                    </span>
+                  </li>
+                  <li className='NvaListStyle'>
+                    <span className=" con align-middle  messagebox">
+                      <VscBellDot></VscBellDot>
+                    </span>
+                  </li>
+                  <li className='NvaListStyle'>
+                    <span className=" con search_left">
 
+                      {
+                        islogin.state.login === true &&
+                        <p className="louout" onClick={logout}>Logout</p>
+                      }
+
+                    </span>
+                  </li>
+                </ol>
               </div>
+            
             </div>
           </div>
         </nav>
