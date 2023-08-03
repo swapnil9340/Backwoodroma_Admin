@@ -1,6 +1,10 @@
 import React from "react"
 import { BiUser } from "react-icons/bi"
+<<<<<<< HEAD
 import {  useNavigate } from "react-router-dom"
+=======
+import { useNavigate } from "react-router-dom"
+>>>>>>> 09090daa3 (asdsa)
 const Settings = () => {
     const navigate= useNavigate()
     const array = [{ head: "Roles and Permission" }, { head: "Tax" }, { head: "Shipping" },]
