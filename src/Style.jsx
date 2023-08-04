@@ -146,6 +146,8 @@ const useStyles = makeStyles({
         color:'#31B665',
         marginTop:"10px",
         fontSize:"15px",
+        width:"49%",
+        height:"30px",
         textTransform:"none",
       },
       '& .MuiLoadingButton-root:hover':{
@@ -328,7 +330,7 @@ UserEditButton:{
       width: "100%",
       height: "50px",
       borderRadius: "5px",
-      backgroundColor: "#FFFFFF",
+      backgroundColor: "#F7F7F7",
       color: "#707070",
       textTransform: "none",
       border: "1px solid #31B665",
@@ -336,12 +338,32 @@ UserEditButton:{
       fontSize: "14px"
     },
     "& .MuiButtonBase-root:hover": {
-      color: "#FFFFFF",
-      backgroundColor: "#31B665",
+      color: "#31B665",
+      backgroundColor: "#FFFFFF",
       border: "1px solid #31B665"
     },
   },
-
+  userEditCancel_loadingBtn: {
+    "& .MuiButton-text": {
+      fontSize: ".5rem",
+    },
+    "& .MuiLoadingButton-root": {
+      width: "100%",
+      height: "50px",
+      borderRadius: "5px",
+      backgroundColor: "#F7F7F7",
+      color: "#979797",
+      textTransform: "none",
+      border: "1px solid #F7F7F7",
+      fontWeight: "700",
+      fontSize: "14px"
+    },
+    "& .MuiButtonBase-root:hover": {
+      color: "#979797",
+      backgroundColor: "#FFFFFF",
+      border: "1px solid #979797"
+    },
+  },
 }
 )
 export default useStyles

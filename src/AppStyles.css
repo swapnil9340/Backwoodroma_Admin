@@ -1211,7 +1211,7 @@ textarea:focus {
     color: #222B45;
     margin-bottom: 0px;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 28px;
 }
 .userProfileEdit_imageContainer{
     height: auto;
@@ -1246,7 +1246,7 @@ textarea:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 50px;
     gap: 20px;
 }
 .userEditNameIconFlex{
@@ -1254,7 +1254,37 @@ textarea:focus {
     gap: 10px;
     align-items: center;  
 }
+.UserEditProfile_label{
+    color: #747474;
+    font-size: 20px;
+}
+.userEDitMarginLoadingBtn{
+    margin-top: 20px;
+}
+.userEditCloseBtn{
+    display: flex;
+    justify-content: flex-end;
+}
+@media(max-width:500px){
+    .UserEditProfile_label{
+        font-size: 8px;
+    }
+    .userEditNameIconFlex{
+        gap:4px;
+    }
+}
 /* end */
-/* userEditProfile */
-
+/* login-logout */
+.login_logout_center{
+    display:flex;
+    justify-content: center;
+}
+.login_logout_labelStyle{
+color:#3C3C3C
+}
+.login_logoutBtn_width{
+    width: 49%;
+    height: 30px;
+    font-size: 16px;
+}
 /* end */
