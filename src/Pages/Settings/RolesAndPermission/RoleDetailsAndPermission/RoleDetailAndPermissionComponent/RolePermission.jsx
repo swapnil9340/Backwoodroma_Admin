@@ -7,7 +7,11 @@ import RolePermissionListToggle from "./RolePermissionListToggle"
 import React from "react"
 import RolePermissionArray from "./RolePermissionArray"
 const RolePermission = () => {
-
+    let PermissionSum=0;
+    for(let i=0;i<RolePermissionArray.length;i++){
+        PermissionSum+=RolePermissionArray[i].key2.length
+    }
+    console.log(PermissionSum)
     const [Values, SetValues] = React.useState([])
 
     const classes = useStyles()
@@ -16,7 +20,7 @@ const RolePermission = () => {
             <form>
                 <div className="col-12 rolePermisionHeaderContainer">
                     <div className="col-lg-9 col-md-8 col-6">
-                        <h1 className="roleDetailsSechaedings">Permissions (44)</h1>
+                        <h1 className="roleDetailsSechaedings">Permissions {PermissionSum}</h1>
                         <p className="roleDetailsSechaedings">People with this role can perform the following actions.</p>
                     </div>
                     <div className="col-lg-3 col-md-4 col-6 roles_permission_Searchbar">

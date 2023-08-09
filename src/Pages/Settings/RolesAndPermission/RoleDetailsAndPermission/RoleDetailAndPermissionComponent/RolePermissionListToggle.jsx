@@ -3,7 +3,8 @@ import { AiOutlineExclamation } from "react-icons/ai"
 import { IconButton } from "@mui/material"
 const RolePermissionListToggle = ({RolePermissionArray}) => {
 
-    console.log(RolePermissionArray)
+
+    // console.log(RolePermissionArray)
     return (
         <div className="col-12 RolePermissionListToggle_container">
             {RolePermissionArray?.map((items,index)=>{
