@@ -28,7 +28,7 @@ export default function Login_logout() {
         password: "",
         showPassword: false,
     });
-    
+
     const classes = useStyles()
     const data = {
         email: inputs.Email,
@@ -40,7 +40,7 @@ export default function Login_logout() {
         OTP: OTP.OTP,
 
     }
- 
+
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -122,26 +122,119 @@ export default function Login_logout() {
                 <div className='row'>
                     <div className='col-12 login_logout_center'>
 
-                    <div className='col-lg-4  col-md-6 col-11'>
-                        <div className='col-12 center login_border'>
-                            <p className="Login_font">ADMIN PANEL</p>
-                            <p className='color Login_font'> Login to access your account</p>
+                        <div className='col-lg-4  col-md-6 col-11'>
+                            <div className='col-12 center login_border'>
+                                <p className="Login_font">ADMIN PANEL</p>
+                                <p className='color Login_font'> Login to access your account</p>
+                            </div>
+                            <div className='col-12 '>
+
+                                <div className='col-12  d-flex top  '>
+                                    <div className='col-3'>
+
+                                        <label className='label' htmlFor='name'>
+                                            <span className='required '>*</span>
+                                            Name:
+                                        </label>
+                                    </div>
+                                    <div className='col-9 display'>
+                                        <TextField placeholder='User Name'
+                                            fullWidth
+                                            id="name" variant="outlined"
+                                            name="username" inputProps={{ style: { fontSize: 15, height: 5 } }}
+                                            onChange={handleChange}
+                                            value={inputs.username || ""}
+                                            className={classes.Username}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className='col-12  d-flex top  '>
+                                    <div className='col-3'>
+
+                                        <label className='label' htmlFor='email'>
+                                            <span className='required'>*</span>
+                                            Email:
+                                        </label>
+                                    </div>
+                                    <div className='col-9 display'>
+                                        <TextField placeholder='Email Address'
+                                            fullWidth
+                                            id="email" variant="outlined" name="Email"
+                                            type="email" style={{ fontSize: 15 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
+                                            value={inputs.Email || ""}
+                                            onChange={handleChange}
+                                            className={classes.Username}
+                                        />
+                                    </div>
+                                </div>
+                                <div className='col-12  d-flex top  '>
+                                    <div className='col-3'>
+
+                                        <label className='label' htmlFor='password'>
+                                            <span className='required'>*</span>
+                                            Password:
+                                        </label>
+                                    </div>
+                                    <div className='col-9  display '>
+                                        <TextField placeholder='Password' type={values.showPassword ? "text" : "password"} id="password" variant="outlined"
+                                            name="password" fullWidth inputProps={{ style: { fontSize: 15, height: 5 } }}
+                                            onChange={handleChange}
+                                            className={classes.Username}
+                                            InputProps={{
+                                                endAdornment: (
+                                                    <InputAdornment position='end'>
+                                                        <IconButton
+                                                            aria-label="toggle password visibility"
+                                                            onClick={handleClickShowPassword}
+                                                        >
+                                                            {values.showPassword ? <AiFillEye size={20} color='#747474' /> : <AiFillEyeInvisible size={20} color='#747474' />}
+                                                        </IconButton>
+                                                    </InputAdornment>
+
+                                                )
+                                            }}
+
+                                            value={inputs.password || ""}
+
+                                        />
+
+                                    </div>
+                                </div>
+                                <div className='top'>
+                                    <input type="checkbox" name='checkbox' value={inputs.checkbox || ""} onChange={handleChange} />
+                                    <label className='RememberMeCheckBox'>
+                                        Remember me
+                                    </label>
+                                </div>
+                                <div className={classes.SubmitLoginButton}>
+
+                                    <LoadingButton
+                                        loading={isLoggedIn}
+                                        loadingPosition="start"
+                                        onClick={handleSubmit}> Submit </LoadingButton>
+
+                                </div>
+
+                                <div className='col-12  mt-4'>
+
+                                    <Link to={"/Forgot"}> <button className='color btn login_logoutBtn_width'>Forgot Password?</button></Link>
+                                </div>
+                            </div>
                         </div>
                         <div className='col-12 '>
 
-                            <div className='col-12  d-flex top  '>
-                                <div className='col-3'>
+                            <div className='col-12  label top  con'>
+                                <div className='col-sm-5'>
 
-                                    <label className='label' htmlFor='name'>
-                                        <span className='required '>*</span>
+                                    <label className='label'>
+                                        <span className='required'>*</span>
                                         Name:
                                     </label>
                                 </div>
-                                <div className='col-9 display'>
-                                    <TextField placeholder='User Name'
-                                    fullWidth
-                                    id="name" variant="outlined"
-                                        name="username"  inputProps={{ style: { fontSize: 15, height: 5 } }}
+                                <div className='col display'>
+                                    <TextField placeholder='User Name' id="outlined-basic" variant="outlined"
+                                        name="username" style={{ width: 286 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
                                         onChange={handleChange}
                                         value={inputs.username || ""}
                                         className={classes.Username}
@@ -149,36 +242,34 @@ export default function Login_logout() {
                                 </div>
                             </div>
 
-                            <div className='col-12  d-flex top  '>
-                                <div className='col-3'>
+                            <div className='col-12  label top  con'>
+                                <div className='col-sm-5'>
 
-                                    <label className='label' htmlFor='email'>
+                                    <label className='label'>
                                         <span className='required'>*</span>
                                         Email:
                                     </label>
                                 </div>
-                                <div className='col-9 display'>
-                                    <TextField placeholder='Email Address'
-                                    fullWidth
-                                    id="email" variant="outlined" name="Email"
-                                        type="email" style={{  fontSize: 15 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
+                                <div className='col display'>
+                                    <TextField placeholder='Email Address ' id="outlined-basic" variant="outlined" name="Email"
+                                        type="email" style={{ width: 286, fontSize: 15 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
                                         value={inputs.Email || ""}
                                         onChange={handleChange}
                                         className={classes.Username}
                                     />
                                 </div>
                             </div>
-                            <div className='col-12  d-flex top  '>
-                                <div className='col-3'>
+                            <div className='col-12  label top  con'>
+                                <div className='col-sm-5'>
 
-                                    <label className='label' htmlFor='password'>
+                                    <label className='label'>
                                         <span className='required'>*</span>
                                         Password:
                                     </label>
                                 </div>
-                                <div className='col-9  display '>
-                                    <TextField placeholder='Password' type={values.showPassword ? "text" : "password"} id="password" variant="outlined"
-                                        name="password" fullWidth inputProps={{ style: { fontSize: 15, height: 5 } }}
+                                <div className='col  display '>
+                                    <TextField placeholder='Password' type={values.showPassword ? "text" : "password"} id="outlined-basic" variant="outlined"
+                                        name="password" style={{ minWidth: 190 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
                                         onChange={handleChange}
                                         className={classes.Username}
                                         InputProps={{
@@ -209,153 +300,59 @@ export default function Login_logout() {
                             </div>
                             <div className={classes.SubmitLoginButton}>
 
-                                <LoadingButton
-                                 loading={isLoggedIn}
-                                 loadingPosition="start"
-                                  onClick={handleSubmit}> Submit </LoadingButton>
+                                <LoadingButton loading={isLoggedIn} onClick={handleSubmit}> Submit </LoadingButton>
+
 
                             </div>
 
-                            <div className='col-12  mt-4'>
+                            <div className='col-12   check'>
 
-                                <Link to={"/Forgot"}> <button className='color btn login_logoutBtn_width'>Forgot Password?</button></Link>
+                                <Link to={"/Forgot"}> <button className='color btn'>Forgot Password?</button></Link>
                             </div>
                         </div>
+
                     </div>
-<<<<<<< HEAD
-=======
-                    <div className='col-12 '>
+                    <div>
 
-                        <div className='col-12  label top  con'>
-                            <div className='col-sm-5'>
+                        <Dialog open={show} onClose={handleClose} disableEscapeKeyDown>
+                            <DialogTitle>Enter Otp</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText>
 
-                                <label className='label'>
-                                    <span className='required'>*</span>
-                                    Name:
-                                </label>
-                            </div>
-                            <div className='col display'>
-                                <TextField placeholder='User Name' id="outlined-basic" variant="outlined"
-                                    name="username" style={{ width: 286 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
-                                    onChange={handleChange}
-                                    value={inputs.username || ""}
-                                    className={classes.Username}
-                                />
-                            </div>
-                        </div>
+                                    {
+                                        otpvalid === "invalid Otp" &&
 
-                        <div className='col-12  label top  con'>
-                            <div className='col-sm-5'>
+                                        <div className='col-12 center colorotp'>
+                                            <p>{otpvalid}</p>
+                                        </div>
+                                    }
+                                    Please Enter Otp Which Is Sent On Your Register Email
 
-                                <label className='label'>
-                                    <span className='required'>*</span>
-                                    Email:
-                                </label>
-                            </div>
-                            <div className='col display'>
-                                <TextField placeholder='Email Address ' id="outlined-basic" variant="outlined" name="Email"
-                                    type="email" style={{ width: 286, fontSize: 15 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
-                                    value={inputs.Email || ""}
-                                    onChange={handleChange}
-                                    className={classes.Username}
-                                />
-                            </div>
-                        </div>
-                        <div className='col-12  label top  con'>
-                            <div className='col-sm-5'>
 
-                                <label className='label'>
-                                    <span className='required'>*</span>
-                                    Password:
-                                </label>
-                            </div>
-                            <div className='col  display '>
-                                <TextField placeholder='Password' type={values.showPassword ? "text" : "password"} id="outlined-basic" variant="outlined"
-                                    name="password" style={{ minWidth: 190 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
-                                    onChange={handleChange}
-                                    className={classes.Username}
-                                    InputProps={{
-                                        endAdornment: (
-                                            <InputAdornment position='end'>
-                                                <IconButton
-                                                    aria-label="toggle password visibility"
-                                                    onClick={handleClickShowPassword}
-                                                >
-                                                    {values.showPassword ? <AiFillEye size={20} color='#747474' /> : <AiFillEyeInvisible size={20} color='#747474' />}
-                                                </IconButton>
-                                            </InputAdornment>
+                                </DialogContentText>
 
-                                        )
-                                    }}
 
-                                    value={inputs.password || ""}
-
-                                />
-
-                            </div>
-                        </div>
-                        <div className='top'>
-                            <input type="checkbox" name='checkbox' value={inputs.checkbox || ""} onChange={handleChange} />
-                            <label className='RememberMeCheckBox'>
-                                Remember me
-                            </label>
-                        </div>
-                        <div className={classes.SubmitLoginButton}>
-
-                            <LoadingButton  loading={isLoggedIn} onClick={handleSubmit}> Submit </LoadingButton>
-                            
-
-                        </div>
-
-                        <div className='col-12   check'>
-
-                            <Link to={"/Forgot"}> <button className='color btn'>Forgot Password?</button></Link>
-                        </div>
->>>>>>> 5499e7956 (qweqew)
-                    </div>
-
-                </div>
-                <div>
-
-                    <Dialog open={show} onClose={handleClose} disableEscapeKeyDown>
-                        <DialogTitle>Enter Otp</DialogTitle>
-                        <DialogContent>
-                            <DialogContentText>
-
+                                <input className='otp' placeholder='Enter Otp' type="number" id="otp" name="OTP" min="4" max="4" value={OTP.OTP || ""} onChange={handleotp} />
+                            </DialogContent>
+                            <DialogActions>
                                 {
-                                    otpvalid === "invalid Otp" &&
-
-                                    <div className='col-12 center colorotp'>
-                                        <p>{otpvalid}</p>
-                                    </div>
+                                    otpvalid === "invalid Otp" ? <p>
+                                        <button className='btn Sub_button size ' onClick={handleSubmit}>resend</button>
+                                        <button className='btn Sub_button  size' onClick={otp_send}>Verify</button>
+                                    </p>
+                                        : <button className='btn Sub_button  size' onClick={otp_send}>Verify</button>
                                 }
-                                Please Enter Otp Which Is Sent On Your Register Email
 
 
-                            </DialogContentText>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
 
 
-                            <input className='otp' placeholder='Enter Otp' type="number" id="otp" name="OTP" min="4" max="4" value={OTP.OTP || ""} onChange={handleotp} />
-                        </DialogContent>
-                        <DialogActions>
-                            {
-                                otpvalid === "invalid Otp" ? <p>
-                                    <button className='btn Sub_button size ' onClick={handleSubmit}>resend</button>
-                                    <button className='btn Sub_button  size' onClick={otp_send}>Verify</button>
-                                </p>
-                                    : <button className='btn Sub_button  size' onClick={otp_send}>Verify</button>
-                            }
 
-
-                        </DialogActions>
-                    </Dialog>
                 </div>
+            </>
 
 
-
-            </div>
-        </>
-
-
-    )
+            )
 }
