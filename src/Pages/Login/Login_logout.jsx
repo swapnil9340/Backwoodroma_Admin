@@ -119,6 +119,7 @@ export default function Login_logout() {
         <>
 
             <div className='container  center '>
+
                 <div className='row'>
                     <div className='col-12 login_logout_center'>
 
@@ -351,8 +352,9 @@ export default function Login_logout() {
 
 
                 </div>
-            </>
+            </div>
+        </>
 
 
-            )
+    )
 }
