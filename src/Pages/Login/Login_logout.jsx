@@ -119,7 +119,6 @@ export default function Login_logout() {
         <>
 
             <div className='container  center '>
-
                 <div className='row'>
                     <div className='col-12 login_logout_center'>
 
@@ -223,94 +222,7 @@ export default function Login_logout() {
                                 </div>
                             </div>
                         </div>
-                        <div className='col-12 '>
-
-                            <div className='col-12  label top  con'>
-                                <div className='col-sm-5'>
-
-                                    <label className='label'>
-                                        <span className='required'>*</span>
-                                        Name:
-                                    </label>
-                                </div>
-                                <div className='col display'>
-                                    <TextField placeholder='User Name' id="outlined-basic" variant="outlined"
-                                        name="username" style={{ width: 286 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
-                                        onChange={handleChange}
-                                        value={inputs.username || ""}
-                                        className={classes.Username}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className='col-12  label top  con'>
-                                <div className='col-sm-5'>
-
-                                    <label className='label'>
-                                        <span className='required'>*</span>
-                                        Email:
-                                    </label>
-                                </div>
-                                <div className='col display'>
-                                    <TextField placeholder='Email Address ' id="outlined-basic" variant="outlined" name="Email"
-                                        type="email" style={{ width: 286, fontSize: 15 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
-                                        value={inputs.Email || ""}
-                                        onChange={handleChange}
-                                        className={classes.Username}
-                                    />
-                                </div>
-                            </div>
-                            <div className='col-12  label top  con'>
-                                <div className='col-sm-5'>
-
-                                    <label className='label'>
-                                        <span className='required'>*</span>
-                                        Password:
-                                    </label>
-                                </div>
-                                <div className='col  display '>
-                                    <TextField placeholder='Password' type={values.showPassword ? "text" : "password"} id="outlined-basic" variant="outlined"
-                                        name="password" style={{ minWidth: 190 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
-                                        onChange={handleChange}
-                                        className={classes.Username}
-                                        InputProps={{
-                                            endAdornment: (
-                                                <InputAdornment position='end'>
-                                                    <IconButton
-                                                        aria-label="toggle password visibility"
-                                                        onClick={handleClickShowPassword}
-                                                    >
-                                                        {values.showPassword ? <AiFillEye size={20} color='#747474' /> : <AiFillEyeInvisible size={20} color='#747474' />}
-                                                    </IconButton>
-                                                </InputAdornment>
-
-                                            )
-                                        }}
-
-                                        value={inputs.password || ""}
-
-                                    />
-
-                                </div>
-                            </div>
-                            <div className='top'>
-                                <input type="checkbox" name='checkbox' value={inputs.checkbox || ""} onChange={handleChange} />
-                                <label className='RememberMeCheckBox'>
-                                    Remember me
-                                </label>
-                            </div>
-                            <div className={classes.SubmitLoginButton}>
-
-                                <LoadingButton loading={isLoggedIn} onClick={handleSubmit}> Submit </LoadingButton>
-
-
-                            </div>
-
-                            <div className='col-12   check'>
-
-                                <Link to={"/Forgot"}> <button className='color btn'>Forgot Password?</button></Link>
-                            </div>
-                        </div>
+                
 
                     </div>
                     <div>
@@ -352,9 +264,9 @@ export default function Login_logout() {
 
 
                 </div>
-            </div>
-        </>
+                </div>
+            </>
 
 
-    )
+            )
 }
