@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
-import TextField from '@mui/material/TextField';
+import { TextField } from '@material-ui/core';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Cookies from 'universal-cookie';
@@ -18,8 +18,9 @@ import { MdFileUpload } from 'react-icons/md';
 import InputAdornment from '@mui/material/InputAdornment';
 import Createcontext from "../../Hooks/Context/Context"
 import Box from '@mui/material/Box';
-
-
+import { useForm } from 'react-hook-form';
+import { Controller } from "react-hook-form";
+import LoadingButton from '@mui/lab/LoadingButton';
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
         padding: theme.spacing(2),
@@ -43,6 +44,11 @@ function BootstrapDialogTitle(props) {
 
 }
 export default function Newspop() {
+    const { register, handleSubmit, errors, control } = useForm()
+    // const { ref, ...inputProps } = register("Title", {
+    //     required: "error text"
+    // });
+
     const { dispatch } = useContext(Createcontext)
     const inputRef = useRef(null);
     const [open, setOpen] = React.useState(false);
@@ -53,6 +59,7 @@ export default function Newspop() {
     const [Category, SetCategory] = React.useState([])
     const [SubCategory, SetSubCategory] = React.useState([])
     const [Image, SetImage] = React.useState('')
+    const [loading , Setloading] = React.useState(false)
     const [News, setNews] = React.useState({
         Title: "",
         Category_id: "",
@@ -163,11 +170,11 @@ export default function Newspop() {
     };
     const handleContentStateChange = (contentState) => {
         setConvertedContent(draftToHtml(contentState));
-      };
-    
-      const handleEditorStateChange = (editorState) => {
+    };
+
+    const handleEditorStateChange = (editorState) => {
         setEditorState(editorState);
-      };
+    };
 
 
     // React.useEffect(() => {
@@ -264,6 +271,7 @@ export default function Newspop() {
     formdata.append('Description', convertedContent);
     formdata.append('Url_slug', News.Url_slug)
     const Submit = () => {
+        Setloading(true)
         const config = {
             headers: { Authorization: `Bearer ${token_data}` }
         };
@@ -286,10 +294,11 @@ export default function Newspop() {
             }))
 
             SetImage('')
+            Setloading(false)
         }).catch(
-
+          
             function (error) {
-
+                Setloading(false)
                 if (error.response.data.error) {
                     setmassage({ Link: error.response.data.error.Link[0] })
                     seterror({ Link: "red" })
@@ -346,7 +355,7 @@ export default function Newspop() {
             document.querySelector('.file-name').textContent = fileNameAndSize;
         });
     }
-
+    console.log(errors)
 
 
     return (
@@ -390,230 +399,306 @@ export default function Newspop() {
                 <DialogContent dividers>
                     <div className='container-fluid '>
                         <div className='row '>
+                            <form onSubmit={handleSubmit(Submit)}>
+                                <div className='col-12    ' >
 
-                            <div className='col-12    ' >
+                                    <div className='col-12 Add_Category center'>
+                                        <div className="col "> <h2> Add News
+                                        </h2>
+                                        </div>
+                                    </div>
+                                    <div className='col-12 top  Add_Category_pop  con  '>
+                                        <div className='col m-2'>
+                                            <label className='label'>
+                                                <span className='required'>*</span>
+                                                Title:
+                                            </label>
+                                        </div>
+                                        <div className='col'>
+                                            <TextField
+                                                    type="Text" placeholder='Title'
+                                                    id="outlined-basic"
+                                                    name='Title'
+                                                     variant="outlined"
+                                                    value={News.Title.toUpperCase()}
+                                                    style={{ minWidth: 190, fontSize: 15 }}
+                                                    onChange={handleChange}
+                                                    InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
+                                                    label={massage.Title}
+                                                    sx={{
+                                                        '& .MuiOutlinedInput-root': {
+                                                            '& fieldset': {
+                                                                // borderColor: error.Title,
+                                                                height: 55,
+                                                            },
+                                                        },
+                                                        "& label": {
+                                                            fontSize: 13,
+                                                            color: "red",
+                                                            "&.Mui-focused": {
+                                                                marginLeft: 0,
+                                                                color: "red",
+                                                            }
+                                                        }
+                                                    }}
 
-                                <div className='col-12 Add_Category center'>
-                                    <div className="col "> <h2> Add News
-                                    </h2>
+                                               
+                                                    error={!!errors?.Title}
+                                                    helperText={errors?.Title?.message}
+                                                />
+                                       
+                                        
+                                        </div>
                                     </div>
-                                </div>
-                                <div className='col-12 top  Add_Category_pop  con  '>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            <span className='required'>*</span>
-                                            Title:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-                                        <TextField type="Text" placeholder=' Title' id="outlined-basic" name='Title' variant="outlined" value={News.Title.toUpperCase()} style={{ minWidth: 190, fontSize: 15 }}
-                                            onChange={handleChange}
-                                            InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
-                                            label={massage.Title}
-                                            sx={{
-                                                '& .MuiOutlinedInput-root': {
-                                                    '& fieldset': {
-                                                        borderColor: error.Title,
-                                                        height: 55,
+                                    <div className='col-12 top  Add_Category_pop  con  '>
+                                        <div className='col m-2'>
+                                            <label className='label'>
+                                                <span className='required'>*</span>
+                                                Meta Title:
+                                            </label>
+                                        </div>
+                                        <div className='col'>
+                                            <TextField type="Text" placeholder='Meta Title' id="outlined-basic" name='Meta_title' variant="outlined" value={News.Meta_title.toUpperCase()} style={{ minWidth: 190, fontSize: 15 }}
+                                                onChange={handleChange}
+
+                                                InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
+                                                label={massage.Meta_title}
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        '& fieldset': {
+                                                            borderColor: error.Meta_title,
+                                                            height: 55,
+                                                        },
                                                     },
-                                                },
-                                                "& label": {
-                                                    fontSize: 13,
-                                                    color: "red",
-                                                    "&.Mui-focused": {
-                                                        marginLeft: 0,
+                                                    "& label": {
+                                                        fontSize: 13,
                                                         color: "red",
+                                                        "&.Mui-focused": {
+                                                            marginLeft: 0,
+                                                            color: "red",
+                                                        }
                                                     }
-                                                }
-                                            }}
-                                        />
+                                                }}
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className='col-12 top  Add_Category_pop  con  '>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            <span className='required'>*</span>
-                                            Meta Title:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-                                        <TextField type="Text" placeholder='Meta Title' id="outlined-basic" name='Meta_title' variant="outlined" value={News.Meta_title.toUpperCase()} style={{ minWidth: 190, fontSize: 15 }}
-                                            onChange={handleChange}
-
-                                            InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
-                                            label={massage.Meta_title}
-                                            sx={{
-                                                '& .MuiOutlinedInput-root': {
-                                                    '& fieldset': {
-                                                        borderColor: error.Meta_title,
-                                                        height: 55,
+                                    <div className='col-12 top  Add_Category_pop  con  '>
+                                        <div className='col m-2'>
+                                            <label className='label'>
+                                                <span className='required'>*</span>
+                                                Meta Description :
+                                            </label>
+                                        </div>
+                                        <div className='col'>
+                                            <TextField type="Text" placeholder='Meta Description' id="outlined-basic" name='Meta_Description' variant="outlined" value={News.Meta_Description.toUpperCase()}
+                                                onChange={handleChange}
+                                                style={{ minWidth: 190, fontSize: 15 }}
+                                                InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
+                                                label={massage.Meta_Description}
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        '& fieldset': {
+                                                            borderColor: error.Meta_Description,
+                                                            height: 55,
+                                                        },
                                                     },
-                                                },
-                                                "& label": {
-                                                    fontSize: 13,
-                                                    color: "red",
-                                                    "&.Mui-focused": {
-                                                        marginLeft: 0,
+                                                    "& label": {
+                                                        fontSize: 13,
                                                         color: "red",
+                                                        "&.Mui-focused": {
+                                                            marginLeft: 0,
+                                                            color: "red",
+                                                        }
                                                     }
-                                                }
-                                            }}
-                                        />
+                                                }}
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className='col-12 top   Add_Category_pop'>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            Category:
-                                        </label>
+                                    <div className='col-12 top  Add_Category_pop '>
+                                        <div className='col m-2'>
+                                            <label className='label'>
+                                                <span className='required'>*</span>
+                                                Url slug :
+                                            </label>
+                                        </div>
+                                        <div className='col'>
+                                            <TextField type="Text" placeholder=' Url slug' name='Url_slug' value={News.Url_slug} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
+                                                onChange={handleChange}
+                                                InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
+                                                label={massage.Url_slug}
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        '& fieldset': {
+                                                            borderColor: error.Url_slug,
+                                                            height: 55,
+                                                        },
+                                                    },
+                                                    "& label": {
+                                                        fontSize: 13,
+                                                        color: "red",
+                                                        "&.Mui-focused": {
+                                                            marginLeft: 0,
+                                                            color: "red",
+                                                        }
+                                                    }
+                                                }}
+
+                                            />
+                                        </div>
                                     </div>
-                                    <div className='col'>
-                                        <Select
-                                            name='Category_id'
-                                            value={News.Category_id}
-                                            onChange={handleChange}
-                                            displayEmpty
-                                            size='small'
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}
-                                        >
-                                            <MenuItem value="" style={{ fontSize: 15 }}>
-                                                <em>Select option</em>
-                                            </MenuItem>
-                                            {
-                                                Category.map((Category, index) => {
-                                                    return (
-                                                        <MenuItem value={Category.id} style={{ fontSize: 15 }} key={index}>{Category.name}</MenuItem>
-                                                    )
-
-                                                })
-                                            }
-
-                                        </Select>
-                                    </div>
-                                </div>
-                                <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            Sub Category:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-                                        <Select
-                                            name='SubCategory_id'
-                                            value={News.SubCategory_id}
-                                            onChange={handleChange}
-                                            displayEmpty
-                                            size='small'
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 130, fontSize: 15 }}
-                                        >
-                                            <MenuItem value="" style={{ fontSize: 15 }}>
-                                                <em>Select option</em>
-                                            </MenuItem>
-                                            {
-                                                SubCategory.map((SubCategory, index) => {
-                                                    return (
-
-                                                        <MenuItem value={SubCategory.id} style={{ fontSize: 15 }} key={index}>{SubCategory.name}</MenuItem>
-
-                                                    )
-
-                                                })
-                                            }
-
-                                        </Select>
-                                    </div>
-                                </div>
-                                <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            Strain Type:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-                                        <Select
-                                            name='StrainType'
-                                            value={News.StrainType}
-                                            onChange={handleChange}
-                                            displayEmpty
-                                            size='small'
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}
-                                        >
-
-                                            <MenuItem value={"None"} style={{ fontSize: 15 }}>None</MenuItem>
-                                            <MenuItem value={"Indica"} style={{ fontSize: 15 }}>Indica</MenuItem>
-                                            <MenuItem value={"Sativa"} style={{ fontSize: 15 }}>Sativa</MenuItem>
-                                            <MenuItem value={"Hybrid"} style={{ fontSize: 15 }}>Hybrid</MenuItem>
-                                            <MenuItem value={"CBD"} style={{ fontSize: 15 }}>CBD</MenuItem>
-                                        </Select>
-                                    </div>
-                                </div>
-                                <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            <span className='required'>*</span>
-                                            Featured Image:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-                                        <div className=' col-2 image_uploade center' style={{ border: '1px solid ' + error.Image }}>
-
-                                            <div className='top MdFileUpload'>
+                                    <div className='col-12 top   Add_Category_pop'>
+                                        <div className='col m-2'>
+                                            <label className='label'>
+                                                Category:
+                                            </label>
+                                        </div>
+                                        <div className='col'>
+                                            <Select
+                                                name='Category_id'
+                                                value={News.Category_id}
+                                                onChange={handleChange}
+                                                displayEmpty
+                                                size='small'
+                                                inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}
+                                            >
+                                                <MenuItem value="" style={{ fontSize: 15 }}>
+                                                    <em>Select option</em>
+                                                </MenuItem>
                                                 {
-                                                    Image ? <div style={{ display: "flex" }}>
-                                                        <img src={URL.createObjectURL(Image)} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
-                                                        <Button color='success' onClick={resetFileInput}>Cancell </Button>
-                                                    </div> :
-                                                        <MdFileUpload style={{ backgroundColor: "#31B665", borderradius: "66px" }} ></MdFileUpload >
+                                                    Category.map((Category, index) => {
+                                                        return (
+                                                            <MenuItem value={Category.id} style={{ fontSize: 15 }} key={index}>{Category.name}</MenuItem>
+                                                        )
+
+                                                    })
                                                 }
 
-                                            </div>
-                                            <div className='col-12 center  top Sku'>
-                                                <div className="file-input">
-                                                    <input type="file" id="file" ref={inputRef} className="file" onChange={handleimage} />
-                                                    <label htmlFor="file"  >
-                                                        <span  >UPLOAD</span> <span style={{ color: "red" }}>{massage.Image}</span>
-                                                        <p className="file-name"></p>
-                                                    </label>
+                                            </Select>
+                                        </div>
+                                    </div>
+                                    <div className='col-12 top  Add_Category_pop '>
+                                        <div className='col m-2'>
+                                            <label className='label'>
+                                                Sub Category:
+                                            </label>
+                                        </div>
+                                        <div className='col'>
+                                            <Select
+                                                name='SubCategory_id'
+                                                value={News.SubCategory_id}
+                                                onChange={handleChange}
+                                                displayEmpty
+                                                size='small'
+                                                inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 130, fontSize: 15 }}
+                                            >
+                                                <MenuItem value="" style={{ fontSize: 15 }}>
+                                                    <em>Select option</em>
+                                                </MenuItem>
+                                                {
+                                                    SubCategory.map((SubCategory, index) => {
+                                                        return (
+
+                                                            <MenuItem value={SubCategory.id} style={{ fontSize: 15 }} key={index}>{SubCategory.name}</MenuItem>
+
+                                                        )
+
+                                                    })
+                                                }
+
+                                            </Select>
+                                        </div>
+                                    </div>
+                                    <div className='col-12 top  Add_Category_pop '>
+                                        <div className='col m-2'>
+                                            <label className='label'>
+                                                Strain Type:
+                                            </label>
+                                        </div>
+                                        <div className='col'>
+                                            <Select
+                                                name='StrainType'
+                                                value={News.StrainType}
+                                                onChange={handleChange}
+                                                displayEmpty
+                                                size='small'
+                                                inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}
+                                            >
+
+                                                <MenuItem value={"None"} style={{ fontSize: 15 }}>None</MenuItem>
+                                                <MenuItem value={"Indica"} style={{ fontSize: 15 }}>Indica</MenuItem>
+                                                <MenuItem value={"Sativa"} style={{ fontSize: 15 }}>Sativa</MenuItem>
+                                                <MenuItem value={"Hybrid"} style={{ fontSize: 15 }}>Hybrid</MenuItem>
+                                                <MenuItem value={"CBD"} style={{ fontSize: 15 }}>CBD</MenuItem>
+                                            </Select>
+                                        </div>
+                                    </div>
+                                    <div className='col-12 top  Add_Category_pop '>
+                                        <div className='col m-2'>
+                                            <label className='label'>
+                                                <span className='required'>*</span>
+                                                Featured Image:
+                                            </label>
+                                        </div>
+                                        <div className='col'>
+                                            <div className=' col-2 image_uploade center' style={{ border: '1px solid ' + error.Image }}>
+
+                                                <div className='top MdFileUpload'>
+                                                    {
+                                                        Image ? <div style={{ display: "flex" }}>
+                                                            <img src={URL.createObjectURL(Image)} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
+                                                            <Button color='success' onClick={resetFileInput}>Cancell </Button>
+                                                        </div> :
+                                                            <MdFileUpload style={{ backgroundColor: "#31B665", borderradius: "66px" }} ></MdFileUpload >
+                                                    }
+
+                                                </div>
+                                                <div className='col-12 center  top Sku'>
+                                                    <div className="file-input">
+                                                        <input type="file" id="file" ref={inputRef} className="file" onChange={handleimage} />
+                                                        <label htmlFor="file"  >
+                                                            <span  >UPLOAD</span> <span style={{ color: "red" }}>{massage.Image}</span>
+                                                            <p className="file-name"></p>
+                                                        </label>
+                                                    </div>
+
                                                 </div>
 
                                             </div>
-
                                         </div>
                                     </div>
-                                </div>
-                                <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            <span className='required'>*</span>
-                                            Alt Text:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-                                        <TextField type="text" placeholder='Add Alt Text' name='Alt_Text' value={News.Alt_Text} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
-                                            onChange={handleChange}
-                                            InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
-                                            label={massage.Alt_Text}
-                                            sx={{
-                                                '& .MuiOutlinedInput-root': {
-                                                    '& fieldset': {
-                                                        borderColor: error.Alt_Text,
-                                                        height: 55,
+                                    <div className='col-12 top  Add_Category_pop '>
+                                        <div className='col m-2'>
+                                            <label className='label'>
+                                                <span className='required'>*</span>
+                                                Alt Text:
+                                            </label>
+                                        </div>
+                                        <div className='col'>
+                                            <TextField type="text" placeholder='Add Alt Text' name='Alt_Text' value={News.Alt_Text} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
+                                                onChange={handleChange}
+                                                InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
+                                                label={massage.Alt_Text}
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        '& fieldset': {
+                                                            borderColor: error.Alt_Text,
+                                                            height: 55,
+                                                        },
                                                     },
-                                                },
-                                                "& label": {
-                                                    fontSize: 13,
-                                                    color: "red",
-                                                    "&.Mui-focused": {
-                                                        marginLeft: 0,
+                                                    "& label": {
+                                                        fontSize: 13,
                                                         color: "red",
+                                                        "&.Mui-focused": {
+                                                            marginLeft: 0,
+                                                            color: "red",
+                                                        }
                                                     }
-                                                }
-                                            }}
+                                                }}
 
-                                        />
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className='col-12 top  Add_Category_pop '>
+                                    {/* <div className='col-12 top  Add_Category_pop '>
                                     <div className='col m-2'>
                                         <label className='label'>
                                             Link:
@@ -644,114 +729,52 @@ export default function Newspop() {
 
                                         />
                                     </div>
-                                </div>
-                                <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            <span className='required'>*</span>
-                                            Url slug :
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-                                        <TextField type="Text" placeholder=' Url slug' name='Url_slug' value={News.Url_slug} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
-                                            onChange={handleChange}
-                                            InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
-                                            label={massage.Url_slug}
-                                            sx={{
-                                                '& .MuiOutlinedInput-root': {
-                                                    '& fieldset': {
-                                                        borderColor: error.Url_slug,
-                                                        height: 55,
+                                </div> */}
+
+
+                                    <div className='col-12 top  Add_Category_pop  '>
+                                        <div className='col m-2'>
+                                            <label className='label'>
+                                                <span className='required'>*</span>
+                                                Description:
+                                            </label>
+                                        </div>
+                                        <div className='col'>
+                                            <Box
+                                                sx={{
+                                                    "& .rdw-editor-toolbar": {
+                                                        width: "100%"
                                                     },
-                                                },
-                                                "& label": {
-                                                    fontSize: 13,
-                                                    color: "red",
-                                                    "&.Mui-focused": {
-                                                        marginLeft: 0,
-                                                        color: "red",
+                                                    ".rdw-editor-main": {
+                                                        background: "",
+                                                        border: "1px solid #c4c4c4",
+                                                        padding: "3px"
                                                     }
-                                                }
-                                            }}
+                                                }}
+                                            >
+                                                <Editor
+                                                    editorState={editorState}
+                                                    toolbar={toolbar}
+                                                    localization={localization}
+                                                    onEditorStateChange={handleEditorStateChange}
+                                                    onContentStateChange={handleContentStateChange}
+                                                    toolbarClassName="toolbarClassName"
+                                                    wrapperClassName="wrapperClassName"
+                                                    editorClassName="editorClassName"
+                                                />
+                                            </Box>
+                                        </div>
+                                    </div>
+                                    <div className='col-12 center top' >
+                                        <LoadingButton loading={loading}  autoFocus type='submit' style={{ backgroundColor: !loading && "rgb(49, 182, 101)" ,  color:"white" , fontSize:"14px"} } >
+                                            Add News
+                                        </LoadingButton>
+                                    </div>
 
-                                        />
-                                    </div>
-                                </div>
-                                <div className='col-12 top  Add_Category_pop  con  '>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            <span className='required'>*</span>
-                                            Meta Description :
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-                                        <TextField type="Text" placeholder='Meta Description' id="outlined-basic" name='Meta_Description' variant="outlined" value={News.Meta_Description.toUpperCase()} style={{ minWidth: "100%", fontSize: 15 }}
-                                            onChange={handleChange}
-
-                                            InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
-                                            label={massage.Meta_Description}
-                                            sx={{
-                                                '& .MuiOutlinedInput-root': {
-                                                    '& fieldset': {
-                                                        borderColor: error.Meta_Description,
-                                                        height: 55,
-                                                    },
-                                                },
-                                                "& label": {
-                                                    fontSize: 13,
-                                                    color: "red",
-                                                    "&.Mui-focused": {
-                                                        marginLeft: 0,
-                                                        color: "red",
-                                                    }
-                                                }
-                                            }}
-                                        />
-                                    </div>
-                                </div>
-                                <div className='col-12 top  Add_Category_pop  '>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            <span className='required'>*</span>
-                                            Description:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-                                        <Box
-                                            sx={{
-                                                "& .rdw-editor-toolbar": {
-                                                    width: "100%"
-                                                },
-                                                ".rdw-editor-main": {
-                                                    background: "",
-                                                    border: "1px solid #c4c4c4",
-                                                    padding: "3px"
-                                                }
-                                            }}
-                                        >
-                                            <Editor
-                                                editorState={editorState}
-                                                toolbar={toolbar}
-                                                localization={localization}
-                                                onEditorStateChange={handleEditorStateChange}
-                                                onContentStateChange={handleContentStateChange}
-                                                toolbarClassName="toolbarClassName"
-                                                wrapperClassName="wrapperClassName"
-                                                editorClassName="editorClassName"
-                                            />
-                                        </Box>
-                                    </div>
-                                </div>
-                                <div className='col-12 center top' >
-                                    <button className='btn Sub_button' autoFocus onClick={Submit} >
-                                        Add News
-                                    </button>
                                 </div>
 
-                            </div>
-
+                            </form>
                         </div>
-
 
                     </div>
                 </DialogContent>
