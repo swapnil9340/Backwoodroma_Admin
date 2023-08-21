@@ -1,14 +1,6 @@
 import React from "react"
 import { BiUser } from "react-icons/bi"
-<<<<<<< HEAD
 import {  useNavigate } from "react-router-dom"
-=======
-
-import {  useNavigate } from "react-router-dom"
-
-
-
->>>>>>> 5499e7956 (qweqew)
 const Settings = () => {
     const navigate= useNavigate()
     const array = [{ head: "Roles and Permission" }]
