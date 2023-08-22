@@ -195,7 +195,6 @@ export default function NewsEdit(props) {
     const handleChange = (event) => {
         if(event.target.name === 'Title')
         {
-            console.log(event.target.name)
             const value = event.target.value
             setNews({
                 ...News,
