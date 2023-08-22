@@ -43,12 +43,19 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 function BootstrapDialogTitle(props) {
 
 }
-export default function Newspop() {
-    const { register, handleSubmit, errors, control } = useForm()
-    // const { ref, ...inputProps } = register("Title", {
-    //     required: "error text"
-    // });
 
+
+export default function Newspop() {
+
+    const form = useForm({
+        defaultValue: {
+            Title: "",
+            Meta_title:""
+        }
+    })
+
+    const { register, handleSubmit, formState,watch,reset } = form
+    const { errors } = formState
     const { dispatch } = useContext(Createcontext)
     const inputRef = useRef(null);
     const [open, setOpen] = React.useState(false);
@@ -59,7 +66,7 @@ export default function Newspop() {
     const [Category, SetCategory] = React.useState([])
     const [SubCategory, SetSubCategory] = React.useState([])
     const [Image, SetImage] = React.useState('')
-    const [loading , Setloading] = React.useState(false)
+    const [loading, Setloading] = React.useState(false)
     const [News, setNews] = React.useState({
         Title: "",
         Category_id: "",
@@ -189,6 +196,7 @@ export default function Newspop() {
         seterror({ Image: "black" })
     };
     const handleChange = (event) => {
+        console.log(event)
         const value = event.target.value
         setNews({
             ...News,
@@ -196,6 +204,7 @@ export default function Newspop() {
         });
         setmassage('')
         seterror('')
+        
     }
 
     const handleClickOpen = () => {
@@ -233,9 +242,9 @@ export default function Newspop() {
             }
 
         }).then(response => {
-            SetCategory(response.data)
+            SetCategory(response?.data)
 
-            setNews(Category => ({ ...Category, Category_id: response.data[0].id }))
+            setNews(Category => ({ ...Category, Category_id: response?.data[0]?.id }))
 
         })
 
@@ -247,8 +256,8 @@ export default function Newspop() {
             }
 
         }).then(response => {
-            SetSubCategory(response.data.data)
-            setNews(Category => ({ ...Category, SubCategory_id: response.data.data[0].id }))
+            SetSubCategory(response?.data?.data)
+            setNews(Category => ({ ...Category, SubCategory_id: response?.data?.data[0]?.id }))
 
         })
 
@@ -257,20 +266,18 @@ export default function Newspop() {
     }, [token_data])
 
 
+    const Submit = (data) => {
+        
     const formdata = new FormData();
-    formdata.append('Title', News.Title.toUpperCase());
+    formdata.append('Title', data.Title);
     formdata.append('Category_id', News.Category_id);
-    formdata.append('Link', News.Link);
-    formdata.append('Meta_Description', News.Meta_Description.toUpperCase());
-    formdata.append('Meta_title', News.Meta_title.toUpperCase());
-    formdata.append('StrainType', News.StrainType);
+    formdata.append('Meta_Description', data.Meta_Description);
+    formdata.append('Meta_title', News.Meta_title === "" ? News.Title : News.Meta_title);
     formdata.append('SubCategory_id', News.SubCategory_id);
-    formdata.append('Url_slug', News.Url_slug);
-    formdata.append('Alt_Text', News.Alt_Text);
+    formdata.append('Url_slug',News.Url_slug ===""? News.Title : News.Url_slug);
+    formdata.append('Alt_Text', data.Alt_Text);
     formdata.append('Image', Image);
     formdata.append('Description', convertedContent);
-    formdata.append('Url_slug', News.Url_slug)
-    const Submit = () => {
         Setloading(true)
         const config = {
             headers: { Authorization: `Bearer ${token_data}` }
@@ -292,11 +299,11 @@ export default function Newspop() {
                 Alt_Text: "",
 
             }))
-
+              reset()
             SetImage('')
             Setloading(false)
         }).catch(
-          
+
             function (error) {
                 Setloading(false)
                 if (error.response.data.error) {
@@ -355,8 +362,16 @@ export default function Newspop() {
             document.querySelector('.file-name').textContent = fileNameAndSize;
         });
     }
-    console.log(errors)
+    
 
+     React.useEffect(()=>{
+       
+     
+        setNews({
+            ...News,
+            "Title":  watch("Title") , "Url_slug" :watch("Title")?.replace(/\s/g, '-') , "Meta_title":watch("Title") 
+        });
+     },[watch("Title")])
 
     return (
         <div>
@@ -416,38 +431,37 @@ export default function Newspop() {
                                         </div>
                                         <div className='col'>
                                             <TextField
-                                                    type="Text" placeholder='Title'
-                                                    id="outlined-basic"
-                                                    name='Title'
-                                                     variant="outlined"
-                                                    value={News.Title.toUpperCase()}
-                                                    style={{ minWidth: 190, fontSize: 15 }}
-                                                    onChange={handleChange}
-                                                    InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
-                                                    label={massage.Title}
-                                                    sx={{
-                                                        '& .MuiOutlinedInput-root': {
-                                                            '& fieldset': {
-                                                                // borderColor: error.Title,
-                                                                height: 55,
-                                                            },
+                                                type="Text" placeholder='Title'
+                                                id="outlined-basic"
+                                                name='Title'
+                                                variant="outlined"
+                                                // value={News.Title.toUpperCase()}
+                                                style={{ minWidth: 190, fontSize: 15 }}
+                                                // onChange={(e)=>handleChange(e)}
+                                                InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
+                                                label={massage.Title}
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        '& fieldset': {
+                                                            // borderColor: error.Title,
+                                                            height: 55,
                                                         },
-                                                        "& label": {
-                                                            fontSize: 13,
+                                                    },
+                                                    "& label": {
+                                                        fontSize: 13,
+                                                        color: "red",
+                                                        "&.Mui-focused": {
+                                                            marginLeft: 0,
                                                             color: "red",
-                                                            "&.Mui-focused": {
-                                                                marginLeft: 0,
-                                                                color: "red",
-                                                            }
                                                         }
-                                                    }}
-
-                                               
-                                                    error={!!errors?.Title}
-                                                    helperText={errors?.Title?.message}
-                                                />
-                                       
-                                        
+                                                    }
+                                                }}
+                                                {...register("Title", {
+                                                    required: "Title is Required"
+                                                })}
+                                                error={Boolean(errors?.Title)}
+                                                helperText={errors?.Title?.message}
+                                            />
                                         </div>
                                     </div>
                                     <div className='col-12 top  Add_Category_pop  con  '>
@@ -458,9 +472,15 @@ export default function Newspop() {
                                             </label>
                                         </div>
                                         <div className='col'>
-                                            <TextField type="Text" placeholder='Meta Title' id="outlined-basic" name='Meta_title' variant="outlined" value={News.Meta_title.toUpperCase()} style={{ minWidth: 190, fontSize: 15 }}
+                                            <TextField
+                                                type="Text"
+                                                placeholder='Meta Title'
+                                                id="outlined-basic"
+                                                name='Meta_title'
+                                                variant="outlined" 
+                                                value={News.Meta_title}
+                                                style={{ minWidth: 190, fontSize: 15 }}
                                                 onChange={handleChange}
-
                                                 InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                                 label={massage.Meta_title}
                                                 sx={{
@@ -490,8 +510,13 @@ export default function Newspop() {
                                             </label>
                                         </div>
                                         <div className='col'>
-                                            <TextField type="Text" placeholder='Meta Description' id="outlined-basic" name='Meta_Description' variant="outlined" value={News.Meta_Description.toUpperCase()}
-                                                onChange={handleChange}
+                                            <TextField 
+                                            type="Text"
+                                             placeholder='Meta Description'
+                                              id="outlined-basic"
+                                               name='Meta_Description' 
+                                               variant="outlined"
+                                                // onChange={handleChange}
                                                 style={{ minWidth: 190, fontSize: 15 }}
                                                 InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                                 label={massage.Meta_Description}
@@ -511,6 +536,11 @@ export default function Newspop() {
                                                         }
                                                     }
                                                 }}
+                                                {...register("Meta_Description", {
+                                                    required: "Meta_Description is Required"
+                                                })}
+                                                error={Boolean(errors?.Meta_Description)}
+                                                helperText={errors?.Meta_Description?.message}
                                             />
                                         </div>
                                     </div>
@@ -522,7 +552,14 @@ export default function Newspop() {
                                             </label>
                                         </div>
                                         <div className='col'>
-                                            <TextField type="Text" placeholder=' Url slug' name='Url_slug' value={News.Url_slug} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
+                                            <TextField
+                                             type="Text"
+                                              placeholder=' Url slug'
+                                               name='Url_slug' 
+                                               value={News.Url_slug} 
+                                               id="outlined-basic" 
+                                               variant="outlined"
+                                                style={{ minWidth: 190, fontSize: 15 }}
                                                 onChange={handleChange}
                                                 InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                                 label={massage.Url_slug}
@@ -542,7 +579,7 @@ export default function Newspop() {
                                                         }
                                                     }
                                                 }}
-
+                                             
                                             />
                                         </div>
                                     </div>
@@ -608,7 +645,7 @@ export default function Newspop() {
                                             </Select>
                                         </div>
                                     </div>
-                                    <div className='col-12 top  Add_Category_pop '>
+                                    {/* <div className='col-12 top  Add_Category_pop '>
                                         <div className='col m-2'>
                                             <label className='label'>
                                                 Strain Type:
@@ -631,7 +668,7 @@ export default function Newspop() {
                                                 <MenuItem value={"CBD"} style={{ fontSize: 15 }}>CBD</MenuItem>
                                             </Select>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div className='col-12 top  Add_Category_pop '>
                                         <div className='col m-2'>
                                             <label className='label'>
@@ -674,8 +711,12 @@ export default function Newspop() {
                                             </label>
                                         </div>
                                         <div className='col'>
-                                            <TextField type="text" placeholder='Add Alt Text' name='Alt_Text' value={News.Alt_Text} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
-                                                onChange={handleChange}
+                                            <TextField
+                                             type="text"
+                                              placeholder='Add Alt Text' 
+                                              name='Alt_Text'
+                                              id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
+                                
                                                 InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                                 label={massage.Alt_Text}
                                                 sx={{
@@ -694,6 +735,11 @@ export default function Newspop() {
                                                         }
                                                     }
                                                 }}
+                                                {...register("Alt_Text", {
+                                                    required: "Alt_Text is Required"
+                                                })}
+                                                error={Boolean(errors?.Alt_Text)}
+                                                helperText={errors?.Alt_Text?.message}
 
                                             />
                                         </div>
@@ -739,11 +785,17 @@ export default function Newspop() {
                                                 Description:
                                             </label>
                                         </div>
-                                        <div className='col'>
+                                        <div className='col' style={{height: "240px"}}>
                                             <Box
                                                 sx={{
                                                     "& .rdw-editor-toolbar": {
-                                                        width: "100%"
+                                                        width: "100%",
+                                                    },
+                                                    "& .rdw-editor-wrapper":{
+                                                       height:"200px",
+                                                       width:"600px"
+                                                       
+
                                                     },
                                                     ".rdw-editor-main": {
                                                         background: "",
@@ -765,8 +817,8 @@ export default function Newspop() {
                                             </Box>
                                         </div>
                                     </div>
-                                    <div className='col-12 center top' >
-                                        <LoadingButton loading={loading}  autoFocus type='submit' style={{ backgroundColor: !loading && "rgb(49, 182, 101)" ,  color:"white" , fontSize:"14px"} } >
+                                    <div className='col-12 center top'  >
+                                        <LoadingButton loading={loading} autoFocus type='submit' style={{ backgroundColor: !loading && "rgb(49, 182, 101)", color: "white", fontSize: "14px" }} >
                                             Add News
                                         </LoadingButton>
                                     </div>

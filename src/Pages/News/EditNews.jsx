@@ -11,15 +11,15 @@ import MenuItem from '@mui/material/MenuItem';
 import Cookies from 'universal-cookie';
 import Axios from "axios"
 import axios from "axios"
-import draftToHtml from "draftjs-to-html";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { EditorState } from 'draft-js';
+import { EditorState,ContentState } from 'draft-js';
+import { convertToHTML } from 'draft-convert';
 import { MdFileUpload } from 'react-icons/md';
 import Createcontext from "../../Hooks/Context/Context"
 import InputAdornment from '@mui/material/InputAdornment';
 import Box from '@mui/material/Box';
-
+import htmlToDraft from 'html-to-draftjs';
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
         padding: theme.spacing(2),
@@ -42,26 +42,26 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 function BootstrapDialogTitle(props) {
 
 }
+const getInitialState = (defaultValue) => {
+    if (defaultValue) {
+        const blocksFromHtml = htmlToDraft(defaultValue);
+        const { contentBlocks, entityMap } = blocksFromHtml;
+        const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+        return EditorState.createWithContent(contentState);
+    } else {
+        return EditorState.createEmpty();
+    }
+};
 
-// const getInitialState = (defaultValue) => {
-//     if (defaultValue) {
-//         const blocksFromHtml = htmlToDraft(defaultValue);
-//         const { contentBlocks, entityMap } = blocksFromHtml;
-//         const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
-//         return EditorState.createWithContent(contentState);
-//     } else {
-//         return EditorState.createEmpty();
-//     }
-// };
 export default function NewsEdit(props) {
-    const defaultValue = props.data.Description
+    const defaultValue = props?.data?.Description
     const { dispatch } = useContext(Createcontext)
     const [open, setOpen] = React.useState(false);
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
-    const [editorState, setEditorState] = React.useState(() => EditorState.createEmpty());
+    const [editorState, setEditorState] = React.useState(getInitialState(defaultValue));
 
-    const [convertedContent, setConvertedContent] = React.useState(defaultValue);
+    const [convertedContent, setConvertedContent] = React.useState();
     const [Category, SetCategory] = React.useState([])
     const [SubCategory, SetSubCategory] = React.useState([])
     const [Image, SetImage] = React.useState('')
@@ -100,20 +100,16 @@ export default function NewsEdit(props) {
         Alt_Text: "",
         Link: ""
     })
-
-    const handleContentStateChange = (contentState) => {
-        setConvertedContent(draftToHtml(contentState));
-    };
-
     const handleEditorStateChange = (editorState) => {
         setEditorState(editorState);
     };
-    // React.useEffect(() => {
-    //     let html = draftToHtml();
-    //     setConvertedContent(html);
-    // }, [editorState]);
-  
-    console.log(draftToHtml(defaultValue))
+
+    React.useEffect(() => {
+        let html = convertToHTML(editorState.getCurrentContent());
+        setConvertedContent(html);
+    }, [editorState]);
+
+
     const toolbar = {
         options: [
             "blockType",
@@ -192,23 +188,42 @@ export default function NewsEdit(props) {
         }
     };
 
-    // React.useEffect(() => {
-    //     let html = convertToHTML(editorState.getCurrentContent());
-    //     setConvertedContent(html);
-    // }, [editorState]);
-
     const handleimage = (event) => {
 
         SetImage(event.target.files[0])
     };
     const handleChange = (event) => {
+        if(event.target.name === 'Title')
+        {
+            console.log(event.target.name)
+            const value = event.target.value
+            setNews({
+                ...News,
+                "Title": value , 'Meta_Description':value, "Url_slug" :value.replace(/\s/g, '-')
+            });
+            setmassage('')
+            seterror('')
+        }
+      if(event.target.name === 'Url_slug'){
         const value = event.target.value
         setNews({
             ...News,
-            [event.target.name]: value
+         "Url_slug" :value.replace(/\s/g, '-')
         });
         setmassage('')
         seterror('')
+      }
+      else {
+        const value = event.target.value
+        setNews({
+            ...News,
+            [event.target.name]: value 
+        });
+        setmassage('')
+        seterror('')
+    }
+
+        
     };
     const resetFileInput = () => {
         // resetting the input value
@@ -254,11 +269,9 @@ export default function NewsEdit(props) {
 
     const formdata = new FormData();
     formdata.append('Title', News.Title);
-    formdata.append('Category_id', News.Category_id);
-    formdata.append('Link', News.Link);
+    formdata.append('Category_id', News.Category_id);;
     formdata.append('Meta_Description', News.Meta_Description);
     formdata.append('Meta_title', News.Meta_title);
-    formdata.append('StrainType', News.StrainType);
     formdata.append('SubCategory_id', News.SubCategory_id);
     formdata.append('Url_slug', News.Url_slug);
     formdata.append('Alt_Text', News.Alt_Text);
@@ -402,7 +415,8 @@ export default function NewsEdit(props) {
                                         </label>
                                     </div>
                                     <div className='col '>
-                                        <TextField type="Text" placeholder=' Title' id="outlined-basic" name='Title' variant="outlined" value={News.Title.toUpperCase()} style={{ minWidth: 100, fontSize: 15 }}
+                                        <TextField type="Text" placeholder=' Title' id="outlined-basic" name='Title' variant="outlined" 
+                                        value={News.Title} style={{ minWidth: 100, fontSize: 15 }}
                                             onChange={handleChange}
 
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
@@ -434,7 +448,8 @@ export default function NewsEdit(props) {
                                         </label>
                                     </div>
                                     <div className='col'>
-                                        <TextField type="Text" placeholder='Meta Title' id="outlined-basic" name='Meta_title' variant="outlined" value={News.Meta_title.toUpperCase()} style={{ minWidth: 190, fontSize: 15 }}
+                                        <TextField type="Text" placeholder='Meta Title' id="outlined-basic" name='Meta_title' variant="outlined" 
+                                        value={News.Meta_title} style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                             label={massage.Meta_title}
@@ -517,7 +532,7 @@ export default function NewsEdit(props) {
                                         </Select>
                                     </div>
                                 </div>
-                                <div className='col-12 top  Add_Category_pop '>
+                                {/* <div className='col-12 top  Add_Category_pop '>
                                     <div className='col m-2'>
                                         <label className='label'>
                                             Strain Type:
@@ -542,7 +557,7 @@ export default function NewsEdit(props) {
                                             <MenuItem value={"c"} style={{ fontSize: 15 }}>CBD</MenuItem>
                                         </Select>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className='col-12 top  Add_Category_pop '>
                                     <div className='col m-2'>
                                         <label className='label'>
@@ -568,7 +583,7 @@ export default function NewsEdit(props) {
                                                         (
                                                             News.Image !== "" ?
                                                                 <div style={{ display: "flex" }}>
-                                                                    <img src={"http://backend.sweede.net/" + (News.Image)} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
+                                                                    <img src={"http://sweede.app/" + (News.Image)} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
                                                                     <Button name="Image" value="" onClick={handleChange} color='success' >Cancell </Button>
                                                                 </div>
                                                                 :
@@ -622,7 +637,7 @@ export default function NewsEdit(props) {
                                         />
                                     </div>
                                 </div>
-                                <div className='col-12 top  Add_Category_pop '>
+                                {/* <div className='col-12 top  Add_Category_pop '>
                                     <div className='col m-2'>
                                         <label className='label'>
                                             Link:
@@ -651,7 +666,7 @@ export default function NewsEdit(props) {
                                             }}
                                         />
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className='col-12 top  Add_Category_pop '>
                                     <div className='col m-2'>
                                         <label className='label'>
@@ -689,7 +704,7 @@ export default function NewsEdit(props) {
                                         </label>
                                     </div>
                                     <div className='col'>
-                                        <TextField type="Text" placeholder='Meta Description' id="outlined-basic" name='Meta_Description' variant="outlined" value={News.Meta_Description.toUpperCase()} style={{ minWidth: "100%", fontSize: 15 }}
+                                        <TextField type="Text" placeholder='Meta Description' id="outlined-basic" name='Meta_Description' variant="outlined" value={News.Meta_Description} style={{ minWidth: "100%", fontSize: 15 }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                             label={massage.Meta_Description}
@@ -733,14 +748,17 @@ export default function NewsEdit(props) {
                                             }}
                                         >
                                             <Editor
-                                                editorState={editorState}
+                                                       editorState={editorState}
+                                                       onEditorStateChange={handleEditorStateChange}
+                                                       toolbarClassName="toolbarClassName"
+                                                       wrapperClassName="wrapperClassName"
+                                                       editorClassName="editorClassName"
                                                 toolbar={toolbar}
                                                 localization={localization}
-                                                onEditorStateChange={handleEditorStateChange}
-                                                onContentStateChange={handleContentStateChange}
-                                                toolbarClassName="toolbarClassName"
-                                                wrapperClassName="wrapperClassName"
-                                                editorClassName="editorClassName"
+                
+                                    
+                                    
+                                              
                                             />
                                         </Box>
                                     </div>
