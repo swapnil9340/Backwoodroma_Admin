@@ -1288,3 +1288,50 @@ color:#3C3C3C
     font-size: 16px;
 }
 /* end */
+/* PromotionalBanner */
+.PromotionalBannerContainer{
+    position: relative;
+    left: 16%;
+}
+.promtionalBannerHeader{
+    display: flex;
+    align-items: center;
+}
+.promotionalBannerInputFiledsContainer{
+    display: flex;
+   
+}
+.promotionHeads{
+    color: #000000;
+    font-weight: 700;
+    font-size: 24px;
+}
+.promotionSelectWidth{
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    border-color: #BEBEBE;
+}
+.promotionalImage{
+    height: 50px;
+    width: 50px;
+}
+.promotionalImageSection{
+    display: flex;
+    align-items: center;
+    height: 100px;
+}
+.promotionalBannerSelectCol{
+    display: flex;
+  
+}
+@media(max-width:992px){
+    .PromotionalBannerContainer{
+        left: 0px;
+        width: 100%;
+    }
+}
+.promtionalBannerHeader{
+    height: auto;
+}
+/* end */

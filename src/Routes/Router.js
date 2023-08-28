@@ -25,6 +25,7 @@ import RoleAndPermission from '../Pages/Settings/RolesAndPermission/RoleAndPermi
 import ManageRole from '../Pages/Settings/RolesAndPermission/ManageRole/ManageRole';
 import RoleDetailsAndPermission from '../Pages/Settings/RolesAndPermission/RoleDetailsAndPermission/RoleDetailsAndPermission';
 import UserEditProfile from '../Pages/UserProfile/UserEditProfile';
+import PromotionalBanner from '../Pages/PromotionalBanner/PromotionalBanner';
 export default function Router() {
  
  
@@ -61,7 +62,7 @@ export default function Router() {
         <Route path='/ManageRole' element={<Protected Component={ManageRole}/>}/>
         <Route path='/RoleDetailsAndPermission' element={<Protected Component={RoleDetailsAndPermission}/>}/>
         <Route path='/UserEditProfile' element={<Protected Component={UserEditProfile}/>}/>
-        
+        <Route path='/PromotionalBanner' element={<Protected Component={PromotionalBanner}/>}/>
         <Route   path='*' element={ <Pagenotfound></Pagenotfound>} />
        
         </Routes>
