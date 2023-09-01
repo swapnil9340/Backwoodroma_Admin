@@ -915,10 +915,10 @@ textarea:focus {
 .roleSelectTags {
     width: 70%;
     height: 30px;
-    padding: 4px;
     border-radius: 20px;
+    border-color: #BEBEBE;
+    padding: 2px 4px;
 }
-
 @media(max-width:500px) {
     .rolesAndpermission_Searchbar {
         justify-content: center;

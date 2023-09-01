@@ -10,7 +10,7 @@ const RolePermissionListToggle = ({RolePermissionArray}) => {
             {RolePermissionArray?.map((items,index)=>{
                 return(
                     <React.Fragment key={index}>
-                        <form>
+                       
                     <div className="col-12 checkCondition_container">
                     <div className="">
                         <input id={items.roleTypeHeading} type="checkbox" />
@@ -28,11 +28,10 @@ const RolePermissionListToggle = ({RolePermissionArray}) => {
                         
                     </div>
                 </div>
-                </form>
+              
                 </React.Fragment>
                 )
             })}
-          
 
         </div>
     )

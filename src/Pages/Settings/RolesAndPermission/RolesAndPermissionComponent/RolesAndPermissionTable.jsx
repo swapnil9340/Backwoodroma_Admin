@@ -29,13 +29,13 @@ const RoleAndPermissionTable = () => {
                     <div className="col-lg-2 col-5 roelFirstSelectTagsContainer">
                         <span>Role</span>
                         <select className="roleSelectTags">
-                            <option>All Role</option>
+                            <option className="HtmloptionHoverBgColor">All Role</option>
                             <option>Owner</option>
                             <option>
-                                <BsPlusLg color="#31B665" /><span>Create new role</span>
+                                Create new role
                             </option>
                             <option>
-                                <span><IconButton><CiSettings /></IconButton></span><span>Manage roles</span>
+                                Manage roles
                             </option>
 
                         </select>
@@ -64,26 +64,26 @@ const RoleAndPermissionTable = () => {
                         <tr>
                             <th scope="col">
                                 <div className="roleAndPermissionTh_div_flex">
-                                    <span>Name</span> <span><IconButton><BsArrowUpShort size={16} /></IconButton></span>
+                                    <span>Name</span> <IconButton><BsArrowUpShort size={16} /></IconButton>
                                 </div>
 
                             </th>
                             <th scope="col">
                                 <div className="roleAndPermissionTh_div_flex">
 
-                                    <span>Role</span><span><IconButton><BsArrowUpShort size={16} /></IconButton></span>
+                                    <span>Role</span><IconButton><BsArrowUpShort size={16} /></IconButton>
                                 </div>
                             </th>
                             <th scope="col">
                                 <div className="roleAndPermissionTh_div_flex">
 
-                                    <span> Joined On</span> <span><IconButton><BsArrowUpShort size={16} /></IconButton></span>
+                                    <span> Joined On</span> <IconButton><BsArrowUpShort size={16} /></IconButton>
                                 </div>
                             </th>
                             <th scope="col">
                                 <div className="roleAndPermissionTh_div_flex">
 
-                                    <span>Owner</span> <span><IconButton><BsArrowUpShort size={16} /></IconButton></span>
+                                    <span>Owner</span> <IconButton><BsArrowUpShort size={16} /></IconButton>
                                 </div>
 
                             </th>
@@ -111,13 +111,13 @@ const RoleAndPermissionTable = () => {
                                         </td>
                                         <td>
                                             <div className="roleTdFlex">
-                                                <span className="roleTd_fontStyle">Owner</span>
+                                                <p className="roleTd_fontStyle">Owner</p>
                                             </div>
                                         </td>
                                         <td></td>
                                         <td>
                                             <div className="roleTdFlex">
-                                                <span className="roleTdChangeOwner_fontStyle">Change Owner</span>
+                                                <p className="roleTdChangeOwner_fontStyle">Change Owner</p>
                                             </div>
                                         </td>
 

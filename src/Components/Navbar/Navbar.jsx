@@ -16,7 +16,7 @@ import NewsDropDown from './SideBarDropdown/NewsDropDown'
 import { FiSettings } from "react-icons/fi"
 import { IoIosMenu } from "react-icons/io"
 import { FaUserAlt } from "react-icons/fa"
-import UserEditProfile from '../../Pages/UserProfile/UserEditProfile';
+// import UserEditProfile from '../../Pages/UserProfile/UserEditProfile';
 function Navbar() {
   const [windowSize, setWindowSize] = React.useState([
     window.innerWidth,

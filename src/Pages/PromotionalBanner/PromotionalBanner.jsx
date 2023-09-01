@@ -1,14 +1,15 @@
 import React from "react"
 import { IoMdArrowBack } from "react-icons/io"
 import { IconButton } from "@mui/material"
-import UserEditProfile from "../UserProfile/UserEditProfile"
+// import UserEditProfile from "../UserProfile/UserEditProfile"
 import TextField from "@mui/material/TextField"
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { AiFillCamera } from "react-icons/ai"
-
+// import { AiFillCamera } from "react-icons/ai"
+import useStyles from "../../Style";
 const PromotionalBanner = () => {
+    const classes=useStyles()
     return (
 
         <div className="container-fluid">
@@ -20,12 +21,17 @@ const PromotionalBanner = () => {
                         </div>
                         <div className="col-10">
                             <FormControlLabel
+                            className={classes.promotionalCheckBoxFontSize}
                                 control={
-                                    <Checkbox name="PromotionalBanner" />
+                                    <Checkbox
+                                 
+                                     name="PromotionalBanner"
+                                      />
                                 }
                                 label="Promotional Banner"
                             />
                             <FormControlLabel
+                             className={classes.promotionalCheckBoxFontSize}
                                 control={
                                     <Checkbox name="OfferBanner" />
                                 }

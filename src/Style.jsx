@@ -364,6 +364,9 @@ UserEditButton:{
       border: "1px solid #979797"
     },
   },
+  promotionalCheckBoxFontSize:{
+    '& .MuiFormControlLabel-label': { fontSize: '12px' }
+  }
 }
 )
 export default useStyles

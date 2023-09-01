@@ -11,7 +11,6 @@ const RolePermission = () => {
     for(let i=0;i<RolePermissionArray.length;i++){
         PermissionSum+=RolePermissionArray[i].key2.length
     }
-    console.log(PermissionSum)
     const [Values, SetValues] = React.useState([])
 
     const classes = useStyles()
@@ -41,7 +40,6 @@ const RolePermission = () => {
                 <div className="col-12 rolePermissionLists_container">
                     <ol className="rolePermissionOrderList">
                         {RolePermissionArray.map((items, index) => {
-                            console.log(RolePermissionArray.length)
                             return (
                                 <li className="rolePermissionListsStyles" key={index}  >
                                     <div className="rolePermissionIcon_listContainer" onClick={() => SetValues({...Values, [items.id]:!Values[items.id]})}>

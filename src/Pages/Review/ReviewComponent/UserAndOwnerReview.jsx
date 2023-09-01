@@ -12,7 +12,7 @@ const UserAndOwnerReview = () => {
             <div className="col-12 UserAndOwnerReview_mainCol">
                 {UserOwnerArray.map((items, index) => {
                     return (
-                        <React.Fragment>
+                        <React.Fragment key={index}>
                             <div className="col-12 UserAndOwnerReview_innerCol">
                                 <div className="col-12 UserAndOwnerReview_deleteIconCol">
                                     <IconButton
