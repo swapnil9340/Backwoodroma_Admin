@@ -365,8 +365,51 @@ UserEditButton:{
     },
   },
   promotionalCheckBoxFontSize:{
-    '& .MuiFormControlLabel-label': { fontSize: '12px' }
-  }
+    '& .MuiFormControlLabel-label': { 
+      fontSize: '20px',color:"#000000" ,
+      "@media(max-width:600px)":{
+      fontSize: '12px',
+
+      }
+    }
+  },
+  muiPromotioCheckBox:{
+    "& .MuiSvgIcon-root": {
+      fill: "#31B665",
+      display:"flex",
+      fontSize:"20px"
+    },
+   },
+  PromotionalBtn:{
+    '& .MuiLoadingButton-root':{
+      color:'#31B665',
+      marginTop:"10px",
+      fontSize:"14px",
+      width:"40%",
+      border:"1px solid #31B665",
+      borderRadius:"8px",
+      height:"35px",
+      textTransform:"none"
+    },
+    '& .MuiLoadingButton-root:hover':{
+      border:"1px solid #31B665",
+      color:"#FFFFFF",
+      backgroundColor:"#31B665"
+    },
+    "@media(max-width:600px)":{
+      '& .MuiLoadingButton-root':{
+        width: "131px",
+        height: "30px",
+        fontSize:" 7px",
+        padding: "9px"
+
+
+      }
+    },
+   '& .MuiLoadingButton-outlined':{
+    outlined:"#31B665"
+   }
+  },
 }
 )
 export default useStyles
