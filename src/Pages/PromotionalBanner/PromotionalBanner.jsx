@@ -51,13 +51,14 @@ const PromotionalBanner = () => {
                             <h2 className="promotionHeads">Promotional Banner</h2>
                         </div>
                         <div className="col-md-10 col-12 px-4 PromotionalMainContainer bg-light mt-5 py-5">
-                                <div className="col-lg-8 col-md-10 col-12 promotionalBannerInputFiledsContainer mt-5">
+                            <div className="col-10">
+                                <div className=" col-12 promotionalBannerInputFiledsContainer mt-5">
                                     <div className="col-xxl-1  col-lg-2 col-md-3 col-3">
                                         <label htmlFor="title">Title</label>
                                     </div>
                                     <TextField id="title" className={classes.textFieldFocusBorderColor} variant="outlined" fullWidth size="small" />
                                 </div>
-                                <div className="col-lg-8 col-md-10 col-12 promotionalBannerSelectCol mt-5">
+                                <div className=" col-12 promotionalBannerSelectCol mt-5">
                                     <div className="col-xxl-1 col-lg-2 col-md-3 col-3"><label htmlFor="country">Country</label></div>
                                     <select className="promotionSelectWidth" name="country" id="country">
                                         <option value="India">India</option>
@@ -66,7 +67,7 @@ const PromotionalBanner = () => {
 
                                     </select>
                                 </div>
-                                <div className="col-lg-8 col-md-10 col-12 promotionalBannerSelectCol mt-5">
+                                <div className=" col-12 promotionalBannerSelectCol mt-5">
                                     <div className="col-xxl-1 col-lg-2 col-md-3 col-3"> <label htmlFor="state">State</label></div>
                                     <select className="promotionSelectWidth" name="state" id="state">
                                         <option value="India">Uttar Pradesh</option>
@@ -75,7 +76,7 @@ const PromotionalBanner = () => {
 
                                     </select>
                                 </div>
-                                <div className="col-lg-8 col-md-10 col-12  promotionalImageContainers mt-5 ">
+                                <div className=" col-12  promotionalImageContainers mt-5 ">
                                     <div className="col-xxl-1 col-lg-2 col-md-3 col-3"><label>Image</label></div>
 
                                     <section className=" promotionalImageSection">
@@ -101,16 +102,17 @@ const PromotionalBanner = () => {
                                         </div>
                                     </section>
                                 </div>
-                                <div className="col-lg-8 col-md-10 col-12  promotionalImageContainers mt-5 ">
+                                <div className=" col-12  promotionalImageContainers mt-5 ">
                                     <div className="col-xxl-1  col-lg-2 col-md-3 col-3">
                                         <label htmlFor="link">Link</label>
                                     </div>
                                     <TextField id="link" className={classes.textFieldFocusBorderColor} variant="outlined" fullWidth size="small" />
                                 </div>
-                                <div className="col-lg-8 col-md-10 col-12  promotionalImageContainers mt-5 ">
+                                <div className=" col-12  promotionalImageContainers mt-5 ">
                                     <Box className={`w-100 promotionBtn_center ${classes.PromotionalBtn}`}>
                                         <LoadingButton>Add Banner</LoadingButton>
                                     </Box>
+                                </div>
                                 </div>
                         </div>
 
