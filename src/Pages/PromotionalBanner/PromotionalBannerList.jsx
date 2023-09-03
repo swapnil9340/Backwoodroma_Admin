@@ -1,7 +1,14 @@
 import { BsThreeDotsVertical } from "react-icons/bs"
+import { IoMdArrowBack } from "react-icons/io"
+import { IconButton } from "@mui/material"
 import React from "react"
+import { LoadingButton } from "@mui/lab"
+import Box from "@mui/material/Box"
+import useStyles from "../../Style"
+// import {AiOutlinePlus} from "react-icons/ai"
 const PromotionalBannerList = () => {
-    const PromotionListRef=React.useRef(null)
+    const classes = useStyles()
+    const PromotionListRef = React.useRef(null)
     const [SelectId, SetSelectedId] = React.useState()
     const [OpenSelect, SetOpenSelected] = React.useState(false)
     const handleThreeDot = (ids) => {
@@ -10,27 +17,38 @@ const PromotionalBannerList = () => {
     }
     React.useEffect(() => {
         const handleClickOutsidePromotionList = (event) => {
-          if (PromotionListRef.current && !PromotionListRef.current.contains(event.target)) {
-            if (SelectId) {
-                SetSelectedId((SelectId) => !SelectId)
+            if (PromotionListRef.current && !PromotionListRef.current.contains(event.target)) {
+                if (SelectId) {
+                    SetSelectedId((SelectId) => !SelectId)
+                }
             }
-          }
         };
         document.addEventListener('click', handleClickOutsidePromotionList, true);
         return () => {
-          document.removeEventListener('click', handleClickOutsidePromotionList, true);
+            document.removeEventListener('click', handleClickOutsidePromotionList, true);
         };
-      }, [SelectId]);
+    }, [SelectId]);
     const PromotionalBannerListArray = [
         { id: 1, imageUrl: "image", title: "Post title", country: "India", state: "MP", status: "Active" },
         { id: 2, imageUrl: "image", title: "Post title", country: "India", state: "MP", status: "Active" },]
-        const PromotionBannerPopArray=[{id:1,name:"View Post"},{id:2,name:"Share Post"},
-        {id:3,name:"View Report"},
-        {id:4,name:"Share Report"}]
+    const PromotionBannerPopArray = [{ id: 1, name: "View Post" }, { id: 2, name: "Share Post" },
+    { id: 3, name: "View Report" },
+    { id: 4, name: "Share Report" }]
     return (
         <div className="container-fluid">
             <div className="row">
                 <div className="col-10 PromotionalBannerList">
+                    <div className="col-12 promotional_bannerList_BackBtn">
+                        <div className="col-md-3 col-3">
+                            <IconButton><IoMdArrowBack /></IconButton><span className="promotionBackBtnHead">Back</span>
+                        </div>
+                        <div className="col-4">
+                            <h2>Promotional Banner</h2>
+                        </div>
+                        <Box className={`col-5 promotionalAddBannerListBtnCol  ${classes.promotionalListBtnss}`}>
+                            <LoadingButton>Add Banner</LoadingButton>
+                        </Box>
+                    </div>
                     <div className="col-12 promotionalBannerListContainer table-responsive">
                         <table className="table border">
                             <thead className="align-middle promotionalTableHeader">
@@ -78,29 +96,29 @@ const PromotionalBannerList = () => {
                                                 <td>{items.country}</td>
                                                 <td>{items.state}</td>
                                                 <td>{items.status}</td>
-                                                <td>
+                                                <td className="Promotional_listParent_td">
                                                     <div className="promotionThreeDot">
-                                                    <BsThreeDotsVertical className="" onClick={() => handleThreeDot(items.id)} />
+                                                        <BsThreeDotsVertical className="" onClick={() => handleThreeDot(items.id)} />
 
                                                     </div>
-                                                    {items.id===SelectId && OpenSelect?(
+                                                    {items.id === SelectId && OpenSelect ? (
                                                         <div className="promotionThreeDotPopup" ref={PromotionListRef}>
                                                             <ol className="promotionOL_list">
                                                                 {
-                                                                    PromotionBannerPopArray.map((val,index)=>{
-                                                                        return(
-                                                                          <React.Fragment key={index}>
-                                                                            <li>{val.name}</li>
+                                                                    PromotionBannerPopArray.map((val, index) => {
+                                                                        return (
+                                                                            <React.Fragment key={index}>
+                                                                                <li>{val.name}</li>
 
-                                                                          </React.Fragment>
+                                                                            </React.Fragment>
                                                                         )
                                                                     })
                                                                 }
-                                                              
+
                                                             </ol>
-                                                            
+
                                                         </div>
-                                                    ):""}
+                                                    ) : ""}
                                                 </td>
                                             </tr>
                                         </React.Fragment>

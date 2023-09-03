@@ -410,6 +410,35 @@ UserEditButton:{
     outlined:"#31B665"
    }
   },
+  promotionalListBtnss:{
+    '& .MuiLoadingButton-root':{
+      color:'#FFFFFF',
+      marginTop:"10px",
+      fontSize:"14px",
+      width:"40%",
+      border:"1px solid #404040",
+      backgroundColor:"#404040",
+      borderRadius:"8px",
+      height:"35px",
+      textTransform:"none",
+
+    },
+    '& .MuiLoadingButton-root:hover':{
+      border:"1px solid #404040",
+      color:"#FFFFFF",
+      backgroundColor:"#404040"
+    },
+    "@media(max-width:600px)":{
+      '& .MuiLoadingButton-root':{
+        width: "131px",
+        height: "30px",
+        fontSize:" 7px",
+        padding: "9px"
+
+
+      }
+    },
+  }
 }
 )
 export default useStyles
