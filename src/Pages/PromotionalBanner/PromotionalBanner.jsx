@@ -11,7 +11,9 @@ import { AiFillCamera } from "react-icons/ai"
 import useStyles from "../../Style";
 import userprofile from "./image/userprofile.jpg"
 import LoadingButton from "@mui/lab/LoadingButton";
+import { useNavigate } from "react-router-dom"
 const PromotionalBanner = () => {
+    const navigate=useNavigate()
     const classes = useStyles()
     return (
 
@@ -21,7 +23,7 @@ const PromotionalBanner = () => {
                     <div className="col-10 PromotionalBannerContainer ">
                         <div className="col-12 promtionalBannerHeader">
                             <div className="col-md-2 col-3">
-                                <IconButton><IoMdArrowBack /></IconButton><span className="promotionBackBtnHead">Back</span>
+                                <IconButton onClick={()=>navigate("/PromotionalBannerList")}><IoMdArrowBack /></IconButton><span className="promotionBackBtnHead">Back</span>
                             </div>
                             <div className="col-md-10 col-9">
                                 <FormControlLabel

@@ -19,7 +19,7 @@ export default function Search() {
 
   return (
 
-    <div>
+    <div className='searchBarMainDiv'>
       <div className='search input-wrap'>
         <i className=''> <BsSearch></BsSearch> </i>
         <label

@@ -170,7 +170,7 @@ function Navbar() {
                 {
                   windowSize[0] <= 991
                     ?
-                    <div className='search_left'>
+                    <div >
                       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className='menu_logo' > <IoIosMenu></IoIosMenu></span>
                       </button>
@@ -190,13 +190,12 @@ function Navbar() {
                     </div>
                 }
               </div>
-              <div className="col-md-4 col-5 search  ">
-                <Search></Search>
-              </div>
+              {/* <div className="col-md-4 col-5 search  "> */}
+              <div className="col-md-8 col-7 searchBar_and_icons">
 
-              <div className="col-md-6 col-5">
+                <Search></Search>
                 <ol className='navbarOredrListStyle'>
-                  <li className='NvaListStyle'>
+                <li className='NvaListStyle'>
                     <span className=" con  messagebox">
                       <IoMdMailUnread></IoMdMailUnread>
                     </span>
@@ -206,12 +205,27 @@ function Navbar() {
                       <VscBellDot></VscBellDot>
                     </span>
                   </li>
+                </ol>
+              </div>
+
+              <div className="col-md-2 col-2">
+                <ol className=' navbarLast_icons'>
+                  {/* <li className='NvaListStyle'>
+                    <span className=" con  messagebox">
+                      <IoMdMailUnread></IoMdMailUnread>
+                    </span>
+                  </li>
+                  <li className='NvaListStyle'>
+                    <span className=" con align-middle  messagebox">
+                      <VscBellDot></VscBellDot>
+                    </span>
+                  </li> */}
                   <li className='NvaListStyle'>
                     <span className=" con search_left">
 
                       {
                         islogin.state.login === true &&
-                        <p className="louout" onClick={logout}>Logout</p>
+                        <p className="louout" onClick={logout}>Log Out</p>
                       }
 
                     </span>

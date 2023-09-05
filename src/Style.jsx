@@ -415,13 +415,14 @@ UserEditButton:{
       color:'#FFFFFF',
       marginTop:"10px",
       fontSize:"14px",
-      width:"40%",
+      width:"26%",
       border:"1px solid #404040",
       backgroundColor:"#404040",
       borderRadius:"8px",
       height:"35px",
       textTransform:"none",
-
+      display: "flex",
+      justifyContent: "flex-start"
     },
     '& .MuiLoadingButton-root:hover':{
       border:"1px solid #404040",

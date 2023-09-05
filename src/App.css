@@ -67,6 +67,7 @@ ul li path {
   color: white;
   font-size: 15px;
   cursor: pointer;
+  font-weight: 700
 }
 
 .otpbtn {
@@ -652,7 +653,8 @@ a {
 
 .Add_Category {
   display: flex;
-
+  height: 100px;
+  align-items: center;
 }
 
 .Add_Category h2 {

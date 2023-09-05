@@ -5,8 +5,13 @@ import React from "react"
 import { LoadingButton } from "@mui/lab"
 import Box from "@mui/material/Box"
 import useStyles from "../../Style"
+import {GrFormAdd} from "react-icons/gr"
+import { LazyLoadImage } from "react-lazy-load-image-component"
+import userprofile from "./image/userprofile.jpg"
+import { useNavigate } from "react-router-dom"
 // import {AiOutlinePlus} from "react-icons/ai"
 const PromotionalBannerList = () => {
+    const navigate=useNavigate()
     const classes = useStyles()
     const PromotionListRef = React.useRef(null)
     const [SelectId, SetSelectedId] = React.useState()
@@ -29,8 +34,8 @@ const PromotionalBannerList = () => {
         };
     }, [SelectId]);
     const PromotionalBannerListArray = [
-        { id: 1, imageUrl: "image", title: "Post title", country: "India", state: "MP", status: "Active" },
-        { id: 2, imageUrl: "image", title: "Post title", country: "India", state: "MP", status: "Active" },]
+        { id: 1,imgUrl:{userprofile}  ,title: "Post title", country: "India", state: "MP", status: "Active" },
+        { id: 2,imgUrl:{userprofile} , title: "Post title", country: "India", state: "MP", status: "Active" },]
     const PromotionBannerPopArray = [{ id: 1, name: "View Post" }, { id: 2, name: "Share Post" },
     { id: 3, name: "View Report" },
     { id: 4, name: "Share Report" }]
@@ -40,13 +45,13 @@ const PromotionalBannerList = () => {
                 <div className="col-10 PromotionalBannerList">
                     <div className="col-12 promotional_bannerList_BackBtn">
                         <div className="col-md-3 col-3">
-                            <IconButton><IoMdArrowBack /></IconButton><span className="promotionBackBtnHead">Back</span>
+                            <IconButton onClick={()=>navigate("/")}><IoMdArrowBack /></IconButton><span className="promotionBackBtnHead">Back</span>
                         </div>
                         <div className="col-4">
                             <h2>Promotional Banner</h2>
                         </div>
                         <Box className={`col-5 promotionalAddBannerListBtnCol  ${classes.promotionalListBtnss}`}>
-                            <LoadingButton>Add Banner</LoadingButton>
+                            <LoadingButton startIcon={<GrFormAdd />} onClick={()=>navigate("/PromotionalBanner")}>Add Banner</LoadingButton>
                         </Box>
                     </div>
                     <div className="col-12 promotionalBannerListContainer table-responsive">
@@ -91,7 +96,7 @@ const PromotionalBannerList = () => {
                                     return (
                                         <React.Fragment key={index}>
                                             <tr className="promotionalListBodyRow align-middle">
-                                                <td>{items.imageUrl}</td>
+                                                <td><LazyLoadImage src={userprofile} className="promotionalBannerImageSize"/></td>
                                                 <td>{items.title}</td>
                                                 <td>{items.country}</td>
                                                 <td>{items.state}</td>
