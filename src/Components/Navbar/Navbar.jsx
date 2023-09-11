@@ -16,6 +16,7 @@ import NewsDropDown from './SideBarDropdown/NewsDropDown'
 import { FiSettings } from "react-icons/fi"
 import { IoIosMenu } from "react-icons/io"
 import { FaUserAlt } from "react-icons/fa"
+import UserEditProfile from '../../Pages/UserProfile/UserEditProfile';
 // import UserEditProfile from '../../Pages/UserProfile/UserEditProfile';
 function Navbar() {
   const [windowSize, setWindowSize] = React.useState([
@@ -100,6 +101,7 @@ function Navbar() {
 
           </div>
           <div className='list-group list-group-flush mx-3 mt-4 ' style={{ fontsize: "initial" }}>
+            
             <Link to="/" className="list-group-item list-group-item-action py-2 ripple" aria-current="true">
               <span className='color DashBorad_logo' ><RiDashboardFill></RiDashboardFill> </span>
               <span className='side_penal_link center' >Dashboard</span> </Link>
