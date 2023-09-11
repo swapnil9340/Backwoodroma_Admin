@@ -1457,7 +1457,7 @@ padding: 4px;
     width: 38%;
 }
 .navbarLast_icons{
-    /* right: 20px; */
+    right: 20px;
     display: flex;
     justify-content: flex-end;
     padding-left: 0px;
@@ -1467,6 +1467,9 @@ padding: 4px;
     top: 7px;
 }
 @media(max-width:600px){
+    .navbarLast_icons{
+        
+    }
     .searchBarMainDiv{
         width: auto;
     }
