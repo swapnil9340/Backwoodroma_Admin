@@ -25,9 +25,12 @@ const UserEditProfile = () => {
     };
     return (
         <React.Fragment>
-            <Button variant="outlined" onClick={handleClickOpen}>
+            <img src="./image/blank_Image.webp" alt="" 
+            onClick={handleClickOpen}
+            className="d-inline-block align-text-top brand UserImage" />
+            {/* <Button variant="outlined" onClick={handleClickOpen}>
                 Edit user profile
-            </Button>
+            </Button> */}
             <Dialog className={classes.userEditProfileDialog} open={open} onClose={handleClose}>
                 <div className="container-fluid">
 
@@ -123,7 +126,7 @@ const UserEditProfile = () => {
                             <div className="col-12 userEditbtnFlex">
                                 <div className="col-4">
                                     <Box className={classes.userEditCancel_loadingBtn}>
-                                        <LoadingButton variant="outlined">Cancel</LoadingButton>
+                                        <LoadingButton variant="outlined" onClick={handleClose}>Cancel</LoadingButton>
                                     </Box>
 
                                 </div>
