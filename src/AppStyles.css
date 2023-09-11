@@ -1468,7 +1468,7 @@ padding: 4px;
 }
 @media(max-width:600px){
     .navbarLast_icons{
-        
+        right: 0px;
     }
     .searchBarMainDiv{
         width: auto;
