@@ -1,5 +1,5 @@
 import React from "react"
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import useStyles from "../../Style";
@@ -28,9 +28,7 @@ const UserEditProfile = () => {
             <img src="./image/blank_Image.webp" alt="" 
             onClick={handleClickOpen}
             className="d-inline-block align-text-top brand UserImage" />
-            {/* <Button variant="outlined" onClick={handleClickOpen}>
-                Edit user profile
-            </Button> */}
+        
             <Dialog className={classes.userEditProfileDialog} open={open} onClose={handleClose}>
                 <div className="container-fluid">
 
