@@ -12,6 +12,9 @@ textarea:focus {
     border-color: #31B665;
     border:2px solid #31B665;
 }
+input[type=checkbox] {
+    accent-color: #31B665;
+  }
 .reviewContainer {
     height: 100px;
 }
