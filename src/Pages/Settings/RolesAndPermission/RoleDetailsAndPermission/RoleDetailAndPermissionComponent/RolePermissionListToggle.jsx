@@ -1,5 +1,6 @@
 import React from "react"
 import { AiOutlineExclamation } from "react-icons/ai"
+import {HiExclamationCircle} from "react-icons/hi"
 import { IconButton } from "@mui/material"
 const RolePermissionListToggle = ({RolePermissionArray}) => {
 
@@ -22,7 +23,7 @@ const RolePermissionListToggle = ({RolePermissionArray}) => {
                         </div>
                         {items.editSite&&(
                             <div className="col-12">
-                            <p><span><IconButton size="small"><AiOutlineExclamation  size={15}/></IconButton></span>This permission is required because <span>{items.editSite}</span> is turned on.</p>
+                            <p><span><IconButton  size="small"><HiExclamationCircle  color="orange" size={18}/></IconButton></span>This permission is required because <span>{items.editSite}</span> is turned on.</p>
                         </div>
                         )}
                         

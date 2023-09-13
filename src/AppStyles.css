@@ -1006,8 +1006,9 @@ textarea:focus {
 }
 
 .generalRoleHeadings {
-    font: 22px Open Sans;
+    font-size: 22px;
     color: #000000;
+    font-weight: 700;
     padding-left: 7px;
 
 }
