@@ -28,6 +28,19 @@ const RoleType = ({RoleTypeArray,role}) => {
     //     }
 
     // ]
+    const Redirect=(item)=>{
+        if(item==="Admin(Co owner)"){
+            Navigate("/RoleDetailsAndPermission")
+        }
+        else if(item==="Website manager"){
+            Navigate("/RoleDetailsAndPermission")
+        }
+        else if(item==="Back Office Manager"){
+            Navigate("/RoleDetailsAndPermission")
+
+        }
+
+    }
     return (
         <div className="col-12 GeneralRole_container">
             <div className="col-12 ">
@@ -37,7 +50,9 @@ const RoleType = ({RoleTypeArray,role}) => {
                 {RoleTypeArray.map((val, index) => {
                     return (
                         <React.Fragment key={index}>
-                            <li className="generalListHeight" onClick={()=>Navigate("/RoleDetailsAndPermission")}>
+                            {/* <li className="generalListHeight" onClick={()=>Navigate("/RoleDetailsAndPermission")}> */}
+                            <li className="generalListHeight" onClick={()=>Redirect(val.items)}>
+
 
                                 <div className="col-12 generalRole_listContainer">
                                     <div className="col-lg-7 col-6 generalRoleListLeftList">
