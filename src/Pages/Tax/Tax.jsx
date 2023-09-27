@@ -39,7 +39,7 @@ export default function Tax() {
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
-        axios("https://sweede.app/AdminPanel/Get-Tax/", {
+        axios("https://api.cannabaze.com/AdminPanel/Get-Tax/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -66,7 +66,7 @@ export default function Tax() {
             "Status": params.row.Status === "Active" ? "Hide" : "Active"
         }
         axios.post(
-            `https://sweede.app/AdminPanel/update-Tax/${params.row.id}`,
+            `https://api.cannabaze.com/AdminPanel/update-Tax/${params.row.id}`,
             data,
             config
         ).then(() => {

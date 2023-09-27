@@ -30,7 +30,7 @@ export default function DeleteCountry (props) {
 
   const Delete = () => {
     const id = props.data.id
-       axios.delete(`https://sweede.app/AdminPanel/delete-Country/${id}`, {
+       axios.delete(`https://api.cannabaze.com/AdminPanel/delete-Country/${id}`, {
 
            headers: {
                'Authorization': `Bearer ${token_data}`

@@ -35,7 +35,7 @@ export default function Store() {
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
-        axios("https://sweede.app/AdminPanel/Get-Stores/", {
+        axios("https://api.cannabaze.com/AdminPanel/Get-Stores/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -69,7 +69,7 @@ export default function Store() {
 
 
         axios.post(
-            `https://sweede.app/AdminPanel/update-Stores/${params.row.id}`,
+            `https://api.cannabaze.com/AdminPanel/update-Stores/${params.row.id}`,
             formdata,
             config
         ).then(() => {

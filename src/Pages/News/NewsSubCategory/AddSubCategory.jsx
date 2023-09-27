@@ -67,7 +67,7 @@ export default function AddNewsCategory() {
         const cookies = new Cookies();
         const token_data = cookies.get('Token_access')
 
-        axios("https://sweede.app/AdminPanel/Get-NewsCategory/", {
+        axios("https://api.cannabaze.com/AdminPanel/Get-NewsCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -95,7 +95,7 @@ export default function AddNewsCategory() {
             "category_id": Category ,
            }
         Axios.post( 
-          'https://sweede.app/AdminPanel/Add-NewsSubCategory/',
+          'https://api.cannabaze.com/AdminPanel/Add-NewsSubCategory/',
           data,
           config
         ).then(()=>{

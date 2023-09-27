@@ -63,7 +63,7 @@ export default function NewsCategorypopup() {
         }
       try {
         Axios.post(
-            'https://sweede.app/AdminPanel/Add-NewsCategory/',
+            'https://api.cannabaze.com/AdminPanel/Add-NewsCategory/',
             data,
             config
         ).then(() => {

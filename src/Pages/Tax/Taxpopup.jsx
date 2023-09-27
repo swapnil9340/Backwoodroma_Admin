@@ -83,7 +83,7 @@ export default function Taxpop() {
             "Status": Status
         }
         Axios.post(
-            'https://sweede.app/AdminPanel/Add-Tax/',
+            'https://api.cannabaze.com/AdminPanel/Add-Tax/',
             data,
             config
         ).then(() => {

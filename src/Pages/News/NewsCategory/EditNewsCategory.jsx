@@ -72,7 +72,7 @@ export default function NewsCategoryEditbox(props) {
         const form = {
             "name": data.Category.toUpperCase(),
         }
-        axios.post(`https://sweede.app/AdminPanel/update-NewsCategory/${data.id}`, form, {
+        axios.post(`https://api.cannabaze.com/AdminPanel/update-NewsCategory/${data.id}`, form, {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`

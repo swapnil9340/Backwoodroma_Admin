@@ -235,7 +235,7 @@ export default function Newspop() {
     };
 
     React.useEffect(() => {
-        axios("https://sweede.app/AdminPanel/Get-NewsCategory/", {
+        axios("https://api.cannabaze.com/AdminPanel/Get-NewsCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -249,7 +249,7 @@ export default function Newspop() {
         })
 
 
-        axios("https://sweede.app/AdminPanel/Get-NewsSubCategory/", {
+        axios("https://api.cannabaze.com/AdminPanel/Get-NewsSubCategory/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -283,7 +283,7 @@ export default function Newspop() {
             headers: { Authorization: `Bearer ${token_data}` }
         };
         Axios.post(
-            'https://sweede.app/AdminPanel/Add-News/',
+            'https://api.cannabaze.com/AdminPanel/Add-News/',
             formdata,
             config
         ).then(() => {

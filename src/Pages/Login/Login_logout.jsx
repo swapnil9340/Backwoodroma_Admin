@@ -55,7 +55,7 @@ export default function Login_logout() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        axios.post("https://sweede.app/AdminPanel/Login/", data,
+        axios.post("https://api.cannabaze.com/AdminPanel/Login/", data,
 
             loading(true)
         ).then((response) => {
@@ -86,7 +86,7 @@ export default function Login_logout() {
     const otp_send = () => {
 
         setOpen(false);
-        axios.post("https://sweede.app/AdminPanel/VerifyOtp/", otp_data,
+        axios.post("https://api.cannabaze.com/AdminPanel/VerifyOtp/", otp_data,
 
         ).then((response) => {
             if (response.data.data === "invalid Otp") {

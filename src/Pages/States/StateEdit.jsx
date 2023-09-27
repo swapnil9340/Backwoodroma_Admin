@@ -66,7 +66,7 @@ export default function StateEdit(props) {
     };
     useEffect(() => {
 
-        axios("https://sweede.app/AdminPanel/Get-Country/", {
+        axios("https://api.cannabaze.com/AdminPanel/Get-Country/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -89,7 +89,7 @@ export default function StateEdit(props) {
             "Status": State.Status
         }
         Axios.post(
-            `https://sweede.app/AdminPanel/update-States/${data.id}`,
+            `https://api.cannabaze.com/AdminPanel/update-States/${data.id}`,
             data,
             config
         ).then(() => {

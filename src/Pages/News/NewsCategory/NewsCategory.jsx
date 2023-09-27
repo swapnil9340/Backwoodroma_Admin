@@ -41,7 +41,7 @@ export default function NewsCategory(props) {
         const cookies = new Cookies();
         const token_data = cookies.get('Token_access')
 
-        axios("https://sweede.app/AdminPanel/Get-NewsCategory/", {
+        axios("https://api.cannabaze.com/AdminPanel/Get-NewsCategory/", {
 
         headers: {
             'Authorization': `Bearer ${token_data}`

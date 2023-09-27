@@ -76,7 +76,7 @@ export default function CountryEdit(props) {
             "Status": Country.Status
         }
         Axios.post(
-            `https://sweede.app/AdminPanel/update-Country/${data.id}`,
+            `https://api.cannabaze.com/AdminPanel/update-Country/${data.id}`,
             data,
             config
         ).then(() => {

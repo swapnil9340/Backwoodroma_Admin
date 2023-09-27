@@ -20,7 +20,7 @@ export default function News() {
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
-        axios("https://sweede.app/AdminPanel/Get-News/", {
+        axios("https://api.cannabaze.com/AdminPanel/Get-News/", {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`

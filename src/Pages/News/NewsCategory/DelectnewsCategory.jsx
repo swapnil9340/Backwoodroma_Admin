@@ -29,7 +29,7 @@ export default function NewsCategoryDelete(props) {
   };
   const Delete = () => {
     const id = props.data.id
-       axios.delete(`https://sweede.app/AdminPanel/delete-NewsCategory/${id}`, {
+       axios.delete(`https://api.cannabaze.com/AdminPanel/delete-NewsCategory/${id}`, {
 
            headers: {
                'Authorization': `Bearer ${token_data}`
