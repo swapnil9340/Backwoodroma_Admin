@@ -217,7 +217,7 @@ export default function CategEditbox(props) {
                                                 <Button  onClick={resetFileInput} color='success' >Cancel </Button></>
                                                 :
                                                 <>
-                                                    <img src={"http://backend.sweede.net/" + data.categoryImages} alt="" style={{ width: "120px", height: "110px" }} />
+                                                    <img src={"https://api.cannabaze.com/" + data.categoryImages} alt="" style={{ width: "120px", height: "110px" }} />
                                                     <Button  name="categoryImages" value='' color='success'onClick={handlechanges} >Cancel </Button>
                                                 </>
                                         }
