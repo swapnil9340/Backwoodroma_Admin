@@ -35,6 +35,7 @@ export default function Category(props) {
     });
     const [totel, setTotal] = React.useState([])
     const cookies = new Cookies();
+    const [pageSize, setPageSize] = React.useState(5)
     const token_data = cookies.get('Token_access')
     useEffect(() => {
 
@@ -75,9 +76,9 @@ export default function Category(props) {
         )
     }
     const columns = [
-        { field: 'name', headerName: 'Name', editable: false, maxWidth: 150, minWidth: 110, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'left', },
+        { field: 'name', headerName: 'Name', editable: false,  minWidth: 110, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'left', },
         {
-            field: 'Status', headerName: 'Status', type: 'number', editable: true, maxWidth: 200, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'right', align:"center",
+            field: 'Status', headerName: 'Status', type: 'number', editable: true,flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'right', align:"center",
             renderCell: (params) => {
                 if (params.formattedValue === "Active") {
                     return (
@@ -112,7 +113,7 @@ export default function Category(props) {
             }
         },
         {
-            field: 'Edit', headerName: 'Edit', type: 'button', editable: false, maxWidth: 200, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'right',align:"center",
+            field: 'Edit', headerName: 'Edit', type: 'button', editable: false, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'rigth',align:"rigth",
             renderCell: (params) => (
                 <>
                     <Box
@@ -207,9 +208,13 @@ export default function Category(props) {
                             }
                         }}>
                             <ThemeProvider theme={CustomFontTheme}>
-                                <div style={{ height: 400, width: '100%' }}>
+                                <div style={{ width: '100%' }}>
                                     <DataGrid rows={rows} columns={columns} components={{ Toolbar: GridToolbar, }}
-
+                                                autoHeight
+                                                pageSize={pageSize}
+                                                onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                                rowsPerPageOptions={[5, 10, 20]}
+                                                pagination
                                         sx={{
                                             "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
                                                 outline: "none",
@@ -259,7 +264,6 @@ export default function Category(props) {
                                             }
 
                                         }}
-
                                     />
                                 </div>
                             </ThemeProvider>

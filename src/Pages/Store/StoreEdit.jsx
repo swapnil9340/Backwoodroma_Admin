@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Cookies from 'universal-cookie';
+import { FiEdit } from 'react-icons/fi';
 import axios from "axios"
 import Axios from "axios"
 import htmlToDraft from 'html-to-draftjs';
@@ -143,8 +144,12 @@ export default function StoreEdit(props) {
 
     return (
         <div>
-            <Button color='success' onClick={handleClickOpen}>
-                Edit
+            <Button color='success' onClick={handleClickOpen} sx={{
+                               fontSize:'14px',
+                               textTransform:'capitalize',
+                               gap:'3px',
+                            }}>
+               <FiEdit/> Edit
             </Button>
             <BootstrapDialog
                 onClose={handleClose}

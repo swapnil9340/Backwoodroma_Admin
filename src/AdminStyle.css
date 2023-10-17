@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Noto+Sans:wght@300;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700;900&display=swap');
+.login_logout_center{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eeeeee;
+    ;
+}
+.login_form_container{
+    padding: 20px;
+    width: 450px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: white;
+}
+.Login_title{
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 0;
+    text-align: center;
+}
+.login_description{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0;
+    text-align: center;
+}
+.login_form_feild{
+    padding: 20px;
+   
+}
+.lg_ip_feild{
+    margin-bottom: 20px;
+}
+.lg_ip_feild label{
+    text-align: start;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 1%;
+    font-family: 'Open Sans', sans-serif; 
+}
+.lg_ip_feild .RememberMeCheckBox{
+    text-align: start;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 1%;
+    color: #616161;
+}
+.RememberMeCheckBox:focus-visible{
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+.total_count{
+    color: #00000052;
+}

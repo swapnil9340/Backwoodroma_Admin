@@ -3,7 +3,8 @@ import Router from "./Routes/Router";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap';
 import './App.css';
-import "./AppStyles.css"
+import "./AppStyles.css";
+import './AdminStyle.css';
 import { Context } from "./Hooks/Context/Context";
 import { SnackbarProvider } from 'notistack';
 import { styled } from "@mui/material";

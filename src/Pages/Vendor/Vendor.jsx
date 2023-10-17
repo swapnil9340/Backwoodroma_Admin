@@ -42,6 +42,7 @@ const Vendor = () => {
     const { enqueueSnackbar } = useSnackbar();
     const [totel, setTotal] = React.useState([])
     const cookies = new Cookies();
+    const [pageSize, setPageSize] = React.useState(5)
     const token_data = cookies.get('Token_access')
     React.useEffect(() => {
 
@@ -51,7 +52,7 @@ const Vendor = () => {
                 'Authorization': `Bearer ${token_data}`
             }
         }).then(response => {
-
+            console.log(response.data , 'vendor data') 
             setTotal([...response.data.data])
         })
 
@@ -64,7 +65,7 @@ const Vendor = () => {
         {
             field: 'username',
             headerName: 'Name',
-            maxWidth: 150, minWidth: 120, flex: 1,
+             minWidth: 120, flex: 1,
             "@media(max-width:540px)": {
                 maxWidth: 90, minWidth: 40, flex: 1,
 
@@ -74,21 +75,18 @@ const Vendor = () => {
         {
             field: 'email',
             headerName: 'Email/Phone',
-            maxWidth: 150, minWidth: 120, flex: 1,
+             minWidth: 120, flex: 1,
             editable: true,
         },
         {
             field: 'storeType',
-            headerName: 'Store Type',
-
-            maxWidth: 150, minWidth: 120, flex: 1,
+            headerName: 'Store Type', minWidth: 120, flex: 1,
             editable: true,
         },
         {
             field: 'storeName',
             headerName: 'Store Name',
-            type: 'number',
-            maxWidth: 150, minWidth: 120, flex: 1,
+            type: 'number', minWidth: 120, flex: 1,
             editable: true,
             headerAlign: 'left', align: "left",
         },
@@ -96,16 +94,14 @@ const Vendor = () => {
             field: 'registerDate',
             headerName: 'Register Date',
 
-            sortable: false,
-            maxWidth: 150, minWidth: 120, flex: 1,
+            sortable: false, minWidth: 120, flex: 1,
 
         },
         {
             field: 'status',
             headerName: 'Status',
             editable: true,
-            sortable: false,
-            maxWidth: 150, minWidth: 120, flex: 1, headerAlign: 'center', align: "center",
+            sortable: false, minWidth: 120, flex: 1, headerAlign: 'center', align: "center",
             renderCell: (params) => {
                 if (params.formattedValue === "Active") {
                     return (
@@ -144,8 +140,7 @@ const Vendor = () => {
             field: 'Edit',
             headerName: 'Edit',
             editable: true,
-            sortable: false,
-            maxWidth: 150, minWidth: 120, flex: 1,
+            sortable: false, minWidth: 120, flex: 1,
             headerAlign: 'center', align: "center",
             renderCell: (params) => {
                 return (
@@ -223,7 +218,7 @@ const Vendor = () => {
                         <div className="col-12 mb-4 mt-4">
                             <Box
                                 sx={{
-                                  width: '100%', height: 400,
+                                  width: '100%',
                                   
                                     '& .MuiDataGrid-columnHeaders': {
                                         backgroundColor: '#E1FFED',
@@ -245,6 +240,7 @@ const Vendor = () => {
                                     <DataGrid
                                         rows={rows}
                                         columns={columns}
+                                        autoHeight
                                         initialState={{
                                             pagination: {
                                                 paginationModel: {
@@ -252,8 +248,11 @@ const Vendor = () => {
                                                 },
                                             },
                                         }}
-                                        pageSizeOptions={[5]}
-                                       
+                                        
+                                        pageSize={pageSize}
+                                        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                        rowsPerPageOptions={[5, 10, 20]}
+                                        pagination
                                         disableRowSelectionOnClick
                                         sx={{
                                             "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {

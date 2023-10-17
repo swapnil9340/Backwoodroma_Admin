@@ -34,6 +34,7 @@ export default function Store() {
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
+    const [pageSize, setPageSize] = React.useState(5)
     React.useEffect(() => {
         axios("https://api.cannabaze.com/AdminPanel/Get-Stores/", {
 
@@ -83,17 +84,17 @@ export default function Store() {
         //     field: 'Store_Image', headerName: 'Store Image', editable: true, headerClassName: 'super-app-theme--header', width: 110,
         //     renderCell: (params) => <img src={"http://backend.sweede.net/" + params.value} alt="flavoursImage" width="35" height="30" />,
         // },
-        { field: 'Store_Name', headerName: 'Name', editable: true, maxWidth: 150, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'Store_Type', headerName: 'Store Type', editable: true, maxWidth: 150, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'Store_Name', headerName: 'Name', editable: true, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'Store_Type', headerName: 'Store Type', editable: true, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header' },
         // { field: 'Store_Address', headerName: 'Store Address', editable: true, headerClassName: 'super-app-theme--header', width: 150 },
         // {
         //     field: 'Stores_Description', headerName: 'Stores Description', editable: true, width: 180, headerClassName: 'super-app-theme--header',
         //     renderCell: (params) => <span dangerouslySetInnerHTML={{ __html: params.formattedValue }} />
         // },
         // { field: 'Stores_Website', headerName: 'Stores Website', editable: true, width: 130, headerClassName: 'super-app-theme--header' },
-        { field: 'Stores_MobileNo', headerName: 'MobileNo', editable: true, maxWidth: 150, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'Stores_MobileNo', headerName: 'MobileNo', editable: true, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header' },
         {
-            field: 'Status', headerName: 'Status', editable: true, maxWidth: 150, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header',
+            field: 'Status', headerName: 'Status', editable: true, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header',
 
             renderCell: (params) => {
 
@@ -130,7 +131,7 @@ export default function Store() {
             }
         },
         {
-            field: 'Edit', headerName: 'Edit', editable: true, maxWidth: 150, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',
+            field: 'Edit', headerName: 'Edit', editable: true, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',
             renderCell: (params) => (
                 <>
                     <Box >
@@ -150,7 +151,7 @@ export default function Store() {
                             <StoreView></StoreView>
                         </Select>
                     </Box>
-                </>
+                </> 
 
             )
         },
@@ -158,7 +159,6 @@ export default function Store() {
     ];
 
     const rows = totel;
-
     const CustomFontTheme = createTheme({
         typography: {
             fontSize: 25,
@@ -183,7 +183,7 @@ export default function Store() {
 
 
                         <div className='col-12 Add_Category margin_top m-2 mt-5 mb-5'>
-                            <div className="col"> <h2>Store
+                            <div className="col"> <h2>Store  <span className='total_count'>{`${totel.length}`}</span>
                             </h2></div>
                             <div className="col cat_but popup_A" >  <span className='btn cat_pop_btn'> <h2><Storepopup></Storepopup> </h2></span></div>
                         </div>
@@ -238,8 +238,12 @@ export default function Store() {
                             <div className='col-12' >
                                 <Box>
                                     <ThemeProvider theme={CustomFontTheme}>
-                                        <div style={{ height: 500, width: '100%', }}>
-                                            <DataGrid rows={rows} columns={columns} components={{ Toolbar: GridToolbar }} checkboxSelection
+                                        <div style={{ width: '100%', }}>
+                                            <DataGrid autoHeight rows={rows} editable={false}  columns={columns}  components={{ Toolbar: GridToolbar }} checkboxSelection
+                                            pageSize={pageSize}
+                                            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                            rowsPerPageOptions={[5, 10, 20]}
+                                            pagination
                                                 sx={{
                                                     ".MuiDataGrid-toolbarContainer": {
                                                         backgroundColor: "#31B665"

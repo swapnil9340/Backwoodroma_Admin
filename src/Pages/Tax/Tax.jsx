@@ -38,6 +38,7 @@ export default function Tax() {
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
+    const [pageSize, setPageSize] = React.useState(5)
     React.useEffect(() => {
         axios("https://api.cannabaze.com/AdminPanel/Get-Tax/", {
 
@@ -47,8 +48,9 @@ export default function Tax() {
 
         }).then(response => {
             setTotal([...response.data])
-           
-
+            console.log(response.data ,'response')
+        }).catch((res)=>{
+            console.log(res ,'res')
         })
     }, [token_data,state])
 
@@ -74,45 +76,43 @@ export default function Tax() {
             enqueueSnackbar('City Status success !', { variant: 'success' });
         })
     };
-
-
     const columns = [
-        { field: 'tax_type', headerName: 'Name',maxWidth: 150, minWidth: 80, flex: 1, editable: false, headerClassName: 'super-app-theme--header' },
-        { field: 'tax_value', headerName: 'Tax',maxWidth: 150, minWidth: 80, flex: 1, editable: false, headerClassName: 'super-app-theme--header' },
-        { field: 'Status', headerName: 'Status', type: 'text', editable: false,maxWidth: 150, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',
-        renderCell: (params) => {
+        { field: 'tax_type', headerName: 'Name', minWidth: 80, flex: 1, editable: false, headerClassName: 'super-app-theme--header' },
+        { field: 'tax_value', headerName: 'Tax', minWidth: 80, flex: 1, editable: false, headerClassName: 'super-app-theme--header' },
+        { field: 'Status', headerName: 'Status', type: 'text', editable: false, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',
+            renderCell: (params) => {
 
-            if (params.formattedValue === "Active") {
+                if (params.formattedValue === "Active") {
+                    return (
+                        <Tooltip title="Active" enterDelay={300} leaveDelay={200} arrow placement="right-start">
+                        <p
+                            style={{ color: "#31B665 ", fontSize: 25, cursor: "pointer" }}
+                            variant="contained"
+                            color="primary"
+                            onClick={() => {
+                                Submit(params);
+                            }}
+                        ><AiFillEye /> </p>
+                        </Tooltip>
+
+                    )
+                }
                 return (
-                    <Tooltip title="Active" enterDelay={300} leaveDelay={200} arrow placement="right-start">
+                    <Tooltip title="Hide" enterDelay={300} leaveDelay={200} arrow placement="right-start">
                     <p
-                        style={{ color: "#31B665 ", fontSize: 25, cursor: "pointer" }}
+                        style={{ color: "red ", fontSize: 25, cursor: "pointer" }}
                         variant="contained"
                         color="primary"
                         onClick={() => {
                             Submit(params);
                         }}
-                    ><AiFillEye /> </p>
+                    ><AiOutlineEyeInvisible /></p>
                     </Tooltip>
 
                 )
             }
-            return (
-                <Tooltip title="Hide" enterDelay={300} leaveDelay={200} arrow placement="right-start">
-                <p
-                    style={{ color: "red ", fontSize: 25, cursor: "pointer" }}
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                        Submit(params);
-                    }}
-                ><AiOutlineEyeInvisible /></p>
-                </Tooltip>
-
-            )
-        }
-     },
-        { field: 'Edit', headerName: 'Edit',maxWidth: 150, minWidth: 70, flex: 1, type: 'button', editable: false, headerClassName: 'super-app-theme--header',headerAlign: 'center',align:"center",
+        },
+        { field: 'Edit', headerName: 'Edit', minWidth: 70, flex: 1, type: 'button', editable: false, headerClassName: 'super-app-theme--header',headerAlign: 'center',align:"center",
         renderCell: (params) => (
             <>
                 <Box
@@ -142,7 +142,7 @@ export default function Tax() {
             </>
 
         )
-     },
+        },
 
 
     ];
@@ -190,6 +190,10 @@ export default function Tax() {
                         <ThemeProvider theme={CustomFontTheme}>
                             <div style={{ height: 400, width: '100%', }}>
                                 <DataGrid rows={rows} columns={columns} components={{ Toolbar: GridToolbar }} checkboxSelection
+                                pageSize={pageSize}
+                                onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                rowsPerPageOptions={[5, 10, 20]}
+                                pagination
                                   sx={{
                                     "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
                                         outline: "none",

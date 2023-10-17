@@ -116,28 +116,24 @@ export default function Login_logout() {
     };
 
     return (
-        <>
+         
+            <div>
+                    <div className=' login_logout_center'>
 
-            <div className='container  center '>
-                <div className='row'>
-                    <div className='col-12 login_logout_center'>
+                        <div className="login_form_container">
+                           
+                                <p className="Login_title">ADMIN PANEL</p>
+                                <p className='login_description'> Login to access your account</p>
+                           
+                            <div className='login_form_feild'>
 
-                        <div className='col-lg-4  col-md-6 col-11'>
-                            <div className='col-12 center login_border'>
-                                <p className="Login_font">ADMIN PANEL</p>
-                                <p className='color Login_font'> Login to access your account</p>
-                            </div>
-                            <div className='col-12 '>
+                                <div className='lg_ip_feild'>
+                                   
 
-                                <div className='col-12  d-flex top  '>
-                                    <div className='col-3'>
-
-                                        <label className='label' htmlFor='name'>
-                                            <span className='required '>*</span>
-                                            Name:
+                                        <label htmlFor='name'>
+                                            Name<span className='required '>*</span>:
                                         </label>
-                                    </div>
-                                    <div className='col-9 display'>
+                                 
                                         <TextField placeholder='User Name'
                                             fullWidth
                                             id="name" variant="outlined"
@@ -146,18 +142,13 @@ export default function Login_logout() {
                                             value={inputs.username || ""}
                                             className={classes.Username}
                                         />
-                                    </div>
                                 </div>
-
-                                <div className='col-12  d-flex top  '>
-                                    <div className='col-3'>
-
-                                        <label className='label' htmlFor='email'>
-                                            <span className='required'>*</span>
-                                            Email:
+                              
+                                <div className='lg_ip_feild'>
+                                  
+                                        <label  htmlFor='email'>
+                                            Email<span className='required'>*</span>:
                                         </label>
-                                    </div>
-                                    <div className='col-9 display'>
                                         <TextField placeholder='Email Address'
                                             fullWidth
                                             id="email" variant="outlined" name="Email"
@@ -167,16 +158,14 @@ export default function Login_logout() {
                                             className={classes.Username}
                                         />
                                     </div>
-                                </div>
-                                <div className='col-12  d-flex top  '>
-                                    <div className='col-3'>
+                            
+                                <div className='lg_ip_feild'>
+                                   
 
-                                        <label className='label' htmlFor='password'>
-                                            <span className='required'>*</span>
-                                            Password:
+                                        <label  htmlFor='password'>
+                                            Password<span className='required'>*</span>:
                                         </label>
-                                    </div>
-                                    <div className='col-9  display '>
+                                  
                                         <TextField placeholder='Password' type={values.showPassword ? "text" : "password"} id="password" variant="outlined"
                                             name="password" fullWidth inputProps={{ style: { fontSize: 15, height: 5 } }}
                                             onChange={handleChange}
@@ -199,13 +188,18 @@ export default function Login_logout() {
 
                                         />
 
-                                    </div>
+                                 
                                 </div>
-                                <div className='top'>
-                                    <input type="checkbox" name='checkbox' value={inputs.checkbox || ""} onChange={handleChange} />
-                                    <label className='RememberMeCheckBox'>
-                                        Remember me
-                                    </label>
+                                <div className='lg_ip_feild d-flex w-100 justify-content-between align-items-center'>
+                                   <div className='d-flex gap-1 align-items-center'>
+                                        <input type="checkbox" name='checkbox' id='rememberme' value={inputs.checkbox || ""} onChange={handleChange} />
+                                        <label className='RememberMeCheckBox' htmlFor='rememberme'>
+                                            Remember me
+                                        </label>
+                                    </div>
+                                    <div>
+                                       <Link to={"/Forgot"} className='RememberMeCheckBox'> Forgot Password?</Link>
+                                    </div>
                                 </div>
                                 <div className={classes.SubmitLoginButton}>
 
@@ -215,14 +209,9 @@ export default function Login_logout() {
                                         onClick={handleSubmit}> Submit </LoadingButton>
 
                                 </div>
-
-                                <div className='col-12  mt-4'>
-
-                                    <Link to={"/Forgot"}> <button className='color btn login_logoutBtn_width'>Forgot Password?</button></Link>
-                                </div>
+                             
                             </div>
                         </div>
-                
 
                     </div>
                     <div>
@@ -261,12 +250,6 @@ export default function Login_logout() {
                         </Dialog>
                     </div>
 
-
-
-                </div>
-                </div>
-            </>
-
-
+                    </div>
             )
 }

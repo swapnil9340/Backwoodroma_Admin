@@ -19,6 +19,8 @@ export default function Brand() {
     const { state, dispatch } = useContext(Createcontext)
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
+    const [pageSize, setPageSize] = React.useState(5)
+
 
     React.useEffect(() => {
         axios("https://api.cannabaze.com/AdminPanel/Get-Brand/", {
@@ -65,12 +67,12 @@ export default function Brand() {
 
     const columns = [
         {
-            field: 'Brand_Logo', headerName: 'Logo', editable: true, headerClassName: 'super-app-theme--header', maxWidth: 150, minWidth: 80, flex: 1,
+            field: 'Brand_Logo', headerName: 'Logo', editable: true, headerClassName: 'super-app-theme--header', minWidth: 80, flex: 1,
             renderCell: (params) => <img src={"http://backend.sweede.net/" + params.value} alt="flavoursImage" width="35" height="30" />,
         },
-        { field: 'name', headerName: 'Name', editable: true, headerClassName: 'super-app-theme--header', maxWidth: 150, minWidth: 80, flex: 1, },
+        { field: 'name', headerName: 'Name', editable: true, headerClassName: 'super-app-theme--header', minWidth: 80, flex: 1, },
         {
-            field: 'Status', headerName: 'Status', editable: false, maxWidth: 150, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',
+            field: 'Status', headerName: 'Status', editable: false, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',
             renderCell: (params) => {
 
                 if (params.formattedValue === "Active") {
@@ -106,7 +108,7 @@ export default function Brand() {
             }
         },
         {
-            field: 'Edit', headerName: 'Edit', type: 'button', maxWidth: 150, minWidth: 80, flex: 1, editable: true, headerClassName: 'super-app-theme--header',
+            field: 'Edit', headerName: 'Edit', type: 'button', minWidth: 80, flex: 1, editable: true, headerClassName: 'super-app-theme--header',
             renderCell: (params) => (
 
                 <>
@@ -170,8 +172,7 @@ export default function Brand() {
                 <div className='row mt-4'>
                     <div className='col-10  category_main_row' >
                         <div className='col-12 Add_Category  margin_top m-2 mt-5 mb-5'>
-                            <div className="col"> <h2>Brand
-                            </h2></div>
+                            <div className="col"> <h2>Brand  </h2></div>
                             <div className="col cat_but popup_A" ><span className='btn cat_pop_btn'> <h2> <Brandpopup></Brandpopup> </h2></span></div>
                         </div>
 
@@ -207,7 +208,6 @@ export default function Brand() {
                                     },
 
                                 },
-
                                 "@media(min-width:768px)": {
                                     '& .MuiButton-root': {
                                         width: "110px",
@@ -221,8 +221,12 @@ export default function Brand() {
                                 }
                             }}>
                                 <ThemeProvider theme={CustomFontTheme}>
-                                    <div style={{ height: 500, width: '100%', }}>
-                                        <DataGrid rows={rows} columns={columns} components={{ Toolbar: GridToolbar }} checkboxSelection
+                                    <div style={{  width: '100%', }}>
+                                        <DataGrid rows={rows} columns={columns} components={{ Toolbar: GridToolbar }} checkboxSelection  autoHeight
+                                          pageSize={pageSize}
+                                          onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                          rowsPerPageOptions={[5, 10, 20]}
+                                          pagination
                                             sx={{
                                                 "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
                                                     outline: "none ",

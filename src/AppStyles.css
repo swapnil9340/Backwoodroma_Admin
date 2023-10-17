@@ -661,10 +661,7 @@ input[type=checkbox] {
 
 /* end */
 /* Anshuman */
-.RememberMeCheckBox {
-    margin-left: 7px;
-    display: initial;
-}
+
 
 /* end */
 /* Settings */
@@ -1299,10 +1296,7 @@ input[type=checkbox] {
 }
 /* end */
 /* login-logout */
-.login_logout_center{
-    display:flex;
-    justify-content: center;
-}
+
 .login_logout_labelStyle{
 color:#3C3C3C
 }

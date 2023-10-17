@@ -141,22 +141,26 @@ const useStyles = makeStyles({
     },
   },
   SubmitLoginButton:{
+    textAlign:'center',
     '& .MuiLoadingButton-root':{
-      
-        color:'#31B665',
+      color:'#FFFFFF',
+      backgroundColor:"#31B665",
+        margin:'0 auto',
         marginTop:"10px",
         fontSize:"15px",
         width:"49%",
         height:"30px",
         textTransform:"none",
+       
       },
       '& .MuiLoadingButton-root:hover':{
-      
-        color:'#FFFFFF',
-        backgroundColor:"#31B665",
+        color:'#31B665',
+       borderWidth:'1px',
+       borderColor:'#31B665',
+       border:'solid',
         marginTop:"10px",
         fontSize:"15px",
-        
+        backgroundColor:'#fff',
       },
 
      '& .MuiLoadingButton-outlined':{
