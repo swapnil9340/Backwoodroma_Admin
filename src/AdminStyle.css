@@ -58,4 +58,10 @@
 }
 .total_count{
     color: #00000052;
+    font-size: 22px;
+}
+.imagefeild_popus{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

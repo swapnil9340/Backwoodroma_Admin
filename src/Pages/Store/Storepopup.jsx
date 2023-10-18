@@ -235,8 +235,19 @@ export default function Storepopup() {
 
     return (
         <div>
-            <Button variant="outlined" onClick={handleClickOpen}>
-                + Add Store
+            <Button variant="outlined" onClick={handleClickOpen}  sx={{
+                                            width: 140,
+                                            color: '#31B665',
+                                            borderColor:'#31B665',
+                                            fontSize:'14px',
+                                            transition: 'all 0.4s ease',
+                                            '&:hover':{
+                                                backgroundColor:'#31B665',
+                                                borderColor:'#31B665',
+                                                color:'#fff',
+                                                
+                                            }
+                                        }}>     + Add Store
             </Button>
             <BootstrapDialog
                 onClose={handleClose}
@@ -245,7 +256,7 @@ export default function Storepopup() {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            width: "75%",
+                            width: "800px",
                             height: "100%",
                             maxWidth: "none",  // Set your width here
                             border: "1px solid #31B665",
@@ -259,23 +270,21 @@ export default function Storepopup() {
                     Modal title
                 </BootstrapDialogTitle>
                 <DialogContent dividers>
-                    <div className='container-fluid '>
-                        <div className='row '>
+                    <div className='container-fluid'>
+                        <div className='login_form_feild'>
 
-                            <div className='col-12    ' >
+                          
 
-                                <div className='col-12 Add_State Add_Category center'>
-                                    <div className="col "> <h2> Store
-                                    </h2>
-                                    </div>
+                                <div className='lg_ip_feild Add_State Add_Category center'>
+                                  <h2> Store  </h2>
                                 </div>
-                                <div className='col-12 top label  con  '>
-                                    <div className='col-2'>
+                                <div className='lg_ip_feild'>
+                                    
                                         <label className='label'>
                                             Store Name:
                                         </label>
-                                    </div>
-                                    <div className='col-10 mt-2 mb-2'>
+                                 
+                                  
                                         <TextField type="text" placeholder='Add  Store Name' id="outlined-basic" variant="outlined" name='Store_Name' value={Store.Store_Name} style={{ minWidth: "90%" }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
@@ -297,15 +306,14 @@ export default function Storepopup() {
                                                 }
                                             }}
                                         />
-                                    </div>
+                                   
                                 </div>
-                                <div className='col-12 top label  con'>
-                                    <div className='col-2'>
+                                <div className='lg_ip_feild '>
+                                    
                                         <label className='label'>
                                             Store Type:
                                         </label>
-                                    </div>
-                                    <div className='col-10 mt-2 mb-2'>
+                                  
                                         <Select
                                             name='Store_Type'
                                             value={Store.Store_Type}
@@ -320,46 +328,42 @@ export default function Storepopup() {
 
 
                                         </Select>
-                                    </div>
+                                  
                                 </div>
-                                <div className='col-11 top label   country_main_div'>
+                                <div className=' row  country_main_div'>
+                                  <div className="col-sm-4">
+                                        <div className="lg_ip_feild">
+                                                <label>
+                                                    Country:
+                                                </label>
+                                                <Select
 
-                                    <div className='col-2'>
-                                        <label className='label'>
-                                            Country:
-                                        </label>
-                                    </div>
-                                    <div className='col-2'>
-                                        <Select
+                                                    name='Country_id'
+                                                    value={Store.Country_id}
+                                                    onChange={handleChange}
+                                                    displayEmpty
 
-                                            name='Country_id'
-                                            value={Store.Country_id}
-                                            onChange={handleChange}
-                                            displayEmpty
+                                                    fullWidth
+                                                    inputProps={{ 'aria-label': 'Without label' }} style={{ fontSize: 15 }}
+                                                >
 
-                                            fullWidth
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ fontSize: 15 }}
-                                        >
+                                                    <MenuItem disabled value="" style={{ fontSize: 15 }}>
+                                                        <em>Select Country</em>
+                                                    </MenuItem>
+                                                    {
+                                                        country.map((data, index) => {
 
-                                            <MenuItem disabled value="" style={{ fontSize: 15 }}>
-                                                <em>Select Country</em>
-                                            </MenuItem>
-                                            {
-                                                country.map((data, index) => {
-
-                                                    return (
-                                                        <MenuItem key={index} value={data.id} style={{ fontSize: 15 }}>{data.CountryName}</MenuItem>
-                                                    )
-                                                })
-                                            }
-                                        </Select>
-                                    </div>
-                                    <div className='col-2'>
-                                        <label className='label'>
-                                            State:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
+                                                            return (
+                                                                <MenuItem key={index} value={data.id} style={{ fontSize: 15 }}>{data.CountryName}</MenuItem>
+                                                            )
+                                                        })
+                                                    }
+                                                </Select>
+                                        </div>
+                                  </div>
+                                  <div className="col-sm-4">
+                                  <div className="lg_ip_feild">
+                                        <label>   State: </label>
                                         <Select
 
                                             name='State_id'
@@ -383,13 +387,16 @@ export default function Storepopup() {
                                                 })
                                             }
                                         </Select>
-                                    </div>
-                                    <div className='col-2'>
-                                        <label className='label'>
+                                  </div>
+                                  </div>
+                                  <div className="col-sm-4">
+                                       <div className="lg_ip_feild">
+                                        
+                                        <label >
                                             City :
                                         </label>
-                                    </div>
-                                    <div className='col'>
+                                    
+                                    
                                         <Select
 
                                             name='city_id'
@@ -412,16 +419,19 @@ export default function Storepopup() {
                                                 })
                                             }
                                         </Select>
-                                    </div>
+                                    
+                                        </div>
+                                  </div>
+                                 
                                 </div>
-                                <div className='col-12 top label  con'>
-                                    <div className='col-2'>
-                                        <label className='label'>
+
+
+                                <div className='lg_ip_feild '>
+                                  
+                                        <label >
                                             Store Address:
                                         </label>
-                                    </div>
-                                    <div className='col-10 mt-2 mb-2'>
-
+                                  
                                         <TextField type="text" placeholder='Add Store Address:' id="outlined-basic" variant="outlined" name='Store_Address' value={Store.Store_Address} style={{ minWidth: "90%", fontSize: 15 }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
@@ -443,60 +453,58 @@ export default function Storepopup() {
                                                 }
                                             }}
                                         />
-                                    </div>
+                                   
                                 </div>
-                                <div className='col-12 top label  '>
-                                    <div className='col-2'>
-                                        <label className='label'>
-                                            Stores Website:
-                                        </label>
-                                    </div>
-                                    <div className='col-4 mt-2 mb-2'>
+                              
+                              
+                                <div className="row">
+                                           <div className="col-sm-6">
+                                                <div className='lg_ip_feild    '>
+                                                
+                                                <label >
+                                                    Stores Website:
+                                                </label>
+                                            
 
-                                        <TextField type="text" placeholder='Add Stores Website:' id="outlined-basic" variant="outlined" name='Stores_Website' value={Store.Stores_Website} style={{ minWidth: 120, fontSize: 15 }}
-                                            onChange={handleChange}
-                                            InputProps={{ style: { fontSize: 14 } }}
-                                        />
-                                    </div>
-
-                                    <div className='col-2'>
-                                        <label className='label'>
-                                            Stores MobileNo:
-                                        </label>
-                                    </div>
-                                    <div className='col-4 mt-2 mb-2'>
-
-                                        <TextField type="text" placeholder='Add Stores MobileNo:' id="outlined-basic" variant="outlined" name='Stores_MobileNo' value={Store.Stores_MobileNo} style={{ minWidth: 120 }}
-                                            onChange={handleChange}
-                                            InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
-                                            label={massage.Stores_MobileNo}
-                                            sx={{
-                                                '& .MuiOutlinedInput-root': {
-                                                    '& fieldset': {
-                                                        borderColor: error.Stores_MobileNo,
-                                                        height: 55,
-                                                    },
-                                                },
-                                                "& label": {
-                                                    fontSize: 13,
-                                                    color: "red",
-                                                    "&.Mui-focused": {
-                                                        marginLeft: 0,
-                                                        color: "red",
-                                                    }
-                                                }
-                                            }}
-
-                                        />
-                                    </div>
+                                                <TextField type="text" placeholder='Add Stores Website:' id="outlined-basic" variant="outlined" name='Stores_Website' value={Store.Stores_Website} style={{ minWidth: 120, fontSize: 15 }}
+                                                    onChange={handleChange}
+                                                    InputProps={{ style: { fontSize: 14 } }}
+                                                />
+                                            
+                                                </div>
+                                            </div>
+                                            <div className="col-sm-6">
+                                                    <div className='lg_ip_feild'>           
+                                                        <label >   Stores MobileNo:   </label>
+                                                        <TextField type="text" placeholder='Add Stores MobileNo:' id="outlined-basic" variant="outlined" name='Stores_MobileNo' value={Store.Stores_MobileNo} style={{ minWidth: 120 }}
+                                                            onChange={handleChange}
+                                                            InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
+                                                            label={massage.Stores_MobileNo}
+                                                            sx={{
+                                                                '& .MuiOutlinedInput-root': {
+                                                                    '& fieldset': {
+                                                                        borderColor: error.Stores_MobileNo,
+                                                                        height: 55,
+                                                                    },
+                                                                },
+                                                                "& label": {
+                                                                    fontSize: 13,
+                                                                    color: "red",
+                                                                    "&.Mui-focused": {
+                                                                        marginLeft: 0,
+                                                                        color: "red",
+                                                                    }
+                                                                }
+                                                            }} 
+                                                        />
+                                                    </div>
+                                             </div>
                                 </div>
-                                <div className='col-12 top label  con'>
-                                    <div className='col-2'>
-                                        <label className='label'>
-                                            Stores Description:
-                                        </label>
-                                    </div>
-                                    <div className='col-10' >
+
+
+                                <div className='lg_ip_feild'>
+                                  
+                                        <label> Stores Description:   </label>
                                         <Box
                                             sx={{
                                                 "& .rdw-editor-toolbar": {
@@ -534,14 +542,14 @@ export default function Storepopup() {
                                                 editorClassName="editorClassName"
                                             />
                                         </Box>
-                                    </div>
+                                   
                                 </div>
-                                <div className='col-12 top label  con '>
-                                    <div className='col-2 '>
-                                        <label className='label'>
+                                <div className='row'>
+                                    <div className='col-2 lg_ip_feild'>
+                                        <label >
                                             Store Image:
                                         </label>
-                                        <input type="file" placeholder='Add Store Image:' id="file" ref={inputRef} className="file" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
+                                        <input type="file" placeholder='Add Store Image:' id="file" ref={inputRef} className="file" variant="outlined" style={{ minWidth: 180, fontSize: 15 }}
                                             onChange={handleimage} />
                                     </div>
                                     <div className='col-10  '>
@@ -567,19 +575,18 @@ export default function Storepopup() {
                                     </div>
                                 </div>
 
-                                <div className='col-12 Add_State Add_Category '>
-                                    <div className="col center m-4 "> <h2> Licence Information
-                                    </h2>
-                                    </div>
+
+
+
+
+                                <div className=' Add_State Add_Category '>
+                                  <h2> Licence Information </h2>
                                 </div>
-                                <div className='col-12 top label  con'>
-                                    <div className='col-2'>
+                                <div className='lg_ip_feild'>
+                                   
                                         <label className='label'>
                                             Licence Doc:
                                         </label>
-                                    </div>
-                                    <div className='col-10 mt-2 mb-2'>
-
                                         <TextField type="text" placeholder='Add LicenceNo' id="outlined-basic" variant="outlined" name='LicenceNo' value={Store.LicenceNo} style={{ minWidth: "90%", fontSize: 15 }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
@@ -601,89 +608,77 @@ export default function Storepopup() {
                                                 }
                                             }}
                                         />
-                                    </div>
-
                                 </div>
-                                <div className='col-12 top label'>
-                                    <div className='col-2'>
-                                        <label className='label'>
-                                            License Type:
-                                        </label>
+                                <div className=' row '>
+                                    <div className="col-sm-6 lg_ip_feild">
+                                        
+                                                <label>
+                                                    License Type:
+                                                </label>
+                                                <Select
+                                                    name='License_Type'
+                                                    value={Store.License_Type}
+                                                    onChange={handleChange}
+
+                                                    inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: "40%", fontSize: 15 }}
+                                                >
+                                                    <MenuItem value={"None"} style={{ fontSize: 15 }}>None</MenuItem>
+                                                    <MenuItem value={"Adult-Use Cultivation"} style={{ fontSize: 15 }}>Adult-Use Cultivation</MenuItem>
+                                                    <MenuItem value={"Adult-Use Nonstorefront"} style={{ fontSize: 15 }}>Adult-Use Mfg</MenuItem>
+                                                    <MenuItem value={"Adult-Use Retail"} style={{ fontSize: 15 }}>Adult-Use Retail</MenuItem>
+                                                    <MenuItem value={"Distributor"} style={{ fontSize: 15 }}>Distributor</MenuItem>
+                                                    <MenuItem value={"Event"} style={{ fontSize: 15 }}>Event</MenuItem>
+                                                    <MenuItem value={"Medical Cultivation"} style={{ fontSize: 15 }}>Medical Cultivation</MenuItem>
+                                                    <MenuItem value={"Medical Mfg"} style={{ fontSize: 15 }}>Medical Mfg</MenuItem>
+                                                    <MenuItem value={"Medical Nonstorefront"} style={{ fontSize: 15 }}>Medical Nonstorefront</MenuItem>
+                                                    <MenuItem value={"Medical Retail"} style={{ fontSize: 15 }}>Medical Retail</MenuItem>
+                                                    <MenuItem value={"Microbusiness"} style={{ fontSize: 15 }}>Microbusiness</MenuItem>
+                                                    <MenuItem value={"Testing Lab"} style={{ fontSize: 15 }}>Testing Lab</MenuItem>
+
+                                                </Select>
                                     </div>
-                                    <div className='col-4 mt-2 mb-2'>
-                                        <Select
-                                            name='License_Type'
-                                            value={Store.License_Type}
-                                            onChange={handleChange}
-
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: "40%", fontSize: 15 }}
-                                        >
-                                            <MenuItem value={"None"} style={{ fontSize: 15 }}>None</MenuItem>
-                                            <MenuItem value={"Adult-Use Cultivation"} style={{ fontSize: 15 }}>Adult-Use Cultivation</MenuItem>
-                                            <MenuItem value={"Adult-Use Nonstorefront"} style={{ fontSize: 15 }}>Adult-Use Mfg</MenuItem>
-                                            <MenuItem value={"Adult-Use Retail"} style={{ fontSize: 15 }}>Adult-Use Retail</MenuItem>
-                                            <MenuItem value={"Distributor"} style={{ fontSize: 15 }}>Distributor</MenuItem>
-                                            <MenuItem value={"Event"} style={{ fontSize: 15 }}>Event</MenuItem>
-                                            <MenuItem value={"Medical Cultivation"} style={{ fontSize: 15 }}>Medical Cultivation</MenuItem>
-                                            <MenuItem value={"Medical Mfg"} style={{ fontSize: 15 }}>Medical Mfg</MenuItem>
-                                            <MenuItem value={"Medical Nonstorefront"} style={{ fontSize: 15 }}>Medical Nonstorefront</MenuItem>
-                                            <MenuItem value={"Medical Retail"} style={{ fontSize: 15 }}>Medical Retail</MenuItem>
-                                            <MenuItem value={"Microbusiness"} style={{ fontSize: 15 }}>Microbusiness</MenuItem>
-                                            <MenuItem value={"Testing Lab"} style={{ fontSize: 15 }}>Testing Lab</MenuItem>
-
-                                        </Select>
-                                    </div>
-
-
-                                    <div className='col-2'>
-                                        <label className='label'>
-                                            Expires:
-                                        </label>
-                                    </div>
-                                    <div className='col-4 mt-2 mb-2'>
-                                        <TextField
-                                            id="date"
-                                            value={Store.expires}
-                                            name="expires"
-                                            onChange={handleChange}
-                                            type="datetime-local"
-                                            inputProps={{
-                                                min: new Date().toISOString().slice(0, 16)
-                                            }}
-                                            sx={{ width: 190, fontSize: 25 }}
-                                            InputLabelProps={{
-                                                shrink: true,
-                                            }}
-                                        ></TextField>
+                                    <div className="col-sm-6 lg_ip_feild">
+                                        <label>  Expires:  </label>
+                                            <TextField
+                                                id="date"
+                                                value={Store.expires}
+                                                name="expires"
+                                                onChange={handleChange}
+                                                type="datetime-local"
+                                                inputProps={{
+                                                    min: new Date().toISOString().slice(0, 16)
+                                                }}
+                                                sx={{ width: 190, fontSize: 25 }}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                            ></TextField>
                                     </div>
                                 </div>
-                                <div className='col-12 top label  con '>
-                                    <div className='col-2 '>
-                                        <label className='label'>
-                                            Store Image:
-                                        </label>
-                                        <input type="file" placeholder='Add Store Image:' id="Licence" ref={Licence} className="file" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
+
+                                <div className='lg_ip_feild'>
+                                 
+                                        <label> Store Image:  </label>
+                                        <input type="file" placeholder='Add Store Image:' id="Licence" ref={Licence} className="file" variant="outlined" style={{    minWidth: 190, fontSize: 15 }}
                                             onChange={Licenseimage} />
-                                    </div>
-                                    <div className='col-10  '>
-                                        {/* <div className='col img_store_lince '> */}
-                                        <div className={'col  ' + (image ? null : "img_store")}>
+                              
+                                        <div className={'imagefeild_popus ' + (image ? null : "img_store")} >
 
-                                            <div className={'col  ' + (image ? null : "img_store1")}>
+                                            <div className={'col  ' + (image ? null : "")}>
                                                 {
-                                                    LicenceImage ? <div className='center'>
+                                                    LicenceImage ? 
+                                                    <div>
                                                         <img src={URL.createObjectURL(LicenceImage)} alt="" className=' ' style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
                                                         <span   >
                                                             <IconButton onClick={licenceFileInput} style={{ position: " relative ", top: "-20px" }}>
                                                                 <CloseIcon />
                                                             </IconButton>
                                                         </span>
-                                                    </div> :
-                                                        <div >
-                                                            <label htmlFor="Licence">
-                                                                <AiOutlineCloudUpload style={{ fontSize: "50px", borderradius: "66px", color: "green", position: "relative", bottom: "-34px" }} ></AiOutlineCloudUpload >
-                                                            </label>
-                                                        </div>
+                                                    </div>
+                                                     :
+                                                    <label htmlFor="Licence">
+                                                        <AiOutlineCloudUpload style={{ fontSize: "50px", borderradius: "66px", color: "green", position: "relative", bottom: "-34px" }} ></AiOutlineCloudUpload >
+                                                    </label>
                                                 }
 
 
@@ -692,19 +687,11 @@ export default function Storepopup() {
                                             <p className="file-name"></p>
 
                                         </div>
-                                    </div>
+                                   
                                 </div>
-
-
-
-
-                                <div className='col-4 top label  '>
-                                    <div className='col'>
-                                        <label className='label'>
-                                            Status:
-                                        </label>
-                                    </div>
-                                    <div className='col mt-2 mb-2'>
+                            
+                                    <div className='lg_ip_feild'>
+                                        <label>  Status:   </label>
                                         <Select
                                             name='Status'
                                             value={Store.Status}
@@ -718,17 +705,15 @@ export default function Storepopup() {
 
                                         </Select>
                                     </div>
-                                </div>
-
-                                <div className='col-12 center top' >
+                               
+                                <div className='lg_ip_feild center top' >
                                     <button className='btn Sub_button' autoFocus onClick={Submit} >
                                         Add Store
                                     </button>
                                 </div>
-
                             </div>
 
-                        </div>
+                     
 
                     </div>
                 </DialogContent>

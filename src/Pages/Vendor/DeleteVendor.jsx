@@ -10,6 +10,7 @@ import axios from "axios"
 import Cookies from 'universal-cookie';
 import Createcontext from "../../Hooks/Context/Context"
 import { useSnackbar } from 'notistack';
+import { BsTrashFill } from 'react-icons/bs';
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -45,8 +46,14 @@ export default function UserDelete(props) {
 
   return (
     <div>
-      <Button color='success' onClick={handleClickOpen}>
-      Delete
+      <Button color='success' onClick={handleClickOpen} sx={{
+                              
+                              fontSize:'14px',
+                              textTransform:'capitalize',
+                              gap:'3px',
+                              textAlign:'start',
+                           }}>
+      <BsTrashFill/> Delete
       </Button>
       <Dialog
         open={open}

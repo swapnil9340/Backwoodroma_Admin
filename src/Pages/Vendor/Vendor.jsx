@@ -52,8 +52,22 @@ const Vendor = () => {
                 'Authorization': `Bearer ${token_data}`
             }
         }).then(response => {
-            console.log(response.data , 'vendor data') 
-            setTotal([...response.data.data])
+            console.log(response.data , 'vendor data')
+            let newdata = response.data.data.map((item,index)=>{
+               
+                var mydate = new Date(item.RegisterDate);
+                var month = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"][mydate.getMonth()];
+                var str =  mydate.getDate()+ ' ' + month + ' ' + mydate.getFullYear();
+                console.log(str)
+                
+                return {
+                    id: index,
+                    registerDate:str,
+                    ...item
+                }
+            })
+          setTotal(newdata)
         })
 
     }, [state, token_data])
@@ -63,7 +77,7 @@ const Vendor = () => {
         //     field: 'id', headerName: 'ID', maxWidth: 90, flex: 1, minWidth: 90,
         // },
         {
-            field: 'username',
+            field: 'Name',
             headerName: 'Name',
              minWidth: 120, flex: 1,
             "@media(max-width:540px)": {
@@ -79,12 +93,12 @@ const Vendor = () => {
             editable: true,
         },
         {
-            field: 'storeType',
+            field: 'StoreType',
             headerName: 'Store Type', minWidth: 120, flex: 1,
             editable: true,
         },
         {
-            field: 'storeName',
+            field: 'StoreName',
             headerName: 'Store Name',
             type: 'number', minWidth: 120, flex: 1,
             editable: true,
@@ -98,7 +112,7 @@ const Vendor = () => {
 
         },
         {
-            field: 'status',
+            field: 'Status',
             headerName: 'Status',
             editable: true,
             sortable: false, minWidth: 120, flex: 1, headerAlign: 'center', align: "center",
