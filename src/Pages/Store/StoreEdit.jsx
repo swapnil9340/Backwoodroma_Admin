@@ -163,7 +163,7 @@ export default function StoreEdit(props) {
                                 sm: "100%",
                                 md: "100%",
                                 lg: "70%",
-                                xl: "70%"
+                                xl: "700px"
 
                             },
                             height: {
@@ -171,7 +171,7 @@ export default function StoreEdit(props) {
                                 sm: "75%",
                                 md: "75%",
                                 lg: "100%",
-                                xl: "100%"
+                                xl: "600px"
                             },
                             border: "1px solid #31B665",
                             borderRadius: "15px",
@@ -185,40 +185,68 @@ export default function StoreEdit(props) {
                 </BootstrapDialogTitle>
                 <DialogContent dividers>
                     <div className='container-fluid '>
-                        <div className='row'>
+                        <div className='row login_form_feild'>
 
-                            <div className='col-12' >
+                           
 
-                                <div className='col-12 Add_Category center' style={{marginTop:"2%"}}>
-                                    <div className="col "> <h2> Edit Store
-                                    </h2>
-                                    </div>
-                                </div>
-                                <div className='col-12 top label  con margn_top '>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            Store Name:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
+                                <div className='Add_Category center' style={{marginTop:"2%"}}><h2> Edit Store  </h2>  </div>
+                                <div className='col-6 lg_ip_feild'>
+                                        <label> Store Name: </label>
                                         <TextField type="text" placeholder='Add  Sub Category' id="outlined-basic" variant="outlined" name='Store_Name' value={Store.Store_Name} style={{ minWidth: 190, fontSize: 15 }}
-                                            onChange={handleChange} />
-                                    </div>
+                                            onChange={handleChange} 
+                                            sx={{
+                                                width:'100%',
+                                                '& .MuiOutlinedInput-root': {
+                                                    fontSize:'16px',
+                                                  
+                                                    '& fieldset': {
+                                                        borderColor: 'black',
+                                                    },
+                                                },
+                                                '& .MuiOutlinedInput-input':{
+                                                padding:' 10px',
+                                                },
+                                                "& label": {
+                                                    fontSize: 13,
+                                                    color: "red",
+                                                    "&.Mui-focused": {
+                                                        marginLeft: 0,
+                                                        color: "red",
+                                                    }
+                                                }
+                                            }}/>
                                 </div>
-                                <div className='col-12 top label  con'>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            City Name:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
+                                <div className='col-6 lg_ip_feild'>
+                                  
+                                        <label> City Name:</label>
                                         <Select
                                             name='city_id'
                                             value={Store.city_id}
                                             onChange={handleChange}
                                             displayEmpty
                                             size='small'
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}
+                                            inputProps={{ 'aria-label': 'Without label' }} 
+                                            sx={{
+                                                width:'100%',
+                                                '& .MuiOutlinedInput-root': {
+                                                    fontSize:'16px',
+                                                  
+                                                    '& fieldset': {
+                                                        borderColor: 'black',
+                                                    },
+                                                },
+                                                '& .MuiOutlinedInput-input':{
+                                                padding:' 10px',
+                                                },
+                                                "& label": {
+                                                    fontSize: 13,
+                                                    color: "red",
+                                                    "&.Mui-focused": {
+                                                        marginLeft: 0,
+                                                        color: "red",
+                                                    }
+                                                }
+                                            }}
                                         >
                                             {
                                                 Cities.map((Cities, index) => {
@@ -229,22 +257,39 @@ export default function StoreEdit(props) {
                                             }
 
                                         </Select>
-                                    </div>
+                                    
                                 </div>
-                                <div className='col-12 top label  con'>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            Store Type:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
+                                <div className='col-6 lg_ip_feild'>
+                                   
+                                        <label> Store Type:  </label>
+                                
                                         <Select
                                             name='Store_Type'
                                             value={Store.Store_Type}
                                             onChange={handleChange}
                                             displayEmpty
                                             size='small'
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}
+                                            inputProps={{ 'aria-label': 'Without label' }}   sx={{
+                                                width:'100%',
+                                                '& .MuiOutlinedInput-root': {
+                                                    fontSize:'16px',
+                                                  
+                                                    '& fieldset': {
+                                                        borderColor: 'black',
+                                                    },
+                                                },
+                                                '& .MuiOutlinedInput-input':{
+                                                padding:' 10px',
+                                                },
+                                                "& label": {
+                                                    fontSize: 13,
+                                                    color: "red",
+                                                    "&.Mui-focused": {
+                                                        marginLeft: 0,
+                                                        color: "red",
+                                                    }
+                                                }
+                                            }}
                                         >
                                             <MenuItem disabled value="" style={{ fontSize: 15 }}>
                                                 <em>Store Type</em>
@@ -257,104 +302,167 @@ export default function StoreEdit(props) {
 
 
                                         </Select>
-                                    </div>
-                                    </div>
-
-                                    
-                                    <div className='col-12 top label  con'>
-                                        <div className='col m-2'>
-                                            <label className='label'>
-                                                LicenceNo:
-                                            </label>
-                                        </div>
-                                        <div className='col'>
-
-                                            <TextField type="text" placeholder='Add LicenceNo' id="outlined-basic" variant="outlined" name='LicenceNo' value={Store.LicenceNo} style={{ minWidth: 190, fontSize: 15 }}
-                                                onChange={handleChange} />
-                                        </div>
-                                    </div>
-                                <div className='col-12 top label  con'>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            Store Address:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-
-                                        <TextField type="text" placeholder='Add Store Address:' id="outlined-basic" variant="outlined" name='Store_Address' value={Store.Store_Address} style={{ minWidth: 190, fontSize: 15 }}
-                                            onChange={handleChange} />
-                                    </div>
+                                
                                 </div>
-                                <div className='col-12 top label  con'>
-                                    <div className='col m-2'>
-                                        <label className='label'>
+                                <div className='col-6 lg_ip_feild'>
+                                        <label> LicenceNo: </label>
+                                        <TextField type="text" placeholder='Add LicenceNo' id="outlined-basic" variant="outlined" name='LicenceNo' value={Store.LicenceNo} style={{ minWidth: 190, fontSize: 15 }}
+                                            onChange={handleChange}   sx={{
+                                                width:'100%',
+                                                '& .MuiOutlinedInput-root': {
+                                                    fontSize:'16px',
+                                                  
+                                                    '& fieldset': {
+                                                        borderColor: 'black',
+                                                    },
+                                                },
+                                                '& .MuiOutlinedInput-input':{
+                                                padding:' 10px',
+                                                },
+                                                "& label": {
+                                                    fontSize: 13,
+                                                    color: "red",
+                                                    "&.Mui-focused": {
+                                                        marginLeft: 0,
+                                                        color: "red",
+                                                    }
+                                                }
+                                            }} />
+                                </div>
+                                <div className='col-6 lg_ip_feild'>
+                                        <label>  Store Address:  </label>
+                                        <TextField type="text" placeholder='Add Store Address:' id="outlined-basic" variant="outlined" name='Store_Address' value={Store.Store_Address} style={{ minWidth: 190, fontSize: 15 }}
+                                            onChange={handleChange}    sx={{
+                                                width:'100%',
+                                                '& .MuiOutlinedInput-root': {
+                                                    fontSize:'16px',
+                                                  
+                                                    '& fieldset': {
+                                                        borderColor: 'black',
+                                                    },
+                                                },
+                                                '& .MuiOutlinedInput-input':{
+                                                padding:' 10px',
+                                                },
+                                                "& label": {
+                                                    fontSize: 13,
+                                                    color: "red",
+                                                    "&.Mui-focused": {
+                                                        marginLeft: 0,
+                                                        color: "red",
+                                                    }
+                                                }
+                                            }}/>
+                                </div>
+                                <div className='col-6 lg_ip_feild'>
+                                  
+                                        <label  >
                                             Stores Website:
                                         </label>
-                                    </div>
-                                    <div className='col'>
+                                 
 
                                         <TextField type="text" placeholder='Add Stores Website:' id="outlined-basic" variant="outlined" name='Stores_Website' value={Store.Stores_Website} style={{ minWidth: 190, fontSize: 15 }}
-                                            onChange={handleChange} />
-                                    </div>
+                                            onChange={handleChange}   sx={{
+                                                width:'100%',
+                                                '& .MuiOutlinedInput-root': {
+                                                    fontSize:'16px',
+                                                  
+                                                    '& fieldset': {
+                                                        borderColor: 'black',
+                                                    },
+                                                },
+                                                '& .MuiOutlinedInput-input':{
+                                                padding:' 10px',
+                                                },
+                                                "& label": {
+                                                    fontSize: 13,
+                                                    color: "red",
+                                                    "&.Mui-focused": {
+                                                        marginLeft: 0,
+                                                        color: "red",
+                                                    }
+                                                }
+                                            }}/>
+                                    
                                 </div>
-                                <div className='col-12 top label  con'>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            Stores MobileNo:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-
+                                <div className='col-6 lg_ip_feild'>
+                                        <label  >  Stores MobileNo: </label>
                                         <TextField type="text" placeholder='Add Stores MobileNo:' id="outlined-basic" variant="outlined" name='Stores_MobileNo' value={Store.Stores_MobileNo} style={{ minWidth: 190, fontSize: 15 }}
-                                            onChange={handleChange} />
-                                    </div>
+                                            onChange={handleChange}   sx={{
+                                                width:'100%',
+                                                '& .MuiOutlinedInput-root': {
+                                                    fontSize:'16px',
+                                                  
+                                                    '& fieldset': {
+                                                        borderColor: 'black',
+                                                    },
+                                                },
+                                                '& .MuiOutlinedInput-input':{
+                                                padding:' 10px',
+                                                },
+                                                "& label": {
+                                                    fontSize: 13,
+                                                    color: "red",
+                                                    "&.Mui-focused": {
+                                                        marginLeft: 0,
+                                                        color: "red",
+                                                    }
+                                                }
+                                            }} />
                                 </div>
-                                <div className='col-12 top label  con'>
-                                    <div className='col m-2 '>
-                                        <label className='label'>
-                                            Store Image:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-                                        <div className='col'>
-
-                                            <input type="file" placeholder='Add Store Image:' ref={inputRef} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
+                                <div className='col-12 lg_ip_feild'>
+                                  
+                                        <label> Store Image:</label>
+                                        <input type="file" placeholder='Add Store Image:' ref={inputRef} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
                                                 onChange={handleimage} />
-                                        </div>
-
-                                        <div className='col m-2'>
-                                            {
-                                                image ? 
+                                      
+                                            <div className=''>
+                                                {
+                                                    image ? 
+                                                    <>
+                                                    <img src={URL.createObjectURL(image)}  alt="" style={{ width: "120px", height: "110px" }} /> 
+                                                    <Button onClick={resetFileInput} color='success' >Cancell </Button>
+                                                    </>
+                                                    
+                                                    :  
                                                 <>
-                                                <img src={URL.createObjectURL(image)}  alt="" style={{ width: "120px", height: "110px" }} /> 
-                                                <Button onClick={resetFileInput} color='success' >Cancell </Button>
+                                                    <img src={"http://backend.sweede.net/" + (Store.Store_Image)} alt="" style={{ width: "120px", height: "110px" }} />
+                                                    <Button name="Store_Image" value="" color='success' onClick={handleChange} >Cancell </Button>
                                                 </>
-                                                
-                                                : 
-                                                
-                                               <>
-                                                <img src={"http://backend.sweede.net/" + (Store.Store_Image)} alt="" style={{ width: "120px", height: "110px" }} />
-                                                <Button name="Store_Image" value="" color='success' onClick={handleChange} >Cancell </Button>
-                                               </>
-                                            }
-                                        </div>
-                                    </div>
-
+                                                }
+                                            </div>
+                                        
                                 </div>
-                                <div className='col-12 top label  con'>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            Status:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
+                                <div className='col-6 lg_ip_feild'>
+                                  
+                                        <label>  Status: </label>
                                         <Select
                                             name='Status'
                                             value={Store.Status}
                                             onChange={handleChange}
                                             size="small"
                                             displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}
+                                            inputProps={{ 'aria-label': 'Without label' }}   sx={{
+                                                width:'100%',
+                                                '& .MuiOutlinedInput-root': {
+                                                    fontSize:'16px',
+                                                  
+                                                    '& fieldset': {
+                                                        borderColor: 'black',
+                                                    },
+                                                },
+                                                '& .MuiOutlinedInput-input':{
+                                                padding:' 10px',
+                                                },
+                                                "& label": {
+                                                    fontSize: 13,
+                                                    color: "red",
+                                                    "&.Mui-focused": {
+                                                        marginLeft: 0,
+                                                        color: "red",
+                                                    }
+                                                }
+                                            }}
                                         >
                                             <MenuItem value="" style={{ fontSize: 15 }}>
                                                 <em>Select option</em>
@@ -363,24 +471,20 @@ export default function StoreEdit(props) {
                                             <MenuItem value={"Hide"} style={{ fontSize: 15 }}>Hide</MenuItem>
 
                                         </Select>
-                                    </div>
+                                    
                                 </div>
-                                <div className='col-12 top label  con'>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            Stores Description:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-
+                                <div className='col-12 lg_ip_feild'>
+                               
+                                        <label  >  Stores Description: </label>
+                                        <div className='text_editor'>
                                         <Editor
                                             editorState={editorState}
                                             onEditorStateChange={setEditorState}
                                             toolbarClassName="toolbarClassName"
                                             wrapperClassName="wrapperClassName"
                                             editorClassName="editorClassName"
-                                        />
-                                    </div>
+                                        /></div>
+                                   
                                 </div>
                                 <div className='col-12 center top' >
                                     <button className='btn Sub_button' autoFocus onClick={Submit} >
@@ -388,7 +492,6 @@ export default function StoreEdit(props) {
                                     </button>
                                 </div>
 
-                            </div>
 
                         </div>
 

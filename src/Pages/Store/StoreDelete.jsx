@@ -11,6 +11,7 @@ import Cookies from 'universal-cookie';
 import Createcontext from "../../Hooks/Context/Context"
 import { useSnackbar } from 'notistack';
 import { BsTrashFill } from 'react-icons/bs';
+import { AiOutlineWarning } from 'react-icons/ai';
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -66,7 +67,12 @@ export default function StoreDelete (props) {
         <DialogTitle>{"Store Delete ?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-          Are you sure you want to delete this Store?
+            <div className='delete_popup text-center'>
+              <div className='text-center'><AiOutlineWarning size={48} color='#f4c430'/></div>
+                <h2 className='delete_popup_title'>Are you Sure ?</h2>
+                 <p className='deletepopup_description'>Are you sure you want to delete this Store?</p>
+            </div>
+
           </DialogContentText>
         </DialogContent>
         <DialogActions>

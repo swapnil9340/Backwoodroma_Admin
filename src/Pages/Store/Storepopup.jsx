@@ -16,7 +16,6 @@ import { convertToHTML } from 'draft-convert';
 import InputAdornment from '@mui/material/InputAdornment';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 import CloseIcon from '@mui/icons-material/Close';
-// import IconButton from '@material-ui/core/IconButton';
 import { IconButton } from '@mui/material';
 
 import Createcontext from "../../Hooks/Context/Context"
@@ -40,11 +39,14 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 function BootstrapDialogTitle(props) {
 
 }
+
+
 export default function Storepopup() {
     const { dispatch } = useContext(Createcontext)
     const Licence = useRef(null);
     const cookies = new Cookies();
     const inputRef = useRef(null);
+   
     const token_data = cookies.get('Token_access')
     const [open, setOpen] = React.useState(false);
     const [editorState, setEditorState] = React.useState(() => EditorState.createEmpty());
@@ -173,65 +175,65 @@ export default function Storepopup() {
 
 
 
-    const formdata = new FormData();
-    formdata.append('Store_Name', Store.Store_Name);
-    formdata.append('Store_Image', image);
-    formdata.append('City_id', Store.city_id);
-    formdata.append('Store_Type', Store.Store_Type);
-    formdata.append('LicenceNo', Store.LicenceNo);
-    formdata.append('Store_Address', Store.Store_Address);
-    formdata.append('Stores_Website', Store.Stores_Website);
-    formdata.append('Stores_MobileNo', Store.Stores_MobileNo);
-    formdata.append('Status', Store.Status);
-    formdata.append('Stores_Description', convertedContent);
-    const Submit = () => {
+       const formdata = new FormData();
+        formdata.append('Store_Name', Store.Store_Name);
+        formdata.append('Store_Image', image);
+        formdata.append('City_id', Store.city_id);
+        formdata.append('Store_Type', Store.Store_Type);
+        formdata.append('LicenceNo', Store.LicenceNo);
+        formdata.append('Store_Address', Store.Store_Address);
+        formdata.append('Stores_Website', Store.Stores_Website);
+        formdata.append('Stores_MobileNo', Store.Stores_MobileNo);
+        formdata.append('Status', Store.Status);
+        formdata.append('Stores_Description', convertedContent);
+            const Submit = () => {
 
-        const config = {
-            headers: { Authorization: `Bearer ${token_data}` }
-        };
-        axios.post(
-            'https://api.cannabaze.com/AdminPanel/Add-Stores/',
-            formdata,
-            config
-        ).then((response) => {
-            setOpen(false);
-            dispatch({ type: 'api', api: true })
-        }).catch(
-            function (error) {
+                const config = {
+                    headers: { Authorization: `Bearer ${token_data}` }
+                };
+                axios.post(
+                    'https://api.cannabaze.com/AdminPanel/Add-Stores/',
+                    formdata,
+                    config
+                ).then((response) => {
+                    setOpen(false);
+                    dispatch({ type: 'api', api: true })
+                }).catch(
+                    function (error) {
 
-                if (error.response.data.error) {
-                    setmassage({ LicenceNo: error.response.data.error.LicenceNo[0] })
-                    seterror({ LicenceNo: "red" })
-                }
-                if (error.response.data.error) {
-                    setmassage({ Stores_MobileNo: error.response.data.error.Stores_MobileNo[0] })
-                    seterror({ Stores_MobileNo: "red" })
-                }
-                for (const [key, value] of Object.entries(error.response.data)) {
-                    switch (key) {
-                        case "Store_Name":
-                            setmassage({ Store_Name: value })
-                            seterror({ Store_Name: "red" })
-                            break
-                        case "Store_Address":
-                            setmassage({ Store_Address: value })
-                            seterror({ Store_Address: "red" })
-                            break
-                        case "Stores_MobileNo":
-                            setmassage({ Stores_MobileNo: value })
-                            seterror({ Stores_MobileNo: "red" })
-                            break
-                        case "LicenceNo":
-                            setmassage({ LicenceNo: value })
+                        if (error.response.data.error) {
+                            setmassage({ LicenceNo: error.response.data.error.LicenceNo[0] })
                             seterror({ LicenceNo: "red" })
-                            break
-                        default:
-                            return 'foo';
+                        }
+                        if (error.response.data.error) {
+                            setmassage({ Stores_MobileNo: error.response.data.error.Stores_MobileNo[0] })
+                            seterror({ Stores_MobileNo: "red" })
+                        }
+                        for (const [key, value] of Object.entries(error.response.data)) {
+                            switch (key) {
+                                case "Store_Name":
+                                    setmassage({ Store_Name: value })
+                                    seterror({ Store_Name: "red" })
+                                    break
+                                case "Store_Address":
+                                    setmassage({ Store_Address: value })
+                                    seterror({ Store_Address: "red" })
+                                    break
+                                case "Stores_MobileNo":
+                                    setmassage({ Stores_MobileNo: value })
+                                    seterror({ Stores_MobileNo: "red" })
+                                    break
+                                case "LicenceNo":
+                                    setmassage({ LicenceNo: value })
+                                    seterror({ LicenceNo: "red" })
+                                    break
+                                default:
+                                    return 'foo';
+                            }
+                        }
                     }
-                }
-            }
-        )
-    };
+                )
+            };
 
     return (
         <div>
@@ -261,7 +263,7 @@ export default function Storepopup() {
                             maxWidth: "none",  // Set your width here
                             border: "1px solid #31B665",
                             borderRadius: "15px",
-                            overflowX: "hidden",
+                            overflowY: "hidden",
                         },
                     },
                 }}
@@ -280,21 +282,26 @@ export default function Storepopup() {
                                 </div>
                                 <div className='lg_ip_feild'>
                                     
-                                        <label className='label'>
+                                        <label  >
                                             Store Name:
                                         </label>
                                  
                                   
-                                        <TextField type="text" placeholder='Add  Store Name' id="outlined-basic" variant="outlined" name='Store_Name' value={Store.Store_Name} style={{ minWidth: "90%" }}
+                                        <TextField type="text" placeholder='Add  Store Name' id="outlined-basic" variant="outlined" name='Store_Name' value={Store.Store_Name}
                                             onChange={handleChange}
-                                            InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
+                                            InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>}}
                                             label={massage.Store_Name}
                                             sx={{
+                                                width:'100%',
                                                 '& .MuiOutlinedInput-root': {
+                                                    fontSize:'16px',
+                                                  
                                                     '& fieldset': {
                                                         borderColor: error.Store_Name,
-                                                        height: 55,
                                                     },
+                                                },
+                                                '& .MuiOutlinedInput-input':{
+                                                padding:' 10px',
                                                 },
                                                 "& label": {
                                                     fontSize: 13,
@@ -310,15 +317,38 @@ export default function Storepopup() {
                                 </div>
                                 <div className='lg_ip_feild '>
                                     
-                                        <label className='label'>
-                                            Store Type:
-                                        </label>
-                                  
+                                        <label> Store Type: </label>
                                         <Select
                                             name='Store_Type'
                                             value={Store.Store_Type}
                                             onChange={handleChange}
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: "90%", fontSize: 15 }}
+                                            inputProps={{ 'aria-label': 'Without label' }} 
+                                            sx={{
+                                                width:'100%',
+                                                '& .MuiOutlinedInput-root': {
+                                                    fontSize:'16px',
+                                                  
+                                                    '& fieldset': {
+                                                        borderColor: error.Store_Name,
+                                                    },
+                                                },
+                                                '& .MuiOutlinedInput-input':{
+                                                padding:' 10px',
+                                                },
+                                                "& label": {
+                                                    fontSize: 13,
+                                                    color: "red",
+                                                    "&.Mui-focused": {
+                                                        marginLeft: 0,
+                                                        color: "red",
+                                                    }
+                                                },
+                                                '& .MuiSelect-select':{
+                                                    fontSize:'16px',
+                                                    color:'rgb(133, 133, 133)',
+                                                }
+                                                
+                                            }}
                                         >
                                             <MenuItem value={"cbd store"} style={{ fontSize: 15 }}>CBD Store</MenuItem>
                                             <MenuItem value={"brand"} style={{ fontSize: 15 }}>Brand</MenuItem>
@@ -345,6 +375,32 @@ export default function Storepopup() {
 
                                                     fullWidth
                                                     inputProps={{ 'aria-label': 'Without label' }} style={{ fontSize: 15 }}
+                                                    sx={{
+                                                        width:'100%',
+                                                        '& .MuiOutlinedInput-root': {
+                                                            fontSize:'16px',
+                                                          
+                                                            '& fieldset': {
+                                                                borderColor: error.Store_Name,
+                                                            },
+                                                        },
+                                                        '& .MuiOutlinedInput-input':{
+                                                        padding:' 10px',
+                                                        },
+                                                        "& label": {
+                                                            fontSize: 13,
+                                                            color: "red",
+                                                            "&.Mui-focused": {
+                                                                marginLeft: 0,
+                                                                color: "red",
+                                                            }
+                                                        },
+                                                        '& .MuiSelect-select':{
+                                                            fontSize:'16px',
+                                                            color:'rgb(133, 133, 133)',
+                                                        }
+                                                        
+                                                    }}
                                                 >
 
                                                     <MenuItem disabled value="" style={{ fontSize: 15 }}>
@@ -373,6 +429,32 @@ export default function Storepopup() {
 
                                             fullWidth
                                             inputProps={{ 'aria-label': 'Without label' }} style={{ fontSize: 15 }}
+                                            sx={{
+                                                width:'100%',
+                                                '& .MuiOutlinedInput-root': {
+                                                    fontSize:'16px',
+                                                  
+                                                    '& fieldset': {
+                                                        borderColor: error.Store_Name,
+                                                    },
+                                                },
+                                                '& .MuiOutlinedInput-input':{
+                                                padding:' 10px',
+                                                },
+                                                "& label": {
+                                                    fontSize: 13,
+                                                    color: "red",
+                                                    "&.Mui-focused": {
+                                                        marginLeft: 0,
+                                                        color: "red",
+                                                    }
+                                                },
+                                                '& .MuiSelect-select':{
+                                                    fontSize:'16px',
+                                                    color:'rgb(133, 133, 133)',
+                                                }
+                                                
+                                            }}
                                         >
                                             <MenuItem disabled value="" style={{ fontSize: 15 }}>
                                                 <em>Select</em>
@@ -391,35 +473,54 @@ export default function Storepopup() {
                                   </div>
                                   <div className="col-sm-4">
                                        <div className="lg_ip_feild">
-                                        
-                                        <label >
-                                            City :
-                                        </label>
-                                    
-                                    
-                                        <Select
+                                            <label > City :</label>
+                                            <Select
+                                                name='city_id'
+                                                value={Store.city_id}
+                                                onChange={handleChange}
+                                                displayEmpty
+                                                fullWidth
+                                                inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: "60%", fontSize: 15 }}
+                                                sx={{
+                                                    width:'100%',
+                                                    '& .MuiOutlinedInput-root': {
+                                                        fontSize:'16px',
+                                                    
+                                                        '& fieldset': {
+                                                            borderColor: error.Store_Name,
+                                                        },
+                                                    },
+                                                    '& .MuiOutlinedInput-input':{
+                                                    padding:' 10px',
+                                                    },
+                                                    "& label": {
+                                                        fontSize: 13,
+                                                        color: "red",
+                                                        "&.Mui-focused": {
+                                                            marginLeft: 0,
+                                                            color: "red",
+                                                        }
+                                                    },
+                                                    '& .MuiSelect-select':{
+                                                        fontSize:'16px',
+                                                        color:'rgb(133, 133, 133)',
+                                                    }
+                                                    
+                                                }}
+                                            >
+                                                <MenuItem disabled value="" style={{ fontSize: 15 }}>
+                                                    <em>Select City</em>
+                                                </MenuItem>
 
-                                            name='city_id'
-                                            value={Store.city_id}
-                                            onChange={handleChange}
-                                            displayEmpty
-                                            fullWidth
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: "60%", fontSize: 15 }}
-                                        >
-                                            <MenuItem disabled value="" style={{ fontSize: 15 }}>
-                                                <em>Select City</em>
-                                            </MenuItem>
+                                                {
+                                                    City.map((data, index) => {
 
-                                            {
-                                                City.map((data, index) => {
-
-                                                    return (
-                                                        <MenuItem key={index} value={data.id} style={{ fontSize: 15 }}>{data.CityName}</MenuItem>
-                                                    )
-                                                })
-                                            }
-                                        </Select>
-                                    
+                                                        return (
+                                                            <MenuItem key={index} value={data.id} style={{ fontSize: 15 }}>{data.CityName}</MenuItem>
+                                                        )
+                                                    })
+                                                }
+                                            </Select>
                                         </div>
                                   </div>
                                  
@@ -427,21 +528,22 @@ export default function Storepopup() {
 
 
                                 <div className='lg_ip_feild '>
-                                  
-                                        <label >
-                                            Store Address:
-                                        </label>
-                                  
+                                        <label >   Store Address:  </label>
                                         <TextField type="text" placeholder='Add Store Address:' id="outlined-basic" variant="outlined" name='Store_Address' value={Store.Store_Address} style={{ minWidth: "90%", fontSize: 15 }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                             label={massage.Store_Address}
                                             sx={{
+                                                width:'100%',
                                                 '& .MuiOutlinedInput-root': {
+                                                    fontSize:'16px',
+                                                  
                                                     '& fieldset': {
-                                                        borderColor: error.Store_Address,
-                                                        height: 55,
+                                                        borderColor: error.Store_Name,
                                                     },
+                                                },
+                                                '& .MuiOutlinedInput-input':{
+                                                padding:' 10px',
                                                 },
                                                 "& label": {
                                                     fontSize: 13,
@@ -450,7 +552,12 @@ export default function Storepopup() {
                                                         marginLeft: 0,
                                                         color: "red",
                                                     }
+                                                },
+                                                '& .MuiSelect-select':{
+                                                    fontSize:'16px',
+                                                    color:'rgb(133, 133, 133)',
                                                 }
+                                                
                                             }}
                                         />
                                    
@@ -461,14 +568,36 @@ export default function Storepopup() {
                                            <div className="col-sm-6">
                                                 <div className='lg_ip_feild    '>
                                                 
-                                                <label >
-                                                    Stores Website:
-                                                </label>
-                                            
-
+                                                <label > Stores Website: </label>
                                                 <TextField type="text" placeholder='Add Stores Website:' id="outlined-basic" variant="outlined" name='Stores_Website' value={Store.Stores_Website} style={{ minWidth: 120, fontSize: 15 }}
                                                     onChange={handleChange}
                                                     InputProps={{ style: { fontSize: 14 } }}
+                                                    sx={{
+                                                        width:'100%',
+                                                        '& .MuiOutlinedInput-root': {
+                                                            fontSize:'16px',
+                                                          
+                                                            '& fieldset': {
+                                                                borderColor: error.Store_Name,
+                                                            },
+                                                        },
+                                                        '& .MuiOutlinedInput-input':{
+                                                        padding:' 10px',
+                                                        },
+                                                        "& label": {
+                                                            fontSize: 13,
+                                                            color: "red",
+                                                            "&.Mui-focused": {
+                                                                marginLeft: 0,
+                                                                color: "red",
+                                                            }
+                                                        },
+                                                        '& .MuiSelect-select':{
+                                                            fontSize:'16px',
+                                                            color:'rgb(133, 133, 133)',
+                                                        }
+                                                        
+                                                    }}
                                                 />
                                             
                                                 </div>
@@ -481,11 +610,16 @@ export default function Storepopup() {
                                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                                             label={massage.Stores_MobileNo}
                                                             sx={{
+                                                                width:'100%',
                                                                 '& .MuiOutlinedInput-root': {
+                                                                    fontSize:'16px',
+                                                                  
                                                                     '& fieldset': {
-                                                                        borderColor: error.Stores_MobileNo,
-                                                                        height: 55,
+                                                                        borderColor: error.Store_Name,
                                                                     },
+                                                                },
+                                                                '& .MuiOutlinedInput-input':{
+                                                                padding:' 10px',
                                                                 },
                                                                 "& label": {
                                                                     fontSize: 13,
@@ -494,8 +628,13 @@ export default function Storepopup() {
                                                                         marginLeft: 0,
                                                                         color: "red",
                                                                     }
+                                                                },
+                                                                '& .MuiSelect-select':{
+                                                                    fontSize:'16px',
+                                                                    color:'rgb(133, 133, 133)',
                                                                 }
-                                                            }} 
+                                                                
+                                                            }}
                                                         />
                                                     </div>
                                              </div>
@@ -508,7 +647,7 @@ export default function Storepopup() {
                                         <Box
                                             sx={{
                                                 "& .rdw-editor-toolbar": {
-                                                    width: "90%",
+                                                    width: "100%",
                                                     border: "1px solid #c4c4c4",
 
                                                 },
@@ -524,7 +663,7 @@ export default function Storepopup() {
                                                 },
                                                 ".rdw-editor-main": {
                                                     background: "",
-                                                    width: "90%",
+                                                    width: "100%",
                                                     border: "1px solid #c4c4c4",
                                                     padding: "3px"
                                                 },
@@ -544,47 +683,41 @@ export default function Storepopup() {
                                         </Box>
                                    
                                 </div>
-                                <div className='row'>
-                                    <div className='col-2 lg_ip_feild'>
-                                        <label >
-                                            Store Image:
-                                        </label>
-                                        <input type="file" placeholder='Add Store Image:' id="file" ref={inputRef} className="file" variant="outlined" style={{ minWidth: 180, fontSize: 15 }}
-                                            onChange={handleimage} />
-                                    </div>
-                                    <div className='col-10  '>
-                                        <div className={'col-4  ' + (image ? null : "img_store")}>
-                                            <div className={'col-12  ' + (image ? null : "img_store1")}>
-                                                {
-                                                    image ? <div className='center'  >
-                                                        <img src={URL.createObjectURL(image)} alt="" className='center' style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
-                                                        <IconButton onClick={resetFileInput} style={{ position: " relative ", top: "-20px" }}>
-                                                            <CloseIcon />
-                                                        </IconButton>
-                                                    </div> :
-                                                        <div>
-                                                            <label htmlFor="file"  >
-                                                                <AiOutlineCloudUpload style={{ fontSize: "50px", borderradius: "66px", color: "green" }} ></AiOutlineCloudUpload >
-                                                            </label>
-                                                        </div>
-                                                }
+                             
+                                <div className='lg_ip_feild'>
+                                    <label >
+                                        Store Image:
+                                    </label>
+                                    <input type="file" placeholder='Add Store Image:' id="file" ref={inputRef} className="file" variant="outlined" style={{ minWidth: 180, fontSize: 15 }}
+                                        onChange={handleimage} />
+                                
+                                    <div className={'imagefeild_popus ' + (image ? null : "img_store")}>
+                        
+                                            {
+                                                image ? <div className='center'  >
+                                                    <img src={URL.createObjectURL(image)} alt="" className='center' style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
+                                                    <IconButton onClick={resetFileInput} style={{ position: " absolute ", top: "-20px" }}>
+                                                        <CloseIcon />
+                                                    </IconButton>
+                                                </div> :
+                                                    <div>
+                                                        <label htmlFor="file"  >
+                                                            <AiOutlineCloudUpload color='#9e9b9b' style={{ fontSize: "50px", borderradius: "66px" }} ></AiOutlineCloudUpload>
+                                                        </label>
+                                                    </div>
+                                            }
 
 
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                 </div>
-
-
-
-
-
+                            
                                 <div className=' Add_State Add_Category '>
                                   <h2> Licence Information </h2>
                                 </div>
                                 <div className='lg_ip_feild'>
                                    
-                                        <label className='label'>
+                                        <label  >
                                             Licence Doc:
                                         </label>
                                         <TextField type="text" placeholder='Add LicenceNo' id="outlined-basic" variant="outlined" name='LicenceNo' value={Store.LicenceNo} style={{ minWidth: "90%", fontSize: 15 }}
@@ -592,11 +725,16 @@ export default function Storepopup() {
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                             label={massage.LicenceNo}
                                             sx={{
+                                                width:'100%',
                                                 '& .MuiOutlinedInput-root': {
+                                                    fontSize:'16px',
+                                                  
                                                     '& fieldset': {
-                                                        borderColor: error.LicenceNo,
-                                                        height: 55,
+                                                        borderColor: error.Store_Name,
                                                     },
+                                                },
+                                                '& .MuiOutlinedInput-input':{
+                                                padding:' 10px',
                                                 },
                                                 "& label": {
                                                     fontSize: 13,
@@ -605,7 +743,12 @@ export default function Storepopup() {
                                                         marginLeft: 0,
                                                         color: "red",
                                                     }
+                                                },
+                                                '& .MuiSelect-select':{
+                                                    fontSize:'16px',
+                                                    color:'rgb(133, 133, 133)',
                                                 }
+                                                
                                             }}
                                         />
                                 </div>
@@ -620,7 +763,32 @@ export default function Storepopup() {
                                                     value={Store.License_Type}
                                                     onChange={handleChange}
 
-                                                    inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: "40%", fontSize: 15 }}
+                                                    inputProps={{ 'aria-label': 'Without label' }}  sx={{
+                                                        width:'100%',
+                                                        '& .MuiOutlinedInput-root': {
+                                                            fontSize:'16px',
+                                                          
+                                                            '& fieldset': {
+                                                                borderColor: error.Store_Name,
+                                                            },
+                                                        },
+                                                        '& .MuiOutlinedInput-input':{
+                                                        padding:' 10px',
+                                                        },
+                                                        "& label": {
+                                                            fontSize: 13,
+                                                            color: "red",
+                                                            "&.Mui-focused": {
+                                                                marginLeft: 0,
+                                                                color: "red",
+                                                            }
+                                                        },
+                                                        '& .MuiSelect-select':{
+                                                            fontSize:'16px',
+                                                            color:'rgb(133, 133, 133)',
+                                                        }
+                                                        
+                                                    }}
                                                 >
                                                     <MenuItem value={"None"} style={{ fontSize: 15 }}>None</MenuItem>
                                                     <MenuItem value={"Adult-Use Cultivation"} style={{ fontSize: 15 }}>Adult-Use Cultivation</MenuItem>
@@ -648,7 +816,32 @@ export default function Storepopup() {
                                                 inputProps={{
                                                     min: new Date().toISOString().slice(0, 16)
                                                 }}
-                                                sx={{ width: 190, fontSize: 25 }}
+                                                sx={{
+                                                    width:'100%',
+                                                    '& .MuiOutlinedInput-root': {
+                                                        fontSize:'16px',
+                                                      
+                                                        '& fieldset': {
+                                                            borderColor: error.Store_Name,
+                                                        },
+                                                    },
+                                                    '& .MuiOutlinedInput-input':{
+                                                    padding:' 10px',
+                                                    },
+                                                    "& label": {
+                                                        fontSize: 13,
+                                                        color: "red",
+                                                        "&.Mui-focused": {
+                                                            marginLeft: 0,
+                                                            color: "red",
+                                                        }
+                                                    },
+                                                    '& .MuiSelect-select':{
+                                                        fontSize:'16px',
+                                                        color:'rgb(133, 133, 133)',
+                                                    }
+                                                    
+                                                }}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -664,10 +857,10 @@ export default function Storepopup() {
                               
                                         <div className={'imagefeild_popus ' + (image ? null : "img_store")} >
 
-                                            <div className={'col  ' + (image ? null : "")}>
+                                        
                                                 {
                                                     LicenceImage ? 
-                                                    <div>
+                                                    <div className='uploadedImg'>
                                                         <img src={URL.createObjectURL(LicenceImage)} alt="" className=' ' style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
                                                         <span   >
                                                             <IconButton onClick={licenceFileInput} style={{ position: " relative ", top: "-20px" }}>
@@ -677,48 +870,68 @@ export default function Storepopup() {
                                                     </div>
                                                      :
                                                     <label htmlFor="Licence">
-                                                        <AiOutlineCloudUpload style={{ fontSize: "50px", borderradius: "66px", color: "green", position: "relative", bottom: "-34px" }} ></AiOutlineCloudUpload >
+                                                        <AiOutlineCloudUpload color='#9e9b9b' style={{ fontSize: "50px", borderradius: "66px", color: "#9e9b9b", }} ></AiOutlineCloudUpload >
                                                     </label>
                                                 }
 
 
-                                            </div>
+                                      
 
                                             <p className="file-name"></p>
-
                                         </div>
                                    
                                 </div>
-                            
-                                    <div className='lg_ip_feild'>
-                                        <label>  Status:   </label>
-                                        <Select
-                                            name='Status'
-                                            value={Store.Status}
-                                            onChange={handleChange}
-                                            size="small"
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}
-                                        >
+                                <div className='lg_ip_feild'>
+                                    <label>  Status:   </label>
+                                    <Select
+                                        name='Status'
+                                        value={Store.Status}
+                                        onChange={handleChange}
+                                        size="small"
+                                        inputProps={{ 'aria-label': 'Without label' }}  sx={{
+                                            width:'100%',
+                                            '& .MuiOutlinedInput-root': {
+                                                fontSize:'16px',
+                                              
+                                                '& fieldset': {
+                                                    borderColor: error.Store_Name,
+                                                },
+                                            },
+                                            '& .MuiOutlinedInput-input':{
+                                            padding:' 10px',
+                                            },
+                                            "& label": {
+                                                fontSize: 13,
+                                                color: "red",
+                                                "&.Mui-focused": {
+                                                    marginLeft: 0,
+                                                    color: "red",
+                                                }
+                                            },
+                                            '& .MuiSelect-select':{
+                                                fontSize:'16px',
+                                                color:'rgb(133, 133, 133)',
+                                            }
+                                            
+                                        }}
+                                    >
 
-                                            <MenuItem value={"Active"} style={{ fontSize: 15 }}>Active</MenuItem>
-                                            <MenuItem value={"Hide"} style={{ fontSize: 15 }}>Hide</MenuItem>
+                                        <MenuItem value={"Active"} style={{ fontSize: 15 }}>Active</MenuItem>
+                                        <MenuItem value={"Hide"} style={{ fontSize: 15 }}>Hide</MenuItem>
 
-                                        </Select>
-                                    </div>
+                                    </Select>
+                                </div>
                                
                                 <div className='lg_ip_feild center top' >
                                     <button className='btn Sub_button' autoFocus onClick={Submit} >
                                         Add Store
                                     </button>
                                 </div>
-                            </div>
-
-                     
-
+                        </div>
                     </div>
                 </DialogContent>
                 <DialogActions>
-                    <Button sx={{ color: "#31B665" }} autoFocus onClick={handleClose}>
+                    <Button sx={{ color: "#31B665",fontSize:'18px' }} autoFocus onClick={handleClose}>
                         Exit
                     </Button>
                 </DialogActions>
