@@ -83,13 +83,12 @@ export default function NewsEdit(props) {
 
     const [error, seterror] = React.useState({
         Title: "",
-        Image: " ",
+        Image: "",
         Meta_Description: "",
         Url_slug: "",
         Meta_title: "",
         Alt_Text: "",
         Link: ""
-
     })
     const [massage, setmassage] = React.useState({
         Title: "",
