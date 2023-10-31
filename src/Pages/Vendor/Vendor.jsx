@@ -52,7 +52,6 @@ const Vendor = () => {
                 'Authorization': `Bearer ${token_data}`
             }
         }).then(response => {
-            console.log(response.data , 'vendor data')
             let newdata = response.data.data.map((item,index)=>{
                
                 var mydate = new Date(item.RegisterDate);
@@ -194,11 +193,9 @@ const Vendor = () => {
 
      function SubmitEditData(params) {
         const form = {
-
-            "name": params.row.name,
-            "status": params.row.status === "Active" ? "Hide" : "Active"
+            "status": params.formattedValue === "Active" ? "Hide" : "Active"
         }
-        axios.post(`https://api.cannabaze.com/AdminPanel/UpdateProfileForVendor/${params.row.id}`, form, {
+        axios.post(`https://api.cannabaze.com/AdminPanel/UpdateProfileForVendor/${params.id}`, form, {
 
             headers: {
                 'Authorization': `Bearer ${token_data}`
