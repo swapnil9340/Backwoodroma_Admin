@@ -190,7 +190,7 @@ export default function StoreEdit(props) {
                            
 
                                 <div className='Add_Category center' style={{marginTop:"2%"}}><h2> Edit Store  </h2>  </div>
-                                <div className='col-6 lg_ip_feild'>
+                                <div className='col-sm-6 lg_ip_feild'>
                                         <label> Store Name: </label>
                                         <TextField type="text" placeholder='Add  Sub Category' id="outlined-basic" variant="outlined" name='Store_Name' value={Store.Store_Name} style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange} 
@@ -216,7 +216,7 @@ export default function StoreEdit(props) {
                                                 }
                                             }}/>
                                 </div>
-                                <div className='col-6 lg_ip_feild'>
+                                <div className='col-sm-6 lg_ip_feild'>
                                   
                                         <label> City Name:</label>
                                         <Select
@@ -259,7 +259,7 @@ export default function StoreEdit(props) {
                                         </Select>
                                     
                                 </div>
-                                <div className='col-6 lg_ip_feild'>
+                                <div className='col-sm-6 lg_ip_feild'>
                                    
                                         <label> Store Type:  </label>
                                 
@@ -304,7 +304,7 @@ export default function StoreEdit(props) {
                                         </Select>
                                 
                                 </div>
-                                <div className='col-6 lg_ip_feild'>
+                                <div className='col-sm-6 lg_ip_feild'>
                                         <label> LicenceNo: </label>
                                         <TextField type="text" placeholder='Add LicenceNo' id="outlined-basic" variant="outlined" name='LicenceNo' value={Store.LicenceNo} style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange}   sx={{
@@ -329,7 +329,7 @@ export default function StoreEdit(props) {
                                                 }
                                             }} />
                                 </div>
-                                <div className='col-6 lg_ip_feild'>
+                                <div className='col-sm-6 lg_ip_feild'>
                                         <label>  Store Address:  </label>
                                         <TextField type="text" placeholder='Add Store Address:' id="outlined-basic" variant="outlined" name='Store_Address' value={Store.Store_Address} style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange}    sx={{
@@ -354,7 +354,7 @@ export default function StoreEdit(props) {
                                                 }
                                             }}/>
                                 </div>
-                                <div className='col-6 lg_ip_feild'>
+                                <div className='col-sm-6 lg_ip_feild'>
                                   
                                         <label  >
                                             Stores Website:
@@ -385,7 +385,7 @@ export default function StoreEdit(props) {
                                             }}/>
                                     
                                 </div>
-                                <div className='col-6 lg_ip_feild'>
+                                <div className='col-sm-6 lg_ip_feild'>
                                         <label  >  Stores MobileNo: </label>
                                         <TextField type="text" placeholder='Add Stores MobileNo:' id="outlined-basic" variant="outlined" name='Stores_MobileNo' value={Store.Stores_MobileNo} style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange}   sx={{
@@ -433,7 +433,7 @@ export default function StoreEdit(props) {
                                             </div>
                                         
                                 </div>
-                                <div className='col-6 lg_ip_feild'>
+                                <div className='col-sm-6 lg_ip_feild'>
                                   
                                         <label>  Status: </label>
                                         <Select
