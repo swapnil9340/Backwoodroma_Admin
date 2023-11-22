@@ -115,11 +115,6 @@ export default function News() {
                             </h2></div>
                             <div className="col cat_but popup_A" >  <span className='btn cat_pop_btn'> <h2> <Newspop></Newspop></h2></span></div>
                         </div>
-
-
-
-
-
                         <div className='col-12' >
                             <Box
                                 sx={{

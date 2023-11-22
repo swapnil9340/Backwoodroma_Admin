@@ -45,22 +45,11 @@ export default function NewsDropDown() {
                 <div className=''>
                     <ul className='drop_down  ' id="News" >
                         <div className="line">
-                            <Link to="/News"
-                                className=''
-                            > <li className='submenu '>
-                                    <span className='link_Name'>News </span></li></Link>
-                            <Link to="/Review"
-                                className=''
-                            > <li className='submenu '>
-                                    <span className='link_Name'>Review </span></li></Link>
-
-                            <Link to="/NewsCategory"
-                                className=''
-                            > <li className='submenu '>
-                                    <span className='link_Name'>Category </span></li></Link>
-                            <Link to="/NewsSubCategory"
-                                className=''
-                            > <li className='submenu'><span className='link_Name'>Sub Category</span></li></Link>
+                            <Link to="/News"   className=''> <li className='submenu '>   <span className='link_Name'>News </span></li></Link>
+                            <Link to="/Review"  className=''  > <li className='submenu '> <span className='link_Name'>Review </span></li></Link>
+                            <Link to="/aboutus"  className=''  > <li className='submenu '> <span className='link_Name'>About us </span></li></Link>
+                            <Link to="/NewsCategory"   className='' > <li className='submenu '> <span className='link_Name'>Category </span></li></Link>
+                            <Link to="/NewsSubCategory" className='' > <li className='submenu'><span className='link_Name'>Sub Category</span></li></Link>
 
 
 

@@ -27,6 +27,7 @@ import RoleDetailsAndPermission from '../Pages/Settings/RolesAndPermission/RoleD
 import UserEditProfile from '../Pages/UserProfile/UserEditProfile';
 import PromotionalBanner from '../Pages/PromotionalBanner/PromotionalBanner';
 import PromotionalBannerList from '../Pages/PromotionalBanner/PromotionalBannerList';
+import Aboutus from '../Pages/Aboutus/Aboutus';
 export default function Router() {
  
  
@@ -45,12 +46,12 @@ export default function Router() {
          <Route  path="/States" element={<Protected Component={State} />} /> 
          <Route  path="/City" element={<Protected Component={City} />} /> 
          <Route  path="/Tax" element={<Protected Component={Tax} />} /> 
-
+         <Route  path="/aboutus" element={<Protected Component={Aboutus} />} /> 
          <Route  path="/Store" element={<Protected Component={Store} />} />   
          <Route  path="/Brand" element={<Protected Component={Brand} />} />   
          <Route  path="/News" element ={<Protected Component ={News}/>}/>
-        <Route path='/Review' element={<Protected Component ={Review}/>}/>
-        <Route path='/Signup' element={<Protected Component={Signup}/>} />
+         <Route path='/Review' element={<Protected Component ={Review}/>}/>
+         <Route path='/Signup' element={<Protected Component={Signup}/>} />
          <Route  path="/NewsCategory" element ={<Protected Component ={NewsCategory}/>}/>
          <Route  path="/NewsSubCategory" element ={<Protected Component ={NewsSubCategory}/>}/>
          <Route  path="/Vendor" element ={<Protected Component ={Vendor}/>}/>
@@ -63,7 +64,8 @@ export default function Router() {
         <Route path='/ManageRole' element={<Protected Component={ManageRole}/>}/>
         <Route path='/RoleDetailsAndPermission' element={<Protected Component={RoleDetailsAndPermission}/>}/>
         <Route path='/UserEditProfile' element={<Protected Component={UserEditProfile}/>}/>
-        <Route path='/PromotionalBanner' element={<Protected Component={PromotionalBanner}/>}/>
+        {/* <Route path='/PromotionalBanner' element={<Protected Component={PromotionalBanner}/>}/> */}
+        <Route path='/PromotionalBanner' element={<PromotionalBanner/>}/>
         <Route path='/PromotionalBannerList' element={<Protected Component={PromotionalBannerList}/>}/>
 
         <Route   path='*' element={ <Pagenotfound></Pagenotfound>} />

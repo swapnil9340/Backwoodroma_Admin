@@ -18,18 +18,11 @@ export default function CategoryDropDown() {
             SetArrow("")
         }
     }
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
         // $('#answer1').slideToggle();
         $('#Category').hide();
         // console.log($('#Category').hide())
     }, [])
-
-
-
-
-
     return (
         <div onClick={toggleAnswer1} >
 

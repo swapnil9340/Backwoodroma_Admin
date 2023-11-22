@@ -26,6 +26,12 @@ const useStyles = makeStyles({
   },
   textFieldFocusBorderColor: {
     "& .MuiOutlinedInput-root": {
+      width:'100%',
+      "& .MuiOutlinedInput-input": {
+        backgroundColor:'White',
+        padding:'8px 15px',
+        fontSize:'16px',
+      },
       " &.Mui-focused fieldset": {
         borderColor: "#31B665",
       },
@@ -381,7 +387,7 @@ UserEditButton:{
     "& .MuiSvgIcon-root": {
       fill: "#31B665",
       display:"flex",
-      fontSize:"20px"
+      fontSize:"25px"
     },
    },
   PromotionalBtn:{

@@ -1328,13 +1328,14 @@ color:#3C3C3C
     color: #000000;
     font-weight: 700;
     font-size: 24px;
-    margin-left: 10px;
+    margin-bottom: 20px;
 }
 .promotionSelectWidth{
     width: 100%;
-    height: 32px;
     border-radius: 5px;
     border-color: #BEBEBE;
+    font-size: 16px;
+    padding: 8px 15px;
 }
 .promotionalImage{
     height: 95px;
@@ -1350,8 +1351,14 @@ color:#3C3C3C
   
 }
 .PromotionalMainContainer{
-    display: flex;
-    justify-content: center;
+    width: 580px;
+    margin: 0 auto;
+    background-color: #FAFAFA;
+    padding: 40px;
+}
+.label_custom{
+    font-size: 18px;
+    font-weight: 600;
 }
 @media(max-width:992px){
     .PromotionalBannerContainer{
@@ -1363,6 +1370,10 @@ color:#3C3C3C
     height: auto;
 } */
 @media(max-width:500px){
+    .PromotionalMainContainer{
+        width: 100%;
+        padding: 25px;
+    }
     .promotionalImage {
         height: 50px;
         width: 68px;
