@@ -66,7 +66,8 @@ export default function Router() {
         <Route path='/UserEditProfile' element={<Protected Component={UserEditProfile}/>}/>
         {/* <Route path='/PromotionalBanner' element={<Protected Component={PromotionalBanner}/>}/> */}
         <Route path='/PromotionalBanner' element={<PromotionalBanner/>}/>
-        <Route path='/PromotionalBannerList' element={<Protected Component={PromotionalBannerList}/>}/>
+        {/* <Route path='/PromotionalBannerList' element={<Protected Component={PromotionalBannerList}/>}/> */}
+        <Route path='/PromotionalBannerList' element={<PromotionalBannerList/>} />
 
         <Route   path='*' element={ <Pagenotfound></Pagenotfound>} />
        
