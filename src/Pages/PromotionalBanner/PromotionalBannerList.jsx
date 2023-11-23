@@ -6,8 +6,11 @@ import { LoadingButton } from "@mui/lab"
 import Select from '@mui/material/Select';
 import Box from "@mui/material/Box"
 import List from "@material-ui/core/List";
+import Swal from 'sweetalert2'
+
 import ListItem from "@material-ui/core/ListItem";
 import axios from "axios";
+import { IoEyeSharp } from "react-icons/io5";
 import useStyles from "../../Style"
 import {GrFormAdd} from "react-icons/gr"
 import { LazyLoadImage } from "react-lazy-load-image-component"
@@ -20,6 +23,7 @@ import { AiFillDelete } from 'react-icons/ai';
 import Icon from "@material-ui/core/Icon";
 const PromotionalBannerList = () => {
     const navigate=useNavigate()
+    const Swal = require('sweetalert2')
     const classes = useStyles()
     const PromotionListRef = React.useRef(null)
     const [SelectId, SetSelectedId] = React.useState()
@@ -32,9 +36,41 @@ const PromotionalBannerList = () => {
        React.useEffect(() => {
         axios.get("https://api.cannabaze.com/UserPanel/Get-PromotionalBanners/").then((response) => {
             Setdatatable(response.data);
+            console.log(response.data , 'responsedata')
         });
-      }, []);
-   
+       }, []);
+      function Deletebanner(id){
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to Delete this Banner!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#31B655",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                const config = {
+                    headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMTY2MzgzLCJpYXQiOjE3MDA2MzAzODMsImp0aSI6ImNjNDFhYjc2ZjZiZDRlNDhiNjViNjY1OWNlMzc3MThhIiwidXNlcl9pZCI6MX0.9UWz_3hpbiA4v2ji4Xhac9lzHMkumWD3RACnENRvHcQ` }
+                  };
+                axios.delete(`https://api.cannabaze.com/AdminPanel/delete-PromotionalBanners/${id}`, config).then((res)=>{
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                      });
+                }).catch((error)=>{
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
+                        footer: '<a href="#">Why do I have this issue?</a>'
+                      });
+                })
+            
+            }
+          });
+      }
       const columns= [
         { field: 'id', headerName: 'ID', width: 90 },
         {
@@ -54,15 +90,25 @@ const PromotionalBannerList = () => {
           headerName: 'State',
           type: 'number',
           minWidth: 80,
-
           editable: false,
+         
         },
         {
           field: 'Status',
           headerName: 'status',
-          description: 'This column has a value getter and is not sortable.',
-          sortable: true,
+        
+          sortable: false,
           minWidth: 80,
+          renderCell: (params) => {
+            const onClick = (e) => {
+                e.stopPropagation(); 
+            }            
+            return (
+                <>
+                   <IoEyeSharp  size={25} color="#31B655"/>
+                </>
+            )
+        }
         },
         {
             field: 'edit',
@@ -113,7 +159,7 @@ const PromotionalBannerList = () => {
                                    
                                     Edit
                                 </ListItem>
-                                <ListItem button className={classes.orderEditListitem} onClick={(e)=>{e.stopPropagation()}}>
+                                <ListItem button className={classes.orderEditListitem} onClick={(e)=>{e.stopPropagation() ;Deletebanner(params.row.id)}}>
                                 
                                    <Icon className={classes.orderEditListIcon }><AiFillDelete color='31B665'/> </Icon>
                                    Delete
@@ -149,9 +195,9 @@ const PromotionalBannerList = () => {
     const PromotionalBannerListArray = [
         { id: 1,imgUrl:{userprofile}  ,title: "Post title", country: "India", state: "MP", status: "Active" },
         { id: 2,imgUrl:{userprofile} , title: "Post title", country: "India", state: "MP", status: "Active" },]
-    const PromotionBannerPopArray = [{ id: 1, name: "View Post" }, { id: 2, name: "Share Post" },
-    { id: 3, name: "View Report" },
-    { id: 4, name: "Share Report" }]
+        const PromotionBannerPopArray = [{ id: 1, name: "View Post" }, { id: 2, name: "Share Post" },
+        { id: 3, name: "View Report" },
+        { id: 4, name: "Share Report" }]
     return (
         <div className="container-fluid">
             <div className="row">
@@ -249,8 +295,8 @@ const PromotionalBannerList = () => {
 
                     </div>
                     <div>
-                    <Box sx={{ height: 400, width: '100%' }}>
-                     <DataGrid
+                    <Box sx={{height:"400px ", width: '100%' }}>
+                        <DataGrid
                             rows={rows}
                             columns={columns}
                             initialState={{
