@@ -3,23 +3,136 @@ import { IoMdArrowBack } from "react-icons/io"
 import { IconButton } from "@mui/material"
 import React from "react"
 import { LoadingButton } from "@mui/lab"
+import Select from '@mui/material/Select';
 import Box from "@mui/material/Box"
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import axios from "axios";
 import useStyles from "../../Style"
 import {GrFormAdd} from "react-icons/gr"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import userprofile from "./image/userprofile.jpg"
 import { useNavigate } from "react-router-dom"
-// import {AiOutlinePlus} from "react-icons/ai"
+import { DataGrid  } from '@mui/x-data-grid';
+import { FaEdit } from 'react-icons/fa';
+import { BiDuplicate } from 'react-icons/bi';
+import { AiFillDelete } from 'react-icons/ai';
+import Icon from "@material-ui/core/Icon";
 const PromotionalBannerList = () => {
     const navigate=useNavigate()
     const classes = useStyles()
     const PromotionListRef = React.useRef(null)
     const [SelectId, SetSelectedId] = React.useState()
+    const [datatable, Setdatatable] = React.useState([])
     const [OpenSelect, SetOpenSelected] = React.useState(false)
     const handleThreeDot = (ids) => {
         SetSelectedId(ids)
         SetOpenSelected(!OpenSelect)
     }
+       React.useEffect(() => {
+        axios.get("https://api.cannabaze.com/UserPanel/Get-PromotionalBanners/").then((response) => {
+            Setdatatable(response.data);
+        });
+      }, []);
+   
+      const columns= [
+        { field: 'id', headerName: 'ID', width: 90 },
+        {
+          field: 'Title',
+          headerName: 'Title',
+          minWidth: 80,
+          editable: false,
+        },
+        {
+          field: 'Country',
+          headerName: 'Country',
+          minWidth: 80,
+          editable: false,
+        },
+        {
+          field: 'State',
+          headerName: 'State',
+          type: 'number',
+          minWidth: 80,
+
+          editable: false,
+        },
+        {
+          field: 'Status',
+          headerName: 'status',
+          description: 'This column has a value getter and is not sortable.',
+          sortable: true,
+          minWidth: 80,
+        },
+        {
+            field: 'edit',
+            headerName: 'Edit',
+            editable: false,
+            sortable: false,
+            maxWidth: 100,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
+            renderCell: (params) => {
+                const onClick = (e) => {
+                    e.stopPropagation(); 
+                }            
+                return (
+                    <>
+                        <Select
+
+                            IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label"
+                            sx={{
+                                boxShadow: "none",
+                                ".MuiOutlinedInput-notchedOutline": { border: 0 },
+                                "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
+                                {
+                                    border: 0,
+                                    outline: "none"
+
+                                },
+                                "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+                                {
+                                    border: 0,
+                                    outline: "none"
+                                },
+                                "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
+                                "&:hover": {
+                                    ".MuiSelect-icon": {
+                                        color: "#31B665"
+                                    }
+                                },
+                            }}
+                        >
+                               <List className={classes.orderEditList}>
+
+                              
+                                <ListItem button className={classes.orderEditListitem}  onClick={(e)=>{e.stopPropagation()}}>
+                                 
+                                <Icon className={classes.orderEditListIcon }><FaEdit  color='31B665'/> </Icon>
+                                   
+                                    Edit
+                                </ListItem>
+                                <ListItem button className={classes.orderEditListitem} onClick={(e)=>{e.stopPropagation()}}>
+                                
+                                   <Icon className={classes.orderEditListIcon }><AiFillDelete color='31B665'/> </Icon>
+                                   Delete
+                                </ListItem>
+                               
+                          
+
+                           
+                              </List>
+                        </Select>
+                    </>
+                )
+            }
+
+        },
+      ];
+      
+      const rows =datatable
+      
     React.useEffect(() => {
         const handleClickOutsidePromotionList = (event) => {
             if (PromotionListRef.current && !PromotionListRef.current.contains(event.target)) {
@@ -132,10 +245,26 @@ const PromotionalBannerList = () => {
                             </tbody>
 
                         </table>
-
+                    
 
                     </div>
-
+                    <div>
+                    <Box sx={{ height: 400, width: '100%' }}>
+                     <DataGrid
+                            rows={rows}
+                            columns={columns}
+                            initialState={{
+                            pagination: {
+                                paginationModel: {
+                                pageSize: 5,
+                                },
+                            },
+                            }}
+                            pageSizeOptions={[5]}
+                            disableRowSelectionOnClick
+                        />
+                        </Box>
+                     </div>
                 </div>
 
 

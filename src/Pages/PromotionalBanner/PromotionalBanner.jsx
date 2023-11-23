@@ -38,11 +38,6 @@ const PromotionalBanner = () => {
           const s = fromdaa?.destop_immage?.filter((item, index) => index !== e);
           setformdata({...fromdaa , destop_immage:s});
       }
-    //   React.useEffect(() => {
-    //     axios.get("https://api.cannabaze.com/UserPanel/Get-PromotionalBanners/").then((response) => {
-    //      console.log(response.data);
-    //     });
-    //   }, []);
       function submitFunction(){
         let baseurl =''
         if(bannertpe === 'Promotional Banner'){
