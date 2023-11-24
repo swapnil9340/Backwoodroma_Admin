@@ -26,6 +26,7 @@ const PromotionalBanner = () => {
         destop_immage:[],
     })
     const classes = useStyles()
+    const [loader, Setloader] = React.useState(false)
       const config = {
         "Content-Type": "multipart/form-data",
         headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMTY2MzgzLCJpYXQiOjE3MDA2MzAzODMsImp0aSI6ImNjNDFhYjc2ZjZiZDRlNDhiNjViNjY1OWNlMzc3MThhIiwidXNlcl9pZCI6MX0.9UWz_3hpbiA4v2ji4Xhac9lzHMkumWD3RACnENRvHcQ` }
@@ -46,16 +47,22 @@ const PromotionalBanner = () => {
             baseurl ="https://api.cannabaze.com/AdminPanel/Add-HomePageBanner/"
         }
         let form_data = new FormData();
+          
+        if(fromdaa.destop_immage.length !==0 &&  fromdaa.mobile_immage.length !==0){
+            Setloader(true)
             form_data.append('Banner', fromdaa?.destop_immage[0], fromdaa?.destop_immage[0].name);
             form_data.append('Country', fromdaa.country);
             form_data.append('Link' ,fromdaa.link);
             form_data.append('State',fromdaa.state );
             form_data.append('Title',fromdaa.title);
             form_data.append('mobile', fromdaa?.mobile_immage[0], fromdaa?.mobile_immage[0].name);
-   
-        axios.post( baseurl , form_data , config).then((res)=>{
-           console.log(res)
-        })
+            axios.post( baseurl , form_data , config).then((res)=>{
+                Setloader(false)
+                navigate('/PromotionalBannerList')
+            })
+        }else{
+            window.alert("Please fill all Require Feild")
+        }
       }
       function uploadSingleFile(e) {
         let ImagesArray=e.target.files;
@@ -124,7 +131,7 @@ const PromotionalBanner = () => {
                                                 </select>
                                             </div>
                                             <div className="feild_box ">
-                                                <label className="label_custom">Destop Image</label>
+                                                <label className="label_custom">Destop Image<sup className="requiesign">*</sup></label>
 
                                                 <form className="bannerImagebox row ">
                                                     <div className="col-12">
@@ -178,7 +185,7 @@ const PromotionalBanner = () => {
                                                 </form>
                                             </div>
                                             <div className="feild_box ">
-                                                <label className="label_custom">Mobile Image</label>
+                                                <label className="label_custom">Mobile Image<sup className="requiesign">*</sup></label>
 
                                                 <form className="bannerImagebox row ">
                                                     <div className="col-12">
@@ -246,6 +253,9 @@ const PromotionalBanner = () => {
                 </div>
 
             </div>
+            {loader && <div className="loadercontainer">
+              <div class="loader4"></div>
+            </div>}
         </div>
     )
 }

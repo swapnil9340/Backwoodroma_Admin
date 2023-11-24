@@ -146,6 +146,12 @@ function Navbar() {
                 </div>
 
               </Link>
+              <Link to="/PromotionalBannerList" className="list-group-item list-group-item-action py-2 ripple">
+                <div className='side_bar_option'>
+                  <span><HiOutlineReceiptTax></HiOutlineReceiptTax></span>
+                  <span className='side_penal_link'>Banner</span>
+                </div>
+              </Link>
               <Link to="/Settings" className="list-group-item list-group-item-action py-2 ripple">
                 <div className='side_bar_option'>
                   <span><FiSettings></FiSettings></span>
