@@ -1,19 +1,14 @@
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import React,{useState} from "react"
-import { IoMdArrowBack } from "react-icons/io"
 import { IconButton } from "@mui/material"
 import TextField from "@mui/material/TextField"
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Radio from '@mui/material/Radio';
 import CloseIcon from '@mui/icons-material/Close';
 import { MdOutlineCloudUpload } from "react-icons/md"
 import useStyles from "../../Style";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { useNavigate } from "react-router-dom"
 import axios from "axios";
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControl from '@mui/material/FormControl';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -28,10 +23,10 @@ const style = {
   overflowY:'scroll'
 };
 
-const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,Setloader}) => {
+const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloader}) => {
    console.log(data , 'data')
    const navigate=useNavigate()
-    const [bannertpe,setbannertype]=useState("Promotional Banner")
+    
     const [fromdaa ,setformdata] = useState({
         title:data.Title,
         country:data.Country,
@@ -55,7 +50,7 @@ const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,Setloader}) => {
       }
       function submitFunction(){
         let baseurl =''
-        if(bannertpe === 'Promotional Banner'){
+        if(bannertype === 'Promotional Banner'){
             baseurl =`https://api.cannabaze.com/AdminPanel/update-PromotionalBanners/${data.id}` 
         }else{
             baseurl ="https://api.cannabaze.com/AdminPanel/Add-HomePageBanner/"

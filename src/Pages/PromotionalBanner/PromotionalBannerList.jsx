@@ -35,9 +35,9 @@ const PromotionalBannerList = () => {
     };
     const [datatable, Setdatatable] = React.useState([])
     const [editdata, Seteditdata] = React.useState([])
-   
+    const [getdataurl,Setgetdataurl] = React.useState('https://api.cannabaze.com/AdminPanel/Get-PromotionalBanners/')
         React.useEffect(() => {
-            axios.get("https://api.cannabaze.com/AdminPanel/Get-PromotionalBanners/" , config ).then((response) => {
+            axios.get(getdataurl , config ).then((response) => {
                 Setdatatable(response.data);
                 console.log(response.data , 'responsedata')
             });
@@ -64,7 +64,7 @@ const PromotionalBannerList = () => {
                     }
                     axios.delete(basedeleturl, config).then((res)=>{
                         
-                        axios.get("https://api.cannabaze.com/AdminPanel/Get-PromotionalBanners/" , config ).then((response) => {
+                        axios.get(getdataurl , config ).then((response) => {
                             Setdatatable(response.data);
                             Setloader(false)
                             Swal.fire({
@@ -94,10 +94,15 @@ const PromotionalBannerList = () => {
                 sts = "Active"
             }
             Setloader(true)
-            axios.post(`https://api.cannabaze.com/AdminPanel/update-PromotionalBanners/${data.id}` ,{
+            let basedeleturl = `https://api.cannabaze.com/AdminPanel/update-HomePageBanner/${data.id}`
+                        
+                    if(bannertype === "Promotional Banner"){
+                        basedeleturl =`https://api.cannabaze.com/AdminPanel/update-PromotionalBanners/${data.id}`
+                    }
+            axios.post(basedeleturl ,{
                 "status" : sts
             } ,config).then((res)=>{
-                axios.get("https://api.cannabaze.com/AdminPanel/Get-PromotionalBanners/" , config ).then((response) => {
+                axios.get(getdataurl , config ).then((response) => {
                 Setdatatable(response.data);
                 Setloader(false)
             });
@@ -227,7 +232,14 @@ const PromotionalBannerList = () => {
                 document.removeEventListener('click', handleClickOutsidePromotionList, true);
             };
         }, [SelectId]);
-        
+        function handelbannertype(e){
+            Setbannertype(e.target.value)
+            if(e.target.value === "Promotional Banner"){
+                Setgetdataurl("https://api.cannabaze.com/AdminPanel/Get-PromotionalBanners/")
+            }else{
+                Setgetdataurl('https://api.cannabaze.com/AdminPanel/Get-HomePageBanner/')
+            }
+        }
     return (
         <div className="container-fluid">
             <div className="row">
@@ -237,11 +249,11 @@ const PromotionalBannerList = () => {
                             <IconButton onClick={()=>navigate("/")}><IoMdArrowBack /></IconButton><span className="promotionBackBtnHead">Back</span>
                         </div>
                         <div className="col-4">
-                            <h2>Promotional Banner</h2>
+                           
                             <FormControl className={classes.formControl}>
                                 <Select
                                     value={bannertype}
-                                    onChange={(e)=>{Setbannertype(e.target.value)}}
+                                    onChange={(e)=>{ handelbannertype(e)}}
                                     disableUnderline
                                 >
                                    
@@ -284,7 +296,7 @@ const PromotionalBannerList = () => {
             {loader && <div className="loadercontainer">
               <div class="loader4"></div>
             </div>}
-            <Bannerupdatemodel openupdate={openupdate} setOpenupdate={setOpenupdate} Setloader={Setloader} data={editdata}/>
+            <Bannerupdatemodel openupdate={openupdate} bannertype={bannertype} setOpenupdate={setOpenupdate} Setloader={Setloader} data={editdata}/>
         </div>
     )
 }
