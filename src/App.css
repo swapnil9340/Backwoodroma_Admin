@@ -1848,3 +1848,6 @@ input:focus+label {
 .requiesign{
   color: red;
 }
+.cursor-pointer{
+  cursor: pointer;
+}

@@ -15,7 +15,7 @@ import { IoEyeSharp } from "react-icons/io5";
 import useStyles from "../../Style"
 import {GrFormAdd} from "react-icons/gr"
 import { useNavigate } from "react-router-dom"
-import { DataGrid  } from '@mui/x-data-grid';
+import { DataGrid , GridRowSpacingParams } from '@mui/x-data-grid';
 import { FaEdit } from 'react-icons/fa';
 import { AiFillDelete } from 'react-icons/ai';
 import Icon from "@material-ui/core/Icon";
@@ -113,18 +113,20 @@ const PromotionalBannerList = () => {
             setOpenupdate(true)
         }
         const columns= [
-            { field: 'id', headerName: 'ID', width: 90 },
+            { field: 'id', headerName: 'ID', width: 90  },
             {
             field: 'Title',
             headerName: 'Title',
             minWidth: 80,
             editable: false,
+            flex: 1,
             },
             {
             field: 'Country',
             headerName: 'Country',
             minWidth: 80,
             editable: false,
+            flex: 1,
             },
             {
             field: 'State',
@@ -132,22 +134,62 @@ const PromotionalBannerList = () => {
             type: 'number',
             minWidth: 80,
             editable: false,
-            
+            flex: 1,
+            headerAlign: 'left',
+            align: 'left',
+            },
+            {
+                field: 'Banner',
+                headerName: 'Destop Banner',
+                flex: 1,
+                sortable: false,
+                minWidth: 200,
+                renderCell: (params) => {
+                    const onClick = (e) => {
+                        e.stopPropagation(); 
+                    }            
+                    return (
+                       
+                        <span>
+                             <img src={params.row.Banner} alt="" style={{ width: "180px", height: "80px", borderRadius: "1px" }} />                                     
+                        </span>
+                         
+                    )
+                }
+            },
+            {
+                    field: 'mobile',
+                    headerName: 'Mobile Banner',
+                    flex: 1,
+                    sortable: false,
+                    minWidth: 150,
+                    renderCell: (params) => {
+                        const onClick = (e) => {
+                            e.stopPropagation(); 
+                        }            
+                        return (
+                           <span>
+                             <img src={params.row.mobile} alt="" style={{ width: "140px", height: "80px", borderRadius: "1px" }} />                                     
+                           </span>
+                        )
+                    }
             },
             {
             field: 'Status',
             headerName: 'status',
-            
+            flex: 1,
             sortable: false,
             minWidth: 80,
+            headerAlign: 'center',
+            align: 'center',
             renderCell: (params) => {
                 const onClick = (e) => {
                     e.stopPropagation(); 
                 }            
                 return (
-                    <span onClick={()=>{handelstatus(params.row)}}>
+                    <span className="cursor-pointer" onClick={()=>{handelstatus(params.row)}}>
                     
-                    {params.row.status === "Active" ? <IoEyeSharp  size={25} color="#31B655"/> : <FaEyeSlash  size={25} color="#31B655"/>}
+                    {params.row.status === "Active" ? <IoEyeSharp  size={25} color="#31B655" className="cursor-pointer"/> : <FaEyeSlash className="cursor-pointer"  size={25} color="#31B655"/>}
                     </span>
                 )
             }
@@ -197,7 +239,7 @@ const PromotionalBannerList = () => {
                                 
                                     <ListItem button className={classes.orderEditListitem} onClick={()=>{editdat(params.row)}} >
                                     
-                                    <Icon className={classes.orderEditListIcon }><FaEdit  color='31B665'/> </Icon>
+                                       <Icon className={classes.orderEditListIcon }><FaEdit  color='31B665'/> </Icon>
                                     
                                         Edit
                                     </ListItem>
@@ -240,6 +282,12 @@ const PromotionalBannerList = () => {
                 Setgetdataurl('https://api.cannabaze.com/AdminPanel/Get-HomePageBanner/')
             }
         }
+        const getRowSpacing = React.useCallback((params: GridRowSpacingParams) => {
+            return {
+              top: params.isFirstVisible ? 0 : 5,
+              bottom: params.isLastVisible ? 0 : 5,
+            };
+          }, []);
     return (
         <div className="container-fluid">
             <div className="row">
@@ -255,6 +303,61 @@ const PromotionalBannerList = () => {
                                     value={bannertype}
                                     onChange={(e)=>{ handelbannertype(e)}}
                                     disableUnderline
+                                    MenuProps={{
+                                        sx: {
+                                            fontSize:'14px',
+                                            "& .MuiListItem-root":{
+                                                fontSize:'14px',
+
+                                            },
+                                            '& .MuiMenu-paper': {
+                                                backgroundColor: 'dark.primary',
+                                                color: '#333',
+                                                fontSize:'14px',
+                                            },
+                                            '& .MuiMenuItem-root:hover': {
+                                                backgroundColor: '#31B655bd',
+                                                color: '#fff',
+                                                fontSize:'14px',
+                                            },
+                                            '& .Mui-selected': {
+                                                backgroundColor: '#31B6555e',
+                                                color: 'text.white',
+                                                fontSize:'14px',
+                                            }
+                                        }
+                                    }}
+                                    sx={{
+                                        color: '#fff',
+                                        backgroundColor:'#31B655',
+                                        width:'200px',
+                                        fontSize:'16px',
+                                        padding:'0',
+                                       
+                                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: '#31B655',
+                                        },
+                                        '.MuiSvgIcon-root': {
+                                            color: '#fff'
+                                        },
+                                        '&:before': {
+                                            borderBottom: `1px solid #31B655`
+                                        },
+                                        '&:hover': {
+                                            ':before': {
+                                                borderBottom: `1px solid #31B655`
+                                            }
+                                        },
+                                        '& .MuiMenuItem-root': {
+                                            backgroundColor: 'dark.primary'
+                                        },
+                                        '& .MuiMenu-paper': {
+                                            backgroundColor: 'dark.primary'
+                                        }
+                                    }, {'@media(maxWidth: 568px)' : {
+                                        width:'100px',
+                                        fontSize:'14px',
+                                      }}}
                                 >
                                    
                                     <MenuItem  value={"Promotional Banner"}>
@@ -273,10 +376,16 @@ const PromotionalBannerList = () => {
                     </div>
                   
                     <div>
-                        <Box sx={{height:"400px ", width: '100%' }}>
+                        <Box sx={{height:"400px ", width: '100%' , fontSize:'18px' }}>
                         <DataGrid
                             rows={rows}
                             columns={columns}
+                            getRowSpacing={getRowSpacing}
+                            disableColumnMenu
+                            disableColumnFilter
+                            disableColumnSelector
+                            disableSelectionOnClick
+                            autoHeight
                             initialState={{
                             pagination: {
                                 paginationModel: {
@@ -285,7 +394,27 @@ const PromotionalBannerList = () => {
                             },
                             }}
                             pageSizeOptions={[5]}
-                            disableRowSelectionOnClick
+                            sx={{
+                                height:500,
+                                width: '100%',
+                                ".MuiDataGrid-columnHeaders": {
+                                    background: "#E1FFED",
+                                    fontSize:'18px',
+                                },
+                                '&  .MuiDataGrid-columnSeparator--sideRight': {
+                                    display: 'none',
+                                },
+                                '&.MuiDataGrid-root .MuiDataGrid-cell:focus': {
+                                    outline: 'none',
+                                },
+                                '& .MuiDataGrid-row': {
+                                    fontSize:'14px',
+                                },
+                                '& .MuiDataGrid-row:hover': {
+                                    backgroundColor: '#F0F0F0',
+                                },
+
+                            }}
                         />
                         </Box>
                      </div>
