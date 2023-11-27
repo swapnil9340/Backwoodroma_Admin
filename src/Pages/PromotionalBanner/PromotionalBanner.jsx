@@ -9,13 +9,15 @@ import CloseIcon from '@mui/icons-material/Close';
 import { MdOutlineCloudUpload } from "react-icons/md"
 import useStyles from "../../Style";
 import LoadingButton from "@mui/lab/LoadingButton";
+import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom"
 import axios from "axios";
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 const PromotionalBanner = () => {
     const navigate=useNavigate()
+    const cookies = new Cookies();
+    const token_data = cookies.get('Token_access')
     const [bannertpe,setbannertype]=useState("Promotional Banner")
     const [fromdaa ,setformdata] = useState({
         title:'',
@@ -29,7 +31,7 @@ const PromotionalBanner = () => {
     const [loader, Setloader] = React.useState(false)
       const config = {
         "Content-Type": "multipart/form-data",
-        headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMTY2MzgzLCJpYXQiOjE3MDA2MzAzODMsImp0aSI6ImNjNDFhYjc2ZjZiZDRlNDhiNjViNjY1OWNlMzc3MThhIiwidXNlcl9pZCI6MX0.9UWz_3hpbiA4v2ji4Xhac9lzHMkumWD3RACnENRvHcQ` }
+        headers: { Authorization: `Bearer ${token_data}` }
       };
       function uploaddestopFile(e) {
         let ImagesArray=e.target.files;
@@ -115,10 +117,8 @@ const PromotionalBanner = () => {
                                             <div className="feild_box ">
                                             <label htmlFor="country" className="label_custom">Country</label>
                                                 <select className="promotionSelectWidth"  onChange={(e)=>{setformdata({...fromdaa , country : e.target.value})}} name="country" id="country">
-                                                    <option value="India">India</option>
-                                                    <option value="Aus">Aus</option>
-                                                    <option value="SriLanka">SriLanka</option>
-
+                                                    <option value="USA">USA</option>
+                                                    <option value="cannada">Cannada</option>
                                                 </select>
                                             </div>
                                             <div className="feild_box ">

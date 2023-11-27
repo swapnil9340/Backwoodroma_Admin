@@ -1355,7 +1355,16 @@ color:#3C3C3C
     margin: 0 auto;
     background-color: #FAFAFA;
     padding: 40px;
+    overflow-y: scroll;
 }
+.PromotionalMainContainer::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .PromotionalMainContainer {
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+  }
 .label_custom{
     font-size: 18px;
     font-weight: 600;

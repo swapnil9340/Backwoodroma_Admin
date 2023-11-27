@@ -7,26 +7,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import { MdOutlineCloudUpload } from "react-icons/md"
 import useStyles from "../../Style";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { useNavigate } from "react-router-dom"
+import Cookies from 'universal-cookie';
 import axios from "axios";
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: "800px",
-  bgcolor: 'background.paper',
-  borderRadius: '8px',
-  boxShadow: 24,
-  p: 4,
-  height:'90vh',
-  overflowY:'scroll'
-};
-
 const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloader}) => {
-   console.log(data , 'data')
-   const navigate=useNavigate()
-    
     const [fromdaa ,setformdata] = useState({
         title:data.Title,
         country:data.Country,
@@ -35,13 +18,16 @@ const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloade
         mobile_immage:[],
         destop_immage:[],
     })
+    const cookies = new Cookies();
+    const token_data = cookies.get('Token_access')
     const classes = useStyles()
       const config = {
         "Content-Type": "multipart/form-data",
-        headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMTY2MzgzLCJpYXQiOjE3MDA2MzAzODMsImp0aSI6ImNjNDFhYjc2ZjZiZDRlNDhiNjViNjY1OWNlMzc3MThhIiwidXNlcl9pZCI6MX0.9UWz_3hpbiA4v2ji4Xhac9lzHMkumWD3RACnENRvHcQ` }
+        headers: { Authorization: `Bearer ${token_data}` }
       };
       function uploaddestopFile(e) {
         let ImagesArray=e.target.files;
+        console.log(e.target.files)
         setformdata({...fromdaa ,  destop_immage:[...ImagesArray]});
       }
       function deletedestopFile(e) {
@@ -56,35 +42,36 @@ const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloade
             baseurl ="https://api.cannabaze.com/AdminPanel/Add-HomePageBanner/"
         }
         let form_data = new FormData();
-            if(fromdaa.title !== data.Title ){
+           console.log(fromdaa ,'fromdaa')
+            if( fromdaa.title !== data.Title && fromdaa.title !== undefined  ){
+
                 form_data.append('Title',fromdaa.title);
 
-            }else if(fromdaa.country !== data.Country ){
+            } if(fromdaa.country !== data.Country  && fromdaa.country !== undefined){
                 form_data.append('Country', fromdaa.country);
 
-            }else if(fromdaa.state !== data.State ){
+            } if(fromdaa.state !== data.State  && fromdaa.state !== undefined){
                 form_data.append('State',fromdaa.state );
 
-            }else if(fromdaa.link !== data.Link ){
+            } if(fromdaa.link !== data.Link  && fromdaa.link !== undefined ){
                 form_data.append('Link' ,fromdaa.link);
 
-            }else if(fromdaa.mobile_immage !== data.Banner ){
-                form_data.append('mobile', fromdaa?.mobile_immage[0], fromdaa?.mobile_immage[0].name);
-     
-            }else if(fromdaa.destop_immage !== data.mobile ){
-                form_data.append('Banner', fromdaa?.destop_immage[0], fromdaa?.destop_immage[0].name);
+            } if(fromdaa.mobile_immage !== data.mobile  && fromdaa.mobile_immage !== undefined && fromdaa.mobile_immage?.length !== 0){
+                form_data.append('mobile', fromdaa?.mobile_immage[0] );
+            } if(fromdaa.destop_immage !== data.Banner   && fromdaa.destop_immage !== undefined && fromdaa.destop_immage?.length !== 0 ){
+                form_data.append('Banner', fromdaa?.destop_immage[0] );
             }
-           console.log(form_data ,'form_data')
+            
             Setloader(true)
             axios.post( baseurl , form_data , config).then((res)=>{
-            console.log(res  ,'bjdvjfbbb')
-            Setloader(false)
-            setOpenupdate(false)
+             
+             Setloader(false)
+             setOpenupdate(false)
         })
       }
       function uploadSingleFile(e) {
         let ImagesArray=e.target.files;
-      
+        console.log(e.target.files)
         setformdata({...fromdaa ,mobile_immage: [...ImagesArray]});
       }
       function deleteFile(e) {
@@ -99,29 +86,11 @@ const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloade
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         >
-        <Box sx={style}>
+        <Box  className={classes.model_content_banner}>
         <div className=" PromotionalMainContainer ">
 
                             
         <h2 className="promotionHeads">Update Banner</h2>
-
-        {/* <div className="feild_box">
-            
-            <FormControl>
-        
-            <RadioGroup
-                value={bannertpe}
-                aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue="Promotional Banner"
-                name="radio-buttons-group"
-                className={classes.muiPromotioCheckBox}
-                onChange={(e)=>{setbannertype(e.target.value)}}
-            >
-                <FormControlLabel  className={classes.promotionalCheckBoxFontSize} value="Promotional Banner" control={<Radio />} label="Promotional Banner" />
-                <FormControlLabel  className={classes.promotionalCheckBoxFontSize} value="Offer Banner" control={<Radio />} label="Offer Banner" />
-            </RadioGroup>
-            </FormControl>
-        </div> */}
         <div className="feild_box">
             <div className="col-xxl-1  col-lg-2 col-md-3 col-3">
                 <label htmlFor="title" className="label_custom">Title</label>
@@ -154,6 +123,7 @@ const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloade
                     <div className="form-group">
                         <input
                             type="file"
+                           
                             disabled={fromdaa?.destop_immage?.length === 2}
                             style={{ display: "none" }}
                             onChange={uploaddestopFile}
@@ -185,7 +155,7 @@ const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloade
                             fromdaa?.destop_immage?.map((item, index) => {
                                 return (
                                     <div key={index} className="Display uploadedImg">
-                                        <img src={URL.createObjectURL(item)} alt="" style={{ width: "100px", height: "100px", borderRadius: "1px" }} />
+                                        <img src={URL.createObjectURL(item)} alt=""  style={{width: "100px", height: "100px", borderRadius: "1px"  }} />
                                         
                                         <span className="removeUploadedImg">
                                             <IconButton onClick={() => deletedestopFile(index)}>
@@ -197,13 +167,8 @@ const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloade
                             })
                             :
                             <div className="Display uploadedImg">
-                            <img src={data.Banner} alt="" style={{ width: "400px", height: "100px", borderRadius: "1px" }} />
-                            
-                            {/* <span className="removeUploadedImg">
-                                <IconButton onClick={() => deletedestopFile(index)}>
-                                    <CloseIcon />
-                                </IconButton>
-                            </span> */}
+                            <img src={data.Banner} alt="" className={classes.modelImagedestop} />
+                         
                         </div>
                         }
                     </div>
@@ -219,10 +184,10 @@ const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloade
                     <div className="form-group">
                         <input
                             type="file"
+                           
                             disabled={fromdaa?.mobile_immage?.length === 5}
                             style={{ display: "none" }}
                             onChange={uploadSingleFile}
-                            multiple
                             id="mobilefile"
                         />
 
@@ -260,12 +225,8 @@ const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloade
                                 );
                             }) :
                             <div  className="Display uploadedImg">
-                            <img src={data.mobile} alt="" style={{ width: "200px", height: "100px", borderRadius: "1px" }} />
-                            {/* <span className="removeUploadedImg">
-                                <IconButton onClick={() => deleteFile(index)}>
-                                    <CloseIcon />
-                                </IconButton>
-                            </span> */}
+                            <img src={data.mobile} alt="" className={classes.modelImagemobile} />
+                           
                         </div>
                         }
                     </div>

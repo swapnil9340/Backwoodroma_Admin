@@ -426,10 +426,78 @@ UserEditButton:{
     outlined:"#31B665"
    }
   },
+  model_content_banner:{
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: "auto",
+    backgroundColor: '#fff',
+    borderRadius: '8px',
+    boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+    height:'90vh',
+    padding:'10px',
+    "@media(max-width:600px)":{
+      width: "90%",
+    },
+  },
+  modelImagedestop:{
+    width: "400px",
+    height: "100px",
+    borderRadius: "1px",
+    "@media(max-width:600px)":{
+      width: "90%",
+    },
+  },
+  modelImagemobile:{
+    width: "200px",
+    height: "100px",
+    borderRadius: "1px",
+   
+  },
+  bannerSelector:{
+    
+      backgroundColor:'#31B655',
+      width:'200px',
+   
+    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+        borderColor: '#31B655',
+    },
+    "& .MuiSelect-select":{
+      fontSize:'16px',
+      color:'#fff',
+      padding: "12px 15x",
+      fontWeight:'600',
+    },
+    '.MuiSvgIcon-root': {
+        color: '#fff'
+    },
+    '&:before': {
+        borderBottom: `1px solid #31B655`
+    },
+    '&:hover': {
+        ':before': {
+            borderBottom: `1px solid #31B655`
+        }
+    },
+    '& .MuiMenuItem-root': {
+        backgroundColor: 'dark.primary'
+    },
+    '& .MuiMenu-paper': {
+        backgroundColor: 'dark.primary'
+    },
+    '@media(maxWidth: 568px)' : {
+        width:'auto',
+       },
+       "& .MuiSelect-select":{
+        fontSize:'12px',
+        color:'#fff',
+        padding: "6px 15px !important"
+      },
+  },
   promotionalListBtnss:{
     '& .MuiLoadingButton-root':{
       color:'#FFFFFF',
-      marginTop:"10px",
       fontSize:"14px",
       width:"26%",
       border:"1px solid #404040",
@@ -453,6 +521,14 @@ UserEditButton:{
         padding: "9px"
 
 
+      }
+    },
+    "@media(max-width:480px)":{
+      '& .MuiLoadingButton-root':{
+        width: "auto",
+        height: "auto",
+        fontSize:" 12px",
+        padding: "6px 15px"
       }
     },
   }

@@ -20,9 +20,12 @@ import { FaEdit } from 'react-icons/fa';
 import { AiFillDelete } from 'react-icons/ai';
 import Icon from "@material-ui/core/Icon";
 import Bannerupdatemodel from "./Bannerupdatemodel"
+import Cookies from 'universal-cookie';
 const PromotionalBannerList = () => {
     const navigate=useNavigate()
     const Swal = require('sweetalert2')
+    const cookies = new Cookies();
+    const token_data = cookies.get('Token_access')
     const [bannertype , Setbannertype] = useState("Promotional Banner")
     const [openupdate, setOpenupdate] = React.useState(false);
     const classes = useStyles()
@@ -30,8 +33,7 @@ const PromotionalBannerList = () => {
     const [SelectId, SetSelectedId] = React.useState()
     const [loader, Setloader] = React.useState(false)
     const config = {
-      
-        headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMTY2MzgzLCJpYXQiOjE3MDA2MzAzODMsImp0aSI6ImNjNDFhYjc2ZjZiZDRlNDhiNjViNjY1OWNlMzc3MThhIiwidXNlcl9pZCI6MX0.9UWz_3hpbiA4v2ji4Xhac9lzHMkumWD3RACnENRvHcQ` }
+        headers: { Authorization: `Bearer ${token_data}` }
     };
     const [datatable, Setdatatable] = React.useState([])
     const [editdata, Seteditdata] = React.useState([])
@@ -39,9 +41,9 @@ const PromotionalBannerList = () => {
         React.useEffect(() => {
             axios.get(getdataurl , config ).then((response) => {
                 Setdatatable(response.data);
-                console.log(response.data , 'responsedata')
+              
             });
-        }, []);
+        }, [openupdate ,bannertype ]);
         function Deletebanner(id){
             Swal.fire({
                 title: "Are you sure?",
@@ -292,17 +294,18 @@ const PromotionalBannerList = () => {
         <div className="container-fluid">
             <div className="row">
                 <div className="col-10 PromotionalBannerList">
-                    <div className="col-12 promotional_bannerList_BackBtn">
-                        <div className="col-md-3 col-3">
+                    <div className="row  promotional_bannerList_BackBtn">
+                        <div className="col-sm-3 col-12">
                             <IconButton onClick={()=>navigate("/")}><IoMdArrowBack /></IconButton><span className="promotionBackBtnHead">Back</span>
                         </div>
-                        <div className="col-4">
+                        <div className="col-sm-4 col-6">
                            
                             <FormControl className={classes.formControl}>
                                 <Select
                                     value={bannertype}
                                     onChange={(e)=>{ handelbannertype(e)}}
                                     disableUnderline
+                                    className={classes.bannerSelector}
                                     MenuProps={{
                                         sx: {
                                             fontSize:'14px',
@@ -327,37 +330,7 @@ const PromotionalBannerList = () => {
                                             }
                                         }
                                     }}
-                                    sx={{
-                                        color: '#fff',
-                                        backgroundColor:'#31B655',
-                                        width:'200px',
-                                        fontSize:'16px',
-                                        padding:'0',
-                                       
-                                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                            borderColor: '#31B655',
-                                        },
-                                        '.MuiSvgIcon-root': {
-                                            color: '#fff'
-                                        },
-                                        '&:before': {
-                                            borderBottom: `1px solid #31B655`
-                                        },
-                                        '&:hover': {
-                                            ':before': {
-                                                borderBottom: `1px solid #31B655`
-                                            }
-                                        },
-                                        '& .MuiMenuItem-root': {
-                                            backgroundColor: 'dark.primary'
-                                        },
-                                        '& .MuiMenu-paper': {
-                                            backgroundColor: 'dark.primary'
-                                        }
-                                    }, {'@media(maxWidth: 568px)' : {
-                                        width:'100px',
-                                        fontSize:'14px',
-                                      }}}
+                                    
                                 >
                                    
                                     <MenuItem  value={"Promotional Banner"}>
@@ -368,11 +341,13 @@ const PromotionalBannerList = () => {
                                     </MenuItem>
                                    
                                 </Select>
-                                </FormControl>
+                            </FormControl>
                         </div>
-                        <Box className={`col-5 promotionalAddBannerListBtnCol  ${classes.promotionalListBtnss}`}>
-                            <LoadingButton startIcon={<GrFormAdd />} onClick={()=>navigate("/PromotionalBanner")}>Add Banner</LoadingButton>
-                        </Box>
+                        <div className="col-sm-5  col-6">
+                            <Box className={` promotionalAddBannerListBtnCol  ${classes.promotionalListBtnss}`}>
+                                <LoadingButton startIcon={<GrFormAdd />} onClick={()=>navigate("/PromotionalBanner")}>Add Banner</LoadingButton>
+                            </Box>
+                        </div>
                     </div>
                   
                     <div>
