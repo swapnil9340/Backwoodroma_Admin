@@ -384,7 +384,7 @@ UserEditButton:{
     '& .MuiFormControlLabel-label': { 
       fontSize: '20px',color:"#000000" ,
       "@media(max-width:600px)":{
-      fontSize: '12px',
+      fontSize: '14px',
 
       }
     }
@@ -455,11 +455,36 @@ UserEditButton:{
     borderRadius: "1px",
    
   },
+  bannerlisttable:{
+    height:500,
+    width: '100%',
+    "& .MuiDataGrid-columnHeaders": {
+        background: "#E1FFED",
+        fontSize:'18px',
+    },
+    '&  .MuiDataGrid-columnSeparator--sideRight': {
+        display: 'none',
+    },
+    '&.MuiDataGrid-root .MuiDataGrid-cell:focus': {
+        outline: 'none',
+    },
+    '& .MuiDataGrid-row': {
+        fontSize:'14px',
+    },
+    '& .MuiDataGrid-row:hover': {
+        backgroundColor: '#F0F0F0',
+    },
+    '@media(maxWidth: 568px)' : {
+        "& .MuiDataGrid-columnHeaders": {
+            background: "#E1FFED",
+            fontSize:'14px',
+        }, 
+    }
+  },
   bannerSelector:{
     
       backgroundColor:'#31B655',
       width:'200px',
-   
     '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
         borderColor: '#31B655',
     },
@@ -492,7 +517,7 @@ UserEditButton:{
        "& .MuiSelect-select":{
         fontSize:'12px',
         color:'#fff',
-        padding: "6px 15px !important"
+        padding: "8px 15px "
       },
   },
   promotionalListBtnss:{

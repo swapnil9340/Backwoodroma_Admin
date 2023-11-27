@@ -305,32 +305,7 @@ const PromotionalBannerList = () => {
                                     value={bannertype}
                                     onChange={(e)=>{ handelbannertype(e)}}
                                     disableUnderline
-                                    className={classes.bannerSelector}
-                                    MenuProps={{
-                                        sx: {
-                                            fontSize:'14px',
-                                            "& .MuiListItem-root":{
-                                                fontSize:'14px',
-
-                                            },
-                                            '& .MuiMenu-paper': {
-                                                backgroundColor: 'dark.primary',
-                                                color: '#333',
-                                                fontSize:'14px',
-                                            },
-                                            '& .MuiMenuItem-root:hover': {
-                                                backgroundColor: '#31B655bd',
-                                                color: '#fff',
-                                                fontSize:'14px',
-                                            },
-                                            '& .Mui-selected': {
-                                                backgroundColor: '#31B6555e',
-                                                color: 'text.white',
-                                                fontSize:'14px',
-                                            }
-                                        }
-                                    }}
-                                    
+                                    className={classes.bannerSelector}  
                                 >
                                    
                                     <MenuItem  value={"Promotional Banner"}>
@@ -369,27 +344,8 @@ const PromotionalBannerList = () => {
                             },
                             }}
                             pageSizeOptions={[5]}
-                            sx={{
-                                height:500,
-                                width: '100%',
-                                ".MuiDataGrid-columnHeaders": {
-                                    background: "#E1FFED",
-                                    fontSize:'18px',
-                                },
-                                '&  .MuiDataGrid-columnSeparator--sideRight': {
-                                    display: 'none',
-                                },
-                                '&.MuiDataGrid-root .MuiDataGrid-cell:focus': {
-                                    outline: 'none',
-                                },
-                                '& .MuiDataGrid-row': {
-                                    fontSize:'14px',
-                                },
-                                '& .MuiDataGrid-row:hover': {
-                                    backgroundColor: '#F0F0F0',
-                                },
-
-                            }}
+                            className={classes.bannerlisttable}
+                            
                         />
                         </Box>
                      </div>

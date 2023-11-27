@@ -143,6 +143,7 @@ const PromotionalBanner = () => {
                                                                 onChange={uploaddestopFile}
                                                                 multiple
                                                                 id="file"
+                                                                accept="image/*"
                                                             />
 
                                                             <label htmlFor="file" className="color"   >
@@ -197,6 +198,7 @@ const PromotionalBanner = () => {
                                                                 onChange={uploadSingleFile}
                                                                 multiple
                                                                 id="mobilefile"
+                                                                accept="image/*"
                                                             />
 
                                                             <label htmlFor="mobilefile" className="color"   >
@@ -237,11 +239,14 @@ const PromotionalBanner = () => {
                                                     </div>
                                                 </form>
                                             </div>
+
+
+                                            
                                             <div className="feild_box">
                                             
                                                 <label htmlFor="link" className="label_custom">Link</label>
                                         
-                                                <TextField id="link" className={classes.textFieldFocusBorderColor} onChange={(e)=>{setformdata({...fromdaa , link : e.target.value})}}  variant="outlined" fullWidth size="small" />
+                                                <TextField id="link" type="link" className={classes.textFieldFocusBorderColor} onChange={(e)=>{setformdata({...fromdaa , link : e.target.value})}}  variant="outlined" fullWidth size="small" />
                                             </div>
                                             <div className="">
                                                 <Box className={`w-100 promotionBtn_center ${classes.PromotionalBtn}`}>

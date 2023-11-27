@@ -123,7 +123,7 @@ const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloade
                     <div className="form-group">
                         <input
                             type="file"
-                           
+                            accept="image/*"
                             disabled={fromdaa?.destop_immage?.length === 2}
                             style={{ display: "none" }}
                             onChange={uploaddestopFile}
@@ -184,7 +184,7 @@ const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloade
                     <div className="form-group">
                         <input
                             type="file"
-                           
+                            accept="image/*"
                             disabled={fromdaa?.mobile_immage?.length === 5}
                             style={{ display: "none" }}
                             onChange={uploadSingleFile}
