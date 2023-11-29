@@ -23,13 +23,7 @@ const PromotionalBanner = () => {
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [bannertpe,setbannertype]=useState("Promotional Banner")
-    const [crop, setCrop] = useState<Crop>({
-        unit: 'px',
-        x: 25,
-        y: 25,
-        width: 200,
-        height: 50
-      })
+   
     const [fromdaa ,setformdata] = useState({
         title:'',
         country:"",
@@ -247,9 +241,9 @@ const PromotionalBanner = () => {
                                                                 fromdaa.mobile_immage?.map((item, index) => {
                                                                     return (
                                                                         <div key={index} className="Display uploadedImg">
-                                                                            <ReactCrop crop={crop} onChange={c => setCrop(c)}>
+                                                                        
                                                                                <img src={URL.createObjectURL(item)} alt="" style={{  borderRadius: "1px" }} />
-                                                                            </ReactCrop>
+                                                                           
                                                                            <span className="removeUploadedImg">
                                                                                 <IconButton onClick={() => deleteFile(index)}>
                                                                                     <CloseIcon />
