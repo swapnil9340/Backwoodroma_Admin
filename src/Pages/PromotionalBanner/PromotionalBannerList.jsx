@@ -56,9 +56,9 @@ const PromotionalBannerList = () => {
             }).then((result) => {
                 if (result.isConfirmed) {
                     Setloader(true)
-                    const config = {
-                        headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMTY2MzgzLCJpYXQiOjE3MDA2MzAzODMsImp0aSI6ImNjNDFhYjc2ZjZiZDRlNDhiNjViNjY1OWNlMzc3MThhIiwidXNlcl9pZCI6MX0.9UWz_3hpbiA4v2ji4Xhac9lzHMkumWD3RACnENRvHcQ` }
-                    };
+                    // const config = {
+                    //     headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMTY2MzgzLCJpYXQiOjE3MDA2MzAzODMsImp0aSI6ImNjNDFhYjc2ZjZiZDRlNDhiNjViNjY1OWNlMzc3MThhIiwidXNlcl9pZCI6MX0.9UWz_3hpbiA4v2ji4Xhac9lzHMkumWD3RACnENRvHcQ` }
+                    // };
                     let basedeleturl = `https://api.cannabaze.com/AdminPanel/delete-HomePageBanner/${id}`
                         
                     if(bannertype === "Promotional Banner"){
@@ -96,11 +96,11 @@ const PromotionalBannerList = () => {
                 sts = "Active"
             }
             Setloader(true)
+           
             let basedeleturl = `https://api.cannabaze.com/AdminPanel/update-HomePageBanner/${data.id}`
-                        
-                    if(bannertype === "Promotional Banner"){
-                        basedeleturl =`https://api.cannabaze.com/AdminPanel/update-PromotionalBanners/${data.id}`
-                    }
+            if(bannertype === "Promotional Banner"){
+                basedeleturl =`https://api.cannabaze.com/AdminPanel/update-PromotionalBanners/${data.id}`
+            }
             axios.post(basedeleturl ,{
                 "status" : sts
             } ,config).then((res)=>{
@@ -108,6 +108,15 @@ const PromotionalBannerList = () => {
                 Setdatatable(response.data);
                 Setloader(false)
             });
+            }).catch((error)=>{
+                Setloader(false)
+                console.trace(error)
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Something went wrong!",
+                
+                });
             })
         }
         function editdat(data){

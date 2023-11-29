@@ -39,7 +39,7 @@ const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloade
         if(bannertype === 'Promotional Banner'){
             baseurl =`https://api.cannabaze.com/AdminPanel/update-PromotionalBanners/${data.id}` 
         }else{
-            baseurl ="https://api.cannabaze.com/AdminPanel/Add-HomePageBanner/"
+            baseurl =`https://api.cannabaze.com/AdminPanel/update-HomePageBanner/${data.id}`
         }
         let form_data = new FormData();
            console.log(fromdaa ,'fromdaa')

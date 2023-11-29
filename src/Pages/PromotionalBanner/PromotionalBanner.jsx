@@ -4,6 +4,9 @@ import { IconButton } from "@mui/material"
 import Box from "@mui/material/Box"
 import TextField from "@mui/material/TextField"
 import FormControlLabel from '@mui/material/FormControlLabel';
+import ReactCrop from 'react-image-crop'
+import 'react-image-crop/dist/ReactCrop.css'
+import 'react-image-crop/src/ReactCrop.scss'
 import Radio from '@mui/material/Radio';
 import CloseIcon from '@mui/icons-material/Close';
 import { MdOutlineCloudUpload } from "react-icons/md"
@@ -16,9 +19,17 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 const PromotionalBanner = () => {
     const navigate=useNavigate()
+    const Swal = require('sweetalert2')
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [bannertpe,setbannertype]=useState("Promotional Banner")
+    const [crop, setCrop] = useState<Crop>({
+        unit: 'px',
+        x: 25,
+        y: 25,
+        width: 200,
+        height: 50
+      })
     const [fromdaa ,setformdata] = useState({
         title:'',
         country:"",
@@ -61,6 +72,17 @@ const PromotionalBanner = () => {
             axios.post( baseurl , form_data , config).then((res)=>{
                 Setloader(false)
                 navigate('/PromotionalBannerList')
+            }).catch((error)=>{
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                    timer: 3000,
+                  }).then(()=>{
+                    Setloader(false)
+                    navigate('/PromotionalBannerList')
+                  });
+                
             })
         }else{
             window.alert("Please fill all Require Feild")
@@ -225,8 +247,10 @@ const PromotionalBanner = () => {
                                                                 fromdaa.mobile_immage?.map((item, index) => {
                                                                     return (
                                                                         <div key={index} className="Display uploadedImg">
-                                                                            <img src={URL.createObjectURL(item)} alt="" style={{ width: "100px", height: "100px", borderRadius: "1px" }} />
-                                                                            <span className="removeUploadedImg">
+                                                                            <ReactCrop crop={crop} onChange={c => setCrop(c)}>
+                                                                               <img src={URL.createObjectURL(item)} alt="" style={{  borderRadius: "1px" }} />
+                                                                            </ReactCrop>
+                                                                           <span className="removeUploadedImg">
                                                                                 <IconButton onClick={() => deleteFile(index)}>
                                                                                     <CloseIcon />
                                                                                 </IconButton>
