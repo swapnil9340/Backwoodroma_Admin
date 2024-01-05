@@ -196,7 +196,6 @@ export default function Newspop() {
         seterror({ Image: "black" })
     };
     const handleChange = (event) => {
-        console.log(event)
         const value = event.target.value
         setNews({
             ...News,

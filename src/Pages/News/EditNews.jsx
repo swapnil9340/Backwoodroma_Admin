@@ -13,7 +13,7 @@ import Axios from "axios"
 import axios from "axios"
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { EditorState,ContentState } from 'draft-js';
+import { EditorState, ContentState } from 'draft-js';
 import { convertToHTML } from 'draft-convert';
 import { MdFileUpload } from 'react-icons/md';
 import Createcontext from "../../Hooks/Context/Context"
@@ -59,7 +59,8 @@ export default function NewsEdit(props) {
     const [open, setOpen] = React.useState(false);
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
-    const [editorState, setEditorState] = React.useState(getInitialState(defaultValue));
+    const initialContentState = ContentState.createFromText(defaultValue);
+    const [editorState, setEditorState] = React.useState(EditorState.createWithContent(initialContentState));
 
     const [convertedContent, setConvertedContent] = React.useState();
     const [Category, SetCategory] = React.useState([])
@@ -80,7 +81,7 @@ export default function NewsEdit(props) {
 
 
     });
-
+   
     const [error, seterror] = React.useState({
         Title: "",
         Image: "",
@@ -101,13 +102,19 @@ export default function NewsEdit(props) {
     })
     const handleEditorStateChange = (editorState) => {
         setEditorState(editorState);
+        // const link = window.prompt('Enter the URL:');
+
+        console.log(editorState)
     };
 
-    React.useEffect(() => {
-        let html = convertToHTML(editorState.getCurrentContent());
-        setConvertedContent(html);
-    }, [editorState]);
+    // React.useEffect(() => {
+    //     let html = convertToHTML(editorState.getCurrentContent());
+    //     setConvertedContent(html);
+    // }, [editorState]);
 
+    const handleContentStateChange = (contentState) => {
+        setConvertedContent(draftToHtml(contentState));
+    };
 
     const toolbar = {
         options: [
@@ -134,8 +141,11 @@ export default function NewsEdit(props) {
             options: ["bold", "italic", "underline"]
         },
         link: {
-            options: ["link", "unlink"],
-            showOpenOptionOnHover: false
+            defaultTargetOption: '_self',
+            popupClassName: 'demo-popup-custom',
+            options: ['link', 'unlink'],
+            component: undefined,
+            popupClassName: undefined,
         },
         list: {
             options: ["ordered", "unordered"]
@@ -192,36 +202,35 @@ export default function NewsEdit(props) {
         SetImage(event.target.files[0])
     };
     const handleChange = (event) => {
-        if(event.target.name === 'Title')
-        {
+        if (event.target.name === 'Title') {
             const value = event.target.value
             setNews({
                 ...News,
-                "Title": value , 'Meta_Description':value, "Url_slug" :value.replace(/\s/g, '-')
+                "Title": value, 'Meta_Description': value, "Url_slug": value.replace(/\s/g, '-')
             });
             setmassage('')
             seterror('')
         }
-      if(event.target.name === 'Url_slug'){
-        const value = event.target.value
-        setNews({
-            ...News,
-         "Url_slug" :value.replace(/\s/g, '-')
-        });
-        setmassage('')
-        seterror('')
-      }
-      else {
-        const value = event.target.value
-        setNews({
-            ...News,
-            [event.target.name]: value 
-        });
-        setmassage('')
-        seterror('')
-    }
+        if (event.target.name === 'Url_slug') {
+            const value = event.target.value
+            setNews({
+                ...News,
+                "Url_slug": value.replace(/\s/g, '-')
+            });
+            setmassage('')
+            seterror('')
+        }
+        else {
+            const value = event.target.value
+            setNews({
+                ...News,
+                [event.target.name]: value
+            });
+            setmassage('')
+            seterror('')
+        }
 
-        
+
     };
     const resetFileInput = () => {
         // resetting the input value
@@ -413,8 +422,8 @@ export default function NewsEdit(props) {
                                         </label>
                                     </div>
                                     <div className='col '>
-                                        <TextField type="Text" placeholder=' Title' id="outlined-basic" name='Title' variant="outlined" 
-                                        value={News.Title} style={{ minWidth: 100, fontSize: 15 }}
+                                        <TextField type="Text" placeholder=' Title' id="outlined-basic" name='Title' variant="outlined"
+                                            value={News.Title} style={{ minWidth: 100, fontSize: 15 }}
                                             onChange={handleChange}
 
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
@@ -446,8 +455,8 @@ export default function NewsEdit(props) {
                                         </label>
                                     </div>
                                     <div className='col'>
-                                        <TextField type="Text" placeholder='Meta Title' id="outlined-basic" name='Meta_title' variant="outlined" 
-                                        value={News.Meta_title} style={{ minWidth: 190, fontSize: 15 }}
+                                        <TextField type="Text" placeholder='Meta Title' id="outlined-basic" name='Meta_title' variant="outlined"
+                                            value={News.Meta_title} style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                             label={massage.Meta_title}
@@ -581,7 +590,7 @@ export default function NewsEdit(props) {
                                                         (
                                                             News.Image !== "" ?
                                                                 <div style={{ display: "flex" }}>
-                                                                    <img src={"http://sweede.app/" + (News.Image)} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
+                                                                    <img src={(News.Image)} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
                                                                     <Button name="Image" value="" onClick={handleChange} color='success' >Cancell </Button>
                                                                 </div>
                                                                 :
@@ -746,17 +755,17 @@ export default function NewsEdit(props) {
                                             }}
                                         >
                                             <Editor
-                                                       editorState={editorState}
-                                                       onEditorStateChange={handleEditorStateChange}
-                                                       toolbarClassName="toolbarClassName"
-                                                       wrapperClassName="wrapperClassName"
-                                                       editorClassName="editorClassName"
+                                                editorState={editorState}
+                                                onEditorStateChange={handleEditorStateChange}
+                                                onContentStateChange={handleContentStateChange}
+                                                toolbarClassName="toolbarClassName"
+                                                wrapperClassName="wrapperClassName"
+                                                editorClassName="editorClassName"
                                                 toolbar={toolbar}
                                                 localization={localization}
-                
-                                    
-                                    
-                                              
+                                                // onLinkClick={onLinkClick}
+
+
                                             />
                                         </Box>
                                     </div>

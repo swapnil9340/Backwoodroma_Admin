@@ -190,7 +190,6 @@ const Vendor = () => {
 
     ];
      const rows = totel
-
      function SubmitEditData(params) {
         const form = {
             "status": params.formattedValue === "Active" ? "Hide" : "Active"

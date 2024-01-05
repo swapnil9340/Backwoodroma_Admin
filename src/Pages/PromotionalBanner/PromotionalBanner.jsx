@@ -4,9 +4,9 @@ import { IconButton } from "@mui/material"
 import Box from "@mui/material/Box"
 import TextField from "@mui/material/TextField"
 import FormControlLabel from '@mui/material/FormControlLabel';
-import ReactCrop from 'react-image-crop'
-import 'react-image-crop/dist/ReactCrop.css'
-import 'react-image-crop/src/ReactCrop.scss'
+// import ReactCrop from 'react-image-crop'
+// import 'react-image-crop/dist/ReactCrop.css'
+// import 'react-image-crop/src/ReactCrop.scss'
 import Radio from '@mui/material/Radio';
 import CloseIcon from '@mui/icons-material/Close';
 import { MdOutlineCloudUpload } from "react-icons/md"
