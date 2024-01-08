@@ -14,12 +14,13 @@ import axios from "axios"
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState, ContentState } from 'draft-js';
-import { convertToHTML } from 'draft-convert';
+import { convertFromHTML, convertToRaw } from 'draft-js';
 import { MdFileUpload } from 'react-icons/md';
 import Createcontext from "../../Hooks/Context/Context"
 import InputAdornment from '@mui/material/InputAdornment';
 import Box from '@mui/material/Box';
 import htmlToDraft from 'html-to-draftjs';
+import draftToHtml from "draftjs-to-html";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
         padding: theme.spacing(2),
@@ -59,9 +60,13 @@ export default function NewsEdit(props) {
     const [open, setOpen] = React.useState(false);
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
-    const initialContentState = ContentState.createFromText(defaultValue);
-    const [editorState, setEditorState] = React.useState(EditorState.createWithContent(initialContentState));
-
+    const [editorState, setEditorState] = React.useState(() => {
+        const contentState = ContentState.createFromBlockArray(
+            convertFromHTML(defaultValue),
+            convertFromHTML('<p></p>')
+        );
+        return EditorState.createWithContent(contentState);
+    });
     const [convertedContent, setConvertedContent] = React.useState();
     const [Category, SetCategory] = React.useState([])
     const [SubCategory, SetSubCategory] = React.useState([])
@@ -81,7 +86,7 @@ export default function NewsEdit(props) {
 
 
     });
-   
+
     const [error, seterror] = React.useState({
         Title: "",
         Image: "",
@@ -102,16 +107,7 @@ export default function NewsEdit(props) {
     })
     const handleEditorStateChange = (editorState) => {
         setEditorState(editorState);
-        // const link = window.prompt('Enter the URL:');
-
-        console.log(editorState)
     };
-
-    // React.useEffect(() => {
-    //     let html = convertToHTML(editorState.getCurrentContent());
-    //     setConvertedContent(html);
-    // }, [editorState]);
-
     const handleContentStateChange = (contentState) => {
         setConvertedContent(draftToHtml(contentState));
     };
@@ -425,7 +421,6 @@ export default function NewsEdit(props) {
                                         <TextField type="Text" placeholder=' Title' id="outlined-basic" name='Title' variant="outlined"
                                             value={News.Title} style={{ minWidth: 100, fontSize: 15 }}
                                             onChange={handleChange}
-
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                             label={massage.Title}
                                             sx={{
@@ -539,32 +534,7 @@ export default function NewsEdit(props) {
                                         </Select>
                                     </div>
                                 </div>
-                                {/* <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            Strain Type:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-                                        <Select
-                                            name='StrainType'
-                                            value={News.StrainType}
-                                            onChange={handleChange}
-                                            displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: "34%", fontSize: 15 }}
-                                            size="small"
-                                        >
-                                            <MenuItem value="" style={{ fontSize: 15 }}>
-                                                <em>Select option</em>
-                                            </MenuItem>
-                                            <MenuItem value={"N"} style={{ fontSize: 15 }}>None</MenuItem>
-                                            <MenuItem value={"i"} style={{ fontSize: 15 }}>Indica</MenuItem>
-                                            <MenuItem value={"s"} style={{ fontSize: 15 }}>Sativa</MenuItem>
-                                            <MenuItem value={"h"} style={{ fontSize: 15 }}>Hybrid</MenuItem>
-                                            <MenuItem value={"c"} style={{ fontSize: 15 }}>CBD</MenuItem>
-                                        </Select>
-                                    </div>
-                                </div> */}
+                          
                                 <div className='col-12 top  Add_Category_pop '>
                                     <div className='col m-2'>
                                         <label className='label'>
@@ -763,9 +733,6 @@ export default function NewsEdit(props) {
                                                 editorClassName="editorClassName"
                                                 toolbar={toolbar}
                                                 localization={localization}
-                                                // onLinkClick={onLinkClick}
-
-
                                             />
                                         </Box>
                                     </div>

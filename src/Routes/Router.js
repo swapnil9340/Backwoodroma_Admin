@@ -28,6 +28,7 @@ import UserEditProfile from '../Pages/UserProfile/UserEditProfile';
 import PromotionalBanner from '../Pages/PromotionalBanner/PromotionalBanner';
 import PromotionalBannerList from '../Pages/PromotionalBanner/PromotionalBannerList';
 import Aboutus from '../Pages/Aboutus/Aboutus';
+import Dummy from "../Pages/dummy"
 export default function Router() {
  
  
@@ -68,7 +69,7 @@ export default function Router() {
         <Route path='/PromotionalBanner' element={<PromotionalBanner/>}/>
         {/* <Route path='/PromotionalBannerList' element={<Protected Component={PromotionalBannerList}/>}/> */}
         <Route path='/PromotionalBannerList' element={<PromotionalBannerList/>} />
-
+        <Route path='/dummy' element={<Dummy/>} />
         <Route   path='*' element={ <Pagenotfound></Pagenotfound>} />
        
         </Routes>
