@@ -13,13 +13,14 @@ import Axios from "axios"
 import axios from "axios"
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { EditorState,ContentState } from 'draft-js';
-import { convertToHTML } from 'draft-convert';
+import { EditorState, ContentState } from 'draft-js';
+import { convertFromHTML, convertToRaw } from 'draft-js';
 import { MdFileUpload } from 'react-icons/md';
 import Createcontext from "../../Hooks/Context/Context"
 import InputAdornment from '@mui/material/InputAdornment';
 import Box from '@mui/material/Box';
 import htmlToDraft from 'html-to-draftjs';
+import draftToHtml from "draftjs-to-html";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
         padding: theme.spacing(2),
@@ -59,8 +60,13 @@ export default function NewsEdit(props) {
     const [open, setOpen] = React.useState(false);
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
-    const [editorState, setEditorState] = React.useState(getInitialState(defaultValue));
-
+    const [editorState, setEditorState] = React.useState(() => {
+        const contentState = ContentState.createFromBlockArray(
+            convertFromHTML(defaultValue),
+            convertFromHTML('<p></p>')
+        );
+        return EditorState.createWithContent(contentState);
+    });
     const [convertedContent, setConvertedContent] = React.useState();
     const [Category, SetCategory] = React.useState([])
     const [SubCategory, SetSubCategory] = React.useState([])
@@ -102,12 +108,9 @@ export default function NewsEdit(props) {
     const handleEditorStateChange = (editorState) => {
         setEditorState(editorState);
     };
-
-    React.useEffect(() => {
-        let html = convertToHTML(editorState.getCurrentContent());
-        setConvertedContent(html);
-    }, [editorState]);
-
+    const handleContentStateChange = (contentState) => {
+        setConvertedContent(draftToHtml(contentState));
+    };
 
     const toolbar = {
         options: [
@@ -134,8 +137,11 @@ export default function NewsEdit(props) {
             options: ["bold", "italic", "underline"]
         },
         link: {
-            options: ["link", "unlink"],
-            showOpenOptionOnHover: false
+            defaultTargetOption: '_self',
+            popupClassName: 'demo-popup-custom',
+            options: ['link', 'unlink'],
+            component: undefined,
+            popupClassName: undefined,
         },
         list: {
             options: ["ordered", "unordered"]
@@ -192,36 +198,35 @@ export default function NewsEdit(props) {
         SetImage(event.target.files[0])
     };
     const handleChange = (event) => {
-        if(event.target.name === 'Title')
-        {
+        if (event.target.name === 'Title') {
             const value = event.target.value
             setNews({
                 ...News,
-                "Title": value , 'Meta_Description':value, "Url_slug" :value.replace(/\s/g, '-')
+                "Title": value, 'Meta_Description': value, "Url_slug": value.replace(/\s/g, '-')
             });
             setmassage('')
             seterror('')
         }
-      if(event.target.name === 'Url_slug'){
-        const value = event.target.value
-        setNews({
-            ...News,
-         "Url_slug" :value.replace(/\s/g, '-')
-        });
-        setmassage('')
-        seterror('')
-      }
-      else {
-        const value = event.target.value
-        setNews({
-            ...News,
-            [event.target.name]: value 
-        });
-        setmassage('')
-        seterror('')
-    }
+        if (event.target.name === 'Url_slug') {
+            const value = event.target.value
+            setNews({
+                ...News,
+                "Url_slug": value.replace(/\s/g, '-')
+            });
+            setmassage('')
+            seterror('')
+        }
+        else {
+            const value = event.target.value
+            setNews({
+                ...News,
+                [event.target.name]: value
+            });
+            setmassage('')
+            seterror('')
+        }
 
-        
+
     };
     const resetFileInput = () => {
         // resetting the input value
@@ -413,10 +418,9 @@ export default function NewsEdit(props) {
                                         </label>
                                     </div>
                                     <div className='col '>
-                                        <TextField type="Text" placeholder=' Title' id="outlined-basic" name='Title' variant="outlined" 
-                                        value={News.Title} style={{ minWidth: 100, fontSize: 15 }}
+                                        <TextField type="Text" placeholder=' Title' id="outlined-basic" name='Title' variant="outlined"
+                                            value={News.Title} style={{ minWidth: 100, fontSize: 15 }}
                                             onChange={handleChange}
-
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                             label={massage.Title}
                                             sx={{
@@ -446,8 +450,8 @@ export default function NewsEdit(props) {
                                         </label>
                                     </div>
                                     <div className='col'>
-                                        <TextField type="Text" placeholder='Meta Title' id="outlined-basic" name='Meta_title' variant="outlined" 
-                                        value={News.Meta_title} style={{ minWidth: 190, fontSize: 15 }}
+                                        <TextField type="Text" placeholder='Meta Title' id="outlined-basic" name='Meta_title' variant="outlined"
+                                            value={News.Meta_title} style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                             label={massage.Meta_title}
@@ -530,32 +534,7 @@ export default function NewsEdit(props) {
                                         </Select>
                                     </div>
                                 </div>
-                                {/* <div className='col-12 top  Add_Category_pop '>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            Strain Type:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-                                        <Select
-                                            name='StrainType'
-                                            value={News.StrainType}
-                                            onChange={handleChange}
-                                            displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: "34%", fontSize: 15 }}
-                                            size="small"
-                                        >
-                                            <MenuItem value="" style={{ fontSize: 15 }}>
-                                                <em>Select option</em>
-                                            </MenuItem>
-                                            <MenuItem value={"N"} style={{ fontSize: 15 }}>None</MenuItem>
-                                            <MenuItem value={"i"} style={{ fontSize: 15 }}>Indica</MenuItem>
-                                            <MenuItem value={"s"} style={{ fontSize: 15 }}>Sativa</MenuItem>
-                                            <MenuItem value={"h"} style={{ fontSize: 15 }}>Hybrid</MenuItem>
-                                            <MenuItem value={"c"} style={{ fontSize: 15 }}>CBD</MenuItem>
-                                        </Select>
-                                    </div>
-                                </div> */}
+                          
                                 <div className='col-12 top  Add_Category_pop '>
                                     <div className='col m-2'>
                                         <label className='label'>
@@ -581,7 +560,7 @@ export default function NewsEdit(props) {
                                                         (
                                                             News.Image !== "" ?
                                                                 <div style={{ display: "flex" }}>
-                                                                    <img src={"http://sweede.app/" + (News.Image)} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
+                                                                    <img src={(News.Image)} alt="" style={{ width: "90px", height: "81px", borderRadius: "10px" }} />
                                                                     <Button name="Image" value="" onClick={handleChange} color='success' >Cancell </Button>
                                                                 </div>
                                                                 :
@@ -746,17 +725,14 @@ export default function NewsEdit(props) {
                                             }}
                                         >
                                             <Editor
-                                                       editorState={editorState}
-                                                       onEditorStateChange={handleEditorStateChange}
-                                                       toolbarClassName="toolbarClassName"
-                                                       wrapperClassName="wrapperClassName"
-                                                       editorClassName="editorClassName"
+                                                editorState={editorState}
+                                                onEditorStateChange={handleEditorStateChange}
+                                                onContentStateChange={handleContentStateChange}
+                                                toolbarClassName="toolbarClassName"
+                                                wrapperClassName="wrapperClassName"
+                                                editorClassName="editorClassName"
                                                 toolbar={toolbar}
                                                 localization={localization}
-                
-                                    
-                                    
-                                              
                                             />
                                         </Box>
                                     </div>
