@@ -33,7 +33,7 @@ const PromotionalBannerList = () => {
     const [SelectId, SetSelectedId] = React.useState()
     const [loader, Setloader] = React.useState(false)
     const config = {
-        headers: { Authorization: `Bearer ${token_data}` }
+        headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyODczNjg3LCJpYXQiOjE3MDEzMzc2ODcsImp0aSI6IjllYTgwZGMyY2ZmZjQ0M2ZiYzY2MzQ2OTRmMjk1YWMyIiwidXNlcl9pZCI6MX0.nNt9qi_HGToLpmXMx5fzduz0ptk11VStkCZwVbxpjSg` }
     };
     const [datatable, Setdatatable] = React.useState([])
     const [editdata, Seteditdata] = React.useState([])
@@ -293,7 +293,7 @@ const PromotionalBannerList = () => {
                 Setgetdataurl('https://api.cannabaze.com/AdminPanel/Get-HomePageBanner/')
             }
         }
-        const getRowSpacing = React.useCallback((params: GridRowSpacingParams) => {
+        const getRowSpacing = React.useCallback((params) => {
             return {
               top: params.isFirstVisible ? 0 : 5,
               bottom: params.isLastVisible ? 0 : 5,

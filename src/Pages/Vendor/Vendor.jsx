@@ -265,6 +265,9 @@ const Vendor = () => {
                                         rowsPerPageOptions={[5, 10, 20]}
                                         pagination
                                         disableRowSelectionOnClick
+                                        disableColumnMenu
+                                        disableColumnFilter
+                                        disableColumnSelector
                                         sx={{
                                             "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
                                                 outline: "none",

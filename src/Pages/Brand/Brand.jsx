@@ -222,11 +222,14 @@ export default function Brand() {
                             }}>
                                 <ThemeProvider theme={CustomFontTheme}>
                                     <div style={{  width: '100%', }}>
-                                        <DataGrid rows={rows} columns={columns} components={{ Toolbar: GridToolbar }} checkboxSelection  autoHeight
+                                        <DataGrid rows={rows} columns={columns}  checkboxSelection  autoHeight
                                           pageSize={pageSize}
                                           onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                                           rowsPerPageOptions={[5, 10, 20]}
                                           pagination
+                                          disableColumnMenu
+                                          disableColumnFilter
+                                          disableColumnSelector
                                             sx={{
                                                 "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
                                                     outline: "none ",

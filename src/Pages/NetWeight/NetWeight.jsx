@@ -213,7 +213,9 @@ export default function State() {
 
                             <ThemeProvider theme={CustomFontTheme}>
                                 <div style={{ height: 400, width: '100%', }}>
-                                    <DataGrid rows={rows} columns={columns} components={{ Toolbar: GridToolbar }} checkboxSelection 
+                                    <DataGrid rows={rows} columns={columns}  checkboxSelection   disableColumnMenu
+                                            disableColumnFilter
+                                            disableColumnSelector
                                      sx={{
                                         ".MuiDataGrid-toolbarContainer":{
                                             backgroundColor:"#31B665"

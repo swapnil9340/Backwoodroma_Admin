@@ -4,9 +4,6 @@ import { IconButton } from "@mui/material"
 import Box from "@mui/material/Box"
 import TextField from "@mui/material/TextField"
 import FormControlLabel from '@mui/material/FormControlLabel';
-import ReactCrop from 'react-image-crop'
-import 'react-image-crop/dist/ReactCrop.css'
-import 'react-image-crop/src/ReactCrop.scss'
 import Radio from '@mui/material/Radio';
 import CloseIcon from '@mui/icons-material/Close';
 import { MdOutlineCloudUpload } from "react-icons/md"
@@ -17,6 +14,8 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios";
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
+import Compressor from 'compressorjs';
+
 const PromotionalBanner = () => {
     const navigate=useNavigate()
     const Swal = require('sweetalert2')
@@ -36,11 +35,23 @@ const PromotionalBanner = () => {
     const [loader, Setloader] = React.useState(false)
       const config = {
         "Content-Type": "multipart/form-data",
-        headers: { Authorization: `Bearer ${token_data}` }
+        headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyODczNjg3LCJpYXQiOjE3MDEzMzc2ODcsImp0aSI6IjllYTgwZGMyY2ZmZjQ0M2ZiYzY2MzQ2OTRmMjk1YWMyIiwidXNlcl9pZCI6MX0.nNt9qi_HGToLpmXMx5fzduz0ptk11VStkCZwVbxpjSg` }
       };
       function uploaddestopFile(e) {
         let ImagesArray=e.target.files;
-        setformdata({...fromdaa ,  destop_immage:[...ImagesArray]});
+        console.log(e.target.files[0] ,'original') 
+        if(ImagesArray[0].size/1000  > 50){
+            new Compressor(ImagesArray[0], {
+                quality: 0.8,
+                success: (compressedResult) => {      
+                  console.log(compressedResult ,'compressedResult')
+                  setformdata({...fromdaa ,  destop_immage: [compressedResult]});
+                },
+            });
+        }else{
+            setformdata({...fromdaa ,  destop_immage: [ImagesArray[0]]});
+        }
+       
       }
       function deletedestopFile(e) {
           const s = fromdaa?.destop_immage?.filter((item, index) => index !== e);
@@ -154,7 +165,6 @@ const PromotionalBanner = () => {
                                                         <div className="form-group">
                                                             <input
                                                                 type="file"
-                                                                disabled={fromdaa?.destop_immage?.length === 2}
                                                                 style={{ display: "none" }}
                                                                 onChange={uploaddestopFile}
                                                                 multiple

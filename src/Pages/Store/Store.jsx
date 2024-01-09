@@ -239,8 +239,11 @@ export default function Store() {
                                 <Box>
                                     <ThemeProvider theme={CustomFontTheme}>
                                         <div style={{ width: '100%', }}>
-                                            <DataGrid autoHeight rows={rows} editable={false}  columns={columns}  components={{ Toolbar: GridToolbar }} checkboxSelection
+                                            <DataGrid autoHeight rows={rows} editable={false}  columns={columns}  checkboxSelection
                                             pageSize={pageSize}
+                                            disableColumnMenu
+                                            disableColumnFilter
+                                            disableColumnSelector
                                             onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                                             rowsPerPageOptions={[5, 10, 20]}
                                             pagination

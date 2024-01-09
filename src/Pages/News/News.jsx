@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Box from '@mui/material/Box';
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 import axios from "axios";
@@ -34,20 +34,15 @@ export default function News() {
     }, [token_data, state])
 
     const columns = [
-        // {
-        //     field: 'Image', headerName: 'Post Image', editable: false, headerClassName: 'super-app-theme--header',maxWidth: 150, minWidth: 80, flex: 1,
-        //     renderCell: (params) => <img src={"http://backend.sweede.net/" + params.value} alt="Alt_Text" width="35" height="30" />,
-        // },
-        { field: 'Title', headerName: 'Post Title', editable: false, headerClassName: 'super-app-theme--header', maxWidth: 150, minWidth: 80, flex: 1, },
-
-        // { field: 'Link', headerName: 'Link', editable: false, headerClassName: 'super-app-theme--header',maxWidth: 150, minWidth: 80, flex: 1, },
+       
+        { field: 'Title', headerName: 'Post Title', editable: false, headerClassName: 'super-app-theme--header',  minWidth: 150, flex: 1,sortable:false },
         {
-            field: 'created', headerName: 'Publish Date', editable: false, maxWidth: 150, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',
+            field: 'created', headerName: 'Publish Date', editable: false, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',sortable:false,
             renderCell: (params) => params.row.created.slice(0, 10)
         },
-        { field: 'Status', headerName: 'Views', editable: false, maxWidth: 150, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'Status', headerName: 'Views', editable: false,  minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',sortable:false },
         {
-            field: 'Edit', headerName: 'Edit', editable: false, maxWidth: 150, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',
+            field: 'Edit', headerName: 'Edit', editable: false, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',sortable:false,
             renderCell: (params) => (
                 <>
                     <Box
@@ -164,8 +159,10 @@ export default function News() {
                             >
                                 <ThemeProvider theme={CustomFontTheme}>
                                     <div style={{ height: 500, width: '100%', }}>
-                                        <DataGrid rows={rows} columns={columns} components={{ Toolbar: GridToolbar }} checkboxSelection
-
+                                        <DataGrid rows={rows} columns={columns} checkboxSelection
+                                            disableColumnMenu
+                                            disableColumnFilter
+                                            disableColumnSelector
                                             sx={{
 
                                                 ".MuiDataGrid-toolbarContainer": {

@@ -222,8 +222,10 @@ export default function SubCategory() {
                             <ThemeProvider theme={CustomFontTheme}>
                                 <div style={{ height: 400, width: '100%', }}>
                                     <DataGrid rows={rows} columns={columns}
-
-                                        components={{ Toolbar: GridToolbar }}
+ disableColumnMenu
+ disableColumnFilter
+ disableColumnSelector
+                                      
                                         sx={{
                                             "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
                                                 outline: "none",

@@ -213,7 +213,10 @@ export default function Countries() {
                         }}>
                             <ThemeProvider theme={CustomFontTheme}>
                                 <div style={{ height: 400, width: '100%', }}>
-                                    <DataGrid rows={rows} columns={columns} components={{ Toolbar: GridToolbar }}
+                                    <DataGrid rows={rows} columns={columns} 
+                                     disableColumnMenu
+                                     disableColumnFilter
+                                     disableColumnSelector
                                         sx={{
 
                                             "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
