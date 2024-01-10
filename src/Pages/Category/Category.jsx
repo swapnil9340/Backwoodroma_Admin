@@ -76,9 +76,9 @@ export default function Category(props) {
         )
     }
     const columns = [
-        { field: 'name', headerName: 'Name', editable: false,  minWidth: 110, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'left', },
+        { field: 'name', headerName: 'Name', editable: false,  minWidth: 110, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'left',sortable:false },
         {
-            field: 'Status', headerName: 'Status', type: 'number', editable: true,flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'right', align:"center",
+            field: 'Status', headerName: 'Status', type: 'number',sortable:false, editable: true,flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'right', align:"center",
             renderCell: (params) => {
                 if (params.formattedValue === "Active") {
                     return (
@@ -113,7 +113,7 @@ export default function Category(props) {
             }
         },
         {
-            field: 'Edit', headerName: 'Edit', type: 'button', editable: false, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'rigth',align:"rigth",
+            field: 'Edit', headerName: 'Edit', type: 'button', editable: false, sortable:false,flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'rigth',align:"rigth",
             renderCell: (params) => (
                 <>
                     <Box

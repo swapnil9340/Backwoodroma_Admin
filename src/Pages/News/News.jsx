@@ -35,14 +35,14 @@ export default function News() {
 
     const columns = [
        
-        { field: 'Title', headerName: 'Post Title', editable: false, headerClassName: 'super-app-theme--header',  minWidth: 150, flex: 1,sortable:false },
+        { field: 'Title', headerName: 'Post Title', editable: false, headerClassName: 'super-app-theme--header',  minWidth: 150,sortable:false, flex: 1,sortable:false },
         {
-            field: 'created', headerName: 'Publish Date', editable: false, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',sortable:false,
+            field: 'created', headerName: 'Publish Date', editable: false, minWidth: 80, flex: 1,sortable:false, headerClassName: 'super-app-theme--header',sortable:false,
             renderCell: (params) => params.row.created.slice(0, 10)
         },
-        { field: 'Status', headerName: 'Views', editable: false,  minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',sortable:false },
+        { field: 'Status', headerName: 'Views', editable: false,  minWidth: 80, flex: 1,sortable:false, headerClassName: 'super-app-theme--header',sortable:false },
         {
-            field: 'Edit', headerName: 'Edit', editable: false, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',sortable:false,
+            field: 'Edit', headerName: 'Edit', editable: false, minWidth: 80, flex: 1,sortable:false, headerClassName: 'super-app-theme--header',sortable:false,
             renderCell: (params) => (
                 <>
                     <Box

@@ -78,7 +78,7 @@ const Vendor = () => {
         {
             field: 'Name',
             headerName: 'Name',
-             minWidth: 120, flex: 1,
+             minWidth: 120, flex: 1,sortable:false,
             "@media(max-width:540px)": {
                 maxWidth: 90, minWidth: 40, flex: 1,
 
@@ -88,18 +88,18 @@ const Vendor = () => {
         {
             field: 'email',
             headerName: 'Email/Phone',
-             minWidth: 120, flex: 1,
+             minWidth: 120, flex: 1,sortable:false,
             editable: true,
         },
         {
             field: 'StoreType',
-            headerName: 'Store Type', minWidth: 120, flex: 1,
+            headerName: 'Store Type', minWidth: 120, flex: 1,sortable:false,
             editable: true,
         },
         {
             field: 'StoreName',
             headerName: 'Store Name',
-            type: 'number', minWidth: 120, flex: 1,
+            type: 'number', minWidth: 120, flex: 1,sortable:false,
             editable: true,
             headerAlign: 'left', align: "left",
         },

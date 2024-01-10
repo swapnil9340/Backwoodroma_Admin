@@ -75,9 +75,9 @@ export default function Countries() {
 
 
     const columns = [
-        { field: 'CountryName', headerName: 'Country', maxWidth: 150, minWidth: 110, flex: 1, editable: false, headerClassName: 'super-app-theme--header' },
+        { field: 'CountryName', headerName: 'Country', maxWidth: 150, minWidth: 110, flex: 1, editable: false,sortable:false, headerClassName: 'super-app-theme--header' },
         {
-            field: 'Status', headerName: 'Status', maxWidth: 150, minWidth: 110, flex: 1, type: 'number', editable: false, headerClassName: 'super-app-theme--header', headerAlign: 'center', align: "center",
+            field: 'Status', headerName: 'Status', maxWidth: 150, minWidth: 110, flex: 1, type: 'number', editable: false, sortable:false,headerClassName: 'super-app-theme--header', headerAlign: 'center', align: "center",
             renderCell: (params) => {
 
                 if (params.formattedValue === "Active") {
@@ -111,7 +111,7 @@ export default function Countries() {
             }
         },
         {
-            field: 'Edit', headerName: 'Edit', type: 'button', maxWidth: 150, minWidth: 110, flex: 1, editable: true, headerClassName: 'super-app-theme--header', headerAlign: 'center', align: "center",
+            field: 'Edit', headerName: 'Edit', type: 'button', maxWidth: 150, minWidth: 110, flex: 1,sortable:false, editable: true, headerClassName: 'super-app-theme--header', headerAlign: 'center', align: "center",
             renderCell: (params) => (
                 <>
                     <Box

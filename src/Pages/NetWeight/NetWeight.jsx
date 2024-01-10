@@ -78,9 +78,9 @@ export default function State() {
 
 
     const columns = [
-        { field: 'Weight_type', headerName: 'Weight type',maxWidth: 150,minWidth: 80, flex: 1,  editable: true, headerClassName: 'super-app-theme--header' },
-        { field: 'Weight_Price', headerName: 'Weight Price',maxWidth: 150,minWidth: 80, flex: 1, editable: true, headerClassName: 'super-app-theme--header' },
-        { field: 'Status', headerName: 'Status', type: 'text',maxWidth: 150, minWidth: 80, flex: 1,editable: true, headerClassName: 'super-app-theme--header',
+        { field: 'Weight_type', headerName: 'Weight type',maxWidth: 150,minWidth: 80, flex: 1,  editable: true, sortable:false, headerClassName: 'super-app-theme--header' },
+        { field: 'Weight_Price', headerName: 'Weight Price',maxWidth: 150,minWidth: 80, flex: 1, editable: true, sortable:false, headerClassName: 'super-app-theme--header' },
+        { field: 'Status', headerName: 'Status', type: 'text',maxWidth: 150, minWidth: 80, flex: 1,editable: true, sortable:false, headerClassName: 'super-app-theme--header',
         renderCell: (params) => {
 
             if (params.formattedValue === "Active") {
@@ -115,7 +115,7 @@ export default function State() {
             )
         }
      },
-        { field: 'Edit', headerName: 'Edit',maxWidth: 150,minWidth: 80, flex: 1, type: 'button', editable: true, headerClassName: 'super-app-theme--header',
+        { field: 'Edit', headerName: 'Edit',maxWidth: 150,minWidth: 80, flex: 1, type: 'button', sortable:false, editable: true, headerClassName: 'super-app-theme--header',
         renderCell: (params) => (
             <>
                 <Box 

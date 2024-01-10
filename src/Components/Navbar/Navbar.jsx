@@ -17,12 +17,14 @@ import { FiSettings } from "react-icons/fi"
 import { IoIosMenu } from "react-icons/io"
 import { FaUserAlt } from "react-icons/fa"
 import UserEditProfile from '../../Pages/UserProfile/UserEditProfile';
+import Sidebar from './Sidebar';
 // import UserEditProfile from '../../Pages/UserProfile/UserEditProfile';
 function Navbar() {
   const [windowSize, setWindowSize] = React.useState([
     window.innerWidth,
     window.innerHeight,
   ]);
+  const [sidebaropen , setsidebaropen] = React.useState(false);
 
   const { dispatch } = useContext(Createcontext)
   const islogin = useContext(Createcontext)
@@ -77,91 +79,92 @@ function Navbar() {
 
       {
         islogin.state.login === true &&
-        <nav
-          id="navbarSupportedContent"
-          className="collapse navbar-collapse d-lg-block sidebar nav-side-menu ">
-          <div className="container Side_Bar">
-            <div className="row">
-              {windowSize[0] <= 991 &&
-                <div>
+        // <nav
+        //   id="navbarSupportedContent"
+        //   className="collapse navbar-collapse d-lg-block sidebar nav-side-menu ">
+        //   <div className="container Side_Bar">
+        //     <div className="row">
+        //       {windowSize[0] <= 991 &&
+        //         <div>
 
-                  <div className='col-6 center'>
-                    <a className="navbar-brand" href="/">
-                      <img src="" alt="" width="30" height="24" className="d-inline-block align-text-top brand" />
-                    </a>
-                  </div>
-                  <div className='col-6 margin' style={{ fontsize: "initial" }}>
-                    <h3>Hello, Mr</h3>
-                    <h4>My Admin Panel</h4>
-                  </div>
-                </div>
-              }
+        //           <div className='col-6 center'>
+        //             <a className="navbar-brand" href="/">
+        //               <img src="" alt="" width="30" height="24" className="d-inline-block align-text-top brand" />
+        //             </a>
+        //           </div>
+        //           <div className='col-6 margin' style={{ fontsize: "initial" }}>
+        //             <h3>Hello, Mr</h3>
+        //             <h4>My Admin Panel</h4>
+        //           </div>
+        //         </div>
+        //       }
 
-            </div>
+        //     </div>
 
-          </div>
-          <div className='list-group list-group-flush mx-3 mt-4 ' style={{ fontsize: "initial" }}>
+        //   </div>
+        //   <div className='list-group list-group-flush mx-3 mt-4 ' style={{ fontsize: "initial" }}>
             
-            <Link to="/" className="list-group-item list-group-item-action py-2 ripple" aria-current="true">
-              <span className='color DashBorad_logo' ><RiDashboardFill></RiDashboardFill> </span>
-              <span className='side_penal_link center' >Dashboard</span> </Link>
-          </div>
-          <div className="position-sticky">
-            <div className="list-group list-group-flush mx-3 mt-4">
-              <Link to="/Store" className="list-group-item list-group-item-action py-2 ripple ">
-                <div className='side_bar_option'>
-                  <span><IoStorefrontOutline></IoStorefrontOutline></span>
-                  <span className='side_penal_link'>Store</span>
-                </div>
-              </Link>
+        //     <Link to="/" className="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+        //       <span className='color DashBorad_logo' ><RiDashboardFill></RiDashboardFill> </span>
+        //       <span className='side_penal_link center' >Dashboard</span> </Link>
+        //   </div>
+        //   <div className="position-sticky">
+        //     <div className="list-group list-group-flush mx-3 mt-4">
+        //       <Link to="/Store" className="list-group-item list-group-item-action py-2 ripple ">
+        //         <div className='side_bar_option'>
+        //           <span><IoStorefrontOutline></IoStorefrontOutline></span>
+        //           <span className='side_penal_link'>Store</span>
+        //         </div>
+        //       </Link>
 
-              <CategoryDropDown></CategoryDropDown>
-              <LocationDropDown></LocationDropDown>
+        //       <CategoryDropDown></CategoryDropDown>
+        //       <LocationDropDown></LocationDropDown>
 
-              <Link to="/Brand" className="list-group-item list-group-item-action py-2 ripple">
-                <div className='side_bar_option'>
-                  <span><RiDragMoveFill></RiDragMoveFill></span>
-                  <span className='side_penal_link'>Brand</span>
-                </div>
+        //       <Link to="/Brand" className="list-group-item list-group-item-action py-2 ripple">
+        //         <div className='side_bar_option'>
+        //           <span><RiDragMoveFill></RiDragMoveFill></span>
+        //           <span className='side_penal_link'>Brand</span>
+        //         </div>
 
-              </Link>
-              <Link to="/Tax" className="list-group-item list-group-item-action py-2 ripple">
-                <div className='side_bar_option'>
-                  <span><HiOutlineReceiptTax></HiOutlineReceiptTax></span>
-                  <span className='side_penal_link'>Tax</span>
-                </div>
+        //       </Link>
+        //       <Link to="/Tax" className="list-group-item list-group-item-action py-2 ripple">
+        //         <div className='side_bar_option'>
+        //           <span><HiOutlineReceiptTax></HiOutlineReceiptTax></span>
+        //           <span className='side_penal_link'>Tax</span>
+        //         </div>
 
-              </Link>
-              <Link to="/Signup" className="list-group-item list-group-item-action py-2 ripple">
-                <div className='side_bar_option'>
-                  <span><FaUserAlt></FaUserAlt></span>
-                  <span className='side_penal_link'>Signup</span>
-                </div>
-              </Link>
-              <NewsDropDown></NewsDropDown>
-              <Link to="/Vendor" className="list-group-item list-group-item-action py-2 ripple">
-                <div className='side_bar_option'>
-                  <span><HiOutlineReceiptTax></HiOutlineReceiptTax></span>
-                  <span className='side_penal_link'>Vendor</span>
-                </div>
+        //       </Link>
+        //       <Link to="/Signup" className="list-group-item list-group-item-action py-2 ripple">
+        //         <div className='side_bar_option'>
+        //           <span><FaUserAlt></FaUserAlt></span>
+        //           <span className='side_penal_link'>Signup</span>
+        //         </div>
+        //       </Link>
+        //       <NewsDropDown></NewsDropDown>
+        //       <Link to="/Vendor" className="list-group-item list-group-item-action py-2 ripple">
+        //         <div className='side_bar_option'>
+        //           <span><HiOutlineReceiptTax></HiOutlineReceiptTax></span>
+        //           <span className='side_penal_link'>Vendor</span>
+        //         </div>
 
-              </Link>
-              <Link to="/PromotionalBannerList" className="list-group-item list-group-item-action py-2 ripple">
-                <div className='side_bar_option'>
-                  <span><HiOutlineReceiptTax></HiOutlineReceiptTax></span>
-                  <span className='side_penal_link'>Banner</span>
-                </div>
-              </Link>
-              <Link to="/Settings" className="list-group-item list-group-item-action py-2 ripple">
-                <div className='side_bar_option'>
-                  <span><FiSettings></FiSettings></span>
-                  <span className='side_penal_link'>Settings</span>
-                </div>
-              </Link>
+        //       </Link>
+        //       <Link to="/PromotionalBannerList" className="list-group-item list-group-item-action py-2 ripple">
+        //         <div className='side_bar_option'>
+        //           <span><HiOutlineReceiptTax></HiOutlineReceiptTax></span>
+        //           <span className='side_penal_link'>Banner</span>
+        //         </div>
+        //       </Link>
+        //       <Link to="/Settings" className="list-group-item list-group-item-action py-2 ripple">
+        //         <div className='side_bar_option'>
+        //           <span><FiSettings></FiSettings></span>
+        //           <span className='side_penal_link'>Settings</span>
+        //         </div>
+        //       </Link>
 
-            </div>
-          </div>
-        </nav>
+        //     </div>
+        //   </div>
+        // </nav>
+        <Sidebar sidebaropen={sidebaropen} setsidebaropen={setsidebaropen}  />
       }
 
       {

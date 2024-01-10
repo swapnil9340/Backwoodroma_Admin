@@ -10,7 +10,7 @@ import SubCategory from "../Pages/SubCategory/SubCategory";
 import countries from "../Pages/Countries/Countries";
 import State from "../Pages/States/State";
 import City  from "../Pages/City/City"
-import  Tax from "../Pages/Tax/Tax"
+import Tax from "../Pages/Tax/Tax"
 import Store from '../Pages/Store/Store';
 import Brand from '../Pages/Brand/Brand';
 import News from '../Pages/News/News';
@@ -29,10 +29,8 @@ import PromotionalBanner from '../Pages/PromotionalBanner/PromotionalBanner';
 import PromotionalBannerList from '../Pages/PromotionalBanner/PromotionalBannerList';
 import Aboutus from '../Pages/Aboutus/Aboutus';
 import Dummy from "../Pages/dummy"
+import Layout from '../Layout/Layout';
 export default function Router() {
- 
- 
-
   return (
     
 
@@ -78,3 +76,156 @@ export default function Router() {
   
   )
 }
+// const routesConfig = [
+//   {
+//     path:"gdgdsg",
+//     element:<HomePage/>
+//   },
+//   {
+//     path:"gdgdsg",
+//     element:<HomePage/>
+//   },
+//   {
+//     path:"gdgdsg",
+//     element:<HomePage/>
+//   },
+//   {
+//     path:"gdgdsg",
+//     element:<HomePage/>
+//   },
+//   {
+//     path:"gdgdsg",
+//     element:<HomePage/>
+//   },
+//   {
+//     path:"gdgdsg",
+//     element:<HomePage/>
+//   },
+//   {
+//     path:"gdgdsg",
+//     element:<HomePage/>
+//   },
+//   {
+//     path:"gdgdsg",
+//     element:<HomePage/>
+//   },
+//   {
+//     path:"gdgdsg",
+//     element:<HomePage/>
+//   },
+//   {
+//     path:"gdgdsg",
+//     element:<HomePage/>
+//   },
+//   {
+//     path:"gdgdsg",
+//     element:<HomePage/>
+//   },
+//   {
+//     path:"gdgdsg",
+//     element:<HomePage/>
+//   },
+//   {
+//     path:"gdgdsg",
+//     element:<HomePage/>
+//   },
+//   {
+//     path:"gdgdsg",
+//     element:<HomePage/>
+//   },
+//   {
+//     path:"gdgdsg",
+//     element:<HomePage/>
+//   },
+//   {
+//     path:"gdgdsg",
+//     element:<HomePage/>
+//   },
+//   {
+//     path:"gdgdsg",
+//     element:<HomePage/>
+//   },
+  
+//   {
+//     element: <Layout />,
+//     children: [
+//       {
+//         path: "/dashboard",
+//         element: <Protected Component={Dashboard} />,
+//       },
+     
+//       {
+//         path: "/category",
+//         element:  <Category/> ,
+//       },
+//       {
+//         path: "/Profile",
+//         element: <Profile />,
+//       },
+//       {
+//         path: "/product",
+//         element: <Product />,
+//       },
+//       {
+//         path:"/topsellingproduct",
+//         element:<TopSellingProduct/>
+//       },
+//       {
+//         path:"/Inventory",
+//         element:<Inventory/>
+//       },
+//       {
+//         path:"/OrderList",
+//         element:<OrderList/>
+//       },
+//       {
+//         path:"/allorder",
+//         element:<AllOrder/>
+//       },
+//       {
+//         path:"/settings",
+//         element:<Settings/>
+//       },
+//       {
+//         path:"/Flavour",
+//         element:<Flavour/>
+//       },
+//       {
+//         path:"/dulicateproduct",
+//         element:<Dulicateproduct/>
+//       },
+//       {
+//         path:"/ProductAdd",
+//         element:<NewAddProduct></NewAddProduct>
+//       },
+//       {
+//         path:"/EditProduct",
+//         element:<EditProduct></EditProduct>
+//       },
+//       {
+//         path:"/add-staff",
+//         element:<Addusers></Addusers>
+//       },  {
+//         path:"/all-staff",
+//         element:<Allusers></Allusers>
+//       },
+//       {
+//         path:"/sales-analysis",
+//         element:<Salesanalysis/>
+//       },
+//       {
+//         path:"/sales-order",
+//         element:<Ordersales/>
+//       },
+//       {
+//         path:"/sales-product",
+//         element:<Productsales/>
+//       },
+//       {
+//         path:"/sales-category",
+//         element:<Salescategory/>
+//       },
+//     ],
+//   },
+// ]
+// export default routesConfig

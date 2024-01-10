@@ -74,10 +74,10 @@ export default function City() {
     };
 
     const columns = [
-        { field: 'CityName', headerName: 'City', maxWidth: 150, minWidth: 110, flex: 1, editable: true, headerClassName: 'super-app-theme--header' },
-        { field: 'state_name', headerName: 'States',  maxWidth: 150, minWidth: 90, flex: 1, editable: true, headerClassName: 'super-app-theme--header' },
+        { field: 'CityName', headerName: 'City', maxWidth: 150, minWidth: 110, flex: 1, editable: true,sortable:false, headerClassName: 'super-app-theme--header' },
+        { field: 'state_name', headerName: 'States',  maxWidth: 150, minWidth: 90, flex: 1, editable: true,sortable:false, headerClassName: 'super-app-theme--header' },
         {
-            field: 'Status', headerName: 'Status',  maxWidth: 150, minWidth: 90, flex: 1,editable: false, width: 300, headerClassName: 'super-app-theme--header',
+            field: 'Status', headerName: 'Status',  maxWidth: 150, minWidth: 90, flex: 1,editable: false, width: 300,sortable:false, headerClassName: 'super-app-theme--header',
             renderCell: (params) => {
 
                 if (params.formattedValue === "Active") {
@@ -112,7 +112,7 @@ export default function City() {
             }
         },
         {
-            field: 'Edit', headerName: 'Edit', maxWidth: 150, minWidth: 80, flex: 1, type: 'button', editable: true, headerClassName: 'super-app-theme--header', headerAlign: 'left',align:"left",
+            field: 'Edit', headerName: 'Edit', maxWidth: 150, minWidth: 80, flex: 1,sortable:false, type: 'button', editable: true, headerClassName: 'super-app-theme--header', headerAlign: 'left',align:"left",
             renderCell: (params) => (
 
                 <>

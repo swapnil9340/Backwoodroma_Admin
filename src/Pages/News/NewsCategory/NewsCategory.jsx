@@ -58,9 +58,9 @@ export default function NewsCategory(props) {
 
 
     const columns = [
-        { field: 'name', headerName: 'Name', editable: true, maxWidth: 150, minWidth: 110, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'left', },
+        { field: 'name', headerName: 'Name', editable: true, maxWidth: 150, minWidth: 110,sortable:false, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'left', },
         {
-            field: 'Edit', headerName: 'Edit', type: 'button', editable: false,maxWidth: 150, minWidth: 110, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'left',
+            field: 'Edit', headerName: 'Edit', type: 'button', editable: false,maxWidth: 150,sortable:false, minWidth: 110, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'left',
             renderCell: (params) => (
                 <>
                     <Box

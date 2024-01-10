@@ -80,10 +80,10 @@ export default function State() {
 
 
     const columns = [
-        { field: 'StateName', headerName: 'States',maxWidth: 150, minWidth: 90, flex: 1, editable: false, headerClassName: 'super-app-theme--header' },
-        { field: 'country_name', headerName: 'Country', maxWidth: 150, minWidth: 90, flex: 1,editable: false, headerClassName: 'super-app-theme--header' },
+        { field: 'StateName',sortable:false, headerName: 'States',maxWidth: 150, minWidth: 90, flex: 1, editable: false, headerClassName: 'super-app-theme--header' },
+        { field: 'country_name',sortable:false, headerName: 'Country', maxWidth: 150, minWidth: 90, flex: 1,editable: false, headerClassName: 'super-app-theme--header' },
         {
-            field: 'Status', headerName: 'Status',maxWidth: 150, minWidth: 90, flex: 1, editable: false, width: 300, headerClassName: 'super-app-theme--header',
+            field: 'Status', headerName: 'Status',sortable:false,maxWidth: 150, minWidth: 90, flex: 1, editable: false, width: 300, headerClassName: 'super-app-theme--header',
             renderCell: (params) => {
 
                 if (params.formattedValue === "Active") {
@@ -119,7 +119,7 @@ export default function State() {
             }
         },
         {
-            field: 'Edit', headerName: 'Edit',maxWidth: 150, minWidth: 80, flex: 1, editable: false, headerClassName: 'super-app-theme--header',headerAlign: 'center', align:"center",
+            field: 'Edit', headerName: 'Edit',maxWidth: 150,sortable:false, minWidth: 80, flex: 1, editable: false, headerClassName: 'super-app-theme--header',headerAlign: 'center', align:"center",
             renderCell: (params) => (
                 <>
                     <Box

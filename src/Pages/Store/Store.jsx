@@ -15,19 +15,6 @@ import { AiFillEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import Createcontext from '../../Hooks/Context/Context';
 import { useSnackbar } from 'notistack';
 import Tooltip from '@mui/material/Tooltip';
-
-
-
-// const StyledPaper = styled(Paper)(({ theme }) => ({
-//     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-//     ...theme.typography.body2,
-//     padding: theme.spacing(2),
-//     maxWidth: "65%",
-//     color: theme.palette.text.primary,
-// }));
-
-
-
 export default function Store() {
     const { enqueueSnackbar } = useSnackbar();
     const { state, dispatch } = useContext(Createcontext)
@@ -84,17 +71,17 @@ export default function Store() {
         //     field: 'Store_Image', headerName: 'Store Image', editable: true, headerClassName: 'super-app-theme--header', width: 110,
         //     renderCell: (params) => <img src={"http://backend.sweede.net/" + params.value} alt="flavoursImage" width="35" height="30" />,
         // },
-        { field: 'Store_Name', headerName: 'Name', editable: true, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'Store_Type', headerName: 'Store Type', editable: true, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'Store_Name', headerName: 'Name', editable: true, minWidth: 60, flex: 1, sortable:false,headerClassName: 'super-app-theme--header' },
+        { field: 'Store_Type', headerName: 'Store Type', editable: true, minWidth: 60, flex: 1,sortable:false, headerClassName: 'super-app-theme--header' },
         // { field: 'Store_Address', headerName: 'Store Address', editable: true, headerClassName: 'super-app-theme--header', width: 150 },
         // {
         //     field: 'Stores_Description', headerName: 'Stores Description', editable: true, width: 180, headerClassName: 'super-app-theme--header',
         //     renderCell: (params) => <span dangerouslySetInnerHTML={{ __html: params.formattedValue }} />
         // },
         // { field: 'Stores_Website', headerName: 'Stores Website', editable: true, width: 130, headerClassName: 'super-app-theme--header' },
-        { field: 'Stores_MobileNo', headerName: 'MobileNo', editable: true, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'Stores_MobileNo', headerName: 'MobileNo', editable: true, minWidth: 60, flex: 1,sortable:false, headerClassName: 'super-app-theme--header' },
         {
-            field: 'Status', headerName: 'Status', editable: true, minWidth: 60, flex: 1, headerClassName: 'super-app-theme--header',
+            field: 'Status', headerName: 'Status', editable: true, minWidth: 60, flex: 1,sortable:false, headerClassName: 'super-app-theme--header',
 
             renderCell: (params) => {
 
@@ -131,7 +118,7 @@ export default function Store() {
             }
         },
         {
-            field: 'Edit', headerName: 'Edit', editable: true, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',
+            field: 'Edit', headerName: 'Edit', editable: true, minWidth: 80, flex: 1,sortable:false, headerClassName: 'super-app-theme--header',
             renderCell: (params) => (
                 <>
                     <Box >

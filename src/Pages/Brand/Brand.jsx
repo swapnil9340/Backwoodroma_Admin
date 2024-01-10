@@ -67,12 +67,12 @@ export default function Brand() {
 
     const columns = [
         {
-            field: 'Brand_Logo', headerName: 'Logo', editable: true, headerClassName: 'super-app-theme--header', minWidth: 80, flex: 1,
+            field: 'Brand_Logo', headerName: 'Logo', editable: true, headerClassName: 'super-app-theme--header', minWidth: 80, flex: 1,sortable:false,
             renderCell: (params) => <img src={"http://backend.sweede.net/" + params.value} alt="flavoursImage" width="35" height="30" />,
         },
-        { field: 'name', headerName: 'Name', editable: true, headerClassName: 'super-app-theme--header', minWidth: 80, flex: 1, },
+        { field: 'name', headerName: 'Name', editable: true, headerClassName: 'super-app-theme--header', minWidth: 80, flex: 1,sortable:false, },
         {
-            field: 'Status', headerName: 'Status', editable: false, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',
+            field: 'Status', headerName: 'Status', editable: false, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',sortable:false,
             renderCell: (params) => {
 
                 if (params.formattedValue === "Active") {
@@ -108,7 +108,7 @@ export default function Brand() {
             }
         },
         {
-            field: 'Edit', headerName: 'Edit', type: 'button', minWidth: 80, flex: 1, editable: true, headerClassName: 'super-app-theme--header',
+            field: 'Edit', headerName: 'Edit', type: 'button', minWidth: 80, flex: 1, editable: true, headerClassName: 'super-app-theme--header',sortable:false,
             renderCell: (params) => (
 
                 <>

@@ -77,10 +77,10 @@ export default function SubCategory() {
         )
     };
     const columns = [
-        { field: 'name', headerName: 'Name', minWidth: 90, flex: 1, editable: true, headerClassName: 'super-app-theme--header' },
-        { field: 'category_name', headerName: 'category', minWidth: 90, flex:1,type: 'text', editable: true,  headerClassName: 'super-app-theme--header',headerAlign: 'left' },
+        { field: 'name', headerName: 'Name', minWidth: 90, flex: 1,sortable:false, editable: true, headerClassName: 'super-app-theme--header' },
+        { field: 'category_name', headerName: 'category', minWidth: 90,sortable:false, flex:1,type: 'text', editable: true,  headerClassName: 'super-app-theme--header',headerAlign: 'left' },
         {
-            field: 'Status', headerName: 'Status', type: 'action',minWidth: 80,flex: 1, editable: false,  headerClassName: 'super-app-theme--header',
+            field: 'Status', headerName: 'Status', type: 'action',minWidth: 80,sortable:false,flex: 1, editable: false,  headerClassName: 'super-app-theme--header',
 
             renderCell: (params) => {
 
@@ -116,7 +116,7 @@ export default function SubCategory() {
             }
         },
         {
-            field: 'Edit', headerName: 'Edit', type: 'button', minWidth: 90,flex: 1, headerClassName: 'super-app-theme--header', cellClassName: 'Edit',
+            field: 'Edit', headerName: 'Edit', type: 'button', sortable:false,minWidth: 90,flex: 1, headerClassName: 'super-app-theme--header', cellClassName: 'Edit',
             renderCell: (params) => (
                 <>
                     <Box

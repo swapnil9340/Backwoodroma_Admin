@@ -45,10 +45,10 @@ export default function NewsSubCategory() {
     }, [state])
     
     const columns = [
-        { field: 'name', headerName: 'Name', maxWidth: 150, minWidth: 80, flex: 1, editable: true, headerClassName: 'super-app-theme--header',headerAlign: 'left', align:"", },
-        { field: 'category_name', headerName: 'News Category', type: 'text', editable: true, maxWidth: 150, minWidth: 110, flex: 1, headerClassName: 'super-app-theme--header',headerAlign: 'left', align:"left", },
+        { field: 'name', headerName: 'Name', maxWidth: 150, minWidth: 80, flex: 1,sortable:false, editable: true, headerClassName: 'super-app-theme--header',headerAlign: 'left', align:"", },
+        { field: 'category_name', headerName: 'News Category', type: 'text',sortable:false, editable: true, maxWidth: 150, minWidth: 110, flex: 1, headerClassName: 'super-app-theme--header',headerAlign: 'left', align:"left", },
         {
-            field: 'Edit', headerName: 'Edit', type: 'button', headerClassName: 'super-app-theme--header', cellClassName: 'Edit',maxWidth: 150, minWidth: 110, flex: 1,headerAlign: 'center', align:"center",
+            field: 'Edit', headerName: 'Edit', type: 'button',sortable:false, headerClassName: 'super-app-theme--header', cellClassName: 'Edit',maxWidth: 150, minWidth: 110, flex: 1,headerAlign: 'center', align:"center",
             renderCell: (params) => (
                 <>
                     <Box >

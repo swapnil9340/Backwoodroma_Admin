@@ -556,7 +556,21 @@ UserEditButton:{
         padding: "6px 15px"
       }
     },
-  }
+  },
+  sidebarIcon:{
+    height : '40px !important', 
+    width : '40px !important', 
+    display:'flex',
+    fontSize:'2.4rem !important',
+    alignItems:'center',
+    justifyContent:'center',
+    '& .MuiIcon-root':{
+      height : '40px !important', 
+      width : '40px !important', 
+      display:'flex',
+      
+    }
+  },
 }
 )
 export default useStyles

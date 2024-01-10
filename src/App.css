@@ -163,10 +163,13 @@ ul li path {
   padding: 58px 0 0;
   /* Height of navbar */
   box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
-  width: 16%;
+  width: 4%;
   z-index: 600;
+  transition: all .3s ease;
 }
-
+.sidebar:hover{
+  width: 15%;
+}
 .list-group-item {
   background-color: #FAFAFA;
 }

@@ -77,9 +77,9 @@ export default function Tax() {
         })
     };
     const columns = [
-        { field: 'tax_type', headerName: 'Name', minWidth: 80, flex: 1, editable: false, headerClassName: 'super-app-theme--header' },
-        { field: 'tax_value', headerName: 'Tax', minWidth: 80, flex: 1, editable: false, headerClassName: 'super-app-theme--header' },
-        { field: 'Status', headerName: 'Status', type: 'text', editable: false, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',
+        { field: 'tax_type', headerName: 'Name', minWidth: 80, flex: 1,sortable:false, editable: false, headerClassName: 'super-app-theme--header' },
+        { field: 'tax_value', headerName: 'Tax', minWidth: 80, flex: 1,sortable:false, editable: false, headerClassName: 'super-app-theme--header' },
+        { field: 'Status', headerName: 'Status', type: 'text',sortable:false, editable: false, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',
             renderCell: (params) => {
 
                 if (params.formattedValue === "Active") {
@@ -112,7 +112,7 @@ export default function Tax() {
                 )
             }
         },
-        { field: 'Edit', headerName: 'Edit', minWidth: 70, flex: 1, type: 'button', editable: false, headerClassName: 'super-app-theme--header',headerAlign: 'center',align:"center",
+        { field: 'Edit', headerName: 'Edit', minWidth: 70,sortable:false, flex: 1, type: 'button', editable: false, headerClassName: 'super-app-theme--header',headerAlign: 'center',align:"center",
         renderCell: (params) => (
             <>
                 <Box
