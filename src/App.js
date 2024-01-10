@@ -7,6 +7,8 @@ import "./AppStyles.css";
 import './AdminStyle.css';
 import { Context } from "./Hooks/Context/Context";
 import { SnackbarProvider } from 'notistack';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import  ConfigRoute from './Routes/Router'
 import { styled } from "@mui/material";
 function App() {
   const StyledSnackbarProvider = styled(SnackbarProvider)`
@@ -19,13 +21,12 @@ function App() {
     font-size : 20px
   }
 `;
-
+const router = createBrowserRouter(ConfigRoute);
   return (
     <>
       <StyledSnackbarProvider maxSnack={3} autoHideDuration={3000} >
-        <Context>
-          <Router></Router>
-        </Context>
+          {/* <Router></Router> */}
+          <RouterProvider router={router} />
       </StyledSnackbarProvider>
     </>
   );

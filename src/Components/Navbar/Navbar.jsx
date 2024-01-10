@@ -26,7 +26,7 @@ function Navbar() {
   ]);
   const [sidebaropen , setsidebaropen] = React.useState(false);
 
-  const { dispatch } = useContext(Createcontext)
+  const { state ,dispatch } = useContext(Createcontext)
   const islogin = useContext(Createcontext)
   const cookies = new Cookies();
   const navigate = useNavigate()
@@ -73,11 +73,12 @@ function Navbar() {
       }
     });
   }
+  console.log(  state ,'islogin.state.login')
   return (
 
     <>
 
-      {
+      {/* {
         islogin.state.login === true &&
         // <nav
         //   id="navbarSupportedContent"
@@ -86,7 +87,6 @@ function Navbar() {
         //     <div className="row">
         //       {windowSize[0] <= 991 &&
         //         <div>
-
         //           <div className='col-6 center'>
         //             <a className="navbar-brand" href="/">
         //               <img src="" alt="" width="30" height="24" className="d-inline-block align-text-top brand" />
@@ -164,8 +164,8 @@ function Navbar() {
         //     </div>
         //   </div>
         // </nav>
-        <Sidebar sidebaropen={sidebaropen} setsidebaropen={setsidebaropen}  />
-      }
+       // <Sidebar sidebaropen={sidebaropen} setsidebaropen={setsidebaropen}  />
+      } */}
 
       {
         islogin.state.login === true &&
