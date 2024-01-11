@@ -43,7 +43,7 @@ const Rolelist = () => {
         <div className='row'>
         <div className=' Add_Category  my-4 d-flex align-items-center justify-content-between'>
                         <h2>Roles </h2>
-                        <Link to={'/'}><button className='customiconbtn' >Add Roles</button> </Link>
+                        <Link to={'/addrole'}><button className='customiconbtn' >Add Roles</button> </Link>
                     </div>
                     <div className='col-12'>
                         <Box sx={{

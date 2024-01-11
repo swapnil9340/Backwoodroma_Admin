@@ -23,15 +23,15 @@ import Signup from '../Pages/Signup/Signup';
 import Settings from '../Pages/Settings/Settings';
 import RoleAndPermission from '../Pages/Settings/RolesAndPermission/RoleAndPermission';
 import ManageRole from '../Pages/Settings/RolesAndPermission/ManageRole/ManageRole';
-import RoleDetailsAndPermission from '../Pages/Settings/RolesAndPermission/RoleDetailsAndPermission/RoleDetailsAndPermission';
+// import RoleDetailsAndPermission from '../Pages/Settings/RolesAndPermission/RoleDetailsAndPermission/RoleDetailsAndPermission';
 import UserEditProfile from '../Pages/UserProfile/UserEditProfile';
 import PromotionalBanner from '../Pages/PromotionalBanner/PromotionalBanner';
 import PromotionalBannerList from '../Pages/PromotionalBanner/PromotionalBannerList';
 import Aboutus from '../Pages/Aboutus/Aboutus';
 import Dummy from "../Pages/dummy"
 import Layout from '../Layout/Layout';
-import Rolelist from '../Pages/Role/Rolelist'
-
+import Rolelist from '../Pages/Role/Rolelist';
+import RoleDetailsAndPermission from '../Pages/Role/RoleDetailsAndPermission/RoleDetailsAndPermission'
 // export default function Router() {
 //   return (
     
@@ -181,7 +181,7 @@ const routesConfig = [
         element:<Protected  Component={ManageRole}/>
       },
       {
-        path:"/RoleDetailsAndPermission",
+        path:"/addrole",
         element:<Protected  Component={ RoleDetailsAndPermission}/>
       },
       {
