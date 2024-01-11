@@ -153,12 +153,8 @@ export default function City() {
 
     const rows = totel
     return (
-        <div className='container-fluid'>
+    
             <div className='row'>
-
-
-                <div className='col-10 city_main_row m-2'>
-
                     <div className='col-12 Add_Category'>
                         <div className="col"> <h2> City
                         </h2></div>
@@ -268,14 +264,6 @@ export default function City() {
                         </Box>
                     </div>
                 </div>
-
-
-
-
-            </div>
-
-        </div>
-
 
     )
 }

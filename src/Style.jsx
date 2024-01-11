@@ -290,8 +290,10 @@ const useStyles = makeStyles({
       },
     }
   },
-  roleDetailsTextFieldStyle: {
+  textFeilddesign: {
+    fontSize:'16px',
     "& .MuiOutlinedInput-root": {
+      fontSize:'15px',
       " &.Mui-focused fieldset": {
         borderColor: "#31B665",
       },

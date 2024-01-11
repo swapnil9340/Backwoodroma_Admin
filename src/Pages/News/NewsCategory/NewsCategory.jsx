@@ -101,18 +101,12 @@ export default function NewsCategory(props) {
     const rows = totel
 
     return (
-        <div className='container-fluid '>
             <div className='row'>
-
-              
-                <div className='col-10 category_main_row' >
-
                     <div className='col-12 Add_Category m-2 mt-5 mb-5'>
                         <div className="col"> <h2>News Category
                         </h2></div>
                         <div className="col cat_but " >   <span className='btn cat_pop_btn'>{<AddNewsCategory></AddNewsCategory>}</span> </div>
                     </div>
-
                     <div className='col-12'>
                         <Box sx={{
                     height: 400,
@@ -220,22 +214,6 @@ export default function NewsCategory(props) {
                             </ThemeProvider>
                         </Box>
                     </div>
-
-
-
-
-
-
-
-                </div>
-
-
-
-
             </div>
-
-        </div>
-
-
     )
 }

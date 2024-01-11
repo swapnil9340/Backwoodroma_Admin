@@ -7,10 +7,11 @@ import RolePermissionListToggle from "./RolePermissionListToggle"
 import React from "react"
 import RolePermissionArray from "./RolePermissionArray"
 const RolePermission = () => {
-    let PermissionSum=0;
-    for(let i=0;i<RolePermissionArray.length;i++){
-        PermissionSum+=RolePermissionArray[i].key2.length
-    }
+    console.log(RolePermissionArray ,'RolePermissionArray')
+    // let PermissionSum=0;
+    // for(let i=0;i<RolePermissionArray.length;i++){
+    //     PermissionSum+=RolePermissionArray[i].key2.length
+    // }
     const [Values, SetValues] = React.useState([])
 
     const classes = useStyles()
@@ -18,11 +19,11 @@ const RolePermission = () => {
         <div className="col-12 rolePermission_container">
             <form>
                 <div className="col-12 rolePermisionHeaderContainer">
-                    <div className="col-lg-9 col-md-8 col-6">
-                        <h1 className="roleDetailsSechaedings">Permissions {PermissionSum}</h1>
+                    <div className=" col-7">
+                        <h2 className="roleDetailsSechaedings">Permissions</h2>
                         <p className="roleDetailsSechaedings">People with this role can perform the following actions.</p>
                     </div>
-                    <div className="col-lg-3 col-md-4 col-6 roles_permission_Searchbar">
+                    <div className=" col-5 roles_permission_Searchbar">
                         <TextField
                             className={`${classes.RoleAndPermissionSearchBarTextfield}`}
                             InputProps={{
@@ -33,29 +34,47 @@ const RolePermission = () => {
                                 )
                             }}
                             type="text" size="small" />
-
                     </div>
 
                 </div>
                 <div className="col-12 rolePermissionLists_container">
-                    <ol className="rolePermissionOrderList">
-                        {RolePermissionArray.map((items, index) => {
-                            return (
-                                <li className="rolePermissionListsStyles" key={index}  >
-                                    <div className="rolePermissionIcon_listContainer" onClick={() => SetValues({...Values, [items.id]:!Values[items.id]})}>
-                                        <span><FiChevronRight color="31B665" size={18} /></span>
-                                        <span className="rolePermissionListName">{items.RoleName}</span>
-                                    </div>
-                                    {
-                                        Values[items.id] === true && <RolePermissionListToggle RolePermissionArray={items.key2} />
-                                    }
+                    <div className="rolePermissionOrderList">
+                       {
+                        RolePermissionArray.map((item)=>{
+                            return <div className="rolePermissionItems">
+                                <div className="roleTitle">{item.RoleName}</div>
+                                <div className="permissionChecked">
+                                        <div className="roleinputbox">
+                                           
+                                            <input type="checkbox" id={`all${item.id}`}  name={`all${item.id}`} />
+                                            <label htmlFor={`all${item.id}`}>All</label>
+                                        </div>
+                                        <div className="roleinputbox">
+                                            <input type="checkbox" id={`view${item.id}`} name={`view${item.id}`} />
+                                            <label htmlFor={`view${item.id}`}>View</label>
 
+                                        </div>
+                                        <div className="roleinputbox">
+                                            <input type="checkbox" id={`Add${item.id}`} name={`Add${item.id}`} />
+                                            <label htmlFor={`Add${item.id}`}>Add</label>
 
+                                        </div>
+                                        <div className="roleinputbox">
+                                            <input type="checkbox" id={`edit${item.id}`} name={`edit${item.id}`} />
+                                            <label htmlFor={`edit${item.id}`}>Edit</label>
 
-                                </li>
-                            )
-                        })}
-                    </ol>
+                                        </div>
+                                        <div className="roleinputbox">
+                                            <input type="checkbox" id={`delete${item.id}`} name={`delete${item.id}`} />
+                                            <label htmlFor={`delete${item.id}`}>Delete</label>
+
+                                        </div>
+                                      
+                                </div>
+                            </div>
+                        })
+                       }
+                    </div>
 
                 </div>
             </form>

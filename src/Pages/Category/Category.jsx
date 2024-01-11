@@ -150,16 +150,13 @@ export default function Category(props) {
     ];
     const rows = totel
     return (
-        <div className='container-fluid '>
             <div className='row '>
-                <div className='col-10  category_main_row'>
-
+              
                     <div className='col-12 Add_Category  mt-5 mb-5'>
                         <div className="col"> <h2>  Category
                         </h2></div>
                         <div className="col cat_but " ><span className='btn cat_pop_btn'>{<Categorypopup></Categorypopup>}</span></div>
                     </div>
-
                     <div className='col-12'>
                         <Box sx={{
                             height: 400,
@@ -209,7 +206,7 @@ export default function Category(props) {
                         }}>
                             <ThemeProvider theme={CustomFontTheme}>
                                 <div style={{ width: '100%' }}>
-                                    <DataGrid rows={rows} columns={columns} components={{ Toolbar: GridToolbar, }}
+                                    <DataGrid rows={rows} columns={columns} 
                                                 autoHeight
                                                 pageSize={pageSize}
                                                 onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
@@ -218,6 +215,7 @@ export default function Category(props) {
                                                 disableColumnMenu
                                                 disableColumnFilter
                                                 disableColumnSelector
+                      
                                         sx={{
                                             "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
                                                 outline: "none",
@@ -272,22 +270,7 @@ export default function Category(props) {
                             </ThemeProvider>
                         </Box>
                     </div>
-
-
-
-
-
-
-
-                </div>
-
-
-
-
+            
             </div>
-
-        </div>
-
-
     )
 }

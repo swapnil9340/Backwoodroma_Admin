@@ -103,9 +103,9 @@ const PromotionalBanner = () => {
           setformdata({...fromdaa , mobile_immage:s});
       }
     return (
-        <div className='container-fluid'>
+      <React.Fragment>
             <div className='row'>
-                <div className='col-10  category_main_row' >
+               
                        
                             <div className="promtionalBannerHeader">
                                 <div>
@@ -283,13 +283,13 @@ const PromotionalBanner = () => {
                                             </div>
                                 
                             </div>
-                </div>
-
             </div>
+
+           
             {loader && <div className="loadercontainer">
               <div class="loader4"></div>
             </div>}
-        </div>
+            </React.Fragment>
     )
 }
 export default PromotionalBanner

@@ -1,7 +1,7 @@
 import React from "react"
 import RolesAndPermissionHeader from "./RolesAndPermissionComponent/RolesAndPermissionHeader"
 import RoleAndPermissionTable from "./RolesAndPermissionComponent/RolesAndPermissionTable"
-
+import './RoleAndPermission.css'
 
 const RoleAndPermission = () => {
     return (

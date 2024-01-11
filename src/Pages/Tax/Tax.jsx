@@ -149,10 +149,9 @@ export default function Tax() {
 
     const rows = totel
     return (
-        <div className='container-fluid'>
+      
             <div className='row'>
-                <div className='col-10 tax_main_row'>
-
+              
                     <div className='col-12 Add_Category mt-2'>
                         <div className="col"> <h2> Tax
                         </h2></div>
@@ -229,13 +228,6 @@ export default function Tax() {
                         </Box>
                     </div>
                 </div>
-
-
-
-
-            </div>
-
-        </div>
 
 
     )

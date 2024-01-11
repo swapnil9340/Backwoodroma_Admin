@@ -49,9 +49,9 @@ const Aboutus = () => {
   const classes = useStyles();
 
   return (
-    <div className='container-fluid'>
+    
     <div className='row'>
-        <div className='col-10  category_main_row' >
+     
 
         <div className='aboutusbanner'>
           <div className='container-fluid'>
@@ -147,9 +147,8 @@ const Aboutus = () => {
               </div>
           </div>
         </div>
-        </div>
     </div>
-</div>
+  
    
   )
 }

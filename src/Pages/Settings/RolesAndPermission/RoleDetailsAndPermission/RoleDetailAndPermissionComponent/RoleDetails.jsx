@@ -5,10 +5,10 @@ const RoleDetails = () => {
     return (
         <div className="col-12 RoleDetails_container">
             <div className="col-12 roleDetails_header">
-                <div className="col-12">
-                    <h1 className="roleDetailsHeading">Role Details</h1>
+             
+                    <h2 className="roleDetailsSechaedings">Role Details</h2>
                     <p className="roleDetailsSechaedings">Role details are shown in email invites and on the dashboard.</p>
-                </div>
+            
 
             </div>
             <div className="col-lg-6 col-12 RoleDetailInputField">
@@ -17,7 +17,7 @@ const RoleDetails = () => {
                         <label className="roleLabelStyle" htmlFor="role">Role*</label>
                     </div>
                     <div className="col-lg-9  col-8">
-                        <TextField className={classes.roleDetailsTextFieldStyle} id="role" placeholder="Role" variant="outlined" fullWidth size="small" />
+                        <TextField className={classes.textFeilddesign} id="role" placeholder="Role" variant="outlined" fullWidth size="small" />
                     </div>
 
 

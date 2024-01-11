@@ -17,14 +17,14 @@ function Protected(props) {
       {
        
             Navigate("/login")
-            // dispatch({type:'Login',login: false})
+             dispatch({type:'Login',login: false})
           }
          else{
-          if(login){
-            Navigate("/")
+          // if(login){
+          //   Navigate("/")
 
-          }
-          // dispatch({type:'Login',login: true})
+          // }
+         dispatch({type:'Login',login: true})
          }          
           
         } ,[Component ,Navigate ,dispatch])

@@ -30,6 +30,7 @@ import PromotionalBannerList from '../Pages/PromotionalBanner/PromotionalBannerL
 import Aboutus from '../Pages/Aboutus/Aboutus';
 import Dummy from "../Pages/dummy"
 import Layout from '../Layout/Layout';
+import Rolelist from '../Pages/Role/Rolelist'
 
 // export default function Router() {
 //   return (
@@ -170,6 +171,10 @@ const routesConfig = [
       {
         path:"/RoleAndPermission",
         element:<Protected  Component={RoleAndPermission}/>
+      },
+      {
+        path:"/Roles",
+        element:<Protected  Component={Rolelist}/>
       },
       {
         path:"/ManageRole",

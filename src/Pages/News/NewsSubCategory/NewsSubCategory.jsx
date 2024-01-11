@@ -78,11 +78,11 @@ export default function NewsSubCategory() {
 
         const rows = totel
 return (
-    <div className='container-fluid'>
+   
         <div className='row'>
 
           
-            <div className='col-10 category_main_row'>
+      
 
                 <div className='col-12 Add_Category m-2 mt-5 mb-5'>
                     <div className="col"> <h2>News Sub Category
@@ -183,15 +183,7 @@ return (
                         </ThemeProvider>
                     </Box>
                 </div>
-            </div>
-
-
-
-
         </div>
-
-    </div>
-
 
 )
 }

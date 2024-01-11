@@ -300,9 +300,9 @@ const PromotionalBannerList = () => {
             };
           }, []);
     return (
-        <div className="container-fluid">
-            <div className="row">
-                <div className="col-10 PromotionalBannerList">
+        <div>
+           
+              
                     <div className="row  promotional_bannerList_BackBtn">
                         <div className="col-sm-3 col-12">
                             <IconButton onClick={()=>navigate("/")}><IoMdArrowBack /></IconButton><span className="promotionBackBtnHead">Back</span>
@@ -358,10 +358,10 @@ const PromotionalBannerList = () => {
                         />
                         </Box>
                      </div>
-                </div>
+              
 
 
-            </div>
+       
             {loader && <div className="loadercontainer">
               <div class="loader4"></div>
             </div>}

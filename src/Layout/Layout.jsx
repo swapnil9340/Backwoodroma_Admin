@@ -10,7 +10,11 @@ const Layout = () => {
       <Navbar></Navbar>
       <div className='d-flex w-100'>
         <Sidebar sidebaropen={sidebaropen} setsidebaropen={setsidebaropen}  />
-          <div className='flex-fill'>  <Outlet/>  </div>
+          <div className='main_display'>
+            <div className='mycontainer'>
+              <Outlet/>
+            </div>
+          </div>
       </div>
     </div>
   )

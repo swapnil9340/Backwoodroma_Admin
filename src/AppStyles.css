@@ -1059,6 +1059,9 @@ input[type=checkbox] {
 /* end */
 /* RoleDetail */
 .RoleDetails_container{
+    width: 920px;
+    margin: 0 auto;
+    border-radius: 8px;
     height: auto;
     padding-top: 20px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -1079,23 +1082,22 @@ input[type=checkbox] {
     color: #000000;
     font-size: 18px;
 }
-.roleDetailsSechaedings{
+h2.roleDetailsSechaedings{
     color: #000000;
-    font-size: 16px;
-    text-align: justify;
+    font-size: 18px;
+    font-weight: 600;
+}
+p.roleDetailsSechaedings{
+    color: #000000;
+    font-size: 14px;
+    font-weight: 400;
 }
 /* end */
 /* RoleDetailsAndPermission */
 
-.RoleDetailsAndPermission_container{
-    position: relative;
-    left: 16%;
-}
+
 @media(max-width:991px){
-    .RoleDetailsAndPermission_container{
-        left: 0px;
-        width: 100%;
-    }
+  
     .roleDetailsSechaedings {
         font-size: 14px;
     }
@@ -1104,9 +1106,12 @@ input[type=checkbox] {
 /* end */
 /* rolePermission */
 .rolePermission_container{
+    width: 920px;
     height: auto;
     padding-top: 20px;
+    margin: 0 auto;
     margin-top: 20px;
+    border-radius: 8px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #00000029, 0px 3px 6px #00000029; 
 }

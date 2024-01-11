@@ -213,10 +213,8 @@ const Vendor = () => {
         )
     }
     return (
-        <>
-            <div className="container-fluid">
+       
                 <div className="row">
-                    <div className="col-10 category_main_row">
                         <div className="col-12 d-flex  Add_Category  mt-5 mb-5">
                             <div className="col">
                                 <h2>Vendor</h2>
@@ -293,13 +291,9 @@ const Vendor = () => {
                                 </ThemeProvider>
                             </Box>
                         </div>
-
-                    </div>
-
                 </div>
 
-            </div>
-        </>
+          
     )
 }
 export default Vendor

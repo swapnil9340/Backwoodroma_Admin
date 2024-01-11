@@ -4,11 +4,11 @@ import RolesAndPermissionHeader from "../RolesAndPermissionComponent/RolesAndPer
 
 const RoleDetailsAndPermission=()=>{
     return(
-        <div className="container-fluid">
+    
              
             <div className="row">
          
-                <div className="col-10 RoleDetailsAndPermission_container">
+                <div className="RoleDetailsAndPermission_container">
                 <div className="col-12 my-5">
                 <RolesAndPermissionHeader firstHeading={"Admin (Co-Owner)"}
                       /> 
@@ -19,7 +19,7 @@ const RoleDetailsAndPermission=()=>{
 
             </div>
 
-        </div>
+      
     )
 }
 export default RoleDetailsAndPermission

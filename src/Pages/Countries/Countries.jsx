@@ -152,18 +152,16 @@ export default function Countries() {
 
     const rows = totel
     return (
-        <div className='container-fluid'>
+     
             <div className='row'>
 
 
-                <div className='col-10 category_main_row' >
+             
 
                     <div className='col-12 Add_Category'>
-                        <div className="col m-4"> <h2>  Countries
-                        </h2></div>
+                        <div className="col m-4"> <h2>  Countries </h2></div>
                         <div className="col cat_but m-4" >  <span className='btn country_pop_btn'> <h2><CountriesPopup></CountriesPopup></h2></span></div>
                     </div>
-
                     <div className='col-12' >
 
                         <Box sx={{
@@ -276,12 +274,6 @@ export default function Countries() {
                     </div>
                 </div>
 
-
-
-
-            </div>
-
-        </div>
 
 
     )

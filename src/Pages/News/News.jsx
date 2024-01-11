@@ -100,10 +100,9 @@ export default function News() {
         }
     });
     return (
-        <>
-            <div className='container-fluid'>
+       
                 <div className='row'>
-                    <div className='col-10  category_main_row' >
+                    
 
                         <div className='col-12 Add_Category margin_top  m-2 mt-5 mb-5'>
                             <div className="col"> <h2>Latest News
@@ -201,8 +200,6 @@ export default function News() {
                             </Box>
                         </div>
                     </div>
-                </div>
-            </div>
-        </>
+         
     );
 }

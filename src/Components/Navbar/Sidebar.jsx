@@ -315,7 +315,7 @@ function manuchange(value){
                           </li>
                       </NavLink>
                       <NavLink
-                          to={'/aboNewsCategoryutus'}
+                          to={'/NewsCategory'}
                           onClick={closebar}
                           activeClassName="active"
                       >
@@ -339,6 +339,61 @@ function manuchange(value){
                           </li>
                       </NavLink>
                   </div>
+
+                    <li button className={`${openDropdown=== "Role"? "sidebarDropdown dropright": "sidebarDropdown dropdownarroe"} ''`} onClick={()=>{  manuchange("Role") }}>
+                  
+                  <Icon className={ classes.sidebarIcon + ''} ><FaHouseUser></FaHouseUser>  </Icon>
+                  <span className={"sidebar_text"}>News</span>
+          
+
+                    </li>
+                    <div  className={`submanusidebar ${openDropdown=== "Role"? "d-block": "d-none"}`}>
+                        <NavLink
+                            to={'/News'}
+                            onClick={closebar}
+                            activeClassName="active"
+                        >
+                            <li button className={ ' active_bar  suboption'}>
+                            
+                                {/* <Icon
+                                className={ classes.sidebarIcon + ' sidebar_text'}
+                                >
+                                <FaRegUser ></FaRegUser>
+                                </Icon> */}
+                            <span className={" sidebar_text"}
+                            >All News</span>
+                            </li>
+                        </NavLink>
+                        <NavLink
+                            to={'/Review'}
+                            onClick={closebar}
+                            activeClassName="active"
+                        >
+                            <li button className={ ' active_bar suboption'}>
+                            
+                                {/* <Icon
+                                className={ classes.sidebarIcon + ' sidebar_text'}
+                                >
+                                <FaClipboardList ></FaClipboardList>
+                                </Icon> */}
+                            <span className={" sidebar_text"}
+                            >Review</span>
+                            </li>
+                        </NavLink>
+                        <NavLink
+                            to={'/Roles'}
+                            onClick={closebar}
+                            activeClassName="active"
+                        >
+                            <li button className={ ' active_bar suboption'}>
+                            
+                            
+                            <span className={" sidebar_text"}
+                            >Role</span>
+                            </li>
+                        </NavLink>
+                    
+                    </div>
               <NavLink
                   to={'/Settings'}
                   onClick={closebar}

@@ -158,13 +158,12 @@ export default function State() {
 
     const rows = totel
     return (
-        <div className='container-fluid'>
+       
             <div className='row'>
-                <div className='col-10  state_main_row'>
+               
 
                     <div className='col-12 Add_Category my-2'>
-                        <div className="col"> <h2> States
-                        </h2></div>
+                        <div className="col"> <h2> States </h2></div>
                         <div className="col cat_but" >  <span className='btn cat_pop_btn'> <h2><StatePopUp></StatePopUp></h2></span></div>
                     </div>
 
@@ -287,12 +286,6 @@ export default function State() {
                     </div>
                 </div>
 
-
-
-
-            </div>
-
-        </div>
 
 
     )

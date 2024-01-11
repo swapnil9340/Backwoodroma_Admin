@@ -18,10 +18,9 @@ const Signup = () => {
         SetRole(e.target.value)
     }
     return (
-        <React.Fragment>
-            <div className="container-fluid">
+      
                 <div className="row">
-                    <div className="col-10 SignupContainer">
+                 
                         <div className="col-12 SignupHeading_container">
                             <div className="signupLogo_container">
                                 <LazyLoadImage className="signupLogo_image" src="./image/signup_logo.png" alt="image_not found" />
@@ -185,11 +184,8 @@ const Signup = () => {
                         </div>
 
                     </div>
-                </div>
-
-
-            </div>
-        </React.Fragment>
+                
+       
     )
 }
 export default Signup
