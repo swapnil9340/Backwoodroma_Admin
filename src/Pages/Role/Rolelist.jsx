@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ThemeProvider } from "@mui/material/styles";
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import { createTheme } from "@mui/material/styles";
 import IconButton from '@mui/material/IconButton';
 import {Link} from 'react-router-dom'
+import Cookies from 'universal-cookie';
+import axios from 'axios';
 const Rolelist = () => {
     const [pageSize, setPageSize] = React.useState(5);
+    const cookies = new Cookies();
+    const token_data = cookies.get('Token_access')
     const CustomFontTheme = createTheme({
         typography: {
             fontSize: 25
@@ -38,6 +42,18 @@ const Rolelist = () => {
 
     ];
     const rows = [{id:1,No:1,Name:'Co Admin' , CreatedAt:'12-09-23' , }]
+
+   console.log(token_data,'token_data')
+    useEffect(()=>{
+        axios.get('https://api.cannabaze.com/AdminPanel/Get-RolesAndPermission/',{
+            headers: {
+                'Authorization': `Bearer ${token_data}`
+            }
+        }).then((res)=>{
+            console.log(res ,'res')
+        })
+    },[])
+  
   return (
     <div className='roletablepage'>
         <div className='row'>

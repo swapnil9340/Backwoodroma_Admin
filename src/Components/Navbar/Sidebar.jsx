@@ -343,13 +343,13 @@ function manuchange(value){
                     <li button className={`${openDropdown=== "Role"? "sidebarDropdown dropright": "sidebarDropdown dropdownarroe"} ''`} onClick={()=>{  manuchange("Role") }}>
                   
                   <Icon className={ classes.sidebarIcon + ''} ><FaHouseUser></FaHouseUser>  </Icon>
-                  <span className={"sidebar_text"}>News</span>
+                  <span className={"sidebar_text"}>Staff</span>
           
 
                     </li>
                     <div  className={`submanusidebar ${openDropdown=== "Role"? "d-block": "d-none"}`}>
                         <NavLink
-                            to={'/News'}
+                            to={'/addstaff'}
                             onClick={closebar}
                             activeClassName="active"
                         >
@@ -361,11 +361,11 @@ function manuchange(value){
                                 <FaRegUser ></FaRegUser>
                                 </Icon> */}
                             <span className={" sidebar_text"}
-                            >All News</span>
+                            >Add Staff</span>
                             </li>
                         </NavLink>
                         <NavLink
-                            to={'/Review'}
+                            to={'/allstaff'}
                             onClick={closebar}
                             activeClassName="active"
                         >
@@ -377,7 +377,7 @@ function manuchange(value){
                                 <FaClipboardList ></FaClipboardList>
                                 </Icon> */}
                             <span className={" sidebar_text"}
-                            >Review</span>
+                            >All Stall</span>
                             </li>
                         </NavLink>
                         <NavLink

@@ -2,8 +2,6 @@ import InputAdornment from "@mui/material/InputAdornment"
 import useStyles from "../../../../Style"
 import { TextField } from "@mui/material"
 import { AiOutlineSearch } from "react-icons/ai"
-import { FiChevronRight } from "react-icons/fi"
-import RolePermissionListToggle from "./RolePermissionListToggle"
 import React from "react"
 import RolePermissionArray from "./RolePermissionArray"
 const RolePermission = () => {

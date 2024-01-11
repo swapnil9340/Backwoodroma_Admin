@@ -5,6 +5,10 @@
     margin: 0;
     padding: 0;
   }
+
+  .RoleDetailsAndPermission_container{
+    padding: 40px 0;
+  }
   .roleinputbox input {
     padding: 0;
     height: initial;

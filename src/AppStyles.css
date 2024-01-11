@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700;900&display=swap');
 
-
-
 textarea {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -18,6 +16,11 @@ textarea:focus {
 }
 input[type=checkbox] {
     accent-color: #31B665;
+  }
+  .backbtn{
+    font-size: 22px;
+    font-weight: 700;
+    cursor: pointer;
   }
 .reviewContainer {
     height: 100px;
@@ -727,77 +730,6 @@ input[type=checkbox] {
 
 /* end */
 /* RoleAndPermission */
-.RoleAndPermissionContainer {
-    position: relative;
-    left: 16%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.rolesAndPermissionTableheader {
-    background-color: #E1FFED;
-    border-bottom: 2px solid #E1FFED;
-}
-
-.rolesAndPermissionTableheader tr th {
-    width: 250px;
-}
-
-.Rolesparagrpah {
-    margin-bottom: 0px;
-}
-
-.roleUserName {
-    font: 600 18px Open Sans;
-    color: #000000;
-}
-
-.roleEmail {
-    font: 18px Open Sans;
-    color: #5F5F5F;
-}
-
-.roleAndTableImageSize {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-}
-
-.rolesAndPermissionParagraphCol {
-    display: grid;
-    align-items: center;
-}
-
-.rolesAndPermissionParagraph {
-    height: 40px;
-}
-
-.rolesAndPermissionImage {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    height: 80px;
-
-}
-
-.rolesAndPermissionTableContainer {
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 6px #00000029, 0px 3px 6px #00000029;
-}
-
-.rolesAndPermissionHeader_MainContainer {
-    display: flex;
-    flex-wrap: wrap;
-    height: auto;
-    margin-top: 20px;
-}
-
-.learnMoreLink {
-    margin-left: 8px;
-    font-size: 15px;
-}
 
 .rolesPermission {
     font: 600 32px Open Sans;
@@ -805,51 +737,7 @@ input[type=checkbox] {
     color: #000000;
 }
 
-.rolesPermissionsubHeadingFont {
-    font: 18px Open Sans;
-    color: #5F5F5F;
-}
 
-.learnMoreLink:hover {
-    color: #31B665;
-    margin-left: 8px;
-
-}
-
-.rolesAndPermissionHeader_Container {
-    display: flex;
-    gap: 10px;
-}
-
-.roleAndPermissionBtnContainer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 3px;
-}
-
-.rolesAndPermissionJustify {
-    text-align: justify;
-}
-
-.roleAndPermissionTh_div_flex {
-    display: flex;
-    align-items: center;
-    width: 109px;
-}
-
-
-.rolesAllDropdownMaincontainer {
-    display: flex;
-    gap: 10px;
-    padding-left: 5px;
-    flex-wrap: wrap;
-}
-
-.rolesAndpermission_Searchbar {
-    height: 50px;
-    display: flex;
-    align-items: center;
-}
 .roles_permission_Searchbar{
     height: 50px;
     display: flex;
@@ -863,198 +751,21 @@ input[type=checkbox] {
     padding-left: 0px;
 }
 
-.roleTd_fontStyle {
-    color: #000000;
-}
-
-.roleTdChangeOwner_fontStyle {
-    color: #31B665;
-    cursor: pointer;
-}
-
-.roleTdChangeOwner_fontStyle:hover {
-    color: #92daae;
-}
-
-
-.roleTdFlex {
-    display: grid;
-    align-items: center;
-    height: 80px;
-}
-
-@media(max-width:991px) {
-    .RoleAndPermissionContainer {
-        left: 0px;
-        display: flex-start;
-        width: 100%;
-    }
-
-    .roleAndTableImageSize {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-    }
-
-    .rolesPermissionsubHeadingFont {
-        font-size: 13px;
-    }
-
-    .roleEmail {
-        font: 12px Open Sans;
-    }
-
-    .roleUserName {
-        font-size: 12px;
-    }
-}
-
-.roelFirstSelectTagsContainer {
-    display: flex;
-    height: 50px;
-    align-items: center;
-    gap: 7px;
-}
-
-.roleSelectTags {
-    width: 70%;
-    height: 30px;
-    border-radius: 20px;
-    border-color: #BEBEBE;
-    padding: 2px 4px;
-}
 @media(max-width:500px) {
-    .rolesAndpermission_Searchbar {
-        justify-content: center;
-    }
-
-    .rolesAndPermissionHeader_Container {
-        gap: 1px;
-    }
+  
+  
 .roles_permission_Searchbar{
     justify-content: flex-start;
     padding-left: 7px;
 }
-    .roleAndPermissionBtnContainer {
-        display: flex;
-        justify-content: flex-start;
-        gap: 3px;
-        padding-left: 10px;
-    }
+  
 
-    .roleTdChangeOwner_fontStyle {
-        font-size: 10px;
-    }
+  
 }
 
 /* end */
 /* manageRole */
-.manageRoleContainer {
-    position: relative;
-    left: 16%;
-}
 
-.manageRoleCenterContainer {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 20px;
-}
-
-.generalRole_listContainer {
-    display: flex;
-    padding-left: 7px;
-}
-
-.generalRoleListLeftList {
-    text-align: justify;
-    font: 18px Open Sans;
-    color: #5F5F5F;
-}
-.generalOl{
-    padding-left: 0px;
-}
-.requestNotAssigned{
-    margin-bottom: 0px;
-    color: #5F5F5F;
-}
-.generalListHeight{
-    list-style: none;
-    height: auto;
-    padding: 15px 0px;
-    display: block;
-    width: 100%;
-    border-top: 1px solid #E0E0E0;
-    border-bottom: 1px solid #E0E0E0;
-
-}
-.generalListHeight:hover{
-    background-color: #E1FFED;
-}
-.generalListCenter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.generalBtn_ThreeDot {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 20px;
-}
-
-.generalRoleListHeading_Style {
-    color: #000000;
-    font-size: 18px;
-}
-
-.generalRoleHeadings {
-    font-size: 22px;
-    color: #000000;
-    font-weight: 700;
-    padding-left: 7px;
-
-}
-
-.GeneralRole_container {
-    height: auto;
-   padding-top: 20px;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 6px #00000029, 0px 3px 6px #00000029;
-}
-
-@media(max-width:500px) {
-    .manageRoleCenterContainer {
-        display: flex-start;
-    }
-    .generalRoleListLeftList{
-        font-size: 12px;
-    }
-    .requestNotAssigned{
-        font-size: 10px;
-    }
-    .generalBtn_ThreeDot{
-        gap: 1px;
-    }
-    .generalRoleListHeading_Style{
-        font-size: 14px;
-    }
-}
-@media(max-width:380px){
-    .generalRoleListLeftList{
-        font-size: 9px;
-    }
-    .requestNotAssigned{
-        font-size: 7px
-    }
-}
-@media(max-width:991px) {
-    .manageRoleContainer {
-        width: 100%;
-        left: 0px;
-    }
-}
 
 /* end */
 /* RoleDetail */
@@ -1140,31 +851,7 @@ p.roleDetailsSechaedings{
     gap: 10px;
 }
 /* end */
-/* RolePermissionListToggle */
-.rolePermissionLabel{
-    color: #000000;
-}
-.RolePermissionListToggle_container{
-    height: auto;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    box-shadow: inset 0px 3px 6px #00000029, 0px 3px 6px #00000029;
-}
-.RolePermissionListToggle_container{
-    height: auto;
-}
-.rolePermissionListName{
-    color: #000000;
-    font-size: 16px;
-}
-.checkCondition_container{
-    height: auto;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    height: auto;
-    padding: 15px 10px;
-}
-/* end */
+
 /* Navbar */
 .navbarOredrListStyle{
     /* display: flex;

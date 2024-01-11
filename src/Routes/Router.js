@@ -21,9 +21,7 @@ import Pagenotfound from "../Pages/Pagenotfound"
 import Review from '../Pages/Review/Review';
 import Signup from '../Pages/Signup/Signup';
 import Settings from '../Pages/Settings/Settings';
-import RoleAndPermission from '../Pages/Settings/RolesAndPermission/RoleAndPermission';
-import ManageRole from '../Pages/Settings/RolesAndPermission/ManageRole/ManageRole';
-// import RoleDetailsAndPermission from '../Pages/Settings/RolesAndPermission/RoleDetailsAndPermission/RoleDetailsAndPermission';
+import Addusers from '../Pages/Staff/Addstaff'
 import UserEditProfile from '../Pages/UserProfile/UserEditProfile';
 import PromotionalBanner from '../Pages/PromotionalBanner/PromotionalBanner';
 import PromotionalBannerList from '../Pages/PromotionalBanner/PromotionalBannerList';
@@ -31,8 +29,9 @@ import Aboutus from '../Pages/Aboutus/Aboutus';
 import Dummy from "../Pages/dummy"
 import Layout from '../Layout/Layout';
 import Rolelist from '../Pages/Role/Rolelist';
-import RoleDetailsAndPermission from '../Pages/Role/RoleDetailsAndPermission/RoleDetailsAndPermission'
-// export default function Router() {
+import RoleDetailsAndPermission from '../Pages/Role/RoleDetailsAndPermission/RoleDetailsAndPermission';
+import Allstall from '../Pages/Staff/Allstall';
+// export default function Router() {;
 //   return (
     
 
@@ -168,21 +167,22 @@ const routesConfig = [
         path:"/Settings",
         element:<Protected  Component={Settings}/>
       },
-      {
-        path:"/RoleAndPermission",
-        element:<Protected  Component={RoleAndPermission}/>
-      },
+     
       {
         path:"/Roles",
         element:<Protected  Component={Rolelist}/>
       },
       {
-        path:"/ManageRole",
-        element:<Protected  Component={ManageRole}/>
-      },
-      {
         path:"/addrole",
         element:<Protected  Component={ RoleDetailsAndPermission}/>
+      },
+      {
+        path:"/addstaff",
+        element:<Protected  Component={Addusers}/>
+      },
+      {
+        path:"/allstaff",
+        element:<Protected  Component={Allstall}/>
       },
       {
         path:"/UserEditProfile",
