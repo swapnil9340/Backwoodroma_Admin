@@ -129,9 +129,9 @@ export default function PopUp() {
     };
     return (
         <div>
-            <Button size='large' variant="outlined" onClick={handleClickOpen}>
+            <button className='topbutton' onClick={handleClickOpen}>
                 + Add Sub Category
-            </Button>
+            </button>
             <BootstrapDialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
@@ -291,7 +291,7 @@ export default function PopUp() {
                                         </div>
                                     </div>
                                     <div className='col-12 center top' >
-                                        <button className='btn Sub_button' autoFocus onClick={Submit} >
+                                        <button className='topbutton' autoFocus onClick={Submit} >
                                             Save changes
                                         </button>
                                     </div>

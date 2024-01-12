@@ -145,9 +145,9 @@ export default function Brandpopup() {
     };
     return (
         <div>
-            <Button variant="outlined" onClick={handleClickOpen}>
+            <button className="topbutton" onClick={handleClickOpen}>
                 + Add Brand
-            </Button>
+            </button>
             <BootstrapDialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
@@ -177,8 +177,7 @@ export default function Brandpopup() {
                             borderRadius: "15px"
                         },
                     },
-                }}
-            >
+                }}  >
                 <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
                     Modal title
                 </BootstrapDialogTitle>
@@ -315,7 +314,7 @@ export default function Brandpopup() {
 
                                 </div>
                                 <div className='col-12 center top' >
-                                    <button className='btn Sub_button' autoFocus onClick={Submit} >
+                                    <button className='topbutton' autoFocus onClick={Submit} >
                                         Add Brand
                                     </button>
                                 </div>

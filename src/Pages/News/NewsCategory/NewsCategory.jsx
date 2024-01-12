@@ -105,7 +105,7 @@ export default function NewsCategory(props) {
                     <div className='col-12 Add_Category m-2 mt-5 mb-5'>
                         <div className="col"> <h2>News Category
                         </h2></div>
-                        <div className="col cat_but " >   <span className='btn cat_pop_btn'>{<AddNewsCategory></AddNewsCategory>}</span> </div>
+                        <div className="col" >   <span>{<AddNewsCategory></AddNewsCategory>}</span> </div>
                     </div>
                     <div className='col-12'>
                         <Box sx={{

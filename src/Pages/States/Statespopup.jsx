@@ -132,9 +132,9 @@ export default function StatePopUp() {
 
     return (
         <div>
-            <Button variant="outlined" onClick={handleClickOpen}>
+            <button className="topbutton" onClick={handleClickOpen}>
                 + Add States
-            </Button>
+            </button>
             <BootstrapDialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
@@ -257,7 +257,7 @@ export default function StatePopUp() {
                                     </div>
                                 </div>
                                 <div className='col-12 center top' >
-                                    <button className='btn Sub_button' autoFocus onClick={Submit} >
+                                    <button className='topbutton' autoFocus onClick={Submit} >
                                        Add States
                                     </button>
                                 </div>

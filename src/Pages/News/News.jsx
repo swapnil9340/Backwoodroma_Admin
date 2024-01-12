@@ -107,7 +107,7 @@ export default function News() {
                         <div className='col-12 Add_Category margin_top  m-2 mt-5 mb-5'>
                             <div className="col"> <h2>Latest News
                             </h2></div>
-                            <div className="col cat_but popup_A" >  <span className='btn cat_pop_btn'> <h2> <Newspop></Newspop></h2></span></div>
+                            <div className="col  popup_A" >  <span> <h2> <Newspop></Newspop></h2></span></div>
                         </div>
                         <div className='col-12' >
                             <Box

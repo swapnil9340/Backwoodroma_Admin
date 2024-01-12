@@ -75,7 +75,7 @@ export default function Editbox(props) {
                                     </div>
                                 </div>
                                     <div className='col-12 center top'>
-                                    <button className='btn Sub_button'   style={{ fontSize:15}}>
+                                    <button className='topbutton'   style={{ fontSize:15}}>
                                         Save Changes
                                     </button>
                                     </div>

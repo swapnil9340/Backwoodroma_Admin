@@ -375,9 +375,9 @@ export default function Newspop() {
     return (
         <div>
 
-            <Button variant="outlined" onClick={handleClickOpen}>
+            <button className="topbutton" onClick={handleClickOpen}>
                 + Add News
-            </Button>
+            </button>
             <BootstrapDialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"

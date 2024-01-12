@@ -117,7 +117,7 @@ export default function NewsEdit(props) {
             "blockType",
             "inline",
             "list",
-            // "textAlign",
+            "colorPicker",
             "link",
             // "embedded",
             "image"
@@ -738,7 +738,7 @@ export default function NewsEdit(props) {
                                     </div>
                                 </div>
                                 <div className='col-12 center top' >
-                                    <button className='btn Sub_button' color='success' autoFocus onClick={Submit} >
+                                    <button className='topbutton' color='success' autoFocus onClick={Submit} >
                                         Save changes
                                     </button>
                                 </div>

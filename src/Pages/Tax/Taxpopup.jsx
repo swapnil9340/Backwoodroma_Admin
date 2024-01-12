@@ -121,9 +121,9 @@ export default function Taxpop() {
 
     return (
         <div>
-            <Button variant="outlined" onClick={handleClickOpen}>
+            <button className='topbutton' onClick={handleClickOpen}>
                 + Add Tax
-            </Button>
+            </button>
             <BootstrapDialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
@@ -261,7 +261,7 @@ export default function Taxpop() {
                                     </div>
                                 </div>
                                 <div className='col-12 center top' >
-                                    <button className='btn Sub_button' autoFocus onClick={Submit} >
+                                    <button className='topbutton' autoFocus onClick={Submit} >
                                        Add Tax
                                     </button>
                                 </div>

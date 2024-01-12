@@ -84,7 +84,7 @@ export default function NewsCategorypopup() {
 
     return (
         <div>
-            <Button variant="outlined" onClick={handleClickOpen}>
+            <Button variant="topbutton" onClick={handleClickOpen}>
                 + Add Category
             </Button>
             <BootstrapDialog
@@ -159,7 +159,7 @@ export default function NewsCategorypopup() {
                                 </div>
                               
                                 <div className='col-12 center top'>
-                                    <button className='btn Sub_button' onClick={handlechanges} style={{ fontSize: 15 }}>
+                                    <button className='topbutton' onClick={handlechanges} style={{ fontSize: 15 }}>
                                         Save Changes
                                     </button>
                                 </div>

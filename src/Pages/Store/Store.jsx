@@ -169,7 +169,7 @@ export default function Store() {
                 <div className='col-12 Add_Category margin_top m-2 mt-5 mb-5'>
                     <div className="col"> <h2>Store  <span className='total_count'>{`(${totel.length})`}</span>
                     </h2></div>
-                    <div className="col cat_but popup_A" > <span className='cat_pop_btn'> <h2><Storepopup></Storepopup> </h2></span></div>
+                    <div className="col  popup_A" > <span> <h2><Storepopup></Storepopup> </h2></span></div>
                 </div>
 
 

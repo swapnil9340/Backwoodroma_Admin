@@ -120,9 +120,9 @@ export default function CityPopUp() {
 
     return (
         <div>
-            <Button variant="outlined" onClick={handleClickOpen}>
+            <button className="topbutton" onClick={handleClickOpen}>
                 + Add Cities
-            </Button>
+            </button>
             <BootstrapDialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
@@ -252,7 +252,7 @@ export default function CityPopUp() {
                                 </div>
 
                                 <div className='col-12 center top' >
-                                    <button className='btn Sub_button' autoFocus onClick={Submit} style={{ fontSize: 15 }}>
+                                    <button className='topbutton' autoFocus onClick={Submit} style={{ fontSize: 15 }}>
                                         Add Cities
                                     </button>
                                 </div>

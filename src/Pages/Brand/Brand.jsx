@@ -172,7 +172,7 @@ export default function Brand() {
                 <div className='row mt-4'>
                         <div className='col-12 Add_Category  margin_top m-2 mt-5 mb-5'>
                             <div className="col"> <h2>Brand  </h2></div>
-                            <div className="col cat_but popup_A" ><span className='btn cat_pop_btn'> <h2> <Brandpopup></Brandpopup> </h2></span></div>
+                            <div className="col  popup_A" ><span> <h2> <Brandpopup></Brandpopup> </h2></span></div>
                         </div>
 
 

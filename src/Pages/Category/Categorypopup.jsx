@@ -106,9 +106,9 @@ export default function Categorypopup() {
 
     return (
         <div>
-            <Button size="large" variant="outlined" onClick={handleClickOpen}>
+            <button className='topbutton' onClick={handleClickOpen}>
                 + Add Category
-            </Button>
+            </button>
             <BootstrapDialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
@@ -239,7 +239,7 @@ export default function Categorypopup() {
                                         </div>
                                     </div>
                                     <div className='col center top' >
-                                        <button className='btn Sub_button' onClick={handlechanges}>
+                                        <button  className='topbutton' onClick={handlechanges}>
                                             Add Category
                                         </button>
                                     </div>
@@ -251,9 +251,9 @@ export default function Categorypopup() {
                     </div>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleClose}>
+                    <button className='topbutton' onClick={handleClose}>
                         Exit
-                    </Button>
+                    </button>
                 </DialogActions>
             </BootstrapDialog>
 

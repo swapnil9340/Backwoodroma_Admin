@@ -160,7 +160,7 @@ export default function Countries() {
 
                     <div className='col-12 Add_Category'>
                         <div className="col m-4"> <h2>  Countries </h2></div>
-                        <div className="col cat_but m-4" >  <span className='btn country_pop_btn'> <h2><CountriesPopup></CountriesPopup></h2></span></div>
+                        <div className="col  m-4" >  <span> <h2><CountriesPopup></CountriesPopup></h2></span></div>
                     </div>
                     <div className='col-12' >
 

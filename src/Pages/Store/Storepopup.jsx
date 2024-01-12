@@ -237,20 +237,8 @@ export default function Storepopup() {
 
     return (
         <div>
-            <Button variant="outlined" onClick={handleClickOpen}  sx={{
-                                            width: 140,
-                                            color: '#31B665',
-                                            borderColor:'#31B665',
-                                            fontSize:'14px',
-                                            transition: 'all 0.4s ease',
-                                            '&:hover':{
-                                                backgroundColor:'#31B665',
-                                                borderColor:'#31B665',
-                                                color:'#fff',
-                                                
-                                            }
-                                        }}>     + Add Store
-            </Button>
+            <button onClick={handleClickOpen} className='topbutton'>     + Add Store
+            </button>
             <BootstrapDialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
@@ -923,7 +911,7 @@ export default function Storepopup() {
                                 </div>
                                
                                 <div className='lg_ip_feild center top' >
-                                    <button className='btn Sub_button' autoFocus onClick={Submit} >
+                                    <button className='topbutton' autoFocus onClick={Submit} >
                                         Add Store
                                     </button>
                                 </div>

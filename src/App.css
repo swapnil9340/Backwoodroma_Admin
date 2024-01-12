@@ -622,12 +622,6 @@ a {
 .margn_top {
   margin-top: 100px;
 }
-
-.cat_but {
-  justify-content: right;
-  display: flex;
-}
-
 .btn button {
   color: white;
   background-color: #404040;
@@ -1197,11 +1191,6 @@ input:focus+label {
   border: 1px solid #31B665;
 }
 
-.cat_pop_btn {
-  border: none;
-
-}
-
 /* Added 15 feburary */
 .Sub_button {
   font-size: 15px;
@@ -1278,10 +1267,6 @@ input:focus+label {
   }
 }
 
-.country_pop_btn {
-  border: none;
-
-}
 
 .state_main_row {
   position: relative;

@@ -10,6 +10,7 @@ import { SnackbarProvider } from 'notistack';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import  ConfigRoute from './Routes/Router'
 import { styled } from "@mui/material";
+import './Mediaquery.css';
 function App() {
   const StyledSnackbarProvider = styled(SnackbarProvider)`
   &.SnackbarItem-contentRoot {

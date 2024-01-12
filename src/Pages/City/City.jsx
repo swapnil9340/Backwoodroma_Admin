@@ -158,7 +158,7 @@ export default function City() {
                     <div className='col-12 Add_Category'>
                         <div className="col"> <h2> City
                         </h2></div>
-                        <div className="col cat_but" >  <span className='btn cat_pop_btn'> <h2> <CityPopUp></CityPopUp></h2></span></div>
+                        <div className="col " >  <span> <h2> <CityPopUp></CityPopUp></h2></span></div>
                     </div>
 
                     <div className='col-12' >

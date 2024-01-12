@@ -142,7 +142,6 @@ const useStyles = makeStyles(theme =>(
           border: "2px solid #31B665"
         },
       },
-
       Username: {
         '& .MuiOutlinedInput-root': {
           '&.Mui-focused fieldset': {

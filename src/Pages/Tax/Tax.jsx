@@ -155,7 +155,7 @@ export default function Tax() {
                     <div className='col-12 Add_Category mt-2'>
                         <div className="col"> <h2> Tax
                         </h2></div>
-                        <div className="col cat_but" >  <span className='btn cat_pop_btn'> <h2> <Taxpop></Taxpop> </h2></span></div>
+                        <div className="col " >  <span> <h2> <Taxpop></Taxpop> </h2></span></div>
                     </div>
 
                     <div className='col-12' >

@@ -152,10 +152,9 @@ export default function Category(props) {
     return (
             <div className='row '>
               
-                    <div className='col-12 Add_Category  mt-5 mb-5'>
-                        <div className="col"> <h2>  Category
-                        </h2></div>
-                        <div className="col cat_but " ><span className='btn cat_pop_btn'>{<Categorypopup></Categorypopup>}</span></div>
+                    <div className='col-12 Add_Category  mt-5 mb-5 d-flex justify-content-between align-items-center'>
+                        <h2>  Category</h2>
+                       <span>{<Categorypopup></Categorypopup>}</span>
                     </div>
                     <div className='col-12'>
                         <Box sx={{

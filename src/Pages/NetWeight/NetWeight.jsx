@@ -161,7 +161,7 @@ export default function State() {
                     <div className='col-12 Add_Category'>
                         <div className="col"> <h2> NetWeight
                         </h2></div>
-                        <div className="col cat_but" >  <span className='btn cat_pop_btn'> <h2> <NetWegihtPopUp></NetWegihtPopUp></h2></span></div>
+                        <div className="col " >  <span> <h2> <NetWegihtPopUp></NetWegihtPopUp></h2></span></div>
                     </div>
 
                     <div className='col-12' >

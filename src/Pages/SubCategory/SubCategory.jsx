@@ -204,9 +204,9 @@ export default function SubCategory() {
           {" "}
           <h2> SubCategory</h2>
         </div>
-        <div className="col cat_but">
+        <div className="col ">
           {" "}
-          <span className="btn cat_pop_btn">
+          <span >
             {" "}
             <h2>
               <PopUp></PopUp>

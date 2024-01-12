@@ -98,9 +98,9 @@ export default function CountriesPopUp() {
 
     return (
         <div>
-            <Button variant="outlined" onClick={handleClickOpen}>
+            <button className="topbutton" onClick={handleClickOpen}>
                 + Add countries
-            </Button>
+            </button>
             <BootstrapDialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
@@ -199,7 +199,7 @@ export default function CountriesPopUp() {
                                 </div>
                                
                                 <div className='col-12 center top' >
-                                    <button className='btn Sub_button' autoFocus onClick={Submit} style={{ fontSize:15}}>
+                                    <button className='topbutton' autoFocus onClick={Submit} style={{ fontSize:15}}>
                                         Add Countries
                                     </button>
                                 </div>

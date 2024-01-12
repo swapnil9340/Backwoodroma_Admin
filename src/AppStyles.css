@@ -22,6 +22,23 @@ input[type=checkbox] {
     font-weight: 700;
     cursor: pointer;
   }
+.topbutton{
+  min-width: 140px;
+  border: 1px solid #31B655;
+  color: #31B655;
+  padding: 7px 0px;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: transparent;
+  transition: all .3s ease;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.075);
+}
+.topbutton:hover{
+    background-color: #31B655;
+    color: #fff;
+}
+
 .reviewContainer {
     height: 100px;
 }
@@ -80,19 +97,7 @@ input[type=checkbox] {
     justify-content: flex-end;
 }
 
-@media(max-width:600px) {
-    .review_backBtn {
-        font-size: 12px;
-    }
-}
 
-@media(max-width:991px) {
-    .reviewMainContainer {
-        left: 0px;
-        width: 100%;
-        padding: 0px
-    }
-}
 
 /* NumberOfReview */
 .NumberOfReview_container {
@@ -115,7 +120,7 @@ input[type=checkbox] {
 }
 
 .headingsCol {
-    /* border: 1px  solid #D1D1D1; */
+  
     height: 35px;
 }
 
@@ -177,45 +182,6 @@ input[type=checkbox] {
     height: 35px;
 }
 
-@media(max-width:780px) {
-    .totalReviewHeadings {
-        font-size: 14px;
-    }
-
-    .totalReviwsCount {
-        font-size: 14px;
-    }
-
-    .bottomHeadings {
-        font-size: 14px;
-    }
-}
-
-@media(max-width:562px) {
-    .NumberOfReview_container_Card2 {
-        padding-left: 0px;
-        width: 100%;
-        border-right: 0px;
-        border-bottom: 1px solid #D1D1D1;
-    }
-
-    .linearProgressCol {
-        padding-left: 0px;
-        width: 100%;
-        border-bottom: 1px solid #D1D1D1;
-    }
-
-    .NumberOfReview_container {
-        display: block;
-    }
-
-    .NumberOfReview_container_Card1 {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #D1D1D1;
-    }
-}
-
 /* end */
 /* UserAndOwnerReview */
 .UserAndOwnerReview_mainCol {
@@ -247,7 +213,6 @@ input[type=checkbox] {
     width: 10%;
     display: flex;
     justify-content: center;
-
 }
 
 .userReviewRightSection {
@@ -351,96 +316,9 @@ input[type=checkbox] {
     height: 35px;
 }
 
-@media(max-width:1300px) {
-    .userReviewContainer {
-        padding: 0px 2px;
-    }
 
-    .ReviewOwner_container {
-        padding: 0px;
-    }
-}
 
-@media(max-width:1205px) {
-    .userReviewss {
-        font-size: 16px;
-    }
-}
 
-@media(max-width:911px) {
-    .userOwnerImgContainer {
-        width: 60px;
-        height: 60px;
-        border-radius: 30px;
-        display: flex;
-        justify-content: center;
-    }
-
-    .userOwnerImg {
-        height: 50px;
-        width: 50px;
-        border-radius: 25px;
-    }
-
-    .ownerReviewImageCont {
-        width: 60px;
-        height: 60px;
-        border-radius: 30px;
-        display: flex;
-        justify-content: center;
-    }
-
-    .ownerReviewImage {
-        height: 50px;
-        width: 50px;
-        border-radius: 25px;
-    }
-}
-
-@media(max-width:672px) {
-    .userReviewLeftSection {
-        width: 24%;
-
-    }
-
-    .reviewDate {
-        font-size: 12px;
-    }
-
-    .userReviewRightHeading {
-        font-size: 18px;
-    }
-
-    .userReviewRight_Paragraph {
-        font-size: 12px;
-    }
-
-    .userReviewss {
-        font-size: 12px;
-    }
-
-    .userReviewRightSection {
-        width: 76%;
-    }
-
-    .ownerReviewImage_section {
-        width: 24%;
-
-    }
-
-    .ownerRightSectionss {
-        width: 76%;
-
-    }
-
-    .ownerParaa {
-        font-size: 12px;
-    }
-
-    .ownerRightHeading {
-        font-size: 18px;
-    }
-}
 
 /* end */
 /* Signup */
@@ -609,62 +487,7 @@ input[type=checkbox] {
     margin-top: 30px;
 }
 
-@media(max-width:1244px) {
-    .signup_image_mainContainer {
-        width: 14%;
-    }
 
-    .signupDropdown_rightSection {
-        width: 86%;
-    }
-
-    .signup_headings {
-        font-size: 18px;
-    }
-}
-
-@media(max-width:991px) {
-    .SignupContainer {
-        left: 0px;
-        width: 100%;
-    }
-}
-
-@media(max-width:762px) {
-    .alreadyAccount {
-        width: 100%;
-    }
-
-    .signup_image_mainContainer {
-        width: 18%;
-    }
-
-    .signupDropdown_rightSection {
-        width: 82%;
-    }
-}
-
-@media(max-width:700px) {
-    .signup_image_mainContainer {
-        width: 28%;
-        height: 98px;
-        margin-top: 5px;
-    }
-
-    .signUp_loading_btn {
-        width: 100%;
-    }
-
-    .signupDropdown_rightSection {
-        width: 72%;
-    }
-
-    .signupUser_image {
-        height: 50px;
-        width: 50px;
-        border-radius: 50%;
-    }
-}
 
 /* end */
 /* Anshuman */
@@ -716,17 +539,6 @@ input[type=checkbox] {
     columns: #000000;
 }
 
-@media(max-width:991px) {
-    .Settings_container {
-        left: 0px;
-        width: 100%;
-        display: flex-start;
-    }
-
-    .settingHeading_contentContainer {
-        width: 100%;
-    }
-}
 
 /* end */
 /* RoleAndPermission */
@@ -751,17 +563,7 @@ input[type=checkbox] {
     padding-left: 0px;
 }
 
-@media(max-width:500px) {
-  
-  
-.roles_permission_Searchbar{
-    justify-content: flex-start;
-    padding-left: 7px;
-}
-  
 
-  
-}
 
 /* end */
 /* manageRole */
@@ -807,12 +609,7 @@ p.roleDetailsSechaedings{
 /* RoleDetailsAndPermission */
 
 
-@media(max-width:991px){
-  
-    .roleDetailsSechaedings {
-        font-size: 14px;
-    }
-}
+
 
 /* end */
 /* rolePermission */
@@ -872,19 +669,7 @@ p.roleDetailsSechaedings{
 .NvaListStyle{
     list-style: none;
 }
-@media(max-width:768px){
-    .navbarOredrListStyle{
-        gap: 30px;
-    }
-}
-@media(max-width:600px){
-    .navbarOredrListStyle{
-        gap: 14px;
-    }
-    .messagebox{
-        font-size: 20px;
-    }
-}
+
 .allColumn_Center{
     display: flex;
     justify-content: center;
@@ -981,15 +766,7 @@ p.roleDetailsSechaedings{
     display: flex;
     justify-content: flex-end;
 }
-@media(max-width:500px){
-    .UserEditProfile_label{
-        font-size: 8px;
-    }
-    .userEditNameIconFlex{
-        gap:4px;
-    }
-  
-}
+
 /* end */
 /* login-logout */
 
@@ -1065,32 +842,7 @@ color:#3C3C3C
     font-size: 18px;
     font-weight: 600;
 }
-@media(max-width:992px){
-    .PromotionalBannerContainer{
-        left: 0px;
-        width: 100%;
-    }
-}
-/* .promtionalBannerHeader{
-    height: auto;
-} */
-@media(max-width:500px){
-    .PromotionalMainContainer{
-        width: 100%;
-        padding: 25px;
-    }
-    .promotionalImage {
-        height: 50px;
-        width: 68px;
-    }
-    .imageContainer{
-        width: 100px;
-        height: 90px;
-    }
-    .promotionBackBtnHead{
-        font-size: 16px;
-    }
-}
+
 .promotionBtn_center{
     display: flex;
     justify-content: center;
@@ -1153,12 +905,7 @@ padding: 4px;
 .promotionOL_list li{
     display: block;
 }
-@media(max-width:992px){
-   .PromotionalBannerList{
-    left: 0px;
-    width: 100%;
-   } 
-}
+
 /* end */
 /* navbar */
 .searchBar_and_icons{
@@ -1180,18 +927,5 @@ padding: 4px;
     position: relative;
     top: 7px;
 }
-@media(max-width:600px){
-    .navbarLast_icons{
-        right: 0px;
-    }
-    .searchBarMainDiv{
-        width: auto;
-    }
-    .searchBar_and_icons{
-        gap: 10px;
-    }
-    .louout{
-        font-size: 12px;
-    }
-}
+
 /* end */

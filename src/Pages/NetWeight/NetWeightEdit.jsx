@@ -250,7 +250,7 @@ export default function NetwegihtEdit(props) {
                                     </div>
                                 </div>
                                 <div className='col-12 center top' >
-                                    <button className='btn Sub_button' autoFocus onClick={Submit} >
+                                    <button className='topbutton' autoFocus onClick={Submit} >
                                         Save changes
                                     </button>
                                 </div>

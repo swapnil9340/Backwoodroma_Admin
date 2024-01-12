@@ -177,7 +177,7 @@ export default function NewsCategoryEditbox(props) {
                                 </div>
 
                                 <div className='col-12 center top'>
-                                    <button className='btn Sub_button' onClick={SubmitEditData} style={{ fontSize: 15 }}>
+                                    <button className='topbutton' onClick={SubmitEditData} style={{ fontSize: 15 }}>
                                         Save Changes
                                     </button>
                                 </div>

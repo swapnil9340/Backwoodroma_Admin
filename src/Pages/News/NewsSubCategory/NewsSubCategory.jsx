@@ -85,9 +85,8 @@ return (
       
 
                 <div className='col-12 Add_Category m-2 mt-5 mb-5'>
-                    <div className="col"> <h2>News Sub Category
-                    </h2></div>
-                    <div className="col cat_but" >  <span className='btn cat_pop_btn'> <h2> <AddNewsCategory></AddNewsCategory></h2></span></div>
+                    <div className="col"> <h2>News Sub Category</h2></div>
+                    <div className="col " >  <span> <h2> <AddNewsCategory></AddNewsCategory></h2></span></div>
                 </div>
 
                 <div className='col-12' >

@@ -46,15 +46,9 @@ export default function UserDelete(props) {
 
   return (
     <div>
-      <Button color='success' onClick={handleClickOpen} sx={{
-                              
-                              fontSize:'14px',
-                              textTransform:'capitalize',
-                              gap:'3px',
-                              textAlign:'start',
-                           }}>
+      <button color='topbutton' onClick={handleClickOpen}>
       <BsTrashFill/> Delete
-      </Button>
+      </button>
       <Dialog
         open={open}
         TransitionComponent={Transition}

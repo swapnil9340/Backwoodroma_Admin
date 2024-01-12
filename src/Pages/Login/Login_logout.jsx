@@ -239,10 +239,10 @@ export default function Login_logout() {
                             <DialogActions>
                                 {
                                     otpvalid === "invalid Otp" ? <p>
-                                        <button className='btn Sub_button size ' onClick={handleSubmit}>resend</button>
-                                        <button className='btn Sub_button  size' onClick={otp_send}>Verify</button>
+                                        <button className='topbutton size ' onClick={handleSubmit}>resend</button>
+                                        <button className='topbutton  size' onClick={otp_send}>Verify</button>
                                     </p>
-                                        : <button className='btn Sub_button  size' onClick={otp_send}>Verify</button>
+                                        : <button className='topbutton  size' onClick={otp_send}>Verify</button>
                                 }
 
 
