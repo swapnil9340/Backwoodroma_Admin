@@ -8,6 +8,7 @@ const RolePermission = ({rolepermision , setrolepermision ,setdescchceck ,descch
     const classes = useStyles()
     function checkedfunction(name , type='none'){
         setdescchceck(!descchceck)
+         console.log(name, type)
        if(type === "All"){
         if((rolepermision[`View${name}`] && rolepermision[`Add${name}`]) && (rolepermision[`Delete${name}`] && rolepermision[`Edit${name}`])){
             setrolepermision({ ...rolepermision , [`View${name}`] : false , [`Delete${name}`] : false ,  [`Edit${name}`] : false, [`Add${name}`] :false })
@@ -19,7 +20,7 @@ const RolePermission = ({rolepermision , setrolepermision ,setdescchceck ,descch
            setrolepermision({ ...rolepermision , [name] : !rolepermision[name] })
        }
     }
-   
+   console.log(rolepermision)
     return (
         <div className="col-12 rolePermission_container">
             <form>

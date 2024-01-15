@@ -15,7 +15,7 @@ const RoleDetailsAndPermission=()=>{
     const [descchceck , setdescchceck] = useState(false)
     const [rolepermision,setrolepermision]= useState({
         "RoleTitle": "",
-        "Description": "",
+        "Description": '',
         "AddStore": false,
         "ViewStore": false,
         "EditStore": false,
@@ -77,7 +77,6 @@ const RoleDetailsAndPermission=()=>{
         "EditStaff": false,
         "DeleteStaff": false
     })
-    console.log(rolepermision)
     function Submitdata(){
         setloading(true)
         if(Boolean(rolepermision?.RoleTitle?.length)){
@@ -97,7 +96,7 @@ const RoleDetailsAndPermission=()=>{
     return(
             <div className="row">
                 <div className="RoleDetailsAndPermission_container">
-                    <div className=""><span className="backbtn" onClick={()=>{navigate(-1)}}><FaAnglesLeft /> Back</span> </div>
+                    <div className=""><span className="backbtn" onClick={()=>{navigate(-1)}}><FaAnglesLeft/> Back </span> </div>
                     <RoleDetails setrolepermision={setrolepermision} rolepermision={rolepermision} descchceck={descchceck} />
                     <RolePermission setrolepermision={setrolepermision} rolepermision={rolepermision} setdescchceck={setdescchceck} descchceck={descchceck}/>
                     <div className="text-center py-5 gap-4">
