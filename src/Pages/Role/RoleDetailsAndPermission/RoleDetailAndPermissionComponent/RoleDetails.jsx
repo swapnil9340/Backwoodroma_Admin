@@ -40,13 +40,13 @@ const  RoleDetails = ({rolepermision , setrolepermision ,descchceck}) => {
                 }
              
                 if(Boolean(num)){
-                    console.log(item.RoleName)
+                   console.log(rolepermision.Description.split(','))
                     if(num === 4){
                         descrip = `${rolepermision.Description} , ${item.RoleName}(All)`
                     }else{
                         descrip = `${rolepermision.Description} , ${item.RoleName}(${valsd.join()})`
                     }
-            }
+                 }
             setrolepermision({...rolepermision  , Description : descrip})
         })
     },[descchceck])
@@ -72,7 +72,7 @@ const  RoleDetails = ({rolepermision , setrolepermision ,descchceck}) => {
                         <label className="roleLabelStyle" htmlFor="description">Description</label>
                     </div>
                     <div className="col-lg-9  col-8">
-                        <textarea id="description" rows="3" className="Description" name="Description" value={rolepermision.Description} onChange={(e)=>changehandle(e)}></textarea>
+                        <textarea id="description" rows="3" className="Description" name="Description" value={rolepermision.Description} disabled></textarea>
                     </div>
                 </div>
 

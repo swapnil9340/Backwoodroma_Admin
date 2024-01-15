@@ -7,10 +7,11 @@ import IconButton from '@mui/material/IconButton';
 import { MdOutlineDeleteOutline  } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 
-import {Link} from 'react-router-dom'
+import {Link , useNavigate} from 'react-router-dom'
 import Cookies from 'universal-cookie';
 import axios from 'axios';
 const Rolelist = () => {
+    let navigate = useNavigate();
     const [pageSize, setPageSize] = React.useState(5);
     const [RoleData, SetRoleData] = React.useState([]);
     const Swal = require('sweetalert2')
@@ -18,7 +19,7 @@ const Rolelist = () => {
     const token_data = cookies.get('Token_access')
     const CustomFontTheme = createTheme({
         typography: {
-            fontSize: 25
+            fontSize: 24
         },
         components: {
             MuiContainer: {
@@ -104,11 +105,6 @@ const Rolelist = () => {
             SetRoleData(res?.data)
         })
     },[])
-    function editrole(data){
-        
-    }
-
-
 
     const columns = [
         { 
@@ -117,22 +113,24 @@ const Rolelist = () => {
             filterable: false,
             renderCell: (index) => index.api.getRowIndex(index.row.id) + 1,
         },
-        { field: 'RoleTitle', headerName: 'Name', editable: false,  minWidth: 110, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'left',sortable:false },
+        { field: 'RoleTitle', headerName: 'Name', editable: false,  minWidth: 110, flex: 1, headerClassName: 'super-app-theme--header',  headerAlign: 'center',   align: 'center',
+sortable:false },
         {
-            field: 'created_at', headerName: 'Created At', type: 'number',sortable:false, editable: true,flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'right', align:"right",
+            field: 'created_at', headerName: 'Created At', type: 'number',sortable:false, editable: true,flex: 1, headerClassName: 'super-app-theme--header',  headerAlign: 'center',   align: 'center',
+
             renderCell: (params) => {
                return <span>{calculateTImefromDate(params.row.created_at)}</span>
             }
         },
         {
-            field: 'Edit', headerName: 'Edit', type: 'button', editable: false, sortable:false,flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'right',align:"right",
-            renderCell: (params) => {
-                 return <span onClick={()=>editrole(params.row)}><FaEdit /></span>
+            field: 'Edit', headerName: 'Edit', type: 'button', editable: false, sortable:false,flex: 1, headerClassName: 'super-app-theme--header',  headerAlign: 'center',  align: 'center',
 
+            renderCell: (params) => {
+                 return <span onClick={()=>navigate('/addrole' , {state:{...params.row , type:'edit'}})}><FaEdit /></span>
             }
         },
         {
-            field: 'Delete', headerName: 'Delete', editable: false, sortable:false,flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'right',align:"right",
+            field: 'Delete', headerName: 'Delete', editable: false, sortable:false,flex: 1, headerClassName: 'super-app-theme--header',  headerAlign: 'center',  align: 'center',
             renderCell: (params) => {
                 return   <span onClick={()=>deleterole(params.row)}><MdOutlineDeleteOutline   size={30} color='red'/>
                </span>
@@ -149,9 +147,9 @@ const Rolelist = () => {
   return (
     <div className='roletablepage'>
         <div className='row'>
-        <div className=' Add_Category  my-4 d-flex align-items-center justify-content-between'>
+                    <div className=' Add_Category  my-4 d-flex align-items-center justify-content-between'>
                         <h2>Roles </h2>
-                        <Link to={'/addrole'}><button className='customiconbtn' >Add Roles</button> </Link>
+                       <button className='customiconbtn' onClick={()=>navigate('/addrole' , {state:{ type:'add'}})} >Add Roles</button>
                     </div>
                     <div className='col-12'>
                         <Box sx={{
@@ -187,7 +185,6 @@ const Rolelist = () => {
                                 },
 
                             },
-
                             "@media(min-width:768px)": {
                                 '& .MuiButton-root': {
                                     width: "110px",

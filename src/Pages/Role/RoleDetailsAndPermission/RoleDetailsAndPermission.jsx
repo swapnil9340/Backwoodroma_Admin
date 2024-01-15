@@ -1,14 +1,15 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import RoleDetails from "./RoleDetailAndPermissionComponent/RoleDetails"
 import RolePermission from "./RoleDetailAndPermissionComponent/RolePermission"
 import './RoleAndPermission.css'
 import { FaAnglesLeft } from "react-icons/fa6";
 import Cookies from 'universal-cookie';
-
 import Axios from 'axios';
-import {useNavigate} from 'react-router-dom'
+import {useNavigate , useLocation} from 'react-router-dom'
 const RoleDetailsAndPermission=()=>{
     const navigate=useNavigate()
+    const location = useLocation()
+    console.log(location?.state?.type)
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [loading , setloading] = useState(false)
@@ -77,10 +78,12 @@ const RoleDetailsAndPermission=()=>{
         "EditStaff": false,
         "DeleteStaff": false
     })
-    console.log(rolepermision)
+    console.log(location?.state)
     function Submitdata(){
         setloading(true)
         if(Boolean(rolepermision?.RoleTitle?.length)){
+
+            if(location?.state?.type  === 'add'){
           Axios.post('https://api.cannabaze.com/AdminPanel/Add-RolesAndPermission/', rolepermision ,{
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -90,10 +93,31 @@ const RoleDetailsAndPermission=()=>{
               console.log(res ,'res')  
               navigate('/Roles')
            })
-        }else{
 
+        }else if(location?.state?.type  === 'edit'){
+
+           Axios.post(`https://api.cannabaze.com/AdminPanel/Update-RolesAndPermission/${location?.state?.id}`, rolepermision ,{
+            headers: {
+                'Authorization': `Bearer ${token_data}`
+              }
+    
+           }).then((res)=>{
+            
+              navigate('/Roles')
+           })
+        }
+
+        }else{
+             
         }
     }
+
+    useEffect(()=>{
+       if(location?.state?.type === "edit"){
+
+        setrolepermision(location?.state)
+       }
+    },[location])
     return(
             <div className="row">
                 <div className="RoleDetailsAndPermission_container">
@@ -101,7 +125,7 @@ const RoleDetailsAndPermission=()=>{
                     <RoleDetails setrolepermision={setrolepermision} rolepermision={rolepermision} descchceck={descchceck} />
                     <RolePermission setrolepermision={setrolepermision} rolepermision={rolepermision} setdescchceck={setdescchceck} descchceck={descchceck}/>
                     <div className="text-center py-5 gap-4">
-                        <button className="topbutton" onClick={Submitdata}>Save</button>
+                        <button className="topbutton" onClick={Submitdata}>     {location?.state?.type  === 'add'? 'Save' : 'Update'}</button>
                         <button className="topbutton text-danger mx-3">Cancel</button>
                     </div>
                 </div>
