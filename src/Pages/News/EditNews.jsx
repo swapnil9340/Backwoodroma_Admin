@@ -61,7 +61,7 @@ export default function NewsEdit(props) {
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [editorState, setEditorState] = React.useState(() => {
-        const contentState = ContentState.createFromBlockArray(
+        const contentState = ContentState?.createFromBlockArray(
             convertFromHTML(defaultValue),
             convertFromHTML('<p></p>')
         );

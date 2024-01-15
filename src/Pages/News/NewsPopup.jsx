@@ -67,6 +67,7 @@ export default function Newspop() {
     const [SubCategory, SetSubCategory] = React.useState([])
     const [Image, SetImage] = React.useState('')
     const [loading, Setloading] = React.useState(false)
+    console.log(convertedContent)
     const [News, setNews] = React.useState({
         Title: "",
         Category_id: "",
@@ -298,6 +299,8 @@ export default function Newspop() {
                 Alt_Text: "",
 
             }))
+
+            setEditorState(() => EditorState.createEmpty())
               reset()
             SetImage('')
             Setloading(false)

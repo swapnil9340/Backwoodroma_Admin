@@ -50,6 +50,9 @@ const  RoleDetails = ({rolepermision , setrolepermision ,descchceck}) => {
             setrolepermision({...rolepermision  , Description : descrip})
         })
     },[descchceck])
+
+
+    
     return (
         <div className="col-12 RoleDetails_container">
             <div className="col-12 roleDetails_header">
