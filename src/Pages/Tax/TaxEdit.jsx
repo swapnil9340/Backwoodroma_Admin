@@ -107,7 +107,7 @@ export default function TaxEdit(props) {
             enqueueSnackbar('Edit Tax  success !', { variant: 'success' });
         }).catch(
             function (error) {
-                console.log(error.response.data.tax_type)
+               
                 if (error.response.data.tax_value) {
                     seterrorMassager({ x: error.response.data.tax_value })
                     seterror({ x: "red" })

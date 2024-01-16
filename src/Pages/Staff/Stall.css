@@ -1,5 +1,5 @@
 .newLogin_label h6 {
-    font-size: 1rem;
+    font-size: 16px;
     margin: 0;
     padding: 0;
     font-weight: 600;
@@ -10,8 +10,8 @@
 .newLogin_label .switch {
     position: relative;
     display: inline-block;
-    width: 80px;
-    height: 34px;
+    width: 50px;
+    height:24px;
   }
   
   .newLogin_label .switch input { 
@@ -35,10 +35,10 @@
   .newLogin_label .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
@@ -52,9 +52,9 @@
   }
   
   .newLogin_label input:checked + .slider:before {
-    -webkit-transform: translateX(45px);
-    -ms-transform: translateX(45px);
-    transform: translateX(45px);
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
   }
   
   /* Rounded sliders */

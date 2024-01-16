@@ -60,7 +60,7 @@ const Rolelist = () => {
   
     }
     function deleterole(row){
-        console.log(row.id ,'row row row row row row row')
+       
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -104,6 +104,8 @@ const Rolelist = () => {
         }).then((res)=>{
             SetRoleData(res?.data)
         })
+
+
     },[])
 
     const columns = [

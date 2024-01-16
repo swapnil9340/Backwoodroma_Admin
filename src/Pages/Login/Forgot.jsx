@@ -40,7 +40,7 @@ export default function Forgot() {
             })
             setTimeout(alertFunc, 5 * 60 * 1000)
         } catch (error) {
-            console.log(error)
+        
 
         }
     }
@@ -63,7 +63,7 @@ export default function Forgot() {
         axios.post("http://192.168.29.70:7000/AdminPanel/VerifyOtpResetPassword/", otp_data,
 
         ).then((response) => {
-            console.log(response)
+          
             alert(response.data.message)
 
 

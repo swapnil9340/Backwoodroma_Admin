@@ -40,7 +40,7 @@ const RolePermissionArray = [
         RoleName: "Users", 
         id: 4,
         roles: [{
-            All: true,
+            All: false,
             Edit: false ,
             Delete: false,
             Add:false,

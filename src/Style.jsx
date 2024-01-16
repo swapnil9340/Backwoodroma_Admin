@@ -584,6 +584,50 @@ const useStyles = makeStyles(theme =>(
           }
       }
       },
+      selectformbox:{
+        fontSize:'17px',
+        "&.MuiOutlinedInput-root":{
+
+        },
+        "& .MuiOutlinedInput-input":{
+           fontSize:'16px',
+           padding:'10px 15px',
+        },
+        "& .Mui-focused .MuiOutlinedInput-notchedOutline":{
+           border:'1px solid #31B655',
+        }
+      },
+      selectrolesoptions:{
+         "&.MuiButtonBase-root":{
+          fontSize:'14px',
+         }
+      },
+      loginBtnStyle:{
+        marginTop:'20px',
+        "& .MuiButton-text": {
+          color: "#fff",
+          fontSize: "16px", 
+          fontWeight:'600',
+        },
+        "& .MuiButton-text:hover": {
+          color: "#999",
+          fontSize: "16px",
+        },
+        "& .MuiLoadingButton-root": {
+          textTransform: "none",
+          width: "100%",
+          color:"#31B655",
+          backgroundColor:'#fff',
+          borderRadius:"20px",
+          border:'1px solid #31B655'
+        },
+        "& .MuiLoadingButton-root:hover": {     
+          background:"#E8FFF1",
+          textTransform: "none",
+          color:"#fff",
+          backgroundColor:'#31B655',
+        }
+      },
   }
 ))
 export default useStyles

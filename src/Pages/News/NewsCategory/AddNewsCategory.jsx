@@ -78,7 +78,7 @@ export default function NewsCategorypopup() {
             }
         )
       } catch (error) {
-         console.log(error)
+        
       }
     };
 

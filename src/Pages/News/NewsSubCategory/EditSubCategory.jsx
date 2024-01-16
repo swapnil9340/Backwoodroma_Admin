@@ -28,7 +28,6 @@ export default function NewsSubCategoryEdit(props) {
     const { enqueueSnackbar } = useSnackbar();
     const { dispatch } = useContext(Createcontext)
     const [open, setOpen] = React.useState(false);
-    console.log(props)
     const [SubCategory, setSubCategory] = React.useState({
         id: props.data.id,
         Category_id: props.data.category_id,

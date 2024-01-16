@@ -39,12 +39,12 @@ const PromotionalBanner = () => {
       };
       function uploaddestopFile(e) {
         let ImagesArray=e.target.files;
-        console.log(e.target.files[0] ,'original') 
+       
         if(ImagesArray[0].size/1000  > 50){
             new Compressor(ImagesArray[0], {
                 quality: 0.8,
                 success: (compressedResult) => {      
-                  console.log(compressedResult ,'compressedResult')
+                
                   setformdata({...fromdaa ,  destop_immage: [compressedResult]});
                 },
             });

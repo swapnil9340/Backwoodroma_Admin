@@ -48,9 +48,9 @@ export default function Tax() {
 
         }).then(response => {
             setTotal([...response.data])
-            console.log(response.data ,'response')
+          
         }).catch((res)=>{
-            console.log(res ,'res')
+           
         })
     }, [token_data,state])
 

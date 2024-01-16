@@ -3,13 +3,14 @@ import RoleDetails from "./RoleDetailAndPermissionComponent/RoleDetails"
 import RolePermission from "./RoleDetailAndPermissionComponent/RolePermission"
 import './RoleAndPermission.css'
 import { FaAnglesLeft } from "react-icons/fa6";
+import { useForm ,FormProvider} from "react-hook-form"
 import Cookies from 'universal-cookie';
 import Axios from 'axios';
 import {useNavigate , useLocation} from 'react-router-dom'
 const RoleDetailsAndPermission=()=>{
     const navigate=useNavigate()
     const location = useLocation()
-    console.log(location?.state?.type)
+   
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [loading , setloading] = useState(false)
@@ -78,7 +79,9 @@ const RoleDetailsAndPermission=()=>{
         "EditStaff": false,
         "DeleteStaff": false
     })
-    function Submitdata(){
+    const method = useForm()
+
+    function Submitdata(data){
         setloading(true)
         if(Boolean(rolepermision?.RoleTitle?.length)){
 
@@ -89,7 +92,7 @@ const RoleDetailsAndPermission=()=>{
               }
     
            }).then((res)=>{
-              console.log(res ,'res')  
+            
               navigate('/Roles')
            })
 
@@ -106,8 +109,6 @@ const RoleDetailsAndPermission=()=>{
            })
         }
 
-        }else{
-             
         }
     }
 
@@ -117,16 +118,21 @@ const RoleDetailsAndPermission=()=>{
         setrolepermision(location?.state)
        }
     },[location])
+   
     return(
             <div className="row">
                 <div className="RoleDetailsAndPermission_container">
                     <div className=""><span className="backbtn" onClick={()=>{navigate(-1)}}><FaAnglesLeft/> Back </span> </div>
-                    <RoleDetails setrolepermision={setrolepermision} rolepermision={rolepermision} descchceck={descchceck} />
-                    <RolePermission setrolepermision={setrolepermision} rolepermision={rolepermision} setdescchceck={setdescchceck} descchceck={descchceck}/>
-                    <div className="text-center py-5 gap-4">
-                        <button className="topbutton" onClick={Submitdata}>     {location?.state?.type  === 'add'? 'Save' : 'Update'}</button>
-                        <button className="topbutton text-danger mx-3">Cancel</button>
-                    </div>
+                    <FormProvider {...method}>
+                        <form onSubmit={method.handleSubmit(Submitdata)}>
+                            <RoleDetails setrolepermision={setrolepermision} rolepermision={rolepermision} descchceck={descchceck} />
+                            <RolePermission setrolepermision={setrolepermision} rolepermision={rolepermision} setdescchceck={setdescchceck} descchceck={descchceck}/>
+                            <div className="text-center py-5 gap-4">
+                                <button className="topbutton" type="submit">     {location?.state?.type  === 'add'? 'Save' : 'Update'}</button>
+                                <button className="topbutton text-danger mx-3">Cancel</button>
+                            </div>
+                        </form>
+                    </FormProvider>
                 </div>
             </div>
     )

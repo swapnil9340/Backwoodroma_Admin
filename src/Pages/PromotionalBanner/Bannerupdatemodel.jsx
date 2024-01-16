@@ -27,7 +27,7 @@ const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloade
       };
       function uploaddestopFile(e) {
         let ImagesArray=e.target.files;
-        console.log(e.target.files)
+      
         setformdata({...fromdaa ,  destop_immage:[...ImagesArray]});
       }
       function deletedestopFile(e) {
@@ -42,7 +42,7 @@ const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloade
             baseurl =`https://api.cannabaze.com/AdminPanel/update-HomePageBanner/${data.id}`
         }
         let form_data = new FormData();
-           console.log(fromdaa ,'fromdaa')
+         
             if( fromdaa.title !== data.Title && fromdaa.title !== undefined  ){
 
                 form_data.append('Title',fromdaa.title);
@@ -71,7 +71,7 @@ const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloade
       }
       function uploadSingleFile(e) {
         let ImagesArray=e.target.files;
-        console.log(e.target.files)
+      
         setformdata({...fromdaa ,mobile_immage: [...ImagesArray]});
       }
       function deleteFile(e) {

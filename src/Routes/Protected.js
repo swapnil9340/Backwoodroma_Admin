@@ -12,7 +12,6 @@ function Protected(props) {
   React.useEffect(()=>{
       const cookies = new Cookies();
       const  login=cookies.get("Token_access")
-      console.log(!login)
       if(!login)
       {
        

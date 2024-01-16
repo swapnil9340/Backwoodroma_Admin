@@ -98,7 +98,7 @@ export default function Taxpop() {
 
         }).catch(
             function (error) {
-                console.log(error.response.data.tax_type)
+             
                 if (error.response.data.tax_value) {
                     seterrorMassager({ x: error.response.data.tax_value })
                     seterror({ x: "red" })

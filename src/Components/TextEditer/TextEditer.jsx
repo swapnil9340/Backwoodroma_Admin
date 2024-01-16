@@ -13,7 +13,6 @@ export default function EditerText() {
     }, [editorState]);
 
 
-    console.log(convertedContent);
     
     return (
 

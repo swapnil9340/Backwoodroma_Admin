@@ -46,7 +46,6 @@ const RichEditor = ({ defaultValue, onChange }) => {
     [onChange]
   )
 
-console.log(defaultValue , editorState)
   return (
     
 

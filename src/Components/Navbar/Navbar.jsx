@@ -73,7 +73,7 @@ function Navbar() {
       }
     });
   }
-  console.log(  state ,'islogin.state.login')
+
   return (
 
     <>

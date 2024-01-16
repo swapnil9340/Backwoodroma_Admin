@@ -19,9 +19,7 @@ export default function CategoryDropDown() {
         }
     }
     React.useEffect(() => {
-        // $('#answer1').slideToggle();
         $('#Category').hide();
-        // console.log($('#Category').hide())
     }, [])
     return (
         <div onClick={toggleAnswer1} >
