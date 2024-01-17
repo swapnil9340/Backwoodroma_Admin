@@ -507,10 +507,6 @@ a {
   justify-content: center;
 }
 
-.top {
-  position: relative;
-  margin-top: 20px;
-}
 
 .card_persent_font {
   font-size: 12px;
@@ -548,10 +544,7 @@ a {
   font-size: xx-large;
 }
 
-.topcen {
-  align-self: center;
-  ;
-}
+
 
 .chartjs-tooltip {
   background: #31B665;
@@ -1509,12 +1502,6 @@ input:focus+label {
 
   }
 }
-
-.top_discount {
-  position: relative;
-  margin-top: 12%;
-}
-
 .brand_main_col {
   position: relative;
   left: 16.5%

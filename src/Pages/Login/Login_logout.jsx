@@ -94,6 +94,7 @@ export default function Login_logout() {
                 setotpvalid(response.data.data)
             }
             else {
+                console.log(response.data.permission,'response')
                 let date = new Date();
                 date.setTime(date.getTime() + (60 * 60 * 8000))
                 cookies.set('Token_access', response.data.tokens.access, { expires: date })

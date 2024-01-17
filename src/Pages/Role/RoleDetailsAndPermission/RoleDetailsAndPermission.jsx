@@ -77,7 +77,7 @@ const RoleDetailsAndPermission=()=>{
         "AddStaff": false,
         "ViewStaff": false,
         "EditStaff": false,
-        "DeleteStaff": false
+        "DeleteStaff": false,
     })
     const method = useForm()
 

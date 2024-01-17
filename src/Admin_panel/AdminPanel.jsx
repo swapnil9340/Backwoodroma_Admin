@@ -7,11 +7,10 @@ import TotalUserLineChart from './TotalUserLineChart'
 
 export default function AdminPanel() {
   return (
-    <div className='container-fluid'>
+    <div className=''>
       <div className='row'>
-
-      
-        <div className='col-sm-6 border top' >
+        <div className=''></div>
+        {/* <div className='col-sm-6 border top' >
           <StatusBarCard></StatusBarCard>
           <div className='row'>
             <div className='col-sm-6 top admin_col'>
@@ -24,9 +23,8 @@ export default function AdminPanel() {
         </div>
         <div className='col-sm-6 border top'>
           <RightPenalscore></RightPenalscore>
-        </div>
+        </div> */}
       </div>
-
     </div>
   )
 }

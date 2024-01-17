@@ -8,14 +8,12 @@ export default function StatusBarCard() {
     const [totel , setTotal] = useState([])
     useEffect(() => {
         axios("https://api.cannabaze.com/AdminPanel/Get-TotalCount/" ,{
-            
-        headers: {
-            'Authorization': `Bearer ${token_data}`
-          }
-
+                        headers: {
+                            'Authorization': `Bearer ${token_data}`
+                        }
         }).then(response => {
             setTotal(response.data.Data)  
-            
+            console.log(response.data.Data)
         })
     },[token_data])
    
@@ -46,7 +44,7 @@ export default function StatusBarCard() {
                             </div>
                         </div>
                     </div>
-                </div>
+                    </div>
                    )
                 })
                }

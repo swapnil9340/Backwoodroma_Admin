@@ -14,43 +14,64 @@ import Cookies from "universal-cookie";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import useStyles from "../../Style";
-import { useNavigate, useLocation } from "react-router-dom";
-import { FormControl } from "@mui/material";
+import { FormControl ,Checkbox ,ListItemText } from "@mui/material";
 import "./Stall.css";
 import axios from "axios";
-import { data } from "jquery";
 const Addusers = () => {
   const classes = useStyles();
-  const Navigate = useNavigate();
-  let param = useLocation();
-  const { register, handleSubmit, watch, errors, control } =   useForm();
+  const { register, handleSubmit, watch, errors,setError,clearErrors,getValues,setValue, control } =   useForm();
   const [loading, setLoading] = React.useState(false);
   const [dulicate, Setduplicate] = React.useState([]);
+  const [status, setdatatus] = React.useState(true);
   const [roleoptions, Setroleoptions] = React.useState([]);
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const cookies = new Cookies();
   const token_data = cookies.get("Token_access");
- 
-  const onSubmit = (data) => {
-    console.log(data, "data");
-    // const Details = {
-    //   DateOfBirth: data.DateOfBirth,
-    //   Gender: data.Gender,
-    //   Mobile: data.Mobile,
-    //   email: data.email,
-    //   password: data.password,
-    //   username: data.username,
-    //   user_type: "Vendor",
-    // };
+  const [multipleroles, setmultipleroles] = React.useState([]);
+  console.log(multipleroles ,'multipleroles')
+  console.log(getValues('Roles') ,'224463745')
+  const multipleroleschnage = (event) => {
+    const {
+      target: { value },
+    } = event;
+      setmultipleroles(
+      typeof value === "string" ? value.split(",") : value
+    );
 
-    axios.post('https://api.cannabaze.com/VendorPanel/register/',data ).then((res)=>{
-        console.log(res)
+    setValue('Roles',multipleroles );
+
+  };
+  const onSubmit = (data) => {
+    axios.post('https://api.cannabaze.com/AdminPanel/register/',{...data , Roles :multipleroles  ,  Status : status , user_type:"Admin"} ).then((res)=>{
+      
+    }).catch((error)=>{
+      console.log(error ,'error')
+ 
+      if ( error.response.data.error === "{'username': [ErrorDetail(string='user with this username already exists.', code='unique')], 'email': [ErrorDetail(string='user with this email already exists.', code='unique')]}") {
+        setError( 'username', {
+          type: "manual",
+          message:"username id already exists",
+        })
+        setError( 'email', {
+          type: "manual",
+          message:"email id already exists",
+        })
+      }
+      else if (error.response.data.error === "{'email': [ErrorDetail(string='user with this email already exists.', code='unique')]}") {
+        setError( 'email', {
+          type: "manual",
+          message:"email id already exists",
+        })
+      }
+      else if (error.response.data.error === "{'username': [ErrorDetail(string='user with this username already exists.', code='unique')]}") {
+        setError( 'username', {
+          type: "manual",
+          message:"username id already exists",
+        })
+    }
     })
   };
-function newdatageter(data){
-    console.log(data)
-}
   useEffect(() => {
     axios
       .get("https://api.cannabaze.com/AdminPanel/Get-RolesAndPermission/", {
@@ -62,7 +83,39 @@ function newdatageter(data){
         Setroleoptions(res?.data);
       });
   }, []);
+  function chackduplicate(e){
+  
+    var key = e.target.name;
+    var obj = {};
 
+    obj[key] = e.target.value;
+    console.log(obj ,'obj')
+
+    Setduplicate('')
+   
+    const getData = setTimeout(() => {
+      axios.post(`https://api.cannabaze.com/AdminPanel/UserNameCheck/`,  obj ,{
+        headers: {
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NTcwOTQ1LCJpYXQiOjE3MDUwMzQ5NDUsImp0aSI6IjkzMTFlYTFkYTViNjRlOTk4NGY2YjUxN2M2MzI5NGM4IiwidXNlcl9pZCI6MX0.dZlMMBW7B93MWh1xSRklg1c7FRL7tKQttM0J9RjZKq0`,
+        },
+      }
+    
+      ).then((response) => {
+        if(response.data !== "False"){
+          Setduplicate(response.data);
+          setError( key, {
+            type: "manual",
+            message: response.data,
+          })
+        }else{
+          clearErrors(key)
+        }
+      
+      });
+    }, 1000)
+
+    return () => clearTimeout(getData)
+  }
   return (
     <div className="adduserForm_container d-flex justify-content-center w-100 py-sm-4 py-5">
       <div className="formsadduser">
@@ -79,6 +132,7 @@ function newdatageter(data){
               placeholder="Type User Name"
               fullWidth
               className={classes.StandardTextFieldStyle}
+              onChange={(e)=>chackduplicate(e)}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -141,6 +195,7 @@ function newdatageter(data){
               variant="standard"
               placeholder="Type Your Email"
               fullWidth
+              onChange={(e)=>chackduplicate(e)}
               type="email"
               className={classes.StandardTextFieldStyle}
               InputProps={{
@@ -250,7 +305,7 @@ function newdatageter(data){
           </div>
         
           <div className="row newLogin_label m-2">
-            <h6>Rolls</h6>
+            <h6>Roles</h6>
 
             
 
@@ -258,12 +313,13 @@ function newdatageter(data){
               <Controller
                 render={(props) => (
                   <Select
-                    {...props}
+                   multiple
                     className={classes.selectformbox}
                     // renderValue={(selected) => selected.map(obj => names[obj - 1].value).join(", ")}
-                    error={!!errors.Role}
-                    helperText={errors.Role && errors.Role.message}
-                    
+                    error={!Boolean(multipleroles.length) && !!errors.Roles}
+                    helperText={errors.Roles && errors.Roles.message}
+                    value={multipleroles}
+                    onChange={multipleroleschnage}
                   >
                     {roleoptions.map((item, index) => {
                       return (
@@ -272,16 +328,20 @@ function newdatageter(data){
                     })}
                   </Select>
                 )}
-                // value={AddStore.Store_Type}
-                // onChange={handleChange}
-                name="Role"
+              
+              
+                name="Roles"
                 control={control}
                 defaultValue={''}
                 rules={{ required: 'Please Assign Role' }}
               />
-
               {/* {/ <FormHelperText>{method.errors.Store_Type?.message}</FormHelperText> /} */}
             </FormControl>
+
+
+
+
+        
           </div>
           <div className="row newLogin_label d-flex justify-content-between align-items-center m-2">
             <h6 className="d-content">Status</h6>
@@ -290,7 +350,8 @@ function newdatageter(data){
                 <label className="switch">
                 <input
                     type="checkbox"
-                   
+                   checked={status}
+                   onClick={()=>setdatatus(!status)}
                 />
                 <span className="slider round"></span>
                 </label>
