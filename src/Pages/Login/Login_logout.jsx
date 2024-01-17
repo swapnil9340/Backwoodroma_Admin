@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useState ,useContext } from 'react'
 import IconButton from '@mui/material/IconButton';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -13,6 +13,7 @@ import { AiFillEye } from 'react-icons/ai';
 import { AiFillEyeInvisible } from "react-icons/ai"
 import InputAdornment from '@material-ui/core/InputAdornment';
 import useStyles from '../../Style'
+import Createcontext from "../../Hooks/Context/Context"
 import { LoadingButton } from '@mui/lab';
 
 
@@ -24,11 +25,12 @@ export default function Login_logout() {
     const [show, setOpen] = useState(false);
     const [isLoggedIn, loading] = useState(false)
     const [OTP, setotp] = useState("");
+    const { state ,dispatch } = useContext(Createcontext)
+
     const [values, setValues] = React.useState({
         password: "",
         showPassword: false,
     });
-
     const classes = useStyles()
     const data = {
         email: inputs.Email,
@@ -38,9 +40,7 @@ export default function Login_logout() {
     const otp_data = {
         email: inputs.Email,
         OTP: OTP.OTP,
-
     }
-
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -51,7 +51,6 @@ export default function Login_logout() {
         const value = event.target.value;
         setotp(values => ({ ...values, [name]: value }))
     }
-
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -76,11 +75,10 @@ export default function Login_logout() {
         })
         setTimeout(alertFunc, 5 * 60 * 1000)
     }
-
-
     function alertFunc() {
         setOpen(false);
     }
+
 
 
     const otp_send = () => {
@@ -94,7 +92,19 @@ export default function Login_logout() {
                 setotpvalid(response.data.data)
             }
             else {
-                console.log(response.data.permission,'response')
+
+                let rolesdata = response?.data?.permission[0]
+
+                 if(Boolean(response?.data?.permission.length !== 0)){
+                    response?.data?.permission?.map((item,index)=>{
+                        for (const property in item) {
+                            rolesdata[property] = item[property] || rolesdata[property]
+                        }
+                         
+                    })
+                }
+
+                 dispatch({ type: 'Roles', Roles: rolesdata })
                 let date = new Date();
                 date.setTime(date.getTime() + (60 * 60 * 8000))
                 cookies.set('Token_access', response.data.tokens.access, { expires: date })
@@ -104,22 +114,21 @@ export default function Login_logout() {
     };
 
 
-
     const handleClose = () => {
         setOpen(false);
 
 
     }
-
-
     const handleClickShowPassword = () => {
         setValues({ ...values, showPassword: !values.showPassword });
     };
 
+
+   
     return (
          
             <div>
-                    <div className=' login_logout_center'>
+                    <div className='login_logout_center'>
 
                         <div className="login_form_container">
                            
