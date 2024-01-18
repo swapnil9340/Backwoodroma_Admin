@@ -457,7 +457,7 @@ a {
 
 .backg {
   height: 107px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, -0.3);
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 }
 
 .cardn_number {
@@ -518,7 +518,15 @@ a {
 }
 
 .card_hadding {
-  font-weight: 700;
+  margin: 0 ;
+  color: #ACACAC;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.14px;
+  font-size: 11px;
 }
 
 /* right panel */
@@ -1694,4 +1702,31 @@ input:focus+label {
 }
 .cursor-pointer{
   cursor: pointer;
+}
+
+
+.cardbox {
+  height: 84px;
+  /* width: 84px; */
+}
+
+.cardbox .group {
+  background: linear-gradient(180deg, rgb(211.44, 255, 231.45) 0%, rgb(239.06, 255, 246.38) 100%);
+  border-radius: 42px;
+  height: 84px;
+ 
+  width: 84px;
+}
+.Card_center_dashboard{
+  justify-content: center;
+  display:flex;
+  align-items: center;
+}
+.Card_Total{
+  margin: 0px;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%;
+  letter-spacing: -0.32px;
 }
