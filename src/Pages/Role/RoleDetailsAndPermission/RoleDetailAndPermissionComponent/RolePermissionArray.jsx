@@ -181,5 +181,17 @@ const RolePermissionArray = [
         },]
 
     },
+    {
+        RoleName: "Roles", 
+        id: 16,
+        roles: [{
+            All: false,
+            Edit: false ,
+            Delete: false,
+            Add:false,
+            View:false,
+        },]
+
+    },
 ]
 export default RolePermissionArray

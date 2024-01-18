@@ -78,7 +78,7 @@ export default function Category(props) {
     const columns = [
         { field: 'name', headerName: 'Name', editable: false,  minWidth: 110, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'left',sortable:false },
         {
-            field: 'Status', headerName: 'Status', type: 'number',sortable:false, editable: true,flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'right', align:"center",
+            field: 'Status', headerName: 'Status', type: 'number',sortable:false, editable: false,flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'right', align:"center",
             renderCell: (params) => {
                 if (params.formattedValue === "Active") {
                     return (
@@ -88,7 +88,7 @@ export default function Category(props) {
                                 variant="contained"
                                 color="primary"
                                 onClick={() => {
-                                    SubmitEditData(params);
+                                    state.Roles.EditCategory &&  SubmitEditData(params);
                                 }}
                             >
                                 <AiFillEye />
@@ -104,7 +104,7 @@ export default function Category(props) {
                             variant="contained"
                             color="primary"
                             onClick={() => {
-                                SubmitEditData(params);
+                                state.Roles.EditCategory && SubmitEditData(params);
                             }}
                         ><AiOutlineEyeInvisible /></p>
                     </Tooltip>
@@ -116,6 +116,7 @@ export default function Category(props) {
             field: 'Edit', headerName: 'Edit', type: 'button', editable: false, sortable:false,flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'rigth',align:"rigth",
             renderCell: (params) => (
                 <>
+                  { ( state.Roles.EditCategory || state.Roles.DeleteCategory) &&
                     <Box
                         sx={{
                             '& .MuiOutlinedInput-root': {
@@ -138,10 +139,11 @@ export default function Category(props) {
                                 }
                             },
                         }} IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                          <CategoryEditbox data={params.row} ></CategoryEditbox>
-                           <Eelete data={params.row}></Eelete> 
+                          { state.Roles.EditCategory && <CategoryEditbox data={params.row} ></CategoryEditbox>}
+                          { state.Roles.DeleteCategory && <Eelete data={params.row}></Eelete> }
                         </Select>
                     </Box>
+                  }  
                 </>
 
             )
@@ -153,8 +155,8 @@ export default function Category(props) {
             <div className='row '>
               
                     <div className='col-12 Add_Category  mt-5 mb-5 d-flex justify-content-between align-items-center'>
-                        <h2>  Category</h2>
-                       <span>{<Categorypopup></Categorypopup>}</span>
+                        <h2>Category</h2>
+                       { state.Roles.AddCategory && <span>{<Categorypopup></Categorypopup>}</span>}
                     </div>
                     <div className='col-12'>
                         <Box sx={{

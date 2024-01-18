@@ -9,6 +9,7 @@
   .RoleDetailsAndPermission_container{
     padding: 40px 0;
   }
+
   .roleinputbox input {
     padding: 0;
     height: initial;
@@ -58,6 +59,11 @@
     align-items: center;
     padding: 20px ;
   }
+  .roleinputbox input.roleInputDisable + label{
+      color:#0000003f;
+      cursor: not-allowed;
+  }
+ 
   .rolePermissionItems .roleTitle{
     width: 30%;
     font-size: 16px;

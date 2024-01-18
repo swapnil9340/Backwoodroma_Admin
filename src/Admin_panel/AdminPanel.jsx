@@ -6,7 +6,7 @@ import TotalUserLineChart from './TotalUserLineChart'
 import Createcontext from '../Hooks/Context/Context'
 export default function AdminPanel() {
   const { state  } = useContext(Createcontext)
-console.log(state ,'state')
+
   return (
     <div className=''>
       <div className='row'>

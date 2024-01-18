@@ -29,8 +29,8 @@ const Addusers = () => {
   const cookies = new Cookies();
   const token_data = cookies.get("Token_access");
   const [multipleroles, setmultipleroles] = React.useState([]);
-  console.log(multipleroles ,'multipleroles')
-  console.log(getValues('Roles') ,'224463745')
+
+
   const multipleroleschnage = (event) => {
     const {
       target: { value },
@@ -43,10 +43,10 @@ const Addusers = () => {
 
   };
   const onSubmit = (data) => {
-    axios.post('https://api.cannabaze.com/AdminPanel/register/',{...data , Roles :multipleroles  ,  Status : status , user_type:"Admin"} ).then((res)=>{
+    axios.post('https://api.cannabaze.com/AdminPanel/register/',{...data , Roles :multipleroles  ,  is_superuser: false, Status : status , user_type:"Admin"} ).then((res)=>{
       
     }).catch((error)=>{
-      console.log(error ,'error')
+    
  
       if ( error.response.data.error === "{'username': [ErrorDetail(string='user with this username already exists.', code='unique')], 'email': [ErrorDetail(string='user with this email already exists.', code='unique')]}") {
         setError( 'username', {
@@ -89,7 +89,7 @@ const Addusers = () => {
     var obj = {};
 
     obj[key] = e.target.value;
-    console.log(obj ,'obj')
+  
 
     Setduplicate('')
    

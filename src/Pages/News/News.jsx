@@ -45,6 +45,7 @@ export default function News() {
             field: 'Edit', headerName: 'Edit', editable: false, minWidth: 80, flex: 1,sortable:false, headerClassName: 'super-app-theme--header',sortable:false,
             renderCell: (params) => (
                 <>
+                { (state.Roles.EditBlogs || state.Roles.DeleteBlogs ) &&
                     <Box
                         sx={{
                             '& .MuiOutlinedInput-root': {
@@ -70,10 +71,11 @@ export default function News() {
                                 },
                             }}
                             IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                            <NewsEdit data={params?.row}></NewsEdit>
-                            <DeleteNews data={params?.row}></DeleteNews>
+                            {state.Roles.EditBlogs &&<NewsEdit data={params?.row}></NewsEdit>}
+                           {state.Roles.DeleteBlogs && <DeleteNews data={params?.row}></DeleteNews>}
                         </Select>
                     </Box>
+                    }
                 </>
 
             )
@@ -99,6 +101,7 @@ export default function News() {
             }
         }
     });
+   
     return (
        
                 <div className='row'>
@@ -107,7 +110,7 @@ export default function News() {
                         <div className='col-12 Add_Category margin_top  m-2 mt-5 mb-5'>
                             <div className="col"> <h2>Latest News
                             </h2></div>
-                            <div className="col  popup_A" >  <span> <h2> <Newspop></Newspop></h2></span></div>
+                            <div className="col  popup_A" > {state?.Roles?.AddBlogs && <span> <h2> <Newspop></Newspop></h2></span> }</div>
                         </div>
                         <div className='col-12' >
                             <Box

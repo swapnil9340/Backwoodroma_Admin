@@ -41,7 +41,7 @@ export default function Brand() {
 
 
     const Submit = (params) => {
-        const formdata = new FormData();
+        if(state.Roles.EditBrand ){const formdata = new FormData();
         formdata.append('Brand_description', params.row.Brand_description);
         formdata.append('Link', params.row.Link);
         formdata.append("Status", params.row.Status === "Active" ? "Hide" : "Active");
@@ -59,7 +59,7 @@ export default function Brand() {
 
 
             dispatch({ type: 'api', api: true })
-        })
+        })}
     };
 
 
@@ -68,7 +68,7 @@ export default function Brand() {
     const columns = [
         {
             field: 'Brand_Logo', headerName: 'Logo', editable: true, headerClassName: 'super-app-theme--header', minWidth: 80, flex: 1,sortable:false,
-            renderCell: (params) => <img src={"http://backend.sweede.net/" + params.value} alt="flavoursImage" width="35" height="30" />,
+            renderCell: (params) => <img src={params?.row?.Brand_Logo} alt="flavoursImage" width="35" height="30" />,
         },
         { field: 'name', headerName: 'Name', editable: true, headerClassName: 'super-app-theme--header', minWidth: 80, flex: 1,sortable:false, },
         {
@@ -112,35 +112,38 @@ export default function Brand() {
             renderCell: (params) => (
 
                 <>
-                    <Box
-                        sx={{
-                            '& .MuiOutlinedInput-root': {
-                                '&.Mui-focused fieldset': {
-                                    borderWidth: "1px",
-                                    borderColor: 'black',
-                                },
-                            },
-                            '& . MuiDataGrid-root .MuiDataGrid-cell:focus': {
-                                outline: "solid #0f1010 1px"
-                            }
-                        }}
-
-                    >
-                        <Select
+                    { 
+                        (state.Roles.EditBrand ||  state.Roles.DeleteBrand ) && 
+                        <Box
                             sx={{
-                                boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
-                                "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
-                                "&:hover": {
-                                    ".MuiSelect-icon": {
-                                        color: "#31B665"
-                                    }
+                                '& .MuiOutlinedInput-root': {
+                                    '&.Mui-focused fieldset': {
+                                        borderWidth: "1px",
+                                        borderColor: 'black',
+                                    },
                                 },
+                                '& . MuiDataGrid-root .MuiDataGrid-cell:focus': {
+                                    outline: "solid #0f1010 1px"
+                                }
                             }}
-                            IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                           <BrandEdit data={params.row} ></BrandEdit>
-                           <BrandDelete data={params.row} ></BrandDelete> 
-                        </Select>
-                    </Box>
+
+                        >
+                            <Select
+                                sx={{
+                                    boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
+                                    "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
+                                    "&:hover": {
+                                        ".MuiSelect-icon": {
+                                            color: "#31B665"
+                                        }
+                                    },
+                                }}
+                                IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
+                                { state.Roles.EditBrand  && <BrandEdit data={params.row} ></BrandEdit>}
+                                { state.Roles.DeleteBrand && <BrandDelete data={params.row} ></BrandDelete> }
+                            </Select>
+                        </Box>
+                    }
                 </>
 
             )
@@ -172,7 +175,7 @@ export default function Brand() {
                 <div className='row mt-4'>
                         <div className='col-12 Add_Category  margin_top m-2 mt-5 mb-5'>
                             <div className="col"> <h2>Brand  </h2></div>
-                            <div className="col  popup_A" ><span> <h2> <Brandpopup></Brandpopup> </h2></span></div>
+                          { state.Roles.AddBrand  && <div className="col  popup_A" ><span> <h2> <Brandpopup></Brandpopup> </h2></span></div>}
                         </div>
 
 

@@ -37,7 +37,7 @@ export default function Store() {
 
 
     const Submit = (params) => {
-        const formdata = new FormData();
+      if(state.Roles.EditStore){  const formdata = new FormData();
         formdata.append('Store_Name', params.row.Store_Name);
         formdata.append('Store_Type', params.row.Store_Type);
         formdata.append('LicenceNo', params.row.LicenceNo);
@@ -63,25 +63,16 @@ export default function Store() {
         ).then(() => {
             dispatch({ type: 'api', api: true })
             enqueueSnackbar('Edit Store Status  success !', { variant: 'success' });
-        })
+        })}
     };
 
     const columns = [
-        // {
-        //     field: 'Store_Image', headerName: 'Store Image', editable: true, headerClassName: 'super-app-theme--header', width: 110,
-        //     renderCell: (params) => <img src={"http://backend.sweede.net/" + params.value} alt="flavoursImage" width="35" height="30" />,
-        // },
-        { field: 'Store_Name', headerName: 'Name', editable: true, minWidth: 60, flex: 1, sortable:false,headerClassName: 'super-app-theme--header' },
-        { field: 'Store_Type', headerName: 'Store Type', editable: true, minWidth: 60, flex: 1,sortable:false, headerClassName: 'super-app-theme--header' },
-        // { field: 'Store_Address', headerName: 'Store Address', editable: true, headerClassName: 'super-app-theme--header', width: 150 },
-        // {
-        //     field: 'Stores_Description', headerName: 'Stores Description', editable: true, width: 180, headerClassName: 'super-app-theme--header',
-        //     renderCell: (params) => <span dangerouslySetInnerHTML={{ __html: params.formattedValue }} />
-        // },
-        // { field: 'Stores_Website', headerName: 'Stores Website', editable: true, width: 130, headerClassName: 'super-app-theme--header' },
-        { field: 'Stores_MobileNo', headerName: 'MobileNo', editable: true, minWidth: 60, flex: 1,sortable:false, headerClassName: 'super-app-theme--header' },
+        
+        { field: 'Store_Name', headerName: 'Name', editable: false, minWidth: 60, flex: 1, sortable:false,headerClassName: 'super-app-theme--header' },
+        { field: 'Store_Type', headerName: 'Store Type', editable: false, minWidth: 60, flex: 1,sortable:false, headerClassName: 'super-app-theme--header' },
+        { field: 'Stores_MobileNo', headerName: 'MobileNo', editable: false, minWidth: 60, flex: 1,sortable:false, headerClassName: 'super-app-theme--header' },
         {
-            field: 'Status', headerName: 'Status', editable: true, minWidth: 60, flex: 1,sortable:false, headerClassName: 'super-app-theme--header',
+            field: 'Status', headerName: 'Status', editable: false, minWidth: 60, flex: 1,sortable:false, headerClassName: 'super-app-theme--header',
 
             renderCell: (params) => {
 
@@ -93,9 +84,7 @@ export default function Store() {
                                 style={{ color: "#31B665 ", fontSize: 25, cursor: "pointer" }}
                                 variant="contained"
                                 color="primary"
-                                onClick={() => {
-                                    Submit(params);
-                                }}
+                                onClick={() =>Submit(params)}
                             ><AiFillEye /> </p>
                         </Tooltip>
 
@@ -108,9 +97,7 @@ export default function Store() {
                             style={{ color: "red ", fontSize: 25, cursor: "pointer" }}
                             variant="contained"
                             color="primary"
-                            onClick={() => {
-                                Submit(params);
-                            }}
+                            onClick={() =>Submit(params)  }
                         ><AiOutlineEyeInvisible /></p>
                     </Tooltip>
 
@@ -118,9 +105,10 @@ export default function Store() {
             }
         },
         {
-            field: 'Edit', headerName: 'Edit', editable: true, minWidth: 80, flex: 1,sortable:false, headerClassName: 'super-app-theme--header',
+            field: 'Edit', headerName: 'Edit', editable: false, minWidth: 80, flex: 1,sortable:false, headerClassName: 'super-app-theme--header',
             renderCell: (params) => (
                 <>
+                {( state.Roles.EditStore ||  state.Roles.DeleteStore || state.Roles.ViewStore) &&
                     <Box >
                         <Select
                             sx={{
@@ -132,12 +120,13 @@ export default function Store() {
                                     }
                                 },
                             }}
-                            IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                            <StoreEdit data={params.row}></StoreEdit>
-                            <StoreDelete data={params.row} ></StoreDelete>
-                            <StoreView></StoreView>
+                            IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label"   >
+                                        {   state.Roles.EditStore && <StoreEdit data={params.row}></StoreEdit> }
+                                        {   state.Roles.DeleteStore && <StoreDelete data={params.row} ></StoreDelete> }
+                                        {   state.Roles.ViewStore && <StoreView></StoreView> }
                         </Select>
                     </Box>
+                }
                 </> 
 
             )
@@ -169,7 +158,10 @@ export default function Store() {
                 <div className='col-12 Add_Category margin_top m-2 mt-5 mb-5'>
                     <div className="col"> <h2>Store  <span className='total_count'>{`(${totel.length})`}</span>
                     </h2></div>
-                    <div className="col  popup_A" > <span> <h2><Storepopup></Storepopup> </h2></span></div>
+                     { state.Roles.AddStore &&
+                       <div className="col  popup_A" > <span> <h2><Storepopup></Storepopup> </h2></span></div>
+                     }
+
                 </div>
 
 

@@ -80,7 +80,7 @@ export default function SubCategory() {
       minWidth: 90,
       flex: 1,
       sortable: false,
-      editable: true,
+      editable: false,
       headerClassName: "super-app-theme--header",
     },
     {
@@ -90,7 +90,7 @@ export default function SubCategory() {
       sortable: false,
       flex: 1,
       type: "text",
-      editable: true,
+      editable: false,
       headerClassName: "super-app-theme--header",
       headerAlign: "left",
     },
@@ -119,6 +119,7 @@ export default function SubCategory() {
                 variant="contained"
                 color="primary"
                 onClick={() => {
+                  state.Roles.EditSubcategory &&
                   Submit(params);
                 }}
               >
@@ -160,6 +161,7 @@ export default function SubCategory() {
       cellClassName: "Edit",
       renderCell: (params) => (
         <>
+        { (state.Roles.EditSubcategory ||  state.Roles.DeleteSubcategory) &&
           <Box
             sx={{
               "& .MuiOutlinedInput-root": {
@@ -187,10 +189,11 @@ export default function SubCategory() {
               IconComponent={BsThreeDotsVertical}
               labelId="demo-simple-select-error-label"
             >
-              <SubCategoryEdit data={params.row}></SubCategoryEdit>
-              <SubCategoryDelete data={params.row}></SubCategoryDelete>
+                { state.Roles.EditSubcategory &&  <SubCategoryEdit data={params.row}></SubCategoryEdit>}
+                { state.Roles.DeleteSubcategory &&  <SubCategoryDelete data={params.row}></SubCategoryDelete>}
             </Select>
           </Box>
+        }
         </>
       ),
     },
@@ -201,17 +204,13 @@ export default function SubCategory() {
     <div className="row">
       <div className="col-12 Add_Category mb-4 mt-4 m-2">
         <div className="col">
-          {" "}
+        
           <h2> SubCategory</h2>
         </div>
-        <div className="col ">
-          {" "}
-          <span >
-            {" "}
-            <h2>
-              <PopUp></PopUp>
-            </h2>
-          </span>
+        <div className="col text-end">
+        { state.Roles.AddSubcategory && 
+          <span > <h2>  <PopUp></PopUp> </h2> </span>
+        }
         </div>
       </div>
 

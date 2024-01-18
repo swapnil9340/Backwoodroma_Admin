@@ -1,7 +1,7 @@
 import { BsThreeDotsVertical } from "react-icons/bs"
 import { IoMdArrowBack } from "react-icons/io"
 import { IconButton } from "@mui/material"
-import React ,{useState} from "react"
+import React ,{useState ,useContext} from "react"
 import { LoadingButton } from "@mui/lab"
 import Select from '@mui/material/Select';
 import MenuItem from "@material-ui/core/MenuItem";
@@ -15,15 +15,17 @@ import { IoEyeSharp } from "react-icons/io5";
 import useStyles from "../../Style"
 import {GrFormAdd} from "react-icons/gr"
 import { useNavigate } from "react-router-dom"
-import { DataGrid , GridRowSpacingParams } from '@mui/x-data-grid';
+import { DataGrid  } from '@mui/x-data-grid';
 import { FaEdit } from 'react-icons/fa';
 import { AiFillDelete } from 'react-icons/ai';
 import Icon from "@material-ui/core/Icon";
 import Bannerupdatemodel from "./Bannerupdatemodel"
 import Cookies from 'universal-cookie';
+import Createcontext from '../../Hooks/Context/Context'
 const PromotionalBannerList = () => {
     const navigate=useNavigate()
     const Swal = require('sweetalert2')
+    const { state, dispatch } = useContext(Createcontext);
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [bannertype , Setbannertype] = useState("Promotional Banner")
@@ -33,7 +35,7 @@ const PromotionalBannerList = () => {
     const [SelectId, SetSelectedId] = React.useState()
     const [loader, Setloader] = React.useState(false)
     const config = {
-        headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyODczNjg3LCJpYXQiOjE3MDEzMzc2ODcsImp0aSI6IjllYTgwZGMyY2ZmZjQ0M2ZiYzY2MzQ2OTRmMjk1YWMyIiwidXNlcl9pZCI6MX0.nNt9qi_HGToLpmXMx5fzduz0ptk11VStkCZwVbxpjSg` }
+        headers: { Authorization: `Bearer ${token_data}` }
     };
     const [datatable, Setdatatable] = React.useState([])
     const [editdata, Seteditdata] = React.useState([])
@@ -216,10 +218,11 @@ const PromotionalBannerList = () => {
                 flex: 1,
                 renderCell: (params) => {
                     const onClick = (e) => {
-                        e.stopPropagation(); 
+                        state.Roles.EditBanners    &&  e.stopPropagation(); 
                     }            
                     return (
                         <>
+                          {   (state.Roles.EditBanners || state.Roles.DeleteBanners  )   &&
                             <Select
 
                                 IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label"
@@ -247,24 +250,26 @@ const PromotionalBannerList = () => {
                             >
                                 <List className={classes.orderEditList}>
 
-                                
+                                {   state.Roles.EditBanners    &&
                                     <ListItem button className={classes.orderEditListitem} onClick={()=>{editdat(params.row)}} >
                                     
                                        <Icon className={classes.orderEditListIcon }><FaEdit  color='31B665'/> </Icon>
                                     
                                         Edit
-                                    </ListItem>
-                                    <ListItem button className={classes.orderEditListitem} onClick={(e)=>{ Deletebanner(params.row.id)}}>
+                                    </ListItem>}
+                                     {   state.Roles.DeleteBanners    &&
+                                           <ListItem button className={classes.orderEditListitem} onClick={(e)=>{ Deletebanner(params.row.id)}}>
                                     
                                     <Icon className={classes.orderEditListIcon }><AiFillDelete color='31B665'/> </Icon>
                                     Delete
-                                    </ListItem>
+                                    </ListItem>}
                                 
                             
 
                             
                                 </List>
                             </Select>
+                          }
                         </>
                     )
                 }
@@ -327,11 +332,12 @@ const PromotionalBannerList = () => {
                                 </Select>
                             </FormControl>
                         </div>
+                        {   state.Roles.AddBanners    &&
                         <div className="col-sm-5  col-6">
                             <Box className={` promotionalAddBannerListBtnCol  ${classes.promotionalListBtnss}`}>
                                 <LoadingButton startIcon={<GrFormAdd />} onClick={()=>navigate("/PromotionalBanner")}>Add Banner</LoadingButton>
                             </Box>
-                        </div>
+                        </div>}
                     </div>
                   
                     <div>
@@ -358,10 +364,6 @@ const PromotionalBannerList = () => {
                         />
                         </Box>
                      </div>
-              
-
-
-       
             {loader && <div className="loadercontainer">
               <div class="loader4"></div>
             </div>}

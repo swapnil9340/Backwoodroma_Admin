@@ -2,10 +2,12 @@ import InputAdornment from "@mui/material/InputAdornment"
 import useStyles from "../../../../Style"
 import { TextField } from "@mui/material"
 import { AiOutlineSearch } from "react-icons/ai"
-import React from "react"
-import RolePermissionArray from "./RolePermissionArray"
+import React,{useContext} from "react"
+import RolePermissionArray from "./RolePermissionArray";
+import Createcontext from '../../../../Hooks/Context/Context'
 const RolePermission = ({rolepermision , setrolepermision ,setdescchceck ,descchceck}) => {
     const classes = useStyles()
+    const { state, dispatch } = useContext(Createcontext)
     function checkedfunction(name , type='none'){
         setdescchceck(!descchceck)
         
@@ -20,6 +22,7 @@ const RolePermission = ({rolepermision , setrolepermision ,setdescchceck ,descch
            setrolepermision({ ...rolepermision , [name] : !rolepermision[name] })
        }
     }
+    console.log(Object.values(state.Roles).includes(false))
     return (
         <div className="col-12 rolePermission_container">
             <form>
@@ -46,36 +49,39 @@ const RolePermission = ({rolepermision , setrolepermision ,setdescchceck ,descch
                     <div className="rolePermissionOrderList">
                        {
                         RolePermissionArray.map((item)=>{
-                            return <div className="rolePermissionItems">
-                                <div className="roleTitle">{item.RoleName === "SalesAndAnalytics" ? 'Sales & Analytics' : item.RoleName }</div>
-                                    <div className="permissionChecked">
-                                            <div className="roleinputbox">
-                                            
-                                                <input type="checkbox" id={`all${item.id}`} checked={(rolepermision[`View${item.RoleName}`] && rolepermision[`Add${item.RoleName}`]) && (rolepermision[`Delete${item.RoleName}`] && rolepermision[`Edit${item.RoleName}`])}  onClick={(e)=>checkedfunction(e.target.name , 'All')} name={`${item.RoleName}`} />
-                                                <label htmlFor={`all${item.id}`}>All</label>
-                                            </div>
-                                            <div className="roleinputbox">
-                                                <input type="checkbox" id={`view${item.id}`} checked={rolepermision[`View${item.RoleName}`]} name={`View${item.RoleName}`} value={rolepermision[`View${item.RoleName}`]} onChange={(e)=>checkedfunction(e.target.name)} />
-                                                <label htmlFor={`view${item.id}`}>View</label>
+                           
+                            return  <div className="rolePermissionItems">
+                                { (  Object.values(state.Roles).includes(false) && item.RoleName !=="Roles" ) &&   <>  <div className="roleTitle">{item.RoleName === "SalesAndAnalytics" ? 'Sales & Analytics' : item.RoleName }</div>
+                                                <div className="permissionChecked">
+                                                        <div className="roleinputbox">
+                                                        
+                                                            <input type="checkbox"  id={`all${item.id}`} disabled={!(state.Roles[`Add${item.RoleName}`] && state.Roles[`View${item.RoleName}`] && state.Roles[`Edit${item.RoleName}`] && state.Roles[`Delete${item.RoleName}`]) }  className={!(state.Roles[`Add${item.RoleName}`] && state.Roles[`View${item.RoleName}`] && state.Roles[`Edit${item.RoleName}`] && state.Roles[`Delete${item.RoleName}`]) && "roleInputDisable"}    checked={(rolepermision[`View${item.RoleName}`] && rolepermision[`Add${item.RoleName}`]) && (rolepermision[`Delete${item.RoleName}`] && rolepermision[`Edit${item.RoleName}`])}  onClick={(e)=>checkedfunction(e.target.name , 'All')} name={`${item.RoleName}`} />
+                                                            <label htmlFor={`all${item.id}`}>All</label>
+                                                        </div>
+                                                        <div className="roleinputbox">
+                                                            <input type="checkbox" id={`view${item.id}`} disabled={!state.Roles[`View${item.RoleName}`]} className={!state.Roles[`View${item.RoleName}`] && "roleInputDisable"} checked={rolepermision[`View${item.RoleName}`]} name={`View${item.RoleName}`} value={rolepermision[`View${item.RoleName}`]} onChange={(e)=>checkedfunction(e.target.name)} />
+                                                            <label htmlFor={`view${item.id}`}>View</label>
 
-                                            </div>
-                                            <div className="roleinputbox">
-                                                <input type="checkbox" id={`Add${item.id}`} checked={rolepermision[`Add${item.RoleName}`]} name={`Add${item.RoleName}`} value={rolepermision[`Add${item.RoleName}`]} onChange={(e)=>checkedfunction(e.target.name)} />
-                                                <label htmlFor={`Add${item.id}`}>Add</label>
+                                                        </div>
+                                                        <div className="roleinputbox">
+                                                            <input type="checkbox" id={`Add${item.id}`} disabled={!state.Roles[`Add${item.RoleName}`]}  className={!state.Roles[`Add${item.RoleName}`] && "roleInputDisable"} checked={rolepermision[`Add${item.RoleName}`]} name={`Add${item.RoleName}`} value={rolepermision[`Add${item.RoleName}`]} onChange={(e)=>checkedfunction(e.target.name)} />
+                                                            <label htmlFor={`Add${item.id}`}>Add</label>
 
-                                            </div>
-                                            <div className="roleinputbox">
-                                                <input type="checkbox" id={`edit${item.id}`} checked={rolepermision[`Edit${item.RoleName}`]} name={`Edit${item.RoleName}`} value={rolepermision[`Edit${item.RoleName}`]} onChange={(e)=>checkedfunction(e.target.name)}/>
-                                                <label htmlFor={`edit${item.id}`}>Edit</label>
+                                                        </div>
+                                                        <div className="roleinputbox">
+                                                            <input type="checkbox" id={`edit${item.id}`} disabled={!state.Roles[`Edit${item.RoleName}`]} className={!state.Roles[`Edit${item.RoleName}`] && "roleInputDisable"} checked={rolepermision[`Edit${item.RoleName}`]} name={`Edit${item.RoleName}`} value={rolepermision[`Edit${item.RoleName}`]} onChange={(e)=>checkedfunction(e.target.name)}/>
+                                                            <label htmlFor={`edit${item.id}`}>Edit</label>
 
-                                            </div>
-                                            <div className="roleinputbox">
-                                                <input type="checkbox" id={`delete${item.id}`} checked={rolepermision[`Delete${item.RoleName}`]} name={`Delete${item.RoleName}`} value={rolepermision[`Delete${item.RoleName}`]} onChange={(e)=>checkedfunction(e.target.name)} />
-                                                <label htmlFor={`delete${item.id}`}>Delete</label>
-
-                                            </div>
-                                    </div>
-                            </div>
+                                                        </div>
+                                                        <div className="roleinputbox" >
+                                                            <input type="checkbox" id={`delete${item.id}`} disabled={!state.Roles[`Delete${item.RoleName}`] }  className={!state.Roles[`Delete${item.RoleName}`] && "roleInputDisable"} checked={rolepermision[`Delete${item.RoleName}`]} name={`Delete${item.RoleName}`} value={rolepermision[`Delete${item.RoleName}`]} onChange={(e)=>checkedfunction(e.target.name)} />
+                                                            <label htmlFor={`delete${item.id}`}>Delete</label>
+                                                        </div>
+                                                </div>
+                                                </>
+                                             
+                                }
+                              </div>
                         })
                        }
                     </div>

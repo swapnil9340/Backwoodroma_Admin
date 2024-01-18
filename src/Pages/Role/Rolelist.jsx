@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect , useContext } from 'react'
 import { ThemeProvider } from "@mui/material/styles";
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
@@ -6,14 +6,15 @@ import { createTheme } from "@mui/material/styles";
 import IconButton from '@mui/material/IconButton';
 import { MdOutlineDeleteOutline  } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
-
-import {Link , useNavigate} from 'react-router-dom'
+import {Link , useNavigate} from 'react-router-dom';
+import Createcontext from '../../Hooks/Context/Context'
 import Cookies from 'universal-cookie';
 import axios from 'axios';
 const Rolelist = () => {
     let navigate = useNavigate();
     const [pageSize, setPageSize] = React.useState(5);
     const [RoleData, SetRoleData] = React.useState([]);
+    const { state, dispatch } = useContext(Createcontext)
     const Swal = require('sweetalert2')
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
@@ -60,8 +61,8 @@ const Rolelist = () => {
   
     }
     function deleterole(row){
-       
-        Swal.fire({
+       if(state.Roles.DeleteRoles){
+          Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
             icon: "warning",
@@ -94,6 +95,7 @@ const Rolelist = () => {
               
             }
           });
+        }
     }
 
     useEffect(()=>{
@@ -128,7 +130,7 @@ sortable:false },
             field: 'Edit', headerName: 'Edit', type: 'button', editable: false, sortable:false,flex: 1, headerClassName: 'super-app-theme--header',  headerAlign: 'center',  align: 'center',
 
             renderCell: (params) => {
-                 return <span onClick={()=>navigate('/addrole' , {state:{...params.row , type:'edit'}})}><FaEdit /></span>
+                 return  state?.Roles?.DeleteRoles ? <span onClick={()=>navigate('/addrole' , {state:{...params.row , type:'edit'}})}><FaEdit /></span> : null
             }
         },
         {

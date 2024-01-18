@@ -82,24 +82,24 @@ const Vendor = () => {
                 maxWidth: 90, minWidth: 40, flex: 1,
 
             },
-            editable: true,
+            editable: false,
         },
         {
             field: 'email',
             headerName: 'Email/Phone',
              minWidth: 120, flex: 1,sortable:false,
-            editable: true,
+            editable: false,
         },
         {
             field: 'StoreType',
             headerName: 'Store Type', minWidth: 120, flex: 1,sortable:false,
-            editable: true,
+            editable: false,
         },
         {
             field: 'StoreName',
             headerName: 'Store Name',
             type: 'number', minWidth: 120, flex: 1,sortable:false,
-            editable: true,
+            editable: false,
             headerAlign: 'left', align: "left",
         },
         {
@@ -112,7 +112,7 @@ const Vendor = () => {
         {
             field: 'Status',
             headerName: 'Status',
-            editable: true,
+            editable: false,
             sortable: false, minWidth: 120, flex: 1, headerAlign: 'center', align: "center",
             renderCell: (params) => {
                 if (params.formattedValue === "Active") {
@@ -122,8 +122,10 @@ const Vendor = () => {
                                 style={{ color: "#31B665 ", fontSize: 25, cursor: "pointer" }}
                                 variant="contained"
                                 color="primary"
+                            
                                 onClick={() => {
-                                    SubmitEditData(params);
+                                     state.Roles.EditVendor &&
+                                     SubmitEditData(params)
                                 }}
                             >
                                 <AiFillEye />
@@ -139,6 +141,7 @@ const Vendor = () => {
                             variant="contained"
                             color="primary"
                             onClick={() => {
+                                state.Roles.EditVendor &&
                                 SubmitEditData(params);
                             }}
                         ><AiOutlineEyeInvisible /></p>
@@ -151,37 +154,41 @@ const Vendor = () => {
         {
             field: 'Edit',
             headerName: 'Edit',
-            editable: true,
+            editable: false,
             sortable: false, minWidth: 120, flex: 1,
             headerAlign: 'center', align: "center",
             renderCell: (params) => {
                 return (
-                    <Box
-                        sx={{
-                            '& .MuiOutlinedInput-root': {
-                                '&.Mui-focused fieldset': {
-                                    borderWidth: "1px",
-                                    borderColor: 'black',
+                <React.Fragment>
+                    {    state.Roles.DeleteVendor    &&
+                        <Box
+                            sx={{
+                                '& .MuiOutlinedInput-root': {
+                                    '&.Mui-focused fieldset': {
+                                        borderWidth: "1px",
+                                        borderColor: 'black',
+                                    },
                                 },
-                            },
-                            '& . MuiDataGrid-root .MuiDataGrid-cell:focus': {
-                                outline: "#e0e0e0"
-                            }
-                        }}
-                    >
-                        <Select sx={{
-                            boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
-                            "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
-                            "&:hover": {
-                                ".MuiSelect-icon": {
-                                    color: "#31B665"
+                                '& . MuiDataGrid-root .MuiDataGrid-cell:focus': {
+                                    outline: "#e0e0e0"
                                 }
-                            },
-                        }} IconComponent={BsThreeDotsVertical} labelId="">
-                           <UserDelete data={params.row}></UserDelete>
-                          
-                        </Select>
-                    </Box>
+                            }}
+                        >
+                            <Select sx={{
+                                boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
+                                "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
+                                "&:hover": {
+                                    ".MuiSelect-icon": {
+                                        color: "#31B665"
+                                    }
+                                },
+                            }} IconComponent={BsThreeDotsVertical} labelId="">
+                            <UserDelete data={params.row}></UserDelete>
+                            
+                            </Select>
+                        </Box>
+                    }
+                </React.Fragment>
                 )
             }
 

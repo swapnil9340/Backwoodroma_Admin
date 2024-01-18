@@ -93,22 +93,15 @@ export default function Login_logout() {
             }
             else {
 
-                let rolesdata = response?.data?.permission[0]
-
-                 if(Boolean(response?.data?.permission.length !== 0)){
-                    response?.data?.permission?.map((item,index)=>{
-                        for (const property in item) {
-                            rolesdata[property] = item[property] || rolesdata[property]
-                        }
-                         
-                    })
+                console.log(response ,'response')
+                if(!response.data.is_superuser && Boolean(response.data.permission.lenght === 0 ) ){
+                    navigate("/*");
+                }else{
+                    let date = new Date();
+                    date.setTime(date.getTime() + (60 * 60 * 8000))
+                    cookies.set('Token_access', response.data.tokens.access, { expires: date })
+                    navigate("/");
                 }
-
-                 dispatch({ type: 'Roles', Roles: rolesdata })
-                let date = new Date();
-                date.setTime(date.getTime() + (60 * 60 * 8000))
-                cookies.set('Token_access', response.data.tokens.access, { expires: date })
-                navigate("/");
             }
         })
     };

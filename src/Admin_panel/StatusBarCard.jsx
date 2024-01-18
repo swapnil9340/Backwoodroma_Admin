@@ -13,7 +13,7 @@ export default function StatusBarCard() {
                         }
         }).then(response => {
             setTotal(response.data.Data)  
-            console.log(response.data.Data)
+      
         })
     },[token_data])
    

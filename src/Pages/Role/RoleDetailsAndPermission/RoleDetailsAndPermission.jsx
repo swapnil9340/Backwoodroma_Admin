@@ -10,7 +10,6 @@ import {useNavigate , useLocation} from 'react-router-dom'
 const RoleDetailsAndPermission=()=>{
     const navigate=useNavigate()
     const location = useLocation()
-   
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [loading , setloading] = useState(false)
@@ -78,38 +77,43 @@ const RoleDetailsAndPermission=()=>{
         "ViewStaff": false,
         "EditStaff": false,
         "DeleteStaff": false,
+        "AddRoles": false,
+        "ViewRoles": false,
+        "EditRoles": false,
+        "DeleteRoles": false,
     })
     const method = useForm()
 
     function Submitdata(data){
         setloading(true)
-        if(Boolean(rolepermision?.RoleTitle?.length)){
+     
+            if(location?.state?.type  === 'edit'){
+              
 
-            if(location?.state?.type  === 'add'){
-          Axios.post('https://api.cannabaze.com/AdminPanel/Add-RolesAndPermission/', rolepermision ,{
-            headers: {
-                'Authorization': `Bearer ${token_data}`
-              }
-    
-           }).then((res)=>{
+
+                Axios.post(`https://api.cannabaze.com/AdminPanel/Update-RolesAndPermission/${location?.state?.id}`, rolepermision ,{
+                    headers: {
+                        'Authorization': `Bearer ${token_data}`
+                    }
             
-              navigate('/Roles')
-           })
-
-        }else if(location?.state?.type  === 'edit'){
-
-           Axios.post(`https://api.cannabaze.com/AdminPanel/Update-RolesAndPermission/${location?.state?.id}`, rolepermision ,{
-            headers: {
-                'Authorization': `Bearer ${token_data}`
-              }
-    
-           }).then((res)=>{
+                }).then((res)=>{
+                    
+                    navigate('/Roles')
+                })
+            }else {
+                Axios.post('https://api.cannabaze.com/AdminPanel/Add-RolesAndPermission/', rolepermision ,{
+                    headers: {
+                        'Authorization': `Bearer ${token_data}`
+                    }
             
-              navigate('/Roles')
-           })
-        }
+                }).then((res)=>{
+                    
+                    navigate('/Roles')
+                })
+          
+            }
 
-        }
+        
     }
 
     useEffect(()=>{
