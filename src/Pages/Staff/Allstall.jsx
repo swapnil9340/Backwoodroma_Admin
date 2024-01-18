@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React,{useState} from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
@@ -9,11 +9,16 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import { Link } from "react-router-dom";
 import useStyles from '../../Style';
+import Cookies from "universal-cookie";
+import axios from 'axios'
 import "./Stall.css"
 const Allstall = () => {
     const classes= useStyles()
+    const cookies = new Cookies();
+    const token_data = cookies.get("Token_access");
+    const [userdata , setuserdata]= useState([])
     const columns = [
-      { field: 'id', headerName: 'ID', width: 90 },
+      { field: 'ID', headerName: 'ID', width: 90 },
       {
         field: 'Name',
         headerName: 'Name',
@@ -35,24 +40,30 @@ const Allstall = () => {
         align: "center",
       },
       {
-        field: 'Role',
-        headerName: 'Role',
+        field: 'Roles',
+        headerName: 'Roles',
         sortable:false,
         minWidth: 80,
         editable: true,
         flex:1,
         headerAlign: "center",
         align: "center",
+        renderCell: (params) => {
+            const onClick = (e) => {
+              e.stopPropagation(); // don't select this row after clicking
+            };
+            return <span>{params.row.Roles.join()}</span>
+        }
       },
-      {
-          field: 'CreatedAt',
-          headerName: 'Created At',
-          sortable: false,
-          minWidth: 140,
-          flex:1,
-          headerAlign: "center",
-          align: "center",
-      },
+    //   {
+    //       field: 'CreatedAt',
+    //       headerName: 'Created At',
+    //       sortable: false,
+    //       minWidth: 140,
+    //       flex:1,
+    //       headerAlign: "center",
+    //       align: "center",
+    //   },
       {
           field: 'Status',
           headerName: 'Status',
@@ -63,87 +74,18 @@ const Allstall = () => {
           headerAlign: "center",
           align: "center",
       },
-      {
-          field: 'Action',
-          headerName: 'action',
-          sortable:false,
-          minWidth: 50,
-          editable: true,
-          headerAlign: "center",
-          align: "center",
-          renderCell: (params) => {
-              const onClick = (e) => {
-                e.stopPropagation(); // don't select this row after clicking
-              };
-              return (
-              <>
-                  <Select
-                  IconComponent={BsThreeDotsVertical}
-                  labelId="demo-simple-select-error-label"
-                  sx={{
-                      boxShadow: "none",
-                      ".MuiOutlinedInput-notchedOutline": { border: 0 },
-                      "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
-                      {
-                          border: 0,
-                          outline: "none",
-                      },
-                      "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-                      {
-                          border: 0,
-                          outline: "none",
-                      },
-                      "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
-                      "&:hover": {
-                      ".MuiSelect-icon": {
-                          color: "#31B665",
-                      },
-                      },
-                  }}
-                  >
-                  <List className={classes.orderEditList}>
-                      <ListItem
-                      button
-                      className={classes.orderEditListitem}
-                      onClick={(e) => {
-                          e.stopPropagation();
-                      }}
-                      >
-                      <Link
-                          className="productSelectEditLinkStyle"
-                          to={"/EditProduct"}
-                          state={params.row}
-                      >
-                          <Icon className={classes.orderEditListIcon}>
-                          <FaEdit color="31B665" />{" "}
-                          </Icon>
-                          Edit
-                      </Link>
-                      </ListItem>
-                      <ListItem
-                      button
-                      className={classes.orderEditListitem}
-                      onClick={(e) => {
-                          e.stopPropagation();
-                      }}
-                      >
-                      <Icon className={classes.orderEditListIcon}>
-                          <AiFillDelete color="31B665" />
-                      </Icon>
-                      Delete
-                      </ListItem>
-                  </List>
-                  </Select>
-              </>
-              );
-          },
-      },
+ 
     ];
-    
-    const rows = [
-      { id: 1, Name: 'Snow', Email: 'abc123@gmail.com', Role: "vendor",CreatedAt:'29 Sep 2023 11:45 am' ,Status:false,},
-   
-    ];
+    React.useEffect(()=>{
+      axios.get('https://api.cannabaze.com/AdminPanel/AllStaff/',{
+            headers: {
+              Authorization: `Bearer ${token_data}`,
+            },
+      }).then((res)=>{
+        setuserdata(res.data)
+      })
+    },[token_data])
+    const rows = userdata
   return (
     <div className=' my-4 '>
     <div className='allusers'>

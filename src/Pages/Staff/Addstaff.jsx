@@ -17,8 +17,10 @@ import useStyles from "../../Style";
 import { FormControl ,Checkbox ,ListItemText } from "@mui/material";
 import "./Stall.css";
 import axios from "axios";
+import {useNavigate} from 'react-router-dom';
 const Addusers = () => {
   const classes = useStyles();
+  const navigate = useNavigate()
   const { register, handleSubmit, watch, errors,setError,clearErrors,getValues,setValue, control } =   useForm();
   const [loading, setLoading] = React.useState(false);
   const [dulicate, Setduplicate] = React.useState([]);
@@ -44,7 +46,7 @@ const Addusers = () => {
   };
   const onSubmit = (data) => {
     axios.post('https://api.cannabaze.com/AdminPanel/register/',{...data , Roles :multipleroles  ,  is_superuser: false, Status : status , user_type:"Admin"} ).then((res)=>{
-      
+      navigate('/allstaff')
     }).catch((error)=>{
     
  
