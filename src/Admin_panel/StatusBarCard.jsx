@@ -53,19 +53,7 @@ export default function StatusBarCard() {
                             </div>
                         </div>
                     </div>
-                    {/* <div className='col-12 cardn_number card_hadding'>
-    {/* <span style={{ color: "#FE5722" }} >{data.total}</span> */}
-                    {/* </div>
-<div className='col-12'>
-    {/* <div className="">
-    <div className={"progress " + data.title.replaceAll(' ','') } >
-        <div className="progress-bar " role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="1"></div>
-    </div>
-    </div> */}
-                    {/* </div>
-<div className='col-12 con'>
-    {/* <span className='card_persent_font'>4.6%</span> <span className='Today_card_status'>Today</span> */}
-                    {/* </div> */}
+             
                 </div>
 
             </div>
@@ -84,7 +72,7 @@ export default function StatusBarCard() {
                         </div>
                         <div className='col-6 '>
                             <div className="Card_center_dashboard cardbox d-flex" >
-                                <div className="" style={{ "margin-top": '10px' }}>
+                                <div className="" style={{ "marginTop": '10px' }}>
                                     <p className='card_hadding'>{'Vedore'}</p>
                                     <p className="Card_Total" >{200}</p>
                                     <p className="card_hadding" >

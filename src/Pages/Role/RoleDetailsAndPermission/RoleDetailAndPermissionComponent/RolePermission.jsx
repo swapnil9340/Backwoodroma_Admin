@@ -51,7 +51,7 @@ const RolePermission = ({rolepermision , setrolepermision ,setdescchceck ,descch
                         RolePermissionArray.map((item)=>{
                            
                             return  <div className="rolePermissionItems">
-                                { (  Object.values(state.Roles).includes(false) && item.RoleName !=="Roles" ) &&   <>  <div className="roleTitle">{item.RoleName === "SalesAndAnalytics" ? 'Sales & Analytics' : item.RoleName }</div>
+                                { !(  Object.values(state.Roles).includes(false) && item.RoleName ==="Roles" ) &&   <>  <div className="roleTitle">{item.RoleName === "SalesAndAnalytics" ? 'Sales & Analytics' : item.RoleName }</div>
                                                 <div className="permissionChecked">
                                                         <div className="roleinputbox">
                                                         

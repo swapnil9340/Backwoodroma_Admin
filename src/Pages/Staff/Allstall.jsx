@@ -1,15 +1,9 @@
 import  React,{useState} from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { BsThreeDotsVertical } from "react-icons/bs";
-import { FaEdit } from "react-icons/fa";
-import { AiFillDelete } from "react-icons/ai";
-import Icon from "@material-ui/core/Icon";
-import {Select, Button} from "@mui/material";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
 import { Link } from "react-router-dom";
 import useStyles from '../../Style';
 import Cookies from "universal-cookie";
+import { ThemeProvider , Box ,createTheme } from "@mui/material";
 import axios from 'axios'
 import "./Stall.css"
 const Allstall = () => {
@@ -23,7 +17,7 @@ const Allstall = () => {
         field: 'Name',
         headerName: 'Name',
         minWidth: 120,
-        editable: true,
+        editable: false,
         sortable:false,
         flex:1,
         headerAlign: "center",
@@ -33,7 +27,7 @@ const Allstall = () => {
         field: 'Email',
         headerName: 'Email',
         minWidth: 120,
-        editable: true,
+        editable: false,
         sortable:false,
         flex:1,
         headerAlign: "center",
@@ -44,7 +38,7 @@ const Allstall = () => {
         headerName: 'Roles',
         sortable:false,
         minWidth: 80,
-        editable: true,
+        editable: false,
         flex:1,
         headerAlign: "center",
         align: "center",
@@ -55,21 +49,12 @@ const Allstall = () => {
             return <span>{params.row.Roles.join()}</span>
         }
       },
-    //   {
-    //       field: 'CreatedAt',
-    //       headerName: 'Created At',
-    //       sortable: false,
-    //       minWidth: 140,
-    //       flex:1,
-    //       headerAlign: "center",
-    //       align: "center",
-    //   },
       {
           field: 'Status',
           headerName: 'Status',
           sortable:false,
           minWidth: 80,
-          editable: true,
+          editable: false,
           flex:1,
           headerAlign: "center",
           align: "center",
@@ -86,6 +71,24 @@ const Allstall = () => {
       })
     },[token_data])
     const rows = userdata
+
+
+    const CustomFontTheme = createTheme({
+      typography: {
+          fontSize: 25
+      },
+      components: {
+          MuiContainer: {
+              styleOverrides: {
+                  root: {
+                      fontSize: 24,
+
+                  }
+              }
+          },
+      },
+
+  });
   return (
     <div className=' my-4 '>
     <div className='allusers'>
@@ -93,7 +96,7 @@ const Allstall = () => {
            <h3 className='pageheading'>All Staff</h3>
            <div className='btnsgroup'>
             <Link to={'/add-staff'}>
-              <Button className={classes.addstafbtn}> Add Staff</Button>
+              <button className="topbutton"> Add Staff</button>
             </Link>
            </div>
         </div>
@@ -101,25 +104,124 @@ const Allstall = () => {
       
         </div>
             <div className='allusertable'>
-            <DataGrid
-                rows={rows}
-                columns={columns}
-                initialState={{
-                pagination: {
-                    paginationModel: {
-                    pageSize: 5,
-                    },
-                },
-                }}
-                pageSizeOptions={[5, 10, 25, 50]}
-                checkboxSelection
-                disableRowSelectionOnClick
-                disableColumnMenu
-                disableColumnFilter
-                disableColumnSelector
-                autoHeight
-            />
-               
+            <Box sx={{
+                            height: 400,
+                            width: '100%',
+                            '& .MuiDataGrid-columnHeaders': {
+                                backgroundColor: '#E1FFED',
+                            },
+                            '& .MuiButton-root': {
+                                color: "#FFFFFF",
+                                display: "flex",
+                                width: "200px"
+                            },
+                             // check
+                             ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
+                                outline:"none"
+                              },
+
+                            "@media(max-width:767px)": {
+                                '& .MuiButton-root': {
+                                    display: "contents",
+                                    width: "150px",
+                                    margin: "2px",
+                                    fontSize: "14px"
+                                },
+
+                            },
+                            "@media(max-width:546px)": {
+                                '& .MuiButton-root': {
+                                    display: "contents",
+                                    width: "150px",
+                                    fontSize: "9px"
+                                },
+
+                            },
+
+                            "@media(min-width:768px)": {
+                                '& .MuiButton-root': {
+                                    width: "110px",
+                                    margin: "2px",
+                                    fontSize: "14px"
+                                },
+
+                                "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                                    width: "120px"
+                                }
+                            }
+                        }}>
+                            <ThemeProvider theme={CustomFontTheme}>
+                              <DataGrid
+                                  rows={rows}
+                                  columns={columns}
+                                  getRowId={(row) => row.ID}
+                                  initialState={{
+                                  pagination: {
+                                      paginationModel: {
+                                      pageSize: 5,
+                                      },
+                                  },
+                                  }}
+                                  pageSizeOptions={[5, 10, 25, 50]}
+                                  disableRowSelectionOnClick
+                                  disableColumnMenu
+                                  disableColumnFilter
+                                  disableColumnSelector
+                                  autoHeight
+                                  checkboxSelection={false}
+                                  rowSelection={false}
+                                  sx={{
+                                    "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
+                                        outline: "none",
+                                    },
+                                    "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
+                                        outline: "none"
+                                    },
+                                    "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
+                                        outline: "none",
+
+                                    },
+                                    "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
+                                        backgroundColor: "#FFFFFF"
+                                    },
+                                    height: 400,
+                                    width: '100%',
+                                    "@media(max-width:768px)": {
+                                        ".MuiDataGrid-toolbarContainer": {
+                                            gap: "10px",
+
+                                        }
+                                    },
+                                    "@media(max-width:546px)": {
+                                        ".MuiDataGrid-toolbarContainer": {
+                                            gap: "5px",
+
+                                        }
+                                    },
+                                    ".MuiDataGrid-toolbarContainer": {
+                                        flexDirection: "block",
+
+                                        backgroundColor: "#31B665",
+                                        width: {
+                                            xs: "100%",
+                                            sm: "100%",
+                                            md: "100%",
+                                            lg: "100%",
+                                            xl: "100%"
+
+                                        },
+                                    },
+                                    "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
+                                        visibility: "hidden"
+                                    },
+                                    "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                                        width: "120px"
+                                    }
+
+                                }}
+                              />
+                    </ThemeProvider>
+                        </Box>
             </div>
     </div>
 </div>
