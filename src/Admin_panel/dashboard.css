@@ -1,0 +1,114 @@
+.dashboardHerosection {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px 0;
+}
+.dashboardHerosection .totalUser {
+  width: 35%;
+  height: 400px;
+}
+.dashboardHerosection .totalUser h3.graphtitle {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: start;
+}
+.dashboardHerosection .topProducts {
+  width: 15%;
+  height: 400px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  width: 100;
+  height: 100;
+}
+.dashboardHerosection .topProducts .totalSalesChart .totalSalesChartHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.dashboardHerosection .topProducts .totalSalesChart .totalSalesChartHeader .headingtext {
+  font-size: 12px;
+  color: #444;
+  font-weight: 500;
+}
+.dashboardHerosection .topProducts .totalSalesChart h3.totalsalesamount {
+  font-size: 18px;
+  font-weight: 600;
+  color: #474747;
+}
+.dashboardHerosection .topProducts .totalSalesChart .growthIndicater {
+  background-color: #ECFDF5;
+  display: inline-block;
+  padding: 3px 5px;
+  border-radius: 3px;
+  color: #13B8A6;
+}
+.dashboardHerosection .topProducts .totalSalesChart .Saleschart_container {
+  width: 100%;
+  min-height: 300px;
+}
+.dashboardHerosection .topProducts .list_container {
+  width: 100%;
+  height: 100%;
+}
+.dashboardHerosection .topProducts .list_container .list_heading {
+  height: 10%;
+}
+.dashboardHerosection .topProducts .list_container .list_heading h3.listCardTitle {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: start;
+}
+.dashboardHerosection .topProducts .list_container .viewAllBtnList {
+  height: 10%;
+  text-align: center;
+  display: flex;
+  align-items: end;
+  width: 100%;
+  justify-content: center;
+}
+.dashboardHerosection .topProducts .list_container .dashboardList {
+  padding: 0;
+  height: 80%;
+  margin: 0;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.dashboardHerosection .topProducts .list_container .dashboardList::-webkit-scrollbar {
+  display: none;
+}
+.dashboardHerosection .topProducts .list_container .dashboardList li .dashboardListItem {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+}
+.dashboardHerosection .topProducts .list_container .dashboardList li .dashboardListItem .dashboardListItemImage {
+  width: 25%;
+}
+.dashboardHerosection .topProducts .list_container .dashboardList li .dashboardListItem .dashboardListItemImage .imageCircle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(128, 128, 128, 0.226);
+}
+.dashboardHerosection .topProducts .list_container .dashboardList li .dashboardListItem .dashboardListItemImage .imageCircle img {
+  width: 100%;
+  height: 100%;
+}
+.dashboardHerosection .topProducts .list_container .dashboardList li .dashboardListItem .dashboardListItemtext {
+  width: 70%;
+}
+.dashboardHerosection .topProducts .list_container .dashboardList li .dashboardListItem .dashboardListItemtext .list_title {
+  font-size: 13px;
+  font-weight: 600;
+}
+.dashboardHerosection .topProducts .list_container .dashboardList li .dashboardListItem .dashboardListItemtext .listunitSold {
+  font-size: 12px;
+  font-weight: 400;
+}/*# sourceMappingURL=dashboard.css.map */

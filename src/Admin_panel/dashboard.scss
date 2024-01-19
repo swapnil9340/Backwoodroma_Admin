@@ -1,0 +1,124 @@
+.dashboardHerosection{
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 0;
+    .totalUser{
+        width: 35%;
+        height: 400px;
+        h3.graphtitle{
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.6;
+            text-align: start;
+        }
+    }
+    .topProducts{
+        width: 15%;
+        height: 400px;
+        padding: 15px;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        width: 100;
+        height: 100;
+        .totalSalesChart{
+            .totalSalesChartHeader{
+                display: flex;
+                justify-content: space-between;
+              margin-bottom: 20px;
+                .headingtext{
+                    font-size: 12px;
+                    color: #444;
+                    font-weight: 500;
+                }
+            }
+            h3.totalsalesamount{
+                font-size: 18px;
+                font-weight: 600;
+                color: #474747;
+            }
+            .growthIndicater{
+                background-color: #ECFDF5;
+                display: inline-block;
+                padding: 3px 5px;
+                border-radius: 3px;
+                color: #13B8A6;
+            }
+            .Saleschart_container{
+                width: 100%;
+                min-height: 300px;
+            }
+        }
+        .list_container{
+            width: 100%;
+            height: 100%;
+           
+           .list_heading{
+              height: 10%;
+              h3.listCardTitle{
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 1.6;
+                text-align: start;
+              }
+           }
+           .viewAllBtnList{
+             height: 10%;
+             text-align: center;
+             display: flex;
+             align-items: end;
+             width: 100%;
+             justify-content: center;
+             
+           }
+           .dashboardList{
+            padding: 0;
+            height: 80%;
+            margin: 0;
+            overflow-y: scroll;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            li{
+              
+              
+            
+               .dashboardListItem{
+                border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+                padding: 10px 0 ;
+                display: flex;
+                justify-content: center;
+                .dashboardListItemImage{
+                    width: 25%;
+                    .imageCircle{
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        overflow: hidden;
+                        border: 1px solid rgba(128, 128, 128, 0.226);
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                }
+                .dashboardListItemtext{
+                    width: 70%;
+                    .list_title{
+                        font-size: 13px;
+                        font-weight: 600;
+                    }
+                    .listunitSold{
+                        font-size: 12px;
+                        font-weight: 400;
+                    }
+                }
+               }
+            }
+           }
+         
+        }
+     }
+}

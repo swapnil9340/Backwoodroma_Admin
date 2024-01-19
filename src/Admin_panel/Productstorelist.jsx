@@ -1,22 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Productstorelist = (data) => {
+const Productstorelist = ({title}) => {
   return (
     <div className="list_container">
-      <div className="list_heading h-[10%]">
-        <h3 className="text-center	">Top Products</h3>
+      <div className="list_heading">
+        <h3 className="listCardTitle">{title}</h3>
       </div>
-      <ul className="h-[80%] p-0 overflow-y-auto no-scrollbar  divide-slate-200">
-        <li className="divide-slate-300">
-          <div className="flex justify-between">
-            <div className="w-[25%]">
+      <ul className="dashboardList">
+        <li className="">
+          <div className="dashboardListItem">
+            <div className="dashboardListItemImage">
               <div
-                className="w-[40px] h-[40px] rounded-full overflow-hidden"
+                className="imageCircle"
               >
                 <img src="./image/niceguy.png" className="w-[100%] h-[1005]" />
               </div>
             </div>
-            <div className="w-[70%]">
+            <div className="dashboardListItemtext">
               <h3 className="list_title">YOLO GUMMIES: PEACH</h3>
               <div className="d-flex justify-content-between align-items-center">
                 <span className="listunitSold">Unite 2000</span>
@@ -25,16 +25,16 @@ const Productstorelist = (data) => {
             </div>
           </div>
         </li>
-        <li className="pt-4 divide-slate-300">
-          <div className="flex justify-between">
-            <div className="w-[25%]">
+        <li className="">
+          <div className="dashboardListItem">
+            <div className="dashboardListItemImage">
               <div
-                className="w-[40px] h-[40px] rounded-full overflow-hidden"
+                className="imageCircle"
               >
-                <img src="./image/spankey.png" className="w-[100%] h-[1005]" />
+                <img src="./image/niceguy.png" className="w-[100%] h-[1005]" />
               </div>
             </div>
-            <div className="w-[70%]">
+            <div className="dashboardListItemtext">
               <h3 className="list_title">YOLO GUMMIES: PEACH</h3>
               <div className="d-flex justify-content-between align-items-center">
                 <span className="listunitSold">Unite 2000</span>
@@ -43,16 +43,16 @@ const Productstorelist = (data) => {
             </div>
           </div>
         </li>
-        <li className="pt-4 divide-slate-300">
-          <div className="flex justify-between">
-            <div className="w-[25%]">
+        <li className="">
+          <div className="dashboardListItem">
+            <div className="dashboardListItemImage">
               <div
-                className="w-[40px] h-[40px] rounded-full overflow-hidden"
+                className="imageCircle"
               >
-                <img src="./image/leedx.png" className="w-[100%] h-[1005]" />
+                <img src="./image/niceguy.png" className="w-[100%] h-[1005]" />
               </div>
             </div>
-            <div className="w-[70%]">
+            <div className="dashboardListItemtext">
               <h3 className="list_title">YOLO GUMMIES: PEACH</h3>
               <div className="d-flex justify-content-between align-items-center">
                 <span className="listunitSold">Unite 2000</span>
@@ -61,8 +61,45 @@ const Productstorelist = (data) => {
             </div>
           </div>
         </li>
+        <li className="">
+          <div className="dashboardListItem">
+            <div className="dashboardListItemImage">
+              <div
+                className="imageCircle"
+              >
+                <img src="./image/niceguy.png" className="w-[100%] h-[1005]" />
+              </div>
+            </div>
+            <div className="dashboardListItemtext">
+              <h3 className="list_title">YOLO GUMMIES: PEACH</h3>
+              <div className="d-flex justify-content-between align-items-center">
+                <span className="listunitSold">Unite 2000</span>
+                <span className="listunitSold">$10,000.0</span>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li className="">
+          <div className="dashboardListItem">
+            <div className="dashboardListItemImage">
+              <div
+                className="imageCircle"
+              >
+                <img src="./image/niceguy.png" className="w-[100%] h-[1005]" />
+              </div>
+            </div>
+            <div className="dashboardListItemtext">
+              <h3 className="list_title">YOLO GUMMIES: PEACH</h3>
+              <div className="d-flex justify-content-between align-items-center">
+                <span className="listunitSold">Unite 2000</span>
+                <span className="listunitSold">$10,000.0</span>
+              </div>
+            </div>
+          </div>
+        </li>
+     
       </ul>
-      <div className="viewAllBtnList h-[10%] text-center	">
+      <div className="viewAllBtnList ">
         {" "}
         <Link to="" className="">
           View All

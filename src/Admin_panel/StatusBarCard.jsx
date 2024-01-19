@@ -25,7 +25,7 @@ export default function StatusBarCard() {
 
     return (
 
-        <div className='row row-cols-sm-6 row-cols-md-6 mt-3'>
+        <div className='row row-cols-sm-6 row-cols-md-6 mt-3 bg-white'>
             <div className='col top' >
 
                 <div className='row backg'>

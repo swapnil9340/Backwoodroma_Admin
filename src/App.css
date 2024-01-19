@@ -47,6 +47,7 @@ ul li path {
 }
 .main_display{
   flex: 1;
+  background-color: #FAFBFF;
 }
 .mycontainer{
   width: 95%;
