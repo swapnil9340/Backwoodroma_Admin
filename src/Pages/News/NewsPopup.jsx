@@ -417,7 +417,7 @@ export default function Newspop() {
                     <div className='container-fluid '>
                         <div className='row '>
                             <form onSubmit={handleSubmit(Submit)}>
-                                <div className='col-12    ' >
+                                <div className='col-12' style={{gap:"10px" , display:"grid"}} >
 
                                     <div className='col-12 Add_Category center'>
                                         <div className="col "> <h2> Add News
@@ -458,7 +458,7 @@ export default function Newspop() {
                                                         }
                                                     }
                                                 }}
-                                                {...register("Title", {
+                                                inputRef={register( {
                                                     required: "Title is Required"
                                                 })}
                                                 error={Boolean(errors?.Title)}
@@ -538,7 +538,7 @@ export default function Newspop() {
                                                         }
                                                     }
                                                 }}
-                                                {...register("Meta_Description", {
+                                                inputRef={register( {
                                                     required: "Meta_Description is Required"
                                                 })}
                                                 error={Boolean(errors?.Meta_Description)}
@@ -737,7 +737,7 @@ export default function Newspop() {
                                                         }
                                                     }
                                                 }}
-                                                {...register("Alt_Text", {
+                                              inputRef={register( {
                                                     required: "Alt_Text is Required"
                                                 })}
                                                 error={Boolean(errors?.Alt_Text)}
