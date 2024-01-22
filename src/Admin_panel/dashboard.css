@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
 .dashboardHerosection {
   display: flex;
   justify-content: space-between;
@@ -6,6 +8,9 @@
 .dashboardHerosection .totalUser {
   width: 35%;
   height: 400px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .dashboardHerosection .totalUser h3.graphtitle {
   font-size: 20px;
@@ -111,4 +116,145 @@
 .dashboardHerosection .topProducts .list_container .dashboardList li .dashboardListItem .dashboardListItemtext .listunitSold {
   font-size: 12px;
   font-weight: 400;
+}
+
+.storeOwnerTable {
+  width: 48%;
+  height: 400px;
+  background-color: #fff;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.storeOwnerTable .ownerlist {
+  height: 90%;
+}
+.storeOwnerTable .viewButton {
+  height: 10%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.locationGraph {
+  width: 48%;
+  height: 400px;
+  background-color: #fff;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 15px;
+  border-radius: 8px;
+}
+.locationGraph .locationGraph_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.locationGraph .locationGraph_header h3.locationGraph_headertitle {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: start;
+}
+.locationGraph .locationGraph_header span {
+  font-size: 14px;
+  font-weight: 400;
+}
+.locationGraph .locationContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.locationGraph .locationContent .locationList {
+  width: 45%;
+}
+.locationGraph .locationContent .locationList .locationListHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #737373;
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 31.067px;
+  padding: 10px 0;
+  border-bottom: 2px solid rgba(115, 115, 115, 0.4117647059);
+}
+.locationGraph .locationContent .locationList .locationListItem {
+  display: flex;
+  justify-content: space-between;
+}
+.locationGraph .locationContent .locationList .locationListItem .locationName {
+  font-family: "Roboto";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+}
+.locationGraph .locationContent .locationList .locationListItem .locationName span.colorCircle {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  border-radius: 50%;
+  background-color: #13B8A6;
+}
+.locationGraph .locationContent .locationList .locationListItem .locationAmount {
+  font-family: "Roboto";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 31.067px;
+}
+.locationGraph .locationContent .locationGrapharea {
+  width: 45%;
+}
+
+.pendingUserProfile {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.pendingUserProfile .userImage {
+  width: 25%;
+}
+.pendingUserProfile .userImage .userImageCircle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.pendingUserProfile .userImage .userImageCircle img {
+  width: 100%;
+}
+.pendingUserProfile .userName {
+  color: #000;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.pendingUserProfile .joinDate {
+  font-family: "Inter", sans-serif;
+  color: #6A717B;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.pendingvendercontent {
+  display: block;
+}
+.pendingvendercontent .content_item {
+  display: block;
+  color: #6B6F7A;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.pendingvendercontent .content_item .contactIcon {
+  color: #7C7C7C;
 }/*# sourceMappingURL=dashboard.css.map */

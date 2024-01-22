@@ -1715,7 +1715,6 @@ input:focus+label {
   background: linear-gradient(180deg, rgb(211.44, 255, 231.45) 0%, rgb(239.06, 255, 246.38) 100%);
   border-radius: 42px;
   height: 84px;
- 
   width: 84px;
 }
 .Card_center_dashboard{

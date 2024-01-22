@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
 .dashboardHerosection{
     display: flex;
     justify-content: space-between;
@@ -5,6 +8,9 @@
     .totalUser{
         width: 35%;
         height: 400px;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         h3.graphtitle{
             font-size: 20px;
             font-weight: 700;
@@ -69,7 +75,6 @@
              align-items: end;
              width: 100%;
              justify-content: center;
-             
            }
            .dashboardList{
             padding: 0;
@@ -121,4 +126,144 @@
          
         }
      }
+}
+.storeOwnerTable{
+    width: 48%;
+    height: 400px;
+    background-color: #fff;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    .ownerlist{
+        height: 90%; 
+      
+    }
+    .viewButton{
+        height: 10%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.locationGraph{
+    width: 48%;
+    height: 400px;
+    background-color: #fff;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 15px;
+    border-radius: 8px;
+    .locationGraph_header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        h3.locationGraph_headertitle{
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.6;
+            text-align: start;
+        }
+        span{
+           font-size: 14px;
+           font-weight: 400;
+        }
+    }
+    .locationContent{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .locationList{
+            width: 45%;
+            .locationListHeader{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: #737373;
+                font-family: Roboto;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 31.067px; 
+                padding: 10px 0;
+                border-bottom: 2px solid #73737369;
+            }
+            .locationListItem{
+                display: flex;
+                justify-content: space-between;
+                .locationName{
+
+                 
+                    font-family: 'Roboto';
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 40px;
+                    span.colorCircle{
+                        width: 15px;
+                        height: 15px;
+                        display: inline-block;
+                         border-radius: 50%;
+                         background-color: #13B8A6;
+                    }
+                }
+                .locationAmount{
+                    font-family: 'Roboto';
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 31.067px;
+                }
+            }
+        }
+        .locationGrapharea{
+            width: 45%;
+        }
+    }
+}
+.pendingUserProfile{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    .userImage{
+        width: 25%;
+        .userImageCircle{
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            overflow: hidden;
+            img{
+                width: 100%;
+            }
+        }
+    }
+    .userName{
+        color: #000;
+        font-family: 'Inter', sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+    .joinDate{
+        font-family: 'Inter', sans-serif;
+        color: #6A717B;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+}
+.pendingvendercontent{
+    display: block;
+    .content_item{
+        display: block;
+        color: #6B6F7A;
+        font-family: 'Inter', sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        .contactIcon{
+            color: #7C7C7C;
+        }
+    }
 }
