@@ -25,11 +25,11 @@ export default function StatusBarCard() {
 
     return (
 
-        <div className='row row-cols-sm-6 row-cols-md-6 mt-3 bg-white'>
-            <div className='col top' >
+        <div className='dashboardTopCardWrapper'>
+            <div className=' dashboardTopCard top' >
 
-                <div className='row backg'>
-                    <div className='col-12  d-flex '>
+          
+                    <div className='col-12  d-flex align-items-center '>
                         <div className='col-6 Card_center_dashboard  '>
                             <div className="cardbox ">
                                 <div className="group Card_center_dashboard ">
@@ -53,14 +53,11 @@ export default function StatusBarCard() {
                             </div>
                         </div>
                     </div>
-             
-                </div>
+            
 
             </div>
-            <div className='col top' >
-
-                <div className='row backg'>
-                    <div className='col-12  d-flex '>
+            <div className=' dashboardTopCard top' >
+                    <div className='col-12  d-flex align-items-center '>
                         <div className='col-6 Card_center_dashboard  '>
                             <div className="cardbox ">
                                 <div className="group Card_center_dashboard ">
@@ -84,26 +81,11 @@ export default function StatusBarCard() {
                             </div>
                         </div>
                     </div>
-                    {/* <div className='col-12 cardn_number card_hadding'>
-    {/* <span style={{ color: "#FE5722" }} >{data.total}</span> */}
-                    {/* </div>
-<div className='col-12'>
-    {/* <div className="">
-    <div className={"progress " + data.title.replaceAll(' ','') } >
-        <div className="progress-bar " role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="1"></div>
-    </div>
-    </div> */}
-                    {/* </div>
-<div className='col-12 con'>
-    {/* <span className='card_persent_font'>4.6%</span> <span className='Today_card_status'>Today</span> */}
-                    {/* </div> */}
-                </div>
-
             </div>
-            <div className='col top' >
+            <div className=' dashboardTopCard top' >
 
-                <div className='row backg'>
-                    <div className='col-12  d-flex '>
+              
+                    <div className='col-12  d-flex align-items-center '>
                         <div className='col-6 Card_center_dashboard  '>
                             <div className="cardbox ">
                                 <div className="group Card_center_dashboard ">
@@ -127,26 +109,10 @@ export default function StatusBarCard() {
                             </div>
                         </div>
                     </div>
-                    {/* <div className='col-12 cardn_number card_hadding'>
-{/* <span style={{ color: "#FE5722" }} >{data.total}</span> */}
-                    {/* </div>
-<div className='col-12'>
-{/* <div className="">
-<div className={"progress " + data.title.replaceAll(' ','') } >
-<div className="progress-bar " role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="1"></div>
-</div>
-</div> */}
-                    {/* </div>
-<div className='col-12 con'>
-{/* <span className='card_persent_font'>4.6%</span> <span className='Today_card_status'>Today</span> */}
-                    {/* </div> */}
-                </div>
 
             </div>
-            <div className='col top' >
-
-                <div className='row backg'>
-                    <div className='col-12  d-flex '>
+            <div className=' dashboardTopCard top' >
+                    <div className='col-12  d-flex align-items-center '>
                         <div className='col-6 Card_center_dashboard  '>
                             <div className="cardbox ">
                                 <div className="group Card_center_dashboard ">
@@ -170,26 +136,9 @@ export default function StatusBarCard() {
                             </div>
                         </div>
                     </div>
-                    {/* <div className='col-12 cardn_number card_hadding'>
-{/* <span style={{ color: "#FE5722" }} >{data.total}</span> */}
-                    {/* </div>
-<div className='col-12'>
-{/* <div className="">
-<div className={"progress " + data.title.replaceAll(' ','') } >
-<div className="progress-bar " role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="1"></div>
-</div>
-</div> */}
-                    {/* </div>
-<div className='col-12 con'>
-{/* <span className='card_persent_font'>4.6%</span> <span className='Today_card_status'>Today</span> */}
-                    {/* </div> */}
-                </div>
-
             </div>
-            <div className='col top' >
-
-                <div className='row backg'>
-                    <div className='col-12  d-flex '>
+            <div className=' dashboardTopCard top' >
+                    <div className='col-12  d-flex align-items-center '>
                         <div className='col-6 Card_center_dashboard  '>
                             <div className="cardbox ">
                                 <div className="group Card_center_dashboard ">
@@ -213,26 +162,11 @@ export default function StatusBarCard() {
                             </div>
                         </div>
                     </div>
-                    {/* <div className='col-12 cardn_number card_hadding'>
-{/* <span style={{ color: "#FE5722" }} >{data.total}</span> */}
-                    {/* </div>
-<div className='col-12'>
-{/* <div className="">
-<div className={"progress " + data.title.replaceAll(' ','') } >
-<div className="progress-bar " role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="1"></div>
-</div>
-</div> */}
-                    {/* </div>
-<div className='col-12 con'>
-{/* <span className='card_persent_font'>4.6%</span> <span className='Today_card_status'>Today</span> */}
-                    {/* </div> */}
-                </div>
-
             </div>
-            <div className='col top' >
+            <div className=' dashboardTopCard top' >
 
-                <div className='row backg'>
-                    <div className='col-12  d-flex '>
+                
+                    <div className='col-12  d-flex align-items-center '>
                         <div className='col-6 Card_center_dashboard  '>
                             <div className="cardbox ">
                                 <div className="group Card_center_dashboard ">
@@ -256,20 +190,7 @@ export default function StatusBarCard() {
                             </div>
                         </div>
                     </div>
-                    {/* <div className='col-12 cardn_number card_hadding'>
-{/* <span style={{ color: "#FE5722" }} >{data.total}</span> */}
-                    {/* </div>
-<div className='col-12'>
-{/* <div className="">
-<div className={"progress " + data.title.replaceAll(' ','') } >
-<div className="progress-bar " role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="1"></div>
-</div>
-</div> */}
-                    {/* </div>
-<div className='col-12 con'>
-{/* <span className='card_persent_font'>4.6%</span> <span className='Today_card_status'>Today</span> */}
-                    {/* </div> */}
-                </div>
+              
 
             </div>
         </div>

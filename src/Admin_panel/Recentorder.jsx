@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { ThemeProvider   } from "@mui/material/styles";
 import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
@@ -7,21 +7,26 @@ import { DisabledByDefault } from '@mui/icons-material';
 import { createTheme } from "@mui/material/styles";
 import { FaEnvelope } from "react-icons/fa";
 import { BsFillTelephoneFill } from "react-icons/bs";
+import Searchbar from '../Components/Component/Searchbar';
+import Axios from 'axios'
+import Cookies from 'universal-cookie';
 const Recentorder = () => {
-   
-    const columns = [
+      const cookies = new Cookies();
+      const token_data = cookies.get('Token_access')
+      const [recentorder,setRecentorder]= React.useState([])
+      const columns = [
         {
-            field: 'orderID',
+            field: 'OrderId',
             headerName: 'Order ID',
             minWidth: 150,
             editable: false,
             sortable:false,
             headerAlign:'left',
             valueGetter: (params) =>
-            `#${params.row.orderID}`,
+            `#${params.row.OrderId}`,
           },
         {
-          field: 'Name',
+          field: 'username',
           headerName: 'Name',
           minWidth: 150,
           editable: false,
@@ -32,12 +37,12 @@ const Recentorder = () => {
              return <div className='pendingUserProfile'>
                       <div className='userImage'>
                         <div className='userImageCircle'>
-                          <img src={params.row.userImage}  alt=''/>
+                          <img src={params.row.IdCard}  alt=''/>
                         </div>
                       </div>
                       <div>
-                        <h4 className='userName'>{params.row.UserName}</h4>
-                        <h4 className='joinDate'>{params.row.applyDate}</h4>
+                        <h4 className='userName'>{params.row.username}</h4>
+                       
                       </div>
                     </div>  
           }
@@ -53,12 +58,12 @@ const Recentorder = () => {
           renderCell: (params) => {
               return <ul className='pendingvendercontent'>
                 <li className='content_item'> <span className='contactIcon'><FaEnvelope color='#6B6F7A'/></span>{params.row.email}</li>
-                <li className='content_item'> <span className='contactIcon'><BsFillTelephoneFill color='#6B6F7A'/></span>{params.row.Phone}</li>
+                <li className='content_item'> <span className='contactIcon'><BsFillTelephoneFill color='#6B6F7A'/></span>{params.row.MobileNo}</li>
               </ul>
           }
         },
         {
-          field: 'StoreName',
+          field: 'SellerName',
           headerName: 'Store Name',
           type: 'number',
           minWidth: 150,
@@ -69,7 +74,7 @@ const Recentorder = () => {
           flex:1,
         },
         {
-          field: 'StoreType',
+          field: 'Order_Type',
           headerName: 'Store Type',
           flex:1,
           editable: false,
@@ -89,7 +94,7 @@ const Recentorder = () => {
             flex:1,
           },
           {
-            field: 'totelAmount',
+            field: 'subtotal',
             headerName: 'Total Amount',
             type: 'number',
             minWidth: 150,
@@ -98,9 +103,11 @@ const Recentorder = () => {
             headerAlign:'left',
             align:'left',
             flex:1,
+            valueGetter: (params) =>
+            `$ ${params.row.subtotal}`,
           },
         {
-          field: 'StoreStatus',
+          field: 'Order_Status',
           headerName: 'Order Status',
           type: 'number',
           minWidth: 120,
@@ -118,14 +125,7 @@ const Recentorder = () => {
         },
       ];
       
-      const rows = [
-        { id: 1,  orderID:'876364', Quantity:'20 Qty', totelAmount: 140.00 ,userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Harsh jain', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'Lex Weed', StoreType: 'Store Front', StoreStatus: 'Pending' },
-        { id: 2,  orderID:'876364', Quantity:'20 Qty', totelAmount: 140.00 ,userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Anaya Briggs', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'NYC Ounce CLub', StoreType: 'Delivery / Pickup', StoreStatus: 'Pending' },
-        { id: 3,  orderID:'876364', Quantity:'20 Qty', totelAmount: 140.00 ,userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Daniel Garcia', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'LeaflyweedNYC', StoreType: 'Delivery / Pickup', StoreStatus: 'Pending' },
-        { id: 4,  orderID:'876364', Quantity:'20 Qty', totelAmount: 140.00 ,userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Roosevelt Carter', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'NYC Ounce CLub', StoreType: 'Pick up', StoreStatus: 'Pending' },
-        { id: 5,  orderID:'876364', Quantity:'20 Qty', totelAmount: 140.00 ,userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'April Joseph', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'Lex Weed', StoreType: 'Store Front', StoreStatus: 'Pending' },
-        { id: 6,  orderID:'876364', Quantity:'20 Qty', totelAmount: 140.00 ,userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Daniel Garcia', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'Lex Weed', StoreType: 'Delivery', StoreStatus: 'Pending' },
-      ];
+      const rows =recentorder
 
       const CustomFontTheme = createTheme({
         typography: {
@@ -143,8 +143,25 @@ const Recentorder = () => {
         },
     
       });
+
+
+
+      useEffect(()=>{
+         Axios.get('https://api.cannabaze.com/AdminPanel/AllRecentOrder/',{
+          headers:{
+            'Authorization': `Bearer ${token_data}`
+          }
+         }).then((res)=>{
+          setRecentorder(res.data.slice(0, 9))
+         })
+      },[])
   return (
-    <div className='py-5 bg-white'>
+    <div className='RecentOrderCard'>
+         <div className='d-flex justify-content-between align-items-center py-4'>
+           <h3 className='graphtitle'>Recent Order</h3>
+           <div className='searchBarrecent'> <Searchbar></Searchbar></div>
+         </div>
+        
          <Box sx={{
                          
                          width: '100%',
@@ -201,6 +218,8 @@ const Recentorder = () => {
                                              disableColumnMenu
                                              disableColumnFilter
                                              disableColumnSelector
+                                             hideFooter={true}
+                                             getRowId={(row) => row.OrderId}
                                              slotProps={{
                                                 footer: false ,
                                               }}

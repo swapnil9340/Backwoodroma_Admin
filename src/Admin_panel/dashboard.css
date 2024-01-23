@@ -1,24 +1,171 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
-.dashboardHerosection {
+h3.graphtitle {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: start;
+}
+
+.totalSalesChart .totalSalesChartHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.totalSalesChart .totalSalesChartHeader .headingtext {
+  font-size: 12px;
+  color: #444;
+  font-weight: 500;
+}
+.totalSalesChart h3.totalsalesamount {
+  font-size: 18px;
+  font-weight: 600;
+  color: #474747;
+}
+.totalSalesChart .growthIndicater {
+  background-color: #ECFDF5;
+  display: inline-block;
+  padding: 3px 5px;
+  border-radius: 3px;
+  color: #13B8A6;
+}
+.totalSalesChart .Saleschart_container {
+  width: 100%;
+  min-height: 300px;
+}
+
+.list_container {
+  width: 100%;
+  height: 100%;
+}
+.list_container .list_heading {
+  height: 10%;
+}
+.list_container .list_heading h3.listCardTitle {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: start;
+}
+.list_container .viewAllBtnList {
+  height: 10%;
+  text-align: center;
+  display: flex;
+  align-items: end;
+  width: 100%;
+  justify-content: center;
+}
+.list_container .dashboardList {
+  padding: 0;
+  height: 80%;
+  margin: 0;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.list_container .dashboardList::-webkit-scrollbar {
+  display: none;
+}
+.list_container .dashboardList li .dashboardListItem {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+}
+.list_container .dashboardList li .dashboardListItem .dashboardListItemImage {
+  width: 25%;
+}
+.list_container .dashboardList li .dashboardListItem .dashboardListItemImage .imageCircle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(128, 128, 128, 0.226);
+}
+.list_container .dashboardList li .dashboardListItem .dashboardListItemImage .imageCircle img {
+  width: 100%;
+  height: 100%;
+}
+.list_container .dashboardList li .dashboardListItem .dashboardListItemtext {
+  width: 70%;
+}
+.list_container .dashboardList li .dashboardListItem .dashboardListItemtext .list_title {
+  font-size: 13px;
+  font-weight: 600;
+}
+.list_container .dashboardList li .dashboardListItem .dashboardListItemtext .listunitSold {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.dashboardTopCardWrapper {
+  display: flex;
+  justify-content: center;
+}
+.dashboardTopCardWrapper .dashboardTopCard {
+  flex: 1;
+  padding: 15px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+@media screen and (max-width: 1200px) {
+  .dashboardTopCardWrapper .dashboardTopCard {
+    width: 30%;
+    flex: none;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .dashboardTopCardWrapper {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+.locationListItem {
+  display: flex;
+  justify-content: space-between;
+}
+.locationListItem .locationName {
+  font-family: "Roboto";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+}
+.locationListItem .locationName span.colorCircle {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  border-radius: 50%;
+  background-color: #13B8A6;
+}
+.locationListItem .locationAmount {
+  font-family: "Roboto";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 31.067px;
+}
+
+.RecentOrderCard {
+  background-color: #fff;
+  padding: 15px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border-radius: 8px;
+}
+
+.dashboardSection .dashboardHerosection {
   display: flex;
   justify-content: space-between;
   margin: 40px 0;
 }
-.dashboardHerosection .totalUser {
+.dashboardSection .dashboardHerosection .totalUser {
   width: 35%;
   height: 400px;
   padding: 15px;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-.dashboardHerosection .totalUser h3.graphtitle {
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.6;
-  text-align: start;
-}
-.dashboardHerosection .topProducts {
+.dashboardSection .dashboardHerosection .topProducts {
   width: 15%;
   height: 400px;
   padding: 15px;
@@ -28,114 +175,23 @@
   width: 100;
   height: 100;
 }
-.dashboardHerosection .topProducts .totalSalesChart .totalSalesChartHeader {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-.dashboardHerosection .topProducts .totalSalesChart .totalSalesChartHeader .headingtext {
-  font-size: 12px;
-  color: #444;
-  font-weight: 500;
-}
-.dashboardHerosection .topProducts .totalSalesChart h3.totalsalesamount {
-  font-size: 18px;
-  font-weight: 600;
-  color: #474747;
-}
-.dashboardHerosection .topProducts .totalSalesChart .growthIndicater {
-  background-color: #ECFDF5;
-  display: inline-block;
-  padding: 3px 5px;
-  border-radius: 3px;
-  color: #13B8A6;
-}
-.dashboardHerosection .topProducts .totalSalesChart .Saleschart_container {
-  width: 100%;
-  min-height: 300px;
-}
-.dashboardHerosection .topProducts .list_container {
-  width: 100%;
-  height: 100%;
-}
-.dashboardHerosection .topProducts .list_container .list_heading {
-  height: 10%;
-}
-.dashboardHerosection .topProducts .list_container .list_heading h3.listCardTitle {
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.6;
-  text-align: start;
-}
-.dashboardHerosection .topProducts .list_container .viewAllBtnList {
-  height: 10%;
-  text-align: center;
-  display: flex;
-  align-items: end;
-  width: 100%;
-  justify-content: center;
-}
-.dashboardHerosection .topProducts .list_container .dashboardList {
-  padding: 0;
-  height: 80%;
-  margin: 0;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.dashboardHerosection .topProducts .list_container .dashboardList::-webkit-scrollbar {
-  display: none;
-}
-.dashboardHerosection .topProducts .list_container .dashboardList li .dashboardListItem {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-  padding: 10px 0;
-  display: flex;
-  justify-content: center;
-}
-.dashboardHerosection .topProducts .list_container .dashboardList li .dashboardListItem .dashboardListItemImage {
-  width: 25%;
-}
-.dashboardHerosection .topProducts .list_container .dashboardList li .dashboardListItem .dashboardListItemImage .imageCircle {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 1px solid rgba(128, 128, 128, 0.226);
-}
-.dashboardHerosection .topProducts .list_container .dashboardList li .dashboardListItem .dashboardListItemImage .imageCircle img {
-  width: 100%;
-  height: 100%;
-}
-.dashboardHerosection .topProducts .list_container .dashboardList li .dashboardListItem .dashboardListItemtext {
-  width: 70%;
-}
-.dashboardHerosection .topProducts .list_container .dashboardList li .dashboardListItem .dashboardListItemtext .list_title {
-  font-size: 13px;
-  font-weight: 600;
-}
-.dashboardHerosection .topProducts .list_container .dashboardList li .dashboardListItem .dashboardListItemtext .listunitSold {
-  font-size: 12px;
-  font-weight: 400;
-}
-
-.storeOwnerTable {
+.dashboardSection .storeOwnerTable {
   width: 48%;
   height: 400px;
   background-color: #fff;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-.storeOwnerTable .ownerlist {
+.dashboardSection .storeOwnerTable .ownerlist {
   height: 90%;
 }
-.storeOwnerTable .viewButton {
+.dashboardSection .storeOwnerTable .viewButton {
   height: 10%;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-.locationGraph {
+.dashboardSection .locationGraph {
   width: 48%;
   height: 400px;
   background-color: #fff;
@@ -143,31 +199,31 @@
   padding: 15px;
   border-radius: 8px;
 }
-.locationGraph .locationGraph_header {
+.dashboardSection .locationGraph .locationGraph_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
-.locationGraph .locationGraph_header h3.locationGraph_headertitle {
+.dashboardSection .locationGraph .locationGraph_header h3.locationGraph_headertitle {
   font-size: 20px;
   font-weight: 700;
   line-height: 1.6;
   text-align: start;
 }
-.locationGraph .locationGraph_header span {
+.dashboardSection .locationGraph .locationGraph_header span {
   font-size: 14px;
   font-weight: 400;
 }
-.locationGraph .locationContent {
+.dashboardSection .locationGraph .locationContent {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.locationGraph .locationContent .locationList {
+.dashboardSection .locationGraph .locationContent .locationList {
   width: 45%;
 }
-.locationGraph .locationContent .locationList .locationListHeader {
+.dashboardSection .locationGraph .locationContent .locationList .locationListHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -180,53 +236,27 @@
   padding: 10px 0;
   border-bottom: 2px solid rgba(115, 115, 115, 0.4117647059);
 }
-.locationGraph .locationContent .locationList .locationListItem {
-  display: flex;
-  justify-content: space-between;
-}
-.locationGraph .locationContent .locationList .locationListItem .locationName {
-  font-family: "Roboto";
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 40px;
-}
-.locationGraph .locationContent .locationList .locationListItem .locationName span.colorCircle {
-  width: 15px;
-  height: 15px;
-  display: inline-block;
-  border-radius: 50%;
-  background-color: #13B8A6;
-}
-.locationGraph .locationContent .locationList .locationListItem .locationAmount {
-  font-family: "Roboto";
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 31.067px;
-}
-.locationGraph .locationContent .locationGrapharea {
+.dashboardSection .locationGraph .locationContent .locationGrapharea {
   width: 45%;
 }
-
-.pendingUserProfile {
+.dashboardSection .pendingUserProfile {
   display: flex;
   gap: 10px;
   align-items: center;
 }
-.pendingUserProfile .userImage {
+.dashboardSection .pendingUserProfile .userImage {
   width: 25%;
 }
-.pendingUserProfile .userImage .userImageCircle {
+.dashboardSection .pendingUserProfile .userImage .userImageCircle {
   width: 35px;
   height: 35px;
   border-radius: 50%;
   overflow: hidden;
 }
-.pendingUserProfile .userImage .userImageCircle img {
+.dashboardSection .pendingUserProfile .userImage .userImageCircle img {
   width: 100%;
 }
-.pendingUserProfile .userName {
+.dashboardSection .pendingUserProfile .userName {
   color: #000;
   font-family: "Inter", sans-serif;
   font-size: 12px;
@@ -234,7 +264,7 @@
   font-weight: 500;
   line-height: normal;
 }
-.pendingUserProfile .joinDate {
+.dashboardSection .pendingUserProfile .joinDate {
   font-family: "Inter", sans-serif;
   color: #6A717B;
   font-size: 10px;
@@ -242,11 +272,10 @@
   font-weight: 400;
   line-height: normal;
 }
-
-.pendingvendercontent {
+.dashboardSection .pendingvendercontent {
   display: block;
 }
-.pendingvendercontent .content_item {
+.dashboardSection .pendingvendercontent .content_item {
   display: block;
   color: #6B6F7A;
   font-family: "Inter", sans-serif;
@@ -255,6 +284,34 @@
   font-weight: 400;
   line-height: normal;
 }
-.pendingvendercontent .content_item .contactIcon {
+.dashboardSection .pendingvendercontent .content_item .contactIcon {
   color: #7C7C7C;
+}
+
+.venderSection .venderHeroDiv {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+.venderSection .venderHeroDiv .venderHeroDiv_card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  width: 20%;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.venderSection .venderHeroDiv .venderHeroDiv_card:first-child {
+  width: 38%;
+}
+.venderSection .venderHeroDiv .venderHeroDiv_card .colorLine {
+  width: 100%;
+  height: 15px;
+  margin: 20px 0;
+  overflow: hidden;
+  border-radius: 20px;
+}
+.venderSection .venderHeroDiv .venderHeroDiv_card .colorLine .coupencolorBox {
+  width: 14.2857142857%;
+  height: 100%;
+  display: inline-block;
 }/*# sourceMappingURL=dashboard.css.map */

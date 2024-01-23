@@ -19,14 +19,14 @@
   }
   .dashboardHerosection .totalUser{
     order: 0;
-    width: 50%;
+    width: 50% !important;
   }
   .dashboardHerosection .topProducts{
-    width: 30%;
+    width: 30% !important;
     order: 2;
   }
   .dashboardHerosection .topProducts:last-child{
-    width: 45%;
+    width: 45% !important;
     order: 1;
   }
 }
@@ -57,45 +57,20 @@
         font-size: 16px;
     }
 }
-@media(max-width:992px){
-    .PromotionalBannerContainer{
-        left: 0px;
-        width: 100%;
-    }
+@media(max-width:1024px){
+    .dashboardHerosection{
+        flex-wrap: wrap;
+        gap: 30px 20px;
+      }
 }
 @media(max-width:992px){
     .PromotionalBannerList{
         left: 0px;
         width: 100%;
     } 
-}
-@media(max-width:911px){
-    .userOwnerImgContainer {
-        width: 60px;
-        height: 60px;
-        border-radius: 30px;
-        display: flex;
-        justify-content: center;
-    }
-
-    .userOwnerImg {
-        height: 50px;
-        width: 50px;
-        border-radius: 25px;
-    }
-
-    .ownerReviewImageCont {
-        width: 60px;
-        height: 60px;
-        border-radius: 30px;
-        display: flex;
-        justify-content: center;
-    }
-
-    .ownerReviewImage {
-        height: 50px;
-        width: 50px;
-        border-radius: 25px;
+    .PromotionalBannerContainer{
+        left: 0px;
+        width: 100%;
     }
 }
 @media(max-width:991px){
@@ -128,23 +103,73 @@
         padding: 0px
     }
 }
+@media(max-width:911px){
+    .userOwnerImgContainer {
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .userOwnerImg {
+        height: 50px;
+        width: 50px;
+        border-radius: 25px;
+    }
+
+    .ownerReviewImageCont {
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .ownerReviewImage {
+        height: 50px;
+        width: 50px;
+        border-radius: 25px;
+    }
+}
+
+
+
 @media(max-width:780px){
     .totalReviewHeadings {
         font-size: 14px;
     }
-
     .totalReviwsCount {
         font-size: 14px;
     }
-
     .bottomHeadings {
         font-size: 14px;
     }
-}
-@media(max-width:768px){
     .navbarOredrListStyle{
         gap: 30px;
     }
+
+    .dashboardHerosection{
+        flex-wrap: wrap;
+        gap: 20px 0px;
+      }
+      .dashboardHerosection .totalUser{
+        order: 0;
+        width: 100% !important;
+      }
+      .dashboardHerosection .topProducts{
+        width: 48% !important;
+        order: 2;
+      }
+      .dashboardHerosection .topProducts:last-child{
+        width: 48% !important;
+        order: 1;
+      }
+      .storeOwnerTable ,  .locationGraph{
+        width: 100%;
+      }
+   
+
 }
 @media(max-width:762px){
     .alreadyAccount {
@@ -224,6 +249,37 @@
         font-size: 18px;
     }
 }
+
+@media(max-width:562px){
+    .NumberOfReview_container_Card2 {
+        padding-left: 0px;
+        width: 100%;
+        border-right: 0px;
+        border-bottom: 1px solid #D1D1D1;
+    }
+    .linearProgressCol {
+        padding-left: 0px;
+        width: 100%;
+        border-bottom: 1px solid #D1D1D1;
+    }
+    .NumberOfReview_container {
+        display: block;
+    }
+    .NumberOfReview_container_Card1 {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #D1D1D1;
+    }
+    .dashboardTopCardWrapper .dashboardTopCard{
+        width: 48%;
+    }
+    .dashboardHerosection .topProducts{
+        width: 100% !important;
+    }
+    .dashboardHerosection .topProducts:last-child{
+        width: 100% !important;
+    }
+}
 @media(max-width:600px){
     .navbarOredrListStyle{
         gap: 14px;
@@ -259,30 +315,6 @@
         gap:4px;
     }
     
-}
-@media(max-width:562px){
-    .NumberOfReview_container_Card2 {
-        padding-left: 0px;
-        width: 100%;
-        border-right: 0px;
-        border-bottom: 1px solid #D1D1D1;
-    }
-
-    .linearProgressCol {
-        padding-left: 0px;
-        width: 100%;
-        border-bottom: 1px solid #D1D1D1;
-    }
-
-    .NumberOfReview_container {
-        display: block;
-    }
-
-    .NumberOfReview_container_Card1 {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #D1D1D1;
-    }
 }
 @media(max-width:500px){
     .PromotionalMainContainer{

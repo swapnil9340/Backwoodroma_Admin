@@ -1,14 +1,42 @@
-import React from 'react'
+import React,{useState} from 'react'
 import './Searchbar.css'
-import { FaSearch } from "react-icons/fa";
+import { IoSearch } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
+import axios from 'axios'
+import Cookies from 'universal-cookie';
 
 const Searchbar = () => {
+  const [searchtext, setSearchtext] = useState('')
+  const cookies = new Cookies();
+  const token_data = cookies.get('Token_access')
+  React.useEffect(() => {
+    const getData = setTimeout(() => {
+      axios
+      .post(`https://api.cannabaze.com/AdminPanel/SearchRecentOrderDashboard/`,
+      {"search": searchtext}  , 
+      { 
+        headers:{
+          'Authorization': `Bearer ${token_data}`
+        }
+      })
+      .then((response) => {
+        console.log(response.data);
+      });
+    }, 1000)
+
+    return () => clearTimeout(getData)
+  }, [searchtext])
   return (
     <div className='searchbar'>
-        <span className='searchicon'><FaSearch size={25}/></span>
-          <input type='text' placeholder='Search' />
-        <span className='searchicon'><RxCross2  size={25}/></span>
+       {
+            Boolean(searchtext.length === 0) &&   <span className='searchicon'><IoSearch size={22}/></span>
+          }
+      
+          <input type='text' placeholder='Search' onChange={(e)=>{setSearchtext(e.target.value)}} value={searchtext}  />
+          {
+            Boolean(searchtext.length !== 0) && <span className='searchicon' onClick={()=>setSearchtext('')}><RxCross2  size={22}/></span>
+          }
+        
     </div>
   )
 }

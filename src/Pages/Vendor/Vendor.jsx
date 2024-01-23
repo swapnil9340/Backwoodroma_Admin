@@ -6,14 +6,20 @@ import { createTheme } from "@mui/material/styles";
 import { AiFillEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import Tooltip from '@mui/material/Tooltip';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import Select from '@mui/material/Select';
+import {Select , MenuItem} from '@mui/material';
 import axios from "axios"
+import { TiEdit } from "react-icons/ti";
 import Cookies from 'universal-cookie';
 import Createcontext from "../../Hooks/Context/Context"
 import { useSnackbar } from 'notistack';
 import UserDelete from './DeleteVendor';
+import StatusBarCard from '../../Admin_panel/StatusBarCard'
+import Areagraph from '../../Admin_panel/Areagraph'
+import TotalSales from '../../Admin_panel/TotalSales'
+import Productstorelist from '../../Admin_panel/Productstorelist'
+import { FaRegEyeSlash } from "react-icons/fa";
 
-
+import '../../Admin_panel/dashboard.css'
 const CustomFontTheme = createTheme({
     typography: {
         fontSize: 25
@@ -30,13 +36,6 @@ const CustomFontTheme = createTheme({
     },
 
 });
-
-
-
-
-
-// const rows = 
-
 const Vendor = () => {
     const { state, dispatch } = React.useContext(Createcontext)
     const { enqueueSnackbar } = useSnackbar();
@@ -44,112 +43,229 @@ const Vendor = () => {
     const cookies = new Cookies();
     const [pageSize, setPageSize] = React.useState(5)
     const token_data = cookies.get('Token_access')
-    React.useEffect(() => {
+    // React.useEffect(() => {
 
-        axios("https://api.cannabaze.com/AdminPanel/Get-AllVendor/", {
+    //     axios("https://api.cannabaze.com/AdminPanel/Get-AllVendor/", {
 
-            headers: {
-                'Authorization': `Bearer ${token_data}`
-            }
-        }).then(response => {
-            let newdata = response.data.data.map((item,index)=>{
+    //         headers: {
+    //             'Authorization': `Bearer ${token_data}`
+    //         }
+    //     }).then(response => {
+    //         let newdata = response.data.data.map((item,index)=>{
                
-                var mydate = new Date(item.RegisterDate);
-                var month = ["January", "February", "March", "April", "May", "June",
-                "July", "August", "September", "October", "November", "December"][mydate.getMonth()];
-                var str =  mydate.getDate()+ ' ' + month + ' ' + mydate.getFullYear();
+    //             var mydate = new Date(item.RegisterDate);
+    //             var month = ["January", "February", "March", "April", "May", "June",
+    //             "July", "August", "September", "October", "November", "December"][mydate.getMonth()];
+    //             var str =  mydate.getDate()+ ' ' + month + ' ' + mydate.getFullYear();
              
-                return {
-                    id: index,
-                    registerDate:str,
-                    ...item
-                }
-            })
-          setTotal(newdata)
-        })
+    //             return {
+    //                 id: index,
+    //                 registerDate:str,
+    //                 ...item
+    //             }
+    //         })
+    //       setTotal(newdata)
+    //     })
 
-    }, [state, token_data])
+    // }, [state, token_data])
 
+    // const columns = [
+    //     // {
+    //     //     field: 'id', headerName: 'ID', maxWidth: 90, flex: 1, minWidth: 90,
+    //     // },
+    //     {
+    //         field: 'Name',
+    //         headerName: 'Name',
+    //          minWidth: 120, flex: 1,sortable:false,
+    //         "@media(max-width:540px)": {
+    //             maxWidth: 90, minWidth: 40, flex: 1,
+
+    //         },
+    //         editable: false,
+    //     },
+    //     {
+    //         field: 'email',
+    //         headerName: 'Email/Phone',
+    //          minWidth: 120, flex: 1,sortable:false,
+    //         editable: false,
+    //     },
+    //     {
+    //         field: 'StoreType',
+    //         headerName: 'Store Type', minWidth: 120, flex: 1,sortable:false,
+    //         editable: false,
+    //     },
+    //     {
+    //         field: 'StoreName',
+    //         headerName: 'Store Name',
+    //         type: 'number', minWidth: 120, flex: 1,sortable:false,
+    //         editable: false,
+    //         headerAlign: 'left', align: "left",
+    //     },
+    //     {
+    //         field: 'registerDate',
+    //         headerName: 'Register Date',
+
+    //         sortable: false, minWidth: 120, flex: 1,
+
+    //     },
+    //     {
+    //         field: 'Status',
+    //         headerName: 'Status',
+    //         editable: false,
+    //         sortable: false, minWidth: 120, flex: 1, headerAlign: 'center', align: "center",
+    //         renderCell: (params) => {
+    //             if (params.formattedValue === "Active") {
+    //                 return (
+    //                     <Tooltip title="Active" enterDelay={300} leaveDelay={200} arrow placement="right-start">
+    //                         <p
+    //                             style={{ color: "#31B665 ", fontSize: 25, cursor: "pointer" }}
+    //                             variant="contained"
+    //                             color="primary"
+                            
+    //                             onClick={() => {
+    //                                  state.Roles.EditVendor &&
+    //                                  SubmitEditData(params)
+    //                             }}
+    //                         >
+    //                             <AiFillEye />
+    //                         </p>
+    //                     </Tooltip>
+    //                 )
+    //             }
+    //             return (
+    //                 <Tooltip title="Hide" enterDelay={300} leaveDelay={200} arrow placement="right-start">
+
+    //                     <p
+    //                         style={{ color: "red ", fontSize: 25, cursor: "pointer" }}
+    //                         variant="contained"
+    //                         color="primary"
+    //                         onClick={() => {
+    //                             state.Roles.EditVendor &&
+    //                             SubmitEditData(params);
+    //                         }}
+    //                     ><AiOutlineEyeInvisible /></p>
+    //                 </Tooltip>
+
+    //             )
+    //         }
+
+    //     },
+    //     {
+    //         field: 'Edit',
+    //         headerName: 'Edit',
+    //         editable: false,
+    //         sortable: false, minWidth: 120, flex: 1,
+    //         headerAlign: 'center', align: "center",
+    //         renderCell: (params) => {
+    //             return (
+    //             <React.Fragment>
+    //                 {    state.Roles.DeleteVendor    &&
+    //                     <Box
+    //                         sx={{
+    //                             '& .MuiOutlinedInput-root': {
+    //                                 '&.Mui-focused fieldset': {
+    //                                     borderWidth: "1px",
+    //                                     borderColor: 'black',
+    //                                 },
+    //                             },
+    //                             '& . MuiDataGrid-root .MuiDataGrid-cell:focus': {
+    //                                 outline: "#e0e0e0"
+    //                             }
+    //                         }}
+    //                     >
+    //                         <Select sx={{
+    //                             boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
+    //                             "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
+    //                             "&:hover": {
+    //                                 ".MuiSelect-icon": {
+    //                                     color: "#31B665"
+    //                                 }
+    //                             },
+    //                         }} IconComponent={BsThreeDotsVertical} labelId="">
+    //                         <UserDelete data={params.row}></UserDelete>
+                            
+    //                         </Select>
+    //                     </Box>
+    //                 }
+    //             </React.Fragment>
+    //             )
+    //         }
+
+    //     },
+
+    // ];
+    //  const rows = totel
+    //  function SubmitEditData(params) {
+    //     const form = {
+    //         "status": params.formattedValue === "Active" ? "Hide" : "Active"
+    //     }
+    //     axios.post(`https://api.cannabaze.com/AdminPanel/UpdateProfileForVendor/${params.id}`, form, {
+
+    //         headers: {
+    //             'Authorization': `Bearer ${token_data}`
+    //         }
+
+    //     }).then(response => {
+    //         if (response) {
+    //             dispatch({ type: 'api', api: true })
+    //             enqueueSnackbar('Edit Category Status success  !', { variant: 'success' });
+
+    //         }
+    //     }).catch(
+    //         function (error) {
+    //             return Promise.reject(error)
+    //         }
+    //     )
+    // }
+  
     const columns = [
         // {
         //     field: 'id', headerName: 'ID', maxWidth: 90, flex: 1, minWidth: 90,
         // },
         {
-            field: 'Name',
-            headerName: 'Name',
+            field: 'ProductImage',
+            headerName: 'Product Image',
              minWidth: 120, flex: 1,sortable:false,
             "@media(max-width:540px)": {
                 maxWidth: 90, minWidth: 40, flex: 1,
-
             },
             editable: false,
+            renderCell: (params) => {
+                return <div className='padmingbtn'>
+                      <img src={params.row.ProductImage} alt=''/>
+                </div>
+            }
         },
         {
-            field: 'email',
-            headerName: 'Email/Phone',
+            field: 'ProductName',
+            headerName: 'Product Name',
              minWidth: 120, flex: 1,sortable:false,
             editable: false,
         },
         {
-            field: 'StoreType',
+            field: 'Category',
             headerName: 'Store Type', minWidth: 120, flex: 1,sortable:false,
             editable: false,
         },
         {
-            field: 'StoreName',
+            field: 'Price',
             headerName: 'Store Name',
             type: 'number', minWidth: 120, flex: 1,sortable:false,
             editable: false,
             headerAlign: 'left', align: "left",
+            valueFormatter: ({ value }) => {return `$ ${value}`}
         },
         {
-            field: 'registerDate',
-            headerName: 'Register Date',
-
-            sortable: false, minWidth: 120, flex: 1,
-
+            field: 'Quantity',
+            headerName: 'Quantity', sortable: false, minWidth: 120, flex: 1,
+            valueFormatter: ({ value }) => {return `${value} Qty`}
         },
         {
-            field: 'Status',
+            field: 'Stock',
             headerName: 'Status',
             editable: false,
             sortable: false, minWidth: 120, flex: 1, headerAlign: 'center', align: "center",
-            renderCell: (params) => {
-                if (params.formattedValue === "Active") {
-                    return (
-                        <Tooltip title="Active" enterDelay={300} leaveDelay={200} arrow placement="right-start">
-                            <p
-                                style={{ color: "#31B665 ", fontSize: 25, cursor: "pointer" }}
-                                variant="contained"
-                                color="primary"
-                            
-                                onClick={() => {
-                                     state.Roles.EditVendor &&
-                                     SubmitEditData(params)
-                                }}
-                            >
-                                <AiFillEye />
-                            </p>
-                        </Tooltip>
-                    )
-                }
-                return (
-                    <Tooltip title="Hide" enterDelay={300} leaveDelay={200} arrow placement="right-start">
-
-                        <p
-                            style={{ color: "red ", fontSize: 25, cursor: "pointer" }}
-                            variant="contained"
-                            color="primary"
-                            onClick={() => {
-                                state.Roles.EditVendor &&
-                                SubmitEditData(params);
-                            }}
-                        ><AiOutlineEyeInvisible /></p>
-                    </Tooltip>
-
-                )
-            }
-
+          
         },
         {
             field: 'Edit',
@@ -183,7 +299,10 @@ const Vendor = () => {
                                     }
                                 },
                             }} IconComponent={BsThreeDotsVertical} labelId="">
-                            <UserDelete data={params.row}></UserDelete>
+                          
+                           <MenuItem>  <UserDelete data={params.row}></UserDelete></MenuItem>
+                           <MenuItem> <TiEdit /> Edit </MenuItem>
+                           <MenuItem> <FaRegEyeSlash /> View</MenuItem>
                             
                             </Select>
                         </Box>
@@ -195,111 +314,154 @@ const Vendor = () => {
         },
 
     ];
-     const rows = totel
-     function SubmitEditData(params) {
-        const form = {
-            "status": params.formattedValue === "Active" ? "Hide" : "Active"
+     const rows = [
+        {
+            Id:1,
+            ProductName:'HOT MINTS HYBRID',
+            ProductImage:'https://i.ibb.co/C2Bx9CN/image-29.png',
+            Category:"EDIBLES",
+            Price:140.00,
+            Quantity:100,
+            Stock:"In Stock",
+        },
+        {
+            Id:2,
+            ProductName:'HOT MINTS HYBRID',
+            ProductImage:'https://i.ibb.co/C2Bx9CN/image-29.png',
+            Category:"EDIBLES",
+            Price:120.00,
+            Quantity:40,
+            Stock:"In Stock",
         }
-        axios.post(`https://api.cannabaze.com/AdminPanel/UpdateProfileForVendor/${params.id}`, form, {
-
-            headers: {
-                'Authorization': `Bearer ${token_data}`
-            }
-
-        }).then(response => {
-            if (response) {
-                dispatch({ type: 'api', api: true })
-                enqueueSnackbar('Edit Category Status success  !', { variant: 'success' });
-
-            }
-        }).catch(
-            function (error) {
-                return Promise.reject(error)
-            }
-        )
-    }
+     ]
     return (
-       
-                <div className="row">
-                        <div className="col-12 d-flex  Add_Category  mt-5 mb-5">
-                            <div className="col">
-                                <h2>Vendor</h2>
-
+        <div className='venderSection'>
+            <div className="row">
+                    <div className='col-12'>
+                        <StatusBarCard/>
+                    </div>
+                    <div className='col-12'>
+                        <div className='venderHeroDiv'>
+                            <div className='venderHeroDiv_card'>
+                                <Areagraph/>
                             </div>
-                           
-
+                            <div className='venderHeroDiv_card'>
+                                <TotalSales/>
+                            </div>
+                            <div className='venderHeroDiv_card'>
+                                <div className='coupon_card'>
+                                    <h3 className='graphtitle'>Coupen Code</h3>
+                                    <h4 className='coupen_total'>$ 90,000</h4>
+                                    <div className='colorLine'>
+                                        {
+                                            [...Array(7)].map((e, i) => <span className="coupencolorBox" style={{backgroundColor:`${"#" + Math.floor(Math.random() * 16777215).toString(16)}`}} key={i}></span>)
+                                        }
+                                    </div>
+                                    <div className='store_coupen_list'>
+                                        <div className='locationList'>
+                                            <div className='locationListItem'>
+                                                <span className='locationName'> <span className='colorCircle' style={{backgroundColor:'#FF7F50'}}></span> New York</span>
+                                                <span className='locationAmount'>$ 6,806</span>
+                                            </div>
+                                            <div className='locationListItem'>
+                                                <span className='locationName'> <span className='colorCircle' style={{backgroundColor:'green'}}></span> New York</span>
+                                                <span className='locationAmount'> $ 6,806</span>
+                                            </div>
+                                            <div className='locationListItem'>
+                                                <span className='locationName'> <span className='colorCircle' style={{backgroundColor:'#00F0FF'}}></span> Phoenix</span>
+                                                <span className='locationAmount'>$ 2000</span>
+                                            </div>
+                                            <div className='locationListItem'>
+                                                <span className='locationName'> <span className='colorCircle' style={{backgroundColor:'#CCCCFF'}}></span> Chicago </span>
+                                                <span className='locationAmount'>$ 1600</span>
+                                            </div>
+                                            <div className='locationListItem'>
+                                                <span className='locationName'> <span className='colorCircle' style={{backgroundColor:'#40E0D0'}}></span> Philadelphia </span>
+                                                <span className='locationAmount'>$ 806</span>
+                                            </div>
+                                            <div className='locationListItem'>
+                                                <span className='locationName'> <span className='colorCircle' style={{backgroundColor:'red'}}></span> Los Angeles </span>
+                                                <span className='locationAmount'>$ 566</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='venderHeroDiv_card'>
+                                <Productstorelist title={"Top Sale Product"}/>
+                            </div>
                         </div>
-                        <div className="col-12 mb-4 mt-4">
-                            <Box
-                                sx={{
-                                  width: '100%',
-                                  
-                                    '& .MuiDataGrid-columnHeaders': {
-                                        backgroundColor: '#E1FFED',
-                                    },
-                                    '& .MuiButton-root': {
-                                        color: "#FFFFFF",
-                                        display: "flex",
-                                        width: "200px"
-                                    },
-                                    // check
-                                    ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within": {
-                                        outline: "none"
-                                    },
+                    </div>
+                    <div className="col-12 mb-4 mt-4">
+                        <Box
+                            sx={{
+                                width: '100%',
+                                
+                                '& .MuiDataGrid-columnHeaders': {
+                                    backgroundColor: '#E1FFED',
+                                },
+                                '& .MuiButton-root': {
+                                    color: "#FFFFFF",
+                                    display: "flex",
+                                    width: "200px"
+                                },
+                                // check
+                                ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within": {
+                                    outline: "none"
+                                },
 
-                                }}
-                            >
-                                <ThemeProvider theme={CustomFontTheme}>
+                            }}
+                        >
+                            <ThemeProvider theme={CustomFontTheme}>
 
-                                    <DataGrid
-                                        rows={rows}
-                                        columns={columns}
-                                        autoHeight
-                                        initialState={{
-                                            pagination: {
-                                                paginationModel: {
-                                                    pageSize: 5,
-                                                },
+                                <DataGrid
+                                    rows={rows}
+                                    columns={columns}
+                                    autoHeight
+                                    initialState={{
+                                        pagination: {
+                                            paginationModel: {
+                                                pageSize: 5,
                                             },
-                                        }}
-                                        
-                                        pageSize={pageSize}
-                                        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                                        rowsPerPageOptions={[5, 10, 20]}
-                                        pagination
-                                        disableRowSelectionOnClick
-                                        disableColumnMenu
-                                        disableColumnFilter
-                                        disableColumnSelector
-                                        sx={{
-                                            "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                                outline: "none",
-                                            },
-                                            "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
-                                                outline: "none"
-                                            },
-                                            "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
-                                                outline: "none",
+                                        },
+                                    }}
+                                    getRowId={(row) => row.Id}
+                                    pageSize={pageSize}
+                                    onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                    rowsPerPageOptions={[5, 10, 20]}
+                                    pagination
+                                    disableRowSelectionOnClick
+                                    disableColumnMenu
+                                    disableColumnFilter
+                                    disableColumnSelector
+                                    sx={{
+                                        "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
+                                            outline: "none",
+                                        },
+                                        "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
+                                            outline: "none"
+                                        },
+                                        "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
+                                            outline: "none",
 
-                                            },
-                                            "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
-                                                backgroundColor: "#FFFFFF"
-                                            },
-                                            "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                                                visibility: "hidden"
-                                            },
-                                            " &.MuiDataGrid-root .MuiDataGrid-cellContent": {
-                                                fontSize: "14px"
-                                            }
+                                        },
+                                        "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
+                                            backgroundColor: "#FFFFFF"
+                                        },
+                                        "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
+                                            visibility: "hidden"
+                                        },
+                                        " &.MuiDataGrid-root .MuiDataGrid-cellContent": {
+                                            fontSize: "14px"
+                                        }
 
-                                        }}
-                                    />
-                                </ThemeProvider>
-                            </Box>
-                        </div>
-                </div>
-
-          
+                                    }}
+                                />
+                            </ThemeProvider>
+                        </Box>
+                    </div>
+            </div>
+        </div>
     )
 }
 export default Vendor
