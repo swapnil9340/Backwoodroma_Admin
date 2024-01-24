@@ -51,6 +51,9 @@
 .sidebar_text{
     font-size: 16px;
 }
+.rdrDefinedRangesWrapper {
+  display: none;
+}
 .sidebar ul{
     padding: 0;
     background-color: #ffffff;
@@ -92,4 +95,43 @@
   }
   .sidebar:hover ul li span.sidebar_text{
     display: inline;
+  }
+  .mainfilter{
+    position: relative;
+  }
+  .mainfilterbtn{
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+    gap: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  }
+  .mainfilterdropdown{
+    position: absolute;
+    width: 200px;
+    top: 120%;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  }
+  .mainfilterdropdown ul{
+    padding: 0;
+  }
+  .mainfilterdropdown ul li{
+    display: block;
+    font-size: 16px;
+    padding: 5px 0;
+  }
+  .calenderdropdown{
+    position: absolute;
+    top: 120%;
+    left: 210px;
   }

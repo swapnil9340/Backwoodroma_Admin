@@ -152,22 +152,22 @@
     .dashboardHerosection{
         flex-wrap: wrap;
         gap: 20px 0px;
-      }
-      .dashboardHerosection .totalUser{
-        order: 0;
-        width: 100% !important;
-      }
-      .dashboardHerosection .topProducts{
-        width: 48% !important;
-        order: 2;
-      }
-      .dashboardHerosection .topProducts:last-child{
-        width: 48% !important;
-        order: 1;
-      }
-      .storeOwnerTable ,  .locationGraph{
-        width: 100%;
-      }
+    }
+    .dashboardHerosection .totalUser{
+    order: 0;
+    width: 100% !important;
+    }
+    .dashboardHerosection .topProducts{
+    width: 48% !important;
+    order: 2;
+    }
+    .dashboardHerosection .topProducts:last-child{
+    width: 48% !important;
+    order: 1;
+    }
+    .storeOwnerTable ,  .locationGraph{
+    width: 100% !important;
+    }
    
 
 }

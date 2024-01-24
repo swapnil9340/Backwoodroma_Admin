@@ -7,11 +7,12 @@ const Layout = () => {
 
   return (
     <div className='mainLayout'>
-      <Navbar></Navbar>
+   
       <div className='d-flex w-100'>
         <Sidebar sidebaropen={sidebaropen} setsidebaropen={setsidebaropen}  />
           <div className='main_display'>
             <div className='mycontainer'>
+            <Navbar></Navbar>
               <Outlet/>
             </div>
           </div>

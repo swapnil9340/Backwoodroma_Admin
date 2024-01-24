@@ -5,7 +5,7 @@ import { RxCross2 } from "react-icons/rx";
 import axios from 'axios'
 import Cookies from 'universal-cookie';
 
-const Searchbar = () => {
+const Searchbar = ({color}) => {
   const [searchtext, setSearchtext] = useState('')
   const cookies = new Cookies();
   const token_data = cookies.get('Token_access')
@@ -27,14 +27,14 @@ const Searchbar = () => {
     return () => clearTimeout(getData)
   }, [searchtext])
   return (
-    <div className='searchbar'>
-       {
-            Boolean(searchtext.length === 0) &&   <span className='searchicon'><IoSearch size={22}/></span>
+    <div className='searchbar' style={{backgroundColor:color}}>
+          {
+            Boolean(searchtext.length === 0) &&   <span className='searchicon'><IoSearch size={22} color='#7E7E7E'/></span>
           }
       
           <input type='text' placeholder='Search' onChange={(e)=>{setSearchtext(e.target.value)}} value={searchtext}  />
           {
-            Boolean(searchtext.length !== 0) && <span className='searchicon' onClick={()=>setSearchtext('')}><RxCross2  size={22}/></span>
+            Boolean(searchtext.length !== 0) && <span className='searchicon' onClick={()=>setSearchtext('')}><RxCross2 color='#7E7E7E9' size={22}/></span>
           }
         
     </div>

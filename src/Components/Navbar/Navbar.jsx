@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
-
+import React, { useContext ,useEffect ,useState } from 'react';
 import Search from "./Search";
 import { RiDashboardFill } from "react-icons/ri"
+import Searchbar from '../Component/Searchbar';
 import { IoMdMailUnread } from 'react-icons/io';
 import { IoStorefrontOutline } from "react-icons/io5"
 import { RiDragMoveFill } from "react-icons/ri"
@@ -16,7 +16,10 @@ import NewsDropDown from './SideBarDropdown/NewsDropDown'
 import { FiSettings } from "react-icons/fi"
 import { IoIosMenu } from "react-icons/io"
 import { FaUserAlt } from "react-icons/fa"
-import UserEditProfile from '../../Pages/UserProfile/UserEditProfile';
+import { HiExclamationCircle } from "react-icons/hi";
+import { FaBell } from "react-icons/fa";
+import { GoDotFill } from "react-icons/go";
+import Filtermain from './Filtermain'
 import Sidebar from './Sidebar';
 // import UserEditProfile from '../../Pages/UserProfile/UserEditProfile';
 function Navbar() {
@@ -25,13 +28,16 @@ function Navbar() {
     window.innerHeight,
   ]);
   const [sidebaropen , setsidebaropen] = React.useState(false);
-
+  const [navBg, setNavBg] = useState(false);
   const { state ,dispatch } = useContext(Createcontext)
   const islogin = useContext(Createcontext)
   const cookies = new Cookies();
   const navigate = useNavigate()
 
+  const changeNavBg = () => {
+    window.scrollY >= 100 ? setNavBg(true) : setNavBg(false);
 
+   }
   function logout() {
 
     dispatch({ type: 'Login', login: false })
@@ -54,10 +60,12 @@ function Navbar() {
       window.removeEventListener('resize', handleWindowResize);
     };
   });
-
-
-
-
+  useEffect(() => {
+    window.addEventListener('scroll', changeNavBg);
+    return () => {
+      window.removeEventListener('scroll', changeNavBg);
+    }
+  }, [])
   //jquery for toggle sub menus
   var dropdown = document.getElementsByClassName("dropdown-btn");
   var i;
@@ -73,110 +81,17 @@ function Navbar() {
       }
     });
   }
-
   return (
 
     <>
-
-      {/* {
-        islogin.state.login === true &&
-        // <nav
-        //   id="navbarSupportedContent"
-        //   className="collapse navbar-collapse d-lg-block sidebar nav-side-menu ">
-        //   <div className="container Side_Bar">
-        //     <div className="row">
-        //       {windowSize[0] <= 991 &&
-        //         <div>
-        //           <div className='col-6 center'>
-        //             <a className="navbar-brand" href="/">
-        //               <img src="" alt="" width="30" height="24" className="d-inline-block align-text-top brand" />
-        //             </a>
-        //           </div>
-        //           <div className='col-6 margin' style={{ fontsize: "initial" }}>
-        //             <h3>Hello, Mr</h3>
-        //             <h4>My Admin Panel</h4>
-        //           </div>
-        //         </div>
-        //       }
-
-        //     </div>
-
-        //   </div>
-        //   <div className='list-group list-group-flush mx-3 mt-4 ' style={{ fontsize: "initial" }}>
-            
-        //     <Link to="/" className="list-group-item list-group-item-action py-2 ripple" aria-current="true">
-        //       <span className='color DashBorad_logo' ><RiDashboardFill></RiDashboardFill> </span>
-        //       <span className='side_penal_link center' >Dashboard</span> </Link>
-        //   </div>
-        //   <div className="position-sticky">
-        //     <div className="list-group list-group-flush mx-3 mt-4">
-        //       <Link to="/Store" className="list-group-item list-group-item-action py-2 ripple ">
-        //         <div className='side_bar_option'>
-        //           <span><IoStorefrontOutline></IoStorefrontOutline></span>
-        //           <span className='side_penal_link'>Store</span>
-        //         </div>
-        //       </Link>
-
-        //       <CategoryDropDown></CategoryDropDown>
-        //       <LocationDropDown></LocationDropDown>
-
-        //       <Link to="/Brand" className="list-group-item list-group-item-action py-2 ripple">
-        //         <div className='side_bar_option'>
-        //           <span><RiDragMoveFill></RiDragMoveFill></span>
-        //           <span className='side_penal_link'>Brand</span>
-        //         </div>
-
-        //       </Link>
-        //       <Link to="/Tax" className="list-group-item list-group-item-action py-2 ripple">
-        //         <div className='side_bar_option'>
-        //           <span><HiOutlineReceiptTax></HiOutlineReceiptTax></span>
-        //           <span className='side_penal_link'>Tax</span>
-        //         </div>
-
-        //       </Link>
-        //       <Link to="/Signup" className="list-group-item list-group-item-action py-2 ripple">
-        //         <div className='side_bar_option'>
-        //           <span><FaUserAlt></FaUserAlt></span>
-        //           <span className='side_penal_link'>Signup</span>
-        //         </div>
-        //       </Link>
-        //       <NewsDropDown></NewsDropDown>
-        //       <Link to="/Vendor" className="list-group-item list-group-item-action py-2 ripple">
-        //         <div className='side_bar_option'>
-        //           <span><HiOutlineReceiptTax></HiOutlineReceiptTax></span>
-        //           <span className='side_penal_link'>Vendor</span>
-        //         </div>
-
-        //       </Link>
-        //       <Link to="/PromotionalBannerList" className="list-group-item list-group-item-action py-2 ripple">
-        //         <div className='side_bar_option'>
-        //           <span><HiOutlineReceiptTax></HiOutlineReceiptTax></span>
-        //           <span className='side_penal_link'>Banner</span>
-        //         </div>
-        //       </Link>
-        //       <Link to="/Settings" className="list-group-item list-group-item-action py-2 ripple">
-        //         <div className='side_bar_option'>
-        //           <span><FiSettings></FiSettings></span>
-        //           <span className='side_penal_link'>Settings</span>
-        //         </div>
-        //       </Link>
-
-        //     </div>
-        //   </div>
-        // </nav>
-       // <Sidebar sidebaropen={sidebaropen} setsidebaropen={setsidebaropen}  />
-      } */}
-
       {
         islogin.state.login === true &&
         <nav
-          id="main-navbar" className="navbar navbar-expand-lg navbar-light brand sticky-top">
-
-
+          id="main-navbar" className="navbar navbar-expand-lg navbar-light sticky-top" style={{backgroundColor: navBg ?'#fff' : null}}>
           <div className="container-fluid " >
 
             <div className="col-12   Add_Category">
-              <div className="col-2 ">
+              <div className="col-md-5 col-lg-4 col-xxl-4 col-7">
 
                 {
                   windowSize[0] <= 991
@@ -188,49 +103,31 @@ function Navbar() {
                     </div>
                     :
                     <div className='display'>
-
-                      <div className='col-6 center Brnd_logo '>
-                        {/* <a className="navbar-brand" href="/"> */}
-                          <UserEditProfile/>
-                        {/* </a> */}
-                      </div>
-                      <div className='col-6 user_name ' >
-                        <p>Hello, Mr</p>
-                        <p className="user_name_my">My Admin Panel</p>
-                      </div>
+                        <h3 className='navbarTitle'>Hello Harsh 👋🏼,</h3>
                     </div>
                 }
               </div>
-              {/* <div className="col-md-4 col-5 search  "> */}
-              <div className="col-md-8 col-7 searchBar_and_icons">
+              <div className="col-md-5 col-lg-3 col-xxl-2 col-7 searchBar_and_icons">
 
-                <Search></Search>
+                <Searchbar color={"#fff"}></Searchbar>
+                <Filtermain/>
                 <ol className='navbarOredrListStyle'>
-                <li className='NvaListStyle'>
+                  <li className='NvaListStyle'>
                     <span className=" con  messagebox">
-                      <IoMdMailUnread></IoMdMailUnread>
+                     <span className='position-relative'> <span className='redDot'></span>
+                          <FaBell></FaBell></span>
                     </span>
                   </li>
                   <li className='NvaListStyle'>
-                    <span className=" con align-middle  messagebox">
-                      <VscBellDot></VscBellDot>
+                    <span className="  messagebox">
+                      <HiExclamationCircle></HiExclamationCircle>
                     </span>
                   </li>
                 </ol>
               </div>
-
               <div className="col-md-2 col-2">
                 <ol className=' navbarLast_icons'>
-                  {/* <li className='NvaListStyle'>
-                    <span className=" con  messagebox">
-                      <IoMdMailUnread></IoMdMailUnread>
-                    </span>
-                  </li>
-                  <li className='NvaListStyle'>
-                    <span className=" con align-middle  messagebox">
-                      <VscBellDot></VscBellDot>
-                    </span>
-                  </li> */}
+                 
                   <li className='NvaListStyle'>
                     <span className=" con search_left">
 
@@ -243,17 +140,11 @@ function Navbar() {
                   </li>
                 </ol>
               </div>
-            
             </div>
           </div>
         </nav>
 
       }
-
-
-
-
-      {/*  */}
     </>
 
   );

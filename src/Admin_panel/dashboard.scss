@@ -255,6 +255,7 @@ h3.graphtitle{
         display: flex;
         gap: 10px;
         align-items: center;
+        width: 100%;
         .userImage{
             width: 25%;
             .userImageCircle{
@@ -286,6 +287,7 @@ h3.graphtitle{
     }
     .pendingvendercontent{
         display: block;
+        width: 100%;
         .content_item{
             display: block;
             color: #6B6F7A;
@@ -296,6 +298,10 @@ h3.graphtitle{
             line-height: normal;
             .contactIcon{
                 color: #7C7C7C;
+                margin-right: 5px;
+                path{
+                    color:#7C7C7C;
+                }
             }
         }
     }

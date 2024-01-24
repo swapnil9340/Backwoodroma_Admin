@@ -57,8 +57,8 @@ const Recentorder = () => {
           flex:1,
           renderCell: (params) => {
               return <ul className='pendingvendercontent'>
-                <li className='content_item'> <span className='contactIcon'><FaEnvelope color='#6B6F7A'/></span>{params.row.email}</li>
-                <li className='content_item'> <span className='contactIcon'><BsFillTelephoneFill color='#6B6F7A'/></span>{params.row.MobileNo}</li>
+               {params?.row?.email  && <li className='content_item'> <span className='contactIcon'><FaEnvelope color='#6B6F7A'/></span>{params.row.email}</li>}
+               {params?.row?.MobileNo  && <li className='content_item'> <span className='contactIcon'><BsFillTelephoneFill color='#6B6F7A'/></span>{params.row.MobileNo}</li>}
               </ul>
           }
         },
@@ -92,6 +92,13 @@ const Recentorder = () => {
             headerAlign:'left',
             align:'left',
             flex:1,
+            renderCell: (params) => {
+              let a =0
+              params?.row?.Product?.forEach((items)=>{
+                   a += items.Cart_Quantity
+              })
+              return <span>{a}</span>
+          }
           },
           {
             field: 'subtotal',
@@ -152,12 +159,12 @@ const Recentorder = () => {
             'Authorization': `Bearer ${token_data}`
           }
          }).then((res)=>{
-          setRecentorder(res.data.slice(0, 9))
+          setRecentorder(res.data.slice(0, 6))
          })
       },[])
   return (
     <div className='RecentOrderCard'>
-         <div className='d-flex justify-content-between align-items-center py-4'>
+         <div className='d-flex gap-4 py-4'>
            <h3 className='graphtitle'>Recent Order</h3>
            <div className='searchBarrecent'> <Searchbar></Searchbar></div>
          </div>
@@ -166,12 +173,16 @@ const Recentorder = () => {
                          
                          width: '100%',
                          '& .MuiDataGrid-columnHeaders': {
-                             backgroundColor: '#E1FFED',
+                             backgroundColor: '#fff',
+                             color:'#B5B7C0'
                          },
                          '& .MuiButton-root': {
                              color: "#FFFFFF",
                              display: "flex",
                              width: "200px"
+                         },
+                         "& .MuiDataGrid-root":{
+                              border:'none',
                          },
                           // check
                           ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
@@ -195,7 +206,6 @@ const Recentorder = () => {
                              },
 
                          },
-
                          "@media(min-width:768px)": {
                              '& .MuiButton-root': {
                                  width: "110px",
@@ -220,6 +230,7 @@ const Recentorder = () => {
                                              disableColumnSelector
                                              hideFooter={true}
                                              getRowId={(row) => row.OrderId}
+                                             autoHeight
                                              slotProps={{
                                                 footer: false ,
                                               }}
@@ -237,7 +248,7 @@ const Recentorder = () => {
                                          "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
                                              backgroundColor: "#FFFFFF"
                                          },
-                                         height: 400,
+                                       
                                          width: '100%',
                                          "@media(max-width:768px)": {
                                              ".MuiDataGrid-toolbarContainer": {

@@ -243,6 +243,7 @@ h3.graphtitle {
   display: flex;
   gap: 10px;
   align-items: center;
+  width: 100%;
 }
 .dashboardSection .pendingUserProfile .userImage {
   width: 25%;
@@ -274,6 +275,7 @@ h3.graphtitle {
 }
 .dashboardSection .pendingvendercontent {
   display: block;
+  width: 100%;
 }
 .dashboardSection .pendingvendercontent .content_item {
   display: block;
@@ -285,6 +287,10 @@ h3.graphtitle {
   line-height: normal;
 }
 .dashboardSection .pendingvendercontent .content_item .contactIcon {
+  color: #7C7C7C;
+  margin-right: 5px;
+}
+.dashboardSection .pendingvendercontent .content_item .contactIcon path {
   color: #7C7C7C;
 }
 
