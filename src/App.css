@@ -316,6 +316,11 @@ ul li path {
 
 
 }
+.view_icon{
+  color: #31B655;
+  font-size: 20px;
+  
+}
 .drop_down li {
   display: block;
 }

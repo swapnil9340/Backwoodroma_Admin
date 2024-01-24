@@ -31,6 +31,7 @@ import Layout from '../Layout/Layout';
 import Rolelist from '../Pages/Role/Rolelist';
 import RoleDetailsAndPermission from '../Pages/Role/RoleDetailsAndPermission/RoleDetailsAndPermission';
 import Allstall from '../Pages/Staff/Allstall';
+import Vendorlist from '../Pages/Vendor/Vendorlist';
 // export default function Router() {;
 //   return (
     
@@ -162,6 +163,10 @@ const routesConfig = [
       {
         path:"/Vendor",
         element:<Protected  Component={Vendor}/>
+      },
+      {
+        path:"/Vendorlist",
+        element:<Protected  Component={Vendorlist}/>
       },
       {
         path:"/Settings",

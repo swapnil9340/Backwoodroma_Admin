@@ -33,6 +33,10 @@ h3.graphtitle {
   width: 100%;
   min-height: 300px;
 }
+.totalSalesChart .Saleschart_container > div:first-child {
+  height: 100%;
+  min-height: 100% !important;
+}
 
 .list_container {
   width: 100%;
@@ -245,9 +249,6 @@ h3.graphtitle {
   align-items: center;
   width: 100%;
 }
-.dashboardSection .pendingUserProfile .userImage {
-  width: 25%;
-}
 .dashboardSection .pendingUserProfile .userImage .userImageCircle {
   width: 35px;
   height: 35px;
@@ -260,7 +261,7 @@ h3.graphtitle {
 .dashboardSection .pendingUserProfile .userName {
   color: #000;
   font-family: "Inter", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;

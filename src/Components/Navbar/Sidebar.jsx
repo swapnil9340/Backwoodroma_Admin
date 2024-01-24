@@ -199,7 +199,7 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
         
 
         {(state.Roles.ViewVendor || (state.Roles.AddVendor || state.Roles.DeleteVendor || state.Roles.EditVendor) )&&
-        <NavLink to={"/Vendor"} onClick={closebar} activeClassName="active">
+        <NavLink to={"/Vendorlist"} onClick={closebar} activeClassName="active">
           <li button className={" active_bar "}>
             <Icon className={classes.sidebarIcon + ""}>
               <AiTwotoneSetting></AiTwotoneSetting>

@@ -11,12 +11,13 @@ const TotalSales = () => {
           chart: {
             width:400,
             type: 'pie',
-            height:400,
+            height: "400px",
+            minHeight: '100%',
             dataLabels: {
               position: 'bottom'
             }
           },
-          labels: ['Team A', 'Team B', 'Team C'],
+          labels: ['Store', 'Pickup', 'Delivery'],
           responsive: [{
             breakpoint: 1440,
             options: {
@@ -72,15 +73,17 @@ const TotalSales = () => {
               }
             }
           }],
-        
           legend: {
             fontSize: '15px',
             fontWeight:600,
             position:'bottom',
+            width:200,
             formatter: function(seriesName, opts) {
                 return [seriesName, " - ", opts.w.globals.series[opts.seriesIndex]]
-            }
+            },
+         
           },
+        
         },
       }
   return (

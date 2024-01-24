@@ -33,6 +33,13 @@ h3.graphtitle{
     .Saleschart_container{
         width: 100%;
         min-height: 300px;
+        >div {
+            &:first-child {
+                height: 100%;
+                min-height: 100% !important;
+            }
+        }
+
     }
 }
 .list_container{
@@ -257,7 +264,7 @@ h3.graphtitle{
         align-items: center;
         width: 100%;
         .userImage{
-            width: 25%;
+          
             .userImageCircle{
                 width: 35px;
                 height: 35px;
@@ -271,7 +278,7 @@ h3.graphtitle{
         .userName{
             color: #000;
             font-family: 'Inter', sans-serif;
-            font-size: 12px;
+            font-size: 14px;
             font-style: normal;
             font-weight: 500;
             line-height: normal;

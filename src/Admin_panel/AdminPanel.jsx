@@ -16,6 +16,9 @@ import { FaEnvelope } from "react-icons/fa";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import Recentorder from './Recentorder';
 import { isDisabled } from '@testing-library/user-event/dist/utils';
+import { MdOutlineEmail } from "react-icons/md";
+import { BsTelephone } from "react-icons/bs";
+
 export default function AdminPanel() {
   const { state  } = useContext(Createcontext)
 
@@ -52,8 +55,8 @@ export default function AdminPanel() {
       sortable:false,
       renderCell: (params) => {
           return <ul className='pendingvendercontent'>
-            <li className='content_item'> <span className='contactIcon'><FaEnvelope color='#6B6F7A'/></span>{params.row.email}</li>
-            <li className='content_item'> <span className='contactIcon'><BsFillTelephoneFill color='#6B6F7A'/></span>{params.row.Phone}</li>
+            <li className='content_item'> <span className='contactIcon'><MdOutlineEmail  color='#6B6F7A'/></span>{params.row.email}</li>
+            <li className='content_item'> <span className='contactIcon'><BsTelephone color='#6B6F7A'/></span>{params.row.Phone}</li>
           </ul>
       }
     },
@@ -174,50 +177,53 @@ export default function AdminPanel() {
         <div className='storeOwnerTable'>
             <div className='ownerlist'>
             <Box sx={{
-                         
-                            width: '100%',
-                            '& .MuiDataGrid-columnHeaders': {
-                                backgroundColor: '#E1FFED',
-                            },
-                            '& .MuiButton-root': {
-                                color: "#FFFFFF",
-                                display: "flex",
-                                width: "200px"
-                            },
-                             // check
-                             ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
-                                outline:"none"
+                              
+                              width: '100%',
+                              '& .MuiDataGrid-columnHeaders': {
+                                  backgroundColor: '#fff',
+                                  color:'#B5B7C0'
                               },
-
-                            "@media(max-width:767px)": {
-                                '& .MuiButton-root': {
-                                    display: "contents",
-                                    width: "150px",
-                                    margin: "2px",
-                                    fontSize: "14px"
+                              '& .MuiButton-root': {
+                                  color: "#FFFFFF",
+                                  display: "flex",
+                                  width: "200px"
+                              },
+                              "& .MuiDataGrid-root":{
+                                   border:'none',
+                              },
+                               // check
+                               ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
+                                  outline:"none"
                                 },
-
-                            },
-                            "@media(max-width:546px)": {
-                                '& .MuiButton-root': {
-                                    display: "contents",
-                                    width: "150px",
-                                    fontSize: "9px"
-                                },
-
-                            },
-
-                            "@media(min-width:768px)": {
-                                '& .MuiButton-root': {
-                                    width: "110px",
-                                    margin: "2px",
-                                    fontSize: "14px"
-                                },
-
-                                "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                    width: "120px"
-                                }
-                            }
+     
+                              "@media(max-width:767px)": {
+                                  '& .MuiButton-root': {
+                                      display: "contents",
+                                      width: "150px",
+                                      margin: "2px",
+                                      fontSize: "14px"
+                                  },
+     
+                              },
+                              "@media(max-width:546px)": {
+                                  '& .MuiButton-root': {
+                                      display: "contents",
+                                      width: "150px",
+                                      fontSize: "9px"
+                                  },
+     
+                              },
+                              "@media(min-width:768px)": {
+                                  '& .MuiButton-root': {
+                                      width: "110px",
+                                      margin: "2px",
+                                      fontSize: "14px"
+                                  },
+     
+                                  "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                                      width: "120px"
+                                  }
+                              }
                         }}>
                             <ThemeProvider theme={CustomFontTheme}>
                                 <div style={{ width: '100%' }}>

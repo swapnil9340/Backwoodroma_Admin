@@ -10,6 +10,8 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import Searchbar from '../Components/Component/Searchbar';
 import Axios from 'axios'
 import Cookies from 'universal-cookie';
+import { MdOutlineEmail } from "react-icons/md";
+import { BsTelephone } from "react-icons/bs";
 const Recentorder = () => {
       const cookies = new Cookies();
       const token_data = cookies.get('Token_access')
@@ -24,7 +26,7 @@ const Recentorder = () => {
             headerAlign:'left',
             valueGetter: (params) =>
             `#${params.row.OrderId}`,
-          },
+        },
         {
           field: 'username',
           headerName: 'Name',
@@ -57,8 +59,8 @@ const Recentorder = () => {
           flex:1,
           renderCell: (params) => {
               return <ul className='pendingvendercontent'>
-               {params?.row?.email  && <li className='content_item'> <span className='contactIcon'><FaEnvelope color='#6B6F7A'/></span>{params.row.email}</li>}
-               {params?.row?.MobileNo  && <li className='content_item'> <span className='contactIcon'><BsFillTelephoneFill color='#6B6F7A'/></span>{params.row.MobileNo}</li>}
+               {params?.row?.email  && <li className='content_item'> <span className='contactIcon'><MdOutlineEmail color='#6B6F7A'/></span>{params.row.email}</li>}
+               {params?.row?.MobileNo  && <li className='content_item'> <span className='contactIcon'><BsTelephone color='#6B6F7A'/></span>{params.row.MobileNo}</li>}
               </ul>
           }
         },
@@ -99,20 +101,20 @@ const Recentorder = () => {
               })
               return <span>{a}</span>
           }
-          },
-          {
-            field: 'subtotal',
-            headerName: 'Total Amount',
-            type: 'number',
-            minWidth: 150,
-            editable: false,
-            sortable:false,
-            headerAlign:'left',
-            align:'left',
-            flex:1,
-            valueGetter: (params) =>
-            `$ ${params.row.subtotal}`,
-          },
+        },
+        {
+          field: 'subtotal',
+          headerName: 'Total Amount',
+          type: 'number',
+          minWidth: 150,
+          editable: false,
+          sortable:false,
+          headerAlign:'left',
+          align:'left',
+          flex:1,
+          valueGetter: (params) =>
+          `$ ${params.row.subtotal}`,
+        },
         {
           field: 'Order_Status',
           headerName: 'Order Status',
@@ -131,9 +133,7 @@ const Recentorder = () => {
           }
         },
       ];
-      
       const rows =recentorder
-
       const CustomFontTheme = createTheme({
         typography: {
             fontSize: 25
@@ -150,9 +150,6 @@ const Recentorder = () => {
         },
     
       });
-
-
-
       useEffect(()=>{
          Axios.get('https://api.cannabaze.com/AdminPanel/AllRecentOrder/',{
           headers:{
