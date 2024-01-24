@@ -8,7 +8,8 @@ const Createcontext = createContext();
 const initialUser = {
   Roles:[],
   login: "",
-  api:""
+  api:"",
+  datesSelect:"Year"
 }
 function Context(props) {
   const cookies = new Cookies();
@@ -105,7 +106,6 @@ function Context(props) {
       })
     }
     }
-    console.log(rolesdata ,'rolesdata')
     dispatch({ type: 'Roles', Roles: rolesdata })
   })
 

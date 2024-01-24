@@ -1,12 +1,12 @@
 import React, { useContext ,useEffect ,useState } from 'react';
-import Search from "./Search";
-import { RiDashboardFill } from "react-icons/ri"
+// import Search from "./Search";
+// import { RiDashboardFill } from "react-icons/ri"
 import Searchbar from '../Component/Searchbar';
-import { IoMdMailUnread } from 'react-icons/io';
-import { IoStorefrontOutline } from "react-icons/io5"
-import { RiDragMoveFill } from "react-icons/ri"
-import { HiOutlineReceiptTax } from "react-icons/hi"
-import { VscBellDot } from 'react-icons/vsc';
+// import { IoMdMailUnread } from 'react-icons/io';
+// import { IoStorefrontOutline } from "react-icons/io5"
+// import { RiDragMoveFill } from "react-icons/ri"
+// import { HiOutlineReceiptTax } from "react-icons/hi"
+// import { VscBellDot } from 'react-icons/vsc';
 import Cookies from 'universal-cookie';
 import { Link, useNavigate } from "react-router-dom";
 import Createcontext from "../../Hooks/Context/Context"
