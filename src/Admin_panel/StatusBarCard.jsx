@@ -158,9 +158,9 @@ export default function StatusBarCard() {
                                 <p className='card_hadding'>{'Total Store'}</p>
                                 <p className="Card_Total" >{totel?.TotalStore}</p>
                                 <p className="card_hadding" >
-                                    {totel?.Growth ? <span><MdArrowDownward size={18} color="#D0004B" /></span>
+                                    {!totel?.Growth ? <span><MdArrowDownward size={18} color="#D0004B" /></span>
                                         : <span><IoIosArrowRoundUp size={18} color="#00AC4F" /></span>}
-                                    <span style={{ color: !totel?.Growth ? "#00AC4F" : "#D0004B" }}>{totel?.percentage}%</span>
+                                    <span style={{ color: totel?.Growth ? "#00AC4F" : "#D0004B" }}>{totel?.percentage}%</span>
                                     <span style={{ color: "black" }}> this year</span>
                                 </p>
                             </div>
@@ -187,9 +187,9 @@ export default function StatusBarCard() {
                                 <p className='card_hadding'>{'Vendor'}</p>
                                 <p className="Card_Total" >{Vendor?.TotalStore}</p>
                                 <p className="card_hadding" >
-                                    {Vendor?.Growth ? <span><MdArrowDownward size={18} color="#D0004B" /></span>
+                                    {!Vendor?.Growth ? <span><MdArrowDownward size={18} color="#D0004B" /></span>
                                         : <span><IoIosArrowRoundUp size={18} color="#00AC4F" /></span>}
-                                    <span style={{ color: !Vendor?.Growth ? "#00AC4F" : "#D0004B" }}>{Vendor?.percentage}%</span>
+                                    <span style={{ color: Vendor?.Growth ? "#00AC4F" : "#D0004B" }}>{Vendor?.percentage}%</span>
                                     <span style={{ color: "black" }}> this year</span>
                                 </p>
                             </div>
@@ -216,10 +216,10 @@ export default function StatusBarCard() {
                                 <p className='card_hadding'>{'Sales'}</p>
                                 <p className="Card_Total" >${TotalSale?.TotalSales}</p>
                                 <p className="card_hadding" >
-                                    {TotalSale?.Growth ? <span>< IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
+                                    {!TotalSale?.Growth ? <span>< IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
                                         : <span><MdArrowDownward size={18} color="#D0004B" /></span>}
                                     {/* <span><MdArrowDownward size={18} color="#D0004B" /></span> */}
-                                    <span style={{ color: TotalSale?.Growth ? "#00AC4F" : "#D0004B" }}>{TotalSale?.percentage}%</span>
+                                    <span style={{ color: !TotalSale?.Growth ? "#00AC4F" : "#D0004B" }}>{TotalSale?.percentage}%</span>
                                     <span style={{ color: "black" }}> this year</span>
                                 </p>
                             </div>
