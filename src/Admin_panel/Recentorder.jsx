@@ -125,12 +125,12 @@ const Recentorder = () => {
           editable: false,
           sortable:false,
           flex:1,
-          headerAlign:'center',
-            align:'center',
+          headerAlign:'left',
+            align:'left',
           renderCell: (params) => {
               return <div className='padmingbtn'>
-                <span className='pandingDot'></span>
-                Pending
+                <span className='pandingDot'> </span>
+              {params.row.Order_Status}
               </div>
           }
         },

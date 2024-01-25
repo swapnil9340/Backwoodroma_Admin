@@ -38,15 +38,18 @@ const Filtermain = () => {
   // }
 
   function handleSelect(ranges) {
+    console.log(ranges)
     Setdaterange({
       startDate: ranges?.selection?.startDate,
       endDate: ranges?.selection?.endDate,
-      key: 'selection',
-    }
+      key: 'selection', }
     )
+    dispatch({ type: 'CustomeStartDate', CustomeStartDate: ranges?.selection?.startDate})
+    dispatch({ type: 'CustomeEndDate', CustomeEndDate: ranges?.selection?.endDate})
+    console.log( ranges?.selection?.startDate.toISOString().split('T')[0] , "Sss" ,  ranges?.selection?.endDate.toISOString().split('T')[0])
   }
 
-  console.log(state.datesSelect, value)
+  console.log(daterange)
   const handleClickAway = () => { setDpopen(false); setDateopen(false) }
   return (
     <ClickAwayListener onClickAway={handleClickAway}>

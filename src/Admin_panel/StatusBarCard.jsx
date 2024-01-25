@@ -13,31 +13,58 @@ export default function StatusBarCard() {
     const { state, dispatch } = React.useContext(Createcontext)
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
-    let date = new Date()
-    const TodayDate = date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate()
-    const currentYear = new Date().getFullYear();
-    const lastYear = currentYear - 1;
-    const SecondLastStartDate = currentYear - 2;
     const [totel, setTotal] = useState()
     const [Vendor, setVendor] = useState()
     const [TotalSale, SetTotalSale] = useState()
     const [Totalorder, Setorder] = useState()
     const [Product, SetProduct] = useState()
     const [Customer, SetCustomer] = useState()
-    console.log(state.datesSelect)
+
+    //  Months//////////////////
+    let date = new Date()
+    const TodayDate = date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate()
+    const currentYear = new Date().getFullYear();
+    const lastYear = currentYear - 1;
+    const monthStartDate = new Date(date.getFullYear(), date.getMonth(), 2).toISOString().split('T')[0]
+    const monthlastDate = TodayDate
+    const lastmonthStartDate = new Date(date.getFullYear(), date.getMonth() - 1, 2).toISOString().split('T')[0]
+    const firstDayOfCurrentMonth = new Date(date.getFullYear(), date.getMonth(), 1);
+    const lastmonthLastDate = new Date(firstDayOfCurrentMonth - 1).toISOString().split('T')[0]
+    // End /////////////////
+    //    Week Calculate //////////////////////// 
+    const WeekCalculate = date.getDate() - date.getDay() + (date.getDay() === 0 ? - 6 : 1);
+    const StartDateWeek = new Date(date.setDate(WeekCalculate)).toISOString().split('T')[0]
+    // const previous =  new Date(date.setDate(date.getDate() - 1)).toISOString().split('T')[0]
+    function GetpreviousWeekDate(d, j) {
+        //   const today = new Date();
+        const dayOfWeek = date.getDay();  // 0 (Sunday) to 6 (Saturday)
+        const diff = dayOfWeek + d - j;
+        const startOfPreviousWeek = new Date(date);
+        startOfPreviousWeek.setDate(date.getDate() - diff);
+        return startOfPreviousWeek.toISOString().split('T')[0];
+    }
+
+    let yesterday = new Date(TodayDate)
+    yesterday.setDate(yesterday.getDate() - 1)
+
+
+
+    const datedata = {
+        "SelectTime": state.datesSelect === "Year" ? "ThisYear" : state.datesSelect === "Months" ? 'ThisMonth' : state.datesSelect === "Today" ? 'Today' : state.datesSelect === "week" ? "week" : state.datesSelect === "Customics" && "costume",
+        "StartDate": state.datesSelect === "Year" ? `${date.getFullYear()}-01-01` : state.datesSelect === "Months" ? monthStartDate : state.datesSelect === "week" ? StartDateWeek : state.datesSelect === "Today" ? TodayDate : "",
+        "EndDate": state.datesSelect === "Year" ? TodayDate : state.datesSelect === "Months" ? monthlastDate : state.datesSelect === "week" ? TodayDate : state.datesSelect === "Today" ? TodayDate : "",
+        "LastStartDate": state.datesSelect === "Year" ? `${lastYear}-01-01` : state.datesSelect === "Months" ? lastmonthStartDate : state.datesSelect === "week" ? GetpreviousWeekDate(7, 1) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : "",  //yesterday.toISOString().split('T')[0]
+        "EndStartDate": state.datesSelect === "Year" ? `${lastYear}-12-31` : state.datesSelect === "Months" ? lastmonthLastDate : state.datesSelect === "week" ? GetpreviousWeekDate(0, 0) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : ""
+    }
+//    const k =  state?.CustomeEndDate &&  new Date(state?.CustomeEndDate)
+//     console.log( state?.CustomeEndDate.toLocaleDateString("en-US").toISOString().split('T')[0])
+
+
     useEffect(() => {
 
 
         axios.post("https://api.cannabaze.com/AdminPanel/TotalStore/",
-            {
-                "SelectTime": "ThisYear",
-                "StartDate": '2024-01-01',
-                "EndDate": TodayDate,
-                "LastStartDate": `${lastYear}-01-01`,
-                "EndStartDate": `${lastYear}-12-01`,
-                "SecondLastStartDate": `${SecondLastStartDate}-01-01`,
-                "SecondLastEndDate": `${SecondLastStartDate}-12-01`
-            },
+            datedata,
             {
                 headers: {
                     'Authorization': `Bearer ${token_data}`
@@ -47,15 +74,7 @@ export default function StatusBarCard() {
 
             })
         axios.post("https://api.cannabaze.com/AdminPanel/VendorCard/",
-            {
-                "SelectTime": "ThisYear",
-                "StartDate": '2024-01-01',
-                "EndDate": TodayDate,
-                "LastStartDate": `${lastYear}-01-01`,
-                "EndStartDate": `${lastYear}-12-01`,
-                "SecondLastStartDate": `${SecondLastStartDate}-01-01`,
-                "SecondLastEndDate": `${SecondLastStartDate}-12-01`
-            },
+            datedata,
             {
                 headers: {
                     'Authorization': `Bearer ${token_data}`
@@ -64,15 +83,7 @@ export default function StatusBarCard() {
                 setVendor(response.data[0])
             })
         axios.post("https://api.cannabaze.com/AdminPanel/TotalSalesCard/",
-            {
-                "SelectTime": "ThisYear",
-                "StartDate": '2024-01-01',
-                "EndDate": TodayDate,
-                "LastStartDate": `${lastYear}-01-01`,
-                "EndStartDate": `${lastYear}-12-01`,
-                "SecondLastStartDate": `${SecondLastStartDate}-01-01`,
-                "SecondLastEndDate": `${SecondLastStartDate}-12-01`
-            },
+            datedata,
             {
                 headers: {
                     'Authorization': `Bearer ${token_data}`
@@ -81,33 +92,18 @@ export default function StatusBarCard() {
                 SetTotalSale(response.data[0])
             })
         axios.post("https://api.cannabaze.com/AdminPanel/TotalOrderCard/",
-            {
-                "SelectTime": "ThisYear",
-                "StartDate": '2024-01-01',
-                "EndDate": TodayDate,
-                "LastStartDate": `${lastYear}-01-01`,
-                "EndStartDate": `${lastYear}-12-01`,
-                "SecondLastStartDate": `${SecondLastStartDate}-01-01`,
-                "SecondLastEndDate": `${SecondLastStartDate}-12-01`
-            },
+            datedata,
             {
                 headers: {
                     'Authorization': `Bearer ${token_data}`
                 }
             }).then(response => {
+                console.log(response.data[0])
                 Setorder(response.data[0])
 
             })
         axios.post("https://api.cannabaze.com/AdminPanel/ProductDashBoardCard/",
-            {
-                "SelectTime": "ThisYear",
-                "StartDate": '2024-01-01',
-                "EndDate": TodayDate,
-                "LastStartDate": `${lastYear}-01-01`,
-                "EndStartDate": `${lastYear}-12-01`,
-                "SecondLastStartDate": `${SecondLastStartDate}-01-01`,
-                "SecondLastEndDate": `${SecondLastStartDate}-12-01`
-            },
+            datedata,
             {
                 headers: {
                     'Authorization': `Bearer ${token_data}`
@@ -117,25 +113,18 @@ export default function StatusBarCard() {
 
             })
         axios.post("https://api.cannabaze.com/AdminPanel/CustomerDashBoardCard/",
-            {
-                "SelectTime": "ThisYear",
-                "StartDate": '2024-01-01',
-                "EndDate": TodayDate,
-                "LastStartDate": `${lastYear}-01-01`,
-                "EndStartDate": `${lastYear}-12-01`,
-                "SecondLastStartDate": `${SecondLastStartDate}-01-01`,
-                "SecondLastEndDate": `${SecondLastStartDate}-12-01`
-            },
+            datedata,
             {
                 headers: {
                     'Authorization': `Bearer ${token_data}`
                 }
             }).then(response => {
                 SetCustomer(response.data[0])
-
             })
 
-    }, [token_data])
+    }, [token_data, state.datesSelect])
+
+
     return (
 
         <div className='dashboardTopCardWrapper'>
@@ -208,7 +197,7 @@ export default function StatusBarCard() {
                         <div className="Card_center_dashboard cardbox d-flex" >
                             <div className="" style={{ "margin-top": '10px' }}>
                                 <p className='card_hadding'>{'Sales'}</p>
-                                <p className="Card_Total" >${TotalSale?.TotalSales}</p>
+                                <p className="Card_Total" >${TotalSale?.totalsale}</p>
                                 <p className="card_hadding" >
                                     {!TotalSale?.Growth ? <span>< IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
                                         : <span><MdArrowDownward size={18} color="#D0004B" /></span>}
@@ -237,7 +226,7 @@ export default function StatusBarCard() {
                         <div className="Card_center_dashboard cardbox d-flex" >
                             <div className="" style={{ "margin-top": '10px' }}>
                                 <p className='card_hadding'>{'Order'}</p>
-                                <p className="Card_Total" >{Totalorder?.TotalOrder}</p>
+                                <p className="Card_Total" >{Totalorder?.Totalorder}</p>
                                 <p className="card_hadding" >
                                     {!Totalorder?.Growth ? <span>< IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
                                         : <span><MdArrowDownward size={18} color="#D0004B" /></span>}
@@ -266,9 +255,9 @@ export default function StatusBarCard() {
                                 <p className='card_hadding'>{'Product'}</p>
                                 <p className="Card_Total" >{Product?.Totalproduct}</p>
                                 <p className="card_hadding" >
-                                    {!Product?.Growth ? <span>< IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
+                                    {Product?.Growth ? <span>< IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
                                         : <span><MdArrowDownward size={18} color="#D0004B" /></span>}
-                                    <span style={{ color: !Product?.Growth ? "#00AC4F" : "#D0004B" }}>{Product?.percentage}%</span>
+                                    <span style={{ color: Product?.Growth ? "#00AC4F" : "#D0004B" }}>{Math?.abs(Product?.percentage)}%</span>
                                     <span style={{ color: "black" }}> this year</span>
                                 </p>
                             </div>

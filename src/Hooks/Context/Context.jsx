@@ -9,7 +9,9 @@ const initialUser = {
   Roles:[],
   login: "",
   api:"",
-  datesSelect:"Year"
+  datesSelect:"Year",
+  CustomeStartDate: "",
+  CustomeEndDate:""
 }
 function Context(props) {
   const cookies = new Cookies();
