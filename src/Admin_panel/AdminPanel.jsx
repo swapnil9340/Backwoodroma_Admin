@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext,useState, useEffect } from 'react'
 import StatusBarCard from './StatusBarCard'
 import ReactApexChart from 'react-apexcharts';
 import Createcontext from '../Hooks/Context/Context'
@@ -10,20 +10,17 @@ import './dashboard.css';
 import { Link } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 import TotalSales from './TotalSales'
-import { DisabledByDefault } from '@mui/icons-material';
 import Areagraph from './Areagraph'
-import { FaEnvelope } from "react-icons/fa";
-import { BsFillTelephoneFill } from "react-icons/bs";
 import Recentorder from './Recentorder';
-import { isDisabled } from '@testing-library/user-event/dist/utils';
 import { MdOutlineEmail } from "react-icons/md";
 import { BsTelephone } from "react-icons/bs";
-
+import  axios  from 'axios';
+import Cookies from 'universal-cookie'
 export default function AdminPanel() {
   const { state  } = useContext(Createcontext)
-
-  
- 
+  const cookies = new Cookies();
+  const [pendingstore, setPendingStore]= useState([])
+  const token_data = cookies.get('Token_access')
   const columns = [
     {
       field: 'Name',
@@ -94,16 +91,16 @@ export default function AdminPanel() {
       }
     },
   ];
-  
-  const rows = [
-    { id: 1, userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Harsh jain', applyDate: 'Today 07:00 PM', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'Lex Weed', StoreType: 'Store Front', StoreStatus: 'Pending' },
-    { id: 2, userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Anaya Briggs', applyDate: 'Today 07:00 PM', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'NYC Ounce CLub', StoreType: 'Delivery / Pickup', StoreStatus: 'Pending' },
-    { id: 3, userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Daniel Garcia', applyDate: 'Today 07:00 PM', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'LeaflyweedNYC', StoreType: 'Delivery / Pickup', StoreStatus: 'Pending' },
-    { id: 4, userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Roosevelt Carter', applyDate: 'Today 07:00 PM', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'NYC Ounce CLub', StoreType: 'Pick up', StoreStatus: 'Pending' },
-    { id: 5, userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'April Joseph', applyDate: 'Today 07:00 PM', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'Lex Weed', StoreType: 'Store Front', StoreStatus: 'Pending' },
-    { id: 6, userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Daniel Garcia', applyDate: 'Today 07:00 PM', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'Lex Weed', StoreType: 'Delivery', StoreStatus: 'Pending' },
-  ];
+  // const rows = [
+  //   { id: 1, userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Harsh jain', applyDate: 'Today 07:00 PM', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'Lex Weed', StoreType: 'Store Front', StoreStatus: 'Pending' },
+  //   { id: 2, userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Anaya Briggs', applyDate: 'Today 07:00 PM', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'NYC Ounce CLub', StoreType: 'Delivery / Pickup', StoreStatus: 'Pending' },
+  //   { id: 3, userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Daniel Garcia', applyDate: 'Today 07:00 PM', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'LeaflyweedNYC', StoreType: 'Delivery / Pickup', StoreStatus: 'Pending' },
+  //   { id: 4, userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Roosevelt Carter', applyDate: 'Today 07:00 PM', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'NYC Ounce CLub', StoreType: 'Pick up', StoreStatus: 'Pending' },
+  //   { id: 5, userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'April Joseph', applyDate: 'Today 07:00 PM', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'Lex Weed', StoreType: 'Store Front', StoreStatus: 'Pending' },
+  //   { id: 6, userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Daniel Garcia', applyDate: 'Today 07:00 PM', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'Lex Weed', StoreType: 'Delivery', StoreStatus: 'Pending' },
+  // ];
 
+  const rows= pendingstore
   const CustomFontTheme = createTheme({
     typography: {
         fontSize: 25
@@ -122,9 +119,9 @@ export default function AdminPanel() {
   });
   const locationchart = {
           
-    series: [14, 23, 21, 17, 15, 10, 12, 17, 21],
+    series: [14, 23, 21, 17, 15, 10, 12, ],
     options: {
-      colors : ['rgb(30,64,175)','rgb(30,64,165)','rgb(30,64,155)','rgb(30,64,145)','rgb(30,64,135)','rgb(30,64,125)'],
+      colors : [ "#1E40AF", "#1D4ED8",  "#2563EB", "#3B82F6", "#60A5FA", "#93C5FD", "#BFDBFE"],
       chart: {
         type: 'polarArea',
       },
@@ -136,7 +133,7 @@ export default function AdminPanel() {
         position: 'bottom'
       },
       fill: {
-        opacity: 0.8
+        opacity: 1
       },
       responsive: [{
         breakpoint: 480,
@@ -153,6 +150,15 @@ export default function AdminPanel() {
     },
   };
 
+ useEffect(()=>{
+    axios.post('https://api.cannabaze.com/AdminPanel/AllPendingStores/',{"SelectTime":"ThisYear","StartDate":"2023-01-01","EndDate":"2024-01-25"} ,{
+      headers: {
+        'Authorization': `Bearer ${token_data}`
+      }
+    }).then((res)=>{
+      setPendingStore(res.data)
+    })
+ },[])
   return (
     <div className='row py-5 dashboardSection'>
 
@@ -232,7 +238,7 @@ export default function AdminPanel() {
                                                 hideFooterPagination
                                                 hideFooterSelectedRowCount
                                                 rowsPerPageOptions={[5, 10, 20]}
-                                               
+                                                autoHeight
                                                 disableColumnMenu
                                                 disableColumnFilter
                                                 disableColumnSelector
@@ -251,7 +257,7 @@ export default function AdminPanel() {
                                             "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
                                                 backgroundColor: "#FFFFFF"
                                             },
-                                            height: 400,
+                                         
                                             width: '100%',
                                             "@media(max-width:768px)": {
                                                 ".MuiDataGrid-toolbarContainer": {
@@ -308,32 +314,37 @@ export default function AdminPanel() {
                   </div>
                   <div className='locationListItem'>
                       
-                       <span className='locationName'>   <span className='colorCircle'></span> New York</span>
+                       <span className='locationName'>   <span className='colorCircle' style={{backgroundColor:'#1E40AF'}}></span> New York</span>
                        <span className='locationAmount'>6,806</span>
                   </div>
                   <div className='locationListItem'>
                       
-                      <span className='locationName'>   <span className='colorCircle'></span> New York</span>
+                      <span className='locationName'>   <span className='colorCircle' style={{backgroundColor:'#1D4ED8'}}></span> Phoenix</span>
                       <span className='locationAmount'>6,806</span>
                  </div>
                  <div className='locationListItem'>
                       
-                      <span className='locationName'>   <span className='colorCircle'></span> Phoenix</span>
+                      <span className='locationName'>   <span className='colorCircle' style={{backgroundColor:'#2563EB'}}></span> Chicago</span>
                       <span className='locationAmount'>2000</span>
                  </div>
                  <div className='locationListItem'>
                       
-                      <span className='locationName'>   <span className='colorCircle'></span> Chicago </span>
+                      <span className='locationName'>   <span className='colorCircle' style={{backgroundColor:'#3B82F6'}}></span> Philadelphia </span>
                       <span className='locationAmount'>1600</span>
                  </div>
                  <div className='locationListItem'>
                       
-                      <span className='locationName'>   <span className='colorCircle'></span> Philadelphia </span>
+                      <span className='locationName'>   <span className='colorCircle' style={{backgroundColor:'#60A5FA'}}></span>  Los Angeles </span>
                       <span className='locationAmount'>806</span>
                  </div>
                  <div className='locationListItem'>
                       
-                      <span className='locationName'>   <span className='colorCircle'></span> Los Angeles </span>
+                      <span className='locationName'>   <span className='colorCircle' style={{backgroundColor:'#93C5FD'}}></span> Dallas</span>
+                      <span className='locationAmount'>566</span>
+                 </div>
+                 <div className='locationListItem'>
+                      
+                      <span className='locationName'>   <span className='colorCircle' style={{backgroundColor:'#BFDBFE'}}></span> Oklahoma City </span>
                       <span className='locationAmount'>566</span>
                  </div>
               </div>
@@ -343,7 +354,7 @@ export default function AdminPanel() {
            </div>
        </div>
       </div>
-      <div className='col-12 my-4'>
+      <div className='col-12 my-3'>
         <Recentorder/>
       </div>
     

@@ -9,6 +9,7 @@ import Slide from '@mui/material/Slide';
 import axios from "axios"
 import Cookies from 'universal-cookie';
 import Createcontext from "../../Hooks/Context/Context"
+import { RiDeleteBin6Line } from "react-icons/ri";
 import { useSnackbar } from 'notistack';
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -43,9 +44,9 @@ export default function Delete(props) {
 
   return (
     <div>
-      <Button color='success' onClick={handleClickOpen}>
-      Delete
-      </Button>
+      <span color='success' onClick={handleClickOpen}>
+        <RiDeleteBin6Line size={22} color='#31B655'/>
+      </span>
       <Dialog
         open={open}
         TransitionComponent={Transition}

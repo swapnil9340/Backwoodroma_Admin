@@ -4,6 +4,7 @@ import Cookies from 'universal-cookie';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import Categorypopup from './Categorypopup';
 import axios from "axios"
+import { FaEdit } from "react-icons/fa";
 import { useSnackbar } from 'notistack';
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
@@ -11,8 +12,12 @@ import Box from '@mui/material/Box';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import Select from '@mui/material/Select';
 import CategoryEditbox from "./CategoryEdit"
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { ImDropbox } from "react-icons/im";
+
 import Eelete from "../Category/Delete";
 import { AiFillEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { LuEye } from "react-icons/lu";
 import Tooltip from '@mui/material/Tooltip';
 export default function Category(props) {
     const { state, dispatch } = useContext(Createcontext)
@@ -76,9 +81,15 @@ export default function Category(props) {
         )
     }
     const columns = [
-        { field: 'name', headerName: 'Name', editable: false,  minWidth: 110, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'left',sortable:false },
+        { field: 'name', headerName: 'Name', editable: false,  minWidth: 110, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'left', sortable:false },
         {
-            field: 'Status', headerName: 'Status', type: 'number',sortable:false, editable: false,flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'right', align:"center",
+            field: 'categoryImages', headerName: 'categoryImages', minWidth: 180,type: 'button', editable: false, sortable:false,flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'rigth',align:"rigth",
+            renderCell: (params) => (
+               <div className='categoryTableImg'><img src={params?.row?.categoryImages} alt={"category image"} /></div>
+            )
+        },
+        {
+            field: 'Status', headerName: 'Status', type: 'number',minWidth: 110,sortable:false, editable: false,flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'left', align:"left",
             renderCell: (params) => {
                 if (params.formattedValue === "Active") {
                     return (
@@ -91,7 +102,7 @@ export default function Category(props) {
                                     state.Roles.EditCategory &&  SubmitEditData(params);
                                 }}
                             >
-                                <AiFillEye />
+                                <LuEye />
                             </p>
                         </Tooltip>
                     )
@@ -113,12 +124,19 @@ export default function Category(props) {
             }
         },
         {
-            field: 'Edit', headerName: 'Edit', type: 'button', editable: false, sortable:false,flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'rigth',align:"rigth",
+            field: 'Edit', headerName: 'Edit',minWidth: 110, type: 'button', editable: false, sortable:false,flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'rigth',align:"rigth",
             renderCell: (params) => (
                 <>
                   { ( state.Roles.EditCategory || state.Roles.DeleteCategory) &&
+                      
                     <Box
                         sx={{
+                            "&.MuiBox-root":{
+                               display:'flex',
+                               justifyContent:'center',
+                               alignItems:'center',
+                               gap:'10px'
+                            },
                             '& .MuiOutlinedInput-root': {
                                 '&.Mui-focused fieldset': {
                                     borderWidth: "1px",
@@ -130,18 +148,12 @@ export default function Category(props) {
                             }
                         }}
                     >
-                        <Select sx={{
-                            boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
-                            "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
-                            "&:hover": {
-                                ".MuiSelect-icon": {
-                                    color: "#31B665"
-                                }
-                            },
-                        }} IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
+                        
                           { state.Roles.EditCategory && <CategoryEditbox data={params.row} ></CategoryEditbox>}
                           { state.Roles.DeleteCategory && <Eelete data={params.row}></Eelete> }
-                        </Select>
+                       
+
+                     
                     </Box>
                   }  
                 </>
@@ -152,10 +164,10 @@ export default function Category(props) {
     ];
     const rows = totel
     return (
-            <div className='row '>
+            <div className='row bg-white'>
               
                     <div className='col-12 Add_Category  mt-5 mb-5 d-flex justify-content-between align-items-center'>
-                        <h2>Category</h2>
+                        <h2 className='d-flex gap-2 align-items-center'> <ImDropbox color='#31B655' size={25}/>Category</h2>
                        { state.Roles.AddCategory && <span>{<Categorypopup></Categorypopup>}</span>}
                     </div>
                     <div className='col-12'>
@@ -163,7 +175,8 @@ export default function Category(props) {
                             height: 400,
                             width: '100%',
                             '& .MuiDataGrid-columnHeaders': {
-                                backgroundColor: '#E1FFED',
+                                backgroundColor: '#F9FAFC',
+                                color:'#5A5A5A',
                             },
                             '& .MuiButton-root': {
                                 color: "#FFFFFF",

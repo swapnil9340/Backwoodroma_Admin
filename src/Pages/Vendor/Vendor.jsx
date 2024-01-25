@@ -3,10 +3,10 @@ import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
-
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import {Select , MenuItem} from '@mui/material';
 import axios from "axios"
+
 import { TiEdit } from "react-icons/ti";
 import Cookies from 'universal-cookie';
 import Createcontext from "../../Hooks/Context/Context"
@@ -17,7 +17,7 @@ import Areagraph from '../../Admin_panel/Areagraph'
 import TotalSales from '../../Admin_panel/TotalSales'
 import Productstorelist from '../../Admin_panel/Productstorelist'
 import { FaRegEyeSlash } from "react-icons/fa";
-
+import '../../style.css'
 import '../../Admin_panel/dashboard.css'
 const CustomFontTheme = createTheme({
     typography: {
@@ -167,6 +167,25 @@ const Vendor = () => {
                         <StatusBarCard/>
                     </div>
                     <div className='col-12'>
+                        <dvi className='storelistcardWrapper'>
+                          <div className='storelistcard'>
+                            <div className='storeType'> <span>Store</span> <span>Delivery</span></div>
+                            <h4 className='storelistcardName'>Vijay Nagar Store</h4>
+                            <p className='storelistcardDesc'>Brainstorming brings team members' diverse experience into play.</p>
+                          </div>
+                          <div className='storelistcard'>
+                            <div className='storeType'> <span>Store</span> <span>Delivery</span></div>
+                            <h4 className='storelistcardName'>Good Weed NYC</h4>
+                            <p className='storelistcardDesc'>Brainstorming brings team members' diverse experience into play.</p>
+                          </div>
+                          <div className='storelistcard'>
+                            <div className='storeType'> <span>Store</span> <span>Delivery</span></div>
+                            <h4 className='storelistcardName'> Ujjain</h4>
+                            <p className='storelistcardDesc'>Brainstorming brings team members' diverse experience into play.</p>
+                          </div>
+                        </dvi>
+                    </div>
+                    <div className='col-12'>
                         <div className='venderHeroDiv'>
                             <div className='venderHeroDiv_card'>
                                 <Areagraph/>
@@ -218,13 +237,14 @@ const Vendor = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 mb-4 mt-4">
+                    <div className="col-12 mb-4 mt-4 bg-white">
                         <Box
                             sx={{
                                 width: '100%',
                                 
                                 '& .MuiDataGrid-columnHeaders': {
-                                    backgroundColor: '#E1FFED',
+                                    backgroundColor: '#F9FAFC',
+                                    color:'#5A5A5A'
                                 },
                                 '& .MuiButton-root': {
                                     color: "#FFFFFF",

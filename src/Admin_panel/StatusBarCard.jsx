@@ -140,19 +140,17 @@ export default function StatusBarCard() {
 
         <div className='dashboardTopCardWrapper'>
             <div className=' dashboardTopCard top' >
-
-
-                <div className='col-12  d-flex align-items-center '>
-                    <div className='col-6 Card_center_dashboard  '>
+                <div className='col-12  d-flex justify-content-center gap-4 '>
+                    <div className=' Card_center_dashboard  '>
                         <div className="cardbox ">
                             <div className="group Card_center_dashboard ">
 
-                                <BsHandbag size={40} color="#00AC4F" />
+                                <BsHandbag size={32} color="#00AC4F" />
 
                             </div>
                         </div>
                     </div>
-                    <div className='col-6 '>
+                    <div className=' '>
                         <div className="Card_center_dashboard cardbox d-flex" >
                             <div className="" style={{ "margin-top": '10px' }}>
                                 <p className='card_hadding'>{'Total Store'}</p>
@@ -167,21 +165,19 @@ export default function StatusBarCard() {
                         </div>
                     </div>
                 </div>
-
-
             </div>
             <div className=' dashboardTopCard top' >
-                <div className='col-12  d-flex align-items-center '>
-                    <div className='col-6 Card_center_dashboard  '>
+                <div className='col-12  d-flex justify-content-center gap-4 '>
+                    <div className=' Card_center_dashboard  '>
                         <div className="cardbox ">
                             <div className="group Card_center_dashboard ">
 
-                                <HiOutlineUserGroup size={40} color="#00AC4F" />
+                                <HiOutlineUserGroup size={32} color="#00AC4F" />
 
                             </div>
                         </div>
                     </div>
-                    <div className='col-6 '>
+                    <div className=' '>
                         <div className="Card_center_dashboard cardbox d-flex" >
                             <div className="" style={{ "marginTop": '10px' }}>
                                 <p className='card_hadding'>{'Vendor'}</p>
@@ -198,10 +194,8 @@ export default function StatusBarCard() {
                 </div>
             </div>
             <div className=' dashboardTopCard top' >
-
-
-                <div className='col-12  d-flex align-items-center '>
-                    <div className='col-6 Card_center_dashboard  '>
+                <div className='col-12  d-flex justify-content-center gap-4 '>
+                    <div className=' Card_center_dashboard  '>
                         <div className="cardbox ">
                             <div className="group Card_center_dashboard ">
 
@@ -210,7 +204,7 @@ export default function StatusBarCard() {
                             </div>
                         </div>
                     </div>
-                    <div className='col-6 '>
+                    <div className=' '>
                         <div className="Card_center_dashboard cardbox d-flex" >
                             <div className="" style={{ "margin-top": '10px' }}>
                                 <p className='card_hadding'>{'Sales'}</p>
@@ -229,17 +223,17 @@ export default function StatusBarCard() {
 
             </div>
             <div className=' dashboardTopCard top' >
-                <div className='col-12  d-flex align-items-center '>
-                    <div className='col-6 Card_center_dashboard  '>
+                <div className='col-12  d-flex justify-content-center gap-4 '>
+                    <div className=' Card_center_dashboard  '>
                         <div className="cardbox ">
                             <div className="group Card_center_dashboard ">
 
-                                <BsHandbag size={40} color="#00AC4F" />
+                                <BsHandbag size={32} color="#00AC4F" />
 
                             </div>
                         </div>
                     </div>
-                    <div className='col-6 '>
+                    <div className=' '>
                         <div className="Card_center_dashboard cardbox d-flex" >
                             <div className="" style={{ "margin-top": '10px' }}>
                                 <p className='card_hadding'>{'Order'}</p>
@@ -256,17 +250,17 @@ export default function StatusBarCard() {
                 </div>
             </div>
             <div className=' dashboardTopCard top' >
-                <div className='col-12  d-flex align-items-center '>
-                    <div className='col-6 Card_center_dashboard  '>
+                <div className='col-12  d-flex justify-content-center gap-4 '>
+                    <div className=' Card_center_dashboard  '>
                         <div className="cardbox ">
                             <div className="group Card_center_dashboard ">
 
-                                <SlSocialDropbox size={40} color="#00AC4F" />
+                                <SlSocialDropbox size={32} color="#00AC4F" />
 
                             </div>
                         </div>
                     </div>
-                    <div className='col-6 '>
+                    <div className=' '>
                         <div className="Card_center_dashboard cardbox d-flex" >
                             <div className="" style={{ "margin-top": '10px' }}>
                                 <p className='card_hadding'>{'Product'}</p>
@@ -285,17 +279,17 @@ export default function StatusBarCard() {
             <div className=' dashboardTopCard top' >
 
 
-                <div className='col-12  d-flex align-items-center '>
-                    <div className='col-6 Card_center_dashboard  '>
+                <div className='col-12  d-flex justify-content-center gap-4 '>
+                    <div className=' Card_center_dashboard  '>
                         <div className="cardbox ">
                             <div className="group Card_center_dashboard ">
 
-                                <RiGroupLine size={40} color="#00AC4F" />
+                                <RiGroupLine size={32} color="#00AC4F" />
 
                             </div>
                         </div>
                     </div>
-                    <div className='col-6 '>
+                    <div className=' '>
                         <div className="Card_center_dashboard cardbox d-flex" >
                             <div className="" style={{ "margin-top": '10px' }}>
                                 <p className='card_hadding'>{'Customer'}</p>

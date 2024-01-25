@@ -12,6 +12,7 @@ import { useSnackbar } from 'notistack';
 import Createcontext from "../../Hooks/Context/Context"
 import { styled } from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
+import { FaEdit } from "react-icons/fa";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -118,9 +119,9 @@ export default function CategEditbox(props) {
 
     return (
         <div>
-            <Button color="success" onClick={handleClickOpen}>
-                Edit
-            </Button>
+            <span color="success" onClick={handleClickOpen}>
+            <FaEdit size={22} color='#31B655'/>
+            </span>
             <BootstrapDialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"

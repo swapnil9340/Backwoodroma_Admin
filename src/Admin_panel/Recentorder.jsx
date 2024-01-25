@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useState,useEffect } from 'react'
 import { ThemeProvider   } from "@mui/material/styles";
 import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
@@ -13,6 +13,8 @@ import Cookies from 'universal-cookie';
 import { MdOutlineEmail } from "react-icons/md";
 import { BsTelephone } from "react-icons/bs";
 const Recentorder = () => {
+      const [searchtext, setSearchtext] = useState('')
+      const [searchdata, setSearchdata] = useState('')
       const cookies = new Cookies();
       const token_data = cookies.get('Token_access')
       const [recentorder,setRecentorder]= React.useState([])
@@ -133,6 +135,23 @@ const Recentorder = () => {
           }
         },
       ];
+      React.useEffect(() => {
+        const getData = setTimeout(() => {
+          Axios
+          .post(`https://api.cannabaze.com/AdminPanel/SearchRecentOrderDashboard/`,
+          {"search": searchtext}  , 
+          { 
+            headers:{
+              'Authorization': `Bearer ${token_data}`
+            }
+          })
+          .then((response) => {
+            // setSearchdata(response.data);
+            setRecentorder(response.data.slice(0, 6))
+          });
+        }, 1000)
+        return () => clearTimeout(getData)
+        }, [searchtext])
       const rows =recentorder
       const CustomFontTheme = createTheme({
         typography: {
@@ -163,7 +182,7 @@ const Recentorder = () => {
     <div className='RecentOrderCard'>
          <div className='d-flex gap-4 py-4'>
            <h3 className='graphtitle'>Recent Order</h3>
-           <div className='searchBarrecent'> <Searchbar></Searchbar></div>
+           <div className='searchBarrecent'> <Searchbar searchtext={searchtext} type={'recentOrder'} searchdata={searchdata} setSearchtext={setSearchtext} ></Searchbar></div>
          </div>
         
          <Box sx={{

@@ -23,6 +23,7 @@ import Filtermain from './Filtermain'
 import Sidebar from './Sidebar';
 // import UserEditProfile from '../../Pages/UserProfile/UserEditProfile';
 function Navbar() {
+  const [searchtext, setSearchtext] = useState('')
   const [windowSize, setWindowSize] = React.useState([
     window.innerWidth,
     window.innerHeight,
@@ -90,8 +91,8 @@ function Navbar() {
           id="main-navbar" className="navbar navbar-expand-lg navbar-light sticky-top" style={{backgroundColor: navBg ?'#fff' : null}}>
           <div className="container-fluid " >
 
-            <div className="col-12   Add_Category">
-              <div className="col-md-5 col-lg-4 col-xxl-4 col-7">
+            <div className="col-12   Add_Category d-flex justify-content-between align-items-center ">
+              <div className="">
 
                 {
                   windowSize[0] <= 991
@@ -103,13 +104,13 @@ function Navbar() {
                     </div>
                     :
                     <div className='display'>
-                        <h3 className='navbarTitle'>Hello Harsh 👋🏼,</h3>
+                        <h3 className='navbarTitle'>Hello Admin 👋🏼,</h3>
                     </div>
                 }
               </div>
-              <div className="col-md-5 col-lg-3 col-xxl-2 col-7 searchBar_and_icons">
+              <div className="searchBar_and_icons">
 
-                <Searchbar color={"#fff"}></Searchbar>
+                <Searchbar color={"#fff"} searchtext={searchtext} setSearchtext={setSearchtext}></Searchbar>
                 <Filtermain/>
                 <ol className='navbarOredrListStyle'>
                   <li className='NvaListStyle'>
@@ -125,21 +126,7 @@ function Navbar() {
                   </li>
                 </ol>
               </div>
-              <div className="col-md-2 col-2">
-                <ol className=' navbarLast_icons'>
-                 
-                  <li className='NvaListStyle'>
-                    <span className=" con search_left">
-
-                      {
-                        islogin.state.login === true &&
-                        <p className="louout" onClick={logout}>Log Out</p>
-                      }
-
-                    </span>
-                  </li>
-                </ol>
-              </div>
+            
             </div>
           </div>
         </nav>
