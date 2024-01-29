@@ -22,40 +22,28 @@ export default function AdminPanel() {
   const [pendingstore, setPendingStore]= useState([])
   const token_data = cookies.get('Token_access')
   const columns = [
+
     {
-      field: 'Name',
+      field: 'UserName',
       headerName: 'Name',
       minWidth: 150,
       editable: false,
       sortable:false,
       headerAlign:'left',
-      renderCell: (params) => {
-         return <div className='pendingUserProfile'>
-                  <div className='userImage'>
-                    <div className='userImageCircle'>
-                      <img src={params.row.userImage}  alt=''/>
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className='userName'>{params.row.UserName}</h4>
-                    <h4 className='joinDate'>{params.row.applyDate}</h4>
-                  </div>
-                </div>  
-      }
     },
     {
-      field: 'Contact',
+      field: 'MobileNo',
       headerName: 'Contact',
       minWidth: 200,
       editable: false,
       headerAlign:'center',
       sortable:false,
-      renderCell: (params) => {
-          return <ul className='pendingvendercontent'>
-            <li className='content_item'> <span className='contactIcon'><MdOutlineEmail  color='#6B6F7A'/></span>{params.row.email}</li>
-            <li className='content_item'> <span className='contactIcon'><BsTelephone color='#6B6F7A'/></span>{params.row.Phone}</li>
-          </ul>
-      }
+      // renderCell: (params) => {
+      //     return <ul className='pendingvendercontent'>
+      //       <li className='content_item'> <span className='contactIcon'><MdOutlineEmail  color='#6B6F7A'/></span>{params.row.email}</li>
+      //       <li className='content_item'> <span className='contactIcon'><BsTelephone color='#6B6F7A'/></span>{params.row.Phone}</li>
+      //     </ul>
+      // }
     },
     {
       field: 'StoreName',
@@ -83,12 +71,12 @@ export default function AdminPanel() {
       minWidth: 120,
       editable: false,
       sortable:false,
-      renderCell: (params) => {
-          return <div className='padmingbtn'>
-            <span className='pandingDot'></span>
-            Pending
-          </div>
-      }
+      // renderCell: (params) => {
+      //     return <div className='padmingbtn'>
+      //       <span className='pandingDot'></span>
+      //       Pending
+      //     </div>
+      // }
     },
   ];
   // const rows = [
@@ -100,7 +88,8 @@ export default function AdminPanel() {
   //   { id: 6, userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Daniel Garcia', applyDate: 'Today 07:00 PM', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'Lex Weed', StoreType: 'Delivery', StoreStatus: 'Pending' },
   // ];
 
-  const rows= pendingstore
+  const rows = pendingstore
+
   const CustomFontTheme = createTheme({
     typography: {
         fontSize: 25
@@ -149,15 +138,111 @@ export default function AdminPanel() {
       }]
     },
   };
+  const [Data, SetData] = useState({})
+    //  Months//////////////////
+    let date = new Date()
+    const TodayDate = date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate()
+    const currentYear = new Date().getFullYear();
+    const lastYear = currentYear - 1;
+    const monthStartDate = new Date(date.getFullYear(), date.getMonth(), 2).toISOString().split('T')[0]
+    const monthlastDate = TodayDate
+    const lastmonthStartDate = new Date(date.getFullYear(), date.getMonth() - 1, 2).toISOString().split('T')[0]
+    const firstDayOfCurrentMonth = new Date(date.getFullYear(), date.getMonth(), 1);
+    const lastmonthLastDate = new Date(firstDayOfCurrentMonth - 1).toISOString().split('T')[0]
+    // End /////////////////
+    //    Week Calculate //////////////////////// 
+    const WeekCalculate = date.getDate() - date.getDay() + (date.getDay() === 0 ? - 6 : 1);
+    const StartDateWeek = new Date(date.setDate(WeekCalculate)).toISOString().split('T')[0]
+    // const previous =  new Date(date.setDate(date.getDate() - 1)).toISOString().split('T')[0]
+    function GetpreviousWeekDate(d, j) {
+        //   const today = new Date();
+        const dayOfWeek = date.getDay();  // 0 (Sunday) to 6 (Saturday)
+        const diff = dayOfWeek + d - j;
+        const startOfPreviousWeek = new Date(date);
+        startOfPreviousWeek.setDate(date.getDate() - diff);
+        return startOfPreviousWeek.toISOString().split('T')[0];
+    }
 
+    let yesterday = new Date(TodayDate)
+    yesterday.setDate(yesterday.getDate() - 1)
+    function convert(str) {
+        var date = new Date(str),
+            mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+            day = ("0" + date.getDate()).slice(-2);
+        return [date.getFullYear(), mnth, day].join("-");
+    }
+
+
+    function CalculateDays(date1) {
+        if (date1 === "first") {
+            const datefirst = new Date(state.CustomeStartDate)
+            const datesecond = new Date(state.CustomeEndDate)
+            const diffTime = Math.abs(datesecond - datefirst);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            var StartEndDate = new Date(state.CustomeEndDate);
+            StartEndDate.setDate(StartEndDate.getDate() - diffDays - 1);
+            var EndStartDate = new Date(state.CustomeStartDate);
+            EndStartDate.setDate(EndStartDate.getDate() - diffDays - 1);
+            return convert(EndStartDate.toString())
+        }
+        else {
+            const datefirst = new Date(state.CustomeStartDate)
+            const datesecond = new Date(state.CustomeEndDate)
+            const diffTime = Math.abs(datesecond - datefirst);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            var StartEndDate = new Date(state.CustomeEndDate);
+            StartEndDate.setDate(StartEndDate.getDate() - diffDays - 1);
+            var EndStartDate = new Date(state.CustomeStartDate);
+            EndStartDate.setDate(EndStartDate.getDate() - diffDays - 1);
+            // console.log(convert(StartEndDate.toString()), )
+            return convert(StartEndDate.toString())
+        }
+
+
+
+    }
+    React.useEffect(() => {
+        if (state.datesSelect === "Customics") {
+            if (state.CustomeStartDate !== "" && state.CustomeEndDate !== "") {
+                SetData({
+                    "SelectTime": state.datesSelect === "Year" ? "ThisYear" : state.datesSelect === "Months" ? 'ThisMonth' : state.datesSelect === "Today" ? 'Today' : state.datesSelect === "week" ? "week" : state.datesSelect === "Customics" && "costume",
+                    "StartDate": state.datesSelect === "Year" ? `${date.getFullYear()}-01-01` : state.datesSelect === "Months" ? monthStartDate : state.datesSelect === "week" ? StartDateWeek : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeStartDate,
+                    "EndDate": state.datesSelect === "Year" ? TodayDate : state.datesSelect === "Months" ? monthlastDate : state.datesSelect === "week" ? TodayDate : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeEndDate,
+                    "LastStartDate": state.datesSelect === "Year" ? `${lastYear}-01-01` : state.datesSelect === "Months" ? lastmonthStartDate : state.datesSelect === "week" ? GetpreviousWeekDate(7, 1) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('first'),  //yesterday.toISOString().split('T')[0]
+                    "EndStartDate": state.datesSelect === "Year" ? `${lastYear}-12-31` : state.datesSelect === "Months" ? lastmonthLastDate : state.datesSelect === "week" ? GetpreviousWeekDate(0, 0) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('Second')
+                })
+            }
+        }
+        else {
+            SetData({
+                "SelectTime": state.datesSelect === "Year" ? "ThisYear" : state.datesSelect === "Months" ? 'ThisMonth' : state.datesSelect === "Today" ? 'Today' : state.datesSelect === "week" ? "week" : state.datesSelect === "Customics" && "costume",
+                "StartDate": state.datesSelect === "Year" ? `${date.getFullYear()}-01-01` : state.datesSelect === "Months" ? monthStartDate : state.datesSelect === "week" ? StartDateWeek : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeStartDate,
+                "EndDate": state.datesSelect === "Year" ? TodayDate : state.datesSelect === "Months" ? monthlastDate : state.datesSelect === "week" ? TodayDate : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeEndDate,
+                "LastStartDate": state.datesSelect === "Year" ? `${lastYear}-01-01` : state.datesSelect === "Months" ? lastmonthStartDate : state.datesSelect === "week" ? GetpreviousWeekDate(7, 1) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('first'),  //yesterday.toISOString().split('T')[0]
+                "EndStartDate": state.datesSelect === "Year" ? `${lastYear}-12-31` : state.datesSelect === "Months" ? lastmonthLastDate : state.datesSelect === "week" ? GetpreviousWeekDate(0, 0) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('Second')
+            })
+        }
+    }, [state.datesSelect, state.CustomeStartDate, state.CustomeEndDate])
+
+    useEffect(() => {
+    if(Object.keys(Data).length !== 0){
+      axios.post('https://api.cannabaze.com/AdminPanel/AllPendingStores/',
+      Data
+      ,{
+        headers: {
+          'Authorization': `Bearer ${token_data}`
+        }
+      }).then((res)=>{
+        console.log(res.data)
+        setPendingStore((previous)=>res.data)
+      })
+    }
+    }, [Data])
+
+
+console.log(pendingstore)
  useEffect(()=>{
-    axios.post('https://api.cannabaze.com/AdminPanel/AllPendingStores/',{"SelectTime":"ThisYear","StartDate":"2023-01-01","EndDate":"2024-01-25"} ,{
-      headers: {
-        'Authorization': `Bearer ${token_data}`
-      }
-    }).then((res)=>{
-      setPendingStore(res.data)
-    })
+
  },[])
   return (
     <div className='row py-5 dashboardSection'>
@@ -182,7 +267,8 @@ export default function AdminPanel() {
       <div className='col-12 d-flex justify-content-between flex-md-nowrap flex-wrap gap-md-0 gap-5'>
         <div className='storeOwnerTable'>
             <div className='ownerlist'>
-            <Box sx={{
+            <Box
+             sx={{
                               
                               width: '100%',
                               '& .MuiDataGrid-columnHeaders': {
@@ -234,7 +320,7 @@ export default function AdminPanel() {
                             <ThemeProvider theme={CustomFontTheme}>
                                 <div style={{ width: '100%' }}>
                                     <DataGrid rows={rows} columns={columns} 
-                                              
+                                                  getRowId={(row) =>  row.UserName}
                                                 hideFooterPagination
                                                 hideFooterSelectedRowCount
                                                 rowsPerPageOptions={[5, 10, 20]}
