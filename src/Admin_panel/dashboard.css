@@ -105,6 +105,7 @@ h3.graphtitle {
 .dashboardTopCardWrapper {
   display: flex;
   justify-content: center;
+  background: #FFF;
 }
 .dashboardTopCardWrapper .dashboardTopCard {
   flex: 1;
@@ -319,4 +320,18 @@ h3.graphtitle {
   width: 14.2857142857%;
   height: 100%;
   display: inline-block;
+}
+
+.padmingbtn .pandingDot {
+  padding: 15px;
+}
+
+.ResendOrder {
+  background: rgba(237, 187, 95, 0.15);
+  color: #CDA252;
+}
+
+.ResendOrder1 {
+  background: rgba(81, 176, 157, 0.15);
+  color: #51B09D;
 }/*# sourceMappingURL=dashboard.css.map */

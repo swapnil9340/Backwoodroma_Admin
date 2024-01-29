@@ -1,9 +1,9 @@
-import React, { useContext,useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import StatusBarCard from './StatusBarCard'
 import ReactApexChart from 'react-apexcharts';
 import Createcontext from '../Hooks/Context/Context'
 import Productstorelist from './Productstorelist';
-import { ThemeProvider   } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import Box from '@mui/material/Box';
 import { createTheme } from "@mui/material/styles";
 import './dashboard.css';
@@ -14,12 +14,12 @@ import Areagraph from './Areagraph'
 import Recentorder from './Recentorder';
 import { MdOutlineEmail } from "react-icons/md";
 import { BsTelephone } from "react-icons/bs";
-import  axios  from 'axios';
+import axios from 'axios';
 import Cookies from 'universal-cookie'
 export default function AdminPanel() {
-  const { state  } = useContext(Createcontext)
+  const { state } = useContext(Createcontext)
   const cookies = new Cookies();
-  const [pendingstore, setPendingStore]= useState([])
+  const [pendingstore, setPendingStore] = useState([])
   const token_data = cookies.get('Token_access')
   const columns = [
 
@@ -28,22 +28,16 @@ export default function AdminPanel() {
       headerName: 'Name',
       minWidth: 150,
       editable: false,
-      sortable:false,
-      headerAlign:'left',
+      sortable: false,
+      headerAlign: 'left',
     },
     {
       field: 'MobileNo',
       headerName: 'Contact',
       minWidth: 200,
       editable: false,
-      headerAlign:'center',
-      sortable:false,
-      // renderCell: (params) => {
-      //     return <ul className='pendingvendercontent'>
-      //       <li className='content_item'> <span className='contactIcon'><MdOutlineEmail  color='#6B6F7A'/></span>{params.row.email}</li>
-      //       <li className='content_item'> <span className='contactIcon'><BsTelephone color='#6B6F7A'/></span>{params.row.Phone}</li>
-      //     </ul>
-      // }
+      headerAlign: 'center',
+      sortable: false,
     },
     {
       field: 'StoreName',
@@ -51,18 +45,18 @@ export default function AdminPanel() {
       type: 'number',
       minWidth: 150,
       editable: false,
-      sortable:false,
-      headerAlign:'left',
-      align:'left',
+      sortable: false,
+      headerAlign: 'left',
+      align: 'left',
     },
     {
       field: 'StoreType',
       headerName: 'Store Type',
-     
+
       editable: false,
-      sortable:false,
+      sortable: false,
       minWidth: 150,
-     
+
     },
     {
       field: 'StoreStatus',
@@ -70,7 +64,7 @@ export default function AdminPanel() {
       type: 'number',
       minWidth: 120,
       editable: false,
-      sortable:false,
+      sortable: false,
       // renderCell: (params) => {
       //     return <div className='padmingbtn'>
       //       <span className='pandingDot'></span>
@@ -92,25 +86,25 @@ export default function AdminPanel() {
 
   const CustomFontTheme = createTheme({
     typography: {
-        fontSize: 25
+      fontSize: 25
     },
     components: {
-        MuiContainer: {
-            styleOverrides: {
-                root: {
-                    fontSize: 24,
+      MuiContainer: {
+        styleOverrides: {
+          root: {
+            fontSize: 24,
 
-                }
-            }
-        },
+          }
+        }
+      },
     },
 
   });
   const locationchart = {
-          
-    series: [14, 23, 21, 17, 15, 10, 12, ],
+
+    series: [14, 23, 21, 17, 15, 10, 12,],
     options: {
-      colors : [ "#1E40AF", "#1D4ED8",  "#2563EB", "#3B82F6", "#60A5FA", "#93C5FD", "#BFDBFE"],
+      colors: ["#1E40AF", "#1D4ED8", "#2563EB", "#3B82F6", "#60A5FA", "#93C5FD", "#BFDBFE"],
       chart: {
         type: 'polarArea',
       },
@@ -118,7 +112,7 @@ export default function AdminPanel() {
         colors: ['#fff']
       },
       legend: {
-        show:false,
+        show: false,
         position: 'bottom'
       },
       fill: {
@@ -131,7 +125,7 @@ export default function AdminPanel() {
             width: 200
           },
           legend: {
-            show:false,
+            show: false,
             position: 'bottom'
           }
         }
@@ -139,111 +133,111 @@ export default function AdminPanel() {
     },
   };
   const [Data, SetData] = useState({})
-    //  Months//////////////////
-    let date = new Date()
-    const TodayDate = date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate()
-    const currentYear = new Date().getFullYear();
-    const lastYear = currentYear - 1;
-    const monthStartDate = new Date(date.getFullYear(), date.getMonth(), 2).toISOString().split('T')[0]
-    const monthlastDate = TodayDate
-    const lastmonthStartDate = new Date(date.getFullYear(), date.getMonth() - 1, 2).toISOString().split('T')[0]
-    const firstDayOfCurrentMonth = new Date(date.getFullYear(), date.getMonth(), 1);
-    const lastmonthLastDate = new Date(firstDayOfCurrentMonth - 1).toISOString().split('T')[0]
-    // End /////////////////
-    //    Week Calculate //////////////////////// 
-    const WeekCalculate = date.getDate() - date.getDay() + (date.getDay() === 0 ? - 6 : 1);
-    const StartDateWeek = new Date(date.setDate(WeekCalculate)).toISOString().split('T')[0]
-    // const previous =  new Date(date.setDate(date.getDate() - 1)).toISOString().split('T')[0]
-    function GetpreviousWeekDate(d, j) {
-        //   const today = new Date();
-        const dayOfWeek = date.getDay();  // 0 (Sunday) to 6 (Saturday)
-        const diff = dayOfWeek + d - j;
-        const startOfPreviousWeek = new Date(date);
-        startOfPreviousWeek.setDate(date.getDate() - diff);
-        return startOfPreviousWeek.toISOString().split('T')[0];
+  //  Months//////////////////
+  let date = new Date()
+  const TodayDate = date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate()
+  const currentYear = new Date().getFullYear();
+  const lastYear = currentYear - 1;
+  const monthStartDate = new Date(date.getFullYear(), date.getMonth(), 2).toISOString().split('T')[0]
+  const monthlastDate = TodayDate
+  const lastmonthStartDate = new Date(date.getFullYear(), date.getMonth() - 1, 2).toISOString().split('T')[0]
+  const firstDayOfCurrentMonth = new Date(date.getFullYear(), date.getMonth(), 1);
+  const lastmonthLastDate = new Date(firstDayOfCurrentMonth - 1).toISOString().split('T')[0]
+  // End /////////////////
+  //    Week Calculate //////////////////////// 
+  const WeekCalculate = date.getDate() - date.getDay() + (date.getDay() === 0 ? - 6 : 1);
+  const StartDateWeek = new Date(date.setDate(WeekCalculate)).toISOString().split('T')[0]
+  // const previous =  new Date(date.setDate(date.getDate() - 1)).toISOString().split('T')[0]
+  function GetpreviousWeekDate(d, j) {
+    //   const today = new Date();
+    const dayOfWeek = date.getDay();  // 0 (Sunday) to 6 (Saturday)
+    const diff = dayOfWeek + d - j;
+    const startOfPreviousWeek = new Date(date);
+    startOfPreviousWeek.setDate(date.getDate() - diff);
+    return startOfPreviousWeek.toISOString().split('T')[0];
+  }
+
+  let yesterday = new Date(TodayDate)
+  yesterday.setDate(yesterday.getDate() - 1)
+  function convert(str) {
+    var date = new Date(str),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day].join("-");
+  }
+
+
+  function CalculateDays(date1) {
+    if (date1 === "first") {
+      const datefirst = new Date(state.CustomeStartDate)
+      const datesecond = new Date(state.CustomeEndDate)
+      const diffTime = Math.abs(datesecond - datefirst);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      var StartEndDate = new Date(state.CustomeEndDate);
+      StartEndDate.setDate(StartEndDate.getDate() - diffDays - 1);
+      var EndStartDate = new Date(state.CustomeStartDate);
+      EndStartDate.setDate(EndStartDate.getDate() - diffDays - 1);
+      return convert(EndStartDate.toString())
+    }
+    else {
+      const datefirst = new Date(state.CustomeStartDate)
+      const datesecond = new Date(state.CustomeEndDate)
+      const diffTime = Math.abs(datesecond - datefirst);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      var StartEndDate = new Date(state.CustomeEndDate);
+      StartEndDate.setDate(StartEndDate.getDate() - diffDays - 1);
+      var EndStartDate = new Date(state.CustomeStartDate);
+      EndStartDate.setDate(EndStartDate.getDate() - diffDays - 1);
+      // console.log(convert(StartEndDate.toString()), )
+      return convert(StartEndDate.toString())
     }
 
-    let yesterday = new Date(TodayDate)
-    yesterday.setDate(yesterday.getDate() - 1)
-    function convert(str) {
-        var date = new Date(str),
-            mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-            day = ("0" + date.getDate()).slice(-2);
-        return [date.getFullYear(), mnth, day].join("-");
+
+
+  }
+  React.useEffect(() => {
+    if (state.datesSelect === "Customics") {
+      if (state.CustomeStartDate !== "" && state.CustomeEndDate !== "") {
+        SetData({
+          "SelectTime": state.datesSelect === "Year" ? "ThisYear" : state.datesSelect === "Months" ? 'ThisMonth' : state.datesSelect === "Today" ? 'Today' : state.datesSelect === "week" ? "week" : state.datesSelect === "Customics" && "costume",
+          "StartDate": state.datesSelect === "Year" ? `${date.getFullYear()}-01-01` : state.datesSelect === "Months" ? monthStartDate : state.datesSelect === "week" ? StartDateWeek : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeStartDate,
+          "EndDate": state.datesSelect === "Year" ? TodayDate : state.datesSelect === "Months" ? monthlastDate : state.datesSelect === "week" ? TodayDate : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeEndDate,
+          "LastStartDate": state.datesSelect === "Year" ? `${lastYear}-01-01` : state.datesSelect === "Months" ? lastmonthStartDate : state.datesSelect === "week" ? GetpreviousWeekDate(7, 1) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('first'),  //yesterday.toISOString().split('T')[0]
+          "EndStartDate": state.datesSelect === "Year" ? `${lastYear}-12-31` : state.datesSelect === "Months" ? lastmonthLastDate : state.datesSelect === "week" ? GetpreviousWeekDate(0, 0) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('Second')
+        })
+      }
     }
-
-
-    function CalculateDays(date1) {
-        if (date1 === "first") {
-            const datefirst = new Date(state.CustomeStartDate)
-            const datesecond = new Date(state.CustomeEndDate)
-            const diffTime = Math.abs(datesecond - datefirst);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            var StartEndDate = new Date(state.CustomeEndDate);
-            StartEndDate.setDate(StartEndDate.getDate() - diffDays - 1);
-            var EndStartDate = new Date(state.CustomeStartDate);
-            EndStartDate.setDate(EndStartDate.getDate() - diffDays - 1);
-            return convert(EndStartDate.toString())
-        }
-        else {
-            const datefirst = new Date(state.CustomeStartDate)
-            const datesecond = new Date(state.CustomeEndDate)
-            const diffTime = Math.abs(datesecond - datefirst);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            var StartEndDate = new Date(state.CustomeEndDate);
-            StartEndDate.setDate(StartEndDate.getDate() - diffDays - 1);
-            var EndStartDate = new Date(state.CustomeStartDate);
-            EndStartDate.setDate(EndStartDate.getDate() - diffDays - 1);
-            // console.log(convert(StartEndDate.toString()), )
-            return convert(StartEndDate.toString())
-        }
-
-
-
-    }
-    React.useEffect(() => {
-        if (state.datesSelect === "Customics") {
-            if (state.CustomeStartDate !== "" && state.CustomeEndDate !== "") {
-                SetData({
-                    "SelectTime": state.datesSelect === "Year" ? "ThisYear" : state.datesSelect === "Months" ? 'ThisMonth' : state.datesSelect === "Today" ? 'Today' : state.datesSelect === "week" ? "week" : state.datesSelect === "Customics" && "costume",
-                    "StartDate": state.datesSelect === "Year" ? `${date.getFullYear()}-01-01` : state.datesSelect === "Months" ? monthStartDate : state.datesSelect === "week" ? StartDateWeek : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeStartDate,
-                    "EndDate": state.datesSelect === "Year" ? TodayDate : state.datesSelect === "Months" ? monthlastDate : state.datesSelect === "week" ? TodayDate : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeEndDate,
-                    "LastStartDate": state.datesSelect === "Year" ? `${lastYear}-01-01` : state.datesSelect === "Months" ? lastmonthStartDate : state.datesSelect === "week" ? GetpreviousWeekDate(7, 1) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('first'),  //yesterday.toISOString().split('T')[0]
-                    "EndStartDate": state.datesSelect === "Year" ? `${lastYear}-12-31` : state.datesSelect === "Months" ? lastmonthLastDate : state.datesSelect === "week" ? GetpreviousWeekDate(0, 0) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('Second')
-                })
-            }
-        }
-        else {
-            SetData({
-                "SelectTime": state.datesSelect === "Year" ? "ThisYear" : state.datesSelect === "Months" ? 'ThisMonth' : state.datesSelect === "Today" ? 'Today' : state.datesSelect === "week" ? "week" : state.datesSelect === "Customics" && "costume",
-                "StartDate": state.datesSelect === "Year" ? `${date.getFullYear()}-01-01` : state.datesSelect === "Months" ? monthStartDate : state.datesSelect === "week" ? StartDateWeek : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeStartDate,
-                "EndDate": state.datesSelect === "Year" ? TodayDate : state.datesSelect === "Months" ? monthlastDate : state.datesSelect === "week" ? TodayDate : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeEndDate,
-                "LastStartDate": state.datesSelect === "Year" ? `${lastYear}-01-01` : state.datesSelect === "Months" ? lastmonthStartDate : state.datesSelect === "week" ? GetpreviousWeekDate(7, 1) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('first'),  //yesterday.toISOString().split('T')[0]
-                "EndStartDate": state.datesSelect === "Year" ? `${lastYear}-12-31` : state.datesSelect === "Months" ? lastmonthLastDate : state.datesSelect === "week" ? GetpreviousWeekDate(0, 0) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('Second')
-            })
-        }
-    }, [state.datesSelect, state.CustomeStartDate, state.CustomeEndDate])
-
-    useEffect(() => {
-    if(Object.keys(Data).length !== 0){
-      axios.post('https://api.cannabaze.com/AdminPanel/AllPendingStores/',
-      Data
-      ,{
-        headers: {
-          'Authorization': `Bearer ${token_data}`
-        }
-      }).then((res)=>{
-        console.log(res.data)
-        setPendingStore((previous)=>res.data)
+    else {
+      SetData({
+        "SelectTime": state.datesSelect === "Year" ? "ThisYear" : state.datesSelect === "Months" ? 'ThisMonth' : state.datesSelect === "Today" ? 'Today' : state.datesSelect === "week" ? "week" : state.datesSelect === "Customics" && "costume",
+        "StartDate": state.datesSelect === "Year" ? `${date.getFullYear()}-01-01` : state.datesSelect === "Months" ? monthStartDate : state.datesSelect === "week" ? StartDateWeek : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeStartDate,
+        "EndDate": state.datesSelect === "Year" ? TodayDate : state.datesSelect === "Months" ? monthlastDate : state.datesSelect === "week" ? TodayDate : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeEndDate,
+        "LastStartDate": state.datesSelect === "Year" ? `${lastYear}-01-01` : state.datesSelect === "Months" ? lastmonthStartDate : state.datesSelect === "week" ? GetpreviousWeekDate(7, 1) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('first'),  //yesterday.toISOString().split('T')[0]
+        "EndStartDate": state.datesSelect === "Year" ? `${lastYear}-12-31` : state.datesSelect === "Months" ? lastmonthLastDate : state.datesSelect === "week" ? GetpreviousWeekDate(0, 0) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('Second')
       })
     }
-    }, [Data])
+  }, [state.datesSelect, state.CustomeStartDate, state.CustomeEndDate])
+
+  useEffect(() => {
+    if (Object.keys(Data).length !== 0) {
+      axios.post('https://api.cannabaze.com/AdminPanel/AllPendingStores/',
+        Data
+        , {
+          headers: {
+            'Authorization': `Bearer ${token_data}`
+          }
+        }).then((res) => {
+          console.log(res.data)
+          setPendingStore((previous) => res.data)
+        })
+    }
+  }, [Data])
 
 
-console.log(pendingstore)
- useEffect(()=>{
+  console.log(pendingstore)
+  useEffect(() => {
 
- },[])
+  }, [])
   return (
     <div className='row py-5 dashboardSection'>
 
@@ -253,197 +247,197 @@ console.log(pendingstore)
       <div className='col-12'>
         <div className='dashboardHerosection'>
           <div className='totalUser bg-white'>
-             <Areagraph/>
+            <Areagraph />
           </div>
-          <div className='topProducts'><Productstorelist title={"Top Product"}/></div>
-          <div className='topProducts'><Productstorelist title={"Top Store"}/></div>
-          <div className='topProducts'><Productstorelist title={"Visited Store"}/></div>
+          <div className='topProducts'><Productstorelist title={"Top Product"} /></div>
+          <div className='topProducts'><Productstorelist title={"Top Store"} /></div>
+          <div className='topProducts'><Productstorelist title={"Visited Store"} /></div>
           <div className='topProducts'>
-             <TotalSales/>
+            <TotalSales />
           </div>
         </div>
-       
+
       </div>
       <div className='col-12 d-flex justify-content-between flex-md-nowrap flex-wrap gap-md-0 gap-5'>
         <div className='storeOwnerTable'>
-            <div className='ownerlist'>
+          <div className='ownerlist'>
             <Box
-             sx={{
-                              
-                              width: '100%',
-                              '& .MuiDataGrid-columnHeaders': {
-                                  backgroundColor: '#fff',
-                                  color:'#B5B7C0'
-                              },
-                              '& .MuiButton-root': {
-                                  color: "#FFFFFF",
-                                  display: "flex",
-                                  width: "200px"
-                              },
-                              "& .MuiDataGrid-root":{
-                                   border:'none',
-                              },
-                               // check
-                               ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
-                                  outline:"none"
-                                },
-     
-                              "@media(max-width:767px)": {
-                                  '& .MuiButton-root': {
-                                      display: "contents",
-                                      width: "150px",
-                                      margin: "2px",
-                                      fontSize: "14px"
-                                  },
-     
-                              },
-                              "@media(max-width:546px)": {
-                                  '& .MuiButton-root': {
-                                      display: "contents",
-                                      width: "150px",
-                                      fontSize: "9px"
-                                  },
-     
-                              },
-                              "@media(min-width:768px)": {
-                                  '& .MuiButton-root': {
-                                      width: "110px",
-                                      margin: "2px",
-                                      fontSize: "14px"
-                                  },
-     
-                                  "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                      width: "120px"
-                                  }
-                              }
-                        }}>
-                            <ThemeProvider theme={CustomFontTheme}>
-                                <div style={{ width: '100%' }}>
-                                    <DataGrid rows={rows} columns={columns} 
-                                                  getRowId={(row) =>  row.UserName}
-                                                hideFooterPagination
-                                                hideFooterSelectedRowCount
-                                                rowsPerPageOptions={[5, 10, 20]}
-                                                autoHeight
-                                                disableColumnMenu
-                                                disableColumnFilter
-                                                disableColumnSelector
-                      
-                                        sx={{
-                                            "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                                outline: "none",
-                                            },
-                                            "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
-                                                outline: "none"
-                                            },
-                                            "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
-                                                outline: "none",
+              sx={{
 
-                                            },
-                                            "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
-                                                backgroundColor: "#FFFFFF"
-                                            },
-                                         
-                                            width: '100%',
-                                            "@media(max-width:768px)": {
-                                                ".MuiDataGrid-toolbarContainer": {
-                                                    gap: "10px",
+                width: '100%',
+                '& .MuiDataGrid-columnHeaders': {
+                  backgroundColor: '#fff',
+                  color: '#B5B7C0'
+                },
+                '& .MuiButton-root': {
+                  color: "#FFFFFF",
+                  display: "flex",
+                  width: "200px"
+                },
+                "& .MuiDataGrid-root": {
+                  border: 'none',
+                },
+                // check
+                ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within": {
+                  outline: "none"
+                },
 
-                                                }
-                                            },
-                                            "@media(max-width:546px)": {
-                                                ".MuiDataGrid-toolbarContainer": {
-                                                    gap: "5px",
+                "@media(max-width:767px)": {
+                  '& .MuiButton-root': {
+                    display: "contents",
+                    width: "150px",
+                    margin: "2px",
+                    fontSize: "14px"
+                  },
 
-                                                }
-                                            },
-                                            ".MuiDataGrid-toolbarContainer": {
-                                                flexDirection: "block",
+                },
+                "@media(max-width:546px)": {
+                  '& .MuiButton-root': {
+                    display: "contents",
+                    width: "150px",
+                    fontSize: "9px"
+                  },
 
-                                                backgroundColor: "#31B665",
-                                                width: {
-                                                    xs: "100%",
-                                                    sm: "100%",
-                                                    md: "100%",
-                                                    lg: "100%",
-                                                    xl: "100%"
+                },
+                "@media(min-width:768px)": {
+                  '& .MuiButton-root': {
+                    width: "110px",
+                    margin: "2px",
+                    fontSize: "14px"
+                  },
 
-                                                },
-                                            },
-                                            "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                                                visibility: "hidden"
-                                            },
-                                            "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                                width: "120px"
-                                            }
+                  "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                    width: "120px"
+                  }
+                }
+              }}>
+              <ThemeProvider theme={CustomFontTheme}>
+                <div style={{ width: '100%' }}>
+                  <DataGrid rows={rows} columns={columns}
+                    getRowId={(row) => row.UserName}
+                    hideFooterPagination
+                    hideFooterSelectedRowCount
+                    rowsPerPageOptions={[5, 10, 20]}
+                    autoHeight
+                    disableColumnMenu
+                    disableColumnFilter
+                    disableColumnSelector
 
-                                        }}
-                                    />
-                                </div>
-                            </ThemeProvider>
+                    sx={{
+                      "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
+                        outline: "none",
+                      },
+                      "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
+                        outline: "none"
+                      },
+                      "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
+                        outline: "none",
+
+                      },
+                      "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
+                        backgroundColor: "#FFFFFF"
+                      },
+
+                      width: '100%',
+                      "@media(max-width:768px)": {
+                        ".MuiDataGrid-toolbarContainer": {
+                          gap: "10px",
+
+                        }
+                      },
+                      "@media(max-width:546px)": {
+                        ".MuiDataGrid-toolbarContainer": {
+                          gap: "5px",
+
+                        }
+                      },
+                      ".MuiDataGrid-toolbarContainer": {
+                        flexDirection: "block",
+
+                        backgroundColor: "#31B665",
+                        width: {
+                          xs: "100%",
+                          sm: "100%",
+                          md: "100%",
+                          lg: "100%",
+                          xl: "100%"
+
+                        },
+                      },
+                      "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
+                        visibility: "hidden"
+                      },
+                      "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                        width: "120px"
+                      }
+
+                    }}
+                  />
+                </div>
+              </ThemeProvider>
             </Box>
-            </div>
-            <div className='viewButton'>
-             <Link to={'/'}> <span>View All</span></Link>
-            </div>
+          </div>
+          <div className='viewButton'>
+            <Link to={'/'}> <span>View All</span></Link>
+          </div>
         </div>
         <div className='locationGraph'>
-             <div className='locationGraph_header'>
-               <h3 className='locationGraph_headertitle'>Popular Location</h3>
-               <Link><span>View Details</span></Link>
-             </div>
-             <div className='locationContent'>
-              <div className='locationList'>
-                  <div className='locationListHeader'>
-                    <span>Location</span>
-                    <span>Amount</span>
-                  </div>
-                  <div className='locationListItem'>
-                      
-                       <span className='locationName'>   <span className='colorCircle' style={{backgroundColor:'#1E40AF'}}></span> New York</span>
-                       <span className='locationAmount'>6,806</span>
-                  </div>
-                  <div className='locationListItem'>
-                      
-                      <span className='locationName'>   <span className='colorCircle' style={{backgroundColor:'#1D4ED8'}}></span> Phoenix</span>
-                      <span className='locationAmount'>6,806</span>
-                 </div>
-                 <div className='locationListItem'>
-                      
-                      <span className='locationName'>   <span className='colorCircle' style={{backgroundColor:'#2563EB'}}></span> Chicago</span>
-                      <span className='locationAmount'>2000</span>
-                 </div>
-                 <div className='locationListItem'>
-                      
-                      <span className='locationName'>   <span className='colorCircle' style={{backgroundColor:'#3B82F6'}}></span> Philadelphia </span>
-                      <span className='locationAmount'>1600</span>
-                 </div>
-                 <div className='locationListItem'>
-                      
-                      <span className='locationName'>   <span className='colorCircle' style={{backgroundColor:'#60A5FA'}}></span>  Los Angeles </span>
-                      <span className='locationAmount'>806</span>
-                 </div>
-                 <div className='locationListItem'>
-                      
-                      <span className='locationName'>   <span className='colorCircle' style={{backgroundColor:'#93C5FD'}}></span> Dallas</span>
-                      <span className='locationAmount'>566</span>
-                 </div>
-                 <div className='locationListItem'>
-                      
-                      <span className='locationName'>   <span className='colorCircle' style={{backgroundColor:'#BFDBFE'}}></span> Oklahoma City </span>
-                      <span className='locationAmount'>566</span>
-                 </div>
+          <div className='locationGraph_header'>
+            <h3 className='locationGraph_headertitle'>Popular Location</h3>
+            <Link><span>View Details</span></Link>
+          </div>
+          <div className='locationContent'>
+            <div className='locationList'>
+              <div className='locationListHeader'>
+                <span>Location</span>
+                <span>Amount</span>
               </div>
-              <div className='locationGrapharea'>
-                <ReactApexChart options={locationchart.options} series={locationchart.series} type="polarArea" />
+              <div className='locationListItem'>
+
+                <span className='locationName'>   <span className='colorCircle' style={{ backgroundColor: '#1E40AF' }}></span> New York</span>
+                <span className='locationAmount'>6,806</span>
               </div>
-           </div>
-       </div>
+              <div className='locationListItem'>
+
+                <span className='locationName'>   <span className='colorCircle' style={{ backgroundColor: '#1D4ED8' }}></span> Phoenix</span>
+                <span className='locationAmount'>6,806</span>
+              </div>
+              <div className='locationListItem'>
+
+                <span className='locationName'>   <span className='colorCircle' style={{ backgroundColor: '#2563EB' }}></span> Chicago</span>
+                <span className='locationAmount'>2000</span>
+              </div>
+              <div className='locationListItem'>
+
+                <span className='locationName'>   <span className='colorCircle' style={{ backgroundColor: '#3B82F6' }}></span> Philadelphia </span>
+                <span className='locationAmount'>1600</span>
+              </div>
+              <div className='locationListItem'>
+
+                <span className='locationName'>   <span className='colorCircle' style={{ backgroundColor: '#60A5FA' }}></span>  Los Angeles </span>
+                <span className='locationAmount'>806</span>
+              </div>
+              <div className='locationListItem'>
+
+                <span className='locationName'>   <span className='colorCircle' style={{ backgroundColor: '#93C5FD' }}></span> Dallas</span>
+                <span className='locationAmount'>566</span>
+              </div>
+              <div className='locationListItem'>
+
+                <span className='locationName'>   <span className='colorCircle' style={{ backgroundColor: '#BFDBFE' }}></span> Oklahoma City </span>
+                <span className='locationAmount'>566</span>
+              </div>
+            </div>
+            <div className='locationGrapharea'>
+              <ReactApexChart options={locationchart.options} series={locationchart.series} type="polarArea" />
+            </div>
+          </div>
+        </div>
       </div>
       <div className='col-12 my-3'>
-        <Recentorder/>
+        <Recentorder />
       </div>
-    
+
     </div>
   )
 }

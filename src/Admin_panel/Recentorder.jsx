@@ -130,10 +130,10 @@ const Recentorder = () => {
       headerAlign: 'left',
       align: 'left',
       renderCell: (params) => {
-        return <div className='padmingbtn'>
-          <span className='pandingDot'> </span>
-          {params.row.Order_Status}
+        return <div className={`${params.row.Order_Status === "Pending" ? 'ResendOrder' : "ResendOrder1 "} padmingbtn `}>
+          <span className={` pandingDot`} > {params.row.Order_Status} </span>
         </div>
+
       }
     },
   ];
