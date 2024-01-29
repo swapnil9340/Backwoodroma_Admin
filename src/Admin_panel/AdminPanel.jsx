@@ -234,10 +234,23 @@ export default function AdminPanel() {
   }, [Data])
 
 
-  console.log(pendingstore)
-  useEffect(() => {
+   const [Data1 , SetData1] =  React.useState([])
+  React.useEffect(() => {
+    axios.post("https://api.cannabaze.com/AdminPanel/TopProduct/",
+    {"SelectTime":"year","StartDate":"2023-01-29","EndDate":"2024-01-29"},
+      {
+        headers: {
+          'Authorization': `Bearer ${token_data}`
+        }
+      }).then(response => {
+        console.log(response)
+        SetData1(response.data)
 
+      })
   }, [])
+
+
+  console.log(Data1)
   return (
     <div className='row py-5 dashboardSection'>
 
@@ -249,7 +262,7 @@ export default function AdminPanel() {
           <div className='totalUser bg-white'>
             <Areagraph />
           </div>
-          <div className='topProducts'><Productstorelist title={"Top Product"} /></div>
+          <div className='topProducts'><Productstorelist title={"Top Product"}  Data1={Data1}/></div>
           <div className='topProducts'><Productstorelist title={"Top Store"} /></div>
           <div className='topProducts'><Productstorelist title={"Visited Store"} /></div>
           <div className='topProducts'>

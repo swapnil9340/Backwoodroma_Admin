@@ -106,66 +106,66 @@ export default function StatusBarCard() {
     }, [state.datesSelect, state.CustomeStartDate, state.CustomeEndDate])
 
     useEffect(() => {
-    if(Object.keys(Data).length !== 0){
-        axios.post("https://api.cannabaze.com/AdminPanel/TotalStore/",
-        Data,
-        {
-            headers: {
-                'Authorization': `Bearer ${token_data}`
-            }
-        }).then(response => {
-            setTotal(response.data[0])
+        if (Object.keys(Data).length !== 0) {
+            axios.post("https://api.cannabaze.com/AdminPanel/TotalStore/",
+                Data,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token_data}`
+                    }
+                }).then(response => {
+                    setTotal(response.data[0])
 
-        })
-    axios.post("https://api.cannabaze.com/AdminPanel/VendorCard/",
-        Data,
-        {
-            headers: {
-                'Authorization': `Bearer ${token_data}`
-            }
-        }).then(response => {
-            setVendor(response.data[0])
-        })
-    axios.post("https://api.cannabaze.com/AdminPanel/TotalSalesCard/",
-        Data,
-        {
-            headers: {
-                'Authorization': `Bearer ${token_data}`
-            }
-        }).then(response => {
-            SetTotalSale(response.data[0])
-        })
-    axios.post("https://api.cannabaze.com/AdminPanel/TotalOrderCard/",
-        Data,
-        {
-            headers: {
-                'Authorization': `Bearer ${token_data}`
-            }
-        }).then(response => {
-            console.log(response.data[0])
-            Setorder(response.data[0])
-        })
-    axios.post("https://api.cannabaze.com/AdminPanel/ProductDashBoardCard/",
-        Data,
-        {
-            headers: {
-                'Authorization': `Bearer ${token_data}`
-            }
-        }).then(response => {
-            SetProduct(response.data[0])
+                })
+            axios.post("https://api.cannabaze.com/AdminPanel/VendorCard/",
+                Data,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token_data}`
+                    }
+                }).then(response => {
+                    setVendor(response.data[0])
+                })
+            axios.post("https://api.cannabaze.com/AdminPanel/TotalSalesCard/",
+                Data,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token_data}`
+                    }
+                }).then(response => {
+                    SetTotalSale(response.data[0])
+                })
+            axios.post("https://api.cannabaze.com/AdminPanel/TotalOrderCard/",
+                Data,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token_data}`
+                    }
+                }).then(response => {
+                    console.log(response.data[0])
+                    Setorder(response.data[0])
+                })
+            axios.post("https://api.cannabaze.com/AdminPanel/ProductDashBoardCard/",
+                Data,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token_data}`
+                    }
+                }).then(response => {
+                    SetProduct(response.data[0])
 
-        })
-    axios.post("https://api.cannabaze.com/AdminPanel/CustomerDashBoardCard/",
-        Data,
-        {
-            headers: {
-                'Authorization': `Bearer ${token_data}`
-            }
-        }).then(response => {
-            SetCustomer(response.data[0])
-        })
+                })
+            axios.post("https://api.cannabaze.com/AdminPanel/CustomerDashBoardCard/",
+                Data,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token_data}`
+                    }
+                }).then(response => {
+                    SetCustomer(response.data[0])
+                })
 
-    }
+        }
     }, [Data])
     return (
 
@@ -218,7 +218,7 @@ export default function StatusBarCard() {
                                     {Vendor?.Growth ? <span><IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
                                         : <span><MdArrowDownward size={18} color="#D0004B" /></span>
                                     }
-                                    <span style={{ color: Vendor?.Growth ? "#00AC4F" : "#D0004B" }}>{isNaN(Math?.abs(Vendor?.percentage)) ? 0:Math?.abs(Vendor?.percentage)}%</span>
+                                    <span style={{ color: Vendor?.Growth ? "#00AC4F" : "#D0004B" }}>{isNaN(Math?.abs(Vendor?.percentage)) ? 0 : Math?.abs(Vendor?.percentage)}%</span>
                                     <span style={{ color: "black" }}> {state.datesSelect}</span>
                                 </p>
                             </div>
@@ -244,9 +244,9 @@ export default function StatusBarCard() {
                                 <p className="Card_Total" >${TotalSale?.totalsale}</p>
                                 <p className="card_hadding" >
                                     {TotalSale?.Growth ? <span>< IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
-                                    :<span><MdArrowDownward size={18} color="#D0004B" /></span>
+                                        : <span><MdArrowDownward size={18} color="#D0004B" /></span>
                                     }
-                                    <span style={{ color:TotalSale?.Growth  ?"#00AC4F"  :"#D0004B" }}>{isNaN(Math.abs(TotalSale?.percentage))? 0 :Math.abs(TotalSale?.percentage)}%</span>
+                                    <span style={{ color: TotalSale?.Growth ? "#00AC4F" : "#D0004B" }}>{isNaN(Math.abs(TotalSale?.percentage)) ? 0 : Math.abs(TotalSale?.percentage)}%</span>
                                     <span style={{ color: "black" }}>{state.datesSelect}</span>
                                 </p>
                             </div>
@@ -274,7 +274,7 @@ export default function StatusBarCard() {
                                 <p className="card_hadding" >
                                     {Totalorder?.Growth ? <span>< IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
                                         : <span><MdArrowDownward size={18} color="#D0004B" /></span>}
-                                    <span style={{ color: Totalorder?.Growth ? "#00AC4F" : "#D0004B" }}> {isNaN(Math.abs(Totalorder?.percentage)) ?0 : Math.abs(Totalorder?.percentage) }% </span>
+                                    <span style={{ color: Totalorder?.Growth ? "#00AC4F" : "#D0004B" }}> {isNaN(Math.abs(Totalorder?.percentage)) ? 0 : Math.abs(Totalorder?.percentage)}% </span>
                                     <span style={{ color: "black" }}>{state.datesSelect}</span>
                                 </p>
                             </div>
@@ -331,7 +331,7 @@ export default function StatusBarCard() {
                                     {Customer?.Growth ? <span>< IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
                                         : <span><MdArrowDownward size={18} color="#D0004B" /></span>}
                                     {/* <span><IoIosArrowRoundUp size={18} color="#00AC4F" /></span> */}
-                                    <span style={{ color: Customer?.Growth ? "#00AC4F" : '#D0004B' }}>{isNaN(Math.abs(Customer?.percentage)) ? 0 : Math.abs(Customer?.percentage) }% </span>
+                                    <span style={{ color: Customer?.Growth ? "#00AC4F" : '#D0004B' }}>{isNaN(Math.abs(Customer?.percentage)) ? 0 : Math.abs(Customer?.percentage)}% </span>
                                     <span style={{ color: "black" }}>{state.datesSelect}</span>
                                 </p>
                             </div>
