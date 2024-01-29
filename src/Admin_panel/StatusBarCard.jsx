@@ -19,7 +19,7 @@ export default function StatusBarCard() {
     const [Totalorder, Setorder] = useState()
     const [Product, SetProduct] = useState()
     const [Customer, SetCustomer] = useState()
-
+    const [Data, SetData] = useState({})
     //  Months//////////////////
     let date = new Date()
     const TodayDate = date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate()
@@ -46,25 +46,70 @@ export default function StatusBarCard() {
 
     let yesterday = new Date(TodayDate)
     yesterday.setDate(yesterday.getDate() - 1)
-
-
-
-    const datedata = {
-        "SelectTime": state.datesSelect === "Year" ? "ThisYear" : state.datesSelect === "Months" ? 'ThisMonth' : state.datesSelect === "Today" ? 'Today' : state.datesSelect === "week" ? "week" : state.datesSelect === "Customics" && "costume",
-        "StartDate": state.datesSelect === "Year" ? `${date.getFullYear()}-01-01` : state.datesSelect === "Months" ? monthStartDate : state.datesSelect === "week" ? StartDateWeek : state.datesSelect === "Today" ? TodayDate : "",
-        "EndDate": state.datesSelect === "Year" ? TodayDate : state.datesSelect === "Months" ? monthlastDate : state.datesSelect === "week" ? TodayDate : state.datesSelect === "Today" ? TodayDate : "",
-        "LastStartDate": state.datesSelect === "Year" ? `${lastYear}-01-01` : state.datesSelect === "Months" ? lastmonthStartDate : state.datesSelect === "week" ? GetpreviousWeekDate(7, 1) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : "",  //yesterday.toISOString().split('T')[0]
-        "EndStartDate": state.datesSelect === "Year" ? `${lastYear}-12-31` : state.datesSelect === "Months" ? lastmonthLastDate : state.datesSelect === "week" ? GetpreviousWeekDate(0, 0) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : ""
+    function convert(str) {
+        var date = new Date(str),
+            mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+            day = ("0" + date.getDate()).slice(-2);
+        return [date.getFullYear(), mnth, day].join("-");
     }
-//    const k =  state?.CustomeEndDate &&  new Date(state?.CustomeEndDate)
-//     console.log( state?.CustomeEndDate.toLocaleDateString("en-US").toISOString().split('T')[0])
 
+
+    function CalculateDays(date1) {
+        if (date1 === "first") {
+            const datefirst = new Date(state.CustomeStartDate)
+            const datesecond = new Date(state.CustomeEndDate)
+            const diffTime = Math.abs(datesecond - datefirst);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            var StartEndDate = new Date(state.CustomeEndDate);
+            StartEndDate.setDate(StartEndDate.getDate() - diffDays - 1);
+            var EndStartDate = new Date(state.CustomeStartDate);
+            EndStartDate.setDate(EndStartDate.getDate() - diffDays - 1);
+            return convert(EndStartDate.toString())
+        }
+        else {
+            const datefirst = new Date(state.CustomeStartDate)
+            const datesecond = new Date(state.CustomeEndDate)
+            const diffTime = Math.abs(datesecond - datefirst);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            var StartEndDate = new Date(state.CustomeEndDate);
+            StartEndDate.setDate(StartEndDate.getDate() - diffDays - 1);
+            var EndStartDate = new Date(state.CustomeStartDate);
+            EndStartDate.setDate(EndStartDate.getDate() - diffDays - 1);
+            // console.log(convert(StartEndDate.toString()), )
+            return convert(StartEndDate.toString())
+        }
+
+
+
+    }
+    React.useEffect(() => {
+        if (state.datesSelect === "Customics") {
+            if (state.CustomeStartDate !== "" && state.CustomeEndDate !== "") {
+                SetData({
+                    "SelectTime": state.datesSelect === "Year" ? "ThisYear" : state.datesSelect === "Months" ? 'ThisMonth' : state.datesSelect === "Today" ? 'Today' : state.datesSelect === "week" ? "week" : state.datesSelect === "Customics" && "costume",
+                    "StartDate": state.datesSelect === "Year" ? `${date.getFullYear()}-01-01` : state.datesSelect === "Months" ? monthStartDate : state.datesSelect === "week" ? StartDateWeek : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeStartDate,
+                    "EndDate": state.datesSelect === "Year" ? TodayDate : state.datesSelect === "Months" ? monthlastDate : state.datesSelect === "week" ? TodayDate : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeEndDate,
+                    "LastStartDate": state.datesSelect === "Year" ? `${lastYear}-01-01` : state.datesSelect === "Months" ? lastmonthStartDate : state.datesSelect === "week" ? GetpreviousWeekDate(7, 1) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('first'),  //yesterday.toISOString().split('T')[0]
+                    "EndStartDate": state.datesSelect === "Year" ? `${lastYear}-12-31` : state.datesSelect === "Months" ? lastmonthLastDate : state.datesSelect === "week" ? GetpreviousWeekDate(0, 0) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('Second')
+                })
+            }
+        }
+        else {
+            SetData({
+                "SelectTime": state.datesSelect === "Year" ? "ThisYear" : state.datesSelect === "Months" ? 'ThisMonth' : state.datesSelect === "Today" ? 'Today' : state.datesSelect === "week" ? "week" : state.datesSelect === "Customics" && "costume",
+                "StartDate": state.datesSelect === "Year" ? `${date.getFullYear()}-01-01` : state.datesSelect === "Months" ? monthStartDate : state.datesSelect === "week" ? StartDateWeek : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeStartDate,
+                "EndDate": state.datesSelect === "Year" ? TodayDate : state.datesSelect === "Months" ? monthlastDate : state.datesSelect === "week" ? TodayDate : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeEndDate,
+                "LastStartDate": state.datesSelect === "Year" ? `${lastYear}-01-01` : state.datesSelect === "Months" ? lastmonthStartDate : state.datesSelect === "week" ? GetpreviousWeekDate(7, 1) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('first'),  //yesterday.toISOString().split('T')[0]
+                "EndStartDate": state.datesSelect === "Year" ? `${lastYear}-12-31` : state.datesSelect === "Months" ? lastmonthLastDate : state.datesSelect === "week" ? GetpreviousWeekDate(0, 0) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('Second')
+            })
+        }
+    }, [state.datesSelect, state.CustomeStartDate, state.CustomeEndDate])
+
+    // const datedata = 
 
     useEffect(() => {
-
-
         axios.post("https://api.cannabaze.com/AdminPanel/TotalStore/",
-            datedata,
+            Data,
             {
                 headers: {
                     'Authorization': `Bearer ${token_data}`
@@ -74,7 +119,7 @@ export default function StatusBarCard() {
 
             })
         axios.post("https://api.cannabaze.com/AdminPanel/VendorCard/",
-            datedata,
+            Data,
             {
                 headers: {
                     'Authorization': `Bearer ${token_data}`
@@ -83,7 +128,7 @@ export default function StatusBarCard() {
                 setVendor(response.data[0])
             })
         axios.post("https://api.cannabaze.com/AdminPanel/TotalSalesCard/",
-            datedata,
+            Data,
             {
                 headers: {
                     'Authorization': `Bearer ${token_data}`
@@ -92,7 +137,7 @@ export default function StatusBarCard() {
                 SetTotalSale(response.data[0])
             })
         axios.post("https://api.cannabaze.com/AdminPanel/TotalOrderCard/",
-            datedata,
+            Data,
             {
                 headers: {
                     'Authorization': `Bearer ${token_data}`
@@ -100,10 +145,9 @@ export default function StatusBarCard() {
             }).then(response => {
                 console.log(response.data[0])
                 Setorder(response.data[0])
-
             })
         axios.post("https://api.cannabaze.com/AdminPanel/ProductDashBoardCard/",
-            datedata,
+            Data,
             {
                 headers: {
                     'Authorization': `Bearer ${token_data}`
@@ -113,7 +157,7 @@ export default function StatusBarCard() {
 
             })
         axios.post("https://api.cannabaze.com/AdminPanel/CustomerDashBoardCard/",
-            datedata,
+            Data,
             {
                 headers: {
                     'Authorization': `Bearer ${token_data}`
@@ -122,9 +166,10 @@ export default function StatusBarCard() {
                 SetCustomer(response.data[0])
             })
 
-    }, [token_data, state.datesSelect])
+    }, [Data])
 
-
+    console.log(Data, "ppppppppppppdafs", state)
+    console.log(isNaN(Math.abs(Totalorder?.percentage) ? 0 : 2))
     return (
 
         <div className='dashboardTopCardWrapper'>
@@ -145,9 +190,10 @@ export default function StatusBarCard() {
                                 <p className='card_hadding'>{'Total Store'}</p>
                                 <p className="Card_Total" >{totel?.TotalStore}</p>
                                 <p className="card_hadding" >
-                                    {!totel?.Growth ? <span><MdArrowDownward size={18} color="#D0004B" /></span>
-                                        : <span><IoIosArrowRoundUp size={18} color="#00AC4F" /></span>}
-                                    <span style={{ color: totel?.Growth ? "#00AC4F" : "#D0004B" }}>{totel?.percentage}%</span>
+                                    {totel?.Growth ? <span><IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
+                                        : <span><MdArrowDownward size={18} color="#D0004B" /></span>
+                                    }
+                                    <span style={{ color: totel?.Growth ? "#00AC4F" : "#D0004B" }}>{isNaN(Math?.abs(totel?.percentage)) ? 0 : Math?.abs(totel?.percentage)}%</span>
                                     <span style={{ color: "black" }}> this year</span>
                                 </p>
                             </div>
@@ -172,9 +218,10 @@ export default function StatusBarCard() {
                                 <p className='card_hadding'>{'Vendor'}</p>
                                 <p className="Card_Total" >{Vendor?.TotalStore}</p>
                                 <p className="card_hadding" >
-                                    {!Vendor?.Growth ? <span><MdArrowDownward size={18} color="#D0004B" /></span>
-                                        : <span><IoIosArrowRoundUp size={18} color="#00AC4F" /></span>}
-                                    <span style={{ color: Vendor?.Growth ? "#00AC4F" : "#D0004B" }}>{Vendor?.percentage}%</span>
+                                    {Vendor?.Growth ? <span><IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
+                                        : <span><MdArrowDownward size={18} color="#D0004B" /></span>
+                                    }
+                                    <span style={{ color: Vendor?.Growth ? "#00AC4F" : "#D0004B" }}>{isNaN(Math?.abs(Vendor?.percentage) ? 0:Math?.abs(Vendor?.percentage))}%</span>
                                     <span style={{ color: "black" }}> this year</span>
                                 </p>
                             </div>
@@ -199,10 +246,10 @@ export default function StatusBarCard() {
                                 <p className='card_hadding'>{'Sales'}</p>
                                 <p className="Card_Total" >${TotalSale?.totalsale}</p>
                                 <p className="card_hadding" >
-                                    {!TotalSale?.Growth ? <span>< IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
-                                        : <span><MdArrowDownward size={18} color="#D0004B" /></span>}
-                                    {/* <span><MdArrowDownward size={18} color="#D0004B" /></span> */}
-                                    <span style={{ color: !TotalSale?.Growth ? "#00AC4F" : "#D0004B" }}>{TotalSale?.percentage}%</span>
+                                    {TotalSale?.Growth ? <span>< IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
+                                    :<span><MdArrowDownward size={18} color="#D0004B" /></span>
+                                    }
+                                    <span style={{ color:TotalSale?.Growth  ?"#00AC4F"  :"#D0004B" }}>{isNaN(Math.abs(TotalSale?.percentage))? 0 :Math.abs(TotalSale?.percentage)}%</span>
                                     <span style={{ color: "black" }}> this year</span>
                                 </p>
                             </div>
@@ -228,9 +275,9 @@ export default function StatusBarCard() {
                                 <p className='card_hadding'>{'Order'}</p>
                                 <p className="Card_Total" >{Totalorder?.Totalorder}</p>
                                 <p className="card_hadding" >
-                                    {!Totalorder?.Growth ? <span>< IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
+                                    {Totalorder?.Growth ? <span>< IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
                                         : <span><MdArrowDownward size={18} color="#D0004B" /></span>}
-                                    <span style={{ color: !Totalorder?.Growth ? "#00AC4F" : "#D0004B" }}> {Totalorder?.percentage}% </span>
+                                    <span style={{ color: Totalorder?.Growth ? "#00AC4F" : "#D0004B" }}> {isNaN(Math.abs(Totalorder?.percentage)) ?0 : Math.abs(Totalorder?.percentage) }% </span>
                                     <span style={{ color: "black" }}> this year</span>
                                 </p>
                             </div>
@@ -257,7 +304,7 @@ export default function StatusBarCard() {
                                 <p className="card_hadding" >
                                     {Product?.Growth ? <span>< IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
                                         : <span><MdArrowDownward size={18} color="#D0004B" /></span>}
-                                    <span style={{ color: Product?.Growth ? "#00AC4F" : "#D0004B" }}>{Math?.abs(Product?.percentage)}%</span>
+                                    <span style={{ color: Product?.Growth ? "#00AC4F" : "#D0004B" }}>{isNaN(Math?.abs(Product?.percentage)) ? 0 : Math?.abs(Product?.percentage)}%</span>
                                     <span style={{ color: "black" }}> this year</span>
                                 </p>
                             </div>
@@ -284,10 +331,10 @@ export default function StatusBarCard() {
                                 <p className='card_hadding'>{'Customer'}</p>
                                 <p className="Card_Total" >{Customer?.TotalCustomer}</p>
                                 <p className="card_hadding" >
-                                    {!Customer?.Growth ? <span>< IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
+                                    {Customer?.Growth ? <span>< IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
                                         : <span><MdArrowDownward size={18} color="#D0004B" /></span>}
                                     {/* <span><IoIosArrowRoundUp size={18} color="#00AC4F" /></span> */}
-                                    <span style={{ color: !Customer?.Growth ? "#00AC4F" : '#D0004B' }}>{Customer?.percentage}% </span>
+                                    <span style={{ color: Customer?.Growth ? "#00AC4F" : '#D0004B' }}>{isNaN(Math.abs(Customer?.percentage)) ? 0 : Math.abs(Customer?.percentage) }% </span>
                                     <span style={{ color: "black" }}> this year</span>
                                 </p>
                             </div>

@@ -44,12 +44,17 @@ const Filtermain = () => {
       endDate: ranges?.selection?.endDate,
       key: 'selection', }
     )
-    dispatch({ type: 'CustomeStartDate', CustomeStartDate: ranges?.selection?.startDate})
-    dispatch({ type: 'CustomeEndDate', CustomeEndDate: ranges?.selection?.endDate})
-    console.log( ranges?.selection?.startDate.toISOString().split('T')[0] , "Sss" ,  ranges?.selection?.endDate.toISOString().split('T')[0])
-  }
+    function convert(str) {
+      var date = new Date(str),
+        mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+        day = ("0" + date.getDate()).slice(-2);
+      return [date.getFullYear(), mnth, day].join("-");
+    }
+    dispatch({ type: 'CustomeStartDate', CustomeStartDate: convert(ranges?.selection?.startDate)})
+    dispatch({ type: 'CustomeEndDate', CustomeEndDate: convert(ranges?.selection?.endDate)})
 
-  console.log(daterange)
+  }
+  
   const handleClickAway = () => { setDpopen(false); setDateopen(false) }
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
