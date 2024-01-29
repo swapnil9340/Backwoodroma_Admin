@@ -221,7 +221,7 @@ export default function StatusBarCard() {
                                     {Vendor?.Growth ? <span><IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
                                         : <span><MdArrowDownward size={18} color="#D0004B" /></span>
                                     }
-                                    <span style={{ color: Vendor?.Growth ? "#00AC4F" : "#D0004B" }}>{isNaN(Math?.abs(Vendor?.percentage) ? 0:Math?.abs(Vendor?.percentage))}%</span>
+                                    <span style={{ color: Vendor?.Growth ? "#00AC4F" : "#D0004B" }}>{isNaN(Math?.abs(Vendor?.percentage)) ? 0:Math?.abs(Vendor?.percentage)}%</span>
                                     <span style={{ color: "black" }}> this year</span>
                                 </p>
                             </div>
