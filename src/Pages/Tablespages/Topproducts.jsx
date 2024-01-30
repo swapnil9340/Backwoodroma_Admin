@@ -1,4 +1,4 @@
-import  React,{useState} from 'react';
+import  React,{useState , useContext} from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Link } from "react-router-dom";
 import useStyles from '../../Style';
@@ -6,17 +6,20 @@ import Cookies from "universal-cookie";
 import { ThemeProvider , Box ,createTheme } from "@mui/material";
 import { ImDropbox } from "react-icons/im";
 import axios from 'axios'
-import "./Stall.css"
-const Allstall = () => {
+import Createcontext from '../../Hooks/Context/Context'
+// import "./Stall.css"
+const Topproducts = () => {
+  const { state } = useContext(Createcontext)
     const classes= useStyles()
     const cookies = new Cookies();
     const token_data = cookies.get("Token_access");
     const [userdata , setuserdata]= useState([])
     const columns = [
-      { field: 'ID', headerName: 'User ID', width: 90 },
+        { field: 'id', headerName: ' ID', width: 90 },
+      { field: 'ProductImage', headerName: 'Product Image', width: 90 },
       {
-        field: 'Name',
-        headerName: 'Name',
+        field: 'ProductName',
+        headerName: 'Product Name',
         minWidth: 120,
         editable: false,
         sortable:false,
@@ -25,8 +28,8 @@ const Allstall = () => {
         align: "center",
       },
       {
-        field: 'Email',
-        headerName: 'Email',
+        field: 'Category',
+        headerName: 'Category',
         minWidth: 120,
         editable: false,
         sortable:false,
@@ -35,8 +38,8 @@ const Allstall = () => {
         align: "center",
       },
       {
-        field: 'MobileNo',
-        headerName: 'Phone Number',
+        field: 'Price',
+        headerName: 'Price',
         minWidth: 120,
         editable: false,
         sortable:false,
@@ -45,24 +48,19 @@ const Allstall = () => {
         align: "center",
       },
       {
-        field: 'Roles',
-        headerName: 'Roles',
+        field: 'SaleUnite',
+        headerName: 'Sale Unite',
         sortable:false,
         minWidth: 80,
         editable: false,
         flex:1,
         headerAlign: "center",
         align: "center",
-        renderCell: (params) => {
-            const onClick = (e) => {
-              e.stopPropagation(); // don't select this row after clicking
-            };
-            return <span>{params.row.Roles.join()}</span>
-        }
+       
       },
       {
-          field: 'Status',
-          headerName: 'Status',
+          field: 'TotalSalePrice',
+          headerName: 'Total Sale Price',
           sortable:false,
           minWidth: 80,
           editable: false,
@@ -70,19 +68,76 @@ const Allstall = () => {
           headerAlign: "center",
           align: "center",
       },
- 
+      {
+        field: 'StoreName',
+        headerName: 'Store Name',
+        sortable:false,
+        minWidth: 80,
+        editable: false,
+        flex:1,
+        headerAlign: "center",
+        align: "center",
+    },
+    {
+        field: 'Status',
+        headerName: 'Status',
+        sortable:false,
+        minWidth: 80,
+        editable: false,
+        flex:1,
+        headerAlign: "center",
+        align: "center",
+    },
+  
     ];
-    React.useEffect(()=>{
-      axios.get('https://api.cannabaze.com/AdminPanel/AllStaff/',{
-            headers: {
-              Authorization: `Bearer ${token_data}`,
-            },
-      }).then((res)=>{
-        setuserdata(res.data)
-      })
-    },[token_data])
-    const rows = userdata
-
+    // React.useEffect(()=>{
+    //   axios.post('https://api.cannabaze.com/AdminPanel/TopProduct/', {"SelectTime":"year","StartDate":"2023-01-29","EndDate":"2024-01-29"},{
+    //         headers: {
+    //           Authorization: `Bearer ${token_data}`,
+    //         },
+    //   }).then((res)=>{
+    //     setuserdata(res.data)
+    //   })
+    // },[token_data])
+    // const rows = userdata
+    const rows = [
+        {
+            id:1,
+            ProductImage:'https://i.ibb.co/MN19wkg/iconsforward.png' ,
+            ProductName:"STICKY GRAPES INDICA",
+            Category:'EDIBLES',
+            Price:123,
+            SaleUnite:234,
+            TotalSalePrice:123440,
+            StoreName:"Leed Weed",
+            Status:true
+        }
+        
+       
+    ]
+    // React.useEffect(() => {
+    //     if (state.datesSelect === "Customics") {
+    //       if (state.CustomeStartDate !== "" && state.CustomeEndDate !== "") {
+    //         SetData({
+    //           "SelectTime": state.datesSelect === "Year" ? "ThisYear" : state.datesSelect === "Months" ? 'ThisMonth' : state.datesSelect === "Today" ? 'Today' : state.datesSelect === "week" ? "week" : state.datesSelect === "Customics" && "costume",
+    //           "StartDate": state.datesSelect === "Year" ? `${date.getFullYear()}-01-01` : state.datesSelect === "Months" ? monthStartDate : state.datesSelect === "week" ? StartDateWeek : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeStartDate,
+    //           "EndDate": state.datesSelect === "Year" ? TodayDate : state.datesSelect === "Months" ? monthlastDate : state.datesSelect === "week" ? TodayDate : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeEndDate,
+    //           "LastStartDate": state.datesSelect === "Year" ? `${lastYear}-01-01` : state.datesSelect === "Months" ? lastmonthStartDate : state.datesSelect === "week" ? GetpreviousWeekDate(7, 1) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('first'),  //yesterday.toISOString().split('T')[0]
+    //           "EndStartDate": state.datesSelect === "Year" ? `${lastYear}-12-31` : state.datesSelect === "Months" ? lastmonthLastDate : state.datesSelect === "week" ? GetpreviousWeekDate(0, 0) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('Second')
+    //         })
+    //       }
+    //     }
+    //     else {
+    //       SetData({
+    //         "SelectTime": state.datesSelect === "Year" ? "ThisYear" : state.datesSelect === "Months" ? 'ThisMonth' : state.datesSelect === "Today" ? 'Today' : state.datesSelect === "week" ? "week" : state.datesSelect === "Customics" && "costume",
+    //         "StartDate": state.datesSelect === "Year" ? `${date.getFullYear()}-01-01` : state.datesSelect === "Months" ? monthStartDate : state.datesSelect === "week" ? StartDateWeek : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeStartDate,
+    //         "EndDate": state.datesSelect === "Year" ? TodayDate : state.datesSelect === "Months" ? monthlastDate : state.datesSelect === "week" ? TodayDate : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeEndDate,
+    //         "LastStartDate": state.datesSelect === "Year" ? `${lastYear}-01-01` : state.datesSelect === "Months" ? lastmonthStartDate : state.datesSelect === "week" ? GetpreviousWeekDate(7, 1) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('first'),  //yesterday.toISOString().split('T')[0]
+    //         "EndStartDate": state.datesSelect === "Year" ? `${lastYear}-12-31` : state.datesSelect === "Months" ? lastmonthLastDate : state.datesSelect === "week" ? GetpreviousWeekDate(0, 0) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('Second')
+    //       })
+    //     }
+    //   }, [state.datesSelect, state.CustomeStartDate, state.CustomeEndDate])
+    
 
     const CustomFontTheme = createTheme({
       typography: {
@@ -104,11 +159,11 @@ const Allstall = () => {
     <div className=' my-4 '>
             <div className='py-4 section_card'>
                 <div  className='d-flex justify-content-between align-content-center px-4'> 
-                    <h3 pagetitle='pagetitle'><ImDropbox color='#31B655' size={25}/> All Staff</h3>
+                    <h3 pagetitle='pagetitle'><ImDropbox color='#31B655' size={25}/> Top Selling Product </h3>
                     <div className='btnsgroup'>
-                    <Link to={'/addstaff'}>
-                        <button className="topbutton"> Add Staff</button>
-                    </Link>
+                    {/* <Link to={'/addstaff'}>
+                        <button className="topbutton">Top Product</button>
+                    </Link> */}
                     </div>
                 </div>
                 <div className='d-flex justify-content-end py-3 align-content-center'>
@@ -170,7 +225,7 @@ const Allstall = () => {
                                     <DataGrid
                                         rows={rows}
                                         columns={columns}
-                                        getRowId={(row) => row.ID}
+                                        getRowId={(row) => row.id}
                                         initialState={{
                                         pagination: {
                                             paginationModel: {
@@ -252,4 +307,4 @@ justifyContent:'center',
   )
 }
 
-export default Allstall
+export default Topproducts

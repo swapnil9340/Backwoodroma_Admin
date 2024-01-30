@@ -32,6 +32,7 @@ import Rolelist from '../Pages/Role/Rolelist';
 import RoleDetailsAndPermission from '../Pages/Role/RoleDetailsAndPermission/RoleDetailsAndPermission';
 import Allstall from '../Pages/Staff/Allstall';
 import Vendorlist from '../Pages/Vendor/Vendorlist';
+import Topproducts from '../Pages/Tablespages/Topproducts';
 // export default function Router() {;
 //   return (
     
@@ -184,6 +185,10 @@ const routesConfig = [
       {
         path:"/addstaff",
         element:<Protected  Component={Addusers}/>
+      },
+      {
+        path:"/topproduct",
+        element:<Protected  Component={Topproducts}/>
       },
       {
         path:"/allstaff",

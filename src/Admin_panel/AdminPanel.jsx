@@ -132,6 +132,8 @@ export default function AdminPanel() {
       }]
     },
   };
+
+  console.log("commit karo ghar chalna hai! ")
   const [Data, SetData] = useState({})
   //  Months//////////////////
   let date = new Date()

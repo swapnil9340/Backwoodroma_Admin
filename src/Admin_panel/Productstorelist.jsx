@@ -116,7 +116,7 @@ const Productstorelist = ({ title  , Data1}) => {
       </ul>
       <div className="viewAllBtnList ">
         {" "}
-        <Link to="" className="">
+        <Link to="/topproduct" className="">
           View All
         </Link>
       </div>
