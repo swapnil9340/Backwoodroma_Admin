@@ -237,6 +237,7 @@ export default function AdminPanel() {
 
 
    const [Data1 , SetData1] =  React.useState([])
+   const [TopStore , SetTopStore] =  React.useState([])
   React.useEffect(() => {
     axios.post("https://api.cannabaze.com/AdminPanel/TopProduct/",
     {"SelectTime":"year","StartDate":"2023-01-29","EndDate":"2024-01-29"},
@@ -249,14 +250,23 @@ export default function AdminPanel() {
         SetData1(response.data)
 
       })
+      axios.post("https://api.cannabaze.com/AdminPanel/TopStore/",
+      {"SelectTime":"Year","StartDate":"2024-01-01","EndDate":"2024-01-29","LastStartDate":"2023-01-01","EndStartDate":"2023-12-31"},
+        {
+          headers: {
+            'Authorization': `Bearer ${token_data}`
+          }
+        }).then(response => {
+          console.log(response)
+          SetTopStore(response.data)
+  
+        })
   }, [])
 
-
-  console.log(Data1)
   return (
     <div className='row dashboardSection'>
 
-      <div className='col-12' >
+      <div className='col-12 StatusCardBorder' >
         <StatusBarCard></StatusBarCard>
       </div>
       <div className='col-12'>
@@ -265,7 +275,7 @@ export default function AdminPanel() {
             <Areagraph />
           </div>
           <div className='topProducts'><Productstorelist title={"Top Product"}  Data1={Data1}/></div>
-          <div className='topProducts'><Productstorelist title={"Top Store"} /></div>
+          <div className='topProducts'><Productstorelist title={"Top Store"}  Data1 ={TopStore}/></div>
           <div className='topProducts'><Productstorelist title={"Visited Store"} /></div>
           <div className='topProducts'>
             <TotalSales />

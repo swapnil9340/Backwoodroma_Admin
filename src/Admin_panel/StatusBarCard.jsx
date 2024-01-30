@@ -169,9 +169,10 @@ export default function StatusBarCard() {
     }, [Data])
     return (
 
-        <div className='dashboardTopCardWrapper'>
-            <div className=' dashboardTopCard top' >
-                <div className='col-12  d-flex justify-content-center gap-4 '>
+
+        <div className='dashboardTopCardWrapper '>
+            <div className=' dashboardTopCard top col' >
+                <div className='col-12   d-flex justify-content-center gap-4  '>
                     <div className=' Card_center_dashboard  '>
                         <div className="cardbox ">
                             <div className="group Card_center_dashboard ">
@@ -181,24 +182,22 @@ export default function StatusBarCard() {
                             </div>
                         </div>
                     </div>
-                    <div className=' '>
-                        <div className="Card_center_dashboard cardbox d-flex" >
-                            <div className="" style={{ "margin-top": '10px' }}>
-                                <p className='card_hadding'>{'Total Store'}</p>
-                                <p className="Card_Total" >{totel?.TotalStore}</p>
-                                <p className="card_hadding" >
-                                    {totel?.Growth ? <span><IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
-                                        : <span><MdArrowDownward size={18} color="#D0004B" /></span>
-                                    }
-                                    <span style={{ color: totel?.Growth ? "#00AC4F" : "#D0004B" }}>{isNaN(Math?.abs(totel?.percentage)) ? 0 : Math?.abs(totel?.percentage)}%</span>
-                                    <span style={{ color: "black" }}> {state.datesSelect}</span>
-                                </p>
-                            </div>
-                        </div>
+                    <div className="cardbox" >
+
+                        <p className='card_hadding'>{'Total Store'}</p>
+                        <p className="Card_Total" >{totel?.TotalStore}</p>
+                        <p className="card_hadding" >
+                            {totel?.Growth ? <span><IoIosArrowRoundUp size={14} color="#00AC4F" /></span>
+                                : <span><MdArrowDownward size={14} color="#D0004B" /></span>
+                            }
+                            <span  className="Card_Font" style={{fontSize:"12px" , color: totel?.Growth ? "#00AC4F" : "#D0004B" }}>{isNaN(Math?.abs(totel?.percentage)) ? 0 : Math?.abs(totel?.percentage)}%</span>
+                            <span style={{fontSize:"12px" , color: "black" }}> {state.datesSelect}</span>
+                        </p>
+
                     </div>
                 </div>
             </div>
-            <div className=' dashboardTopCard top' >
+            <div className=' dashboardTopCard top col' >
                 <div className='col-12  d-flex justify-content-center gap-4 '>
                     <div className=' Card_center_dashboard  '>
                         <div className="cardbox ">
@@ -209,24 +208,22 @@ export default function StatusBarCard() {
                             </div>
                         </div>
                     </div>
-                    <div className=' '>
-                        <div className="Card_center_dashboard cardbox d-flex" >
-                            <div className="" style={{ "marginTop": '10px' }}>
-                                <p className='card_hadding'>{'Vendor'}</p>
-                                <p className="Card_Total" >{Vendor?.TotalStore}</p>
-                                <p className="card_hadding" >
-                                    {Vendor?.Growth ? <span><IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
-                                        : <span><MdArrowDownward size={18} color="#D0004B" /></span>
-                                    }
-                                    <span style={{ color: Vendor?.Growth ? "#00AC4F" : "#D0004B" }}>{isNaN(Math?.abs(Vendor?.percentage)) ? 0 : Math?.abs(Vendor?.percentage)}%</span>
-                                    <span style={{ color: "black" }}> {state.datesSelect}</span>
-                                </p>
-                            </div>
-                        </div>
+                    <div className="cardbox" >
+                 
+                            <p className='card_hadding'>{'Vendor'}</p>
+                            <p className="Card_Total" >{Vendor?.TotalStore}</p>
+                            <p className="card_hadding" >
+                                {Vendor?.Growth ? <span><IoIosArrowRoundUp size={14} color="#00AC4F" /></span>
+                                    : <span><MdArrowDownward size={14} color="#D0004B" /></span>
+                                }
+                                <span className="Card_Font" style={{fontSize:"12px" , color: Vendor?.Growth ? "#00AC4F" : "#D0004B" }}>{isNaN(Math?.abs(Vendor?.percentage)) ? 0 : Math?.abs(Vendor?.percentage)}%</span>
+                                <span style={{fontSize:"12px" , color: "black" }}> {state.datesSelect}</span>
+                            </p>
+                      
                     </div>
                 </div>
             </div>
-            <div className=' dashboardTopCard top' >
+            <div className=' dashboardTopCard top col' >
                 <div className='col-12  d-flex justify-content-center gap-4 '>
                     <div className=' Card_center_dashboard  '>
                         <div className="cardbox ">
@@ -237,25 +234,25 @@ export default function StatusBarCard() {
                             </div>
                         </div>
                     </div>
-                    <div className=' '>
-                        <div className="Card_center_dashboard cardbox d-flex" >
-                            <div className="" style={{ "margin-top": '10px' }}>
-                                <p className='card_hadding'>{'Sales'}</p>
-                                <p className="Card_Total" >${TotalSale?.totalsale}</p>
-                                <p className="card_hadding" >
-                                    {TotalSale?.Growth ? <span>< IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
-                                        : <span><MdArrowDownward size={18} color="#D0004B" /></span>
-                                    }
-                                    <span style={{ color: TotalSale?.Growth ? "#00AC4F" : "#D0004B" }}>{isNaN(Math.abs(TotalSale?.percentage)) ? 0 : Math.abs(TotalSale?.percentage)}%</span>
-                                    <span style={{ color: "black" }}>{state.datesSelect}</span>
-                                </p>
-                            </div>
+
+                    <div className="cardbox" >
+                   
+                            <p className='card_hadding'>{'Sales'}</p>
+                            <p className="Card_Total" >${TotalSale?.totalsale}</p>
+                            <p className="card_hadding" >
+                                {TotalSale?.Growth ? <span>< IoIosArrowRoundUp size={14} color="#00AC4F" /></span>
+                                    : <span><MdArrowDownward size={14} color="#D0004B" /></span>
+                                }
+                                <span className="Card_Font" style={{fontSize:"12px" , color: TotalSale?.Growth ? "#00AC4F" : "#D0004B" }}>{isNaN(Math.abs(TotalSale?.percentage)) ? 0 : Math.abs(TotalSale?.percentage)}%</span>
+                                <span style={{fontSize:"12px", color: "black" }}> {state.datesSelect}</span>
+                            </p>
                         </div>
-                    </div>
+                   
+
                 </div>
 
             </div>
-            <div className=' dashboardTopCard top' >
+            <div className=' dashboardTopCard top col' >
                 <div className='col-12  d-flex justify-content-center gap-4 '>
                     <div className=' Card_center_dashboard  '>
                         <div className="cardbox ">
@@ -266,23 +263,23 @@ export default function StatusBarCard() {
                             </div>
                         </div>
                     </div>
-                    <div className=' '>
-                        <div className="Card_center_dashboard cardbox d-flex" >
-                            <div className="" style={{ "margin-top": '10px' }}>
-                                <p className='card_hadding'>{'Order'}</p>
-                                <p className="Card_Total" >{Totalorder?.Totalorder}</p>
-                                <p className="card_hadding" >
-                                    {Totalorder?.Growth ? <span>< IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
-                                        : <span><MdArrowDownward size={18} color="#D0004B" /></span>}
-                                    <span style={{ color: Totalorder?.Growth ? "#00AC4F" : "#D0004B" }}> {isNaN(Math.abs(Totalorder?.percentage)) ? 0 : Math.abs(Totalorder?.percentage)}% </span>
-                                    <span style={{ color: "black" }}>{state.datesSelect}</span>
-                                </p>
-                            </div>
-                        </div>
+
+                    <div className="cardbox" >
+                        
+                            <p className='card_hadding'>{'Order'}</p>
+                            <p className="Card_Total" >{Totalorder?.Totalorder}</p>
+                            <p className="card_hadding" >
+                                {Totalorder?.Growth ? <span>< IoIosArrowRoundUp size={14} color="#00AC4F" /></span>
+                                    : <span><MdArrowDownward size={14} color="#D0004B" /></span>}
+                                <span className="Card_Font" style={{fontSize:"12px" , color: Totalorder?.Growth ? "#00AC4F" : "#D0004B" }}> {isNaN(Math.abs(Totalorder?.percentage)) ? 0 : Math.abs(Totalorder?.percentage)}% </span>
+                                <span style={{fontSize:"12px" , color: "black" }}> {state.datesSelect}</span>
+                            </p>
+                      
+
                     </div>
                 </div>
             </div>
-            <div className=' dashboardTopCard top' >
+            <div className=' dashboardTopCard top col' >
                 <div className='col-12  d-flex justify-content-center gap-4 '>
                     <div className=' Card_center_dashboard  '>
                         <div className="cardbox ">
@@ -293,23 +290,23 @@ export default function StatusBarCard() {
                             </div>
                         </div>
                     </div>
-                    <div className=' '>
-                        <div className="Card_center_dashboard cardbox d-flex" >
-                            <div className="" style={{ "margin-top": '10px' }}>
-                                <p className='card_hadding'>{'Product'}</p>
-                                <p className="Card_Total" >{Product?.Totalproduct}</p>
-                                <p className="card_hadding" >
-                                    {Product?.Growth ? <span>< IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
-                                        : <span><MdArrowDownward size={18} color="#D0004B" /></span>}
-                                    <span style={{ color: Product?.Growth ? "#00AC4F" : "#D0004B" }}>{isNaN(Math?.abs(Product?.percentage)) ? 0 : Math?.abs(Product?.percentage)}%</span>
-                                    <span style={{ color: "black" }}>{state.datesSelect}</span>
-                                </p>
-                            </div>
-                        </div>
+
+                    <div className="cardbox" >
+                       
+                            <p className='card_hadding'>{'Product'}</p>
+                            <p className="Card_Total" >{Product?.Totalproduct}</p>
+                            <p className="card_hadding" >
+                                {Product?.Growth ? <span>< IoIosArrowRoundUp size={14} color="#00AC4F" /></span>
+                                    : <span><MdArrowDownward size={14} color="#D0004B" /></span>}
+                                <span className="Card_Font" style={{fontSize:"12px" , color: Product?.Growth ? "#00AC4F" : "#D0004B" }}>{isNaN(Math?.abs(Product?.percentage)) ? 0 : Math?.abs(Product?.percentage)}%</span>
+                                <span style={{fontSize:"12px" , color: "black" }}> {state.datesSelect}</span>
+                            </p>
+                      
+
                     </div>
                 </div>
             </div>
-            <div className=' dashboardTopCard top' >
+            <div className=' dashboardTopCard1 top col' >
 
 
                 <div className='col-12  d-flex justify-content-center gap-4 '>
@@ -322,26 +319,26 @@ export default function StatusBarCard() {
                             </div>
                         </div>
                     </div>
-                    <div className=' '>
-                        <div className="Card_center_dashboard cardbox d-flex" >
-                            <div className="" style={{ "margin-top": '10px' }}>
-                                <p className='card_hadding'>{'Customer'}</p>
-                                <p className="Card_Total" >{Customer?.TotalCustomer}</p>
-                                <p className="card_hadding" >
-                                    {Customer?.Growth ? <span>< IoIosArrowRoundUp size={18} color="#00AC4F" /></span>
-                                        : <span><MdArrowDownward size={18} color="#D0004B" /></span>}
-                                    {/* <span><IoIosArrowRoundUp size={18} color="#00AC4F" /></span> */}
-                                    <span style={{ color: Customer?.Growth ? "#00AC4F" : '#D0004B' }}>{isNaN(Math.abs(Customer?.percentage)) ? 0 : Math.abs(Customer?.percentage)}% </span>
-                                    <span style={{ color: "black" }}>{state.datesSelect}</span>
-                                </p>
-                            </div>
-                        </div>
+                    <div className="cardbox" >
+                      
+                            <p className='card_hadding'>{'Customer'}</p>
+                            <p className="Card_Total" >{Customer?.TotalCustomer}</p>
+                            <p className="card_hadding" >
+                                {Customer?.Growth ? <span>< IoIosArrowRoundUp size={14} color="#00AC4F" /></span>
+                                    : <span><MdArrowDownward size={14} color="#D0004B" /></span>}
+                                {/* <span><IoIosArrowRoundUp size={14} color="#00AC4F" /></span> */}
+                                <span className="Card_Font" style={{fontSize:"12px" , color: Customer?.Growth ? "#00AC4F" : '#D0004B' }}>{isNaN(Math.abs(Customer?.percentage)) ? 0 : Math.abs(Customer?.percentage)}% </span>
+                                <span style={{ fontSize:"12px" ,color: "black" }}> {state.datesSelect}</span>
+                            </p>
+                  
+
                     </div>
                 </div>
 
 
             </div>
         </div>
+
 
 
     )

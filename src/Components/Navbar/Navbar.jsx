@@ -88,7 +88,7 @@ function Navbar() {
       {
         islogin.state.login === true &&
         <nav
-          id="main-navbar" className="navbar navbar-expand-lg navbar-light sticky-top" style={{backgroundColor: navBg ?'#fff' : null}}>
+          id="main-navbar" className="navbar navbar-expand-lg navbar-light sticky-top" style={{ height: '75px',   padding: 0, backgroundColor: navBg ?'#fff' : null} }>
           <div className="container-fluid " >
 
             <div className="col-12   Add_Category d-flex justify-content-between align-items-center ">
