@@ -13,7 +13,9 @@ import Createcontext from "../../Hooks/Context/Context"
 import { styled } from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
 import { FaEdit } from "react-icons/fa";
-
+import { MdOutlineEdit } from "react-icons/md";
+import { RxCross2 } from "react-icons/rx";
+import useStyles from '../../Style'
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
         padding: theme.spacing(2),
@@ -32,7 +34,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 export default function CategEditbox(props) {
-  
+const classes = useStyles()
     const inputRef = useRef(null);
     const [image, SetImage] = React.useState('');
     const { dispatch } = useContext(Createcontext)
@@ -40,6 +42,7 @@ export default function CategEditbox(props) {
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [open, setOpen] = React.useState(false);
+    const [loadingbtn, Setloadingbtn] = React.useState(false);
     const [error, set] = React.useState('')
     const [massage, setmassage] = React.useState()
     const [data, setdata] = React.useState({
@@ -47,10 +50,8 @@ export default function CategEditbox(props) {
         Category: props.data.name,
         Status: props.data.Status,
         categoryImages:props.data.categoryImages
-
-
     });
-
+    console.log(props.data ,'props')
     const handleimage = (event) => {
         SetImage(event.target.files[0])
     };
@@ -72,8 +73,16 @@ export default function CategEditbox(props) {
     };
     const handlechanges = (event) => {
 
+        function FirstLetterCaps(str){
+            const text = str.toLowerCase()
+             .split(' ')
+             .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+             .join(' ');
+             return text
         
-        const value = event.target.value;
+         }
+        const value = FirstLetterCaps(event.target.value);
+        console.log(value,'value')
         setdata({
             ...data,
             [event.target.name]: value
@@ -92,7 +101,7 @@ export default function CategEditbox(props) {
         formdata.append("name", data.Category.toUpperCase());
         formdata.append("Status",data.Status);
          image ? formdata.append('categoryImages',image)  :  data.categoryImages ==='' &&  formdata.append('categoryImages',data.categoryImages)
-
+         Setloadingbtn(true)
 
         axios.post(`https://api.cannabaze.com/AdminPanel/update-Category/${data.id}`, formdata, {
 
@@ -106,10 +115,11 @@ export default function CategEditbox(props) {
                 enqueueSnackbar('Edit Category success !', { variant: 'success' });
                 setOpen(false);
             }
+            Setloadingbtn(false)
         }).catch(
             function (error) {
                 setmassage(error.response.data.name)
-
+                Setloadingbtn(false)
                 set("red")
 
             }
@@ -135,130 +145,104 @@ export default function CategEditbox(props) {
                                 sm: "60%",
                                 md: "50%",
                                 lg: "40%",
-                                xl: "40%"
+                            
+                                xl: "636px",
 
                             },
                             height: {
                                 xs: "55%",
                                 sm: "55%",
-                                md: "50%",
-                                lg: "50%",
-                                xl: "60%"
+                                md: "60%",
+                             
+                                xl: "676px"
                             },
                             maxWidth: "none",
                             borderRadius: "15px",
                             overflowX: "hidden",
-                            border: "1px solid #31B665"
+                            border: "1px solid #31B665",
+                            padding:'0'
                             // Set your width here
                         },
                     },
+                    "& .MuiDialogContent-root":{
+                        padding:'0 !important',
+                    }
                 }}
             >
-                <DialogContent>
-                    <div className='container-fluid '>
-                        <div className='row '>
+                <DialogContent   sx={{padding:0}}>
+                    <div className='categoryeditpopupcontainer'>
+                      
+                       <span onClick={handleClose} className='popupCloseBtn'><RxCross2 /></span>
+                        <div className='row w-100 h-100 '>
 
-                            <div className='col-12   ' style={{marginTop:"6%"}} >
+                            <div className='col-12 text-center  '  >
 
-                                <div className='col-12 Add_Category center'>
-                                    <div className="col "> <h2> Edit Category
-                                    </h2>
+                             
+                                    <h2 className='categorypopuptitle'> <MdOutlineEdit />   Edit  </h2>
+                                
+                             
+                               
+                                <div className='  label'>
+                                    <div className=' categoryeditpopupimageBox'>
+                                    {
+                                        image ? <> <img src={URL.createObjectURL(image)} alt="" style={{ width: "120px", height: "120px" }} />
+                                            {/* <Button  onClick={resetFileInput} color='success' ><RxCross2 /> </Button> */}
+                                            </>
+                                            :
+                                            <>
+                                                <img src={ data.categoryImages} alt="" style={{ width: "120px", height: "120px" }} />
+                                                {/* <Button  name="categoryImages" value='' color='success'onClick={handlechanges} ><RxCross2 /> </Button> */}
+                                            </>
+                                    }
                                     </div>
+
                                 </div>
-                                <div className='col-10 top label  con'>
-                                    <div className='col'>
-
-                                        <label className='label'>
-                                            <span className='required'>*</span>
-                                            Name:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-                                        <TextField placeholder='Add Category' id="outlined-basic" variant="outlined" value={data.Category.toUpperCase()}
-                                            style={{ minWidth: "11vw" }}
-                                            label={massage}
-                                            InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
-                                            onChange={handlechanges} name="Category"
-                                            sx={{
-                                                '& .MuiOutlinedInput-root': {
-                                                    '& fieldset': {
-                                                        borderColor: error,
-                                                        height: 55,
-                                                    },
-                                                },
-                                                "& label": {
-                                                    fontSize: 13,
-                                                    color: "red",
-                                                    "&.Mui-focused": {
-                                                        marginLeft: 0,
-                                                        color: "red",
-                                                    }
-                                                }
-                                            }}
-                                        />
-                                    </div>
-                                </div>
-                                <div className='col-10 top label  con '>
+                                <div className='  label'>
                                         <div className='col top'>
-
-                                            <label className='label'>
-                                                Image:
-                                            </label>
-                                        </div>
-                                        <div className='col'>
-                                        <input  type="file" id="formFile" ref={inputRef} accept="image/*"  variant="outlined" style={{ Width: "10%", fontSize: 15 }}
+                                        <input  type="file" id="formFile" ref={inputRef} accept="image/*" className='d-none'  variant="outlined" style={{ Width: "10%", fontSize: 15 }}
                                             onChange={handleimage}
                                         />
+                                            <label className='label' htmlFor='formFile'>
+                                              <span className='Upload_btn'>Upload Image</span>
+                                            </label>
                                         </div>
-                                    </div>
-                                    <div className='col-10 top label  con center'>
-                                        <div className='col mt-4'>
-                                        {
-                                            image ? <> <img src={URL.createObjectURL(image)} alt="" style={{ width: "120px", height: "110px" }} />
-                                                <Button  onClick={resetFileInput} color='success' >Cancel </Button></>
-                                                :
-                                                <>
-                                                    <img src={"https://api.cannabaze.com/" + data.categoryImages} alt="" style={{ width: "120px", height: "110px" }} />
-                                                    <Button  name="categoryImages" value='' color='success'onClick={handlechanges} >Cancel </Button>
-                                                </>
-                                        }
-                                        </div>
-
-                                    </div>
-                                <div className='col-10 top label  con'>
-                                    <div className='col'>
-                                        <label className='label'>
-                                            Status:
-                                        </label>
-                                    </div>
-                                    <div className='col ' >
-                                        <Select name='Status' value={data.Status} onChange={handlechanges} displayEmpty inputProps={{ 'aria-label': 'Without label', }}  style={{minWidth: "40%", height: "5vh", fontSize: 15, }} >
+                                       
+                                </div>
+                                <div className=' categorypopuptextfrild'>
+                                     <TextField placeholder='Category Name' id="outlined-basic" variant="outlined" value={data.Category}
+                                            label={massage}
+                                            // InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
+                                            onChange={handlechanges} name="Category"
+                                            className={classes.categorypopuptext}
+                                        />
+                                </div>
+                                <div className='  categorypopuptextfrild '>
+                                  
+                                        {/* <label className=''> Status: </label> */}
+                               
+                                        <Select name='Status' value={data.Status} onChange={handlechanges} className={classes.categorypopupselect} displayEmpty inputProps={{ 'aria-label': 'Without label', }}>
                                             <MenuItem value={"Active"} style={{ fontSize: 15 }}>Active</MenuItem>
                                             <MenuItem value={"Hide"} style={{ fontSize: 15 }}>  Hide</MenuItem>
                                         </Select>
-                                    </div>
+                               
                                 </div>
-                                <div className='col-12 center top' >
-                                    <button className='topbutton' onClick={SubmitEditData} style={{ fontSize: 15 }}>
-                                        Save Changes
+                                <div className='center' >
+                                    <button className='topbutton' onClick={SubmitEditData} style={{ fontSize: 15 , marginTop:'30px' }}>
+                                       {loadingbtn ? <div class="lds-ring"><div></div><div></div><div></div><div></div></div>: "Save"} 
                                     </button>
                                 </div>
 
 
 
                             </div>
-
-
-
-
                         </div>
 
                     </div>
                 </DialogContent>
-                <DialogActions>
+                {/* <DialogActions>
                     <Button color="success" onClick={handleClose}>Exit
                     </Button>
-                </DialogActions>
+                </DialogActions> */}
 
             </BootstrapDialog>
         </div>

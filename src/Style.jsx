@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { te } from "date-fns/locale";
 
 const useStyles = makeStyles(theme =>(
   {
@@ -548,6 +549,7 @@ const useStyles = makeStyles(theme =>(
         }, },
         '&.Mui-focused fieldset': {
           borderColor: '#31B655',
+          border:'none',
         },
     
         '& .MuiOutlinedInput-root': {
@@ -664,6 +666,45 @@ const useStyles = makeStyles(theme =>(
            
           }
       },
+      categorypopupselect:{
+        width:'100%',
+        display:'block',
+        marginTop:'20px',
+        '& .MuiInputBase-input':{
+          padding:'0',
+          color: ' rgba(60, 60, 67, 0.60)',
+          fontFamily: 'Inter',
+          fontSize: '17px',
+          fontStyle: 'normal',
+          fontWeight: '400',
+          lineHeight: '22px', 
+        },
+        '& .MuiOutlinedInput-notchedOutline':{
+          border:"none",
+          borderBottom:'1px solid black',
+          borderRadius:'0',
+        },
+        "& .MuiSelect-select":{
+          textAlign:'left',
+        }
+      },
+      categorypopuptext:{
+        width:'100%',
+        '& .MuiInputBase-input':{
+          padding:'0',
+          color: ' rgba(60, 60, 67, 0.60)',
+          fontFamily: 'Inter',
+          fontSize: '17px',
+          fontStyle: 'normal',
+          fontWeight: '400',
+          lineHeight: '22px', 
+        },
+        '& .MuiOutlinedInput-notchedOutline':{
+           border:'none',
+           borderBottom:'1px solid #222',
+           borderRadius:'0',
+        }
+      }
   }
 ))
 export default useStyles

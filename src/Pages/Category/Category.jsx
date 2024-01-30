@@ -14,7 +14,6 @@ import Select from '@mui/material/Select';
 import CategoryEditbox from "./CategoryEdit"
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { ImDropbox } from "react-icons/im";
-
 import Eelete from "../Category/Delete";
 import { AiFillEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { LuEye } from "react-icons/lu";
@@ -40,7 +39,7 @@ export default function Category(props) {
     });
     const [totel, setTotal] = React.useState([])
     const cookies = new Cookies();
-    const [pageSize, setPageSize] = React.useState(5)
+    const [pageSize, setPageSize] = React.useState(10)
     const token_data = cookies.get('Token_access')
     useEffect(() => {
 
@@ -81,21 +80,21 @@ export default function Category(props) {
         )
     }
     const columns = [
-        { field: 'name', headerName: 'Name', editable: false,  minWidth: 110, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'left', sortable:false },
+        { field: 'name', headerName: 'Name', editable: false,  minWidth: 150,  headerClassName: 'super-app-theme--header', headerAlign: 'left', sortable:false },
         {
-            field: 'categoryImages', headerName: 'categoryImages', minWidth: 180,type: 'button', editable: false, sortable:false,flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'rigth',align:"rigth",
+            field: 'categoryImages', headerName: 'categoryImages', minWidth: 220,type: 'button', editable: false, sortable:false, headerClassName: 'super-app-theme--header', headerAlign: 'rigth',align:"rigth",
             renderCell: (params) => (
                <div className='categoryTableImg'><img src={params?.row?.categoryImages} alt={"category image"} /></div>
             )
         },
         {
-            field: 'Status', headerName: 'Status', type: 'number',minWidth: 110,sortable:false, editable: false,flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'left', align:"left",
+            field: 'Status', headerName: 'Status', type: 'number',minWidth: 150,sortable:false, editable: false, headerClassName: 'super-app-theme--header', headerAlign: 'left', align:"left",
             renderCell: (params) => {
                 if (params.formattedValue === "Active") {
                     return (
                         <Tooltip title="Active" enterDelay={300} leaveDelay={200} arrow placement="right-start">
                             <p
-                                style={{ color: "#31B665 ", fontSize: 25, cursor: "pointer" }}
+                                style={{ color: "#31B665 ", fontSize: 24, cursor: "pointer" }}
                                 variant="contained"
                                 color="primary"
                                 onClick={() => {
@@ -111,7 +110,7 @@ export default function Category(props) {
                     <Tooltip title="Hide" enterDelay={300} leaveDelay={200} arrow placement="right-start">
 
                         <p
-                            style={{ color: "red ", fontSize: 25, cursor: "pointer" }}
+                            style={{ color: "red ", fontSize: 24, cursor: "pointer" }}
                             variant="contained"
                             color="primary"
                             onClick={() => {
@@ -124,7 +123,7 @@ export default function Category(props) {
             }
         },
         {
-            field: 'Edit', headerName: 'Edit',minWidth: 110, type: 'button', editable: false, sortable:false,flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'rigth',align:"rigth",
+            field: 'Edit', headerName: 'Edit',minWidth: 150, type: 'button', editable: false, sortable:false, headerClassName: 'super-app-theme--header', headerAlign: 'rigth',align:"rigth",
             renderCell: (params) => (
                 <>
                   { ( state.Roles.EditCategory || state.Roles.DeleteCategory) &&
@@ -164,16 +163,19 @@ export default function Category(props) {
     ];
     const rows = totel
     return (
-            <div className='row bg-white'>
+            <div className='row section_card'>
               
-                    <div className='col-12 Add_Category  mt-5 mb-5 d-flex justify-content-between align-items-center'>
-                        <h2 className='d-flex gap-2 align-items-center'> <ImDropbox color='#31B655' size={25}/>Category</h2>
+                    <div className='col-12 p-0 Add_Category d-flex justify-content-between align-items-center px-4'>
+                        <h2 className='d-flex align-items-center pagetitle'> <ImDropbox color='#31B655' size={25}/>Category</h2>
                        { state.Roles.AddCategory && <span>{<Categorypopup></Categorypopup>}</span>}
                     </div>
-                    <div className='col-12'>
+                    <div className='col-12 p-0'>
                         <Box sx={{
-                            height: 400,
+                           
                             width: '100%',
+                            "& .MuiDataGrid-root":{
+                              border:'none',
+                            },
                             '& .MuiDataGrid-columnHeaders': {
                                 backgroundColor: '#F9FAFC',
                                 color:'#5A5A5A',
@@ -221,16 +223,17 @@ export default function Category(props) {
                             <ThemeProvider theme={CustomFontTheme}>
                                 <div style={{ width: '100%' }}>
                                     <DataGrid rows={rows} columns={columns} 
-                                                autoHeight
+                                               
                                                 pageSize={pageSize}
                                                 onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                                                rowsPerPageOptions={[5, 10, 20]}
+                                                rowsPerPageOptions={[ 10, 20]}
                                                 pagination
                                                 disableColumnMenu
                                                 disableColumnFilter
                                                 disableColumnSelector
                       
                                         sx={{
+                                            height:'610px',
                                             "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
                                                 outline: "none",
                                             },
@@ -244,7 +247,17 @@ export default function Category(props) {
                                             "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
                                                 backgroundColor: "#FFFFFF"
                                             },
-                                            height: 400,
+                                            "& .MuiDataGrid-columnHeaderTitle":{
+                                                    fontSize:'12px',
+                                            },
+                                            '& .MuiDataGrid-cellContent':{
+                                                fontSize:'12px',
+                                            },
+                                            "& .MuiDataGrid-row":{
+                                                  margin:'10px 0 0px',
+                                                  minHeight:'unset !important',
+                                                  maxHeight:'unset !important',
+                                            },
                                             width: '100%',
                                             "@media(max-width:768px)": {
                                                 ".MuiDataGrid-toolbarContainer": {

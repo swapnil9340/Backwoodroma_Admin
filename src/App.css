@@ -163,17 +163,22 @@ ul li path {
 
 /* Sidebar */
 .sidebar {
-  background-color: #FAFAFA;
- 
-  top: 60px;
-  bottom: 0;
+  background-color: #fff;
   overflow: auto;
-  
   box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
   width: 4%;
   z-index: 600;
   transition: all .3s ease;
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 100vh; -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
 .sidebar:hover{
   width: 15%;
 }
@@ -610,15 +615,10 @@ a {
   align-items: center;
 }
 
-.Add_Category h2 {
-  font-weight: 700;
-  font-size: 27px;
-}
+
 
 @media (max-width: 570px) {
-  .Add_Category h2 {
-    font-size: 20px;
-  }
+ 
 
   #product-search {
     font-size: 12px;

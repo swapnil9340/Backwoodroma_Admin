@@ -3,7 +3,10 @@ import { RiFilter3Fill } from "react-icons/ri";
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import './Sidebar.css';
-import { DateRangePicker } from 'react-date-range';
+import {
+  addDays
+} from "date-fns";
+import { DateRangePicker , defaultStaticRanges } from 'react-date-range';
 import { ClickAwayListener } from '@material-ui/core';
 import Createcontext from "../../Hooks/Context/Context" 
 const Filtermain = () => {
@@ -15,7 +18,7 @@ const Filtermain = () => {
   const [dateopen, setDateopen] = useState(false)
   const [daterange, Setdaterange] = useState({
     startDate: new Date(),
-    endDate: new Date(),
+    endDate:  addDays(new Date(), 7),
     key: 'selection',
   })
 
@@ -76,10 +79,11 @@ const Filtermain = () => {
           <DateRangePicker
             ranges={[daterange]}
             onChange={handleSelect}
-            showMonthAndYearPickers={false}
-            navigatorRenderer={() => { return false }}
+            showSelectionPreview={true}
+            moveRangeOnFirstSelection={false}
             maxDate={new Date()}
-
+            months={2}
+            direction='horizontal'
           />
         </div>
       </div>

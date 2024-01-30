@@ -34,7 +34,8 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
     }
   }
   return (
-    <div className={`sidebar ${sidebaropen ? "opensidebar" : ""}`}>
+    <div className={`sidebar ${sidebaropen ? "opensidebar" : ""}`} 
+ >
       <ul>
         <NavLink to={"/"} onClick={closebar} isActive={checkActive}>
           <li button className={" active_bar "}>

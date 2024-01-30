@@ -25,18 +25,18 @@ input[type=checkbox] {
 .topbutton{
   min-width: 140px;
   border: 1px solid #31B655;
-  color: #31B655;
+  color: #ffffff;
+  background-color: #31B655;
   padding: 7px 10px;
   text-align: center;
   border-radius: 4px;
   font-size: 16px;
-  background-color: transparent;
   transition: all .3s ease;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.075);
 }
 .topbutton:hover{
-    background-color: #31B655;
-    color: #fff;
+    background-color: #fff;
+    color: #31B655;
 }
 
 .reviewContainer {

@@ -252,7 +252,7 @@ export default function AdminPanel() {
 
   console.log(Data1)
   return (
-    <div className='row py-5 dashboardSection'>
+    <div className='row dashboardSection'>
 
       <div className='col-12' >
         <StatusBarCard></StatusBarCard>

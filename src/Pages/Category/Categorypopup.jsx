@@ -4,13 +4,16 @@ import { styled } from '@mui/material/styles';
 import Axios from "axios"
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
+import { useForm, Controller } from "react-hook-form";
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Cookies from 'universal-cookie';
 import Createcontext from "../../Hooks/Context/Context"
 import InputAdornment from '@mui/material/InputAdornment';
+import { RxCross2 } from "react-icons/rx";
+import useStyles from '../../Style'
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
         padding: theme.spacing(2),
@@ -35,6 +38,8 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 
 export default function Categorypopup() {
+    const classes = useStyles()
+    const { register, handleSubmit, watch, errors,setError,clearErrors,getValues,setValue, control } =   useForm();
     const inputRef = useRef(null);
     const { dispatch } = useContext(Createcontext)
     const cookies = new Cookies();
@@ -45,6 +50,7 @@ export default function Categorypopup() {
     const [NameCategory, setNameCategory] = React.useState('');
     const [error, seterror] = React.useState()
     const [massage, setmassage] = React.useState()
+    const [loadingbtn, Setloadingbtn] = React.useState(false);
     const handleChange = (event) => {
         setCategory(event.target.value);
     };
@@ -83,7 +89,7 @@ export default function Categorypopup() {
             headers: { Authorization: `Bearer ${token_data}` }
         };
 
-      
+        Setloadingbtn(true)
         Axios.post(
             'https://api.cannabaze.com/AdminPanel/Add-Category/',
             formdata,
@@ -94,10 +100,13 @@ export default function Categorypopup() {
             setCategory("Active");
             dispatch({ type: 'api', api: true })
             seterror("")
+        Setloadingbtn(false)
+
         }).catch(
             function (error) {
                 setmassage(error.response.data.name)
                 seterror("red")
+                Setloadingbtn(false)
 
             }
         )
@@ -122,7 +131,7 @@ export default function Categorypopup() {
                                 sm: "60%",
                                 md: "50%",
                                 lg: "40%",
-                                xl: "40%"
+                                xl: "636px",
 
                             },
                             height: {
@@ -130,7 +139,7 @@ export default function Categorypopup() {
                                 sm: "50%",
                                 md: "50%",
                                 lg: "50%",
-                                xl: "60%"
+                                xl: "676px"
                             },
                             // overflow:"scroll",
                             maxWidth: "none",
@@ -145,91 +154,63 @@ export default function Categorypopup() {
             >
                 <DialogContent dividers
                     sx={{
-                        "&.MuiDialogContent-root": {
-                            overflowX: "hidden",
-                            overflowY: "scroll",
-                        }
+                        padding:'0 !important',
+                       
                     }}
                 >
-                    <div className='container-fluid ' >
-                        <div className='row'>
+                    <div className='categoryeditpopupcontainer ' >
+                    <span onClick={handleClose} className='popupCloseBtn'><RxCross2 /></span>
+                       
+                        
+                        <div className='row  w-100 h-100 '>
 
                             <div className='col-12' >
-                                <div className='col-12 Add_Category center' style={{ marginTop: "6%" }}>
-                                    <div className="col "> <h2> Add Category
-                                    </h2>
-                                    </div>
-                                </div>
-                                <div className='' style={{ marginTop: "6%" }}>
-                                    <div className='col-10 top label  con'>
-                                        <div className='col '>
-
-                                            <label className='label'>
-                                                <span className='required'>*</span>
-                                                Name:
-                                            </label>
-                                        </div>
-                                        <div className='col'>
-
-                                            <TextField
-                                                InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14, height: 40 } }}
-                                                placeholder='Add Category' id="outlined-basic" variant="outlined" value={NameCategory || ""}
-                                                onChange={handleName}
-                                                label={massage}
-                                                sx={{
-                                                    '& .MuiOutlinedInput-root': {
-                                                        '& fieldset': {
-                                                            borderColor: error,
-                                                            height: 55,
-                                                        },
-                                                    },
-                                                    "& label": {
-                                                        fontSize: 13,
-                                                        color: "red",
-                                                        "&.Mui-focused": {
-                                                            marginLeft: 0,
-                                                            color: "red",
-                                                        }
-                                                    }
-                                                }}
-
-                                            />
-
-
-                                        </div>
-                                    </div>
-                                    <div className='col-10 top label  con '>
-                                        <div className='col top'>
-
-                                            <label className='label'>
-                                                Image:
-                                            </label>
-                                        </div>
-                                        <div className='col'>
-                                        <input  type="file" id="formFile" ref={inputRef} accept="image/*"  variant="outlined" style={{ Width: "10%", fontSize: 15 }}
-                                            onChange={handleimage}
-                                        />
-                                        </div>
-                                    </div>
-                                    <div className='col-10 top label  con center'>
-                                        <div className='col mt-4'>
+                              
+                                   <h2 className='categorypopuptitle'> Add Category  </h2>
+                                    .
+                            
+                                <div className='' >
+                                  
+                                 
+                                    <div className=''>
+                                        <div className='categoryeditpopupimageBox'>
                                         {
                                             image && <><img src={URL.createObjectURL(image)} alt="" style={{ width: "120px", height: "110px" }} />
-                                            <Button  onClick={resetFileInput}>Cancell </Button></>
+                                          </>
                                             
                                         }
                                         </div>
 
                                     </div>
-                                    <div className='col-10 top label  con'>
-                                        <div className='col top'>
-
-                                            <label className='label'>
-                                                Status:
+                                    <div className=''>
+                                        
+                                        <div className='col'>
+                                        <input  type="file" id="formFile" ref={inputRef} className='d-none' accept="image/*"  variant="outlined" style={{ Width: "10%", fontSize: 15 }}
+                                            onChange={handleimage}
+                                        />
+                                          <label className='label' htmlFor='formFile'>
+                                              <span className='Upload_btn'>Upload Image</span>
                                             </label>
                                         </div>
+                                    </div>
+                                    <div className='categorypopuptextfrild  '>
+                                      
+
+                                            <TextField
+                                                
+                                                placeholder='Add Category' id="outlined-basic" variant="outlined" value={NameCategory || ""}
+                                                onChange={handleName}
+                                                label={massage}
+                                                className={classes.categorypopuptext}
+
+                                            />
+
+
+                                    </div>
+                                    <div className='categorypopuptextfrild  '>
+                                       
                                         <div className='col ' >
-                                            <Select value={Category} onChange={handleChange} displayEmpty inputProps={{ 'aria-label': 'Without label', }}
+                                            <Select value={Category} className={classes.categorypopupselect} onChange={handleChange} displayEmpty inputProps={{ 'aria-label': 'Without label', }}
                                                 style={{ minWidth: "20%", height: "5vh", fontSize: 15, }}>
 
                                                 <MenuItem value={"Active"} style={{ fontSize: 15, backgroundColor: "#A3A3A3" }}>Active</MenuItem>
@@ -240,7 +221,8 @@ export default function Categorypopup() {
                                     </div>
                                     <div className='col center top' >
                                         <button  className='topbutton' onClick={handlechanges}>
-                                            Add Category
+                                            
+                                            {loadingbtn ? <div class="lds-ring"><div></div><div></div><div></div><div></div></div>: "Add Category"}
                                         </button>
                                     </div>
                                 </div>
@@ -250,11 +232,7 @@ export default function Categorypopup() {
 
                     </div>
                 </DialogContent>
-                <DialogActions>
-                    <button className='topbutton' onClick={handleClose}>
-                        Exit
-                    </button>
-                </DialogActions>
+              
             </BootstrapDialog>
 
         </div>

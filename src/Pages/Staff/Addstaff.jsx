@@ -15,6 +15,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import useStyles from "../../Style";
 import { FormControl ,Checkbox ,ListItemText } from "@mui/material";
+import { ImDropbox } from "react-icons/im";
 import "./Stall.css";
 import axios from "axios";
 import {useNavigate} from 'react-router-dom';
@@ -119,11 +120,11 @@ const Addusers = () => {
     return () => clearTimeout(getData)
   }
   return (
-    <div className="adduserForm_container d-flex justify-content-center w-100 py-sm-4 py-5">
+    <div className="adduserForm_container section_card">
       <div className="formsadduser">
         <form onSubmit={handleSubmit((data)=>onSubmit(data))}>
           <div className="row center">
-            <h6 className="Login_title text-start">Add User</h6>
+            <h6 className="Login_title pagetitle text-start"> <ImDropbox color='#31B655' size={25}/> Add User</h6>
           </div>
 
           <div className="row newLogin_label m-2">
@@ -166,12 +167,12 @@ const Addusers = () => {
                   defaultCountry={"in"}
                   style={{ width: "100%" }}
                   margin="normal"
-                  error={Boolean(errors?.Mobile)}
-                  helperText={errors?.Mobile?.message}
+                  error={Boolean(errors?.MobilePhone)}
+                  helperText={errors?.MobilePhone?.message}
                   className={classes.StandardTextFieldStyle}
                 />
               )}
-              name="Mobile"
+              name="MobilePhone"
               control={control}
               className={classes.StandardTextFieldStyle}
               defaultValue=""
@@ -346,7 +347,7 @@ const Addusers = () => {
         
           </div>
           <div className="row newLogin_label d-flex justify-content-between align-items-center m-2">
-            <h6 className="d-content">Status</h6>
+            {/* <h6 className="d-content">Status</h6> */}
 
             {/* <input type='checkbox' {...register("adduserstatus", { required: true })} /> */}
                 <label className="switch">
