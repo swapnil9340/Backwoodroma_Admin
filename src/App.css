@@ -50,7 +50,7 @@ ul li path {
   background-color: #FAFBFF;
 }
 .mycontainer{
-  width: 95%;
+  width: 98%;
   margin: 0 auto;
 }
 .Login_font {
@@ -540,7 +540,7 @@ a {
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.14px;
-  font-size: 11px;
+  /* font-size: 11px; */
 }
 
 /* right panel */
@@ -1735,7 +1735,7 @@ input:focus+label {
   font-size: 32px;
   font-style: normal;
   font-weight: 600;
-  line-height: 100%;
+  line-height: 32px;
   letter-spacing: -0.32px;
 }
 .categoryTableImg{
