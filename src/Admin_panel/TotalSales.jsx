@@ -6,86 +6,77 @@ import { FaArrowTrendDown } from "react-icons/fa6";
 const TotalSales = () => {
     const  Saalesstate = {
           
-        series: [50, 35, 15],
-        options: {
-          chart: {
-            width:400,
-            type: 'pie',
-            height: "400px",
-            minHeight: '100%',
-            dataLabels: {
-              position: 'bottom'
-            }
-          },
-          labels: ['Store', 'Pickup', 'Delivery'],
-          responsive: [{
-            breakpoint: 1440,
-            options: {
-              chart: {
-                height:300,
-              },
-              legend: {
-                position: 'bottom'
-              }
-            }
-          },
-          {
-            breakpoint: 480,
-            options: {
-              chart: {
-                width: 200
-              },
-              legend: {
-                position: 'bottom'
-              }
-            }
-          },
-          {
-            breakpoint: 480,
-            options: {
-              chart: {
-                width: 200
-              },
-              legend: {
-                position: 'bottom'
-              }
-            }
-          },
-          {
-            breakpoint: 480,
-            options: {
-              chart: {
-                width: 200
-              },
-              legend: {
-                position: 'bottom'
-              }
-            }
-          },
-          {
-            breakpoint: 480,
-            options: {
-              chart: {
-                width: 200
-              },
-              legend: {
-                position: 'bottom'
-              }
-            }
-          }],
-          legend: {
-            fontSize: '15px',
-            fontWeight:600,
-            position:'bottom',
-            width:200,
-            formatter: function(seriesName, opts) {
-                return [seriesName, " - ", opts.w.globals.series[opts.seriesIndex]]
+      chart: {
+        type: 'pie',
+      },
+      labels: ['Label 1', 'Label 2', 'Label 3'], // Add your labels here
+      legend: {
+        position: 'bottom', // Change legend position if needed
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              // width: 300,
             },
-         
+            legend: {
+              position: 'bottom',
+            },
           },
-        
         },
+        {
+          breakpoint: 1900,
+          options: {
+            chart: {
+              width:'100%',
+              height: 500,
+            },
+            legend: {
+              position: 'bottom',
+            },
+          },
+        },
+        {
+          breakpoint: 1450,
+          options: {
+            chart: {
+              height: 260,
+            },
+            legend: {
+              position: 'left',
+            },
+          },
+        },
+        {
+          breakpoint: 1100,
+          options: {
+            chart: {
+              height: 300,
+            },
+            legend: {
+              position: 'bottom',
+            },
+          },
+        },
+      ],
+      plotOptions: {
+        pie: {
+          dataLabels: {
+            style: {
+              fontSize: '14px', // Change label font size
+              fontFamily: 'Arial, sans-serif', // Change label font family
+            },
+            enabled: true,
+            formatter: function (val, opts) {
+              return `${opts.w.globals.labels[opts.seriesIndex]}: ${val}%`;
+            },
+            offsetY: 0, // Adjust label position vertically
+          },
+        },
+      },
       }
+      const series = [44, 55, 13];
   return (
     <div className='totalSalesChart'>
               <div className='totalSalesChartHeader'>
@@ -95,7 +86,7 @@ const TotalSales = () => {
               <h3 className='totalsalesamount'>73,276,931.28</h3>
               <div className='growthIndicater'><span className='icon'><FaArrowTrendDown /><MdTrendingUp /> 11.2%</span></div>
               <div className="Saleschart_container">
-                <ReactApexChart options={Saalesstate.options} series={Saalesstate.series} type="pie"  />
+                <ReactApexChart options={Saalesstate} series={series} type="pie"  />
               </div>
      </div>
   )
