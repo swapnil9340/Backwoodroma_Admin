@@ -1748,3 +1748,14 @@ input:focus+label {
 .categoryTableImg img{
   width: 100%;
 }
+
+
+.apexcharts-legend-series{
+  display: flex;
+  align-items: center;
+  margin-top: 16px !important;
+}
+
+.apexcharts-legend-text{
+  padding-left: 8px;
+}

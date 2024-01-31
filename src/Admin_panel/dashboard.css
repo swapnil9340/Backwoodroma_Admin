@@ -29,9 +29,24 @@ h3.graphtitle {
   border-radius: 3px;
   color: #13B8A6;
 }
+.totalSalesChart .growthIndicater1 {
+  background-color: rgb(245, 196, 196);
+  display: inline-block;
+  padding: 3px 5px;
+  border-radius: 3px;
+  color: "red";
+}
+.totalSalesChart .Saleschart_container {
+  display: flex;
+  justify-content: center;
+}
 .totalSalesChart .Saleschart_container > div:first-child {
   height: 100%;
   min-height: 100% !important;
+}
+.totalSalesChart .Saleschart_container .apexcharts-legend {
+  display: grid !important;
+  align-items: center;
 }
 
 .list_container {
@@ -68,7 +83,7 @@ h3.graphtitle {
 }
 .list_container .dashboardList li .dashboardListItem {
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-  padding: 10px 0;
+  padding: 7px 0;
   display: flex;
   justify-content: center;
 }
@@ -394,4 +409,16 @@ h3.graphtitle {
 }
 .StatusCardBorder .Card_Font {
   font-weight: 600;
+}
+
+.apexcharts-legend {
+  display: inline;
+}
+
+.top_Price {
+  color: #00ac4f;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: normal;
 }/*# sourceMappingURL=dashboard.css.map */

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { MdTrendingUp } from "react-icons/md";
 const Productstorelist = ({ title, Data1 }) => {
 
   return (
@@ -9,7 +10,7 @@ const Productstorelist = ({ title, Data1 }) => {
       </div>
       <ul className="dashboardList">
         {Data1 !== undefined &&
-          Data1.slice(0, 4).map((data) => {
+          Data1.slice(0, 5).map((data) => {
             return (
               <li className="">
                 <div className="dashboardListItem">
@@ -26,8 +27,12 @@ const Productstorelist = ({ title, Data1 }) => {
                           <span className="listunitSold">Unit {data?.ProductSalesCount}</span>
                           <span className="listunitSold">${data?.Price || data?.SalesPrice}</span>
                         </>
-                        :     
-                        <span className="listunitSold"> {data?.SalesPrice}</span>
+                        : 
+                        <div className="top_Price">
+                         <MdTrendingUp  size={22}/>
+                        <span className="top_Price"> {data?.SalesPrice}</span>
+                        </div>    
+
                      }
                     </div>
                   </div>
