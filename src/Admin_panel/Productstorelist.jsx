@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { MdTrendingUp } from "react-icons/md";
-const Productstorelist = ({ title, Data1 }) => {
+const Productstorelist = ({ link ,title, Data1 }) => {
 
   return (
     <div className="list_container">
@@ -16,7 +16,7 @@ const Productstorelist = ({ title, Data1 }) => {
                 <div className="dashboardListItem">
                   <div className="dashboardListItemImage">
                     <div className="imageCircle" >
-                      <img src={data.Image} className="w-[100%] h-[1005]" />
+                      <img src={data.Image} className="w-[100%] h-[100%]" />
                     </div>
                   </div>
                   <div className="dashboardListItemtext">
@@ -44,7 +44,7 @@ const Productstorelist = ({ title, Data1 }) => {
       </ul>
       <div className="viewAllBtnList ">
         {" "}
-        <Link to="/topproduct" className="">
+        <Link to={link}   state={ Data1}  className="">
           View All
         </Link>
       </div>

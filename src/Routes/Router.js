@@ -35,6 +35,7 @@ import Vendorlist from '../Pages/Vendor/Vendorlist';
 import Topproducts from '../Pages/Tablespages/Topproducts';
 import Allrecentorder from '../Pages/Tablespages/Allrecentorder'
 import Topstore from '../Pages/Tablespages/Topstore';
+import AllReview from '../Pages/Tablespages/AllReview';
 // export default function Router() {;
 //   return (
     
@@ -215,6 +216,10 @@ const routesConfig = [
       {
         path:"/topstorelist",
         element:<Protected  Component={Topstore}/>
+      },
+      {
+        path:"/allreview",
+        element:<Protected  Component={AllReview}/>
       },
     ],
   },

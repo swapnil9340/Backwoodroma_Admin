@@ -280,8 +280,8 @@ export default function AdminPanel() {
           <div className='totalUser bg-white'>
             <Areagraph />
           </div>
-          <div className='topProducts'><Productstorelist title={"Top Product"} Data1={Data1} /></div>
-          <div className='topProducts'><Productstorelist title={"Top Store"} Data1={TopStore} /></div>
+          <div className='topProducts'><Productstorelist link={'/topproduct'} title={"Top Product"} Data1={Data1} /></div>
+          <div className='topProducts'><Productstorelist link={'/topstorelist'} title={"Top Store"} Data1={TopStore} /></div>
           <div className='topProducts'><Productstorelist title={"Visited Store"} /></div>
           <div className='topProducts'>
             <TotalSales />

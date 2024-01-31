@@ -1,19 +1,13 @@
-import  React,{useState , useContext} from 'react';
+import  React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { Link } from "react-router-dom";
 import useStyles from '../../Style';
-import Cookies from "universal-cookie";
 import { ThemeProvider , Box ,createTheme } from "@mui/material";
 import { SlSocialDropbox } from "react-icons/sl";
-import axios from 'axios'
-import Createcontext from '../../Hooks/Context/Context'
+import {useLocation} from 'react-router-dom'
 // import "./Stall.css"
 const Topproducts = () => {
-  const { state } = useContext(Createcontext)
+    const location = useLocation()
     const classes= useStyles()
-    const cookies = new Cookies();
-    const token_data = cookies.get("Token_access");
-    const [userdata , setuserdata]= useState([])
     const columns = [
    
       { field: 'ProductImage', headerName: 'Product Image', minWidth: 120, 
@@ -103,54 +97,9 @@ const Topproducts = () => {
     },
   
     ];
-    React.useEffect(()=>{
-      axios.post('https://api.cannabaze.com/AdminPanel/TopProduct/', {"SelectTime":"year","StartDate":"2023-01-29","EndDate":"2024-01-29"},{
-            headers: {
-              Authorization: `Bearer ${token_data}`,
-            },
-      }).then((res)=>{
-        setuserdata(res.data)
-      })
-    },[token_data])
-    const rows = userdata
-    // const rows = [
-        // {
-        //     id:1,
-        //     ProductImage:'https://i.ibb.co/L9XT4kH/jason-leung-3aq-Uo3-XRmwo-unsplash.jpg' ,
-        //     ProductName:"STICKY GRAPES INDICA",
-        //     Category:'EDIBLES',
-        //     Price:123,
-        //     SaleUnite:234,
-        //     TotalSalePrice:123440,
-        //     StoreName:"Leed Weed",
-        //     Status:true
-        // }
-        
-       
-    // ]
-    // React.useEffect(() => {
-    //     if (state.datesSelect === "Customics") {
-    //       if (state.CustomeStartDate !== "" && state.CustomeEndDate !== "") {
-    //         SetData({
-    //           "SelectTime": state.datesSelect === "Year" ? "ThisYear" : state.datesSelect === "Months" ? 'ThisMonth' : state.datesSelect === "Today" ? 'Today' : state.datesSelect === "week" ? "week" : state.datesSelect === "Customics" && "costume",
-    //           "StartDate": state.datesSelect === "Year" ? `${date.getFullYear()}-01-01` : state.datesSelect === "Months" ? monthStartDate : state.datesSelect === "week" ? StartDateWeek : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeStartDate,
-    //           "EndDate": state.datesSelect === "Year" ? TodayDate : state.datesSelect === "Months" ? monthlastDate : state.datesSelect === "week" ? TodayDate : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeEndDate,
-    //           "LastStartDate": state.datesSelect === "Year" ? `${lastYear}-01-01` : state.datesSelect === "Months" ? lastmonthStartDate : state.datesSelect === "week" ? GetpreviousWeekDate(7, 1) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('first'),  //yesterday.toISOString().split('T')[0]
-    //           "EndStartDate": state.datesSelect === "Year" ? `${lastYear}-12-31` : state.datesSelect === "Months" ? lastmonthLastDate : state.datesSelect === "week" ? GetpreviousWeekDate(0, 0) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('Second')
-    //         })
-    //       }
-    //     }
-    //     else {
-    //       SetData({
-    //         "SelectTime": state.datesSelect === "Year" ? "ThisYear" : state.datesSelect === "Months" ? 'ThisMonth' : state.datesSelect === "Today" ? 'Today' : state.datesSelect === "week" ? "week" : state.datesSelect === "Customics" && "costume",
-    //         "StartDate": state.datesSelect === "Year" ? `${date.getFullYear()}-01-01` : state.datesSelect === "Months" ? monthStartDate : state.datesSelect === "week" ? StartDateWeek : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeStartDate,
-    //         "EndDate": state.datesSelect === "Year" ? TodayDate : state.datesSelect === "Months" ? monthlastDate : state.datesSelect === "week" ? TodayDate : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customics" && state.CustomeEndDate,
-    //         "LastStartDate": state.datesSelect === "Year" ? `${lastYear}-01-01` : state.datesSelect === "Months" ? lastmonthStartDate : state.datesSelect === "week" ? GetpreviousWeekDate(7, 1) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('first'),  //yesterday.toISOString().split('T')[0]
-    //         "EndStartDate": state.datesSelect === "Year" ? `${lastYear}-12-31` : state.datesSelect === "Months" ? lastmonthLastDate : state.datesSelect === "week" ? GetpreviousWeekDate(0, 0) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customics" && CalculateDays('Second')
-    //       })
-    //     }
-    //   }, [state.datesSelect, state.CustomeStartDate, state.CustomeEndDate])
-    
+  
+    const rows = location?.state
+   
 
     const CustomFontTheme = createTheme({
       typography: {

@@ -7,11 +7,14 @@ import { ThemeProvider , Box ,createTheme } from "@mui/material";
 import { SlSocialDropbox } from "react-icons/sl";
 import Axios from 'axios'
 import Createcontext from '../../Hooks/Context/Context'
-import { IoAlertCircleOutline } from "react-icons/io5";
+import { GoStarFill } from "react-icons/go";
 import { MdTrendingUp } from "react-icons/md";
 import { FaArrowTrendDown } from "react-icons/fa6";
 import { MdOutlineEmail } from "react-icons/md";
 import { BsTelephone } from "react-icons/bs";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { IoIosInformationCircleOutline } from "react-icons/io";
+
 const AllReview = () => {
 
     const [recentorder, setRecentorder] = useState([])
@@ -22,19 +25,19 @@ const AllReview = () => {
   
     
   
-          useEffect(() => {
-            Axios.post('https://api.cannabaze.com/AdminPanel/TopStore/', 
-            {"SelectTime":"Year","StartDate":"2024-01-01","EndDate":"2024-01-29","LastStartDate":"2023-01-01","EndStartDate":"2023-12-31"},{
-              headers: {
-                'Authorization': `Bearer ${token_data}`
-              }
-            }).then((res) => {
-              let a = res.data?.map((item , index)=>{
-                 return {...item , id: index}
-              })
-              setRecentorder( a )
-            })
-          }, [])
+        //   useEffect(() => {
+        //     Axios.post('https://api.cannabaze.com/AdminPanel/TopStore/', 
+        //     {"SelectTime":"Year","StartDate":"2024-01-01","EndDate":"2024-01-29","LastStartDate":"2023-01-01","EndStartDate":"2023-12-31"},{
+        //       headers: {
+        //         'Authorization': `Bearer ${token_data}`
+        //       }
+        //     }).then((res) => {
+        //       let a = res.data?.map((item , index)=>{
+        //          return {...item , id: index}
+        //       })
+        //       setRecentorder( a )
+        //     })
+        //   }, [])
           const CustomFontTheme = createTheme({
           typography: {
               fontSize: 25
@@ -57,14 +60,14 @@ const AllReview = () => {
   
           const columns = [
               {
-                field: 'OrderId',
+                field: 'reviewNo',
                 headerName: 'No.',
                 minWidth: 150,
                 editable: false,
                 sortable: false,
                 headerAlign: 'left',
                 valueGetter: (params) =>
-                  `#${params.row.OrderId}`,
+                  `#${params.row.reviewNo}`,
               },
               {
                 field: 'VendorName',
@@ -77,12 +80,12 @@ const AllReview = () => {
                 renderCell: (params) => {
                   return <div className='pendingUserProfile'>
                     <div className='userImage'>
-                      <div className='namecircles'>
-                         {params.row?.VendorName?.charAt(0)}{params.row?.VendorName?.split(' ')[1]?.charAt(0)}     
-                      </div>
+                    <div className="imageCircle" >
+                      <img src={params.row.userImage} className="w-[100%] h-[100%]" />
+                    </div>
                     </div>
                     <div>
-                      <h4 className='userName'>{params.row.VendorName}</h4>
+                      <h4 className='userName'>{params.row.username}</h4>
           
                     </div>
                   </div>
@@ -98,13 +101,13 @@ const AllReview = () => {
                 flex: 1,
                 renderCell: (params) => {
                   return <ul className='pendingvendercontent'>
-                    {params?.row?.Email && <li className='content_item'> <span className='contactIcon'><MdOutlineEmail color='#6B6F7A' /></span>{params.row.Email}</li>}
+                    {params?.row?.email && <li className='content_item'> <span className='contactIcon'><MdOutlineEmail color='#6B6F7A' /></span>{params.row.email}</li>}
                     {params?.row?.MobileNo && <li className='content_item'> <span className='contactIcon'><BsTelephone color='#6B6F7A' /></span>{params.row.MobileNo}</li>}
                   </ul>
                 }
               },
               {
-                field: 'Rating',
+                field: 'rating',
                 headerName: 'Rating',
                 type: 'number',
                 minWidth: 150,
@@ -113,9 +116,20 @@ const AllReview = () => {
                 headerAlign: 'center',
                 align: 'center',
                 flex: 1,
+                renderCell: (params) => {
+                  return <span>{ 
+                            Array(params.row.rating).fill().map(()=>{
+                               return <GoStarFill  size={18} color='rgba(0, 172, 79, 1)'/>
+                            }) }{
+                            Array(5- params.row.rating).fill().map(()=>{
+                                return <GoStarFill  size={18} color='rgba(0, 172, 79, 0.41)'/>
+
+                            })  }
+                     </span>
+                }
               },
               {
-                field: 'Reviews',
+                field: 'review',
                 headerName: 'Reviews',
                 flex: 1,
                 editable: false,
@@ -125,7 +139,7 @@ const AllReview = () => {
                 align: 'center',
               },
               {
-                field: 'Date',
+                field: 'date',
                 headerName: 'Date',
                 type: 'number',
                 minWidth: 120,
@@ -134,7 +148,7 @@ const AllReview = () => {
                 headerAlign: 'center',
                 align: 'center',
                 flex: 1,
-                valueGetter:(params)=>`${ params.row.StoreOrder} Qty`
+              
               },
               {
                 field: 'Action',
@@ -146,13 +160,26 @@ const AllReview = () => {
                 headerAlign: 'center',
                 align: 'center',
                 flex: 1,
-                valueGetter: (params) =>
-                  `$ ${params.row.SalesPrice}`,
+                renderCell: (params) => {
+                    return <span> <RiDeleteBin6Line color='#31B655' size={18}/>
+                    <IoIosInformationCircleOutline color='#31B655' size={18}/>
+                    </span>
+                  }
               },
              
             ];
   
-            const rows = recentorder
+            const rows = [{
+                id:1,
+                 reviewNo: 876364,
+                 userImage:'https://i.ibb.co/ZmXPdgZ/Ellipse-446.png',
+                 username:"Harsh jain",
+                 email:'daniel.garcia@gmail.com',
+                 MobileNo:'(382) 302-1319',
+                 rating:4,
+                 review:'Important for you daily inputs. Your cholesterol intakes are high in chicken n eggs… the oils that we use.balances stuff in your body.',
+                 date:'31-01-2024'
+            }]
   return (
     <div className=' my-4 '>
     <div className='py-4 section_card'>

@@ -1,39 +1,16 @@
-import  React,{useState , useEffect,useContext} from 'react';
+import  React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { Link } from "react-router-dom";
-import useStyles from '../../Style';
-import Cookies from "universal-cookie";
 import { ThemeProvider , Box ,createTheme } from "@mui/material";
 import { SlSocialDropbox } from "react-icons/sl";
-import Axios from 'axios'
-import Createcontext from '../../Hooks/Context/Context'
-import { IoAlertCircleOutline } from "react-icons/io5";
 import { MdTrendingUp } from "react-icons/md";
 import { FaArrowTrendDown } from "react-icons/fa6";
 import { MdOutlineEmail } from "react-icons/md";
 import { BsTelephone } from "react-icons/bs";
+import {useLocation} from 'react-router-dom'
 const Topstore = () => {
-    const [recentorder, setRecentorder] = useState([])
-    const [error, seterror] = useState(false)
-    const cookies = new Cookies();
-    const token_data = cookies.get("Token_access");
+    const location = useLocation()
     const [pageSize, setPageSize] = React.useState(10)
   
-    
-  
-          useEffect(() => {
-            Axios.post('https://api.cannabaze.com/AdminPanel/TopStore/', 
-            {"SelectTime":"Year","StartDate":"2024-01-01","EndDate":"2024-01-29","LastStartDate":"2023-01-01","EndStartDate":"2023-12-31"},{
-              headers: {
-                'Authorization': `Bearer ${token_data}`
-              }
-            }).then((res) => {
-              let a = res.data?.map((item , index)=>{
-                 return {...item , id: index}
-              })
-              setRecentorder( a )
-            })
-          }, [])
           const CustomFontTheme = createTheme({
           typography: {
               fontSize: 25
@@ -50,10 +27,6 @@ const Topstore = () => {
           },
     
           });
-  
-  
-  
-  
           const columns = [
               // {
               //   field: 'OrderId',
@@ -181,7 +154,7 @@ const Topstore = () => {
               // },
             ];
   
-            const rows = recentorder
+            const rows = location?.state
   return (
     <div className=' my-4 '>
     <div className='py-4 section_card'>
