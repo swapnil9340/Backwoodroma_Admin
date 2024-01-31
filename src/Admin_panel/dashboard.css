@@ -29,10 +29,6 @@ h3.graphtitle {
   border-radius: 3px;
   color: #13B8A6;
 }
-.totalSalesChart .Saleschart_container {
-  width: 100%;
-  min-height: 300px;
-}
 .totalSalesChart .Saleschart_container > div:first-child {
   height: 100%;
   min-height: 100% !important;
