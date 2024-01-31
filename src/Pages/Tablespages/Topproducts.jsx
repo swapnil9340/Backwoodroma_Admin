@@ -15,8 +15,12 @@ const Topproducts = () => {
     const token_data = cookies.get("Token_access");
     const [userdata , setuserdata]= useState([])
     const columns = [
-        { field: 'id', headerName: ' ID', width: 90 },
-      { field: 'ProductImage', headerName: 'Product Image', width: 90 },
+   
+      { field: 'ProductImage', headerName: 'Product Image', minWidth: 120, 
+            renderCell:(params)=>{
+                return <span className='image_circle_tsp'><img src={params.row.Image}/></span> 
+            }
+      },
       {
         field: 'ProductName',
         headerName: 'Product Name',
@@ -28,7 +32,7 @@ const Topproducts = () => {
         align: "center",
       },
       {
-        field: 'Category',
+        field: 'category',
         headerName: 'Category',
         minWidth: 120,
         editable: false,
@@ -38,7 +42,7 @@ const Topproducts = () => {
         align: "center",
       },
       {
-        field: 'Price',
+        field: 'ProductPrice',
         headerName: 'Price',
         minWidth: 120,
         editable: false,
@@ -46,9 +50,10 @@ const Topproducts = () => {
         flex:1,
         headerAlign: "center",
         align: "center",
+        valueFormatter: ({ value }) => `$${value}` 
       },
       {
-        field: 'SaleUnite',
+        field: 'ProductSalesCount',
         headerName: 'Sale Unite',
         sortable:false,
         minWidth: 80,
@@ -56,10 +61,10 @@ const Topproducts = () => {
         flex:1,
         headerAlign: "center",
         align: "center",
-       
+        valueFormatter: ({ value }) => `${value} Qty` 
       },
       {
-          field: 'TotalSalePrice',
+          field: 'Price',
           headerName: 'Total Sale Price',
           sortable:false,
           minWidth: 80,
@@ -67,6 +72,7 @@ const Topproducts = () => {
           flex:1,
           headerAlign: "center",
           align: "center",
+          valueFormatter: ({ value }) => `$${value}` 
       },
       {
         field: 'StoreName',
@@ -79,7 +85,7 @@ const Topproducts = () => {
         align: "center",
     },
     {
-        field: 'Status',
+        field: 'Stock',
         headerName: 'Status',
         sortable:false,
         minWidth: 80,
@@ -87,34 +93,41 @@ const Topproducts = () => {
         flex:1,
         headerAlign: "center",
         align: "center",
+        renderCell: (params) => {
+            if (params.row.Stock === "IN Stock" ) {
+              return <span className='statusactive'>In Stock</span>
+            }else{
+              return <span className='statusinactive'>Out Of stock</span>
+            }
+        },
     },
   
     ];
-    // React.useEffect(()=>{
-    //   axios.post('https://api.cannabaze.com/AdminPanel/TopProduct/', {"SelectTime":"year","StartDate":"2023-01-29","EndDate":"2024-01-29"},{
-    //         headers: {
-    //           Authorization: `Bearer ${token_data}`,
-    //         },
-    //   }).then((res)=>{
-    //     setuserdata(res.data)
-    //   })
-    // },[token_data])
-    // const rows = userdata
-    const rows = [
-        {
-            id:1,
-            ProductImage:'https://i.ibb.co/MN19wkg/iconsforward.png' ,
-            ProductName:"STICKY GRAPES INDICA",
-            Category:'EDIBLES',
-            Price:123,
-            SaleUnite:234,
-            TotalSalePrice:123440,
-            StoreName:"Leed Weed",
-            Status:true
-        }
+    React.useEffect(()=>{
+      axios.post('https://api.cannabaze.com/AdminPanel/TopProduct/', {"SelectTime":"year","StartDate":"2023-01-29","EndDate":"2024-01-29"},{
+            headers: {
+              Authorization: `Bearer ${token_data}`,
+            },
+      }).then((res)=>{
+        setuserdata(res.data)
+      })
+    },[token_data])
+    const rows = userdata
+    // const rows = [
+        // {
+        //     id:1,
+        //     ProductImage:'https://i.ibb.co/L9XT4kH/jason-leung-3aq-Uo3-XRmwo-unsplash.jpg' ,
+        //     ProductName:"STICKY GRAPES INDICA",
+        //     Category:'EDIBLES',
+        //     Price:123,
+        //     SaleUnite:234,
+        //     TotalSalePrice:123440,
+        //     StoreName:"Leed Weed",
+        //     Status:true
+        // }
         
        
-    ]
+    // ]
     // React.useEffect(() => {
     //     if (state.datesSelect === "Customics") {
     //       if (state.CustomeStartDate !== "" && state.CustomeEndDate !== "") {
@@ -171,7 +184,7 @@ const Topproducts = () => {
                 </div>
                 <div className='allusertable'>
                 <Box sx={{
-                                height: 600,
+                               
                                 width: '100%',
                                 '& .MuiDataGrid-columnHeaders': {
                                     backgroundColor: '#F9FAFC',
@@ -184,8 +197,8 @@ const Topproducts = () => {
                                   
                                 },
                                     // check
-                                "&.MuiDataGrid-root":{
-                                border:'none',
+                                "& .MuiDataGrid-root":{
+                                   border:'none',
                                 },
                                     "&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
                                     outline:"none"
@@ -225,7 +238,7 @@ const Topproducts = () => {
                                     <DataGrid
                                         rows={rows}
                                         columns={columns}
-                                        getRowId={(row) => row.id}
+                                        getRowId={(row) => row.Product_id}
                                         initialState={{
                                         pagination: {
                                             paginationModel: {
@@ -243,7 +256,7 @@ const Topproducts = () => {
                                         rowSelection={false}
                                         sx={{
                                             "& .MuiDataGrid-columnHeader":{
-justifyContent:'center',
+                                                justifyContent:'center',
                                             },
                                         "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
                                             outline: "none",
@@ -263,6 +276,8 @@ justifyContent:'center',
                                         },
                                         '& .MuiDataGrid-cellContent':{
                                             fontSize:'12px',
+                                            color:'#000',
+                                            fontWeight:'500',
                                         },
                                         width: '100%',
                                         "@media(max-width:768px)": {

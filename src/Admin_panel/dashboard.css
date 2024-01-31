@@ -278,42 +278,12 @@ h3.graphtitle {
 .dashboardSection .locationGraph .locationContent .locationGrapharea {
   width: 45%;
 }
-.dashboardSection .pendingUserProfile {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  width: 100%;
-}
-.dashboardSection .pendingUserProfile .userImage .userImageCircle {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  overflow: hidden;
-}
-.dashboardSection .pendingUserProfile .userImage .userImageCircle img {
-  width: 100%;
-}
-.dashboardSection .pendingUserProfile .userName {
-  color: #000;
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-.dashboardSection .pendingUserProfile .joinDate {
-  font-family: "Inter", sans-serif;
-  color: #6A717B;
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-.dashboardSection .pendingvendercontent {
+
+.pendingvendercontent {
   display: block;
   width: 100%;
 }
-.dashboardSection .pendingvendercontent .content_item {
+.pendingvendercontent .content_item {
   display: block;
   color: #6B6F7A;
   font-family: "Inter", sans-serif;
@@ -322,12 +292,44 @@ h3.graphtitle {
   font-weight: 400;
   line-height: normal;
 }
-.dashboardSection .pendingvendercontent .content_item .contactIcon {
+.pendingvendercontent .content_item .contactIcon {
   color: #7C7C7C;
   margin-right: 5px;
 }
-.dashboardSection .pendingvendercontent .content_item .contactIcon path {
+.pendingvendercontent .content_item .contactIcon path {
   color: #7C7C7C;
+}
+
+.pendingUserProfile {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+.pendingUserProfile .userImage .userImageCircle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.pendingUserProfile .userImage .userImageCircle img {
+  width: 100%;
+}
+.pendingUserProfile .userName {
+  color: #000;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.pendingUserProfile .joinDate {
+  font-family: "Inter", sans-serif;
+  color: #6A717B;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .venderSection .venderHeroDiv {

@@ -6,7 +6,6 @@ import { createTheme } from "@mui/material/styles";
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import {Select , MenuItem} from '@mui/material';
 import axios from "axios"
-
 import { TiEdit } from "react-icons/ti";
 import Cookies from 'universal-cookie';
 import Createcontext from "../../Hooks/Context/Context"
@@ -238,7 +237,12 @@ const Vendor = () => {
                         </div>
                     </div>
                     <div className="col-12 mb-4 mt-4 bg-white">
-                        <Box
+
+                        <div className='d-flex justify-content-between align-content-center'> 
+                           <div></div>
+                           <button className=''> + Add Product</button>
+                        </div>
+                          <Box
                             sx={{
                                 width: '100%',
                                 
@@ -304,7 +308,7 @@ const Vendor = () => {
                                     }}
                                 />
                             </ThemeProvider>
-                        </Box>
+                          </Box>
                     </div>
             </div>
         </div>

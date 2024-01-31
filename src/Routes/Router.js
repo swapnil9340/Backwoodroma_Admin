@@ -33,6 +33,7 @@ import RoleDetailsAndPermission from '../Pages/Role/RoleDetailsAndPermission/Rol
 import Allstall from '../Pages/Staff/Allstall';
 import Vendorlist from '../Pages/Vendor/Vendorlist';
 import Topproducts from '../Pages/Tablespages/Topproducts';
+import Allrecentorder from '../Pages/Tablespages/Allrecentorder'
 // export default function Router() {;
 //   return (
     
@@ -205,6 +206,10 @@ const routesConfig = [
       {
         path:"/PromotionalBannerList",
         element:<Protected  Component={PromotionalBannerList}/>
+      },
+      {
+        path:"/recentorderslist",
+        element:<Protected  Component={Allrecentorder}/>
       },
     ],
   },

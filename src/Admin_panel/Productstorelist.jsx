@@ -14,9 +14,7 @@ const Productstorelist = ({ title, Data1 }) => {
               <li className="">
                 <div className="dashboardListItem">
                   <div className="dashboardListItemImage">
-                    <div
-                      className="imageCircle"
-                    >
+                    <div className="imageCircle" >
                       <img src={data.Image} className="w-[100%] h-[1005]" />
                     </div>
                   </div>

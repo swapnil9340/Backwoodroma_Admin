@@ -222,8 +222,8 @@ export default function Category(props) {
                         }}>
                             <ThemeProvider theme={CustomFontTheme}>
                                 <div style={{ width: '100%' }}>
-                                    <DataGrid rows={rows} columns={columns} 
-                                               
+                                    <DataGrid   rows={rows}
+                                                columns={columns} 
                                                 pageSize={pageSize}
                                                 onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                                                 rowsPerPageOptions={[ 10, 20]}
@@ -231,67 +231,66 @@ export default function Category(props) {
                                                 disableColumnMenu
                                                 disableColumnFilter
                                                 disableColumnSelector
-                      
-                                        sx={{
-                                            height:'610px',
-                                            "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                                outline: "none",
-                                            },
-                                            "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
-                                                outline: "none"
-                                            },
-                                            "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
-                                                outline: "none",
+                                                sx={{
+                                                    height:'610px',
+                                                    "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
+                                                        outline: "none",
+                                                    },
+                                                    "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
+                                                        outline: "none"
+                                                    },
+                                                    "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
+                                                        outline: "none",
 
-                                            },
-                                            "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
-                                                backgroundColor: "#FFFFFF"
-                                            },
-                                            "& .MuiDataGrid-columnHeaderTitle":{
-                                                    fontSize:'12px',
-                                            },
-                                            '& .MuiDataGrid-cellContent':{
-                                                fontSize:'12px',
-                                            },
-                                            "& .MuiDataGrid-row":{
-                                                  margin:'10px 0 0px',
-                                                  minHeight:'unset !important',
-                                                  maxHeight:'unset !important',
-                                            },
-                                            width: '100%',
-                                            "@media(max-width:768px)": {
-                                                ".MuiDataGrid-toolbarContainer": {
-                                                    gap: "10px",
+                                                    },
+                                                    "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
+                                                        backgroundColor: "#FFFFFF"
+                                                    },
+                                                    "& .MuiDataGrid-columnHeaderTitle":{
+                                                            fontSize:'12px',
+                                                    },
+                                                    '& .MuiDataGrid-cellContent':{
+                                                        fontSize:'12px',
+                                                    },
+                                                    "& .MuiDataGrid-row":{
+                                                        margin:'10px 0 0px',
+                                                        minHeight:'unset !important',
+                                                        maxHeight:'unset !important',
+                                                    },
+                                                    width: '100%',
+                                                    "@media(max-width:768px)": {
+                                                        ".MuiDataGrid-toolbarContainer": {
+                                                            gap: "10px",
 
-                                                }
-                                            },
-                                            "@media(max-width:546px)": {
-                                                ".MuiDataGrid-toolbarContainer": {
-                                                    gap: "5px",
+                                                        }
+                                                    },
+                                                    "@media(max-width:546px)": {
+                                                        ".MuiDataGrid-toolbarContainer": {
+                                                            gap: "5px",
 
-                                                }
-                                            },
-                                            ".MuiDataGrid-toolbarContainer": {
-                                                flexDirection: "block",
+                                                        }
+                                                    },
+                                                    ".MuiDataGrid-toolbarContainer": {
+                                                        flexDirection: "block",
 
-                                                backgroundColor: "#31B665",
-                                                width: {
-                                                    xs: "100%",
-                                                    sm: "100%",
-                                                    md: "100%",
-                                                    lg: "100%",
-                                                    xl: "100%"
+                                                        backgroundColor: "#31B665",
+                                                        width: {
+                                                            xs: "100%",
+                                                            sm: "100%",
+                                                            md: "100%",
+                                                            lg: "100%",
+                                                            xl: "100%"
 
-                                                },
-                                            },
-                                            "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                                                visibility: "hidden"
-                                            },
-                                            "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                                width: "120px"
-                                            }
+                                                        },
+                                                    },
+                                                    "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
+                                                        visibility: "hidden"
+                                                    },
+                                                    "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                                                        width: "120px"
+                                                    }
 
-                                        }}
+                                                }}
                                     />
                                 </div>
                             </ThemeProvider>

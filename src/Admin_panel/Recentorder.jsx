@@ -18,8 +18,6 @@ const Recentorder = () => {
   const cookies = new Cookies();
   const token_data = cookies.get('Token_access')
   const [recentorder, setRecentorder] = React.useState([])
-
-
   const columns = [
     {
       field: 'OrderId',
@@ -177,7 +175,9 @@ const Recentorder = () => {
         'Authorization': `Bearer ${token_data}`
       }
     }).then((res) => {
-      setRecentorder(res.data)
+      let a= res.data.slice(0,6)
+      console.log(a ,'qerg')
+      setRecentorder(a)
     })
   }, [])
   return (
@@ -306,7 +306,7 @@ const Recentorder = () => {
           </div>
         </ThemeProvider>
       </Box>
-      <div className='text-center py-3'><Link><span>View All</span></Link></div>
+      <div className='text-center py-3'><Link to={'/recentorderslist'}><span>View All</span></Link></div>
     </div>
   )
 }
