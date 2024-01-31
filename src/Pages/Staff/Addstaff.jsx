@@ -15,7 +15,8 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import useStyles from "../../Style";
 import { FormControl ,Checkbox ,ListItemText } from "@mui/material";
-import { ImDropbox } from "react-icons/im";
+import { SlSocialDropbox } from "react-icons/sl";
+
 import "./Stall.css";
 import axios from "axios";
 import {useNavigate} from 'react-router-dom';
@@ -124,7 +125,7 @@ const Addusers = () => {
       <div className="formsadduser">
         <form onSubmit={handleSubmit((data)=>onSubmit(data))}>
           <div className="row center">
-            <h6 className="Login_title pagetitle text-start"> <ImDropbox color='#31B655' size={25}/> Add User</h6>
+            <h6 className="Login_title pagetitle text-start"> <SlSocialDropbox color='#31B655' size={25}/> Add User</h6>
           </div>
 
           <div className="row newLogin_label m-2">

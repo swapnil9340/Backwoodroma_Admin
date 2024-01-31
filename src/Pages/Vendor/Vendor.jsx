@@ -15,9 +15,14 @@ import StatusBarCard from '../../Admin_panel/StatusBarCard'
 import Areagraph from '../../Admin_panel/Areagraph'
 import TotalSales from '../../Admin_panel/TotalSales'
 import Productstorelist from '../../Admin_panel/Productstorelist'
-import { FaRegEyeSlash } from "react-icons/fa";
 import '../../style.css'
 import '../../Admin_panel/dashboard.css'
+import Recentorder from '../../Admin_panel/Recentorder';
+import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { AiFillStar , AiOutlineStar  } from "react-icons/ai";
+
+
+
 const CustomFontTheme = createTheme({
     typography: {
         fontSize: 25
@@ -37,16 +42,12 @@ const CustomFontTheme = createTheme({
 const Vendor = () => {
     const { state, dispatch } = React.useContext(Createcontext)
     const { enqueueSnackbar } = useSnackbar();
-  
     const cookies = new Cookies();
     const [pageSize, setPageSize] = React.useState(5)
+    const [detailstype, setdetailstype] = React.useState(true)
     const token_data = cookies.get('Token_access')
-   
-  
     const columns = [
-        // {
-        //     field: 'id', headerName: 'ID', maxWidth: 90, flex: 1, minWidth: 90,
-        // },
+     
         {
             field: 'ProductImage',
             headerName: 'Product Image',
@@ -104,6 +105,9 @@ const Vendor = () => {
                     {    state.Roles.DeleteVendor    &&
                         <Box
                             sx={{
+                                display:'flex',
+                                alignItems:'center',
+                                gap:'5px',
                                 '& .MuiOutlinedInput-root': {
                                     '&.Mui-focused fieldset': {
                                         borderWidth: "1px",
@@ -115,21 +119,12 @@ const Vendor = () => {
                                 }
                             }}
                         >
-                            <Select sx={{
-                                boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
-                                "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
-                                "&:hover": {
-                                    ".MuiSelect-icon": {
-                                        color: "#31B665"
-                                    }
-                                },
-                            }} IconComponent={BsThreeDotsVertical} labelId="">
                           
-                           <MenuItem>  <UserDelete data={params.row}></UserDelete></MenuItem>
-                           <MenuItem> <TiEdit /> Edit </MenuItem>
-                           <MenuItem> <FaRegEyeSlash /> View</MenuItem>
-                            
-                            </Select>
+                          
+                           <MdOutlineRemoveRedEye   color='rgba(67, 80, 133, 0.5)' size={18} />
+                           <TiEdit color='rgba(67, 80, 133, 0.5)' size={18} /> 
+                           <UserDelete data={params.row}></UserDelete>
+                          
                         </Box>
                     }
                 </React.Fragment>
@@ -171,16 +166,61 @@ const Vendor = () => {
                             <div className='storeType'> <span>Store</span> <span>Delivery</span></div>
                             <h4 className='storelistcardName'>Vijay Nagar Store</h4>
                             <p className='storelistcardDesc'>Brainstorming brings team members' diverse experience into play.</p>
+                                 <div  className='storerating'> 4.7 <span className=''> {
+                                Array(3).fill().map(()=>{
+                                   
+                                    return <AiFillStar size={12} color='rgba(252, 213, 3, 1)'/>
+                                })
+                                
+                                }{
+                                    Array(2).fill().map(()=>{
+                                    
+                                        return <AiOutlineStar size={12} color='rgba(252, 213, 3, 1)'/>
+                                    })
+                                } 
+                            
+                                </span>
+                                 </div>
                           </div>
                           <div className='storelistcard'>
                             <div className='storeType'> <span>Store</span> <span>Delivery</span></div>
                             <h4 className='storelistcardName'>Good Weed NYC</h4>
                             <p className='storelistcardDesc'>Brainstorming brings team members' diverse experience into play.</p>
+                            <div  className='storerating'> 4.7 <span className=''> {
+                                Array(3).fill().map(()=>{
+                                   
+                                    return <AiFillStar size={12} color='rgba(252, 213, 3, 1)'/>
+                                })
+                                
+                                }{
+                                    Array(2).fill().map(()=>{
+                                    
+                                        return <AiOutlineStar size={12} color='rgba(252, 213, 3, 1)'/>
+                                    })
+                                } 
+                            
+                                </span>
+                                 </div>
                           </div>
                           <div className='storelistcard'>
                             <div className='storeType'> <span>Store</span> <span>Delivery</span></div>
                             <h4 className='storelistcardName'> Ujjain</h4>
                             <p className='storelistcardDesc'>Brainstorming brings team members' diverse experience into play.</p>
+                            <div  className='storerating'> 4.7 <span className=''> {
+                                Array(3).fill().map(()=>{
+                                   
+                                    return <AiFillStar size={10} color='rgba(252, 213, 3, 1)'/>
+                                })
+                                
+                                }{
+                                    Array(2).fill().map(()=>{
+                                    
+                                        return <AiOutlineStar size={10} color='rgba(252, 213, 3, 1)'/>
+                                    })
+                                } 
+                            
+                                </span>
+                                 </div>
                           </div>
                         </dvi>
                     </div>
@@ -238,11 +278,17 @@ const Vendor = () => {
                     </div>
                     <div className="col-12 mb-4 mt-4 bg-white">
 
-                        <div className='d-flex justify-content-between align-content-center'> 
-                           <div></div>
-                           <button className=''> + Add Product</button>
+                        <div className='d-flex justify-content-between align-content-center py-4'> 
+                           <div className='gap-4 d-flex'>
+                           <button className='topbutton' onClick={()=>{setdetailstype(!detailstype)}} style={{backgroundColor:!detailstype ? '#fff' : "#31B655", color:detailstype ? '#fff' : "#31B655"}}>Product Details</button>
+                           <button className='topbutton' onClick={()=>{setdetailstype(!detailstype)}} style={{backgroundColor:detailstype ? '#fff' : "#31B655", color:!detailstype ? '#fff' : "#31B655"}}>Order Details</button>
+
+                           </div>
+                           <button className='topbutton'>+ Add Product</button>
                         </div>
-                          <Box
+                         
+                         {detailstype?
+                            <Box
                             sx={{
                                 width: '100%',
                                 
@@ -309,6 +355,9 @@ const Vendor = () => {
                                 />
                             </ThemeProvider>
                           </Box>
+                          :
+                          <Recentorder title={'Order Details'} />
+                          }
                     </div>
             </div>
         </div>

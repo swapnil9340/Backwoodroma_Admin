@@ -34,6 +34,7 @@ import Allstall from '../Pages/Staff/Allstall';
 import Vendorlist from '../Pages/Vendor/Vendorlist';
 import Topproducts from '../Pages/Tablespages/Topproducts';
 import Allrecentorder from '../Pages/Tablespages/Allrecentorder'
+import Topstore from '../Pages/Tablespages/Topstore';
 // export default function Router() {;
 //   return (
     
@@ -210,6 +211,10 @@ const routesConfig = [
       {
         path:"/recentorderslist",
         element:<Protected  Component={Allrecentorder}/>
+      },
+      {
+        path:"/topstorelist",
+        element:<Protected  Component={Topstore}/>
       },
     ],
   },

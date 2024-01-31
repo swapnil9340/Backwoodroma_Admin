@@ -12,7 +12,7 @@ import Axios from 'axios'
 import Cookies from 'universal-cookie';
 import { MdOutlineEmail } from "react-icons/md";
 import { BsTelephone } from "react-icons/bs";
-const Recentorder = () => {
+const Recentorder = ({title="Recent Order"}) => {
   const [searchtext, setSearchtext] = useState('')
   const [searchdata, setSearchdata] = useState('')
   const cookies = new Cookies();
@@ -183,7 +183,7 @@ const Recentorder = () => {
   return (
     <div className='RecentOrderCard'>
       <div className='d-flex gap-4 py-4'>
-        <h3 className='graphtitle'>Recent Order</h3>
+        <h3 className='graphtitle'>{title}</h3>
         <div className='searchBarrecent'> <Searchbar searchtext={searchtext} type={'recentOrder'} searchdata={searchdata} setSearchtext={setSearchtext} ></Searchbar></div>
       </div>
 

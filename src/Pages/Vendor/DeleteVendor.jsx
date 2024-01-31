@@ -47,7 +47,7 @@ export default function UserDelete(props) {
   return (
     <div>
       <span color='topbutton' onClick={handleClickOpen}>
-      <BsTrashFill/> Delete
+      <BsTrashFill color='rgba(67, 80, 133, 0.5)' size={18}/> 
       </span>
       <Dialog
         open={open}

@@ -13,7 +13,7 @@ import { BsThreeDotsVertical } from 'react-icons/bs';
 import Select from '@mui/material/Select';
 import CategoryEditbox from "./CategoryEdit"
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { ImDropbox } from "react-icons/im";
+import { SlSocialDropbox } from "react-icons/sl";
 import Eelete from "../Category/Delete";
 import { AiFillEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { LuEye } from "react-icons/lu";
@@ -166,7 +166,7 @@ export default function Category(props) {
             <div className='row section_card'>
               
                     <div className='col-12 p-0 Add_Category d-flex justify-content-between align-items-center px-4'>
-                        <h2 className='d-flex align-items-center pagetitle'> <ImDropbox color='#31B655' size={25}/>Category</h2>
+                        <h2 className='d-flex align-items-center pagetitle'> <SlSocialDropbox color='#31B655' size={25}/>Category</h2>
                        { state.Roles.AddCategory && <span>{<Categorypopup></Categorypopup>}</span>}
                     </div>
                     <div className='col-12 p-0'>

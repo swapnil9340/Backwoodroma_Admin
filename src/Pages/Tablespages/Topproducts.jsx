@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import useStyles from '../../Style';
 import Cookies from "universal-cookie";
 import { ThemeProvider , Box ,createTheme } from "@mui/material";
-import { ImDropbox } from "react-icons/im";
+import { SlSocialDropbox } from "react-icons/sl";
 import axios from 'axios'
 import Createcontext from '../../Hooks/Context/Context'
 // import "./Stall.css"
@@ -172,7 +172,7 @@ const Topproducts = () => {
     <div className=' my-4 '>
             <div className='py-4 section_card'>
                 <div  className='d-flex justify-content-between align-content-center px-4'> 
-                    <h3 pagetitle='pagetitle'><ImDropbox color='#31B655' size={25}/> Top Selling Product </h3>
+                    <h3 className='pagetitle'><SlSocialDropbox color='#31B655' size={25}/> Top Selling Product </h3>
                     <div className='btnsgroup'>
                     {/* <Link to={'/addstaff'}>
                         <button className="topbutton">Top Product</button>

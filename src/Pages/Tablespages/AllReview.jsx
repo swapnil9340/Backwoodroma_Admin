@@ -5,196 +5,159 @@ import useStyles from '../../Style';
 import Cookies from "universal-cookie";
 import { ThemeProvider , Box ,createTheme } from "@mui/material";
 import { SlSocialDropbox } from "react-icons/sl";
-
 import Axios from 'axios'
 import Createcontext from '../../Hooks/Context/Context'
 import { IoAlertCircleOutline } from "react-icons/io5";
+import { MdTrendingUp } from "react-icons/md";
+import { FaArrowTrendDown } from "react-icons/fa6";
 import { MdOutlineEmail } from "react-icons/md";
 import { BsTelephone } from "react-icons/bs";
-const Allrecentorder = () => {
-  const [recentorder, setRecentorder] = useState([])
-  const [error, seterror] = useState(false)
-  const cookies = new Cookies();
-  const token_data = cookies.get("Token_access");
-  const [pageSize, setPageSize] = React.useState(10)
+const AllReview = () => {
 
-  function noimagefun(ev){
-    // ev.target.src = "image/blank_Image.webp"
-    seterror((error)=>{
-      return true
-    })
-  }
-
-        useEffect(() => {
-          Axios.get('https://api.cannabaze.com/AdminPanel/AllRecentOrder/', {
-            headers: {
-              'Authorization': `Bearer ${token_data}`
-            }
-          }).then((res) => {
-        
-            setRecentorder(res.data)
-          })
-        }, [])
-        const CustomFontTheme = createTheme({
-        typography: {
-            fontSize: 25
-        },
-        components: {
-            MuiContainer: {
-                styleOverrides: {
-                    root: {
-                        fontSize: 24,
+    const [recentorder, setRecentorder] = useState([])
+    const [error, seterror] = useState(false)
+    const cookies = new Cookies();
+    const token_data = cookies.get("Token_access");
+    const [pageSize, setPageSize] = React.useState(10)
   
-                    }
-                }
-            },
-        },
+    
   
-        });
-
-
-
-
-        const columns = [
-            {
-              field: 'OrderId',
-              headerName: 'Order ID',
-              minWidth: 150,
-              editable: false,
-              sortable: false,
-              headerAlign: 'left',
-              valueGetter: (params) =>
-                `#${params.row.OrderId}`,
-            },
-            {
-              field: 'username',
-              headerName: 'Name',
-              minWidth: 150,
-              editable: false,
-              sortable: false,
-              headerAlign: 'left',
-              flex: 1,
-              renderCell: (params) => {
-                return <div className='pendingUserProfile'>
-                  <div className='userImage'>
-                    <div className='userImageCircle'>
-                  <img src={params.row.UserProfileImage}  onError={noimagefun} alt='' />
-                       
+          useEffect(() => {
+            Axios.post('https://api.cannabaze.com/AdminPanel/TopStore/', 
+            {"SelectTime":"Year","StartDate":"2024-01-01","EndDate":"2024-01-29","LastStartDate":"2023-01-01","EndStartDate":"2023-12-31"},{
+              headers: {
+                'Authorization': `Bearer ${token_data}`
+              }
+            }).then((res) => {
+              let a = res.data?.map((item , index)=>{
+                 return {...item , id: index}
+              })
+              setRecentorder( a )
+            })
+          }, [])
+          const CustomFontTheme = createTheme({
+          typography: {
+              fontSize: 25
+          },
+          components: {
+              MuiContainer: {
+                  styleOverrides: {
+                      root: {
+                          fontSize: 24,
+    
+                      }
+                  }
+              },
+          },
+    
+          });
+  
+  
+  
+  
+          const columns = [
+              {
+                field: 'OrderId',
+                headerName: 'No.',
+                minWidth: 150,
+                editable: false,
+                sortable: false,
+                headerAlign: 'left',
+                valueGetter: (params) =>
+                  `#${params.row.OrderId}`,
+              },
+              {
+                field: 'VendorName',
+                headerName: 'Name',
+                minWidth: 150,
+                editable: false,
+                sortable: false,
+                headerAlign: 'left',
+                flex: 1,
+                renderCell: (params) => {
+                  return <div className='pendingUserProfile'>
+                    <div className='userImage'>
+                      <div className='namecircles'>
+                         {params.row?.VendorName?.charAt(0)}{params.row?.VendorName?.split(' ')[1]?.charAt(0)}     
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className='userName'>{params.row.VendorName}</h4>
+          
                     </div>
                   </div>
-                  <div>
-                    <h4 className='userName'>{params.row.username}</h4>
-        
-                  </div>
-                </div>
-              }
-            },
-            {
-              field: 'Contact',
-              headerName: 'Contact',
-              minWidth: 230,
-              editable: false,
-              headerAlign: 'center',
-              sortable: false,
-              flex: 1,
-              renderCell: (params) => {
-                return <ul className='pendingvendercontent'>
-                  {params?.row?.email && <li className='content_item'> <span className='contactIcon'><MdOutlineEmail color='#6B6F7A' /></span>{params.row.email}</li>}
-                  {params?.row?.MobileNo && <li className='content_item'> <span className='contactIcon'><BsTelephone color='#6B6F7A' /></span>{params.row.MobileNo}</li>}
-                </ul>
-              }
-            },
-            {
-              field: 'SellerName',
-              headerName: 'Store Name',
-              type: 'number',
-              minWidth: 150,
-              editable: false,
-              sortable: false,
-              headerAlign: 'center',
-              align: 'center',
-              flex: 1,
-            },
-            {
-              field: 'Order_Type',
-              headerName: 'Store Type',
-              flex: 1,
-              editable: false,
-              sortable: false,
-              minWidth: 120,
-              headerAlign: 'center',
-              align: 'center',
-            },
-            {
-              field: 'Quantity',
-              headerName: 'Quantity',
-              type: 'number',
-              minWidth: 120,
-              editable: false,
-              sortable: false,
-              headerAlign: 'center',
-              align: 'center',
-              flex: 1,
-              renderCell: (params) => {
-                let a = 0
-                params?.row?.Product?.forEach((items) => {
-                  a += items.Cart_Quantity
-                })
-                return <span>{a}</span>
-              }
-            },
-            {
-              field: 'subtotal',
-              headerName: 'Total Amount',
-              type: 'number',
-              minWidth: 120,
-              editable: false,
-              sortable: false,
-              headerAlign: 'center',
-              align: 'center',
-              flex: 1,
-              valueGetter: (params) =>
-                `$ ${params.row.subtotal}`,
-            },
-            {
-              field: 'Order_Status',
-              headerName: 'Order Status',
-              type: 'number',
-              minWidth: 120,
-              editable: false,
-              sortable: false,
-              flex: 1,
-              headerAlign: 'center',
-              align: 'center',
-              renderCell: (params) => {
-                return <div className={`${params.row.Order_Status === "Pending" ? 'ResendOrder' : "ResendOrder1 "} padmingbtn `}>
-                  <span className={` pandingDot`} > {params.row.Order_Status} </span>
-                </div>
-        
-              }
-            },
-            {
-              field: 'imGE',
-              headerName: '',
-              type: 'number',
-              minWidth: 120,
-              editable: false,
-              sortable: false,
-              flex: 1,
-              headerAlign: 'center',
-              align: 'center',
-              renderCell: (params) => {
-                return <IoAlertCircleOutline  color='#31b655' fontSize={23}/>
-              }
-            },
-          ];
-
-          const rows = recentorder
+                }
+              },
+              {
+                field: 'Contact',
+                headerName: 'E-mail',
+                minWidth: 230,
+                editable: false,
+                headerAlign: 'center',
+                sortable: false,
+                flex: 1,
+                renderCell: (params) => {
+                  return <ul className='pendingvendercontent'>
+                    {params?.row?.Email && <li className='content_item'> <span className='contactIcon'><MdOutlineEmail color='#6B6F7A' /></span>{params.row.Email}</li>}
+                    {params?.row?.MobileNo && <li className='content_item'> <span className='contactIcon'><BsTelephone color='#6B6F7A' /></span>{params.row.MobileNo}</li>}
+                  </ul>
+                }
+              },
+              {
+                field: 'Rating',
+                headerName: 'Rating',
+                type: 'number',
+                minWidth: 150,
+                editable: false,
+                sortable: false,
+                headerAlign: 'center',
+                align: 'center',
+                flex: 1,
+              },
+              {
+                field: 'Reviews',
+                headerName: 'Reviews',
+                flex: 1,
+                editable: false,
+                sortable: false,
+                minWidth: 120,
+                headerAlign: 'center',
+                align: 'center',
+              },
+              {
+                field: 'Date',
+                headerName: 'Date',
+                type: 'number',
+                minWidth: 120,
+                editable: false,
+                sortable: false,
+                headerAlign: 'center',
+                align: 'center',
+                flex: 1,
+                valueGetter:(params)=>`${ params.row.StoreOrder} Qty`
+              },
+              {
+                field: 'Action',
+                headerName: 'Action',
+                type: 'number',
+                minWidth: 120,
+                editable: false,
+                sortable: false,
+                headerAlign: 'center',
+                align: 'center',
+                flex: 1,
+                valueGetter: (params) =>
+                  `$ ${params.row.SalesPrice}`,
+              },
+             
+            ];
+  
+            const rows = recentorder
   return (
     <div className=' my-4 '>
     <div className='py-4 section_card'>
         <div  className='d-flex justify-content-between align-content-center px-4'> 
-            <h3 className='pagetitle'><SlSocialDropbox color='#31B655' size={25}/>All Recent Order </h3>
+            <h3 className='pagetitle'><SlSocialDropbox color='#31B655' size={25}/>Popular store </h3>
             <div className='btnsgroup'>
             {/* <Link to={'/addstaff'}>
                 <button className="topbutton">Top Product</button>
@@ -261,7 +224,7 @@ const Allrecentorder = () => {
                             <DataGrid
                                 rows={rows}
                                 columns={columns}
-                                getRowId={(row) => row.OrderId}
+                                getRowId={(row) => row.id}
                                 pageSize={pageSize}
                                 onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                                 pageSizeOptions={[ 10, 25, 50]}
@@ -341,4 +304,4 @@ const Allrecentorder = () => {
   )
 }
 
-export default Allrecentorder
+export default AllReview
