@@ -132,10 +132,11 @@ export default function AdminPanel() {
       }]
     },
   };
-
-  console.log("commit karo ghar chalna hai! ")
   const [Data, SetData] = useState({})
   //  Months//////////////////
+  const [Data1, SetData1] = React.useState([])
+  const [TopStore, SetTopStore] = React.useState([])
+
   let date = new Date()
   const TodayDate = date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate()
   const currentYear = new Date().getFullYear();
@@ -229,39 +230,44 @@ export default function AdminPanel() {
             'Authorization': `Bearer ${token_data}`
           }
         }).then((res) => {
-          console.log(res.data)
           setPendingStore((previous) => res.data)
         })
-    }
-  }, [Data])
 
-
-   const [Data1 , SetData1] =  React.useState([])
-   const [TopStore , SetTopStore] =  React.useState([])
-  React.useEffect(() => {
-    axios.post("https://api.cannabaze.com/AdminPanel/TopProduct/",
-    {"SelectTime":"year","StartDate":"2023-01-29","EndDate":"2024-01-29"},
-      {
-        headers: {
-          'Authorization': `Bearer ${token_data}`
-        }
-      }).then(response => {
-        console.log(response)
-        SetData1(response.data)
-
-      })
+        axios.post("https://api.cannabaze.com/AdminPanel/TopProduct/",
+        Data,
+        {
+          headers: {
+            'Authorization': `Bearer ${token_data}`
+          }
+        }).then(response => {
+          SetData1(response.data)
+  
+        })
       axios.post("https://api.cannabaze.com/AdminPanel/TopStore/",
-      {"SelectTime":"Year","StartDate":"2024-01-01","EndDate":"2024-01-29","LastStartDate":"2023-01-01","EndStartDate":"2023-12-31"},
+        Data,
+        {
+          headers: {
+            'Authorization': `Bearer ${token_data}`
+          }
+        }).then(response => {
+          SetTopStore(response.data)
+  
+        })
+        axios.post("https://api.cannabaze.com/AdminPanel/TotalUserGraph/",
+        Data,
         {
           headers: {
             'Authorization': `Bearer ${token_data}`
           }
         }).then(response => {
           console.log(response)
-          SetTopStore(response.data)
+          // SetTopStore(response.data)
   
         })
-  }, [])
+
+
+    }
+  }, [Data])
 
   return (
     <div className='row dashboardSection'>
@@ -274,8 +280,8 @@ export default function AdminPanel() {
           <div className='totalUser bg-white'>
             <Areagraph />
           </div>
-          <div className='topProducts'><Productstorelist title={"Top Product"}  Data1={Data1}/></div>
-          <div className='topProducts'><Productstorelist title={"Top Store"}  Data1 ={TopStore}/></div>
+          <div className='topProducts'><Productstorelist title={"Top Product"} Data1={Data1} /></div>
+          <div className='topProducts'><Productstorelist title={"Top Store"} Data1={TopStore} /></div>
           <div className='topProducts'><Productstorelist title={"Visited Store"} /></div>
           <div className='topProducts'>
             <TotalSales />
