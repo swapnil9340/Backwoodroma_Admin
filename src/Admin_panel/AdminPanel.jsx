@@ -253,17 +253,7 @@ export default function AdminPanel() {
           SetTopStore(response.data)
   
         })
-        axios.post("https://api.cannabaze.com/AdminPanel/TotalUserGraph/",
-        Data,
-        {
-          headers: {
-            'Authorization': `Bearer ${token_data}`
-          }
-        }).then(response => {
-          console.log(response)
-          // SetTopStore(response.data)
-  
-        })
+    
 
 
     }

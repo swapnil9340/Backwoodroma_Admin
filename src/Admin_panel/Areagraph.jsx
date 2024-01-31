@@ -1,16 +1,24 @@
 import React from 'react'
-import ReactApexChart from 'react-apexcharts';
+import Chart from "react-apexcharts";
 import {Select,MenuItem} from '@mui/material';
 import useStyles from "../Style";
-
+import Cookies from 'universal-cookie';
+import axios from 'axios';
 const Areagraph = () => {
+  const cookies = new Cookies();
+  const token_data = cookies.get('Token_access')
+  const [CharteDate, SetChartDate] = React.useState({ 'January': [0, 0], 'February': [0, 0], 'March': [0, 0], 'April': [0, 0], "May": [0, 0], "June": [0, 0], 'July': [0, 0], 'August': [0, 0], 'September': [0, 0], 'October': [0, 0], 'November': [0, 0], 'December': [0, 0] })
+  const [month, Setmonth] = React.useState({})
   const [timeintervalchart, settimeintervalchart] = React.useState('ThisYear')
+  let date = new Date()
+  const TodayDate = date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate()
+  const [salesperformance, setSalesperformance] = React.useState({})
   const classes = useStyles()
     const Chartstate = {
       
         series: [{
           name: "STOCK ABC",
-          data: [12,5,4,2,13,5,22,7]
+          data: timeintervalchart !== "ThisMonth" ? [CharteDate].map((data, index) => Object.values(data))[0].map((d) => d[0]) : [month].map((data, index) => Object.values(data))[0].map((d) => d[1]) ,
         }],
         options: {
           chart: {
@@ -30,16 +38,10 @@ const Areagraph = () => {
             curve: 'smooth'
           },
           xaxis: {
-            
-            categories: ["Jan", "Jan", "Jan", "Jan", "Jan", "Jan", "Jan", "Jan", ]
+            type: 'year',
+            categories: timeintervalchart !== "ThisMonth" ? Object.keys(CharteDate) : Object.keys(month)
           },
-          // tooltip: {
-          //   x: {
-          //     format: 'dd/MM/yy HH:mm'
-          //   },
-          // },
           fill: {
-         
             type: 'gradient',
             gradient: {
               shade: '#31B655',
@@ -57,6 +59,73 @@ const Areagraph = () => {
     
         },
       };
+
+      React.useEffect(() => {
+        axios.post('https://api.cannabaze.com/AdminPanel/TotalUserGraph/',
+          {
+            SelectTime: timeintervalchart,
+            'StartDate': timeintervalchart === 'ThisYear'
+              ? date.getFullYear() + "-" + "01" + "-" + "01"
+              : timeintervalchart === 'ThisMonth'
+                ? date.getFullYear() + "-" + date.getMonth() + 1 + "-" + "01"
+                : timeintervalchart === 'ThisWeek'
+                  ? new Date(date.setDate(date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1))).toISOString().slice(0, 10)
+                  : timeintervalchart === 'Today' && TodayDate,
+            'EndDate': TodayDate
+    
+          }
+          , {
+            headers: {
+              'Authorization': `Bearer ${token_data}`
+            }
+          }
+        ).then((res) => {
+          if (timeintervalchart === "ThisMonth") {
+            res.data.map((data) => {
+              if (!data.Date.slice(3, data.Date.length - 3) > 10) {
+                Setmonth(month => ({ ...month, [data.Date.slice(4, data.Date.length - 3)]: [data.User] }))
+              } else {
+    
+                Setmonth(month => ({ ...month, [data.Date.slice(4, data.Date.length - 3)]: [data.User] }))
+              }
+            })
+          }
+          else {
+            res.data.map((data) => {
+              SetChartDate(CharteDate => ({ ...CharteDate, [data.Date]: [data.User] }))
+            })
+          }
+        })
+      }, [timeintervalchart])
+
+
+      function labelsgenerateds() {
+        let labelsdat = Object.keys(salesperformance).map((item, index) => {
+          return `${item} : $ ${Object.values(salesperformance)[index]}`
+        })
+        return labelsdat
+      }
+      const data = {
+        // labels: ['In Progress Product : 26', 'Pending Product : 56' ],
+        labels: labelsgenerateds(),
+        datasets: [
+          {
+    
+            data: Object.values(salesperformance),
+            backgroundColor: [
+              '#31B665',
+              '#6DD19C',
+    
+            ],
+            borderColor: [
+              'rgba(255, 255, 255, 1)',
+              'rgba(255, 255, 255, 1)',
+            ],
+            borderWidth: 1,
+          },
+        ],
+      };
+
   return (
     <div>
         <div className='d-flex justify-content-between'> <h3 className='graphtitle'> Total User</h3>  <Select
@@ -71,7 +140,7 @@ const Areagraph = () => {
               <MenuItem value={'ThisMonth'}>This Month</MenuItem>
               <MenuItem value={'ThisYear'}>This year</MenuItem>
             </Select>  </div>
-         <ReactApexChart options={Chartstate.options} series={Chartstate.series} type="area"  />
+         <Chart  data={data} options={Chartstate.options} series={Chartstate.series} type="area"  />
      </div>
   )
 }
