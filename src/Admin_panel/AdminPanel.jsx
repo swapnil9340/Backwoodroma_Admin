@@ -343,7 +343,6 @@ export default function AdminPanel() {
                     disableColumnMenu
                     disableColumnFilter
                     disableColumnSelector
-
                     sx={{
                       "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
                         outline: "none",

@@ -170,101 +170,93 @@ export default function Brand() {
         }
     });
     return (
-   
-          
-                <div className='row mt-4'>
-                        <div className='col-12 Add_Category  margin_top m-2 mt-5 mb-5'>
-                            <div className="col"> <h2>Brand  </h2></div>
-                          { state.Roles.AddBrand  && <div className="col  popup_A" ><span> <h2> <Brandpopup></Brandpopup> </h2></span></div>}
+        <div className='section_card mt-4'>
+            <div className='col-12 Add_Category  margin_top m-2 mt-5 mb-5'>
+                <div className="col"> <h2>Brand  </h2></div>
+                { state.Roles.AddBrand  && <div className="col  popup_A" ><span> <h2> <Brandpopup></Brandpopup> </h2></span></div>}
+            </div>
+            <div className='col-12 '>
+
+                <Box sx={{
+                    '& .MuiButton-root': {
+                        color: '#FFFFFF',
+                        display: "flex",
+                    },
+                    ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within": {
+                        outline: "none"
+                    },
+
+                    "@media(max-width:767px)": {
+                        '& .MuiButton-root': {
+                            display: "contents",
+                            width: "150px",
+                            margin: "2px",
+                            fontSize: "14px"
+                        },
+
+                    },
+                    "@media(max-width:546px)": {
+                        '& .MuiButton-root': {
+                            display: "contents",
+                            width: "150px",
+                            fontSize: "9px"
+                        },
+
+                    },
+                    "@media(min-width:768px)": {
+                        '& .MuiButton-root': {
+                            width: "110px",
+                            margin: "2px",
+                            fontSize: "14px"
+                        },
+
+                        "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                            width: "120px"
+                        }
+                    }
+                }}>
+                    <ThemeProvider theme={CustomFontTheme}>
+                        <div style={{  width: '100%', }}>
+                            <DataGrid rows={rows} columns={columns}  checkboxSelection  autoHeight
+                                pageSize={pageSize}
+                                onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                rowsPerPageOptions={[5, 10, 20]}
+                                pagination
+                                disableColumnMenu
+                                disableColumnFilter
+                                disableColumnSelector
+                                sx={{
+                                    "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
+                                        outline: "none ",
+                                    },
+                                    "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
+                                        backgroundColor: "#FFFFFF"
+                                    },
+                                    ".MuiDataGrid-toolbarContainer": {
+                                        backgroundColor: "#31B665"
+                                    },
+                                    "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
+                                        visibility: "hidden"
+                                    },
+                                    "@media(max-width:768px)": {
+                                        ".MuiDataGrid-toolbarContainer": {
+                                            gap: "10px",
+
+                                        }
+                                    },
+                                    "@media(max-width:546px)": {
+                                        ".MuiDataGrid-toolbarContainer": {
+                                            gap: "5px",
+
+                                        }
+                                    },
+                                }}
+
+                            />
                         </div>
-
-
-
-
-
-                        <div className='col-12 '>
-
-                            <Box sx={{
-                                '& .MuiButton-root': {
-                                    color: '#FFFFFF',
-                                    display: "flex",
-                                },
-                                ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within": {
-                                    outline: "none"
-                                },
-
-                                "@media(max-width:767px)": {
-                                    '& .MuiButton-root': {
-                                        display: "contents",
-                                        width: "150px",
-                                        margin: "2px",
-                                        fontSize: "14px"
-                                    },
-
-                                },
-                                "@media(max-width:546px)": {
-                                    '& .MuiButton-root': {
-                                        display: "contents",
-                                        width: "150px",
-                                        fontSize: "9px"
-                                    },
-
-                                },
-                                "@media(min-width:768px)": {
-                                    '& .MuiButton-root': {
-                                        width: "110px",
-                                        margin: "2px",
-                                        fontSize: "14px"
-                                    },
-
-                                    "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                        width: "120px"
-                                    }
-                                }
-                            }}>
-                                <ThemeProvider theme={CustomFontTheme}>
-                                    <div style={{  width: '100%', }}>
-                                        <DataGrid rows={rows} columns={columns}  checkboxSelection  autoHeight
-                                          pageSize={pageSize}
-                                          onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                                          rowsPerPageOptions={[5, 10, 20]}
-                                          pagination
-                                          disableColumnMenu
-                                          disableColumnFilter
-                                          disableColumnSelector
-                                            sx={{
-                                                "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                                    outline: "none ",
-                                                },
-                                                "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
-                                                    backgroundColor: "#FFFFFF"
-                                                },
-                                                ".MuiDataGrid-toolbarContainer": {
-                                                    backgroundColor: "#31B665"
-                                                },
-                                                "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                                                    visibility: "hidden"
-                                                },
-                                                "@media(max-width:768px)": {
-                                                    ".MuiDataGrid-toolbarContainer": {
-                                                        gap: "10px",
-
-                                                    }
-                                                },
-                                                "@media(max-width:546px)": {
-                                                    ".MuiDataGrid-toolbarContainer": {
-                                                        gap: "5px",
-
-                                                    }
-                                                },
-                                            }}
-
-                                        />
-                                    </div>
-                                </ThemeProvider>
-                            </Box>
-                        </div>
-                </div>
-         
+                    </ThemeProvider>
+                </Box>
+            </div>
+        </div> 
     );
 }

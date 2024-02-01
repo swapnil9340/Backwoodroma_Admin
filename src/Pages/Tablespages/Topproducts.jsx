@@ -22,8 +22,8 @@ const Topproducts = () => {
         editable: false,
         sortable:false,
         flex:1,
-        headerAlign: "center",
-        align: "center",
+        headerAlign: "left",
+        align: "left",
       },
       {
         field: 'category',

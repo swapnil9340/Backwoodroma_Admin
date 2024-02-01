@@ -80,6 +80,7 @@ const Areagraph = () => {
             }
           }
         ).then((res) => {
+          console.log(res.data)
           if (timeintervalchart === "ThisMonth") {
             res.data.map((data) => {
               if (!data.Date.slice(3, data.Date.length - 3) > 10) {
@@ -128,7 +129,8 @@ const Areagraph = () => {
 
   return (
     <div>
-        <div className='d-flex justify-content-between'> <h3 className='graphtitle'> Total User</h3>  <Select
+        <div className='d-flex justify-content-between'> <h3 className='graphtitle'> Total User</h3>
+          <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               className={classes.dashboardselect}
