@@ -268,7 +268,7 @@ export default function AdminPanel() {
       <div className='col-12'>
         <div className='dashboardHerosection'>
           <div className='totalUser bg-white'>
-            <Areagraph />
+            <Areagraph props={"dashboard"} />
           </div>
           <div className='topProducts'><Productstorelist link={'/topproduct'} title={"Top Product"} Data1={Data1} /></div>
           <div className='topProducts'><Productstorelist link={'/topstorelist'} title={"Top Store"} Data1={TopStore} /></div>
