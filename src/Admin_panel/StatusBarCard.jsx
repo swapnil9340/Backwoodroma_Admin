@@ -43,11 +43,10 @@ export default function StatusBarCard() {
         startOfPreviousWeek.setDate(date.getDate() - diff);
         return startOfPreviousWeek.toISOString().split('T')[0];
     }
-
     let yesterday = new Date(TodayDate)
     yesterday.setDate(yesterday.getDate() - 1)
     function convert(str) {
-        var date = new Date(str),
+        let date = new Date(str),
             mnth = ("0" + (date.getMonth() + 1)).slice(-2),
             day = ("0" + date.getDate()).slice(-2);
         return [date.getFullYear(), mnth, day].join("-");
@@ -60,9 +59,9 @@ export default function StatusBarCard() {
             const datesecond = new Date(state.CustomeEndDate)
             const diffTime = Math.abs(datesecond - datefirst);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            var StartEndDate = new Date(state.CustomeEndDate);
+            let StartEndDate = new Date(state.CustomeEndDate);
             StartEndDate.setDate(StartEndDate.getDate() - diffDays - 1);
-            var EndStartDate = new Date(state.CustomeStartDate);
+            let EndStartDate = new Date(state.CustomeStartDate);
             EndStartDate.setDate(EndStartDate.getDate() - diffDays - 1);
             return convert(EndStartDate.toString())
         }
@@ -71,9 +70,9 @@ export default function StatusBarCard() {
             const datesecond = new Date(state.CustomeEndDate)
             const diffTime = Math.abs(datesecond - datefirst);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            var StartEndDate = new Date(state.CustomeEndDate);
+            let StartEndDate = new Date(state.CustomeEndDate);
             StartEndDate.setDate(StartEndDate.getDate() - diffDays - 1);
-            var EndStartDate = new Date(state.CustomeStartDate);
+            let EndStartDate = new Date(state.CustomeStartDate);
             EndStartDate.setDate(EndStartDate.getDate() - diffDays - 1);
             // console.log(convert(StartEndDate.toString()), )
             return convert(StartEndDate.toString())
