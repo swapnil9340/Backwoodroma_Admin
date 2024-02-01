@@ -15,7 +15,8 @@
 @media(max-width:1440px) {
   .dashboardHerosection{
     flex-wrap: wrap;
-    gap: 40px;
+    gap: 20px;
+    justify-content: center !important;
   }
   .dashboardHerosection .totalUser{
     order: 0;
@@ -24,10 +25,12 @@
   .dashboardHerosection .topProducts{
     width: 30% !important;
     order: 2;
+    max-width: 280px;
   }
   .dashboardHerosection .topProducts:last-child{
     width: 45% !important;
     order: 1;
+    max-width: unset;
   }
 }
 @media(max-width:1300px){
@@ -151,7 +154,7 @@
 
     .dashboardHerosection{
         flex-wrap: wrap;
-        gap: 20px 0px;
+        gap: 20px ;
     }
     .dashboardHerosection .totalUser{
     order: 0;

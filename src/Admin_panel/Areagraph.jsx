@@ -5,7 +5,7 @@ import useStyles from "../Style";
 import Cookies from "universal-cookie";
 import axios from "axios";
 import Createcontext from "../Hooks/Context/Context";
-const Areagraph = ({props}) => {
+const Areagraph = ({title="Total User"}) => {
   const { state } = React.useContext(Createcontext);
 
   const cookies = new Cookies();
@@ -144,7 +144,7 @@ const Areagraph = ({props}) => {
   };
 
   React.useEffect(() => {
-   if(props === "dashboard"){
+   if(title === "Total User"){
     axios
       .post(
         "https://api.cannabaze.com/AdminPanel/TotalUserGraph/",
@@ -202,7 +202,7 @@ const Areagraph = ({props}) => {
         }
       });
    }
-   else if (props === "Vender"){
+   else if (title === "Sales Performance"){
     axios
     .post(
       "https://api.cannabaze.com/AdminPanel/SalesPerformanceVendorGraph/",
@@ -330,7 +330,7 @@ const Areagraph = ({props}) => {
     <div>
       <div className="d-flex justify-content-between">
         {" "}
-        <h3 className="graphtitle"> Total User</h3>
+        <h3 className="graphtitle"> {title}</h3>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
