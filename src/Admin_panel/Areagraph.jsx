@@ -7,92 +7,244 @@ import axios from "axios";
 import Createcontext from "../Hooks/Context/Context";
 const Areagraph = ({props}) => {
   const { state } = React.useContext(Createcontext);
+
   const cookies = new Cookies();
-  const token_data = cookies.get('Token_access')
-  const [CharteDate, SetChartDate] = React.useState({ 'January': [0, 0], 'February': [0, 0], 'March': [0, 0], 'April': [0, 0], "May": [0, 0], "June": [0, 0], 'July': [0, 0], 'August': [0, 0], 'September': [0, 0], 'October': [0, 0], 'November': [0, 0], 'December': [0, 0] })
-  const [month, Setmonth] = React.useState({})
-  const [timeintervalchart, settimeintervalchart] = React.useState('ThisYear')
-  let date = new Date()
-  const TodayDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
-    console.log(TodayDate , date)
-  const [salesperformance, setSalesperformance] = React.useState({})
-  const classes = useStyles()
-    const Chartstate = {
-      
-        series: [{
-          name: "STOCK ABC",
-          data: timeintervalchart !== "ThisMonth" ? [CharteDate].map((data, index) => Object.values(data))[0].map((d) => d[0]) : [month].map((data, index) => Object.values(data))[0].map((d) => d[1]) ,
-        }],
-        options: {
-          chart: {
-            height: 350,
-            type: 'area',
-            toolbar:{
-                show:false
-            }
-          },
-          dataLabels: {
-            enabled: false,
-            style: {
-              colors: ['#F44336', '#E91E63', '#9C27B0']
-            }
-          },
-          stroke: {
-            curve: 'smooth'
-          },
-          xaxis: {
-            type: 'year',
-            categories: timeintervalchart !== "ThisMonth" ? Object.keys(CharteDate) : Object.keys(month)
-          },
-          fill: {
-            type: 'gradient',
-            gradient: {
-              shade: '#31B655',
-              type: "horizontal",
-              shadeIntensity: 0.5,
-              gradientToColors: undefined, // optional, if not defined - uses the shades of same color in series
-              inverseColors: true,
-              opacityFrom: 0.1,
-              opacityTo: 0.8,
-              stops: [0, 50, 100],
-              colorStops: []
-            }
-          },
-          colors:['#31B655']
-    
-        },
+  const token_data = cookies.get("Token_access");
+  const [CharteDate, SetChartDate] = React.useState({
+    Jan: 0,
+    Feb: 0,
+    Mar: 0,
+    Apr: 0,
+    May: 0,
+    Jun: 0,
+    Jul: 0,
+    Aug: 0,
+    Sep: 0,
+    Oct: 0,
+    Nov: 0,
+    Dec: 0,
+  });
+  const [month, Setmonth] = React.useState({});
+  const [timeintervalchart, settimeintervalchart] = React.useState("ThisYear");
+  let date = new Date();
+  const TodayDate =
+    date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+  const [salesperformance, setSalesperformance] = React.useState({});
+  const classes = useStyles();
+  React.useEffect(() => {
+    if (state.datesSelect === "Year") {
+      SetChartDate((CharteDate) => ({
+        Jan: 0,
+        Feb: 0,
+        Mar: 0,
+        Apr: 0,
+        May: 0,
+        Jun: 0,
+        Jul: 0,
+        Aug: 0,
+        Sep: 0,
+        Oct: 0,
+        Nov: 0,
+        Dec: 0,
+      }));
+      settimeintervalchart(() => "ThisYear");
+    } else if (state.datesSelect === "Months") {
+      const monthDays = function () {
+        var d = new Date(
+          new Date().getFullYear(),
+          new Date().getMonth() + 1,
+          0
+        );
+        return d.getDate();
       };
 
-      React.useEffect(() => {
-        axios.post('https://api.cannabaze.com/AdminPanel/TotalUserGraph/',
+      for (let i = 0; i < monthDays(); i++) {
+        Setmonth((month) => ({ ...month, [i + 1]: 0 }));
+      }
+      settimeintervalchart(() => "ThisMonth");
+    } else if (state.datesSelect === "week") {
+      SetChartDate((CharteDate) => ({
+        Monday: 0,
+        Tuesday: 0,
+        Wednesday: 0,
+        Thursday: 0,
+        Friday: 0,
+        Saturday: 0,
+        Sunday: 0,
+      }));
+      settimeintervalchart("ThisWeek");
+    }
+  }, [state.datesSelect]);
+
+  const Chartstate = {
+    series: [
+      {
+        name: "STOCK ABC",
+        data:
+          timeintervalchart !== "ThisMonth"
+            ? [CharteDate]
+                .map((data, index) => Object.values(data))[0]
+                .map((d) => d)
+            : [month]
+                .map((data, index) => Object.values(data))[0]
+                .map((d) => d),
+      },
+    ],
+    options: {
+      chart: {
+        background: '#fff',
+        height: 350,
+        type: "area",
+        toolbar: {
+          show: false,
+        },
+        responsive: [
           {
-            SelectTime: timeintervalchart,
-            'StartDate': timeintervalchart === 'ThisYear'
+            breakpoint: 1400,
+            options: {
+              chart: {
+                height: 500,
+              },
+            },
+          },
+        ],
+      },
+      dataLabels: {
+        enabled: false,
+        style: {
+          colors: ["#F44336", "#E91E63", "#9C27B0"],
+        },
+      },
+      stroke: {
+        curve: "smooth",
+      },
+      xaxis: {
+        type: "year",
+        categories:
+          timeintervalchart !== "ThisMonth"
+            ? Object.keys(CharteDate)
+            : Object.keys(month),
+      },
+      fill: {
+        type: "gradient",
+        gradient: {
+          shade: "#31B655",
+          type: "horizontal",
+          shadeIntensity: 0.5,
+          gradientToColors: undefined, // optional, if not defined - uses the shades of same color in series
+          inverseColors: true,
+          opacityFrom: 0.1,
+          opacityTo: 0.8,
+          stops: [0, 50, 100],
+          colorStops: [],
+        },
+      },
+      colors: ["#31B655"],
+    },
+  };
+
+  React.useEffect(() => {
+   if(props === "dashboard"){
+    axios
+      .post(
+        "https://api.cannabaze.com/AdminPanel/TotalUserGraph/",
+        {
+          SelectTime: timeintervalchart,
+          StartDate:
+            timeintervalchart === "ThisYear"
               ? date.getFullYear() + "-" + "01" + "-" + "01"
-              : timeintervalchart === 'ThisMonth'
-                ? date.getFullYear() + "-" + (date.getMonth() + 1 )+ "-" + "01"
-                : timeintervalchart === 'ThisWeek'
-                  ? new Date(date.setDate(date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1))).toISOString().slice(0, 10)
-                  : timeintervalchart === 'Today' && TodayDate,
-            'EndDate': TodayDate
-    
-          }
-          , {
-            headers: {
-              'Authorization': `Bearer ${token_data}`
+              : timeintervalchart === "ThisMonth"
+              ? date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + "01"
+              : timeintervalchart === "ThisWeek"
+              ? new Date(
+                  date.setDate(
+                    date.getDate() -
+                      date.getDay() +
+                      (date.getDay() === 0 ? -6 : 1)
+                  )
+                )
+                  .toISOString()
+                  .slice(0, 10)
+              : timeintervalchart === "Today" && TodayDate,
+          EndDate: TodayDate,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token_data}`,
+          },
+        }
+      )
+      .then((res) => {
+        if (timeintervalchart === "ThisMonth") {
+          res.data.map((data) => {
+            if (!data.Date.slice(3, data.Date.length - 3) > 10) {
+              Setmonth((month) => ({
+                ...month,
+                [data.Date.slice(4, data.Date.length - 3)]: data.User,
+              }));
+            } else {
+              Setmonth((month) => ({
+                ...month,
+                [data.Date.slice(4, data.Date.length - 3)]: data.User,
+              }));
             }
-          }
-        ).then((res) => {
-          console.log(res.data)
-          if (timeintervalchart === "ThisMonth") {
+          });
+        } else {
+          if (timeintervalchart === "ThisYear") {
             res.data.map((data) => {
-              if (!data.Date.slice(3, data.Date.length - 3) > 10) {
-                Setmonth(month => ({ ...month, [data.Date.slice(4, data.Date.length - 3)]: [data.User] }))
-              } else {
-    
-                Setmonth(month => ({ ...month, [data.Date.slice(4, data.Date.length - 3)]: [data.User] }))
-              }
-            })
+              SetChartDate((CharteDate) => ({
+                ...CharteDate,
+                [data.Date.slice(0, 3)]: data.User,
+              }));
+            });
+          } else {
+          }
+        }
+      });
+   }
+   else if (props === "Vender"){
+    axios
+    .post(
+      "https://api.cannabaze.com/AdminPanel/SalesPerformanceVendorGraph/",
+      {
+        SelectTime: timeintervalchart,
+        StartDate:
+          timeintervalchart === "ThisYear"
+            ? date.getFullYear() + "-" + "01" + "-" + "01"
+            : timeintervalchart === "ThisMonth"
+            ? date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + "01"
+            : timeintervalchart === "ThisWeek"
+            ? new Date(
+                date.setDate(
+                  date.getDate() -
+                    date.getDay() +
+                    (date.getDay() === 0 ? -6 : 1)
+                )
+              )
+                .toISOString()
+                .slice(0, 10)
+            : timeintervalchart === "Today" && TodayDate,
+        EndDate: TodayDate,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token_data}`,
+        },
+      }
+    )
+    .then((res) => {
+      if (timeintervalchart === "ThisMonth") {
+        res.data.map((data) => {
+          if (!data.Date.slice(3, data.Date.length - 3) > 10) {
+            Setmonth((month) => ({
+              ...month,
+              [data.Date.slice(4, data.Date.length - 3)]: data.UnitSold,
+            }));
+          } else {
+            Setmonth((month) => ({
+              ...month,
+              [data.Date.slice(4, data.Date.length - 3)]: data.UnitSold,
+            }));
           }
         });
       } else {
@@ -176,22 +328,33 @@ const Areagraph = ({props}) => {
   }
   return (
     <div>
-        <div className='d-flex justify-content-between'> <h3 className='graphtitle'> Total User</h3>
-          <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              className={classes.dashboardselect}
-              onChange={(e) => { handleChnagechart(e) }}
-              value={timeintervalchart}
-            >
-              <MenuItem value={'Today'}>Today</MenuItem>
-              <MenuItem value={'ThisWeek'}>This Week</MenuItem>
-              <MenuItem value={'ThisMonth'}>This Month</MenuItem>
-              <MenuItem value={'ThisYear'}>This year</MenuItem>
-            </Select>  </div>
-         <Chart  data={data} options={Chartstate.options} series={Chartstate.series} type="area"  />
-     </div>
-  )
-}
-
+      <div className="d-flex justify-content-between">
+        {" "}
+        <h3 className="graphtitle"> Total User</h3>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          className={classes.dashboardselect}
+          onChange={(e) => {
+            handleChnagechart(e);
+          }}
+          value={timeintervalchart}
+        >
+          <MenuItem value={"Today"}>Today</MenuItem>
+          <MenuItem value={"ThisWeek"}>This Week</MenuItem>
+          <MenuItem value={"ThisMonth"}>This Month</MenuItem>
+          <MenuItem value={"ThisYear"}>This year</MenuItem>
+        </Select>{" "}
+      </div>
+      <Chart
+        data={data}
+        options={Chartstate.options}
+        series={Chartstate.series}
+        type="area"
+        // width={"500"}
+        height={"340"}
+      />
+    </div>
+  );
+};
 export default Areagraph;
