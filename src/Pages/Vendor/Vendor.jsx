@@ -146,6 +146,7 @@ const Vendor = () => {
 
     ];
     const row = totalsale
+
      React.useEffect(()=>{
         axios.post(`https://api.cannabaze.com/AdminPanel/TopSaleProductVendor/`,
          {"SelectTime":"Year","StartDate":"2023-01-30","EndDate":"2024-01-31","LastStartDate":"2023-01-01","EndStartDate":"2023-12-31","Storeid":selectedstore}
@@ -202,7 +203,7 @@ const Vendor = () => {
         <div className='venderSection'>
             <div className="row">
                     <div className='col-12'>
-                        <StatusBarCard/>
+                        <StatusBarCard props={"vendor"} id={selectedstore}/>
                     </div>
                     <div className='col-12'>
                         <dvi className='storelistcardWrapper'>

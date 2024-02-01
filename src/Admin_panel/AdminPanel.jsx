@@ -263,7 +263,7 @@ export default function AdminPanel() {
     <div className='row dashboardSection'>
 
       <div className='col-12 StatusCardBorder' >
-        <StatusBarCard></StatusBarCard>
+        <StatusBarCard  props={"dashboard"}></StatusBarCard>
       </div>
       <div className='col-12'>
         <div className='dashboardHerosection'>
