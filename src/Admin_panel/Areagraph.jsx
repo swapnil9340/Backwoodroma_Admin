@@ -4,22 +4,23 @@ import {Select,MenuItem} from '@mui/material';
 import useStyles from "../Style";
 import Cookies from 'universal-cookie';
 import axios from 'axios';
+import Createcontext from "../Hooks/Context/Context"
 const Areagraph = () => {
+  const { state } = React.useContext(Createcontext)
+  console.log(state)
   const cookies = new Cookies();
   const token_data = cookies.get('Token_access')
-  const [CharteDate, SetChartDate] = React.useState({ 'January': [0, 0], 'February': [0, 0], 'March': [0, 0], 'April': [0, 0], "May": [0, 0], "June": [0, 0], 'July': [0, 0], 'August': [0, 0], 'September': [0, 0], 'October': [0, 0], 'November': [0, 0], 'December': [0, 0] })
+  const [CharteDate, SetChartDate] = React.useState({ 'Jan': 0, 'Feb': 0, 'Mar': 0, 'Apr': 0, "May": 0, "Jun": 0, 'Jul': 0, 'Aug': 0, 'Sep': 0, 'Oct': 0, 'Nov': 0, 'Dec': 0 })
   const [month, Setmonth] = React.useState({})
   const [timeintervalchart, settimeintervalchart] = React.useState('ThisYear')
   let date = new Date()
   const TodayDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
-    console.log(TodayDate , date)
   const [salesperformance, setSalesperformance] = React.useState({})
   const classes = useStyles()
     const Chartstate = {
-      
         series: [{
           name: "STOCK ABC",
-          data: timeintervalchart !== "ThisMonth" ? [CharteDate].map((data, index) => Object.values(data))[0].map((d) => d[0]) : [month].map((data, index) => Object.values(data))[0].map((d) => d[1]) ,
+          data: timeintervalchart !== "ThisMonth" ? [CharteDate].map((data, index) => Object.values(data))[0].map((d) => d) : [month].map((data, index) => Object.values(data))[0].map((d) => d) ,
         }],
         options: {
           chart: {
@@ -27,7 +28,15 @@ const Areagraph = () => {
             type: 'area',
             toolbar:{
                 show:false
-            }
+            },
+            responsive: [{
+              breakpoint: 576,
+              options: {
+                chart: {
+                  width: 400
+                }
+              }
+            }]
           },
           dataLabels: {
             enabled: false,
@@ -81,25 +90,31 @@ const Areagraph = () => {
             }
           }
         ).then((res) => {
-          console.log(res.data)
           if (timeintervalchart === "ThisMonth") {
             res.data.map((data) => {
               if (!data.Date.slice(3, data.Date.length - 3) > 10) {
-                Setmonth(month => ({ ...month, [data.Date.slice(4, data.Date.length - 3)]: [data.User] }))
+                Setmonth(month => ({ ...month, [data.Date.slice(4, data.Date.length - 3)]: data.User }))
               } else {
     
-                Setmonth(month => ({ ...month, [data.Date.slice(4, data.Date.length - 3)]: [data.User] }))
+                Setmonth(month => ({ ...month, [data.Date.slice(4, data.Date.length - 3)]: data.User }))
               }
             })
           }
           else {
-            res.data.map((data) => {
-              SetChartDate(CharteDate => ({ ...CharteDate, [data.Date]: [data.User] }))
-            })
+          
+            if(timeintervalchart === "ThisYear")
+            {
+              res.data.map((data) => {
+                console.log(data.Date.slice(0,3))
+                SetChartDate(CharteDate => ({ ...CharteDate, [data.Date.slice(0,3)]: data.User }))
+              })
+            }
+            else{
+
+            }
           }
         })
       }, [timeintervalchart])
-
 
       function labelsgenerateds() {
         let labelsdat = Object.keys(salesperformance).map((item, index) => {
@@ -131,12 +146,12 @@ const Areagraph = () => {
         // SetChartDate({})
         if (e?.target?.value === "ThisYear") {
           // settimeintervalchart((timeintervalchart=>=>e?.target?.value))
-          SetChartDate(CharteDate => ({ 'January': [0, 0], 'February': [0, 0], 'March': [0, 0], 'April': [0, 0], "May": [0, 0], "June": [0, 0], 'July': [0, 0], 'August': [0, 0], 'September': [0, 0], 'October': [0, 0], 'November': [0, 0], 'December': [0, 0] }))
+          SetChartDate(CharteDate => ({ 'Jan': 0, 'Feb': 0, 'Mar': 0, 'Apr': 0, "May": 0, "Jun": 0, 'Jul': 0, 'Aug': 0, 'Sep': 0, 'Oct': 0, 'Nov': 0, 'Dec': 0 }))
           settimeintervalchart(e?.target?.value)
     
         }
         else if (e?.target?.value === "ThisWeek") {
-          SetChartDate(CharteDate => ({ 'Monday': [0, 0], 'Tuesday': [0, 0], 'Wednesday': [0, 0], 'Thursday': [0, 0], "Friday": [0, 0], "Saturday": [0, 0], 'Sunday': [0, 0] }))
+          SetChartDate(CharteDate => ({ 'Monday': 0, 'Tuesday': 0, 'Wednesday': 0, 'Thursday': 0, "Friday": 0, "Saturday": 0, 'Sunday': 0 }))
           settimeintervalchart(e?.target?.value)
         }
         else if (e?.target?.value === "ThisMonth"  ) {
@@ -146,7 +161,7 @@ const Areagraph = () => {
           }
     
           for (let i = 0; i < monthDays(); i++) {
-            Setmonth(month => ({ ...month, [i + 1]: [0, 0] }))
+            Setmonth(month => ({ ...month, [i + 1]: 0 }))
           }
           settimeintervalchart(e?.target?.value)
         }
