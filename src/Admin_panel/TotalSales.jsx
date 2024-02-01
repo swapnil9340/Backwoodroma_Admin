@@ -12,7 +12,6 @@ const TotalSales = () => {
   const [Data, SetData] = React.useState({})
   const token_data = cookies.get('Token_access')
   const [totel, setTotal] = React.useState([])
-  const [Customer, SetCustomer] = React.useState()
   //  Months//////////////////
   let date = new Date()
   const TodayDate = date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate()
@@ -137,7 +136,19 @@ const TotalSales = () => {
         },
       },
       {
-        breakpoint: 1900,
+        breakpoint: 2500,
+        options: {
+          chart: {
+            // width:'100%',
+            height: 320,
+          },
+          legend: {
+            position: 'bottom',
+          },
+        },
+      },
+      {
+        breakpoint: 1950,
         options: {
           chart: {
             // width:'100%',

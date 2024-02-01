@@ -11,7 +11,8 @@ const Areagraph = () => {
   const [month, Setmonth] = React.useState({})
   const [timeintervalchart, settimeintervalchart] = React.useState('ThisYear')
   let date = new Date()
-  const TodayDate = date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate()
+  const TodayDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
+    console.log(TodayDate , date)
   const [salesperformance, setSalesperformance] = React.useState({})
   const classes = useStyles()
     const Chartstate = {
@@ -67,7 +68,7 @@ const Areagraph = () => {
             'StartDate': timeintervalchart === 'ThisYear'
               ? date.getFullYear() + "-" + "01" + "-" + "01"
               : timeintervalchart === 'ThisMonth'
-                ? date.getFullYear() + "-" + date.getMonth() + 1 + "-" + "01"
+                ? date.getFullYear() + "-" + (date.getMonth() + 1 )+ "-" + "01"
                 : timeintervalchart === 'ThisWeek'
                   ? new Date(date.setDate(date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1))).toISOString().slice(0, 10)
                   : timeintervalchart === 'Today' && TodayDate,
@@ -126,7 +127,30 @@ const Areagraph = () => {
           },
         ],
       };
-
+      function handleChnagechart(e) {
+        // SetChartDate({})
+        if (e?.target?.value === "ThisYear") {
+          // settimeintervalchart((timeintervalchart=>=>e?.target?.value))
+          SetChartDate(CharteDate => ({ 'January': [0, 0], 'February': [0, 0], 'March': [0, 0], 'April': [0, 0], "May": [0, 0], "June": [0, 0], 'July': [0, 0], 'August': [0, 0], 'September': [0, 0], 'October': [0, 0], 'November': [0, 0], 'December': [0, 0] }))
+          settimeintervalchart(e?.target?.value)
+    
+        }
+        else if (e?.target?.value === "ThisWeek") {
+          SetChartDate(CharteDate => ({ 'Monday': [0, 0], 'Tuesday': [0, 0], 'Wednesday': [0, 0], 'Thursday': [0, 0], "Friday": [0, 0], "Saturday": [0, 0], 'Sunday': [0, 0] }))
+          settimeintervalchart(e?.target?.value)
+        }
+        else if (e?.target?.value === "ThisMonth"  ) {
+          const monthDays = function () {
+            var d = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0);
+            return d.getDate();
+          }
+    
+          for (let i = 0; i < monthDays(); i++) {
+            Setmonth(month => ({ ...month, [i + 1]: [0, 0] }))
+          }
+          settimeintervalchart(e?.target?.value)
+        }
+      }
   return (
     <div>
         <div className='d-flex justify-content-between'> <h3 className='graphtitle'> Total User</h3>
@@ -134,7 +158,7 @@ const Areagraph = () => {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               className={classes.dashboardselect}
-              onChange={(e) => { settimeintervalchart(e?.target?.value) }}
+              onChange={(e) => { handleChnagechart(e) }}
               value={timeintervalchart}
             >
               <MenuItem value={'Today'}>Today</MenuItem>
