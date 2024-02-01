@@ -51,7 +51,7 @@ const classes = useStyles()
         Status: props.data.Status,
         categoryImages:props.data.categoryImages
     });
-    console.log(props.data ,'props')
+   
     const handleimage = (event) => {
         SetImage(event.target.files[0])
     };
@@ -82,7 +82,7 @@ const classes = useStyles()
         
          }
         const value = FirstLetterCaps(event.target.value);
-        console.log(value,'value')
+     
         setdata({
             ...data,
             [event.target.name]: value

@@ -4,7 +4,7 @@ import {Select,MenuItem} from '@mui/material';
 import useStyles from "../Style";
 import Cookies from 'universal-cookie';
 import axios from 'axios';
-const Areagraph = () => {
+const Areagraph = ({title='Total User' }) => {
   const cookies = new Cookies();
   const token_data = cookies.get('Token_access')
   const [CharteDate, SetChartDate] = React.useState({ 'January': [0, 0], 'February': [0, 0], 'March': [0, 0], 'April': [0, 0], "May": [0, 0], "June": [0, 0], 'July': [0, 0], 'August': [0, 0], 'September': [0, 0], 'October': [0, 0], 'November': [0, 0], 'December': [0, 0] })
@@ -12,7 +12,7 @@ const Areagraph = () => {
   const [timeintervalchart, settimeintervalchart] = React.useState('ThisYear')
   let date = new Date()
   const TodayDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
-    console.log(TodayDate , date)
+
   const [salesperformance, setSalesperformance] = React.useState({})
   const classes = useStyles()
     const Chartstate = {
@@ -62,26 +62,35 @@ const Areagraph = () => {
       };
 
       React.useEffect(() => {
-        axios.post('https://api.cannabaze.com/AdminPanel/TotalUserGraph/',
-          {
-            SelectTime: timeintervalchart,
-            'StartDate': timeintervalchart === 'ThisYear'
-              ? date.getFullYear() + "-" + "01" + "-" + "01"
-              : timeintervalchart === 'ThisMonth'
-                ? date.getFullYear() + "-" + (date.getMonth() + 1 )+ "-" + "01"
-                : timeintervalchart === 'ThisWeek'
-                  ? new Date(date.setDate(date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1))).toISOString().slice(0, 10)
-                  : timeintervalchart === 'Today' && TodayDate,
-            'EndDate': TodayDate
-    
-          }
+
+
+        let apiurl = title!=='Total User'?'https://api.cannabaze.com/AdminPanel/SalesPerformanceVendorGraph/':'https://api.cannabaze.com/AdminPanel/TotalUserGraph/'
+       let jsondata ={
+        SelectTime: timeintervalchart,
+        'StartDate': timeintervalchart === 'ThisYear'
+          ? date.getFullYear() + "-" + "01" + "-" + "01"
+          : timeintervalchart === 'ThisMonth'
+            ? date.getFullYear() + "-" + (date.getMonth() + 1 )+ "-" + "01"
+            : timeintervalchart === 'ThisWeek'
+              ? new Date(date.setDate(date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1))).toISOString().slice(0, 10)
+              : timeintervalchart === 'Today' && TodayDate,
+        'EndDate': TodayDate,
+         
+      }
+        if(title!=='Total User'){
+          jsondata = {...jsondata , "Storeid":13}
+        }
+
+
+        axios.post(apiurl,
+          jsondata
           , {
             headers: {
               'Authorization': `Bearer ${token_data}`
             }
           }
         ).then((res) => {
-          console.log(res.data)
+         
           if (timeintervalchart === "ThisMonth") {
             res.data.map((data) => {
               if (!data.Date.slice(3, data.Date.length - 3) > 10) {
@@ -153,7 +162,7 @@ const Areagraph = () => {
       }
   return (
     <div>
-        <div className='d-flex justify-content-between'> <h3 className='graphtitle'> Total User</h3>
+        <div className='d-flex justify-content-between'> <h3 className='graphtitle'> {title}</h3>
           <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"

@@ -6,7 +6,7 @@ import ReactApexChart from 'react-apexcharts';
 import { FaArrowTrendDown } from "react-icons/fa6";
 import axios from "axios";
 import Cookies from 'universal-cookie';
-const TotalSales = () => {
+const TotalSales = ({type}) => {
   const cookies = new Cookies();
   const { state } = React.useContext(Createcontext)
   const [Data, SetData] = React.useState({})
@@ -67,7 +67,7 @@ const TotalSales = () => {
       StartEndDate.setDate(StartEndDate.getDate() - diffDays - 1);
       var EndStartDate = new Date(state.CustomeStartDate);
       EndStartDate.setDate(EndStartDate.getDate() - diffDays - 1);
-      // console.log(convert(StartEndDate.toString()), )
+    
       return convert(StartEndDate.toString())
     }
 
@@ -98,8 +98,8 @@ const TotalSales = () => {
   }, [state.datesSelect, state.CustomeStartDate, state.CustomeEndDate])
 
   React.useEffect(() => {
-
-    axios.post("https://api.cannabaze.com/AdminPanel/TotalSalesPieChart/",
+    if(type === 'dashboard'){
+      axios.post("https://api.cannabaze.com/AdminPanel/TotalSalesPieChart/",
       Data,
       {
         headers: {
@@ -109,6 +109,18 @@ const TotalSales = () => {
         setTotal(response.data)
 
       })
+    }else if(type === 'vendor'){
+      axios.post("https://api.cannabaze.com/AdminPanel/TotalSalesVendorPieChart/",
+      Data,
+      {
+        headers: {
+          'Authorization': `Bearer ${token_data}`
+        }
+      }).then(response => {
+        setTotal(response.data)
+
+      })
+    }
 
   }, [Data])
 
@@ -219,7 +231,7 @@ const TotalSales = () => {
   return (
     <div className='totalSalesChart'>
       <div className='totalSalesChartHeader'>
-        <span className='headingtext'>Total Sales</span>
+        <span className='headingtext'> Total Sales</span>
         <Link className='headingtext'>View Details</Link>
       </div>
       <h3 className='totalsalesamount'>{totel?.TotalSales}</h3>

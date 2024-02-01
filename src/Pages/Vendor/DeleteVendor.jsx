@@ -15,15 +15,15 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function UserDelete(props) {
+export default function UserDelete({data}) {
     const { enqueueSnackbar } = useSnackbar();
-  const { dispatch} = useContext(Createcontext)
+    const { dispatch} = useContext(Createcontext)
     const cookies = new Cookies();
-  const [open, setOpen] = React.useState(false);
-  const token_data = cookies.get('Token_access')
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+    const [open, setOpen] = React.useState(false);
+    const token_data = cookies.get('Token_access')
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
 
   const handleClose = () => {
     setOpen(false);
@@ -31,8 +31,8 @@ export default function UserDelete(props) {
 
   const Delete = () => {
 
-    const id = props.data.id
-       axios.delete(`https://api.cannabaze.com/AdminPanel/delete-User/${id}`, {
+    const id = data.id
+       axios.delete(`https://api.cannabaze.com/AdminPanel/DeleteProductById/${id}`, {
 
            headers: {
                'Authorization': `Bearer ${token_data}`

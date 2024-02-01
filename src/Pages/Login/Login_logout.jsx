@@ -93,7 +93,7 @@ export default function Login_logout() {
             }
             else {
 
-                console.log(response ,'response')
+             
                 if(!response.data.is_superuser && Boolean(response.data.permission.lenght === 0 ) ){
                     navigate("/*");
                 }else{

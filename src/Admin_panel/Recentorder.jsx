@@ -12,12 +12,13 @@ import Axios from 'axios'
 import Cookies from 'universal-cookie';
 import { MdOutlineEmail } from "react-icons/md";
 import { BsTelephone } from "react-icons/bs";
-const Recentorder = ({title="Recent Order"}) => {
+const Recentorder = ({title="Recent Order" ,data=[]}) => {
   const [searchtext, setSearchtext] = useState('')
   const [searchdata, setSearchdata] = useState('')
   const cookies = new Cookies();
   const token_data = cookies.get('Token_access')
   const [recentorder, setRecentorder] = React.useState([])
+  console.log(data ,'data')
   const columns = [
     {
       field: 'OrderId',
@@ -170,15 +171,22 @@ const Recentorder = ({title="Recent Order"}) => {
 
   });
   useEffect(() => {
+  if(Boolean(data.length === 0 )){
+
+ 
     Axios.get('https://api.cannabaze.com/AdminPanel/AllRecentOrder/', {
       headers: {
         'Authorization': `Bearer ${token_data}`
       }
     }).then((res) => {
       let a= res.data.slice(0,6)
-      console.log(a ,'qerg')
+     
       setRecentorder(a)
     })
+  }else{
+    console.log('chala ')
+    setRecentorder(()=>{return data})
+  }
   }, [])
   return (
     <div className='RecentOrderCard'>
@@ -306,7 +314,7 @@ const Recentorder = ({title="Recent Order"}) => {
           </div>
         </ThemeProvider>
       </Box>
-      <div className='text-center py-3'><Link to={'/recentorderslist'}><span>View All</span></Link></div>
+      {title  !== 'Order Details' &&   <div className='text-center py-3'><Link to={'/recentorderslist'}><span>View All</span></Link></div>}
     </div>
   )
 }

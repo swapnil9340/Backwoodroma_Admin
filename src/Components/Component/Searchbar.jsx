@@ -8,7 +8,7 @@ import Cookies from 'universal-cookie';
 const Searchbar = ({color , searchtext ,searchdata=[],type, setSearchtext}) => {
   const cookies = new Cookies();
   const token_data = cookies.get('Token_access')
-  console.log(searchdata ,'searchdata')
+ 
   return (
     <div className='searchbar' style={{backgroundColor:color}}>
           {

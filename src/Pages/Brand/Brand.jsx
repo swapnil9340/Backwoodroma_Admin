@@ -3,6 +3,7 @@ import Createcontext from "../../Hooks/Context/Context"
 import Box from '@mui/material/Box';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { ThemeProvider } from "@mui/material/styles";
+import { SlSocialDropbox } from "react-icons/sl";
 import { createTheme } from "@mui/material/styles";
 import axios from "axios";
 import Cookies from 'universal-cookie';
@@ -66,11 +67,12 @@ export default function Brand() {
 
 
     const columns = [
+     
+        { field: 'name', headerName: 'Brand Name', editable: false, headerClassName: 'super-app-theme--header', minWidth: 80, flex: 1,sortable:false, },
         {
-            field: 'Brand_Logo', headerName: 'Logo', editable: true, headerClassName: 'super-app-theme--header', minWidth: 80, flex: 1,sortable:false,
-            renderCell: (params) => <img src={params?.row?.Brand_Logo} alt="flavoursImage" width="35" height="30" />,
+            field: 'Brand_Logo', headerName: 'Logo', editable: false, headerClassName: 'super-app-theme--header', minWidth: 80, flex: 1,sortable:false,
+            renderCell: (params) => <img src={params?.row?.Brand_Logo} alt="flavoursImage" width="60" height="40" />,
         },
-        { field: 'name', headerName: 'Name', editable: true, headerClassName: 'super-app-theme--header', minWidth: 80, flex: 1,sortable:false, },
         {
             field: 'Status', headerName: 'Status', editable: false, minWidth: 80, flex: 1, headerClassName: 'super-app-theme--header',sortable:false,
             renderCell: (params) => {
@@ -108,7 +110,7 @@ export default function Brand() {
             }
         },
         {
-            field: 'Edit', headerName: 'Edit', type: 'button', minWidth: 80, flex: 1, editable: true, headerClassName: 'super-app-theme--header',sortable:false,
+            field: 'Edit', headerName: 'Action', type: 'button', minWidth: 80, flex: 1, editable: false, headerClassName: 'super-app-theme--header',sortable:false,
             renderCell: (params) => (
 
                 <>
@@ -128,20 +130,11 @@ export default function Brand() {
                             }}
 
                         >
-                            <Select
-                                sx={{
-                                    boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
-                                    "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
-                                    "&:hover": {
-                                        ".MuiSelect-icon": {
-                                            color: "#31B665"
-                                        }
-                                    },
-                                }}
-                                IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
+                           
+                            
                                 { state.Roles.EditBrand  && <BrandEdit data={params.row} ></BrandEdit>}
                                 { state.Roles.DeleteBrand && <BrandDelete data={params.row} ></BrandDelete> }
-                            </Select>
+                           
                         </Box>
                     }
                 </>
@@ -171,53 +164,63 @@ export default function Brand() {
     });
     return (
         <div className='section_card mt-4'>
-            <div className='col-12 Add_Category  margin_top m-2 mt-5 mb-5'>
-                <div className="col"> <h2>Brand  </h2></div>
+            <div className='col-12 Add_Category m-2 mt-5 mb-3 px-4'>
+                <h2 className='pagetitle '> <SlSocialDropbox color='#31B655' size={25}/>  Brand  </h2>
                 { state.Roles.AddBrand  && <div className="col  popup_A" ><span> <h2> <Brandpopup></Brandpopup> </h2></span></div>}
             </div>
             <div className='col-12 '>
 
-                <Box sx={{
-                    '& .MuiButton-root': {
-                        color: '#FFFFFF',
-                        display: "flex",
-                    },
-                    ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within": {
-                        outline: "none"
-                    },
+                <Box    sx={{
+                           
+                           width: '100%',
+                           "& .MuiDataGrid-root":{
+                             border:'none',
+                           },
+                           '& .MuiDataGrid-columnHeaders': {
+                               backgroundColor: '#F9FAFC',
+                               color:'#5A5A5A',
+                           },
+                           '& .MuiButton-root': {
+                               color: "#FFFFFF",
+                               display: "flex",
+                               width: "200px"
+                           },
+                            // check
+                            ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
+                               outline:"none"
+                             },
+                           "@media(max-width:767px)": {
+                               '& .MuiButton-root': {
+                                   display: "contents",
+                                   width: "150px",
+                                   margin: "2px",
+                                   fontSize: "14px"
+                               },
 
-                    "@media(max-width:767px)": {
-                        '& .MuiButton-root': {
-                            display: "contents",
-                            width: "150px",
-                            margin: "2px",
-                            fontSize: "14px"
-                        },
+                           },
+                           "@media(max-width:546px)": {
+                               '& .MuiButton-root': {
+                                   display: "contents",
+                                   width: "150px",
+                                   fontSize: "9px"
+                               },
 
-                    },
-                    "@media(max-width:546px)": {
-                        '& .MuiButton-root': {
-                            display: "contents",
-                            width: "150px",
-                            fontSize: "9px"
-                        },
+                           },
+                           "@media(min-width:768px)": {
+                               '& .MuiButton-root': {
+                                   width: "110px",
+                                   margin: "2px",
+                                   fontSize: "14px"
+                               },
 
-                    },
-                    "@media(min-width:768px)": {
-                        '& .MuiButton-root': {
-                            width: "110px",
-                            margin: "2px",
-                            fontSize: "14px"
-                        },
-
-                        "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                            width: "120px"
-                        }
-                    }
-                }}>
+                               "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                                   width: "120px"
+                               }
+                           }
+                       }}>
                     <ThemeProvider theme={CustomFontTheme}>
                         <div style={{  width: '100%', }}>
-                            <DataGrid rows={rows} columns={columns}  checkboxSelection  autoHeight
+                            <DataGrid rows={rows} columns={columns}   autoHeight
                                 pageSize={pageSize}
                                 onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                                 rowsPerPageOptions={[5, 10, 20]}
@@ -226,18 +229,32 @@ export default function Brand() {
                                 disableColumnFilter
                                 disableColumnSelector
                                 sx={{
+                                    height:'610px',
                                     "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                        outline: "none ",
+                                        outline: "none",
+                                    },
+                                    "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
+                                        outline: "none"
+                                    },
+                                    "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
+                                        outline: "none",
+
                                     },
                                     "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
                                         backgroundColor: "#FFFFFF"
                                     },
-                                    ".MuiDataGrid-toolbarContainer": {
-                                        backgroundColor: "#31B665"
+                                    "& .MuiDataGrid-columnHeaderTitle":{
+                                            fontSize:'12px',
                                     },
-                                    "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                                        visibility: "hidden"
+                                    '& .MuiDataGrid-cellContent':{
+                                        fontSize:'12px',
                                     },
+                                    "& .MuiDataGrid-row":{
+                                        margin:'10px 0 0px',
+                                        minHeight:'unset !important',
+                                        maxHeight:'unset !important',
+                                    },
+                                    width: '100%',
                                     "@media(max-width:768px)": {
                                         ".MuiDataGrid-toolbarContainer": {
                                             gap: "10px",
@@ -250,6 +267,26 @@ export default function Brand() {
 
                                         }
                                     },
+                                    ".MuiDataGrid-toolbarContainer": {
+                                        flexDirection: "block",
+
+                                        backgroundColor: "#31B665",
+                                        width: {
+                                            xs: "100%",
+                                            sm: "100%",
+                                            md: "100%",
+                                            lg: "100%",
+                                            xl: "100%"
+
+                                        },
+                                    },
+                                    "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
+                                        visibility: "hidden"
+                                    },
+                                    "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                                        width: "120px"
+                                    }
+
                                 }}
 
                             />

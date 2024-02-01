@@ -170,7 +170,8 @@ export default function Category(props) {
                        { state.Roles.AddCategory && <span>{<Categorypopup></Categorypopup>}</span>}
                     </div>
                     <div className='col-12 p-0'>
-                        <Box sx={{
+                        <Box 
+                        sx={{
                            
                             width: '100%',
                             "& .MuiDataGrid-root":{

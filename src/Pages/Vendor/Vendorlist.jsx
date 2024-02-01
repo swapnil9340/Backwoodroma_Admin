@@ -193,8 +193,9 @@ const Vendorlist = () => {
             sortable: false, minWidth: 120, flex: 1,
             headerAlign: 'center', align: "center",
             renderCell: (params) => {
+              
                 return (
-                  <Link to={'/Vendor'}><span className='view_icon'><LuEye /></span></Link>
+                  <Link to={'/Vendor'} state={params.row}><span className='view_icon'><LuEye /></span></Link>
                 )
             }
 

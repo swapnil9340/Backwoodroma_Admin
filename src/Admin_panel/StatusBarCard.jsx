@@ -74,7 +74,7 @@ export default function StatusBarCard() {
             StartEndDate.setDate(StartEndDate.getDate() - diffDays - 1);
             let EndStartDate = new Date(state.CustomeStartDate);
             EndStartDate.setDate(EndStartDate.getDate() - diffDays - 1);
-            // console.log(convert(StartEndDate.toString()), )
+         
             return convert(StartEndDate.toString())
         }
 
@@ -141,7 +141,7 @@ export default function StatusBarCard() {
                         'Authorization': `Bearer ${token_data}`
                     }
                 }).then(response => {
-                    console.log(response.data[0])
+                  
                     Setorder(response.data[0])
                 })
             axios.post("https://api.cannabaze.com/AdminPanel/ProductDashBoardCard/",

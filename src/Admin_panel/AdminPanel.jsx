@@ -191,7 +191,7 @@ export default function AdminPanel() {
       StartEndDate.setDate(StartEndDate.getDate() - diffDays - 1);
       var EndStartDate = new Date(state.CustomeStartDate);
       EndStartDate.setDate(EndStartDate.getDate() - diffDays - 1);
-      // console.log(convert(StartEndDate.toString()), )
+   
       return convert(StartEndDate.toString())
     }
 
@@ -274,7 +274,7 @@ export default function AdminPanel() {
           <div className='topProducts'><Productstorelist link={'/topstorelist'} title={"Top Store"} Data1={TopStore} /></div>
           <div className='topProducts'><Productstorelist title={"Visited Store"} /></div>
           <div className='topProducts'>
-            <TotalSales />
+            <TotalSales  type={'dashboard'} />
           </div>
         </div>
 

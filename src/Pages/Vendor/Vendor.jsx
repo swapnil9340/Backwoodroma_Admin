@@ -20,9 +20,7 @@ import '../../Admin_panel/dashboard.css'
 import Recentorder from '../../Admin_panel/Recentorder';
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { AiFillStar , AiOutlineStar  } from "react-icons/ai";
-
-
-
+import { useLocation , useNavigate  } from 'react-router-dom'
 const CustomFontTheme = createTheme({
     typography: {
         fontSize: 25
@@ -40,6 +38,13 @@ const CustomFontTheme = createTheme({
 
 });
 const Vendor = () => {
+    const location = useLocation()
+    const navigate = useNavigate()
+    const [allstore , setAllstore] = React.useState([])
+    const [selectedstore , setselectedstore] = React.useState()
+    const [topsellproduct , settopsellproduct] = React.useState()
+    const [totalsale , settotalsale] = React.useState({})
+    const [orderstore , setorderstore] = React.useState({})
     const { state, dispatch } = React.useContext(Createcontext)
     const { enqueueSnackbar } = useSnackbar();
     const cookies = new Cookies();
@@ -57,41 +62,48 @@ const Vendor = () => {
             },
             editable: false,
             renderCell: (params) => {
-                return <div className='padmingbtn'>
-                      <img src={params.row.ProductImage} alt=''/>
+                return <div className='imagecircelproduct'>
+                      <img src={params.row?.images[0]?.image} alt=''/>
                 </div>
             }
         },
         {
-            field: 'ProductName',
+            field: 'Product_Name',
             headerName: 'Product Name',
              minWidth: 120, flex: 1,sortable:false,
             editable: false,
         },
         {
-            field: 'Category',
+            field: 'category_name',
             headerName: 'Store Type', minWidth: 120, flex: 1,sortable:false,
             editable: false,
         },
         {
-            field: 'Price',
+            field: 'Prices',
             headerName: 'Store Name',
             type: 'number', minWidth: 120, flex: 1,sortable:false,
             editable: false,
             headerAlign: 'left', align: "left",
-            valueFormatter: ({ value }) => {return `$ ${value}`}
+         
+            renderCell: (params) => {
+                return `${params.row?.Prices[0]?.Price[0]?.Price}`
+            }
         },
         {
             field: 'Quantity',
             headerName: 'Quantity', sortable: false, minWidth: 120, flex: 1,
-            valueFormatter: ({ value }) => {return `${value} Qty`}
+            renderCell: (params) => {
+                return `${params.row?.Prices[0]?.Price[0]?.Quantity} Qty`
+            }
         },
         {
             field: 'Stock',
             headerName: 'Status',
             editable: false,
             sortable: false, minWidth: 120, flex: 1, headerAlign: 'center', align: "center",
-          
+            renderCell: (params) => {
+                return `${params.row?.Prices[0]?.Price[0]?.Stock} Qty`
+            }
         },
         {
             field: 'Edit',
@@ -121,7 +133,7 @@ const Vendor = () => {
                         >
                           
                           
-                           <MdOutlineRemoveRedEye   color='rgba(67, 80, 133, 0.5)' size={18} />
+                           <a target='blank' href={`https://www.weedx.io/products/${params.row.category_name.toLowerCase()}/${params.row.SubcategoryName.toLowerCase()}/${params.row.Product_Name.toLowerCase().replaceAll(' ', '-')}/${params.row.id}`}><MdOutlineRemoveRedEye  color='rgba(67, 80, 133, 0.5)' size={18} /></a>
                            <TiEdit color='rgba(67, 80, 133, 0.5)' size={18} /> 
                            <UserDelete data={params.row}></UserDelete>
                           
@@ -130,30 +142,62 @@ const Vendor = () => {
                 </React.Fragment>
                 )
             }
-
         },
 
     ];
-     const rows = [
-        {
-            Id:1,
-            ProductName:'HOT MINTS HYBRID',
-            ProductImage:'https://i.ibb.co/C2Bx9CN/image-29.png',
-            Category:"EDIBLES",
-            Price:140.00,
-            Quantity:100,
-            Stock:"In Stock",
-        },
-        {
-            Id:2,
-            ProductName:'HOT MINTS HYBRID',
-            ProductImage:'https://i.ibb.co/C2Bx9CN/image-29.png',
-            Category:"EDIBLES",
-            Price:120.00,
-            Quantity:40,
-            Stock:"In Stock",
+    const row = totalsale
+     React.useEffect(()=>{
+        axios.post(`https://api.cannabaze.com/AdminPanel/TopSaleProductVendor/`,
+         {"SelectTime":"Year","StartDate":"2023-01-30","EndDate":"2024-01-31","LastStartDate":"2023-01-01","EndStartDate":"2023-12-31","Storeid":selectedstore}
+        ,{
+         headers: {
+             'Authorization': `Bearer ${token_data}`
+         }
+        }).then((res)=>{
+            settopsellproduct(res.data)
+        })
+
+     },[selectedstore])
+
+
+
+     React.useEffect(()=>{
+    
+       if(detailstype){
+            axios.post(`https://api.cannabaze.com/AdminPanel/ProductDetailsVendor/`,
+                {"Storeid":selectedstore}
+            ,{
+                headers: {
+                    'Authorization': `Bearer ${token_data}`
+                }
+            }).then((res)=>{
+                settotalsale(res.data)
+            })
+       }else{
+
+            axios.post(`https://api.cannabaze.com/AdminPanel/OrderByStoreId/`,
+            {"SelectTime":"Year","Storeid":selectedstore,"StartDate":"2023-01-01","EndDate":"2024-02-01"}
+            ,{
+                headers: {
+                    'Authorization': `Bearer ${token_data}`
+                }
+            }).then((res)=>{
+                setorderstore(res.data)
+            })
+       }
+     },[selectedstore , detailstype])
+
+    React.useEffect(()=>{
+       axios.get(`https://api.cannabaze.com/AdminPanel/AllStoresVendor/${location.state.id}`,{
+        headers: {
+            'Authorization': `Bearer ${token_data}`
         }
-     ]
+       }).then((res)=>{
+         setAllstore(res?.data)
+         setselectedstore(res?.data[0].id)
+       })
+    },[location.state])
+
     return (
         <div className='venderSection'>
             <div className="row">
@@ -162,75 +206,50 @@ const Vendor = () => {
                     </div>
                     <div className='col-12'>
                         <dvi className='storelistcardWrapper'>
-                          <div className='storelistcard'>
-                            <div className='storeType'> <span>Store</span> <span>Delivery</span></div>
-                            <h4 className='storelistcardName'>Vijay Nagar Store</h4>
-                            <p className='storelistcardDesc'>Brainstorming brings team members' diverse experience into play.</p>
-                                 <div  className='storerating'> 4.7 <span className=''> {
-                                Array(3).fill().map(()=>{
-                                   
-                                    return <AiFillStar size={12} color='rgba(252, 213, 3, 1)'/>
-                                })
-                                
-                                }{
-                                    Array(2).fill().map(()=>{
-                                    
-                                        return <AiOutlineStar size={12} color='rgba(252, 213, 3, 1)'/>
+                                {
+                                    allstore?.map((item)=>{
+                                      
+                                        return  <div className='storelistcard' onClick={()=>{setselectedstore(item.id)}}   style={{border:selectedstore===item.id && "2px solid #31B655" }} >
+                                        <div className='storeType'> {item.CurbSide_Pickup && <span>CurbSide Pickup</span> } {item.Delivery && <span>Delivery</span> }  {item.StoreFront && <span>Store Front</span> }</div>
+                                        <h4 className='storelistcardName'>{item.Store_Name}</h4>
+                                        <p className='storelistcardDesc'>{item?.Store_Address}</p>
+                                             <div  className='storerating'  onClick={()=>{navigate('/allreview')}} > {item?.rating !== null ? item?.rating.toFixed(1) : 0 } ({item?.TotalRating !== null ? item?.TotalRating.toFixed(0) : 0 })
+                                                        {item?.rating !== null ?   <span className=''> 
+                                                {
+                                                    Array(parseInt(item?.rating) +1).fill().map(()=>{
+                                                    
+                                                        return <AiFillStar size={12} color='rgba(252, 213, 3, 1)'/>
+                                                    })
+                                                }{
+                                                    Array( 4 - parseInt(item?.rating)).fill().map(()=>{
+                                                    
+                                                        return <AiOutlineStar size={12} color='rgba(252, 213, 3, 1)'/>
+                                                    })
+                                                } 
+                                        
+                                                                        </span>
+                                                                        :
+                                                                      
+                                                                            Array(5).fill().map(()=>{
+                                                                            
+                                                                                return <AiOutlineStar size={12} color='rgba(252, 213, 3, 1)'/>
+                                                                            })
+                                                                        
+                                                        } 
+
+                                             </div>
+                                        </div>
                                     })
-                                } 
-                            
-                                </span>
-                                 </div>
-                          </div>
-                          <div className='storelistcard'>
-                            <div className='storeType'> <span>Store</span> <span>Delivery</span></div>
-                            <h4 className='storelistcardName'>Good Weed NYC</h4>
-                            <p className='storelistcardDesc'>Brainstorming brings team members' diverse experience into play.</p>
-                            <div  className='storerating'> 4.7 <span className=''> {
-                                Array(3).fill().map(()=>{
-                                   
-                                    return <AiFillStar size={12} color='rgba(252, 213, 3, 1)'/>
-                                })
-                                
-                                }{
-                                    Array(2).fill().map(()=>{
-                                    
-                                        return <AiOutlineStar size={12} color='rgba(252, 213, 3, 1)'/>
-                                    })
-                                } 
-                            
-                                </span>
-                                 </div>
-                          </div>
-                          <div className='storelistcard'>
-                            <div className='storeType'> <span>Store</span> <span>Delivery</span></div>
-                            <h4 className='storelistcardName'> Ujjain</h4>
-                            <p className='storelistcardDesc'>Brainstorming brings team members' diverse experience into play.</p>
-                            <div  className='storerating'> 4.7 <span className=''> {
-                                Array(3).fill().map(()=>{
-                                   
-                                    return <AiFillStar size={10} color='rgba(252, 213, 3, 1)'/>
-                                })
-                                
-                                }{
-                                    Array(2).fill().map(()=>{
-                                    
-                                        return <AiOutlineStar size={10} color='rgba(252, 213, 3, 1)'/>
-                                    })
-                                } 
-                            
-                                </span>
-                                 </div>
-                          </div>
+                                }
                         </dvi>
                     </div>
                     <div className='col-12'>
                         <div className='venderHeroDiv'>
                             <div className='venderHeroDiv_card'>
-                                <Areagraph/>
+                                <Areagraph  title={"Sales Performance"}/>
                             </div>
                             <div className='venderHeroDiv_card'>
-                                <TotalSales/>
+                                <TotalSales type={'vendor'}/>
                             </div>
                             <div className='venderHeroDiv_card'>
                                 <div className='coupon_card'>
@@ -272,7 +291,7 @@ const Vendor = () => {
                                 </div>
                             </div>
                             <div className='venderHeroDiv_card'>
-                                <Productstorelist title={"Top Sale Product"}/>
+                                <Productstorelist title={"Top Sale Product"} Data1={topsellproduct} link={'/topproduct'}/>
                             </div>
                         </div>
                     </div>
@@ -311,7 +330,7 @@ const Vendor = () => {
                             <ThemeProvider theme={CustomFontTheme}>
 
                                 <DataGrid
-                                    rows={rows}
+                                    rows={row}
                                     columns={columns}
                                     autoHeight
                                     initialState={{
@@ -321,7 +340,7 @@ const Vendor = () => {
                                             },
                                         },
                                     }}
-                                    getRowId={(row) => row.Id}
+                                    getRowId={(row) => row.id}
                                     pageSize={pageSize}
                                     onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                                     rowsPerPageOptions={[5, 10, 20]}
@@ -356,7 +375,7 @@ const Vendor = () => {
                             </ThemeProvider>
                           </Box>
                           :
-                          <Recentorder title={'Order Details'} />
+                          <Recentorder title={'Order Details'} data={orderstore} />
                           }
                     </div>
             </div>

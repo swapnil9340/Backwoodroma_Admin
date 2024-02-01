@@ -10,6 +10,7 @@ import axios from "axios"
 import Cookies from 'universal-cookie';
 import Createcontext from "../../Hooks/Context/Context"
 import { useSnackbar } from 'notistack';
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -46,7 +47,7 @@ export default function BrandDelete (props) {
   return (
     <div>
       <Button color='success' onClick={handleClickOpen}>
-      Delete
+        <RiDeleteBin6Line />
       </Button>
       <Dialog
         open={open}

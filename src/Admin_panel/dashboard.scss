@@ -452,13 +452,24 @@ h3.graphtitle {
 }
 
 .padmingbtn {
-
+     
     .pandingDot {
         padding: 15px;
     }
 
 }
-
+.imagecircelproduct{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+        width: 100%;
+    }
+}
 .ResendOrder {
     background: rgba(237, 187, 95, 0.15);
     color: #CDA252

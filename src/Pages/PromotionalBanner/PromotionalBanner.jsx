@@ -121,18 +121,17 @@ const PromotionalBanner = () => {
                                             <div className="feild_box">
                                                 
                                                 <FormControl>
-                                            
-                                                <RadioGroup
-                                                    value={bannertpe}
-                                                    aria-labelledby="demo-radio-buttons-group-label"
-                                                    defaultValue="Promotional Banner"
-                                                    name="radio-buttons-group"
-                                                    className={classes.muiPromotioCheckBox}
-                                                    onChange={(e)=>{setbannertype(e.target.value)}}
-                                                >
-                                                    <FormControlLabel  className={classes.promotionalCheckBoxFontSize} value="Promotional Banner" control={<Radio />} label="Promotional Banner" />
-                                                    <FormControlLabel  className={classes.promotionalCheckBoxFontSize} value="Offer Banner" control={<Radio />} label="Offer Banner" />
-                                                </RadioGroup>
+                                                    <RadioGroup
+                                                        value={bannertpe}
+                                                        aria-labelledby="demo-radio-buttons-group-label"
+                                                        defaultValue="Promotional Banner"
+                                                        name="radio-buttons-group"
+                                                        className={classes.muiPromotioCheckBox}
+                                                        onChange={(e)=>{setbannertype(e.target.value)}}
+                                                    >
+                                                        <FormControlLabel  className={classes.promotionalCheckBoxFontSize} value="Promotional Banner" control={<Radio />} label="Promotional Banner" />
+                                                        <FormControlLabel  className={classes.promotionalCheckBoxFontSize} value="Offer Banner" control={<Radio />} label="Offer Banner" />
+                                                    </RadioGroup>
                                                 </FormControl>
                                             </div>
                                             <div className="feild_box">

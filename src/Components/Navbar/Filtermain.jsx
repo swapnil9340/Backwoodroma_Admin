@@ -41,7 +41,7 @@ const Filtermain = () => {
   // }
 
   function handleSelect(ranges) {
-    console.log(ranges)
+   
     Setdaterange({
       startDate: ranges?.selection?.startDate,
       endDate: ranges?.selection?.endDate,

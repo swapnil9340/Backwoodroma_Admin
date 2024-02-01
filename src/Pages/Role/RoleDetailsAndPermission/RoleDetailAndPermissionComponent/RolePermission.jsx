@@ -22,7 +22,7 @@ const RolePermission = ({rolepermision , setrolepermision ,setdescchceck ,descch
            setrolepermision({ ...rolepermision , [name] : !rolepermision[name] })
        }
     }
-    console.log(Object.values(state.Roles).includes(false))
+  
     return (
         <div className="col-12 rolePermission_container">
             <form>

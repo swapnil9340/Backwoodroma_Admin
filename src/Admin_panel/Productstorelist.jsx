@@ -10,9 +10,9 @@ const Productstorelist = ({ link ,title, Data1 }) => {
       </div>
       <ul className="dashboardList">
         {Data1 !== undefined &&
-          Data1.slice(0, 5).map((data) => {
+          Data1.slice(0, 5).map((data , index) => {
             return (
-              <li className="">
+              <li className="" key={index}>
                 <div className="dashboardListItem">
                   <div className="dashboardListItemImage">
                     <div className="imageCircle" >

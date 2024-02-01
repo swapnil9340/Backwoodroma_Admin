@@ -15,6 +15,8 @@ import { EditorState, ContentState } from 'draft-js';
 import { convertToHTML } from 'draft-convert';
 import htmlToDraft from 'html-to-draftjs';
 import Createcontext from "../../Hooks/Context/Context"
+import { FaEdit } from "react-icons/fa";
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
         padding: theme.spacing(2),
@@ -129,7 +131,7 @@ export default function BrandEdit(props) {
     return (
         <div>
             <Button color='success' onClick={handleClickOpen}>
-                Edit
+                <FaEdit />
             </Button>
             <BootstrapDialog
                 onClose={handleClose}
