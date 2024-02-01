@@ -68,7 +68,7 @@ const Areagraph = () => {
             'StartDate': timeintervalchart === 'ThisYear'
               ? date.getFullYear() + "-" + "01" + "-" + "01"
               : timeintervalchart === 'ThisMonth'
-                ? date.getFullYear() + "-" + date.getMonth() + 1 + "-" + "01"
+                ? date.getFullYear() + "-" + (date.getMonth() + 1 )+ "-" + "01"
                 : timeintervalchart === 'ThisWeek'
                   ? new Date(date.setDate(date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1))).toISOString().slice(0, 10)
                   : timeintervalchart === 'Today' && TodayDate,
