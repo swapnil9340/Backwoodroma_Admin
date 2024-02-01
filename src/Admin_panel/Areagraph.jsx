@@ -5,7 +5,7 @@ import useStyles from "../Style";
 import Cookies from "universal-cookie";
 import axios from "axios";
 import Createcontext from "../Hooks/Context/Context";
-const Areagraph = () => {
+const Areagraph = ({props}) => {
   const { state } = React.useContext(Createcontext);
 
   const cookies = new Cookies();
@@ -92,6 +92,7 @@ const Areagraph = () => {
     ],
     options: {
       chart: {
+        background: '#fff',
         height: 350,
         type: "area",
         toolbar: {
@@ -143,6 +144,7 @@ const Areagraph = () => {
   };
 
   React.useEffect(() => {
+   if(props === "dashboard"){
     axios
       .post(
         "https://api.cannabaze.com/AdminPanel/TotalUserGraph/",
@@ -199,6 +201,65 @@ const Areagraph = () => {
           }
         }
       });
+   }
+   else if (props === "Vender"){
+    axios
+    .post(
+      "https://api.cannabaze.com/AdminPanel/SalesPerformanceVendorGraph/",
+      {
+        SelectTime: timeintervalchart,
+        StartDate:
+          timeintervalchart === "ThisYear"
+            ? date.getFullYear() + "-" + "01" + "-" + "01"
+            : timeintervalchart === "ThisMonth"
+            ? date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + "01"
+            : timeintervalchart === "ThisWeek"
+            ? new Date(
+                date.setDate(
+                  date.getDate() -
+                    date.getDay() +
+                    (date.getDay() === 0 ? -6 : 1)
+                )
+              )
+                .toISOString()
+                .slice(0, 10)
+            : timeintervalchart === "Today" && TodayDate,
+        EndDate: TodayDate,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token_data}`,
+        },
+      }
+    )
+    .then((res) => {
+      if (timeintervalchart === "ThisMonth") {
+        res.data.map((data) => {
+          if (!data.Date.slice(3, data.Date.length - 3) > 10) {
+            Setmonth((month) => ({
+              ...month,
+              [data.Date.slice(4, data.Date.length - 3)]: data.UnitSold,
+            }));
+          } else {
+            Setmonth((month) => ({
+              ...month,
+              [data.Date.slice(4, data.Date.length - 3)]: data.UnitSold,
+            }));
+          }
+        });
+      } else {
+        if (timeintervalchart === "ThisYear") {
+          res.data.map((data) => {
+            SetChartDate((CharteDate) => ({
+              ...CharteDate,
+              [data.Date.slice(0, 3)]: data.UnitSold,
+            }));
+          });
+        } else {
+        }
+      }
+    });
+   }
   }, [timeintervalchart]);
 
   function labelsgenerateds() {
@@ -291,7 +352,7 @@ const Areagraph = () => {
         series={Chartstate.series}
         type="area"
         // width={"500"}
-        height={'340'}
+        height={"340"}
       />
     </div>
   );

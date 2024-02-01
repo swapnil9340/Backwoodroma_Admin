@@ -227,7 +227,7 @@ const Vendor = () => {
                     <div className='col-12'>
                         <div className='venderHeroDiv'>
                             <div className='venderHeroDiv_card'>
-                                <Areagraph/>
+                                <Areagraph props={'Vender'}/>
                             </div>
                             <div className='venderHeroDiv_card'>
                                 <TotalSales/>
