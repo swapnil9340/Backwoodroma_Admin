@@ -8,7 +8,7 @@ import { IoIosArrowRoundUp } from "react-icons/io";
 import { MdArrowDownward } from "react-icons/md";
 import { SlSocialDropbox } from "react-icons/sl";
 import { RiGroupLine } from "react-icons/ri";
-export default function StatusBarCard({ props, id }) {
+export default function StatusBarCard({ title, id }) {
   const { state } = React.useContext(Createcontext);
   const cookies = new Cookies();
   const token_data = cookies.get("Token_access");
@@ -21,8 +21,7 @@ export default function StatusBarCard({ props, id }) {
   const [Data, SetData] = useState({});
   //  Months//////////////////
   let date = new Date();
-  const TodayDate =
-    date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate();
+  const TodayDate = date.getFullYear() + "-" + (date.getMonth()+ 1) + "-" + date.getDate();
   const currentYear = new Date().getFullYear();
   const lastYear = currentYear - 1;
   const monthStartDate = new Date(date.getFullYear(), date.getMonth(), 2)
@@ -93,6 +92,7 @@ export default function StatusBarCard({ props, id }) {
       return convert(StartEndDate.toString());
     }
   }
+  console.log(TodayDate)
   React.useEffect(() => {
     if (state.datesSelect === "Customics") {
       if (state.CustomeStartDate !== "" && state.CustomeEndDate !== "") {
@@ -101,112 +101,109 @@ export default function StatusBarCard({ props, id }) {
             state.datesSelect === "Year"
               ? "ThisYear"
               : state.datesSelect === "Months"
-              ? "ThisMonth"
-              : state.datesSelect === "Today"
-              ? "Today"
-              : state.datesSelect === "week"
-              ? "week"
-              : state.datesSelect === "Customics" && "costume",
+                ? "ThisMonth"
+                : state.datesSelect === "Today"
+                  ? "Today"
+                  : state.datesSelect === "week"
+                    ? "week"
+                    : state.datesSelect === "Customics" && "costume",
           StartDate:
             state.datesSelect === "Year"
               ? `${date.getFullYear()}-01-01`
               : state.datesSelect === "Months"
-              ? monthStartDate
-              : state.datesSelect === "week"
-              ? StartDateWeek
-              : state.datesSelect === "Today"
-              ? TodayDate
-              : state.datesSelect === "Customics" && state.CustomeStartDate,
+                ? monthStartDate
+                : state.datesSelect === "week"
+                  ? StartDateWeek
+                  : state.datesSelect === "Today"
+                    ? TodayDate
+                    : state.datesSelect === "Customics" && state.CustomeStartDate,
           EndDate:
             state.datesSelect === "Year"
               ? TodayDate
               : state.datesSelect === "Months"
-              ? monthlastDate
-              : state.datesSelect === "week"
-              ? TodayDate
-              : state.datesSelect === "Today"
-              ? TodayDate
-              : state.datesSelect === "Customics" && state.CustomeEndDate,
+                ? TodayDate
+                : state.datesSelect === "week"
+                  ? TodayDate
+                  : state.datesSelect === "Today"
+                    ? TodayDate
+                    : state.datesSelect === "Customics" && state.CustomeEndDate,
           LastStartDate:
             state.datesSelect === "Year"
               ? `${lastYear}-01-01`
               : state.datesSelect === "Months"
-              ? lastmonthStartDate
-              : state.datesSelect === "week"
-              ? GetpreviousWeekDate(7, 1)
-              : state.datesSelect === "Today"
-              ? yesterday.toISOString().split("T")[0]
-              : state.datesSelect === "Customics" && CalculateDays("first"), //yesterday.toISOString().split('T')[0]
+                ? lastmonthStartDate
+                : state.datesSelect === "week"
+                  ? GetpreviousWeekDate(7, 1)
+                  : state.datesSelect === "Today"
+                    ? yesterday.toISOString().split("T")[0]
+                    : state.datesSelect === "Customics" && CalculateDays("first"), //yesterday.toISOString().split('T')[0]
           EndStartDate:
             state.datesSelect === "Year"
               ? `${lastYear}-12-31`
               : state.datesSelect === "Months"
-              ? lastmonthLastDate
-              : state.datesSelect === "week"
-              ? GetpreviousWeekDate(0, 0)
-              : state.datesSelect === "Today"
-              ? yesterday.toISOString().split("T")[0]
-              : state.datesSelect === "Customics" && CalculateDays("Second"),
+                ? lastmonthLastDate
+                : state.datesSelect === "week"
+                  ? GetpreviousWeekDate(0, 0)
+                  : state.datesSelect === "Today"
+                    ? yesterday.toISOString().split("T")[0]
+                    : state.datesSelect === "Customics" && CalculateDays("Second"),
         });
       }
     } else {
       SetData({
-        SelectTime:
-          state.datesSelect === "Year"
-            ? "ThisYear"
-            : state.datesSelect === "Months"
-            ? "ThisMonth"
-            : state.datesSelect === "Today"
-            ? "Today"
-            : state.datesSelect === "week"
-            ? "week"
-            : state.datesSelect === "Customics" && "costume",
+        SelectTime: state.datesSelect === "Year" ? "ThisYear"  : state.datesSelect === "Months"
+              ? "ThisMonth"
+              : state.datesSelect === "Today"
+                ? "Today"
+                : state.datesSelect === "week"
+                  ? "week"
+                  : state.datesSelect === "Customics" && "costume",
         StartDate:
           state.datesSelect === "Year"
             ? `${date.getFullYear()}-01-01`
             : state.datesSelect === "Months"
-            ? monthStartDate
-            : state.datesSelect === "week"
-            ? StartDateWeek
-            : state.datesSelect === "Today"
-            ? TodayDate
-            : state.datesSelect === "Customics" && state.CustomeStartDate,
+              ? monthStartDate
+              : state.datesSelect === "week"
+                ? StartDateWeek
+                : state.datesSelect === "Today"
+                  ? TodayDate
+                  : state.datesSelect === "Customics" && state.CustomeStartDate,
         EndDate:
           state.datesSelect === "Year"
             ? TodayDate
             : state.datesSelect === "Months"
-            ? monthlastDate
-            : state.datesSelect === "week"
-            ? TodayDate
-            : state.datesSelect === "Today"
-            ? TodayDate
-            : state.datesSelect === "Customics" && state.CustomeEndDate,
+              ? TodayDate
+              : state.datesSelect === "week"
+                ? TodayDate
+                : state.datesSelect === "Today"
+                  ? TodayDate
+                  : state.datesSelect === "Customics" && state.CustomeEndDate,
         LastStartDate:
           state.datesSelect === "Year"
             ? `${lastYear}-01-01`
             : state.datesSelect === "Months"
-            ? lastmonthStartDate
-            : state.datesSelect === "week"
-            ? GetpreviousWeekDate(7, 1)
-            : state.datesSelect === "Today"
-            ? yesterday.toISOString().split("T")[0]
-            : state.datesSelect === "Customics" && CalculateDays("first"), //yesterday.toISOString().split('T')[0]
+              ? lastmonthStartDate
+              : state.datesSelect === "week"
+                ? GetpreviousWeekDate(7, 1)
+                : state.datesSelect === "Today"
+                  ? yesterday.toISOString().split("T")[0]
+                  : state.datesSelect === "Customics" && CalculateDays("first"), //yesterday.toISOString().split('T')[0]
         EndStartDate:
           state.datesSelect === "Year"
             ? `${lastYear}-12-31`
             : state.datesSelect === "Months"
-            ? lastmonthLastDate
-            : state.datesSelect === "week"
-            ? GetpreviousWeekDate(0, 0)
-            : state.datesSelect === "Today"
-            ? yesterday.toISOString().split("T")[0]
-            : state.datesSelect === "Customics" && CalculateDays("Second"),
+              ? lastmonthLastDate
+              : state.datesSelect === "week"
+                ? GetpreviousWeekDate(0, 0)
+                : state.datesSelect === "Today"
+                  ? yesterday.toISOString().split("T")[0]
+                  : state.datesSelect === "Customics" && CalculateDays("Second"),
       });
     }
   }, [state.datesSelect, state.CustomeStartDate, state.CustomeEndDate]);
-  console.log(id);
+
   useEffect(() => {
-    if (props === "dashboard") {
+    if (title === "dashboard") {
       if (Object.keys(Data).length !== 0) {
         axios
           .post("https://api.cannabaze.com/AdminPanel/TotalStore/", Data, {
@@ -271,7 +268,7 @@ export default function StatusBarCard({ props, id }) {
             SetCustomer(response.data[0]);
           });
       }
-    } else if (props === "vendor") {
+    } else if (title === "vendor") {
       if (Object.keys(Data).length !== 0) {
         if (id !== undefined) {
           axios
@@ -287,60 +284,67 @@ export default function StatusBarCard({ props, id }) {
               setTotal(response.data.StoreCount);
             });
 
-            axios.post("https://api.cannabaze.com/AdminPanel/TotalSalesVendorCard/",
-            {...Data ,  id:id},
-            {
+          axios
+            .post(
+              "https://api.cannabaze.com/AdminPanel/TotalSalesVendorCard/",
+              { ...Data, id: id },
+              {
                 headers: {
-                    'Authorization': `Bearer ${token_data}`
-                }
-            }).then(response => {
-              console.log(response)
-                setVendor(response.data[0])
-            })
+                  Authorization: `Bearer ${token_data}`,
+                },
+              }
+            )
+            .then((response) => {
+              setVendor(response.data[0]);
+            });
         }
 
-       
-        // axios.post("https://api.cannabaze.com/AdminPanel/TotalSalesCard/",
-        //     Data,
-        //     {
-        //         headers: {
-        //             'Authorization': `Bearer ${token_data}`
-        //         }
-        //     }).then(response => {
-        //         SetTotalSale(response.data[0])
-        //     })
-        axios.post("https://api.cannabaze.com/AdminPanel/TotalSalesVendorCard/",
+        axios.post("https://api.cannabaze.com/AdminPanel/TotalOrderVendorCard/",
             Data,
             {
                 headers: {
                     'Authorization': `Bearer ${token_data}`
                 }
             }).then(response => {
-
-                Setorder(response.data[0])
+                      Setorder(response.data[0]);
             })
-        // axios.post("https://api.cannabaze.com/AdminPanel/ProductDashBoardCard/",
-        //     Data,
-        //     {
-        //         headers: {
-        //             'Authorization': `Bearer ${token_data}`
-        //         }
-        //     }).then(response => {
-        //         SetProduct(response.data[0])
+        axios
+          .post(
+            "https://api.cannabaze.com/AdminPanel/TotalSalesVendorCard/",
+            { ...Data, id: id },
+            {
+              headers: {
+                Authorization: `Bearer ${token_data}`,
+              },
+            }
+          )
+          .then((response) => {
+            SetTotalSale(response.data);
+          });
+        axios.post("https://api.cannabaze.com/AdminPanel/TotalProductCard/",
+        { ...Data, id: id },
+            {
+                headers: {
+                    'Authorization': `Bearer ${token_data}`
+                }
+            }).then(response => {
+                SetProduct(response.data[0])
 
-        //     })
-        // axios.post("https://api.cannabaze.com/AdminPanel/CustomerDashBoardCard/",
-        //     Data,
-        //     {
-        //         headers: {
-        //             'Authorization': `Bearer ${token_data}`
-        //         }
-        //     }).then(response => {
-        //         SetCustomer(response.data[0])
-        //     })
+            })
+        axios.post("https://api.cannabaze.com/AdminPanel/TotalCustomerVendorCard/",
+            Data,
+            {
+                headers: {
+                    'Authorization': `Bearer ${token_data}`
+                }
+            }).then(response => {
+                SetCustomer(response.data[0])
+            })
       }
     }
   }, [Data, id]);
+
+  console.log(title !== "Sales Performance")
   return (
     <div className="dashboardTopCardWrapper ">
       <div className=" dashboardTopCard top col">
@@ -353,7 +357,7 @@ export default function StatusBarCard({ props, id }) {
             </div>
           </div>
           <div className="cardbox">
-            {props === "dashboard" ? (
+            {title === "dashboard" ? (
               <div>
                 <p className="card_hadding">{"Total Store"}</p>
                 <p className="Card_Total">{totel?.TotalStore}</p>
@@ -396,9 +400,7 @@ export default function StatusBarCard({ props, id }) {
                       fontSize: "12px",
                       color: "#00AC4F",
                     }}
-                  >
-                
-                  </span>
+                  ></span>
                   <span style={{ fontSize: "12px", color: "black" }}>
                     {" "}
                     {state.datesSelect}
@@ -409,7 +411,7 @@ export default function StatusBarCard({ props, id }) {
           </div>
         </div>
       </div>
-      <div className=" dashboardTopCard top col">
+      {title === "dashboard" && <div className=" dashboardTopCard top col">
         <div className="col-12  d-flex justify-content-center gap-4 ">
           <div className=" Card_center_dashboard  ">
             <div className="cardbox ">
@@ -450,7 +452,7 @@ export default function StatusBarCard({ props, id }) {
             </p>
           </div>
         </div>
-      </div>
+      </div>}
       <div className=" dashboardTopCard top col">
         <div className="col-12  d-flex justify-content-center gap-4 ">
           <div className=" Card_center_dashboard  ">
@@ -550,7 +552,7 @@ export default function StatusBarCard({ props, id }) {
 
           <div className="cardbox">
             <p className="card_hadding">{"Product"}</p>
-            <p className="Card_Total">{Product?.Totalproduct}</p>
+            <p className="Card_Total">{Product?.Totalproduct || Product?.TotalProduct}</p>
             <p className="card_hadding">
               {Product?.Growth ? (
                 <span>
