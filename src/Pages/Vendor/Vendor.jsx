@@ -282,7 +282,11 @@ const Vendor = () => {
                   <div
                     className="storerating"
                     onClick={() => {
-                      navigate("/allreview");
+                      navigate("/allreview",  {
+                        state: {
+                          item
+                        }
+                      }) ;
                     }}
                   >
                     {" "}

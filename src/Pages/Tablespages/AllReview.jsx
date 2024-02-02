@@ -18,12 +18,12 @@ const AllReview = () => {
     const cookies = new Cookies();
     const token_data = cookies.get("Token_access");
     const [pageSize, setPageSize] = React.useState(10)
-   const [deleteoptn , setdeleteoprn] = useState(false)
-   const [isdelete , setsisDelete] = useState(false)
-   const [sucsesopen , setsucsesopen] = useState(false)
-   const [reviewid , setreviewid] = useState({})
+    const [deleteoptn , setdeleteoprn] = useState(false)
+    const [isdelete , setsisDelete] = useState(false)
+    const [sucsesopen , setsucsesopen] = useState(false)
+    const [reviewid , setreviewid] = useState({})
    
-   
+   console.log(location.state ,'location')
    
    useEffect(()=>{
        if(isdelete){
@@ -40,11 +40,11 @@ const AllReview = () => {
                    'Authorization': `Bearer ${token_data}`
                  }
                }).then((res) => {
-                 let a = res.data?.map((item , index)=>{
+                 let a = res?.data?.map((item , index)=>{
                    if("ProductName" in item){
-                       return {...item , mainID : index , reviewtype : {"productId":item.id}}
+                       return {...item , mainID : index , reviewtype : {"productId":item?.id}}
                    }else{
-                       return {...item , mainID : index , reviewtype : {"StoreId":item.id} }
+                       return {...item , mainID : index , reviewtype : {"StoreId":item?.id} }
                    } 
                   })
                  setRecentorder( a )
@@ -63,7 +63,7 @@ const AllReview = () => {
     
           useEffect(() => {
             Axios.post('https://api.cannabaze.com/AdminPanel/ReviewsByStore/', 
-            {"SelectTime":"Year","StartDate":"2023-02-01","EndDate":"2024-02-02","StoreId":location.state.item.id},{
+            {"SelectTime":"Year","StartDate":"2023-02-01","EndDate":"2024-02-02","StoreId":location?.state?.item?.id},{
               headers: {
                 'Authorization': `Bearer ${token_data}`
               }
@@ -77,7 +77,7 @@ const AllReview = () => {
             })
               setRecentorder( a )
             })
-          }, [location.state.item])
+          }, [location?.state?.item])
           const CustomFontTheme = createTheme({
           typography: {
               fontSize: 25
@@ -207,7 +207,6 @@ const AllReview = () => {
                     </span>
                   }
               },
-             
           ];
           const rows = recentorder
 
