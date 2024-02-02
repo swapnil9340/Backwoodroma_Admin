@@ -115,7 +115,7 @@ useEffect(()=>{
             </Button>
             <BootstrapDialog
                 onClose={handleClose}
-                aria-labelledby="customized-dialog-title"
+                aria-labelledby="Customizeed-dialog-title"
                 open={open}
                 sx={{
                     "& .MuiDialog-container": {
@@ -141,7 +141,7 @@ useEffect(()=>{
                     },
                 }}
             >
-                <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+                <BootstrapDialogTitle id="Customizeed-dialog-title" onClose={handleClose}>
                     Modal title
                 </BootstrapDialogTitle>
                 <DialogContent dividers>

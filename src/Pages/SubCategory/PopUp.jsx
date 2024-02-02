@@ -134,7 +134,7 @@ export default function PopUp() {
             </button>
             <BootstrapDialog
                 onClose={handleClose}
-                aria-labelledby="customized-dialog-title"
+                aria-labelledby="Customizeed-dialog-title"
                 open={open}
                 sx={{
                     "& .MuiDialog-container": {

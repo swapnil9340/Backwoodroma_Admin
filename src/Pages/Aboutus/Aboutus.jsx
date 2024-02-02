@@ -29,7 +29,7 @@ const Aboutus = () => {
             borderColor: "rgba(0, 0, 0, 0.23)" // default
           },
           "&.Mui-focused fieldset": {
-            border: "2px solid #31B655" // customized
+            border: "2px solid #31B655" // Customizeed
           }
         }
       }

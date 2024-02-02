@@ -94,7 +94,7 @@ export default function StatusBarCard({ props, id }) {
     }
   }
   React.useEffect(() => {
-    if (state.datesSelect === "Customics") {
+    if (state.datesSelect === "Customize") {
       if (state.CustomeStartDate !== "" && state.CustomeEndDate !== "") {
         SetData({
           SelectTime:
@@ -106,7 +106,7 @@ export default function StatusBarCard({ props, id }) {
               ? "Today"
               : state.datesSelect === "week"
               ? "week"
-              : state.datesSelect === "Customics" && "costume",
+              : state.datesSelect === "Customize" && "costume",
           StartDate:
             state.datesSelect === "Year"
               ? `${date.getFullYear()}-01-01`
@@ -116,7 +116,7 @@ export default function StatusBarCard({ props, id }) {
               ? StartDateWeek
               : state.datesSelect === "Today"
               ? TodayDate
-              : state.datesSelect === "Customics" && state.CustomeStartDate,
+              : state.datesSelect === "Customize" && state.CustomeStartDate,
           EndDate:
             state.datesSelect === "Year"
               ? TodayDate
@@ -126,7 +126,7 @@ export default function StatusBarCard({ props, id }) {
               ? TodayDate
               : state.datesSelect === "Today"
               ? TodayDate
-              : state.datesSelect === "Customics" && state.CustomeEndDate,
+              : state.datesSelect === "Customize" && state.CustomeEndDate,
           LastStartDate:
             state.datesSelect === "Year"
               ? `${lastYear}-01-01`
@@ -136,7 +136,7 @@ export default function StatusBarCard({ props, id }) {
               ? GetpreviousWeekDate(7, 1)
               : state.datesSelect === "Today"
               ? yesterday.toISOString().split("T")[0]
-              : state.datesSelect === "Customics" && CalculateDays("first"), //yesterday.toISOString().split('T')[0]
+              : state.datesSelect === "Customize" && CalculateDays("first"), //yesterday.toISOString().split('T')[0]
           EndStartDate:
             state.datesSelect === "Year"
               ? `${lastYear}-12-31`
@@ -146,7 +146,7 @@ export default function StatusBarCard({ props, id }) {
               ? GetpreviousWeekDate(0, 0)
               : state.datesSelect === "Today"
               ? yesterday.toISOString().split("T")[0]
-              : state.datesSelect === "Customics" && CalculateDays("Second"),
+              : state.datesSelect === "Customize" && CalculateDays("Second"),
         });
       }
     } else {
@@ -160,7 +160,7 @@ export default function StatusBarCard({ props, id }) {
             ? "Today"
             : state.datesSelect === "week"
             ? "week"
-            : state.datesSelect === "Customics" && "costume",
+            : state.datesSelect === "Customize" && "costume",
         StartDate:
           state.datesSelect === "Year"
             ? `${date.getFullYear()}-01-01`
@@ -170,7 +170,7 @@ export default function StatusBarCard({ props, id }) {
             ? StartDateWeek
             : state.datesSelect === "Today"
             ? TodayDate
-            : state.datesSelect === "Customics" && state.CustomeStartDate,
+            : state.datesSelect === "Customize" && state.CustomeStartDate,
         EndDate:
           state.datesSelect === "Year"
             ? TodayDate
@@ -180,7 +180,7 @@ export default function StatusBarCard({ props, id }) {
             ? TodayDate
             : state.datesSelect === "Today"
             ? TodayDate
-            : state.datesSelect === "Customics" && state.CustomeEndDate,
+            : state.datesSelect === "Customize" && state.CustomeEndDate,
         LastStartDate:
           state.datesSelect === "Year"
             ? `${lastYear}-01-01`
@@ -190,7 +190,7 @@ export default function StatusBarCard({ props, id }) {
             ? GetpreviousWeekDate(7, 1)
             : state.datesSelect === "Today"
             ? yesterday.toISOString().split("T")[0]
-            : state.datesSelect === "Customics" && CalculateDays("first"), //yesterday.toISOString().split('T')[0]
+            : state.datesSelect === "Customize" && CalculateDays("first"), //yesterday.toISOString().split('T')[0]
         EndStartDate:
           state.datesSelect === "Year"
             ? `${lastYear}-12-31`
@@ -200,7 +200,7 @@ export default function StatusBarCard({ props, id }) {
             ? GetpreviousWeekDate(0, 0)
             : state.datesSelect === "Today"
             ? yesterday.toISOString().split("T")[0]
-            : state.datesSelect === "Customics" && CalculateDays("Second"),
+            : state.datesSelect === "Customize" && CalculateDays("Second"),
       });
     }
   }, [state.datesSelect, state.CustomeStartDate, state.CustomeEndDate]);

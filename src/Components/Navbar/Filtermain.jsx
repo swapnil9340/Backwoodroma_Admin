@@ -24,7 +24,7 @@ const Filtermain = () => {
 
   function handlechnage(e) {
     setValue(e)
-    if (e === "Customics") {
+    if (e === "Customize") {
       setDateopen(true)
       dispatch({ type: 'datesSelect', datesSelect: e })
     } else {
@@ -71,7 +71,7 @@ const Filtermain = () => {
             <li onClick={() => handlechnage("week")}><input type='checkbox' checked={value === 'week'} /> Week </li>
             <li onClick={() => handlechnage("Months")}><input type='checkbox' checked={value === 'Months'} /> Months</li>
             <li onClick={() => handlechnage("Year")}><input type='checkbox' checked={value === 'Year'} /> Year</li>
-            <li onClick={() => handlechnage("Customics")}><input type='checkbox' checked={value === 'Customics'} /> Customice</li>
+            <li onClick={() => handlechnage("Customize")}><input type='checkbox' checked={value === 'Customize'} /> Customize</li>
           </ul>
         </div>
         <div className='calenderdropdown' style={{ display: dateopen ? 'inline-block' : "none" }} >

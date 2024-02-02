@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 .section_card {
   background-color: #fff;
   border-radius: 8px;
@@ -302,4 +303,142 @@
 .PromotionalMainContainer .feild_box.image_input_box .bannerImagebox .image_logosize1 svg {
   color: #000000;
   font-size: 20px;
+}
+
+.deleteconfirmpopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.deleteconfirmpopup .deletepopup {
+  width: 420px;
+  padding: 40px 20px;
+  border-radius: 12px;
+  background-color: #fff;
+  position: relative;
+}
+.deleteconfirmpopup .deletepopup .closebtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.431372549);
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.deleteconfirmpopup .deletepopup .Iconsdelete {
+  text-align: center;
+}
+.deleteconfirmpopup .deletepopup .Iconsdelete .dangericon {
+  font-size: 90px;
+  color: #C00505;
+}
+.deleteconfirmpopup .deletepopup p {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 36px;
+  color: #222529;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.5;
+  padding: 20px 0;
+}
+.deleteconfirmpopup .deletepopup .popupbtn {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  line-height: 2.5;
+}
+.deleteconfirmpopup .deletepopup .popupbtn:first-child {
+  background-color: #C00505;
+}
+.deleteconfirmpopup .deletepopup .popupbtn:nth-child(2) {
+  background-color: #38a169;
+}
+
+.sucsconfirmpopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.sucsconfirmpopup .sucspopup {
+  width: 420px;
+  padding: 40px 20px;
+  border-radius: 12px;
+  background-color: #fff;
+  position: relative;
+}
+.sucsconfirmpopup .sucspopup .closebtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.431372549);
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.sucsconfirmpopup .sucspopup .Iconssucs {
+  text-align: center;
+}
+.sucsconfirmpopup .sucspopup .Iconssucs .dangericon {
+  font-size: 90px;
+  color: #00AC4F;
+}
+.sucsconfirmpopup .sucspopup p {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 36px;
+  color: #222529;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.5;
+  padding: 20px 0;
+}
+.sucsconfirmpopup .sucspopup .popupbtn {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  line-height: 2.5;
+}
+.sucsconfirmpopup .sucspopup .popupbtn:first-child {
+  background-color: #00AC4F;
+}
+.sucsconfirmpopup .sucspopup .popupbtn:nth-child(2) {
+  background-color: #38a169;
 }/*# sourceMappingURL=style.css.map */

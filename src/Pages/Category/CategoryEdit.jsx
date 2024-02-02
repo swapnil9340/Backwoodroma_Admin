@@ -134,7 +134,7 @@ const classes = useStyles()
             </span>
             <BootstrapDialog
                 onClose={handleClose}
-                aria-labelledby="customized-dialog-title"
+                aria-labelledby="Customizeed-dialog-title"
                 open={open}
                 sx={{
                   

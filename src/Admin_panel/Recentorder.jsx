@@ -208,7 +208,10 @@ const Recentorder = ({title="Recent Order" ,data=[]}) => {
             display: "flex",
             width: "200px"
           },
-          "& .MuiDataGrid-root": {
+          "& .MuiDataGrid-root ": {
+            border: 'none',
+          },
+          "& .MuiDataGrid-root ": {
             border: 'none',
           },
           // check
