@@ -279,7 +279,7 @@ export default function AdminPanel() {
         </div>
 
       </div>
-      <div className='col-12 d-flex justify-content-between flex-md-nowrap flex-wrap gap-md-0 gap-5'>
+      <div className='col-12 d-flex justify-content-between flex-md-nowrap flex-wrap gap-5'>
         <div className='storeOwnerTable'>
           <div className='ownerlist'>
             <Box
