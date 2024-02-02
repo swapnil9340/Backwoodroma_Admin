@@ -14,30 +14,35 @@ import { MdOutlineEmail } from "react-icons/md";
 import { BsTelephone } from "react-icons/bs";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoIosInformationCircleOutline } from "react-icons/io";
-
+import {useLocation} from 'react-router-dom'
 const AllReview = () => {
-
+    const location = useLocation();
     const [recentorder, setRecentorder] = useState([])
     const [error, seterror] = useState(false)
     const cookies = new Cookies();
     const token_data = cookies.get("Token_access");
     const [pageSize, setPageSize] = React.useState(10)
   
-    
+    console.log(location.state.item ,'location')
   
-        //   useEffect(() => {
-        //     Axios.post('https://api.cannabaze.com/AdminPanel/TopStore/', 
-        //     {"SelectTime":"Year","StartDate":"2024-01-01","EndDate":"2024-01-29","LastStartDate":"2023-01-01","EndStartDate":"2023-12-31"},{
-        //       headers: {
-        //         'Authorization': `Bearer ${token_data}`
-        //       }
-        //     }).then((res) => {
-        //       let a = res.data?.map((item , index)=>{
-        //          return {...item , id: index}
-        //       })
-        //       setRecentorder( a )
-        //     })
-        //   }, [])
+          useEffect(() => {
+            Axios.post('https://api.cannabaze.com/AdminPanel/ReviewsByStore/', 
+            {"SelectTime":"Year","StartDate":"2023-02-02","EndDate":"2024-02-01","StoreId":location.state.item.id},{
+              headers: {
+                'Authorization': `Bearer ${token_data}`
+              }
+            }).then((res) => {
+            //   let a = res.data?.map((item , index)=>{
+            //     if(
+
+            //     ){ return {...item , id: index}}else{
+
+            //     }
+            //   })
+            //   setRecentorder( a )
+            console.log(res.data)
+            })
+          }, [location.state.item])
           const CustomFontTheme = createTheme({
           typography: {
               fontSize: 25

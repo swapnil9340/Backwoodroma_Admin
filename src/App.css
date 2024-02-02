@@ -754,10 +754,7 @@ a {
 
   }
 
-  .product_imagebox {
-    height: 100px;
-    width: 100px;
-  }
+ 
 }
 
 @media(max-width:405px) {
@@ -807,12 +804,7 @@ a {
 }
 
 
-.product_imagebox {
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .justify {
   justify-content: space-around;
@@ -828,11 +820,7 @@ a {
   color: #E8E8E8;
 }
 
-.image_logosize1 svg {
-  color: #E8E8E8;
-  font-size: 30px;
 
-}
 
 .background {
 

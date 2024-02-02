@@ -241,7 +241,7 @@ const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloade
             <TextField id="link" className={classes.textFieldFocusBorderColor} onChange={(e)=>{setformdata({...fromdaa , link : e.target.value})}}  variant="outlined" fullWidth size="small" />
         </div>
         <div className="">
-            <Box className={`w-100 promotionBtn_center ${classes.PromotionalBtn}`}>
+            <Box className={`w-100  ${classes.PromotionalBtn}`}>
                 <LoadingButton onClick={submitFunction}>Update Banner</LoadingButton>
             </Box>
         </div>

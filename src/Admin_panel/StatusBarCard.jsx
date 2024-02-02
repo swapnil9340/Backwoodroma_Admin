@@ -204,7 +204,7 @@ export default function StatusBarCard({ props, id }) {
       });
     }
   }, [state.datesSelect, state.CustomeStartDate, state.CustomeEndDate]);
-  console.log(id);
+ 
   useEffect(() => {
     if (props === "dashboard") {
       if (Object.keys(Data).length !== 0) {
@@ -294,7 +294,7 @@ export default function StatusBarCard({ props, id }) {
                     'Authorization': `Bearer ${token_data}`
                 }
             }).then(response => {
-              console.log(response)
+             
                 setVendor(response.data[0])
             })
         }

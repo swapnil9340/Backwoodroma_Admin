@@ -221,4 +221,85 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+.empty-state {
+  width: 100%;
+  height: 80%;
+  background: #ffffff;
+}
+.empty-state__content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.empty-state__content .empty-state__icon {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  border-radius: 200px;
+  justify-content: center;
+  background-color: #f7fafc;
+  box-shadow: 0px 2px 1px #e1e3ec;
+}
+.empty-state__content .empty-state__icon img {
+  width: 120px;
+}
+.empty-state__content .empty-state__message {
+  color: #38a169;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 0.85rem;
+  text-align: center;
+}
+.empty-state__content .empty-state__help {
+  color: #a2a5b9;
+  font-size: 12px;
+  text-align: center;
+}
+
+.PromotionalMainContainer .feild_box {
+  width: 500px;
+  margin-bottom: 10px;
+}
+.PromotionalMainContainer .feild_box .label_custom {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.2px;
+}
+.PromotionalMainContainer .feild_box .promotionSelectWidth {
+  width: 100%;
+  border-radius: 5px;
+  border-color: #BEBEBE;
+  font-size: 14px;
+  padding: 8px 15px;
+}
+.PromotionalMainContainer .feild_box.image_input_box {
+  max-width: 360px;
+}
+.PromotionalMainContainer .feild_box.image_input_box .label_custom {
+  color: #435085;
+}
+.PromotionalMainContainer .feild_box.image_input_box .bannerImagebox {
+  border: 2px dashed #727CA4;
+  text-align: center;
+  background-color: rgba(209, 212, 225, 0.4);
+}
+.PromotionalMainContainer .feild_box.image_input_box .bannerImagebox .product_imagebox {
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.PromotionalMainContainer .feild_box.image_input_box .bannerImagebox .product_imagebox .removeUploadedImg {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.PromotionalMainContainer .feild_box.image_input_box .bannerImagebox .image_logosize1 svg {
+  color: #000000;
+  font-size: 20px;
 }/*# sourceMappingURL=style.css.map */

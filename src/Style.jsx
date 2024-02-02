@@ -33,7 +33,8 @@ const useStyles = makeStyles(theme =>(
           "& .MuiOutlinedInput-input": {
             backgroundColor:'White',
             padding:'8px 15px',
-            fontSize:'16px',
+            fontSize:'14px',
+            fontWeight:'400',
           },
           " &.Mui-focused fieldset": {
             borderColor: "#31B665",
@@ -359,6 +360,12 @@ const useStyles = makeStyles(theme =>(
         }
       },
       muiPromotioCheckBox:{
+       
+        "&.MuiFormGroup-root":{
+          display:'flex',
+          gap:'10px',
+          flexDirection:'row',
+        },
         "& .MuiSvgIcon-root": {
           fill: "#31B665",
           display:"flex",
@@ -366,6 +373,10 @@ const useStyles = makeStyles(theme =>(
         },
       },
       PromotionalBtn:{
+        display:'flex',
+        justifyContent:'flex-start',
+        alignItems:'center',
+        gap:'10px',
         '& .MuiLoadingButton-root':{
           color:'#31B665',
           marginTop:"10px",
@@ -391,9 +402,9 @@ const useStyles = makeStyles(theme =>(
 
           }
         },
-      '& .MuiLoadingButton-outlined':{
-        outlined:"#31B665"
-      }
+        '& .MuiLoadingButton-outlined':{
+          outlined:"#31B665"
+        }
       },
       model_content_banner:{
         position: 'absolute',
@@ -425,30 +436,63 @@ const useStyles = makeStyles(theme =>(
       
       },
       bannerlisttable:{
-        height:500,
-        width: '100%',
-        "& .MuiDataGrid-columnHeaders": {
-            background: "#E1FFED",
-            fontSize:'18px',
-        },
-        '&  .MuiDataGrid-columnSeparator--sideRight': {
-            display: 'none',
-        },
-        '&.MuiDataGrid-root .MuiDataGrid-cell:focus': {
-            outline: 'none',
-        },
-        '& .MuiDataGrid-row': {
-            fontSize:'14px',
-        },
-        '& .MuiDataGrid-row:hover': {
-            backgroundColor: '#F0F0F0',
-        },
-        '@media(maxWidth: 568px)' : {
-            "& .MuiDataGrid-columnHeaders": {
-                background: "#E1FFED",
-                fontSize:'14px',
-            }, 
-        }
+        height:'610px',
+                                "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
+                                    outline: "none",
+                                },
+                                "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
+                                    outline: "none"
+                                },
+                                "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
+                                    outline: "none",
+
+                                },
+                                "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
+                                    backgroundColor: "#FFFFFF"
+                                },
+                                "& .MuiDataGrid-columnHeaderTitle":{
+                                        fontSize:'12px',
+                                },
+                                '& .MuiDataGrid-cellContent':{
+                                    fontSize:'12px',
+                                },
+                                "& .MuiDataGrid-row":{
+                                    margin:'10px 0 0px',
+                                    minHeight:'unset !important',
+                                    maxHeight:'unset !important',
+                                },
+                                width: '100%',
+                                "@media(max-width:768px)": {
+                                    ".MuiDataGrid-toolbarContainer": {
+                                        gap: "10px",
+
+                                    }
+                                },
+                                "@media(max-width:546px)": {
+                                    ".MuiDataGrid-toolbarContainer": {
+                                        gap: "5px",
+
+                                    }
+                                },
+                                ".MuiDataGrid-toolbarContainer": {
+                                    flexDirection: "block",
+
+                                    backgroundColor: "#31B665",
+                                    width: {
+                                        xs: "100%",
+                                        sm: "100%",
+                                        md: "100%",
+                                        lg: "100%",
+                                        xl: "100%"
+
+                                    },
+                                },
+                                "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
+                                    visibility: "hidden"
+                                },
+                                "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                                    width: "120px"
+                                }
       },
       bannerSelector:{
         

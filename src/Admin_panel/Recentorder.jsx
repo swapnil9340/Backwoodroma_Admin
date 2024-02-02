@@ -184,10 +184,10 @@ const Recentorder = ({title="Recent Order" ,data=[]}) => {
       setRecentorder(a)
     })
   }else{
-    console.log('chala ')
+   
     setRecentorder(()=>{return data})
   }
-  }, [])
+  }, [data])
   return (
     <div className='RecentOrderCard'>
       <div className='d-flex gap-4 py-4'>

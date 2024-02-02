@@ -202,19 +202,23 @@ const Vendor = () => {
     return (
         <div className='venderSection'>
             <div className="row">
-                    <div className='col-12'>
+                    <div className='col-12 section_card'>
                         <StatusBarCard props={"vendor"} id={selectedstore}/>
                     </div>
                     <div className='col-12'>
                         <dvi className='storelistcardWrapper'>
                                 {
                                     allstore?.map((item)=>{
-                                      
+                                      console.log(item ,'item')
                                         return  <div className='storelistcard' onClick={()=>{setselectedstore(item.id)}}   style={{border:selectedstore===item.id && "2px solid #31B655" }} >
                                         <div className='storeType'> {item.CurbSide_Pickup && <span>CurbSide Pickup</span> } {item.Delivery && <span>Delivery</span> }  {item.StoreFront && <span>Store Front</span> }</div>
                                         <h4 className='storelistcardName'>{item.Store_Name}</h4>
                                         <p className='storelistcardDesc'>{item?.Store_Address}</p>
-                                             <div  className='storerating'  onClick={()=>{navigate('/allreview')}} > {item?.rating !== null ? item?.rating.toFixed(1) : 0 } ({item?.TotalRating !== null ? item?.TotalRating.toFixed(0) : 0 })
+                                             <div  className='storerating'  onClick={()=>{navigate('/allreview' , {
+    state: {
+        item
+    }
+  })}} > {item?.rating !== null ? item?.rating.toFixed(1) : 0 } ({item?.TotalRating !== null ? item?.TotalRating.toFixed(0) : 0 })
                                                         {item?.rating !== null ?   <span className=''> 
                                                 {
                                                     Array(parseInt(item?.rating) +1).fill().map(()=>{
@@ -296,7 +300,7 @@ const Vendor = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 mb-4 mt-4 bg-white">
+                    <div className="col-12 mb-4 mt-4 section_card">
 
                         <div className='d-flex justify-content-between align-content-center py-4'> 
                            <div className='gap-4 d-flex'>

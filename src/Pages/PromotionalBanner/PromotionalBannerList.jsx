@@ -1,6 +1,5 @@
 import { BsThreeDotsVertical } from "react-icons/bs"
-import { IoMdArrowBack } from "react-icons/io"
-import { IconButton } from "@mui/material"
+import { SlSocialDropbox } from "react-icons/sl";
 import React ,{useState ,useContext} from "react"
 import { LoadingButton } from "@mui/lab"
 import Select from '@mui/material/Select';
@@ -37,15 +36,22 @@ const PromotionalBannerList = () => {
     const config = {
         headers: { Authorization: `Bearer ${token_data}` }
     };
+    const [detailstype, setdetailstype] = React.useState(true)
     const [datatable, Setdatatable] = React.useState([])
     const [editdata, Seteditdata] = React.useState([])
     const [getdataurl,Setgetdataurl] = React.useState('https://api.cannabaze.com/AdminPanel/Get-PromotionalBanners/')
         React.useEffect(() => {
+
+            if(!detailstype){
+                Setgetdataurl(()=>"https://api.cannabaze.com/AdminPanel/Get-PromotionalBanners/")
+            }else{
+                Setgetdataurl(()=>'https://api.cannabaze.com/AdminPanel/Get-HomePageBanner/')
+            }
             axios.get(getdataurl , config ).then((response) => {
                 Setdatatable(response.data);
               
             });
-        }, [openupdate ,bannertype ]);
+        }, [openupdate ,detailstype ]);
         function Deletebanner(id){
             Swal.fire({
                 title: "Are you sure?",
@@ -63,7 +69,7 @@ const PromotionalBannerList = () => {
                     // };
                     let basedeleturl = `https://api.cannabaze.com/AdminPanel/delete-HomePageBanner/${id}`
                         
-                    if(bannertype === "Promotional Banner"){
+                    if(detailstype){
                         basedeleturl =`https://api.cannabaze.com/AdminPanel/delete-PromotionalBanners/${id}`
                     }
                     axios.delete(basedeleturl, config).then((res)=>{
@@ -100,7 +106,7 @@ const PromotionalBannerList = () => {
             Setloader(true)
            
             let basedeleturl = `https://api.cannabaze.com/AdminPanel/update-HomePageBanner/${data.id}`
-            if(bannertype === "Promotional Banner"){
+            if(detailstype){
                 basedeleturl =`https://api.cannabaze.com/AdminPanel/update-PromotionalBanners/${data.id}`
             }
             axios.post(basedeleturl ,{
@@ -290,14 +296,7 @@ const PromotionalBannerList = () => {
                 document.removeEventListener('click', handleClickOutsidePromotionList, true);
             };
         }, [SelectId]);
-        function handelbannertype(e){
-            Setbannertype(e.target.value)
-            if(e.target.value === "Promotional Banner"){
-                Setgetdataurl("https://api.cannabaze.com/AdminPanel/Get-PromotionalBanners/")
-            }else{
-                Setgetdataurl('https://api.cannabaze.com/AdminPanel/Get-HomePageBanner/')
-            }
-        }
+       
         const getRowSpacing = React.useCallback((params) => {
             return {
               top: params.isFirstVisible ? 0 : 5,
@@ -307,63 +306,103 @@ const PromotionalBannerList = () => {
     return (
         <div>
            
-              
-                    <div className="row  promotional_bannerList_BackBtn">
-                        <div className="col-sm-3 col-12">
-                            <IconButton onClick={()=>navigate("/")}><IoMdArrowBack /></IconButton><span className="promotionBackBtnHead">Back</span>
-                        </div>
-                        <div className="col-sm-4 col-6">
+                       <div className="col-sm-4 col-6 py-5">
                            
-                            <FormControl className={classes.formControl}>
-                                <Select
-                                    value={bannertype}
-                                    onChange={(e)=>{ handelbannertype(e)}}
-                                    disableUnderline
-                                    className={classes.bannerSelector}  
-                                >
-                                   
-                                    <MenuItem  value={"Promotional Banner"}>
-                                        Promotional Banner
-                                    </MenuItem>
-                                    <MenuItem  value={"Offer Banner"}>
-                                       Offer Banner
-                                    </MenuItem>
-                                   
-                                </Select>
-                            </FormControl>
-                        </div>
-                        {   state.Roles.AddBanners    &&
-                        <div className="col-sm-5  col-6">
-                            <Box className={` promotionalAddBannerListBtnCol  ${classes.promotionalListBtnss}`}>
-                                <LoadingButton startIcon={<GrFormAdd />} onClick={()=>navigate("/PromotionalBanner")}>Add Banner</LoadingButton>
-                            </Box>
-                        </div>}
-                    </div>
-                  
-                    <div>
-                        <Box sx={{height:"400px ", width: '100%' , fontSize:'18px' }}>
-                        <DataGrid
-                            rows={rows}
-                            columns={columns}
-                            getRowSpacing={getRowSpacing}
-                            disableColumnMenu
-                            disableColumnFilter
-                            disableColumnSelector
-                            disableSelectionOnClick
-                            autoHeight
-                            initialState={{
-                            pagination: {
-                                paginationModel: {
-                                pageSize: 5,
-                                },
-                            },
-                            }}
-                            pageSizeOptions={[5]}
-                            className={classes.bannerlisttable}
+                          
+
+                           <div className='gap-4 d-flex'>
+                                <button className='topbutton' onClick={()=>{setdetailstype(!detailstype)}} style={{backgroundColor:!detailstype ? '#fff' : "#31B655", color:detailstype ? '#fff' : "#31B655"}}>Promotional Banner</button>
+                                <button className='topbutton' onClick={()=>{setdetailstype(!detailstype)}} style={{backgroundColor:detailstype ? '#fff' : "#31B655", color:!detailstype ? '#fff' : "#31B655"}}>Offer Banner</button>
+
+                           </div>
+                       </div>
+                        <div className="row section_card  ">
+                            <div className="d-flex justify-content-between px-4 align-items-center my-5" >
+                                <h2 className='d-flex align-items-center pagetitle'> <SlSocialDropbox color='#31B655' size={25}/>{detailstype ? "Promotional Banner" : "Offer Banner"}</h2>
                             
-                        />
-                        </Box>
-                     </div>
+                                {   state.Roles.AddBanners    &&
+                                <div className="col-sm-5  col-6">
+                                    <Box className={` promotionalAddBannerListBtnCol  ${classes.promotionalListBtnss}`}>
+                                        <button className="topbutton" onClick={()=>navigate("/PromotionalBanner")}>+ Add Banner</button>
+                                    </Box>
+                                </div>}
+                            </div>
+
+
+                            <Box   sx={{
+                            
+                            width: '100%',
+                                "& .MuiDataGrid-root":{
+                                    border:'none',
+                                },
+                                '& .MuiDataGrid-columnHeaders': {
+                                    backgroundColor: '#F9FAFC',
+                                    color:'#5A5A5A',
+                                },
+                                '& .MuiButton-root': {
+                                    color: "#FFFFFF",
+                                    display: "flex",
+                                    width: "200px"
+                                },
+                                ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
+                                    outline:"none"
+                                },
+                            "@media(max-width:767px)": {
+                                '& .MuiButton-root': {
+                                    display: "contents",
+                                    width: "150px",
+                                    margin: "2px",
+                                    fontSize: "14px"
+                                },
+
+                            },
+                            "@media(max-width:546px)": {
+                                '& .MuiButton-root': {
+                                    display: "contents",
+                                    width: "150px",
+                                    fontSize: "9px"
+                                },
+
+                            },
+                            "@media(min-width:768px)": {
+                                '& .MuiButton-root': {
+                                    width: "110px",
+                                    margin: "2px",
+                                    fontSize: "14px"
+                                },
+
+                                "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+                                    width: "120px"
+                                }
+                            }
+                        }}>
+                            <DataGrid
+                                rows={rows}
+                                columns={columns}
+                                getRowSpacing={getRowSpacing}
+                                disableColumnMenu
+                                disableColumnFilter
+                                disableColumnSelector
+                                disableSelectionOnClick
+                                autoHeight
+                                initialState={{
+                                pagination: {
+                                    paginationModel: {
+                                    pageSize: 5,
+                                    },
+                                },
+                                }}
+                                pageSizeOptions={[5]}
+                                className={classes.bannerlisttable}
+                                sx={{
+                                
+
+                                }}
+                            />
+                            </Box>
+                        </div>
+                  
+                  
             {loader && <div className="loadercontainer">
               <div class="loader4"></div>
             </div>}

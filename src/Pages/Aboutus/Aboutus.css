@@ -17,20 +17,14 @@
     font-weight: 700;
     margin-bottom: 30px;
 }
-.feild_box{
-    width: 500px;
-    margin-bottom: 30px;
-}
+
 .custom_label{
     margin: 0;
     margin-bottom: 10px;
     font-size: 18px;
     font-weight: 600;
 }
-.bannerImagebox{
-    border: 3px dashed #31B655;
-    text-align: center;
-}
+
 .bannerddescription{
     min-height: 160px;
     width: 100%;
