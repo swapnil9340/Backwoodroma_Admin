@@ -18,7 +18,6 @@ const Recentorder = ({title="Recent Order" ,data=[]}) => {
   const cookies = new Cookies();
   const token_data = cookies.get('Token_access')
   const [recentorder, setRecentorder] = React.useState([])
-  console.log(data ,'data')
   const columns = [
     {
       field: 'OrderId',
