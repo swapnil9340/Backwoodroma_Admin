@@ -1,6 +1,4 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { te } from "date-fns/locale";
-
 const useStyles = makeStyles(theme =>(
   {
       FilledTextFieldStyle: {
@@ -748,6 +746,113 @@ const useStyles = makeStyles(theme =>(
            borderBottom:'1px solid #222',
            borderRadius:'0',
         }
+      },
+      DataTableBoxStyle:{
+       
+
+          width: '100%',
+          '& .MuiDataGrid-columnHeaders': {
+            backgroundColor: '#F9FAFC',
+            color: '#B5B7C0'
+          },
+          '& .MuiButton-root': {
+            color: "#FFFFFF",
+            display: "flex",
+            width: "200px"
+          },
+          "& .MuiDataGrid-root": {
+            border: 'none',
+          },
+          "& .MuiDataGrid-columnHeaderTitle":{
+              fontSize:'12px'
+          },
+          "& .MuiDataGrid-cell .MuiDataGrid-cellContent":{
+            fontSize:'12px'
+          },
+          // check
+          ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within": {
+            outline: "none"
+          },
+
+          "@media(max-width:767px)": {
+            '& .MuiButton-root': {
+              display: "contents",
+              width: "150px",
+              margin: "2px",
+              fontSize: "14px"
+            },
+
+          },
+          "@media(max-width:546px)": {
+            '& .MuiButton-root': {
+              display: "contents",
+              width: "150px",
+              fontSize: "9px"
+            },
+
+          },
+          "@media(min-width:768px)": {
+            '& .MuiButton-root': {
+              width: "110px",
+              margin: "2px",
+              fontSize: "14px"
+            },
+
+            "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+              width: "120px"
+            }
+          }
+      
+      },
+      DataTableStyle:{
+        minHeight:'300',
+        "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
+          outline: "none",
+        },
+        "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
+          outline: "none"
+        },
+        "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
+          outline: "none",
+
+        },
+        "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
+          backgroundColor: "#FFFFFF"
+        },
+
+        width: '100%',
+        "@media(max-width:768px)": {
+          ".MuiDataGrid-toolbarContainer": {
+            gap: "10px",
+
+          }
+        },
+        "@media(max-width:546px)": {
+          ".MuiDataGrid-toolbarContainer": {
+            gap: "5px",
+
+          }
+        },
+        ".MuiDataGrid-toolbarContainer": {
+          flexDirection: "block",
+
+          backgroundColor: "#31B665",
+          width: {
+            xs: "100%",
+            sm: "100%",
+            md: "100%",
+            lg: "100%",
+            xl: "100%"
+
+          },
+        },
+        "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
+          visibility: "hidden"
+        },
+        "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
+          width: "120px"
+        }
+
       }
   }
 ))

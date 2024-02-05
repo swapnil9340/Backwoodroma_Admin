@@ -12,7 +12,7 @@ import axios from "axios"
 import Axios from "axios"
 import Createcontext from "../../Hooks/Context/Context"
 import InputAdornment from '@mui/material/InputAdornment';
-
+import {Headerbutton} from '../../molecules/Button/index'
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
         padding: theme.spacing(2),
@@ -129,9 +129,8 @@ export default function PopUp() {
     };
     return (
         <div>
-            <button className='topbutton' onClick={handleClickOpen}>
-                + Add Sub Category
-            </button>
+          
+            <Headerbutton  onClick={handleClickOpen}>+ Add Sub Category</Headerbutton>
             <BootstrapDialog
                 onClose={handleClose}
                 aria-labelledby="Customizeed-dialog-title"
@@ -243,7 +242,7 @@ export default function PopUp() {
                                             {/* <div className='col-sm-4'> */}
 
                                             <label className='label'>
-                                            Main Category:
+                                             Main Category:
                                             </label>
                                         </div>
                                         <div className='col'>
@@ -291,9 +290,7 @@ export default function PopUp() {
                                         </div>
                                     </div>
                                     <div className='col-12 center top' >
-                                        <button className='topbutton' autoFocus onClick={Submit} >
-                                            Save changes
-                                        </button>
+                                        <Headerbutton autoFocus onClick={Submit}>Save changes</Headerbutton>
                                     </div>
                                 </div>
                             </div>

@@ -14,6 +14,7 @@ import TaxEdit from "./TaxEdit"
 import TexDelete from './TaxDelete';
 import { useSnackbar } from 'notistack';
 import Tooltip from '@mui/material/Tooltip';
+import useStyles from '../../Style';
 
 export default function Tax() {
     const { enqueueSnackbar } = useSnackbar();
@@ -34,7 +35,7 @@ export default function Tax() {
             }
         }
     });
-
+    const classes = useStyles()
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
@@ -150,44 +151,19 @@ export default function Tax() {
     const rows = totel
     return (
       
-            <div className='row'>
+            <div className='section_card'>
               
-                    <div className='col-12 Add_Category mt-2'>
-                        <div className="col"> <h2> Tax
-                        </h2></div>
-                        <div className="col " >  <span> <h2> <Taxpop></Taxpop> </h2></span></div>
+                    <div className='col-12 Add_Category d-flex justify-content-between align-items-center  p-5 mt-2'>
+                        <h2 className='pagetitle'> Tax </h2>
+                         <h2> <Taxpop></Taxpop> </h2>
                     </div>
 
                     <div className='col-12' >
-                    <Box sx={{
-                            height: 400,
-                            width: '100%',
-                            overflowX:"hidden",
-                             // check
-                             ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
-                                outline:"none"
-                              },
-                            '& .MuiDataGrid-columnHeaders': {
-                                backgroundColor: '#E1FFED',
-                            },
-                            '& .MuiButton-root': {
-                                color: '#FFFFFF',
-                                display: "flex",
-                            },
-                            "@media(max-width:436px)": {
-                                '& .MuiButton-root': {
-                                    display: "contents",
-                                    width: "150px",
-                                    fontSize: "9px"
-                                },
-
-                            },
-                          
-                           
-                        }}>
+                        <Box className={classes.DataTableBoxStyle}
+                        >
 
                         <ThemeProvider theme={CustomFontTheme}>
-                            <div style={{ height: 400, width: '100%', }}>
+                            <div>
                                 <DataGrid rows={rows} columns={columns}  checkboxSelection
                                 pageSize={pageSize}
                                 onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
@@ -196,32 +172,7 @@ export default function Tax() {
                                 disableColumnMenu
                                 disableColumnFilter
                                 disableColumnSelector
-                                  sx={{
-                                    "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                        outline: "none",
-                                      
-                                    },
-                                    ".MuiDataGrid-toolbarContainer":{
-                                       backgroundColor:"#31B665"     
-                                    },
-                                    "@media(max-width:436px)": {
-                                        ".MuiDataGrid-toolbarContainer": {
-                                            gap: "5px",
-
-                                        }
-                                    },
-                                  
-                                    "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
-                                        outline: "none"
-                                    },
-                                    "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                                        visibility: "hidden"
-                                    },
-                                    "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
-                                        backgroundColor: "#FFFFFF"
-                                    },
-                                }}
-                                
+                                className={classes.DataTableStyle}
                                 />
                             </div>
                         </ThemeProvider>

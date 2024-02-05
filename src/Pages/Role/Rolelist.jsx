@@ -10,10 +10,13 @@ import {Link , useNavigate} from 'react-router-dom';
 import Createcontext from '../../Hooks/Context/Context'
 import Cookies from 'universal-cookie';
 import axios from 'axios';
+import useStyles from '../../Style';
+import { Headerbutton } from '../../molecules/Button/index'
 const Rolelist = () => {
     let navigate = useNavigate();
     const [pageSize, setPageSize] = React.useState(5);
     const [RoleData, SetRoleData] = React.useState([]);
+    const classes = useStyles()
     const { state, dispatch } = useContext(Createcontext)
     const Swal = require('sweetalert2')
     const cookies = new Cookies();
@@ -145,62 +148,18 @@ sortable:false },
     const rows = RoleData
 //  const Token_access = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NTcwOTQ1LCJpYXQiOjE3MDUwMzQ5NDUsImp0aSI6IjkzMTFlYTFkYTViNjRlOTk4NGY2YjUxN2M2MzI5NGM4IiwidXNlcl9pZCI6MX0.dZlMMBW7B93MWh1xSRklg1c7FRL7tKQttM0J9RjZKq0'
   return (
-    <div className='roletablepage'>
+    <div className='section_card'>
         <div className='row'>
-                    <div className=' Add_Category  my-4 d-flex align-items-center justify-content-between'>
-                        <h2>Roles </h2>
-                       <button className='customiconbtn' onClick={()=>navigate('/addrole' , {state:{ type:'add'}})} >Add Roles</button>
+                    <div className=' Add_Category  my-4 d-flex align-items-center justify-content-between px-4'>
+                        <h2 className='pagetitle'>Roles </h2>
+                       {/* <button className='customiconbtn' onClick={()=>navigate('/addrole' , {state:{ type:'add'}})} >Add Roles</button> */}
+                       <Headerbutton  onClick={()=>navigate('/addrole' , {state:{ type:'add'}})}>Add Roles</Headerbutton>
                     </div>
                     <div className='col-12'>
-                        <Box sx={{
-                            height: 400,
-                            width: '100%',
-                            '& .MuiDataGrid-columnHeaders': {
-                                backgroundColor: '#E1FFED',
-                            },
-                            '& .MuiButton-root': {
-                                color: "#FFFFFF",
-                                display: "flex",
-                                width: "200px"
-                            },
-                             // check
-                             ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
-                                outline:"none"
-                              },
-
-                            "@media(max-width:767px)": {
-                                '& .MuiButton-root': {
-                                    display: "contents",
-                                    width: "150px",
-                                    margin: "2px",
-                                    fontSize: "14px"
-                                },
-
-                            },
-                            "@media(max-width:546px)": {
-                                '& .MuiButton-root': {
-                                    display: "contents",
-                                    width: "150px",
-                                    fontSize: "9px"
-                                },
-
-                            },
-                            "@media(min-width:768px)": {
-                                '& .MuiButton-root': {
-                                    width: "110px",
-                                    margin: "2px",
-                                    fontSize: "14px"
-                                },
-
-                                "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                    width: "120px"
-                                }
-                            }
-                        }}>
+                        <Box className={classes.DataTableBoxStyle}  >
                             <ThemeProvider theme={CustomFontTheme}>
                                 <div style={{ width: '100%' }}>
                                     <DataGrid rows={rows} columns={columns} 
-                                                
                                                 pageSize={pageSize}
                                                 onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                                                 rowsPerPageOptions={[5, 10, 20]}
@@ -208,55 +167,7 @@ sortable:false },
                                                 disableColumnMenu
                                                 disableColumnFilter
                                                 disableColumnSelector
-                                                sx={{
-                                                    "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                                        outline: "none",
-                                                    },
-                                                    "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
-                                                        outline: "none"
-                                                    },
-                                                    "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
-                                                        outline: "none",
-
-                                                    },
-                                                    "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
-                                                        backgroundColor: "#FFFFFF"
-                                                    },
-                                                    height: 400,
-                                                    width: '100%',
-                                                    "@media(max-width:768px)": {
-                                                        ".MuiDataGrid-toolbarContainer": {
-                                                            gap: "10px",
-
-                                                        }
-                                                    },
-                                                    "@media(max-width:546px)": {
-                                                        ".MuiDataGrid-toolbarContainer": {
-                                                            gap: "5px",
-
-                                                        }
-                                                    },
-                                                    ".MuiDataGrid-toolbarContainer": {
-                                                        flexDirection: "block",
-
-                                                        backgroundColor: "#31B665",
-                                                        width: {
-                                                            xs: "100%",
-                                                            sm: "100%",
-                                                            md: "100%",
-                                                            lg: "100%",
-                                                            xl: "100%"
-
-                                                        },
-                                                    },
-                                                    "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                                                        visibility: "hidden"
-                                                    },
-                                                    "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                                        width: "120px"
-                                                    }
-
-                                                }}
+                                              className={classes.DataTableStyle}
                                     />
                                 </div>
                             </ThemeProvider>

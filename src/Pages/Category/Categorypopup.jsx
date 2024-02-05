@@ -13,6 +13,7 @@ import Createcontext from "../../Hooks/Context/Context"
 import InputAdornment from '@mui/material/InputAdornment';
 import { RxCross2 } from "react-icons/rx";
 import useStyles from '../../Style'
+import {Headerbutton} from '../../molecules/Button/index'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -115,9 +116,8 @@ export default function Categorypopup() {
 
     return (
         <div>
-            <button className='topbutton' onClick={handleClickOpen}>
-                + Add Category
-            </button>
+           
+            <Headerbutton onClick={handleClickOpen}>+ Add Category</Headerbutton>
             <BootstrapDialog
                 onClose={handleClose}
                 aria-labelledby="Customizeed-dialog-title"
@@ -188,8 +188,9 @@ export default function Categorypopup() {
                                         <input  type="file" id="formFile" ref={inputRef} className='d-none' accept="image/*"  variant="outlined" style={{ Width: "10%", fontSize: 15 }}
                                             onChange={handleimage}
                                         />
-                                          <label className='label' htmlFor='formFile'>
-                                              <span className='Upload_btn'>Upload Image</span>
+                                          <label className='w-100 text-center' htmlFor='formFile'>
+                                   
+                                              <Headerbutton>Upload Image</Headerbutton>
                                             </label>
                                         </div>
                                     </div>
@@ -220,10 +221,10 @@ export default function Categorypopup() {
                                         </div>
                                     </div>
                                     <div className='col center top' >
-                                        <button  className='topbutton' onClick={handlechanges}>
+                                        <Headerbutton onClick={handlechanges}>
                                             
                                             {loadingbtn ? <div class="lds-ring"><div></div><div></div><div></div><div></div></div>: "Add Category"}
-                                        </button>
+                                        </Headerbutton>
                                     </div>
                                 </div>
 

@@ -1,11 +1,10 @@
-import  React from 'react';
+import React from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import useStyles from '../../Style';
 import { ThemeProvider , Box ,createTheme } from "@mui/material";
 import { SlSocialDropbox } from "react-icons/sl";
 import {useLocation} from 'react-router-dom'
-// import "./Stall.css"
-const Topproducts = () => {
+const TotalSales = () => {
     const location = useLocation()
     const classes= useStyles()
     const columns = [
@@ -119,48 +118,46 @@ const Topproducts = () => {
       });
   return (
     <div className=' my-4 '>
-            <div className='py-4 section_card'>
-                <div  className='d-flex justify-content-between align-content-center px-4'> 
-                    <h3 className='pagetitle'><SlSocialDropbox color='#31B655' size={25}/> Top Selling Product </h3>
-                    <div className='btnsgroup'>
-                    {/* <Link to={'/addstaff'}>
-                        <button className="topbutton">Top Product</button>
-                    </Link> */}
-                    </div>
-                </div>
-                <div className='d-flex justify-content-end py-3 align-content-center'>
-                
-                </div>
-                <div className='allusertable'>
-                    <Box  className={classes.DataTableBoxStyle} >
-                                <ThemeProvider theme={CustomFontTheme}>
-                                    <DataGrid
-                                        rows={rows}
-                                        columns={columns}
-                                        getRowId={(row) => row.Product_id}
-                                        initialState={{
-                                        pagination: {
-                                            paginationModel: {
-                                            pageSize: 10,
-                                            },
-                                        },
-                                        }}
-                                        pageSizeOptions={[ 10, 25, 50]}
-                                        disableRowSelectionOnClick
-                                        disableColumnMenu
-                                        disableColumnFilter
-                                        disableColumnSelector
-                                        autoHeight
-                                        checkboxSelection={false}
-                                        rowSelection={false}
-                                         className={classes.DataTableStyle}
-                                    />
-                                </ThemeProvider>
-                    </Box>
+        <div className='py-4 section_card'>
+            <div  className='d-flex justify-content-between align-content-center px-4'> 
+                <h3 className='pagetitle'><SlSocialDropbox color='#31B655' size={25}/> Total Sales </h3>
+                <div className='btnsgroup'>
+            
                 </div>
             </div>
+            <div className='d-flex justify-content-end py-3 align-content-center'>
+            
+            </div>
+            <div className='allusertable'>
+            <Box className={classes.DataTableBoxStyle} >
+                            <ThemeProvider theme={CustomFontTheme}>
+                                <DataGrid
+                                    rows={rows}
+                                    columns={columns}
+                                    getRowId={(row) => row.Product_id}
+                                    initialState={{
+                                    pagination: {
+                                        paginationModel: {
+                                        pageSize: 10,
+                                        },
+                                    },
+                                    }}
+                                    pageSizeOptions={[ 10, 25, 50]}
+                                    disableRowSelectionOnClick
+                                    disableColumnMenu
+                                    disableColumnFilter
+                                    disableColumnSelector
+                                    autoHeight
+                                    checkboxSelection={false}
+                                    rowSelection={false}
+                                     className={classes.DataTableStyle}
+                                />
+                            </ThemeProvider>
+                        </Box>
+            </div>
+        </div>
     </div>
   )
 }
 
-export default Topproducts
+export default TotalSales

@@ -13,7 +13,7 @@ import { BsThreeDotsVertical } from 'react-icons/bs';
 import Createcontext from "../../Hooks/Context/Context"
 import {Select , MenuItem} from '@mui/material';
 import { LuEye } from "react-icons/lu";
-
+import useStyles from '../../Style';
 import {Link} from 'react-router-dom'
 const CustomFontTheme = createTheme({
     typography: {
@@ -34,6 +34,7 @@ const CustomFontTheme = createTheme({
 const Vendorlist = () => {
     const [totel, setTotal] = React.useState([])
     const cookies = new Cookies();
+    const classes = useStyles()
     const token_data = cookies.get('Token_access')
     const [pageSize, setPageSize] = React.useState(5)
     const { state, dispatch } = React.useContext(Createcontext)
@@ -226,75 +227,41 @@ const Vendorlist = () => {
         )
     }
   return (
-    <div className='row'>
-<Box
-                            sx={{
-                                width: '100%',
-                                
-                                '& .MuiDataGrid-columnHeaders': {
-                                    backgroundColor: '#E1FFED',
-                                },
-                                '& .MuiButton-root': {
-                                    color: "#FFFFFF",
-                                    display: "flex",
-                                    width: "200px"
-                                },
-                                // check
-                                ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within": {
-                                    outline: "none"
-                                },
+    <div className='section_card'>
+        <h2 className='pagetitle p-5'>Vendor List</h2>
+        <div className='row'>
+                            <Box
+                               className={classes.DataTableBoxStyle}
+                            >
+                                <ThemeProvider theme={CustomFontTheme}>
 
-                            }}
-                        >
-                            <ThemeProvider theme={CustomFontTheme}>
-
-                                <DataGrid
-                                    rows={rows}
-                                    columns={columns}
-                                    autoHeight
-                                    initialState={{
-                                        pagination: {
-                                            paginationModel: {
-                                                pageSize: 5,
+                                    <DataGrid
+                                        rows={rows}
+                                        columns={columns}
+                                        autoHeight
+                                        initialState={{
+                                            pagination: {
+                                                paginationModel: {
+                                                    pageSize: 5,
+                                                },
                                             },
-                                        },
-                                    }}
-                                    getRowId={(row) =>
-                                       row?.id
-                                    }
-                                    pageSize={pageSize}
-                                    onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                                    rowsPerPageOptions={[5, 10, 20]}
-                                    pagination
-                                    disableRowSelectionOnClick
-                                    disableColumnMenu
-                                    disableColumnFilter
-                                    disableColumnSelector
-                                    sx={{
-                                        "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                            outline: "none",
-                                        },
-                                        "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
-                                            outline: "none"
-                                        },
-                                        "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
-                                            outline: "none",
-
-                                        },
-                                        "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
-                                            backgroundColor: "#FFFFFF"
-                                        },
-                                        "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                                            visibility: "hidden"
-                                        },
-                                        " &.MuiDataGrid-root .MuiDataGrid-cellContent": {
-                                            fontSize: "14px"
+                                        }}
+                                        getRowId={(row) =>
+                                        row?.id
                                         }
-
-                                    }}
-                                />
-                            </ThemeProvider>
-                        </Box>
+                                        pageSize={pageSize}
+                                        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                        rowsPerPageOptions={[5, 10, 20]}
+                                        pagination
+                                        disableRowSelectionOnClick
+                                        disableColumnMenu
+                                        disableColumnFilter
+                                        disableColumnSelector
+                                        className={classes.DataTableStyle}
+                                    />
+                                </ThemeProvider>
+                            </Box>
+        </div>
     </div>
   )
 }

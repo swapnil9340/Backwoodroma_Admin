@@ -12,7 +12,7 @@ import ListItem from "@material-ui/core/ListItem";
 import axios from "axios";
 import { IoEyeSharp } from "react-icons/io5";
 import useStyles from "../../Style"
-import {GrFormAdd} from "react-icons/gr"
+import {SectionCard} from "../../molecules/SectionCard/Index"
 import { useNavigate } from "react-router-dom"
 import { DataGrid  } from '@mui/x-data-grid';
 import { FaEdit } from 'react-icons/fa';
@@ -304,7 +304,7 @@ const PromotionalBannerList = () => {
             };
           }, []);
     return (
-        <div>
+        <SectionCard>
            
                        <div className="col-sm-4 col-6 py-5">
                            
@@ -329,76 +329,27 @@ const PromotionalBannerList = () => {
                             </div>
 
 
-                            <Box   sx={{
-                            
-                            width: '100%',
-                                "& .MuiDataGrid-root":{
-                                    border:'none',
-                                },
-                                '& .MuiDataGrid-columnHeaders': {
-                                    backgroundColor: '#F9FAFC',
-                                    color:'#5A5A5A',
-                                },
-                                '& .MuiButton-root': {
-                                    color: "#FFFFFF",
-                                    display: "flex",
-                                    width: "200px"
-                                },
-                                ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
-                                    outline:"none"
-                                },
-                            "@media(max-width:767px)": {
-                                '& .MuiButton-root': {
-                                    display: "contents",
-                                    width: "150px",
-                                    margin: "2px",
-                                    fontSize: "14px"
-                                },
-
-                            },
-                            "@media(max-width:546px)": {
-                                '& .MuiButton-root': {
-                                    display: "contents",
-                                    width: "150px",
-                                    fontSize: "9px"
-                                },
-
-                            },
-                            "@media(min-width:768px)": {
-                                '& .MuiButton-root': {
-                                    width: "110px",
-                                    margin: "2px",
-                                    fontSize: "14px"
-                                },
-
-                                "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                    width: "120px"
-                                }
-                            }
-                        }}>
-                            <DataGrid
-                                rows={rows}
-                                columns={columns}
-                                getRowSpacing={getRowSpacing}
-                                disableColumnMenu
-                                disableColumnFilter
-                                disableColumnSelector
-                                disableSelectionOnClick
-                                autoHeight
-                                initialState={{
-                                pagination: {
-                                    paginationModel: {
-                                    pageSize: 5,
+                            <Box className={classes.DataTableBoxStyle} >
+                                <DataGrid
+                                    rows={rows}
+                                    columns={columns}
+                                    getRowSpacing={getRowSpacing}
+                                    disableColumnMenu
+                                    disableColumnFilter
+                                    disableColumnSelector
+                                    disableSelectionOnClick
+                                    autoHeight
+                                    initialState={{
+                                    pagination: {
+                                        paginationModel: {
+                                        pageSize: 5,
+                                        },
                                     },
-                                },
-                                }}
-                                pageSizeOptions={[5]}
-                                className={classes.bannerlisttable}
-                                sx={{
+                                    }}
+                                    pageSizeOptions={[5]}
+                                    className={classes.DataTableStyle}
                                 
-
-                                }}
-                            />
+                                />
                             </Box>
                         </div>
                   
@@ -407,7 +358,7 @@ const PromotionalBannerList = () => {
               <div class="loader4"></div>
             </div>}
             <Bannerupdatemodel openupdate={openupdate} bannertype={bannertype} setOpenupdate={setOpenupdate} Setloader={Setloader} data={editdata}/>
-        </div>
+        </SectionCard>
     )
 }
 export default PromotionalBannerList

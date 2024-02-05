@@ -12,13 +12,15 @@ import Box from '@mui/material/Box';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import Select from '@mui/material/Select';
 import CategoryEditbox from "./CategoryEdit"
-import { RiDeleteBin6Line } from "react-icons/ri";
 import { SlSocialDropbox } from "react-icons/sl";
 import Eelete from "../Category/Delete";
-import { AiFillEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import {  AiOutlineEyeInvisible } from 'react-icons/ai';
 import { LuEye } from "react-icons/lu";
 import Tooltip from '@mui/material/Tooltip';
+import {SectionCard} from '../../molecules/SectionCard/Index'
+import  useStyles  from '../../Style';
 export default function Category(props) {
+    const classes = useStyles()
     const { state, dispatch } = useContext(Createcontext)
     const { enqueueSnackbar } = useSnackbar();
     const CustomFontTheme = createTheme({
@@ -44,7 +46,6 @@ export default function Category(props) {
     useEffect(() => {
 
         axios("https://api.cannabaze.com/AdminPanel/Get-Category/", {
-
             headers: {
                 'Authorization': `Bearer ${token_data}`
             }
@@ -163,141 +164,33 @@ export default function Category(props) {
     ];
     const rows = totel
     return (
-            <div className='row section_card'>
-              
-                    <div className='col-12 p-0 Add_Category d-flex justify-content-between align-items-center px-4'>
-                        <h2 className='d-flex align-items-center pagetitle'> <SlSocialDropbox color='#31B655' size={25}/>Category</h2>
-                       { state.Roles.AddCategory && <span>{<Categorypopup></Categorypopup>}</span>}
-                    </div>
-                    <div className='col-12 p-0'>
-                        <Box 
-                        sx={{
-                           
-                            width: '100%',
-                            "& .MuiDataGrid-root":{
-                              border:'none',
-                            },
-                            '& .MuiDataGrid-columnHeaders': {
-                                backgroundColor: '#F9FAFC',
-                                color:'#5A5A5A',
-                            },
-                            '& .MuiButton-root': {
-                                color: "#FFFFFF",
-                                display: "flex",
-                                width: "200px"
-                            },
-                             // check
-                             ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
-                                outline:"none"
-                              },
-
-                            "@media(max-width:767px)": {
-                                '& .MuiButton-root': {
-                                    display: "contents",
-                                    width: "150px",
-                                    margin: "2px",
-                                    fontSize: "14px"
-                                },
-
-                            },
-                            "@media(max-width:546px)": {
-                                '& .MuiButton-root': {
-                                    display: "contents",
-                                    width: "150px",
-                                    fontSize: "9px"
-                                },
-
-                            },
-
-                            "@media(min-width:768px)": {
-                                '& .MuiButton-root': {
-                                    width: "110px",
-                                    margin: "2px",
-                                    fontSize: "14px"
-                                },
-
-                                "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                    width: "120px"
-                                }
-                            }
-                        }}>
-                            <ThemeProvider theme={CustomFontTheme}>
-                                <div style={{ width: '100%' }}>
-                                    <DataGrid   rows={rows}
-                                                columns={columns} 
-                                                pageSize={pageSize}
-                                                onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                                                rowsPerPageOptions={[ 10, 20]}
-                                                pagination
-                                                disableColumnMenu
-                                                disableColumnFilter
-                                                disableColumnSelector
-                                                sx={{
-                                                    height:'610px',
-                                                    "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                                        outline: "none",
-                                                    },
-                                                    "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
-                                                        outline: "none"
-                                                    },
-                                                    "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
-                                                        outline: "none",
-
-                                                    },
-                                                    "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
-                                                        backgroundColor: "#FFFFFF"
-                                                    },
-                                                    "& .MuiDataGrid-columnHeaderTitle":{
-                                                            fontSize:'12px',
-                                                    },
-                                                    '& .MuiDataGrid-cellContent':{
-                                                        fontSize:'12px',
-                                                    },
-                                                    "& .MuiDataGrid-row":{
-                                                        margin:'10px 0 0px',
-                                                        minHeight:'unset !important',
-                                                        maxHeight:'unset !important',
-                                                    },
-                                                    width: '100%',
-                                                    "@media(max-width:768px)": {
-                                                        ".MuiDataGrid-toolbarContainer": {
-                                                            gap: "10px",
-
-                                                        }
-                                                    },
-                                                    "@media(max-width:546px)": {
-                                                        ".MuiDataGrid-toolbarContainer": {
-                                                            gap: "5px",
-
-                                                        }
-                                                    },
-                                                    ".MuiDataGrid-toolbarContainer": {
-                                                        flexDirection: "block",
-
-                                                        backgroundColor: "#31B665",
-                                                        width: {
-                                                            xs: "100%",
-                                                            sm: "100%",
-                                                            md: "100%",
-                                                            lg: "100%",
-                                                            xl: "100%"
-
-                                                        },
-                                                    },
-                                                    "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                                                        visibility: "hidden"
-                                                    },
-                                                    "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                                        width: "120px"
-                                                    }
-
-                                                }}
-                                    />
-                                </div>
-                            </ThemeProvider>
-                        </Box>
-                    </div>
+        <SectionCard>
             
-            </div>
+                <div className='col-12 p-0 Add_Category d-flex justify-content-between align-items-center px-4'>
+                    <h2 className='d-flex align-items-center pagetitle'> <SlSocialDropbox color='#31B655' size={25}/>Category</h2>
+                    { state.Roles.AddCategory && <span>{<Categorypopup></Categorypopup>}</span>}
+                </div>
+                <div className='col-12 p-0'>
+                    <Box className={classes.DataTableBoxStyle}>
+                        <ThemeProvider theme={CustomFontTheme}>
+                            <div style={{ width: '100%' }}>
+                                <DataGrid   rows={rows}
+                                            columns={columns} 
+                                            pageSize={pageSize}
+                                            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                            rowsPerPageOptions={[ 10, 20]}
+                                            pagination
+                                            disableColumnMenu
+                                            disableColumnFilter
+                                            disableColumnSelector
+                                            className={classes.DataTableStyle}
+                                            autoHeight
+                                />
+                            </div>
+                        </ThemeProvider>
+                    </Box>
+                </div>
+        
+        </SectionCard>
     )
 }

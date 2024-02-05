@@ -69,22 +69,6 @@ ul li path {
   color: #31B665;
   border: 2px solid;
 }
-.customiconbtn{
-  padding: 7px 10px;
-  min-width: 120px;
-  text-align: center;
-  border: 1px solid #31B655;
-  background-color: transparent;
-  color: #31B655;
-  font-size: 14px;
-  font-weight: 500;
-  border-radius: 5px;
-  transition: all .4s ease;
-}
-.customiconbtn:hover{
-   background-color: #31B655;
-   color: #fff;
-}
 @media (max-width: 992px) {
   .model_content_banner{
     width: "90%";

@@ -3,8 +3,7 @@ import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import { Select, MenuItem } from "@mui/material";
+import useStyles from "../../Style";
 import axios from "axios";
 import { TiEdit } from "react-icons/ti";
 import Cookies from "universal-cookie";
@@ -36,6 +35,7 @@ const CustomFontTheme = createTheme({
   },
 });
 const Vendor = () => {
+  const classes= useStyles()
   const location = useLocation();
   const navigate = useNavigate();
   const [allstore, setAllstore] = React.useState([]);
@@ -175,7 +175,6 @@ const Vendor = () => {
     },
   ];
   const row = totalsale;
-  console.log()
   React.useEffect(() => {
     axios
       .post(
@@ -475,23 +474,7 @@ const Vendor = () => {
 
           {detailstype ? (
             <Box
-              sx={{
-                width: "100%",
-
-                "& .MuiDataGrid-columnHeaders": {
-                  backgroundColor: "#F9FAFC",
-                  color: "#5A5A5A",
-                },
-                "& .MuiButton-root": {
-                  color: "#FFFFFF",
-                  display: "flex",
-                  width: "200px",
-                },
-                // check
-                ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within": {
-                  outline: "none",
-                },
-              }}
+             className={classes.DataTableBoxStyle}
             >
               <ThemeProvider theme={CustomFontTheme}>
                 <DataGrid
@@ -514,26 +497,7 @@ const Vendor = () => {
                   disableColumnMenu
                   disableColumnFilter
                   disableColumnSelector
-                  sx={{
-                    "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                      outline: "none",
-                    },
-                    "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
-                      outline: "none",
-                    },
-                    "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
-                      outline: "none",
-                    },
-                    "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
-                      backgroundColor: "#FFFFFF",
-                    },
-                    "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                      visibility: "hidden",
-                    },
-                    " &.MuiDataGrid-root .MuiDataGrid-cellContent": {
-                      fontSize: "14px",
-                    },
-                  }}
+                  className={classes.DataTableStyle}
                 />
               </ThemeProvider>
             </Box>

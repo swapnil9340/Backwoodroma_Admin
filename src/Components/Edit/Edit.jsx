@@ -24,7 +24,7 @@ export default function Editbox(props) {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-      Edit
+         Edit
       </Button>
       <Dialog
         open={open}

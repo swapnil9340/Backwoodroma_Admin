@@ -17,7 +17,7 @@ const Allrecentorder = () => {
   const cookies = new Cookies();
   const token_data = cookies.get("Token_access");
   const [pageSize, setPageSize] = React.useState(10)
-
+const classes = useStyles()
   function noimagefun(ev){
     // ev.target.src = "image/blank_Image.webp"
     seterror((error)=>{
@@ -205,58 +205,7 @@ const Allrecentorder = () => {
         
         </div>
         <div className='allusertable'>
-        <Box sx={{
-                       
-                        width: '100%',
-                        '& .MuiDataGrid-columnHeaders': {
-                            backgroundColor: '#F9FAFC',
-                            color:'#5A5A5A',
-                           
-                        },
-                        '& .MuiButton-root': {
-                            color: "#FFFFFF",
-                            display: "flex",
-                          
-                        },
-                            // check
-                        "& .MuiDataGrid-root":{
-                           border:'none',
-                        },
-                       
-                            "&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
-                            outline:"none"
-                            },
-
-                        "@media(max-width:767px)": {
-                            '& .MuiButton-root': {
-                                display: "contents",
-                                width: "150px",
-                                margin: "2px",
-                                fontSize: "14px"
-                            },
-
-                        },
-                        "@media(max-width:546px)": {
-                            '& .MuiButton-root': {
-                                display: "contents",
-                                width: "150px",
-                                fontSize: "9px"
-                            },
-
-                        },
-
-                        "@media(min-width:768px)": {
-                            '& .MuiButton-root': {
-                                width: "110px",
-                                margin: "2px",
-                                fontSize: "14px"
-                            },
-
-                            "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                width: "120px"
-                            }
-                        }
-                    }}>
+            <Box className={classes.DataTableBoxStyle} >
                         <ThemeProvider theme={CustomFontTheme}>
                             <DataGrid
                                 rows={rows}
@@ -273,68 +222,10 @@ const Allrecentorder = () => {
                                 autoHeight
                                 checkboxSelection={false}
                                 rowSelection={false}
-                                sx={{
-                                    "& .MuiDataGrid-columnHeader":{
-                                        justifyContent:'center',
-                                    },
-                                "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                    outline: "none",
-                                },
-                                "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
-                                    outline: "none"
-                                },
-                                "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
-                                    outline: "none",
-
-                                },
-                                "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
-                                    backgroundColor: "#FFFFFF"
-                                },
-                                "& .MuiDataGrid-columnHeaderTitle":{
-                                    fontSize:'12px',
-                                },
-                                '& .MuiDataGrid-cellContent':{
-                                    fontSize:'12px',
-                                    color:'#000',
-                                    fontWeight:'500',
-                                },
-                                width: '100%',
-                                "@media(max-width:768px)": {
-                                    ".MuiDataGrid-toolbarContainer": {
-                                        gap: "10px",
-
-                                    }
-                                },
-                                "@media(max-width:546px)": {
-                                    ".MuiDataGrid-toolbarContainer": {
-                                        gap: "5px",
-
-                                    }
-                                },
-                                ".MuiDataGrid-toolbarContainer": {
-                                    flexDirection: "block",
-
-                                    backgroundColor: "#31B665",
-                                    width: {
-                                        xs: "100%",
-                                        sm: "100%",
-                                        md: "100%",
-                                        lg: "100%",
-                                        xl: "100%"
-
-                                    },
-                                },
-                                "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                                    visibility: "hidden"
-                                },
-                                "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                    width: "120px"
-                                }
-
-                            }}
+                                className={classes.DataTableStyle}
                             />
                         </ThemeProvider>
-                    </Box>
+            </Box>
         </div>
     </div>
     </div>

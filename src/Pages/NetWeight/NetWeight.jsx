@@ -15,8 +15,9 @@ import NetwegihtEdit from "./NetWeightEdit"
 import NetWetDelete from "./NetWeightDelete"
 import { useSnackbar } from 'notistack';
 import Tooltip from '@mui/material/Tooltip';
-
+import useState from '../../Style'
 export default function State() {
+    const classes = useState()
     const { enqueueSnackbar } = useSnackbar()
     const { state , dispatch} = useContext(Createcontext)
     const CustomFontTheme = createTheme({
@@ -35,7 +36,6 @@ export default function State() {
             }
         }
     });
-
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
@@ -165,88 +165,16 @@ export default function State() {
                     </div>
 
                     <div className='col-12' >
-                        <Box sx={{
-                            height: 400,
-                            width: '100%',
-                            '& .MuiDataGrid-columnHeaders': {
-                                backgroundColor: '#E1FFED',
-                            },
-                            ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
-                                outline:"none"
-                              },
-                            '& .MuiButton-root': {
-                                color: '#FFFFFF',
-                                display: "flex",
-                            },
-                            "@media(max-width:767px)": {
-                                '& .MuiButton-root': {
-                                    display: "contents",
-                                    width: "150px",
-                                    margin: "2px",
-                                    fontSize: "14px"
-                                },
-
-                            },
-                            "@media(max-width:546px)": {
-                                '& .MuiButton-root': {
-                                    display: "contents",
-                                    width: "150px",
-                                    fontSize: "9px"
-                                },
-
-                            },
-                            "@media(min-width:768px)": {
-                                '& .MuiButton-root': {
-                                    width: "110px",
-                                    margin: "2px",
-                                    fontSize: "14px"
-                                },
-
-                                "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                    width: "120px"
-                                }
-                            }
-
-                           
-                            
-                        }}>
+                        <Box  className={classes.DataTableBoxStyle} >
 
                             <ThemeProvider theme={CustomFontTheme}>
                                 <div style={{ height: 400, width: '100%', }}>
-                                    <DataGrid rows={rows} columns={columns}  checkboxSelection   disableColumnMenu
-                                            disableColumnFilter
-                                            disableColumnSelector
-                                     sx={{
-                                        ".MuiDataGrid-toolbarContainer":{
-                                            backgroundColor:"#31B665"
-                                          },
-                                          "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
-                                              outline: "none"
-                                          },
-                                          "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                              outline: "none ",
-      
-                                          },
-                                          
-                                          "@media(max-width:768px)": {
-                                              ".MuiDataGrid-toolbarContainer": {
-                                                  gap: "10px",
-      
-                                              }
-                                          },
-                                          "@media(max-width:546px)": {
-                                              ".MuiDataGrid-toolbarContainer": {
-                                                  gap: "5px",
-      
-                                              }
-                                          },
-                                          "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                                              visibility: "hidden"
-                                          },
-                                          "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
-                                              backgroundColor: "#FFFFFF"
-                                          },
-                                     }}
+                                    <DataGrid rows={rows} columns={columns} 
+                                        checkboxSelection 
+                                        disableColumnMenu
+                                        disableColumnFilter
+                                        disableColumnSelector 
+                                        className={classes.DataTableStyle}
                                     />
                                 </div>
                             </ThemeProvider>

@@ -15,8 +15,10 @@ import { AiFillEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import Createcontext from '../../Hooks/Context/Context';
 import { useSnackbar } from 'notistack';
 import Tooltip from '@mui/material/Tooltip';
+import useStyles from '../../Style';
 export default function Store() {
     const { enqueueSnackbar } = useSnackbar();
+    const classes = useStyles()
     const { state, dispatch } = useContext(Createcontext)
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
@@ -152,111 +154,44 @@ export default function Store() {
         }
     });
     return (
-        <div className='row'>
-        
+        <div className='section_card'>
+            <div className='row'>
+            
 
-                <div className='col-12 Add_Category margin_top m-2 mt-5 mb-5'>
-                    <div className="col"> <h2>Store  <span className='total_count'>{`(${totel.length})`}</span>
-                    </h2></div>
-                     { state.Roles.AddStore &&
-                       <div className="col  popup_A" > <span> <h2><Storepopup></Storepopup> </h2></span></div>
-                     }
-
-                </div>
-
-
-                <Box sx={{
-                    height: 400,
-                    width: '100%',
-                    '& .MuiDataGrid-columnHeaders': {
-                        backgroundColor: '#E1FFED',
-                    },
-                    ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within": {
-                        outline: "none"
-                    },
-                    '& .MuiButton-root': {
-                        color: '#FFFFFF',
-                        display: "flex",
-                    },
-
-                    "@media(max-width:767px)": {
-                        '& .MuiButton-root': {
-                            display: "contents",
-                            width: "150px",
-                            margin: "2px",
-                            fontSize: "14px"
-                        },
-
-                    },
-                    "@media(max-width:546px)": {
-                        '& .MuiButton-root': {
-                            display: "contents",
-                            width: "150px",
-                            fontSize: "9px"
-                        },
-
-                    },
-
-                    "@media(min-width:768px)": {
-                        '& .MuiButton-root': {
-                            width: "110px",
-                            margin: "2px",
-                            fontSize: "14px"
-                        },
-
-                        "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                            width: "120px"
+                    <div className='col-12 Add_Category margin_top m-2 mt-5 mb-5'>
+                        <div className="col"> <h2>Store  <span className='total_count'>{`(${totel.length})`}</span>
+                        </h2></div>
+                        { state.Roles.AddStore &&
+                        <div className="col  popup_A" > <span> <h2><Storepopup></Storepopup> </h2></span></div>
                         }
-                    }
 
-                }}>
-
-                    <div className='col-12' >
-                        <Box>
-                            <ThemeProvider theme={CustomFontTheme}>
-                                <div style={{ width: '100%', }}>
-                                    <DataGrid autoHeight rows={rows} editable={false}  columns={columns}  checkboxSelection
-                                    pageSize={pageSize}
-                                    disableColumnMenu
-                                    disableColumnFilter
-                                    disableColumnSelector
-                                    onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                                    rowsPerPageOptions={[5, 10, 20]}
-                                    pagination
-                                        sx={{
-                                            ".MuiDataGrid-toolbarContainer": {
-                                                backgroundColor: "#31B665"
-                                            },
-                                            "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                                outline: "none ",
-                                            },
-                                            "@media(max-width:768px)": {
-                                                ".MuiDataGrid-toolbarContainer": {
-                                                    gap: "10px",
-
-                                                }
-                                            },
-                                            "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                                                visibility: "hidden"
-                                            },
-                                            "@media(max-width:546px)": {
-                                                ".MuiDataGrid-toolbarContainer": {
-                                                    gap: "5px",
-
-                                                }
-                                            },
-                                            "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
-                                                backgroundColor: "#FFFFFF"
-                                            },
-                                        }}
-
-                                    />
-                                </div>
-                            </ThemeProvider>
-                        </Box>
                     </div>
 
-                </Box>
+
+                    <Box className={classes.DataTableBoxStyle} >
+
+                        <div className='col-12' >
+                            <Box>
+                                <ThemeProvider theme={CustomFontTheme}>
+                                    <div style={{ width: '100%', }}>
+                                        <DataGrid autoHeight rows={rows} editable={false}  columns={columns}  checkboxSelection
+                                        pageSize={pageSize}
+                                        disableColumnMenu
+                                        disableColumnFilter
+                                        disableColumnSelector
+                                        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                        rowsPerPageOptions={[5, 10, 20]}
+                                        pagination
+                                        className={classes.DataTableStyle}
+
+                                        />
+                                    </div>
+                                </ThemeProvider>
+                            </Box>
+                        </div>
+
+                    </Box>
+            </div>
         </div>
     );
 }

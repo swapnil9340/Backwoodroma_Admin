@@ -14,9 +14,12 @@ import Areagraph from './Areagraph'
 import Recentorder from './Recentorder';
 import { MdOutlineEmail } from "react-icons/md";
 import { BsTelephone } from "react-icons/bs";
+import {SectionCard} from '../molecules/SectionCard/Index'
 import axios from 'axios';
 import Cookies from 'universal-cookie'
+import useStyles from '../Style';
 export default function AdminPanel() {
+  const classes = useStyles()
   const { state } = useContext(Createcontext)
   const cookies = new Cookies();
   const [pendingstore, setPendingStore] = useState([])
@@ -262,76 +265,27 @@ export default function AdminPanel() {
   return (
     <div className='row dashboardSection'>
 
-      <div className='col-12 StatusCardBorder' >
+      <SectionCard className='col-12 StatusCardBorder' >
         <StatusBarCard  title={"dashboard"}></StatusBarCard>
-      </div>
+      </SectionCard>
       <div className='col-12'>
         <div className='dashboardHerosection'>
-          <div className='totalUser bg-white'>
+          <SectionCard className='totalUser bg-white'>
             <Areagraph title={"Total User"} />
-          </div>
-          <div className='topProducts'><Productstorelist link={'/topproduct'} title={"Top Product"} Data1={Data1} /></div>
-          <div className='topProducts'><Productstorelist link={'/topstorelist'} title={"Top Store"} Data1={TopStore} /></div>
-          <div className='topProducts'><Productstorelist title={"Visited Store"} /></div>
-          <div className='topProducts'>
+          </SectionCard>
+          <SectionCard className='topProducts'><Productstorelist link={'/topproduct'} title={"Top Product"} Data1={Data1} /></SectionCard>
+          <SectionCard className='topProducts'><Productstorelist link={'/topstorelist'} title={"Top Store"} Data1={TopStore} /></SectionCard>
+          <SectionCard className='topProducts'><Productstorelist title={"Visited Store"} /></SectionCard>
+          <SectionCard className='topProducts'>
             <TotalSales  type={'dashboard'} />
-          </div>
+          </SectionCard>
         </div>
 
       </div>
       <div className='col-12 d-flex justify-content-between flex-md-nowrap flex-wrap gap-5'>
-        <div className='storeOwnerTable'>
+        <SectionCard className='storeOwnerTable'>
           <div className='ownerlist'>
-            <Box
-              sx={{
-
-                width: '100%',
-                '& .MuiDataGrid-columnHeaders': {
-                  backgroundColor: '#fff',
-                  color: '#B5B7C0'
-                },
-                '& .MuiButton-root': {
-                  color: "#FFFFFF",
-                  display: "flex",
-                  width: "200px"
-                },
-                "& .MuiDataGrid-root": {
-                  border: 'none',
-                },
-                // check
-                ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within": {
-                  outline: "none"
-                },
-
-                "@media(max-width:767px)": {
-                  '& .MuiButton-root': {
-                    display: "contents",
-                    width: "150px",
-                    margin: "2px",
-                    fontSize: "14px"
-                  },
-
-                },
-                "@media(max-width:546px)": {
-                  '& .MuiButton-root': {
-                    display: "contents",
-                    width: "150px",
-                    fontSize: "9px"
-                  },
-
-                },
-                "@media(min-width:768px)": {
-                  '& .MuiButton-root': {
-                    width: "110px",
-                    margin: "2px",
-                    fontSize: "14px"
-                  },
-
-                  "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                    width: "120px"
-                  }
-                }
-              }}>
+            <Box className={classes.DataTableBoxStyle}>
               <ThemeProvider theme={CustomFontTheme}>
                 <div style={{ width: '100%' }}>
                   <DataGrid rows={rows} columns={columns}
@@ -343,55 +297,7 @@ export default function AdminPanel() {
                     disableColumnMenu
                     disableColumnFilter
                     disableColumnSelector
-                    sx={{
-                      "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                        outline: "none",
-                      },
-                      "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
-                        outline: "none"
-                      },
-                      "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
-                        outline: "none",
-
-                      },
-                      "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
-                        backgroundColor: "#FFFFFF"
-                      },
-
-                      width: '100%',
-                      "@media(max-width:768px)": {
-                        ".MuiDataGrid-toolbarContainer": {
-                          gap: "10px",
-
-                        }
-                      },
-                      "@media(max-width:546px)": {
-                        ".MuiDataGrid-toolbarContainer": {
-                          gap: "5px",
-
-                        }
-                      },
-                      ".MuiDataGrid-toolbarContainer": {
-                        flexDirection: "block",
-
-                        backgroundColor: "#31B665",
-                        width: {
-                          xs: "100%",
-                          sm: "100%",
-                          md: "100%",
-                          lg: "100%",
-                          xl: "100%"
-
-                        },
-                      },
-                      "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                        visibility: "hidden"
-                      },
-                      "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                        width: "120px"
-                      }
-
-                    }}
+                    className={classes.DataTableStyle}
                   />
                 </div>
               </ThemeProvider>
@@ -400,8 +306,8 @@ export default function AdminPanel() {
           <div className='viewButton'>
             <Link to={'/'}> <span>View All</span></Link>
           </div>
-        </div>
-        <div className='locationGraph'>
+        </SectionCard>
+        <SectionCard className='locationGraph'>
           <div className='locationGraph_header'>
             <h3 className='locationGraph_headertitle'>Popular Location</h3>
             <Link><span>View Details</span></Link>
@@ -452,11 +358,11 @@ export default function AdminPanel() {
               <ReactApexChart options={locationchart.options} series={locationchart.series} type="polarArea" />
             </div>
           </div>
-        </div>
+        </SectionCard>
       </div>
-      <div className='col-12 my-3'>
+      <SectionCard className='col-12 my-3'>
         <Recentorder />
-      </div>
+      </SectionCard>
 
     </div>
   )

@@ -8,7 +8,6 @@ import Radio from '@mui/material/Radio';
 import CloseIcon from '@mui/icons-material/Close';
 import { MdOutlineCloudUpload } from "react-icons/md"
 import useStyles from "../../Style";
-import LoadingButton from "@mui/lab/LoadingButton";
 import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom"
 import axios from "axios";
@@ -16,7 +15,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 import Compressor from 'compressorjs';
 import { SlSocialDropbox } from "react-icons/sl";
-
+import {SectionCard} from '../../molecules/SectionCard/Index';
 const PromotionalBanner = () => {
     const navigate=useNavigate()
     const Swal = require('sweetalert2')
@@ -105,7 +104,7 @@ const PromotionalBanner = () => {
     }
     return (
       <React.Fragment>
-            <div className='section_card p-5'>
+            <SectionCard>
                
             <h2 className='d-flex align-items-center pagetitle'> <SlSocialDropbox color='#31B655' size={25}/>Banner Upload</h2>
                             {/* <div className="promtionalBannerHeader">
@@ -278,7 +277,7 @@ const PromotionalBanner = () => {
                                             </div>
                                 
                             </div>
-            </div>
+            </SectionCard>
 
            
             {loader && <div className="loadercontainer">

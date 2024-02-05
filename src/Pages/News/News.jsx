@@ -11,11 +11,12 @@ import Select from '@mui/material/Select';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import Createcontext from "../../Hooks/Context/Context"
 import DeleteNews from "./DeleteNews"
-
+import useStyles from '../../Style';
 
 
 export default function News() {
     const { state } = useContext(Createcontext)
+    const classes = useStyles()
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
@@ -113,90 +114,14 @@ export default function News() {
                             <div className="col  popup_A" > {state?.Roles?.AddBlogs && <span> <h2> <Newspop></Newspop></h2></span> }</div>
                         </div>
                         <div className='col-12' >
-                            <Box
-                                sx={{
-                                    height: 400,
-                                    width: '100%',
-                                    '& .MuiButton-root': {
-                                        color: '#FFFFFF',
-                                        display: "flex",
-                                    },
-                                    '& .MuiDataGrid-columnHeaders': {
-                                        backgroundColor: '#E1FFED',
-                                    },
-                                    "@media(max-width:767px)": {
-                                        '& .MuiButton-root': {
-                                            display: "contents",
-                                            width: "150px",
-                                            margin: "2px",
-                                            fontSize: "14px"
-                                        },
-
-                                    },
-                                    "@media(max-width:546px)": {
-                                        '& .MuiButton-root': {
-                                            display: "contents",
-                                            width: "150px",
-                                            fontSize: "9px"
-                                        },
-
-                                    },
-
-                                    "@media(min-width:768px)": {
-                                        '& .MuiButton-root': {
-                                            width: "110px",
-                                            margin: "2px",
-                                            fontSize: "14px"
-                                        },
-
-                                        "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                            width: "120px"
-                                        }
-                                    },
-                                    ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within": {
-                                        outline: "none"
-                                    },
-
-                                }}
-                            >
+                            <Box className={classes.DataTableBoxStyle} >
                                 <ThemeProvider theme={CustomFontTheme}>
                                     <div style={{ height: 500, width: '100%', }}>
                                         <DataGrid rows={rows} columns={columns} checkboxSelection
                                             disableColumnMenu
                                             disableColumnFilter
                                             disableColumnSelector
-                                            sx={{
-
-                                                ".MuiDataGrid-toolbarContainer": {
-                                                    backgroundColor: "#31B665"
-                                                },
-                                                "@media(max-width:768px)": {
-                                                    ".MuiDataGrid-toolbarContainer": {
-                                                        gap: "10px",
-
-                                                    }
-                                                },
-                                                "@media(max-width:546px)": {
-                                                    ".MuiDataGrid-toolbarContainer": {
-                                                        gap: "5px",
-
-                                                    }
-                                                },
-                                                "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
-                                                    outline: "none"
-                                                },
-                                                "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                                    outline: "none ",
-
-                                                },
-                                                "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                                                    visibility: "hidden"
-                                                },
-                                                "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
-                                                    backgroundColor: "#FFFFFF"
-                                                },
-                                            }}
-
+                                          className={classes.DataTableStyle}
                                         />
                                     </div>
                                 </ThemeProvider>

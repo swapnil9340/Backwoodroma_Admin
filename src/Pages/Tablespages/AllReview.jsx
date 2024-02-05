@@ -12,7 +12,9 @@ import { IoIosInformationCircleOutline } from "react-icons/io";
 import {useLocation} from 'react-router-dom'
 import Deletepopup from '../../Components/Component/Deletepopup'
 import Successfullypopup from '../../Components/Component/Successfullypopup'
+import useStyles from '../../Style';
 const AllReview = () => {
+    const classes = useStyles()
     const location = useLocation();
     const [recentorder, setRecentorder] = useState([])
     const cookies = new Cookies();
@@ -22,45 +24,38 @@ const AllReview = () => {
     const [isdelete , setsisDelete] = useState(false)
     const [sucsesopen , setsucsesopen] = useState(false)
     const [reviewid , setreviewid] = useState({})
-   
-   console.log(location.state ,'location')
-   
-   useEffect(()=>{
-       if(isdelete){
-          Axios.post('https://api.cannabaze.com/AdminPanel/DeleteReviews/', reviewid ,{
+            useEffect(()=>{
+                if(isdelete){
+                    Axios.post('https://api.cannabaze.com/AdminPanel/DeleteReviews/', reviewid ,{
 
-          headers: {
-              'Authorization': `Bearer ${token_data}`
-          }
-           }).then((res)=>{
-              
-               Axios.post('https://api.cannabaze.com/AdminPanel/ReviewsByStore/', 
-               {"SelectTime":"Year","StartDate":"2023-02-01","EndDate":"2024-02-02","StoreId":location.state.item.id},{
-                 headers: {
-                   'Authorization': `Bearer ${token_data}`
-                 }
-               }).then((res) => {
-                 let a = res?.data?.map((item , index)=>{
-                   if("ProductName" in item){
-                       return {...item , mainID : index , reviewtype : {"productId":item?.id}}
-                   }else{
-                       return {...item , mainID : index , reviewtype : {"StoreId":item?.id} }
-                   } 
-                  })
-                 setRecentorder( a )
-                 setsucsesopen(true)
-                 setTimeout(() => {
-                    setsucsesopen(false)
-                  }, "3000");
-               })
-           })
-       }
-   },[isdelete])
+                    headers: {
+                        'Authorization': `Bearer ${token_data}`
+                    }
+                    }).then((res)=>{
+                        
+                        Axios.post('https://api.cannabaze.com/AdminPanel/ReviewsByStore/', 
+                        {"SelectTime":"Year","StartDate":"2023-02-01","EndDate":"2024-02-02","StoreId":location.state.item.id},{
+                            headers: {
+                            'Authorization': `Bearer ${token_data}`
+                            }
+                        }).then((res) => {
+                            let a = res?.data?.map((item , index)=>{
+                            if("ProductName" in item){
+                                return {...item , mainID : index , reviewtype : {"productId":item?.id}}
+                            }else{
+                                return {...item , mainID : index , reviewtype : {"StoreId":item?.id} }
+                            } 
+                            })
+                            setRecentorder( a )
+                            setsucsesopen(true)
+                            setTimeout(() => {
+                                setsucsesopen(false)
+                            }, "3000");
+                        })
+                    })
+                }
+            },[isdelete])
         
-    
-    
-    
-    
           useEffect(() => {
             Axios.post('https://api.cannabaze.com/AdminPanel/ReviewsByStore/', 
             {"SelectTime":"Year","StartDate":"2023-02-01","EndDate":"2024-02-02","StoreId":location?.state?.item?.id},{
@@ -223,58 +218,7 @@ const AllReview = () => {
             
             </div>
             <div className='allusertable'>
-                        <Box sx={{
-                        
-                            width: '100%',
-                            '& .MuiDataGrid-columnHeaders': {
-                                backgroundColor: '#F9FAFC',
-                                color:'#5A5A5A',
-                            
-                            },
-                            '& .MuiButton-root': {
-                                color: "#FFFFFF",
-                                display: "flex",
-                            
-                            },
-                                // check
-                            "& .MuiDataGrid-root":{
-                            border:'none',
-                            },
-                        
-                                "&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
-                                outline:"none"
-                                },
-
-                            "@media(max-width:767px)": {
-                                '& .MuiButton-root': {
-                                    display: "contents",
-                                    width: "150px",
-                                    margin: "2px",
-                                    fontSize: "14px"
-                                },
-
-                            },
-                            "@media(max-width:546px)": {
-                                '& .MuiButton-root': {
-                                    display: "contents",
-                                    width: "150px",
-                                    fontSize: "9px"
-                                },
-
-                            },
-
-                            "@media(min-width:768px)": {
-                                '& .MuiButton-root': {
-                                    width: "110px",
-                                    margin: "2px",
-                                    fontSize: "14px"
-                                },
-
-                                "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                    width: "120px"
-                                }
-                            }
-                        }}>
+                        <Box  className={classes.DataTableBoxStyle}>
                             <ThemeProvider theme={CustomFontTheme}>
                                 <DataGrid
                                     rows={rows}
@@ -291,65 +235,7 @@ const AllReview = () => {
                                     autoHeight
                                     checkboxSelection={false}
                                     rowSelection={false}
-                                    sx={{
-                                        "& .MuiDataGrid-columnHeader":{
-                                            justifyContent:'center',
-                                        },
-                                    "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                        outline: "none",
-                                    },
-                                    "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
-                                        outline: "none"
-                                    },
-                                    "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
-                                        outline: "none",
-
-                                    },
-                                    "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
-                                        backgroundColor: "#FFFFFF"
-                                    },
-                                    "& .MuiDataGrid-columnHeaderTitle":{
-                                        fontSize:'12px',
-                                    },
-                                    '& .MuiDataGrid-cellContent':{
-                                        fontSize:'12px',
-                                        color:'#000',
-                                        fontWeight:'500',
-                                    },
-                                    width: '100%',
-                                    "@media(max-width:768px)": {
-                                        ".MuiDataGrid-toolbarContainer": {
-                                            gap: "10px",
-
-                                        }
-                                    },
-                                    "@media(max-width:546px)": {
-                                        ".MuiDataGrid-toolbarContainer": {
-                                            gap: "5px",
-
-                                        }
-                                    },
-                                    ".MuiDataGrid-toolbarContainer": {
-                                        flexDirection: "block",
-
-                                        backgroundColor: "#31B665",
-                                        width: {
-                                            xs: "100%",
-                                            sm: "100%",
-                                            md: "100%",
-                                            lg: "100%",
-                                            xl: "100%"
-
-                                        },
-                                    },
-                                    "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                                        visibility: "hidden"
-                                    },
-                                    "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                        width: "120px"
-                                    }
-
-                                        }}
+                                    className={classes.DataTableStyle}
                                 />
                             </ThemeProvider>
                         </Box>

@@ -16,6 +16,8 @@ import { FaEdit } from "react-icons/fa";
 import { MdOutlineEdit } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import useStyles from '../../Style'
+import {Headerbutton} from '../../molecules/Button/index'
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
         padding: theme.spacing(2),
@@ -202,8 +204,8 @@ const classes = useStyles()
                                         <input  type="file" id="formFile" ref={inputRef} accept="image/*" className='d-none'  variant="outlined" style={{ Width: "10%", fontSize: 15 }}
                                             onChange={handleimage}
                                         />
-                                            <label className='label' htmlFor='formFile'>
-                                              <span className='Upload_btn'>Upload Image</span>
+                                            <label className='text-center w-100' htmlFor='formFile'>
+                                               <Headerbutton>Upload Image</Headerbutton>
                                             </label>
                                         </div>
                                        
@@ -227,9 +229,9 @@ const classes = useStyles()
                                
                                 </div>
                                 <div className='center' >
-                                    <button className='topbutton' onClick={SubmitEditData} style={{ fontSize: 15 , marginTop:'30px' }}>
+                                    <Headerbutton  onClick={SubmitEditData}>
                                        {loadingbtn ? <div class="lds-ring"><div></div><div></div><div></div><div></div></div>: "Save"} 
-                                    </button>
+                                    </Headerbutton>
                                 </div>
 
 

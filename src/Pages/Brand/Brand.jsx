@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import Createcontext from "../../Hooks/Context/Context"
 import Box from '@mui/material/Box';
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 import { ThemeProvider } from "@mui/material/styles";
 import { SlSocialDropbox } from "react-icons/sl";
 import { createTheme } from "@mui/material/styles";
@@ -9,19 +9,18 @@ import axios from "axios";
 import Cookies from 'universal-cookie';
 import Brandpopup from './Brandpopup';
 import { AiFillEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import { BsThreeDotsVertical } from 'react-icons/bs';
-import Select from '@mui/material/Select';
 import BrandEdit from "./BrandEdit"
 import BrandDelete from "./BrandDelete"
 import Tooltip from '@mui/material/Tooltip';
-
+import  useStyles  from '../../Style.jsx';
+import {SectionCard} from '../../molecules/SectionCard/Index'
 export default function Brand() {
     const cookies = new Cookies();
     const { state, dispatch } = useContext(Createcontext)
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
     const [pageSize, setPageSize] = React.useState(5)
-
+   const classes = useStyles()
 
     React.useEffect(() => {
         axios("https://api.cannabaze.com/AdminPanel/Get-Brand/", {
@@ -163,64 +162,20 @@ export default function Brand() {
         }
     });
     return (
-        <div className='section_card mt-4'>
+        <SectionCard >
             <div className='col-12 Add_Category m-2 mt-5 mb-3 px-4'>
                 <h2 className='pagetitle '> <SlSocialDropbox color='#31B655' size={25}/>  Brand  </h2>
                 { state.Roles.AddBrand  && <div className="col  popup_A" ><span> <h2> <Brandpopup></Brandpopup> </h2></span></div>}
             </div>
             <div className='col-12 '>
 
-                <Box    sx={{
-                           
-                           width: '100%',
-                           "& .MuiDataGrid-root":{
-                             border:'none',
-                           },
-                           '& .MuiDataGrid-columnHeaders': {
-                               backgroundColor: '#F9FAFC',
-                               color:'#5A5A5A',
-                           },
-                           '& .MuiButton-root': {
-                               color: "#FFFFFF",
-                               display: "flex",
-                               width: "200px"
-                           },
-                            // check
-                            ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
-                               outline:"none"
-                             },
-                           "@media(max-width:767px)": {
-                               '& .MuiButton-root': {
-                                   display: "contents",
-                                   width: "150px",
-                                   margin: "2px",
-                                   fontSize: "14px"
-                               },
-
-                           },
-                           "@media(max-width:546px)": {
-                               '& .MuiButton-root': {
-                                   display: "contents",
-                                   width: "150px",
-                                   fontSize: "9px"
-                               },
-
-                           },
-                           "@media(min-width:768px)": {
-                               '& .MuiButton-root': {
-                                   width: "110px",
-                                   margin: "2px",
-                                   fontSize: "14px"
-                               },
-
-                               "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                   width: "120px"
-                               }
-                           }
-                       }}>
+                <Box  className={classes.DataTableBoxStyle}>
                     <ThemeProvider theme={CustomFontTheme}>
                         <div style={{  width: '100%', }}>
-                            <DataGrid rows={rows} columns={columns}   autoHeight
+                            <DataGrid
+                                rows={rows}
+                                columns={columns}
+                                autoHeight
                                 pageSize={pageSize}
                                 onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                                 rowsPerPageOptions={[5, 10, 20]}
@@ -228,72 +183,12 @@ export default function Brand() {
                                 disableColumnMenu
                                 disableColumnFilter
                                 disableColumnSelector
-                                sx={{
-                                    height:'610px',
-                                    "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                        outline: "none",
-                                    },
-                                    "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
-                                        outline: "none"
-                                    },
-                                    "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
-                                        outline: "none",
-
-                                    },
-                                    "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
-                                        backgroundColor: "#FFFFFF"
-                                    },
-                                    "& .MuiDataGrid-columnHeaderTitle":{
-                                            fontSize:'12px',
-                                    },
-                                    '& .MuiDataGrid-cellContent':{
-                                        fontSize:'12px',
-                                    },
-                                    "& .MuiDataGrid-row":{
-                                        margin:'10px 0 0px',
-                                        minHeight:'unset !important',
-                                        maxHeight:'unset !important',
-                                    },
-                                    width: '100%',
-                                    "@media(max-width:768px)": {
-                                        ".MuiDataGrid-toolbarContainer": {
-                                            gap: "10px",
-
-                                        }
-                                    },
-                                    "@media(max-width:546px)": {
-                                        ".MuiDataGrid-toolbarContainer": {
-                                            gap: "5px",
-
-                                        }
-                                    },
-                                    ".MuiDataGrid-toolbarContainer": {
-                                        flexDirection: "block",
-
-                                        backgroundColor: "#31B665",
-                                        width: {
-                                            xs: "100%",
-                                            sm: "100%",
-                                            md: "100%",
-                                            lg: "100%",
-                                            xl: "100%"
-
-                                        },
-                                    },
-                                    "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                                        visibility: "hidden"
-                                    },
-                                    "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                        width: "120px"
-                                    }
-
-                                }}
-
+                                className={classes.DataTableStyle}
                             />
                         </div>
                     </ThemeProvider>
                 </Box>
             </div>
-        </div> 
+        </SectionCard> 
     );
 }

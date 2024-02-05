@@ -14,10 +14,11 @@ import SubCategoryEdit from "./SubCategoryEdit";
 import Createcontext from "../../Hooks/Context/Context";
 import SubCategoryDelete from "./SubCategoryDelete";
 import Tooltip from "@mui/material/Tooltip";
-
+import useStyles from "../../Style";
 export default function SubCategory() {
   const { enqueueSnackbar } = useSnackbar();
   const { state, dispatch } = useContext(Createcontext);
+  const [pageSize, setPageSize] = React.useState(10)
   const CustomFontTheme = createTheme({
     typography: {
       fontSize: 25,
@@ -32,7 +33,7 @@ export default function SubCategory() {
       },
     },
   });
-
+ const classes = useStyles()
   const [totel, setTotal] = React.useState([]);
   React.useEffect(() => {
     const cookies = new Cookies();
@@ -59,8 +60,7 @@ export default function SubCategory() {
       category_id: params.row.Category_id,
       Status: params.row.Status === "Active" ? "Hide" : "Active",
     };
-    axios
-      .post(
+    axios.post(
         `https://api.cannabaze.com/AdminPanel/update-SubCategory/${data.id}`,
         data,
         config
@@ -201,127 +201,41 @@ export default function SubCategory() {
 
   const rows = totel;
   return (
-    <div className="row">
-      <div className="col-12 Add_Category mb-4 mt-4 m-2">
-        <div className="col">
-        
-          <h2> SubCategory</h2>
+    <div className="section_card">
+      <div className="row">
+        <div className="col-12 Add_Category p-5">
+          <h2 className="pagetitle"> SubCategory</h2>
+          
+          <div className="col text-end">
+          { state.Roles.AddSubcategory && 
+            <span > <h2>  <PopUp></PopUp> </h2> </span>
+          }
+          </div>
         </div>
-        <div className="col text-end">
-        { state.Roles.AddSubcategory && 
-          <span > <h2>  <PopUp></PopUp> </h2> </span>
-        }
+
+        <div className="col-12">
+          <Box
+           className={classes.DataTableBoxStyle}
+          >
+            <ThemeProvider theme={CustomFontTheme}>
+              <div style={{ width: "100%" }}>
+                <DataGrid
+                  rows={rows}
+                  columns={columns}
+                  disableColumnMenu
+                  disableColumnFilter
+                  disableColumnSelector
+                  autoHeight
+                  pageSize={pageSize}
+                  onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                  rowsPerPageOptions={[ 10, 20]}
+                  pagination
+                className={classes.DataTableStyle}
+                />
+              </div>
+            </ThemeProvider>
+          </Box>
         </div>
-      </div>
-
-      <div className="col-12">
-        <Box
-          sx={{
-            height: 400,
-            width: "100%",
-            "& .MuiDataGrid-columnHeaders": {
-              backgroundColor: "#E1FFED",
-            },
-            "& .MuiButton-root": {
-              color: "#FFFFFF",
-              display: "flex",
-              width: "200px",
-            },
-            // check
-            ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within": {
-              outline: "none",
-            },
-
-            "@media(max-width:767px)": {
-              "& .MuiButton-root": {
-                display: "contents",
-                width: "150px",
-                margin: "2px",
-                fontSize: "14px",
-              },
-            },
-            "@media(max-width:546px)": {
-              "& .MuiButton-root": {
-                display: "contents",
-                width: "150px",
-                fontSize: "9px",
-              },
-            },
-
-            "@media(min-width:768px)": {
-              "& .MuiButton-root": {
-                width: "110px",
-                margin: "2px",
-                fontSize: "14px",
-              },
-
-              "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer":
-                {
-                  width: "120px",
-                },
-              "&.MuiDataGrid-root .MuiDataGrid-columnHeader": {
-                width: "50px",
-              },
-            },
-          }}
-        >
-          <ThemeProvider theme={CustomFontTheme}>
-            <div style={{ height: 400, width: "100%" }}>
-              <DataGrid
-                rows={rows}
-                columns={columns}
-                disableColumnMenu
-                disableColumnFilter
-                disableColumnSelector
-                sx={{
-                  "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                    outline: "none",
-                  },
-                  "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
-                    outline: "none",
-                  },
-                  "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
-                    outline: "none",
-                  },
-                  "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
-                    backgroundColor: "#FFFFFF",
-                  },
-                  height: 400,
-                  width: "100%",
-                  "@media(max-width:768px)": {
-                    ".MuiDataGrid-toolbarContainer": {
-                      gap: "10px",
-                    },
-                  },
-                  "@media(max-width:546px)": {
-                    ".MuiDataGrid-toolbarContainer": {
-                      gap: "5px",
-                    },
-                  },
-                  ".MuiDataGrid-toolbarContainer": {
-                    flexDirection: "block",
-
-                    backgroundColor: "#31B665",
-                    width: {
-                      xs: "100%",
-                      sm: "100%",
-                      md: "100%",
-                      lg: "100%",
-                      xl: "100%",
-                    },
-                  },
-                  "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                    visibility: "hidden",
-                  },
-                  "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer":
-                    {
-                      width: "120px",
-                    },
-                }}
-              />
-            </div>
-          </ThemeProvider>
-        </Box>
       </div>
     </div>
   );

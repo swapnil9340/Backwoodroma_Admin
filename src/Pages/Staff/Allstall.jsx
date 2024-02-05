@@ -5,7 +5,6 @@ import useStyles from '../../Style';
 import Cookies from "universal-cookie";
 import { ThemeProvider , Box ,createTheme } from "@mui/material";
 import { SlSocialDropbox } from "react-icons/sl";
-
 import axios from 'axios'
 import "./Stall.css"
 const Allstall = () => {
@@ -83,8 +82,6 @@ const Allstall = () => {
       })
     },[token_data])
     const rows = userdata
-
-
     const CustomFontTheme = createTheme({
       typography: {
           fontSize: 25
@@ -100,7 +97,8 @@ const Allstall = () => {
           },
       },
 
-      });
+    });
+
   return (
     <div className=' my-4 '>
             <div className='py-4 section_card'>
@@ -116,57 +114,8 @@ const Allstall = () => {
                 
                 </div>
                 <div className='allusertable'>
-                <Box sx={{
-                                height: 600,
-                                width: '100%',
-                                '& .MuiDataGrid-columnHeaders': {
-                                    backgroundColor: '#F9FAFC',
-                                    color:'#5A5A5A',
-                                    justifyContent:'center',
-                                },
-                                '& .MuiButton-root': {
-                                    color: "#FFFFFF",
-                                    display: "flex",
-                                  
-                                },
-                                    // check
-                                "&.MuiDataGrid-root":{
-                                border:'none',
-                                },
-                                    "&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
-                                    outline:"none"
-                                    },
-
-                                "@media(max-width:767px)": {
-                                    '& .MuiButton-root': {
-                                        display: "contents",
-                                        width: "150px",
-                                        margin: "2px",
-                                        fontSize: "14px"
-                                    },
-
-                                },
-                                "@media(max-width:546px)": {
-                                    '& .MuiButton-root': {
-                                        display: "contents",
-                                        width: "150px",
-                                        fontSize: "9px"
-                                    },
-
-                                },
-
-                                "@media(min-width:768px)": {
-                                    '& .MuiButton-root': {
-                                        width: "110px",
-                                        margin: "2px",
-                                        fontSize: "14px"
-                                    },
-
-                                    "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                        width: "120px"
-                                    }
-                                }
-                            }}>
+                <Box  className={classes.DataTableBoxStyle}
+                            >
                                 <ThemeProvider theme={CustomFontTheme}>
                                     <DataGrid
                                         rows={rows}
@@ -187,63 +136,7 @@ const Allstall = () => {
                                         autoHeight
                                         checkboxSelection={false}
                                         rowSelection={false}
-                                        sx={{
-                                            "& .MuiDataGrid-columnHeader":{
-justifyContent:'center',
-                                            },
-                                        "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                            outline: "none",
-                                        },
-                                        "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
-                                            outline: "none"
-                                        },
-                                        "&.MuiDataGrid-root  .MuiDataGrid-cell:focus": {
-                                            outline: "none",
-
-                                        },
-                                        "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
-                                            backgroundColor: "#FFFFFF"
-                                        },
-                                        "& .MuiDataGrid-columnHeaderTitle":{
-                                            fontSize:'12px',
-                                        },
-                                        '& .MuiDataGrid-cellContent':{
-                                            fontSize:'12px',
-                                        },
-                                        width: '100%',
-                                        "@media(max-width:768px)": {
-                                            ".MuiDataGrid-toolbarContainer": {
-                                                gap: "10px",
-
-                                            }
-                                        },
-                                        "@media(max-width:546px)": {
-                                            ".MuiDataGrid-toolbarContainer": {
-                                                gap: "5px",
-
-                                            }
-                                        },
-                                        ".MuiDataGrid-toolbarContainer": {
-                                            flexDirection: "block",
-
-                                            backgroundColor: "#31B665",
-                                            width: {
-                                                xs: "100%",
-                                                sm: "100%",
-                                                md: "100%",
-                                                lg: "100%",
-                                                xl: "100%"
-
-                                            },
-                                        },
-                                        "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                                            visibility: "hidden"
-                                        },
-                                        "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                            width: "120px"
-                                        }
-
-                                    }}
+                                        className={classes.DataTableStyle}
                                     />
                                 </ThemeProvider>
                             </Box>

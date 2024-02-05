@@ -14,8 +14,9 @@ import CityDelete from "./CityDelete"
 import Createcontext from "../../Hooks/Context/Context"
 import { useSnackbar } from 'notistack';
 import Tooltip from '@mui/material/Tooltip';
-
+import useStyles from '../../Style';
 export default function City() {
+    const classes = useStyles()
     const { enqueueSnackbar } = useSnackbar();
     const { state, dispatch } = useContext(Createcontext)
     const CustomFontTheme = createTheme({
@@ -162,53 +163,7 @@ export default function City() {
                     </div>
 
                     <div className='col-12' >
-                        <Box sx={{
-
-                            height: 400,
-                            width: '100%',
-                            '& .MuiDataGrid-columnHeaders': {
-                                backgroundColor: '#E1FFED',
-                            },
-                            '& .MuiButton-root': {
-                                color: '#FFFFFF',
-                                display: "flex",
-                            },
-                             // check
-                             ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":{
-                                outline:"none"
-                              },
-                            "@media(max-width:767px)": {
-                                '& .MuiButton-root': {
-                                    display: "contents",
-                                    width: "150px",
-                                    margin: "2px",
-                                    fontSize: "14px"
-                                },
-
-                            },
-                            "@media(max-width:546px)": {
-                                '& .MuiButton-root': {
-                                    display: "contents",
-                                    width: "150px",
-                                    fontSize: "9px"
-                                },
-
-                            },
-
-                            "@media(min-width:768px)": {
-                                '& .MuiButton-root': {
-                                    width: "110px",
-                                    margin: "2px",
-                                    fontSize: "14px"
-                                },
-
-                                "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-                                    width: "120px"
-                                }
-                            }
-
-
-                        }}>
+                        <Box className={classes.DataTableBoxStyle}>
 
 
                             <ThemeProvider theme={CustomFontTheme}>
@@ -217,46 +172,7 @@ export default function City() {
                                      disableColumnMenu
                                      disableColumnFilter
                                      disableColumnSelector
-                                        sx={{
-                                            "&.MuiDataGrid-root  .MuiDataGrid-columnHeader:focus": {
-                                                outline: "none"
-                                            },
-                                            "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                                                outline: "none ",
-
-                                            },
-                                           
-                                            "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
-                                                visibility: "hidden"
-                                            },
-                                            "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
-                                                backgroundColor: "#FFFFFF"
-                                            },
-                                            "@media(max-width:768px)": {
-                                                ".MuiDataGrid-toolbarContainer": {
-                                                    gap: "10px",
-        
-                                                }
-                                            },
-                                            "@media(max-width:546px)": {
-                                                ".MuiDataGrid-toolbarContainer": {
-                                                    gap: "5px",
-        
-                                                }
-                                            },
-                                            ".MuiDataGrid-toolbarContainer": {
-                                                flexDirection: "block",
-                                                backgroundColor: "#31B665",
-                                                width: {
-                                                    xs: "100%",
-                                                    sm: "100%",
-                                                    md: "100%",
-                                                    lg: "100%",
-                                                    xl: "100%"
-        
-                                                },
-                                            },
-                                        }}
+                                     className={classes.DataTableStyle}
                                     />
                                 </div>
                             </ThemeProvider>
