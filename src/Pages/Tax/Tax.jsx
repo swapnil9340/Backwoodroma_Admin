@@ -163,7 +163,7 @@ export default function Tax() {
                         >
 
                         <ThemeProvider theme={CustomFontTheme}>
-                            <div>
+                          
                                 <DataGrid rows={rows} columns={columns}  checkboxSelection
                                 pageSize={pageSize}
                                 onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
@@ -173,8 +173,9 @@ export default function Tax() {
                                 disableColumnFilter
                                 disableColumnSelector
                                 className={classes.DataTableStyle}
+                                autoHeight
                                 />
-                            </div>
+                 
                         </ThemeProvider>
                         </Box>
                     </div>

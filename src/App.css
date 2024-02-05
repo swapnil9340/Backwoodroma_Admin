@@ -151,7 +151,6 @@ ul li path {
   background-color: #fff;
   overflow: auto;
   box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
-  width: 4%;
   z-index: 600;
   transition: all .3s ease;
   position: sticky;
@@ -159,13 +158,10 @@ ul li path {
   left: 0;
   height: 100vh; -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+  padding: 40px 0;
 }
 .sidebar::-webkit-scrollbar {
   display: none;
-}
-
-.sidebar:hover{
-  width: 15%;
 }
 .list-group-item {
   background-color: #FAFAFA;

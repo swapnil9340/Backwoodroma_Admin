@@ -819,7 +819,12 @@ const useStyles = makeStyles(theme =>(
         "&.MuiDataGrid-root .MuiDataGrid-row:hover": {
           backgroundColor: "#FFFFFF"
         },
-
+        "&.MuiDataGrid-root .MuiDataGrid-row.Mui-selected": {
+          backgroundColor: '#fff',
+        },
+        "&.MuiDataGrid-root .MuiDataGrid-row.Mui-selected:hover": {
+          backgroundColor: '#fff',
+        },
         width: '100%',
         "@media(max-width:768px)": {
           ".MuiDataGrid-toolbarContainer": {

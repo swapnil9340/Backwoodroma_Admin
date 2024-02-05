@@ -11,7 +11,8 @@ const Allstall = () => {
     const classes= useStyles()
     const cookies = new Cookies();
     const token_data = cookies.get("Token_access");
-    const [userdata , setuserdata]= useState([])
+    const [userdata , setuserdata]= useState([]);
+    const [pageSize, setPageSize] = React.useState(5);
     const columns = [
       { field: 'ID', headerName: 'User ID', width: 90 },
       {
@@ -128,7 +129,10 @@ const Allstall = () => {
                                             },
                                         },
                                         }}
-                                        pageSizeOptions={[ 10, 25, 50]}
+                                        pageSize={pageSize}
+                                onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                rowsPerPageOptions={[5, 10, 20]}
+                                pagination
                                         disableRowSelectionOnClick
                                         disableColumnMenu
                                         disableColumnFilter

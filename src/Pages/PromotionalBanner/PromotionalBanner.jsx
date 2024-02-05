@@ -104,7 +104,7 @@ const PromotionalBanner = () => {
     }
     return (
       <React.Fragment>
-            <SectionCard>
+            <SectionCard className="p-5"> 
                
             <h2 className='d-flex align-items-center pagetitle'> <SlSocialDropbox color='#31B655' size={25}/>Banner Upload</h2>
                             {/* <div className="promtionalBannerHeader">
@@ -269,7 +269,7 @@ const PromotionalBanner = () => {
                                                 </div>
                                             </div>
                                           
-                                            <div className="">
+                                            <div className="mt-3">
                                                 <Box className={` ${classes.PromotionalBtn}`}>
                                                     <button className="cancel_btn" onClick={()=>navigate("/PromotionalBannerList")}>Cancel</button>
                                                     <button className="topbutton" onClick={submitFunction}>Add Banner</button>

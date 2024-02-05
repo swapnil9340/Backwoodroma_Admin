@@ -167,7 +167,8 @@ sortable:false },
                                                 disableColumnMenu
                                                 disableColumnFilter
                                                 disableColumnSelector
-                                              className={classes.DataTableStyle}
+                                                className={classes.DataTableStyle}
+                                                autoHeight
                                     />
                                 </div>
                             </ThemeProvider>

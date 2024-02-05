@@ -10,9 +10,14 @@ import Icon from "@material-ui/core/Icon";
 import Createcontext from "../../Hooks/Context/Context";
 import "./Sidebar.css";
 import useStyles from "../../Style";
+import { FaRegHand } from "react-icons/fa6";
+import { FaHandPaper } from "react-icons/fa";
+
 const Sidebar = ({ sidebaropen, setsidebaropen }) => {
   const { state } = useContext(Createcontext);
   const [openDropdown, setOpendropdown] = useState("");
+  const [sideopen, Setsideopen] = useState(false);
+  const [stick, setStick] = useState(true);
   const classes = useStyles();
   const checkActive = (match, location) => {
     if (!location) return false;
@@ -33,9 +38,21 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
       setOpendropdown(value);
     }
   }
+  console.log(sideopen ,'sideopen')
   return (
-    <div className={`sidebar ${sidebaropen ? "opensidebar" : ""}`} 
- >
+    <div className={`sidebar ${sidebaropen ? "opensidebar" : ""}`} style={{width:sideopen? "15%":'60px'}} onMouseOver={()=>{
+    
+        Setsideopen(true)
+      
+      }} onMouseLeave={()=>{
+        if(!stick){
+          Setsideopen(false) ;
+          setOpendropdown('')
+        }
+        
+        }}>
+        <div className="w-100 text-end p-4"><span onClick={()=>setStick(!stick)} >{stick? <FaHandPaper size={28} color="#31B655"/>:<FaRegHand size={28} color="#31B655"/>}</span></div>
+
       <ul>
         <NavLink to={"/"} onClick={closebar} isActive={checkActive}>
           <li button className={" active_bar "}>
@@ -144,38 +161,36 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
         </div>
 
         {(state.Roles.ViewStore || (state.Roles.AddStore || state.Roles.EditStore || state.Roles.DeleteStore) )&&
-        <NavLink
-          to={"/Store"}
-          onClick={closebar}
-          isActive={checkActive}
-          activeClassName="active-link"
-        >
-          <li button className={" active_bar "}>
-            <Icon className={classes.sidebarIcon + " "}>
-              <FiPackage />
-            </Icon>
-            <span className={" sidebar_text"}>Store</span>
-          </li>
-        </NavLink>
-}
+          <NavLink
+            to={"/Store"}
+            onClick={closebar}
+            isActive={checkActive}
+            activeClassName="active-link"
+          >
+            <li button className={" active_bar "}>
+              <Icon className={classes.sidebarIcon + " "}>
+                <FiPackage />
+              </Icon>
+              <span className={" sidebar_text"}>Store</span>
+            </li>
+          </NavLink>
+        }
 
-       {(state.Roles.ViewBrand || (state.Roles.AddBrand || state.Roles.DeleteBrand || state.Roles.EditBrand) )&&
-        <NavLink
-          to={"/Brand"}
-          onClick={closebar}
-          isActive={checkActive}
-          activeClassName="active-link"
-        >
-          <li button className={" active_bar "}>
-            <Icon className={classes.sidebarIcon + ""}>
-              <MdLocalActivity></MdLocalActivity>
-            </Icon>
-            <span className={" sidebar_text"}>Brand</span>
-          </li>
-        </NavLink>
-       }
-
-     
+        {(state.Roles.ViewBrand || (state.Roles.AddBrand || state.Roles.DeleteBrand || state.Roles.EditBrand) )&&
+          <NavLink
+            to={"/Brand"}
+            onClick={closebar}
+            isActive={checkActive}
+            activeClassName="active-link"
+          >
+            <li button className={" active_bar "}>
+              <Icon className={classes.sidebarIcon + ""}>
+                <MdLocalActivity></MdLocalActivity>
+              </Icon>
+              <span className={" sidebar_text"}>Brand</span>
+            </li>
+          </NavLink>
+        }
         <NavLink to={"/Tax"} onClick={closebar} activeClassName="active">
           <li button className={" active_bar "}>
             <Icon className={classes.sidebarIcon + ""}>
@@ -388,8 +403,6 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
                 </li>
               </NavLink>}
         </div>
-
-
         <NavLink to={"/Settings"} onClick={closebar} activeClassName="active">
           <li button className={" active_bar "}>
             <Icon className={classes.sidebarIcon + ""}>
@@ -399,6 +412,7 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
           </li>
         </NavLink>
       </ul>
+     
     </div>
   );
 };

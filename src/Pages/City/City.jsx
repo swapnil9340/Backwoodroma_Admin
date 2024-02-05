@@ -15,6 +15,7 @@ import Createcontext from "../../Hooks/Context/Context"
 import { useSnackbar } from 'notistack';
 import Tooltip from '@mui/material/Tooltip';
 import useStyles from '../../Style';
+import {SectionCard} from '../../molecules/SectionCard/Index'
 export default function City() {
     const classes = useStyles()
     const { enqueueSnackbar } = useSnackbar();
@@ -154,12 +155,10 @@ export default function City() {
 
     const rows = totel
     return (
-    
-            <div className='row'>
-                    <div className='col-12 Add_Category'>
-                        <div className="col"> <h2> City
-                        </h2></div>
-                        <div className="col " >  <span> <h2> <CityPopUp></CityPopUp></h2></span></div>
+            <SectionCard>
+                    <div className='col-12 d-flex justify-content-between align-item-center'>
+                         <h2 className='pagetitle'> City</h2>
+                         <span> <h2> <CityPopUp></CityPopUp></h2></span>
                     </div>
 
                     <div className='col-12' >
@@ -168,7 +167,7 @@ export default function City() {
 
                             <ThemeProvider theme={CustomFontTheme}>
                                 <div style={{ height: 400, width: '100%', }}>
-                                    <DataGrid rows={rows} columns={columns} 
+                                    import  useStyles  rows={rows} columns={columns} 
                                      disableColumnMenu
                                      disableColumnFilter
                                      disableColumnSelector
@@ -179,7 +178,6 @@ export default function City() {
 
                         </Box>
                     </div>
-                </div>
-
+            </SectionCard>
     )
 }

@@ -17,6 +17,7 @@ const Recentorder = ({title="Recent Order" ,data=[]}) => {
   const [searchtext, setSearchtext] = useState('')
   const classes = useStyles()
   const [searchdata, setSearchdata] = useState('')
+  const [pageSize, setPageSize] = React.useState(10)
   const cookies = new Cookies();
   const token_data = cookies.get('Token_access')
   const [recentorder, setRecentorder] = React.useState([])
@@ -203,7 +204,10 @@ const Recentorder = ({title="Recent Order" ,data=[]}) => {
               //  loading={true}
               hideFooterPagination
               hideFooterSelectedRowCount
-              rowsPerPageOptions={[5, 10, 20]}
+              pageSize={pageSize}
+              onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+              rowsPerPageOptions={[ 10, 20]}
+              pagination
               disableColumnMenu
               disableColumnFilter
               disableColumnSelector

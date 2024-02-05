@@ -95,20 +95,6 @@
   align-items: center;
   margin-bottom: 13px;
 }
-.categoryeditpopupcontainer .Upload_btn {
-  display: inline-flex;
-  height: 37px;
-  padding: 10px 12px;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  flex-shrink: 0;
-  border-radius: 4px;
-  background: #00ac4f;
-  color: #fff;
-  margin: 0 auto;
-  margin-bottom: 50px;
-}
 @keyframes lds-ring {
   0% {
     transform: rotate(0deg);

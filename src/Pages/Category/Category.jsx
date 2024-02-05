@@ -22,6 +22,7 @@ import  useStyles  from '../../Style';
 export default function Category(props) {
     const classes = useStyles()
     const { state, dispatch } = useContext(Createcontext)
+
     const { enqueueSnackbar } = useSnackbar();
     const CustomFontTheme = createTheme({
         typography: {
@@ -174,7 +175,7 @@ export default function Category(props) {
                     <Box className={classes.DataTableBoxStyle}>
                         <ThemeProvider theme={CustomFontTheme}>
                             <div style={{ width: '100%' }}>
-                                <DataGrid   rows={rows}
+                               <DataGrid    rows={rows}
                                             columns={columns} 
                                             pageSize={pageSize}
                                             onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}

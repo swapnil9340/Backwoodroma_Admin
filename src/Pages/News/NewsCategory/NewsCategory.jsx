@@ -15,6 +15,7 @@ import NewsCategoryDelete  from "./DelectnewsCategory"
 export default function NewsCategory(props) {
 const classes = useStyles()
     const { state} = useContext(Createcontext)
+    const [pageSize, setPageSize] = React.useState(10)
     const CustomFontTheme = createTheme({
         typography: {
             fontSize: 25
@@ -32,6 +33,7 @@ const classes = useStyles()
 
         }
     });
+    
     const [totel, setTotal] = React.useState([])  
     useEffect(() => {
         const cookies = new Cookies();
@@ -107,6 +109,10 @@ const classes = useStyles()
                                      disableColumnFilter
                                      disableColumnSelector
                                      className={classes.DataTableStyle}
+                                     pageSize={pageSize}
+                                     onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                     rowsPerPageOptions={[ 10, 20]}
+                                     pagination
                                     />
                                 </div>
                             </ThemeProvider>

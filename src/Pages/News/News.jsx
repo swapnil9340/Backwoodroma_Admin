@@ -12,13 +12,15 @@ import { BsThreeDotsVertical } from 'react-icons/bs';
 import Createcontext from "../../Hooks/Context/Context"
 import DeleteNews from "./DeleteNews"
 import useStyles from '../../Style';
-
+import {SectionCard} from '../../molecules/SectionCard/Index'
 
 export default function News() {
     const { state } = useContext(Createcontext)
     const classes = useStyles()
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
+    const [pageSize, setPageSize] = React.useState(10)
+
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
         axios("https://api.cannabaze.com/AdminPanel/Get-News/", {
@@ -105,29 +107,32 @@ export default function News() {
    
     return (
        
-                <div className='row'>
-                    
-
-                        <div className='col-12 Add_Category margin_top  m-2 mt-5 mb-5'>
-                            <div className="col"> <h2>Latest News
-                            </h2></div>
-                            <div className="col  popup_A" > {state?.Roles?.AddBlogs && <span> <h2> <Newspop></Newspop></h2></span> }</div>
+                <SectionCard>
+                        <div className='d-flex justify-content-between align-items-center w-100 p-4'>
+                            <h2>Latest News
+                            </h2>
+                           {state?.Roles?.AddBlogs && <span> <h2> <Newspop></Newspop></h2></span> }
                         </div>
                         <div className='col-12' >
                             <Box className={classes.DataTableBoxStyle} >
                                 <ThemeProvider theme={CustomFontTheme}>
-                                    <div style={{ height: 500, width: '100%', }}>
+                                 
                                         <DataGrid rows={rows} columns={columns} checkboxSelection
                                             disableColumnMenu
                                             disableColumnFilter
                                             disableColumnSelector
-                                          className={classes.DataTableStyle}
+                                            className={classes.DataTableStyle}
+                                            pageSize={pageSize}
+                                            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                            rowsPerPageOptions={[ 10, 20]}
+                                            pagination
+                                            autoHeight
                                         />
-                                    </div>
+                                   
                                 </ThemeProvider>
                             </Box>
                         </div>
-                    </div>
+                </SectionCard>
          
     );
 }

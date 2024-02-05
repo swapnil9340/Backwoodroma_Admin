@@ -172,7 +172,7 @@ export default function Brand() {
                 <Box  className={classes.DataTableBoxStyle}>
                     <ThemeProvider theme={CustomFontTheme}>
                         <div style={{  width: '100%', }}>
-                            <DataGrid
+                           <DataGrid
                                 rows={rows}
                                 columns={columns}
                                 autoHeight

@@ -29,6 +29,7 @@ export default function NewsSubCategory() {
             }
         }
     });
+    const [pageSize, setPageSize] = React.useState(10)
 
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
@@ -78,7 +79,7 @@ export default function NewsSubCategory() {
         }
     ]
 
-        const rows = totel
+    const rows = totel
 return (
    
         <div className='row'>
@@ -100,6 +101,10 @@ return (
                                  disableColumnFilter
                                  disableColumnSelector
                                  className={classes.DataTableStyle}
+                                 pageSize={pageSize}
+                                 onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                 rowsPerPageOptions={[ 10, 20]}
+                                 pagination
                                 />
                             </div>
                         </ThemeProvider>

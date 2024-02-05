@@ -27,7 +27,7 @@
     transition: all .3s ease;
     z-index: 10;
 }
-.sidebar:hover .dropdownarroe::after{
+.sidebar .dropdownarroe::after{
     width: 15px;
     height: 15px;
     content: '';
@@ -58,13 +58,9 @@
     padding: 0;
     background-color: #ffffff;
     min-height: calc(100vh - 150px);
-    /* padding: 40px 10px; */
-        /* padding: 40px 10px; */
-        margin: -5px;
+    margin: -5px;
   }
-  .sidebar ul:hover{
-    padding: 40px 20px;
-  }
+
   .sidebar ul a{
     text-decoration: none;
     color: #6B6B6B;
@@ -95,7 +91,7 @@
   .sidebar ul li span.sidebar_text{
     display: none;
   }
-  .sidebar:hover ul li span.sidebar_text{
+  .sidebar ul li span.sidebar_text{
     display: inline;
   }
   .mainfilter{

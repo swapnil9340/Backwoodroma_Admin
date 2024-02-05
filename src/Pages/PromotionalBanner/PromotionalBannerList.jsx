@@ -25,6 +25,7 @@ const PromotionalBannerList = () => {
     const navigate=useNavigate()
     const Swal = require('sweetalert2')
     const { state, dispatch } = useContext(Createcontext);
+    const [pageSize, setPageSize] = React.useState(10)
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [bannertype , Setbannertype] = useState("Promotional Banner")
@@ -304,7 +305,7 @@ const PromotionalBannerList = () => {
             };
           }, []);
     return (
-        <SectionCard>
+        <div>
            
                        <div className="col-sm-4 col-6 py-5">
                            
@@ -316,7 +317,7 @@ const PromotionalBannerList = () => {
 
                            </div>
                        </div>
-                        <div className="row section_card  ">
+                        <SectionCard className="row section_card  ">
                             <div className="d-flex justify-content-between px-4 align-items-center my-5" >
                                 <h2 className='d-flex align-items-center pagetitle'> <SlSocialDropbox color='#31B655' size={25}/>{detailstype ? "Promotional Banner" : "Offer Banner"}</h2>
                             
@@ -339,26 +340,22 @@ const PromotionalBannerList = () => {
                                     disableColumnSelector
                                     disableSelectionOnClick
                                     autoHeight
-                                    initialState={{
-                                    pagination: {
-                                        paginationModel: {
-                                        pageSize: 5,
-                                        },
-                                    },
-                                    }}
-                                    pageSizeOptions={[5]}
+                                    pageSize={pageSize}
+                                    onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                    rowsPerPageOptions={[ 10, 20]}
+                                    pagination
                                     className={classes.DataTableStyle}
                                 
                                 />
                             </Box>
-                        </div>
+                        </SectionCard>
                   
                   
             {loader && <div className="loadercontainer">
               <div class="loader4"></div>
             </div>}
             <Bannerupdatemodel openupdate={openupdate} bannertype={bannertype} setOpenupdate={setOpenupdate} Setloader={Setloader} data={editdata}/>
-        </SectionCard>
+        </div>
     )
 }
 export default PromotionalBannerList

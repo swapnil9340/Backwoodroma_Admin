@@ -14,7 +14,7 @@ import StateEdit from "./StateEdit"
 import StateDelete from './StatesDelete';
 import Tooltip from '@mui/material/Tooltip';
 import useStyles from '../../Style';
-
+import {SectionCard} from '../../molecules/SectionCard/Index'
 
 export default function State() {
     const { state, dispatch } = useContext(Createcontext)
@@ -76,8 +76,6 @@ export default function State() {
             }
         )
     }
-
-
     const columns = [
         { field: 'StateName',sortable:false, headerName: 'States',maxWidth: 150, minWidth: 90, flex: 1, editable: false, headerClassName: 'super-app-theme--header' },
         { field: 'country_name',sortable:false, headerName: 'Country', maxWidth: 150, minWidth: 90, flex: 1,editable: false, headerClassName: 'super-app-theme--header' },
@@ -154,18 +152,14 @@ export default function State() {
             )
         },
     ];
-
     const rows = totel
     return (
        
-            <div className='row'>
-               
-
-                    <div className='col-12 Add_Category my-2'>
-                        <div className="col"> <h2> States </h2></div>
-                        <div className="col " >  <span > <h2><StatePopUp></StatePopUp></h2></span></div>
+                <SectionCard>
+                    <div className='col-12  p-4 d-flex justify-content-between align-items-center'>
+                          <h2 className='pagetitle'> States </h2>
+                          <span > <h2><StatePopUp></StatePopUp></h2></span>
                     </div>
-
                     <div className='col-12' >
                         <Box
                           className={classes.DataTableBoxStyle}
@@ -185,9 +179,6 @@ export default function State() {
                             </ThemeProvider>
                         </Box>
                     </div>
-                </div>
-
-
-
+                </SectionCard>
     )
 }

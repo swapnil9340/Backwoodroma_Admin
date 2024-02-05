@@ -175,6 +175,10 @@ export default function State() {
                                         disableColumnFilter
                                         disableColumnSelector 
                                         className={classes.DataTableStyle}
+                                        pageSize={pageSize}
+                                        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                        rowsPerPageOptions={[ 10, 20]}
+                                        pagination
                                     />
                                 </div>
                             </ThemeProvider>

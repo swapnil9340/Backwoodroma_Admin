@@ -15,6 +15,7 @@ import Createcontext from "../../Hooks/Context/Context"
 import DeleteCountry from "../Countries/DeleteCountry"
 import Tooltip from '@mui/material/Tooltip';
 import useStyles from '../../Style';
+import {SectionCard} from '../../molecules/SectionCard/Index'
 export default function Countries() {
     const { state, dispatch } = useContext(Createcontext)
     const { enqueueSnackbar } = useSnackbar();
@@ -33,6 +34,7 @@ export default function Countries() {
             }
         }
     });
+    const [pageSize, setPageSize] = React.useState(10)
     const classes = useStyles()
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
@@ -154,14 +156,14 @@ export default function Countries() {
     const rows = totel
     return (
      
-            <div className='row'>
+            <SectionCard>
 
 
              
 
-                    <div className='col-12 Add_Category'>
-                        <div className="col m-4"> <h2>  Countries </h2></div>
-                        <div className="col  m-4" >  <span> <h2><CountriesPopup></CountriesPopup></h2></span></div>
+                    <div className='p-4 d-flex justify-content-between align-items-center w-100'>
+                        <h2 className='pagetitle'>  Countries </h2>
+                         <span> <h2><CountriesPopup></CountriesPopup></h2></span>
                     </div>
                     <div className='col-12' >
 
@@ -173,13 +175,17 @@ export default function Countries() {
                                      disableColumnFilter
                                      disableColumnSelector
                                      className={classes.DataTableStyle}
+                                     pageSize={pageSize}
+                                     onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                     rowsPerPageOptions={[ 10, 20]}
+                                     pagination
                                     />
                                 </div>
                             </ThemeProvider>
                         </Box>
 
                     </div>
-                </div>
+                </SectionCard>
 
 
 

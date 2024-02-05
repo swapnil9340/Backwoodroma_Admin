@@ -23,6 +23,7 @@ export default function AdminPanel() {
   const { state } = useContext(Createcontext)
   const cookies = new Cookies();
   const [pendingstore, setPendingStore] = useState([])
+  const [pageSize, setPageSize] = React.useState(10)
   const token_data = cookies.get('Token_access')
   const columns = [
 
@@ -292,7 +293,10 @@ export default function AdminPanel() {
                     getRowId={(row) => row.UserName}
                     hideFooterPagination
                     hideFooterSelectedRowCount
-                    rowsPerPageOptions={[5, 10, 20]}
+                    pageSize={pageSize}
+                    onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                    rowsPerPageOptions={[ 10, 20]}
+                    pagination
                     autoHeight
                     disableColumnMenu
                     disableColumnFilter

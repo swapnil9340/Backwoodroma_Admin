@@ -11,7 +11,7 @@ import Cookies from 'universal-cookie';
 import Axios from "axios"
 import Createcontext from "../../Hooks/Context/Context"
 import InputAdornment from '@mui/material/InputAdornment';
-
+import {Headerbutton} from '../../molecules/Button/index'
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
         padding: theme.spacing(2),
@@ -50,7 +50,6 @@ export default function CountriesPopUp() {
         setmassage('')
        
     };
-   
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -59,8 +58,6 @@ export default function CountriesPopUp() {
         seterror("")
         setmassage('')
     };
-
-
     const Submit = () => {
         const cookies = new Cookies();
         const token_data = cookies.get('Token_access')
@@ -98,9 +95,9 @@ export default function CountriesPopUp() {
 
     return (
         <div>
-            <button className="topbutton" onClick={handleClickOpen}>
+            <Headerbutton onClick={handleClickOpen}>
                 + Add countries
-            </button>
+            </Headerbutton>
             <BootstrapDialog
                 onClose={handleClose}
                 aria-labelledby="Customizeed-dialog-title"
