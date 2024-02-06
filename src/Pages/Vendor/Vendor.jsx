@@ -43,8 +43,7 @@ const Vendor = () => {
   const [topsellproduct, settopsellproduct] = React.useState();
   const [totalsale, settotalsale] = React.useState({});
   const [orderstore, setorderstore] = React.useState({});
-  const { state, dispatch } = React.useContext(Createcontext);
-  const { enqueueSnackbar } = useSnackbar();
+  const { state } = React.useContext(Createcontext);
   const cookies = new Cookies();
   const [pageSize, setPageSize] = React.useState(5);
   const [detailstype, setdetailstype] = React.useState(true);
@@ -175,18 +174,12 @@ const Vendor = () => {
     },
   ];
   const row = totalsale;
+  console.log()
   React.useEffect(() => {
     axios
       .post(
         `https://api.cannabaze.com/AdminPanel/TopSaleProductVendor/`,
-        {
-          SelectTime: "Year",
-          StartDate: "2023-01-30",
-          EndDate: "2024-01-31",
-          LastStartDate: "2023-01-01",
-          EndStartDate: "2023-12-31",
-          Storeid: selectedstore,
-        },
+        { ...Data, Storeid: selectedstore },
         {
           headers: {
             Authorization: `Bearer ${token_data}`,
@@ -196,7 +189,7 @@ const Vendor = () => {
       .then((res) => {
         settopsellproduct(res.data);
       });
-  }, [selectedstore]);
+  }, [selectedstore, Data]);
 
   React.useEffect(() => {
     if (detailstype) {
@@ -217,12 +210,8 @@ const Vendor = () => {
       axios
         .post(
           `https://api.cannabaze.com/AdminPanel/OrderByStoreId/`,
-          {
-            SelectTime: "Year",
-            Storeid: selectedstore,
-            StartDate: "2023-01-01",
-            EndDate: "2024-02-01",
-          },
+          { ...Data, Storeid: selectedstore },
+
           {
             headers: {
               Authorization: `Bearer ${token_data}`,
@@ -249,7 +238,7 @@ const Vendor = () => {
         setAllstore(res?.data);
         setselectedstore(res?.data[0].id);
       });
-  }, [location.state.id]);
+  }, [location.state.id, Data]);
 
   return (
     <div className="venderSection">
@@ -502,7 +491,8 @@ const Vendor = () => {
               </ThemeProvider>
             </Box>
           ) : (
-            <Recentorder title={"Order Details"} data={orderstore} />
+
+            <Recentorder title={"Order Details"} order={orderstore} />
           )}
         </div>
       </div>

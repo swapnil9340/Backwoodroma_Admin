@@ -39,6 +39,7 @@ const Vendorlist = () => {
     const [pageSize, setPageSize] = React.useState(5)
     const { state, dispatch } = React.useContext(Createcontext)
     const { enqueueSnackbar } = useSnackbar();
+    
      React.useEffect(() => {
 
         axios("https://api.cannabaze.com/AdminPanel/Get-AllVendor/", {
@@ -194,7 +195,7 @@ const Vendorlist = () => {
             sortable: false, minWidth: 120, flex: 1,
             headerAlign: 'center', align: "center",
             renderCell: (params) => {
-              console.log(params.row.id)
+        
                 return (
                   <Link to={'/Vendor'} state={params.row}><span className='view_icon'><LuEye /></span></Link>
                 )
