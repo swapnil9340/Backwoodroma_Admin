@@ -180,24 +180,6 @@ const Recentorder = ({ title, order }) => {
     },
 
   });
-  useEffect(() => {
-  if(Boolean(data.length === 0 )){
-
- 
-    Axios.get('https://api.cannabaze.com/AdminPanel/AllRecentOrder/', {
-      headers: {
-        'Authorization': `Bearer ${token_data}`
-      }
-    }).then((res) => {
-      let a= res.data.slice(0,6)
-     
-      setRecentorder(a)
-    })
-  }else{
-   
-    setRecentorder(()=>{return data})
-  }
-  }, [data])
   return (
     <div className='RecentOrderCard'>
       <div className='d-flex gap-4 py-4'>
