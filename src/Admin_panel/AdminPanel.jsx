@@ -131,8 +131,8 @@ export default function AdminPanel() {
   };
   const [Data1, SetData1] = React.useState([])
   //  Months//////////////////
-  const [Data, SetData] = useState({})
   const [TopStore, SetTopStore] = React.useState([])
+  const [Data, SetData] = useState({})
 
   let date = new Date()
   const TodayDate = date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate()
