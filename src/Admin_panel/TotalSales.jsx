@@ -121,8 +121,7 @@ const TotalSales = ({type}) => {
 
       })
     }
-
-  }, [Data])
+  }, [])
 
 
   const Saalesstate = {
@@ -232,7 +231,7 @@ const TotalSales = ({type}) => {
     <div className='totalSalesChart'>
       <div className='totalSalesChartHeader'>
         <span className='headingtext'> Total Sales</span>
-        <Link className='headingtext'>View Details</Link>
+        <Link to={'/totalsales'} className='headingtext'>View Details</Link>
       </div>
       <h3 className='totalsalesamount'>{totel?.TotalSales}</h3>
       <div className={totel.Growth ? 'growthIndicater1':'growthIndicater'  }>

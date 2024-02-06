@@ -232,6 +232,12 @@ h3.graphtitle {
   background-color: #fff;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
+@media screen and (max-width: 768px) {
+  .dashboardSection .storeOwnerTable {
+    flex: none;
+    width: 100%;
+  }
+}
 .dashboardSection .storeOwnerTable .ownerlist {
   height: 90%;
 }

@@ -1,22 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import useStyles from '../../Style';
 import { ThemeProvider , Box ,createTheme } from "@mui/material";
 import { SlSocialDropbox } from "react-icons/sl";
-import {useLocation} from 'react-router-dom'
+import Axios from 'axios';
+import Cookies from 'universal-cookie';
 const TotalSales = () => {
-    const location = useLocation()
+    const [dataapi , setapidata]= React.useState([])
     const classes= useStyles()
+    const cookies = new Cookies();
+    const token_data = cookies.get('Token_access')
+    const [pageSize, setPageSize] = React.useState(10)
     const columns = [
    
-      { field: 'ProductImage', headerName: 'Product Image', minWidth: 120, 
-            renderCell:(params)=>{
-                return <span className='image_circle_tsp'><img src={params.row.Image}/></span> 
-            }
-      },
+  
       {
-        field: 'ProductName',
-        headerName: 'Product Name',
+        field: 'StoreName',
+        headerName: 'Store Name',
         minWidth: 120,
         editable: false,
         sortable:false,
@@ -25,18 +25,8 @@ const TotalSales = () => {
         align: "left",
       },
       {
-        field: 'category',
-        headerName: 'Category',
-        minWidth: 120,
-        editable: false,
-        sortable:false,
-        flex:1,
-        headerAlign: "center",
-        align: "center",
-      },
-      {
-        field: 'ProductPrice',
-        headerName: 'Price',
+        field: 'Pickup',
+        headerName: 'Store',
         minWidth: 120,
         editable: false,
         sortable:false,
@@ -46,60 +36,45 @@ const TotalSales = () => {
         valueFormatter: ({ value }) => `$${value}` 
       },
       {
-        field: 'ProductSalesCount',
-        headerName: 'Sale Unite',
+        field: 'delivery',
+        headerName: 'Delivery',
+        minWidth: 120,
+        editable: false,
+        sortable:false,
+        flex:1,
+        headerAlign: "center",
+        align: "center",
+        valueFormatter: ({ value }) => `$${value}` 
+      },
+      {
+        field: 'curbsidepickup',
+        headerName: 'curbside pickup',
         sortable:false,
         minWidth: 80,
         editable: false,
         flex:1,
         headerAlign: "center",
         align: "center",
-        valueFormatter: ({ value }) => `${value} Qty` 
+        valueFormatter: ({ value }) => `$ ${value} ` 
       },
-      {
-          field: 'Price',
-          headerName: 'Total Sale Price',
-          sortable:false,
-          minWidth: 80,
-          editable: false,
-          flex:1,
-          headerAlign: "center",
-          align: "center",
-          valueFormatter: ({ value }) => `$${value}` 
-      },
-      {
-        field: 'StoreName',
-        headerName: 'Store Name',
-        sortable:false,
-        minWidth: 80,
-        editable: false,
-        flex:1,
-        headerAlign: "center",
-        align: "center",
-    },
+     
+     
     {
-        field: 'Stock',
-        headerName: 'Status',
+        field: 'Total',
+        headerName: 'Total Sales',
         sortable:false,
         minWidth: 80,
         editable: false,
         flex:1,
         headerAlign: "center",
         align: "center",
-        renderCell: (params) => {
-            if (params.row.Stock === "IN Stock" ) {
-              return <span className='statusactive'>In Stock</span>
-            }else{
-              return <span className='statusinactive'>Out Of stock</span>
-            }
+        renderCell: (params) => {  
+              return `$ ${params.row.curbsidepickup + params.row.delivery + params.row.Pickup }`
         },
     },
   
     ];
-  
-    const rows = location?.state
-   
-
+    const rows = dataapi
     const CustomFontTheme = createTheme({
       typography: {
           fontSize: 25
@@ -115,7 +90,28 @@ const TotalSales = () => {
           },
       },
 
-      });
+    });
+
+      useEffect(()=>{
+         Axios.post('https://api.cannabaze.com/AdminPanel/TotalSalesPage/',
+         {"SelectTime":"ThisYear","StartDate":"2024-01-01","EndDate":"2024-02-06","LastStartDate":"2023-12-01","EndStartDate":"2023-12-31"},
+         {
+        headers: {
+          'Authorization': `Bearer ${token_data}`
+         } }).then((res)=>{
+          let a = res.data.map((item , index)=>{
+                return {
+                  ...item, id : index+1
+                }
+          })
+          
+          a.pop()
+           setapidata(a)
+         })
+
+
+      },[])
+      console.log(dataapi ,'dataapi dataapi dataapi ')
   return (
     <div className=' my-4 '>
         <div className='py-4 section_card'>
@@ -134,15 +130,11 @@ const TotalSales = () => {
                                 <DataGrid
                                     rows={rows}
                                     columns={columns}
-                                    getRowId={(row) => row.Product_id}
-                                    initialState={{
-                                    pagination: {
-                                        paginationModel: {
-                                        pageSize: 10,
-                                        },
-                                    },
-                                    }}
-                                    pageSizeOptions={[ 10, 25, 50]}
+                                    getRowId={(row) => row.id}
+                                    pageSize={pageSize}
+                                            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                            rowsPerPageOptions={[ 10, 20]}
+                                            pagination
                                     disableRowSelectionOnClick
                                     disableColumnMenu
                                     disableColumnFilter
@@ -151,6 +143,7 @@ const TotalSales = () => {
                                     checkboxSelection={false}
                                     rowSelection={false}
                                      className={classes.DataTableStyle}
+                                    
                                 />
                             </ThemeProvider>
                         </Box>

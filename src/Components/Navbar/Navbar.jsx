@@ -22,13 +22,12 @@ import { GoDotFill } from "react-icons/go";
 import Filtermain from './Filtermain'
 import Sidebar from './Sidebar';
 // import UserEditProfile from '../../Pages/UserProfile/UserEditProfile';
-function Navbar() {
+function Navbar({ sidebaropen, setsidebaropen }) {
   const [searchtext, setSearchtext] = useState('')
   const [windowSize, setWindowSize] = React.useState([
     window.innerWidth,
     window.innerHeight,
   ]);
-  const [sidebaropen , setsidebaropen] = React.useState(false);
   const [navBg, setNavBg] = useState(false);
   const { state ,dispatch } = useContext(Createcontext)
   const islogin = useContext(Createcontext)
@@ -67,7 +66,6 @@ function Navbar() {
       window.removeEventListener('scroll', changeNavBg);
     }
   }, [])
-  //jquery for toggle sub menus
   var dropdown = document.getElementsByClassName("dropdown-btn");
   var i;
 
@@ -95,11 +93,11 @@ function Navbar() {
               <div className="">
 
                 {
-                  windowSize[0] <= 991
+                  windowSize[0] <= 1024
                     ?
                     <div >
                       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className='menu_logo' > <IoIosMenu></IoIosMenu></span>
+                        <span className='menu_logo' onClick={()=>{setsidebaropen(true)}} > <IoIosMenu></IoIosMenu></span>
                       </button>
                     </div>
                     :
@@ -130,7 +128,6 @@ function Navbar() {
             </div>
           </div>
         </nav>
-
       }
     </>
 

@@ -107,13 +107,8 @@ const PromotionalBanner = () => {
             <SectionCard className="p-5"> 
                
             <h2 className='d-flex align-items-center pagetitle'> <SlSocialDropbox color='#31B655' size={25}/>Banner Upload</h2>
-                            {/* <div className="promtionalBannerHeader">
-                                <div>
-                                    <IconButton onClick={()=>navigate("/PromotionalBannerList")}><IoMdArrowBack /></IconButton><span className="promotionBackBtnHead">Back</span>
-                                </div>
-                            </div> */}
-                            <div className=" PromotionalMainContainer ">
-                                         
+                          
+                            <div className=" PromotionalMainContainer ">          
                                             <div className="feild_box">
                                                 <div className="col-xxl-1  col-lg-2 col-md-3 col-3">
                                                     <label htmlFor="title" className="label_custom">Title</label>
@@ -268,14 +263,12 @@ const PromotionalBanner = () => {
                                                     </form>
                                                 </div>
                                             </div>
-                                          
                                             <div className="mt-3">
                                                 <Box className={` ${classes.PromotionalBtn}`}>
                                                     <button className="cancel_btn" onClick={()=>navigate("/PromotionalBannerList")}>Cancel</button>
                                                     <button className="topbutton" onClick={submitFunction}>Add Banner</button>
                                                 </Box>
                                             </div>
-                                
                             </div>
             </SectionCard>
 

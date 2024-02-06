@@ -12,6 +12,7 @@ import "./Sidebar.css";
 import useStyles from "../../Style";
 import { FaRegHand } from "react-icons/fa6";
 import { FaHandPaper } from "react-icons/fa";
+import { RxCross2 } from "react-icons/rx";
 
 const Sidebar = ({ sidebaropen, setsidebaropen }) => {
   const { state } = useContext(Createcontext);
@@ -38,22 +39,26 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
       setOpendropdown(value);
     }
   }
-  console.log(sideopen ,'sideopen')
+  console.log(sidebaropen ,'sideopen')
   return (
-    <div className={`sidebar ${sidebaropen ? "opensidebar" : ""}`} style={{width:sideopen? "15%":'60px'}} onMouseOver={()=>{
+    <div className={`sidebar ${sidebaropen ? "opensidebarMobile" : ""}  ${sideopen ? "sidebaropen" : "sidebarclose"}  `}  onMouseOver={()=>{
     
         Setsideopen(true)
       
-      }} onMouseLeave={()=>{
+        }} onMouseLeave={()=>{
         if(!stick){
           Setsideopen(false) ;
           setOpendropdown('')
         }
         
         }}>
-        <div className="w-100 text-end p-4"><span onClick={()=>setStick(!stick)} >{stick? <FaHandPaper size={28} color="#31B655"/>:<FaRegHand size={28} color="#31B655"/>}</span></div>
 
-      <ul>
+          {
+            !sidebaropen ?  <div className="w-100 text-end p-4"><span onClick={()=>setStick(!stick)} >{stick? <FaHandPaper size={28} color="#31B655"/>:<FaRegHand size={28} color="#31B655"/>}</span></div>
+               : <div className="w-100 text-end p-4"><span onClick={()=>setsidebaropen(false)} ><RxCross2 size={28} color="#31B655"/></span></div>
+        
+           }
+       <ul>
         <NavLink to={"/"} onClick={closebar} isActive={checkActive}>
           <li button className={" active_bar "}>
             <Icon className={classes.sidebarIcon + ""}>

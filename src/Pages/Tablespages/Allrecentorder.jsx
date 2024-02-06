@@ -17,7 +17,7 @@ const Allrecentorder = () => {
   const cookies = new Cookies();
   const token_data = cookies.get("Token_access");
   const [pageSize, setPageSize] = React.useState(10)
-const classes = useStyles()
+  const classes = useStyles()
   function noimagefun(ev){
     // ev.target.src = "image/blank_Image.webp"
     seterror((error)=>{
@@ -34,7 +34,7 @@ const classes = useStyles()
         
             setRecentorder(res.data)
           })
-        }, [])
+        }, [token_data])
         const CustomFontTheme = createTheme({
         typography: {
             fontSize: 25

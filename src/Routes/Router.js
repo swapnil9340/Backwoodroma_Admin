@@ -14,10 +14,10 @@ import Tax from "../Pages/Tax/Tax"
 import Store from '../Pages/Store/Store';
 import Brand from '../Pages/Brand/Brand';
 import News from '../Pages/News/News';
-import NewsCategory from "../Pages/News/NewsCategory/NewsCategory"
-import NewsSubCategory from "../Pages/News/NewsSubCategory/NewsSubCategory"
-import Vendor from "../Pages/Vendor/Vendor"
-import Pagenotfound from "../Pages/Pagenotfound"
+import NewsCategory from "../Pages/News/NewsCategory/NewsCategory";
+import NewsSubCategory from "../Pages/News/NewsSubCategory/NewsSubCategory";
+import Vendor from "../Pages/Vendor/Vendor";
+import Pagenotfound from "../Pages/Pagenotfound";
 import Review from '../Pages/Review/Review';
 import Signup from '../Pages/Signup/Signup';
 import Settings from '../Pages/Settings/Settings';
@@ -36,6 +36,8 @@ import Topproducts from '../Pages/Tablespages/Topproducts';
 import Allrecentorder from '../Pages/Tablespages/Allrecentorder'
 import Topstore from '../Pages/Tablespages/Topstore';
 import AllReview from '../Pages/Tablespages/AllReview';
+import UserProfile from '../Pages/UserProfile/UserProfile';
+import TotalSales from '../Pages/Tablespages/TotalSales'
 // export default function Router() {;
 //   return (
     
@@ -220,6 +222,14 @@ const routesConfig = [
       {
         path:"/allreview",
         element:<Protected  Component={AllReview}/>
+      },
+      {
+        path:"/userprofile",
+        element:<Protected  Component={UserProfile}/>
+      },
+      {
+        path:"/totalsales",
+        element:<Protected  Component={TotalSales}/>
       },
     ],
   },

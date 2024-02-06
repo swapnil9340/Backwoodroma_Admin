@@ -297,12 +297,12 @@ const Areagraph = ({ title, id }) => {
           if (timeintervalchart === "ThisMonth" || timeintervalchart === "Customics") {
             if (timeintervalchart === "ThisMonth") {
               res.data.map((data) => {
-                if (!data.Date.slice(3, data.Date.length - 3) > 10) {
-                  Setmonth((month) => ({ ...month, [data.Date.slice(4, data.Date.length - 3)]: data.User, }));
+                if (!data.Date.slice(3, data.Date?.length  - 3) > 10) {
+                  Setmonth((month) => ({ ...month, [data.Date.slice(4, data.Date?.length  - 3)]: data.User, }));
                 } else {
                   Setmonth((month) => ({
                     ...month,
-                    [data.Date.slice(4, data.Date.length - 3)]: data.User,
+                    [data.Date.slice(4, data.Date?.length  - 3)]: data.User,
                   }));
                 }
               });
@@ -310,13 +310,13 @@ const Areagraph = ({ title, id }) => {
             else if (timeintervalchart === "Customics") {
               console.log(res.data,)
               res.data.map((data) => {
-                if (data.Date.slice(3, data.Date.length - 3) < 10) {
-                  console.log(data.Date.slice(4, data.Date.length - 3), data.Date.slice(3, data.Date.length - 3) < 10, data.User, "555555555")
-                  Setmonth((month) => ({ ...month, [data.Date.slice(4, data.Date.length - 3)]: data.User, }));
+                if (data.Date.slice(3, data.Date?.length  - 3) < 10) {
+                  console.log(data.Date.slice(4, data.Date?.length  - 3), data.Date.slice(3, data.Date?.length  - 3) < 10, data.User, "555555555")
+                  Setmonth((month) => ({ ...month, [data.Date.slice(4, data.Date?.length  - 3)]: data.User, }));
                 } else {
                   Setmonth((month) => ({
                     ...month,
-                    [data.Date.slice(3, data.Date.length - 3)]: data.User,
+                    [data.Date.slice(3, data.Date?.length  - 3)]: data.User,
                   }));
                 }
               });
@@ -371,12 +371,12 @@ const Areagraph = ({ title, id }) => {
         .then((res) => {
           if (timeintervalchart === "ThisMonth") {
             res.data.map((data) => {
-              console.log(data.Date.slice(3, data.Date.length - 3) < 10)
-              if (!data.Date.slice(3, data.Date.length - 3) < 10) {
-                Setmonth(month => ({ ...month, [data.Date.slice(4, data.Date.length - 3)]: [data.TotalPrice, data.UnitSold] }))
+              console.log(data.Date.slice(3, data.Date?.length  - 3) < 10)
+              if (!data.Date.slice(3, data.Date?.length  - 3) < 10) {
+                Setmonth(month => ({ ...month, [data.Date.slice(4, data.Date?.length  - 3)]: [data.TotalPrice, data.UnitSold] }))
               } else {
 
-                Setmonth(month => ({ ...month, [data.Date.slice(4, data.Date.length - 3)]: [data.TotalPrice, data.UnitSold] }))
+                Setmonth(month => ({ ...month, [data.Date.slice(4, data.Date?.length  - 3)]: [data.TotalPrice, data.UnitSold] }))
               }
             })
           }

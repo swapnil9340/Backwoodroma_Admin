@@ -226,7 +226,7 @@ export default function AdminPanel() {
   }, [state.datesSelect, state.CustomeStartDate, state.CustomeEndDate])
 
   useEffect(() => {
-    if (Object.keys(Data).length !== 0) {
+    if (Object.keys(Data)?.length !== 0) {
       axios.post('https://api.cannabaze.com/AdminPanel/AllPendingStores/',
         Data
         , {

@@ -427,4 +427,94 @@
 }
 .sucsconfirmpopup .sucspopup .popupbtn:nth-child(2) {
   background-color: #38a169;
+}
+
+.UserProfile .UserProfileWrapper {
+  display: flex;
+  gap: 20px;
+  min-height: 80vh;
+}
+.UserProfile .UserProfileWrapper .userDiscription {
+  width: 420px;
+  background-color: white;
+  height: 100%;
+}
+.UserProfile .UserProfileWrapper .userDiscription .userCircle {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+.UserProfile .UserProfileWrapper .userDiscription .userCircle img {
+  width: 100%;
+}
+.UserProfile .UserProfileWrapper .userDiscription .userName {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 36px;
+  margin-top: 12px;
+}
+.UserProfile .UserProfileWrapper .userDiscription .contact_info {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.UserProfile .UserProfileWrapper .userDiscription .UsertotalcardWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 23px;
+}
+.UserProfile .UserProfileWrapper .userDiscription .UsertotalcardWrapper .Usertotalcard {
+  width: 170px;
+  height: 170px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.UserProfile .UserProfileWrapper .userDiscription .UsertotalcardWrapper .Usertotalcard .UsertotalcardTitle {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.UserProfile .UserProfileWrapper .userTable {
+  flex: 1;
+}
+.UserProfile .UserProfileWrapper .userTable .counterType {
+  border-bottom: 2px solid hsla(0, 0%, 0%, 0.05);
+  padding: 10px 0;
+  margin: 10px;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  align-items: center;
+  gap: 50px;
+}
+.UserProfile .UserProfileWrapper .userTable .counterType .selectedItem {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: rgb(0, 172, 79);
+  position: relative;
+  border-bottom: 2px solid rgb(0, 172, 79);
+}
+.UserProfile .UserProfileWrapper .userTable .counterType .selectedItem::before {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: rgb(0, 172, 79);
+  z-index: 10;
+}
+.UserProfile .UserProfileWrapper .userTable .counterType .notselected {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: rgb(90, 90, 90);
 }/*# sourceMappingURL=style.css.map */

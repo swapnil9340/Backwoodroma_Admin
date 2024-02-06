@@ -173,7 +173,7 @@ const Recentorder = ({title="Recent Order" ,data=[]}) => {
 
   });
   useEffect(() => {
-  if(Boolean(data.length === 0 )){
+  if(Boolean(data?.length === 0 )){
 
  
     Axios.get('https://api.cannabaze.com/AdminPanel/AllRecentOrder/', {
@@ -189,7 +189,7 @@ const Recentorder = ({title="Recent Order" ,data=[]}) => {
    
     setRecentorder(()=>{return data})
   }
-  }, [data])
+  }, [])
   return (
     <div className='RecentOrderCard'>
       <div className='d-flex gap-4 py-4'>

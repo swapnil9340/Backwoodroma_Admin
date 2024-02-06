@@ -277,10 +277,14 @@ h3.graphtitle {
     }
 
     .storeOwnerTable {
-      flex: 1;
+        flex: 1;
         background-color: #fff;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-
+          @media screen and (max-width: 768px) {
+           flex: none;
+           width: 100%;
+          }
+       
         .ownerlist {
             height: 90%;
 

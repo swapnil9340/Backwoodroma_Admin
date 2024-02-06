@@ -12,7 +12,7 @@
     position: relative;
     transition: all .3s ease;
 }
-.dropright::after{
+.sidebaropen .dropright::after{
     width: 15px;
     height: 15px;
     content: '';
@@ -27,7 +27,7 @@
     transition: all .3s ease;
     z-index: 10;
 }
-.sidebar .dropdownarroe::after{
+.sidebar.sidebaropen .dropdownarroe::after{
     width: 15px;
     height: 15px;
     content: '';
@@ -135,4 +135,95 @@
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     border-radius: 4px;
     overflow: hidden;
+  }
+  .sidebaropen{
+     width: 15%;
+     padding: 40px 20px;
+  }
+  .sidebarclose{
+    width: 60px;
+    padding: 40px 0px;
+  }
+  @media screen and (max-width: 1536px){
+    .sidebar_text{
+      font-size: 14px;
+    }
+    .sidebaropen{
+      width: 15%;
+      padding: 40px 15px;
+    }
+    .sidebarclose{
+      width: 50px;
+      padding: 40px 0px;
+    }
+    .sidebar ul a li{
+      margin-bottom: 0;
+    }
+    .sidebarDropdown{
+      margin-bottom: 0;
+    }
+  }
+  @media screen and (max-width: 1264px){
+    .sidebar_text{
+      font-size: 12px;
+    }
+    .sidebaropen{
+      width: 15%;
+      padding: 40px 10px;
+    }
+    .sidebarclose{
+      width: 45px;
+      padding: 40px 0px;
+    }
+    .sidebar ul a li{
+      margin-bottom: 0;
+      gap: 5px;
+    }
+    .sidebarDropdown{
+      gap: 5px;
+    }
+  }
+  @media screen and (max-width: 1024px){
+    .sidebar.sidebaropen{
+      width: 40%;
+      padding: 40px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+   }
+   .sidebar.opensidebarMobile{
+    width: 40%;
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1030;
+   }
+  }
+  @media screen and (max-width: 768px){
+    .sidebar.sidebaropen{
+      width: 40%;
+      padding: 40px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+   }
+   .sidebar.opensidebarMobile{
+      width: 60%;
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1030;
+   }
+  }
+  @media screen and (max-width: 480px){ 
+   .sidebar.opensidebarMobile{
+      width: 70%;
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1030;
+   }
   }

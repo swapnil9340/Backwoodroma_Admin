@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import './App.css'
 const useStyles = makeStyles(theme =>(
   {
       FilledTextFieldStyle: {
@@ -580,6 +581,12 @@ const useStyles = makeStyles(theme =>(
           width : '40px !important', 
           display:'flex',
           
+        },
+        '@media (max-width: 1536px)': {
+          height : '35px !important', 
+        width : '35px !important', 
+        display:'flex',
+        fontSize:'2rem !important',
         }
       },
       StandardTextFieldStyle:{
@@ -764,10 +771,14 @@ const useStyles = makeStyles(theme =>(
             border: 'none',
           },
           "& .MuiDataGrid-columnHeaderTitle":{
-              fontSize:'12px'
+              fontSize:'12px',
+              fontFamily:' Inter, sans-serif',
           },
           "& .MuiDataGrid-cell .MuiDataGrid-cellContent":{
-            fontSize:'12px'
+            fontSize:'12px',
+            fontFamily: 'Inter, sans-serif',
+            fontWeight:'500',
+            color:'black',
           },
           // check
           ".MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within": {

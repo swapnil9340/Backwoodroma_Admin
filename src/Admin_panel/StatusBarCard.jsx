@@ -204,7 +204,7 @@ export default function StatusBarCard({ title, id }) {
 
   useEffect(() => {
     if (title === "dashboard") {
-      if (Object.keys(Data).length !== 0) {
+      if (Object.keys(Data)?.length !== 0) {
         axios
           .post("https://api.cannabaze.com/AdminPanel/TotalStore/", Data, {
             headers: {
@@ -269,7 +269,7 @@ export default function StatusBarCard({ title, id }) {
           });
       }
     } else if (title === "vendor") {
-      if (Object.keys(Data).length !== 0) {
+      if (Object.keys(Data)?.length !== 0) {
         if (id !== undefined) {
           axios
             .get(

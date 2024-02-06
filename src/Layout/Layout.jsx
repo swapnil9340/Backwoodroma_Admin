@@ -12,7 +12,7 @@ const Layout = () => {
         <Sidebar sidebaropen={sidebaropen} setsidebaropen={setsidebaropen}  />
           <div className='main_display'>
             <div className='mycontainer'>
-            <Navbar></Navbar>
+              <Navbar sidebaropen={sidebaropen} setsidebaropen={setsidebaropen}></Navbar>
               <Outlet/>
             </div>
           </div>

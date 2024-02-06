@@ -320,7 +320,7 @@ const Addusers = () => {
                    multiple
                     className={classes.selectformbox}
                     // renderValue={(selected) => selected.map(obj => names[obj - 1].value).join(", ")}
-                    error={!Boolean(multipleroles.length) && !!errors.Roles}
+                    error={!Boolean(multipleroles?.length) && !!errors.Roles}
                     helperText={errors.Roles && errors.Roles.message}
                     value={multipleroles}
                     onChange={multipleroleschnage}
