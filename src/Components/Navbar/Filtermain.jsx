@@ -11,8 +11,6 @@ import { ClickAwayListener } from '@material-ui/core';
 import Createcontext from "../../Hooks/Context/Context" 
 const Filtermain = () => {
   const { state ,dispatch } = useContext(Createcontext)
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
   const [value, setValue] = useState(state.datesSelect)
   const [dpopen, setDpopen] = useState(false)
   const [dateopen, setDateopen] = useState(false)
@@ -33,13 +31,6 @@ const Filtermain = () => {
     dispatch({ type: 'datesSelect', datesSelect: e })
     }
   }
-
-  //  let selectionRange = {
-  //   startDate: new Date(),
-  //   endDate: new Date(),
-  //   key: 'selection',
-  // }
-
   function handleSelect(ranges) {
    
     Setdaterange({

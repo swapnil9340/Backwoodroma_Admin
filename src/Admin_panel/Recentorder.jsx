@@ -12,8 +12,8 @@ import Axios from 'axios'
 import Cookies from 'universal-cookie';
 import { MdOutlineEmail } from "react-icons/md";
 import { BsTelephone } from "react-icons/bs";
-import useStyles from '../Style';
-const Recentorder = ({title="Recent Order" ,data=[]}) => {
+import useStyles from "../Style";
+const Recentorder = ({ title, order }) => {
   const [searchtext, setSearchtext] = useState('')
   const classes = useStyles()
   const [searchdata, setSearchdata] = useState('')
@@ -138,6 +138,7 @@ const Recentorder = ({title="Recent Order" ,data=[]}) => {
       }
     },
   ];
+
   React.useEffect(() => {
     const getData = setTimeout(() => {
       searchtext !== "" && Axios
@@ -150,11 +151,18 @@ const Recentorder = ({title="Recent Order" ,data=[]}) => {
           })
         .then((response) => {
           // setSearchdata(response.data);
-          setRecentorder(response.data)
+          order = response.data
         });
     }, 1000)
     return () => clearTimeout(getData)
   }, [searchtext])
+
+  React.useEffect(() => {
+    setRecentorder(order)
+  }, [order])
+
+
+
   const rows = recentorder
   const CustomFontTheme = createTheme({
     typography: {
@@ -173,7 +181,7 @@ const Recentorder = ({title="Recent Order" ,data=[]}) => {
 
   });
   useEffect(() => {
-  if(Boolean(data?.length === 0 )){
+  if(Boolean(data.length === 0 )){
 
  
     Axios.get('https://api.cannabaze.com/AdminPanel/AllRecentOrder/', {
@@ -189,12 +197,14 @@ const Recentorder = ({title="Recent Order" ,data=[]}) => {
    
     setRecentorder(()=>{return data})
   }
-  }, [])
+  }, [data])
   return (
     <div className='RecentOrderCard'>
       <div className='d-flex gap-4 py-4'>
         <h3 className='graphtitle'>{title}</h3>
-        <div className='searchBarrecent'> <Searchbar searchtext={searchtext} type={'recentOrder'} searchdata={searchdata} setSearchtext={setSearchtext} ></Searchbar></div>
+        <div className='searchBarrecent'>
+          {title === "Recent Order" && <Searchbar searchtext={searchtext} type={'recentOrder'} searchdata={searchdata} setSearchtext={setSearchtext} ></Searchbar>}
+        </div>
       </div>
 
       <Box className={classes.DataTableBoxStyle}>
@@ -222,7 +232,7 @@ const Recentorder = ({title="Recent Order" ,data=[]}) => {
           </div>
         </ThemeProvider>
       </Box>
-      {title  !== 'Order Details' &&   <div className='text-center py-3'><Link to={'/recentorderslist'}><span>View All</span></Link></div>}
+      {title !== 'Order Details' && <div className='text-center py-3'><Link to={'/recentorderslist'}><span>View All</span></Link></div>}
     </div>
   )
 }

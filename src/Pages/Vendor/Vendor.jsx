@@ -43,12 +43,13 @@ const Vendor = () => {
   const [topsellproduct, settopsellproduct] = React.useState();
   const [totalsale, settotalsale] = React.useState({});
   const [orderstore, setorderstore] = React.useState({});
-  const { state, dispatch } = React.useContext(Createcontext);
-  const { enqueueSnackbar } = useSnackbar();
+  const { state } = React.useContext(Createcontext);
   const cookies = new Cookies();
   const [pageSize, setPageSize] = React.useState(5);
   const [detailstype, setdetailstype] = React.useState(true);
   const token_data = cookies.get("Token_access");
+
+
   const columns = [
     {
       field: "ProductImage",
@@ -175,18 +176,100 @@ const Vendor = () => {
     },
   ];
   const row = totalsale;
+  const [Data, SetData] = React.useState({})
+
+  let date = new Date()
+  const TodayDate = date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate()
+  const currentYear = new Date().getFullYear();
+  const lastYear = currentYear - 1;
+  const monthStartDate = new Date(date.getFullYear(), date.getMonth(), 2).toISOString().split('T')[0]
+  const monthlastDate = TodayDate
+  const lastmonthStartDate = new Date(date.getFullYear(), date.getMonth() - 1, 2).toISOString().split('T')[0]
+  const firstDayOfCurrentMonth = new Date(date.getFullYear(), date.getMonth(), 1);
+  const lastmonthLastDate = new Date(firstDayOfCurrentMonth - 1).toISOString().split('T')[0]
+  // End /////////////////
+  //    Week Calculate //////////////////////// 
+  const WeekCalculate = date.getDate() - date.getDay() + (date.getDay() === 0 ? - 6 : 1);
+  const StartDateWeek = new Date(date.setDate(WeekCalculate)).toISOString().split('T')[0]
+  // const previous =  new Date(date.setDate(date.getDate() - 1)).toISOString().split('T')[0]
+  function GetpreviousWeekDate(d, j) {
+    //   const today = new Date();
+    const dayOfWeek = date.getDay();  // 0 (Sunday) to 6 (Saturday)
+    const diff = dayOfWeek + d - j;
+    const startOfPreviousWeek = new Date(date);
+    startOfPreviousWeek.setDate(date.getDate() - diff);
+    return startOfPreviousWeek.toISOString().split('T')[0];
+  }
+
+  let yesterday = new Date(TodayDate)
+  yesterday.setDate(yesterday.getDate() - 1)
+  function convert(str) {
+    var date = new Date(str),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day].join("-");
+  }
+
+
+  function CalculateDays(date1) {
+    if (date1 === "first") {
+      const datefirst = new Date(state.CustomeStartDate)
+      const datesecond = new Date(state.CustomeEndDate)
+      const diffTime = Math.abs(datesecond - datefirst);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      var StartEndDate = new Date(state.CustomeEndDate);
+      StartEndDate.setDate(StartEndDate.getDate() - diffDays - 1);
+      var EndStartDate = new Date(state.CustomeStartDate);
+      EndStartDate.setDate(EndStartDate.getDate() - diffDays - 1);
+      return convert(EndStartDate.toString())
+    }
+    else {
+      const datefirst = new Date(state.CustomeStartDate)
+      const datesecond = new Date(state.CustomeEndDate)
+      const diffTime = Math.abs(datesecond - datefirst);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      var StartEndDate = new Date(state.CustomeEndDate);
+      StartEndDate.setDate(StartEndDate.getDate() - diffDays - 1);
+      var EndStartDate = new Date(state.CustomeStartDate);
+      EndStartDate.setDate(EndStartDate.getDate() - diffDays - 1);
+   
+      return convert(StartEndDate.toString())
+    }
+
+
+
+  }
+  React.useEffect(() => {
+    if (state.datesSelect === "Customize") {
+      if (state.CustomeStartDate !== "" && state.CustomeEndDate !== "") {
+        SetData({
+          "SelectTime": state.datesSelect === "Year" ? "ThisYear" : state.datesSelect === "Months" ? 'ThisMonth' : state.datesSelect === "Today" ? 'Today' : state.datesSelect === "week" ? "week" : state.datesSelect === "Customize" && "costume",
+          "StartDate": state.datesSelect === "Year" ? `${date.getFullYear()}-01-01` : state.datesSelect === "Months" ? monthStartDate : state.datesSelect === "week" ? StartDateWeek : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customize" && state.CustomeStartDate,
+          "EndDate": state.datesSelect === "Year" ? TodayDate : state.datesSelect === "Months" ? monthlastDate : state.datesSelect === "week" ? TodayDate : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customize" && state.CustomeEndDate,
+          "LastStartDate": state.datesSelect === "Year" ? `${lastYear}-01-01` : state.datesSelect === "Months" ? lastmonthStartDate : state.datesSelect === "week" ? GetpreviousWeekDate(7, 1) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customize" && CalculateDays('first'),  //yesterday.toISOString().split('T')[0]
+          "EndStartDate": state.datesSelect === "Year" ? `${lastYear}-12-31` : state.datesSelect === "Months" ? lastmonthLastDate : state.datesSelect === "week" ? GetpreviousWeekDate(0, 0) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customize" && CalculateDays('Second')
+        })
+      }
+    }
+    else {
+      SetData({
+        "SelectTime": state.datesSelect === "Year" ? "ThisYear" : state.datesSelect === "Months" ? 'ThisMonth' : state.datesSelect === "Today" ? 'Today' : state.datesSelect === "week" ? "week" : state.datesSelect === "Customize" && "costume",
+        "StartDate": state.datesSelect === "Year" ? `${date.getFullYear()}-01-01` : state.datesSelect === "Months" ? monthStartDate : state.datesSelect === "week" ? StartDateWeek : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customize" && state.CustomeStartDate,
+        "EndDate": state.datesSelect === "Year" ? TodayDate : state.datesSelect === "Months" ? monthlastDate : state.datesSelect === "week" ? TodayDate : state.datesSelect === "Today" ? TodayDate : state.datesSelect === "Customize" && state.CustomeEndDate,
+        "LastStartDate": state.datesSelect === "Year" ? `${lastYear}-01-01` : state.datesSelect === "Months" ? lastmonthStartDate : state.datesSelect === "week" ? GetpreviousWeekDate(7, 1) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customize" && CalculateDays('first'),  //yesterday.toISOString().split('T')[0]
+        "EndStartDate": state.datesSelect === "Year" ? `${lastYear}-12-31` : state.datesSelect === "Months" ? lastmonthLastDate : state.datesSelect === "week" ? GetpreviousWeekDate(0, 0) : state.datesSelect === "Today" ? yesterday.toISOString().split('T')[0] : state.datesSelect === "Customize" && CalculateDays('Second')
+      })
+    }
+  }, [state.datesSelect, state.CustomeStartDate, state.CustomeEndDate])
+
+
+
+
   React.useEffect(() => {
     axios
       .post(
         `https://api.cannabaze.com/AdminPanel/TopSaleProductVendor/`,
-        {
-          SelectTime: "Year",
-          StartDate: "2023-01-30",
-          EndDate: "2024-01-31",
-          LastStartDate: "2023-01-01",
-          EndStartDate: "2023-12-31",
-          Storeid: selectedstore,
-        },
+        { ...Data, Storeid: selectedstore },
         {
           headers: {
             Authorization: `Bearer ${token_data}`,
@@ -196,7 +279,7 @@ const Vendor = () => {
       .then((res) => {
         settopsellproduct(res.data);
       });
-  }, [selectedstore]);
+  }, [selectedstore, Data]);
 
   React.useEffect(() => {
     if (detailstype) {
@@ -217,12 +300,8 @@ const Vendor = () => {
       axios
         .post(
           `https://api.cannabaze.com/AdminPanel/OrderByStoreId/`,
-          {
-            SelectTime: "Year",
-            Storeid: selectedstore,
-            StartDate: "2023-01-01",
-            EndDate: "2024-02-01",
-          },
+          { ...Data, Storeid: selectedstore },
+
           {
             headers: {
               Authorization: `Bearer ${token_data}`,
@@ -249,7 +328,7 @@ const Vendor = () => {
         setAllstore(res?.data);
         setselectedstore(res?.data[0].id);
       });
-  }, [location.state.id]);
+  }, [location.state.id, Data]);
 
   return (
     <div className="venderSection">
@@ -502,7 +581,8 @@ const Vendor = () => {
               </ThemeProvider>
             </Box>
           ) : (
-            <Recentorder title={"Order Details"} data={orderstore} />
+
+            <Recentorder title={"Order Details"} order={orderstore} />
           )}
         </div>
       </div>

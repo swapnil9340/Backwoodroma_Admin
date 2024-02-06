@@ -25,6 +25,7 @@ export default function AdminPanel() {
   const [pendingstore, setPendingStore] = useState([])
   const [pageSize, setPageSize] = React.useState(10)
   const token_data = cookies.get('Token_access')
+  const [recentorder, setRecentorder] = React.useState([])
   const columns = [
 
     {
@@ -77,14 +78,6 @@ export default function AdminPanel() {
       // }
     },
   ];
-  // const rows = [
-  //   { id: 1, userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Harsh jain', applyDate: 'Today 07:00 PM', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'Lex Weed', StoreType: 'Store Front', StoreStatus: 'Pending' },
-  //   { id: 2, userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Anaya Briggs', applyDate: 'Today 07:00 PM', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'NYC Ounce CLub', StoreType: 'Delivery / Pickup', StoreStatus: 'Pending' },
-  //   { id: 3, userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Daniel Garcia', applyDate: 'Today 07:00 PM', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'LeaflyweedNYC', StoreType: 'Delivery / Pickup', StoreStatus: 'Pending' },
-  //   { id: 4, userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Roosevelt Carter', applyDate: 'Today 07:00 PM', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'NYC Ounce CLub', StoreType: 'Pick up', StoreStatus: 'Pending' },
-  //   { id: 5, userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'April Joseph', applyDate: 'Today 07:00 PM', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'Lex Weed', StoreType: 'Store Front', StoreStatus: 'Pending' },
-  //   { id: 6, userImage:'https://i.ibb.co/C2Bx9CN/image-29.png', UserName: 'Daniel Garcia', applyDate: 'Today 07:00 PM', email: 'daniel.garcia@gmail.com', Phone: '(382) 302-1319', StoreName: 'Lex Weed', StoreType: 'Delivery', StoreStatus: 'Pending' },
-  // ];
 
   const rows = pendingstore
 
@@ -136,10 +129,10 @@ export default function AdminPanel() {
       }]
     },
   };
-  const [Data, SetData] = useState({})
-  //  Months//////////////////
   const [Data1, SetData1] = React.useState([])
+  //  Months//////////////////
   const [TopStore, SetTopStore] = React.useState([])
+  const [Data, SetData] = useState({})
 
   let date = new Date()
   const TodayDate = date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate()
@@ -257,6 +250,13 @@ export default function AdminPanel() {
           SetTopStore(response.data)
   
         })
+        axios.get('https://api.cannabaze.com/AdminPanel/AllRecentOrder/', {
+          headers: {
+            'Authorization': `Bearer ${token_data}`
+          }
+        }).then((res) => {
+          setRecentorder(res.data.slice(0,6))
+        })
     
 
 
@@ -364,9 +364,9 @@ export default function AdminPanel() {
           </div>
         </SectionCard>
       </div>
-      <SectionCard className='col-12 my-3'>
-        <Recentorder />
-      </SectionCard>
+      <div className='col-12 my-3'>
+        <Recentorder title={"Recent Order"}  order={recentorder}/>
+      </div>
 
     </div>
   )
