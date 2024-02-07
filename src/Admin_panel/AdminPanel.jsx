@@ -314,7 +314,7 @@ export default function AdminPanel() {
         <SectionCard className='locationGraph'>
           <div className='locationGraph_header'>
             <h3 className='locationGraph_headertitle'>Popular Location</h3>
-            <Link><span>View Details</span></Link>
+            <Link to={'/populerlocation'}><span>View Details</span></Link>
           </div>
           <div className='locationContent'>
             <div className='locationList'>

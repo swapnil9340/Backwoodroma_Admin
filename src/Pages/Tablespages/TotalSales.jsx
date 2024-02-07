@@ -5,15 +5,17 @@ import { ThemeProvider , Box ,createTheme } from "@mui/material";
 import { SlSocialDropbox } from "react-icons/sl";
 import Axios from 'axios';
 import Cookies from 'universal-cookie';
+import {Counterbox} from '../../molecules/Counterbox/Index'
+import { FaArrowTrendDown , FaArrowTrendUp  } from "react-icons/fa6";
+
 const TotalSales = () => {
-    const [dataapi , setapidata]= React.useState([])
-    const classes= useStyles()
+    const [dataapi , setapidata]= React.useState([]);
+    const classes= useStyles();
     const cookies = new Cookies();
-    const token_data = cookies.get('Token_access')
-    const [pageSize, setPageSize] = React.useState(10)
+    const token_data = cookies.get('Token_access');
+    const [topdata, settopdata]= React.useState({});
+    const [pageSize, setPageSize] = React.useState(10);
     const columns = [
-   
-  
       {
         field: 'StoreName',
         headerName: 'Store Name',
@@ -91,41 +93,44 @@ const TotalSales = () => {
       },
 
     });
+    useEffect(()=>{
+        Axios.post('https://api.cannabaze.com/AdminPanel/TotalSalesPage/',
+        {"SelectTime":"ThisYear","StartDate":"2024-01-01","EndDate":"2024-02-06","LastStartDate":"2023-12-01","EndStartDate":"2023-12-31"},
+        {
+      headers: {
+        'Authorization': `Bearer ${token_data}`
+        } }).then((res)=>{
+        let a = res.data.map((item , index)=>{
+              return {
+                ...item, id : index+1
+              }
+        })
+        
+        let lastdata = a.pop()
+        settopdata(lastdata)
+          setapidata(a)
+        })
 
-      useEffect(()=>{
-         Axios.post('https://api.cannabaze.com/AdminPanel/TotalSalesPage/',
-         {"SelectTime":"ThisYear","StartDate":"2024-01-01","EndDate":"2024-02-06","LastStartDate":"2023-12-01","EndStartDate":"2023-12-31"},
-         {
-        headers: {
-          'Authorization': `Bearer ${token_data}`
-         } }).then((res)=>{
-          let a = res.data.map((item , index)=>{
-                return {
-                  ...item, id : index+1
-                }
-          })
-          
-          a.pop()
-           setapidata(a)
-         })
 
-
-      },[])
-      console.log(dataapi ,'dataapi dataapi dataapi ')
+    },[])
+     
   return (
     <div className=' my-4 '>
         <div className='py-4 section_card'>
-            <div  className='d-flex justify-content-between align-content-center px-4'> 
+            <div  className='d-flex gap-4 align-content-center px-4'> 
                 <h3 className='pagetitle'><SlSocialDropbox color='#31B655' size={25}/> Total Sales </h3>
-                <div className='btnsgroup'>
-            
+                <div>
+             
+                <Counterbox bgcolor={topdata.Growth ? 'rgba(81, 176, 157, 0.15)' : 'rgb(255 0 0 / 15%)' }  padding="3px 5px" color={topdata.Growth ? 'rgba(0, 172, 79, 1)' : 'rgb(255 0 0 / 90%)'} size='24px' height='1.2' fontweight='700' >
+                {!topdata.Growth ? <FaArrowTrendDown /> : <FaArrowTrendUp /> }   {topdata.TotalSales}
+                </Counterbox>
                 </div>
             </div>
             <div className='d-flex justify-content-end py-3 align-content-center'>
             
             </div>
             <div className='allusertable'>
-            <Box className={classes.DataTableBoxStyle} >
+              <Box className={classes.DataTableBoxStyle} >
                             <ThemeProvider theme={CustomFontTheme}>
                                 <DataGrid
                                     rows={rows}
@@ -146,7 +151,7 @@ const TotalSales = () => {
                                     
                                 />
                             </ThemeProvider>
-                        </Box>
+              </Box>
             </div>
         </div>
     </div>

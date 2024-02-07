@@ -13,6 +13,7 @@ import {useLocation} from 'react-router-dom'
 import Deletepopup from '../../Components/Component/Deletepopup'
 import Successfullypopup from '../../Components/Component/Successfullypopup'
 import useStyles from '../../Style';
+import {useNavigate} from 'react-router-dom'
 const AllReview = () => {
     const classes = useStyles()
     const location = useLocation();
@@ -24,6 +25,8 @@ const AllReview = () => {
     const [isdelete , setsisDelete] = useState(false)
     const [sucsesopen , setsucsesopen] = useState(false)
     const [reviewid , setreviewid] = useState({})
+    const navigate =  useNavigate()
+
             useEffect(()=>{
                 if(isdelete){
                     Axios.post('https://api.cannabaze.com/AdminPanel/DeleteReviews/', reviewid ,{
@@ -58,7 +61,7 @@ const AllReview = () => {
         
           useEffect(() => {
             Axios.post('https://api.cannabaze.com/AdminPanel/ReviewsByStore/', 
-            {"SelectTime":"Year","StartDate":"2023-02-01","EndDate":"2024-02-02","StoreId":location?.state?.item?.id},{
+            {"SelectTime":"Year","StartDate":"2023-02-02","EndDate":"2024-02-02","StoreId":location?.state?.item?.id},{
               headers: {
                 'Authorization': `Bearer ${token_data}`
               }
@@ -72,7 +75,7 @@ const AllReview = () => {
             })
               setRecentorder( a )
             })
-          }, [location?.state?.item])
+          }, [location?.state?.user])
           const CustomFontTheme = createTheme({
           typography: {
               fontSize: 25
@@ -109,7 +112,9 @@ const AllReview = () => {
                 headerAlign: 'left',
                 flex: 1,
                 renderCell: (params) => {
-                  return <div className='pendingUserProfile'>
+                  return <div className='pendingUserProfile' onClick={()=>{navigate(`/userprofile/${params.row.user}` ,  {
+                    state: params.row
+                  })}}>
                     <div className='userImage'>
                     <div className="imageCircle" >
                         <div className='userImageCircle'>
@@ -209,7 +214,7 @@ const AllReview = () => {
     <div className=' my-4 '>
         <div className='py-4 section_card'>
             <div  className='d-flex justify-content-between align-content-center px-4'> 
-                <h3 className='pagetitle'><SlSocialDropbox color='#31B655' size={25}/>Popular store </h3>
+                <h3 className='pagetitle'><SlSocialDropbox color='#31B655' size={25}/>All Reviews</h3>
                 <div className='btnsgroup'>
             
                 </div>

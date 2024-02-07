@@ -444,6 +444,7 @@
   height: 130px;
   border-radius: 50%;
   margin: 0 auto;
+  overflow: hidden;
 }
 .UserProfile .UserProfileWrapper .userDiscription .userCircle img {
   width: 100%;
@@ -517,4 +518,43 @@
   font-size: 14px;
   line-height: 16px;
   color: rgb(90, 90, 90);
+}
+
+.alllocationlist .locationContent {
+  display: flex;
+  justify-content: space-between;
+}
+.alllocationlist .locationContent .locationList {
+  width: 400px;
+}
+.alllocationlist .locationContent .locationList .locationListHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(181, 183, 192);
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 21px;
+  border-bottom: 2px solid rgba(115, 115, 115, 0.4117647059);
+  font-family: "Poppins", sans-serif;
+  padding: 10px;
+}
+.alllocationlist .locationContent .locationList .locationListItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(187, 187, 187, 0.22);
+}
+.alllocationlist .locationContent .locationList .locationListItem .locationName {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 17px;
+  padding: 0 10px;
+}
+.alllocationlist .locationContent .locationGrapharea {
+  width: 400px;
 }/*# sourceMappingURL=style.css.map */

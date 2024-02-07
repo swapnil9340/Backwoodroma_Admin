@@ -120,8 +120,7 @@ const Rolelist = () => {
             filterable: false,
             renderCell: (index) => index.api.getRowIndex(index.row.id) + 1,
         },
-        { field: 'RoleTitle', headerName: 'Name', editable: false,  minWidth: 110, flex: 1, headerClassName: 'super-app-theme--header',  headerAlign: 'center',   align: 'center',
-sortable:false },
+        { field: 'RoleTitle', headerName: 'Name', editable: false,  minWidth: 110, flex: 1, headerClassName: 'super-app-theme--header',  headerAlign: 'center',   align: 'center', sortable:false },
         {
             field: 'created_at', headerName: 'Created At', type: 'number',sortable:false, editable: true,flex: 1, headerClassName: 'super-app-theme--header',  headerAlign: 'center',   align: 'center',
 

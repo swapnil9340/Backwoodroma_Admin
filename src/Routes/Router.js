@@ -37,7 +37,8 @@ import Allrecentorder from '../Pages/Tablespages/Allrecentorder'
 import Topstore from '../Pages/Tablespages/Topstore';
 import AllReview from '../Pages/Tablespages/AllReview';
 import UserProfile from '../Pages/UserProfile/UserProfile';
-import TotalSales from '../Pages/Tablespages/TotalSales'
+import TotalSales from '../Pages/Tablespages/TotalSales';
+import TopLocation from '../Pages/Tablespages/TopLocation';
 // export default function Router() {;
 //   return (
     
@@ -224,12 +225,16 @@ const routesConfig = [
         element:<Protected  Component={AllReview}/>
       },
       {
-        path:"/userprofile",
+        path:"/userprofile/:id",
         element:<Protected  Component={UserProfile}/>
       },
       {
         path:"/totalsales",
         element:<Protected  Component={TotalSales}/>
+      },
+      {
+        path:"/populerlocation",
+        element:<Protected  Component={TopLocation}/>
       },
     ],
   },

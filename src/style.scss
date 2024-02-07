@@ -454,6 +454,7 @@ cursor: pointer;
         height: 130px;
         border-radius: 50%;
         margin:  0 auto;
+        overflow: hidden;
         img{
           width: 100%;
         }
@@ -534,4 +535,49 @@ cursor: pointer;
       }
     }
   }
+}
+
+.alllocationlist{
+  .locationContent {
+    display: flex;
+    justify-content: space-between;
+   
+    .locationList {
+        width: 400px;
+
+        .locationListHeader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(181, 183, 192, 1);
+            font-family: Roboto;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 21px;
+        
+            border-bottom: 2px solid #73737369;
+            font-family: 'Poppins', sans-serif;
+            padding: 10px;
+        }
+        .locationListItem {
+          display: flex;
+          justify-content: space-between;
+          padding: 10px 0;
+          border-bottom: 1px solid rgba(187, 187, 187, 0.22);
+          .locationName {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 17px;
+            padding: 0 10px;
+          }
+        }
+    }
+
+    .locationGrapharea {
+       width: 400px;
+    }
+}
 }
