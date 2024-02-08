@@ -39,7 +39,7 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
       setOpendropdown(value);
     }
   }
-  console.log(sidebaropen ,'sideopen')
+
   return (
     <div className={`sidebar ${sidebaropen ? "opensidebarMobile" : ""}  ${sideopen ? "sidebaropen" : "sidebarclose"}  `}  onMouseOver={()=>{
     
@@ -117,53 +117,7 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
         }
         </div>
 
-        <li
-          button
-          className={`${
-            openDropdown === "Location"
-              ? "sidebarDropdown dropright"
-              : "sidebarDropdown dropdownarroe"
-          } ''`}
-          onClick={() => {
-            manuchange("Location");
-          }}
-        >
-          <Icon className={classes.sidebarIcon + ""}>
-            <IoAnalytics></IoAnalytics>{" "}
-          </Icon>
-          <span className={"sidebar_text"}>Location</span>
-        </li>
-        <div
-          className={`submanusidebar ${
-            openDropdown === "Location" ? "d-block" : "d-none"
-          }`}
-        >
-          <NavLink
-            to={"/Countries"}
-            onClick={closebar}
-            activeClassName="active"
-          >
-            <li button className={" active_bar  suboption"}>
-             
-              <span className={" sidebar_text"}>Country</span>
-            </li>
-          </NavLink>
-          <NavLink to={"/States"} onClick={closebar} activeClassName="active">
-            <li button className={" active_bar suboption"}>
-              {/* <Icon
-                            className={ classes.sidebarIcon + ' sidebar_text'}
-                            >
-                            <FaClipboardList ></FaClipboardList>
-                            </Icon> */}
-              <span className={" sidebar_text"}>State</span>
-            </li>
-          </NavLink>
-          <NavLink to={"/City"} onClick={closebar} activeClassName="active">
-            <li button className={" active_bar suboption"}>
-              <span className={" sidebar_text"}>City</span>
-            </li>
-          </NavLink>
-        </div>
+        
 
         {(state.Roles.ViewStore || (state.Roles.AddStore || state.Roles.EditStore || state.Roles.DeleteStore) )&&
           <NavLink
@@ -196,28 +150,14 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
             </li>
           </NavLink>
         }
-        <NavLink to={"/Tax"} onClick={closebar} activeClassName="active">
+        {/* <NavLink to={"/Tax"} onClick={closebar} activeClassName="active">
           <li button className={" active_bar "}>
             <Icon className={classes.sidebarIcon + ""}>
               <MdStorefront></MdStorefront>
             </Icon>
             <span className={" sidebar_text"}>Tax</span>
           </li>
-        </NavLink>
-       
-
-       
-        <NavLink to={"/Signup"} onClick={closebar} activeClassName="active">
-          <li button className={" active_bar "}>
-            <Icon className={classes.sidebarIcon + ""}>
-              <AiTwotoneSetting></AiTwotoneSetting>
-            </Icon>
-            <span className={" sidebar_text"} disableTypography={true}>
-              Signup
-            </span>
-          </li>
-        </NavLink>
-        
+        </NavLink> */}
 
         {(state.Roles.ViewVendor || (state.Roles.AddVendor || state.Roles.DeleteVendor || state.Roles.EditVendor) )&&
         <NavLink to={"/Vendorlist"} onClick={closebar} activeClassName="active">

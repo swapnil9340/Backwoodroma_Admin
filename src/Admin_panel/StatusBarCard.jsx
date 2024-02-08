@@ -92,7 +92,7 @@ export default function StatusBarCard({ title, id }) {
       return convert(StartEndDate.toString());
     }
   }
-  console.log(TodayDate)
+
   React.useEffect(() => {
     if (state.datesSelect === "Customize") {
       if (state.CustomeStartDate !== "" && state.CustomeEndDate !== "") {
@@ -344,7 +344,7 @@ export default function StatusBarCard({ title, id }) {
     }
   }, [Data, id]);
 
-  console.log(title !== "Sales Performance")
+
   return (
     <div className="dashboardTopCardWrapper ">
       <div className=" dashboardTopCard top col">

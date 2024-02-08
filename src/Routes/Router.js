@@ -87,10 +87,10 @@ import TopLocation from '../Pages/Tablespages/TopLocation';
 // }
 
 const routesConfig = [
-  {
-    path:"/dummy",
-    element:<Dummy/>
-  },
+  // {
+  //   path:"/dummy",
+  //   element:<Dummy/>
+  // },
   {
     path:"*",
     element:<Pagenotfound/>

@@ -177,11 +177,11 @@ const UserProfile = () => {
                     <div className='UsertotalcardWrapper'>
                         <SectionCard className='Usertotalcard'> 
                               <h4 className='UsertotalcardTitle'>Total Order</h4>
-                            <Counterbox bgcolor=' rgba(81, 176, 157, 0.15)' padding="8px 5px" color='rgba(0, 172, 79, 1)' size='28' height='42' fontweight='500'> {userDetails?.order} </Counterbox>
+                            <Counterbox bgcolor=' rgba(81, 176, 157, 0.15)' padding="8px 5px" color='rgba(0, 172, 79, 1)' size='28px' height='42px' fontweight='500'> {userDetails?.order} </Counterbox>
                         </SectionCard>
                         <SectionCard className='Usertotalcard'>
                              <h4 className='UsertotalcardTitle'>Total Reviews</h4>
-                            <Counterbox bgcolor=' rgba(81, 176, 157, 0.15)' padding="8px 12px" color='rgba(0, 172, 79, 1)' size='28' height='42' fontweight='500'> {userDetails?.reviews}  </Counterbox>
+                            <Counterbox bgcolor=' rgba(81, 176, 157, 0.15)' padding="8px 12px" color='rgba(0, 172, 79, 1)' size='28px' height='42px' fontweight='500'> {userDetails?.reviews}  </Counterbox>
                         </SectionCard>
                     </div>
                   </div>

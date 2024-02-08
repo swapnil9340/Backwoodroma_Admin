@@ -12,6 +12,7 @@ import { BsThreeDotsVertical } from 'react-icons/bs';
 import Createcontext from "../../Hooks/Context/Context"
 import DeleteNews from "./DeleteNews"
 import useStyles from '../../Style';
+import { SlSocialDropbox } from "react-icons/sl";
 import {SectionCard} from '../../molecules/SectionCard/Index'
 
 export default function News() {
@@ -109,7 +110,7 @@ export default function News() {
        
                 <SectionCard>
                         <div className='d-flex justify-content-between align-items-center w-100 p-4'>
-                            <h2>Latest News
+                            <h2 className='pagetitle'> <SlSocialDropbox color='#31B655' size={25}/> Latest News
                             </h2>
                            {state?.Roles?.AddBlogs && <span> <h2> <Newspop></Newspop></h2></span> }
                         </div>

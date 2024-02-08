@@ -557,4 +557,21 @@
 }
 .alllocationlist .locationContent .locationGrapharea {
   width: 400px;
+}
+
+.namecorcle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.namecorcle span {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
+  color: #fff;
+  text-shadow: 2px 2px 4px #000000;
 }/*# sourceMappingURL=style.css.map */

@@ -192,7 +192,7 @@ const TopLocation = () => {
         }]
       },
     };
-    console.log(topdata,'topdata')
+
   return (
     <div className=' my-4 '>
         <div className='py-4 section_card'>

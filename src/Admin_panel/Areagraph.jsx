@@ -6,7 +6,7 @@ import Cookies from "universal-cookie";
 import axios from "axios";
 import Createcontext from "../Hooks/Context/Context";
 const Areagraph = ({ title, id }) => {
-  console.log(title)
+
   const { state } = React.useContext(Createcontext);
 
   const cookies = new Cookies();
@@ -30,7 +30,7 @@ const Areagraph = ({ title, id }) => {
     else if (title === "Sales Performance") {
       SetChartDate({ 'Jan': [0, 0], 'Feb': [0, 0], 'Mar': [0, 0], 'Apr': [0, 0], "May": [0, 0], "Jun": [0, 0], 'Jul': [0, 0], 'Aug': [0, 0], 'Sep': [0, 0], 'Oct': [0, 0], 'Nov': [0, 0], 'Dec': [0, 0] })
     }
-    console.log(title === "Sales Performance")
+ 
   }, [state.datesSelect])
 
   React.useEffect(() => {
@@ -120,7 +120,7 @@ const Areagraph = ({ title, id }) => {
         //   return  k[l]= 0
         //   }
         //   else{
-        //     console.log(data1)
+        
         //    return k[data1]= 0
         //   }
   
@@ -196,7 +196,7 @@ const Areagraph = ({ title, id }) => {
       }
     }
   }, [state.datesSelect, state.CustomeStartDate, state.CustomeEndDate]);
-  // console.log(  [month]
+
   //   .map((data, index) => Object.values(data))[0]
   //   .map((d) => d))
 
@@ -308,10 +308,10 @@ const Areagraph = ({ title, id }) => {
               });
             }
             else if (timeintervalchart === "Customics") {
-              console.log(res.data,)
+
               res.data.map((data) => {
                 if (data.Date.slice(3, data.Date?.length  - 3) < 10) {
-                  console.log(data.Date.slice(4, data.Date?.length  - 3), data.Date.slice(3, data.Date?.length  - 3) < 10, data.User, "555555555")
+                
                   Setmonth((month) => ({ ...month, [data.Date.slice(4, data.Date?.length  - 3)]: data.User, }));
                 } else {
                   Setmonth((month) => ({
@@ -371,7 +371,7 @@ const Areagraph = ({ title, id }) => {
         .then((res) => {
           if (timeintervalchart === "ThisMonth") {
             res.data.map((data) => {
-              console.log(data.Date.slice(3, data.Date?.length  - 3) < 10)
+            
               if (!data.Date.slice(3, data.Date?.length  - 3) < 10) {
                 Setmonth(month => ({ ...month, [data.Date.slice(4, data.Date?.length  - 3)]: [data.TotalPrice, data.UnitSold] }))
               } else {
@@ -492,7 +492,6 @@ const Areagraph = ({ title, id }) => {
       }
     }
   }
-  console.log(month)
   return (
     <div>
       <div className="d-flex justify-content-between">

@@ -4,6 +4,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
+import { SlSocialDropbox } from "react-icons/sl";
 import PopUp from "./PopUp";
 import axios from "axios";
 import { BsThreeDotsVertical } from "react-icons/bs";
@@ -204,7 +205,7 @@ export default function SubCategory() {
     <div className="section_card">
       <div className="row">
         <div className="col-12 Add_Category p-5">
-          <h2 className="pagetitle"> SubCategory</h2>
+          <h2 className="pagetitle"><SlSocialDropbox color='#31B655' size={25}/> SubCategory</h2>
           
           <div className="col text-end">
           { state.Roles.AddSubcategory && 
