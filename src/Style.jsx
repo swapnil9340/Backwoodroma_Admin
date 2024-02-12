@@ -869,7 +869,45 @@ const useStyles = makeStyles(theme =>(
           width: "120px"
         }
 
-      }
+      },
+      popuptextfeild:{
+         width:'100%',
+         '& .MuiInputBase-input':{
+            padding:'7px',
+         }
+         ,"& .MuiInputBase-root":{
+            "&:hover":{
+              "& fieldset":{
+                borderColor:'#E0E0E0',
+              }
+            }
+         }
+      },
+      popupselectFeild:{
+        width:'100%',
+        fontSize:'15px',
+        fontWeight:'400',
+        "&.MuiInputBase-root":{
+           "&:hover":{
+            "& fieldset":{
+              borderColor:'#E0E0E0'
+            }
+           }
+        },
+        '& .MuiSelect-select':{
+           padding:'7px 20px',
+           fontSize:'15px',
+           "&:hover":{
+            "& fieldset":{
+              border:'none'
+            }
+           }
+        },
+        '& .MuiSelect-nativeInput':{
+           border:'none',
+        }
+      },
+
   }
 ))
 export default useStyles

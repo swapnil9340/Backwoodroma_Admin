@@ -574,4 +574,42 @@
   font-family: "Inter", sans-serif;
   color: #fff;
   text-shadow: 2px 2px 4px #000000;
+}
+
+.popupTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #31B655;
+  text-align: center;
+  line-height: 2;
+}
+
+.addSubcategoryForm {
+  width: 80%;
+  margin: 0 auto;
+}
+.addSubcategoryForm .inputFeildasf {
+  width: 100%;
+  text-align: start;
+  margin-bottom: 20px;
+}
+.addSubcategoryForm .inputFeildasf .label {
+  justify-content: flex-start;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.4666666667);
+}
+.addSubcategoryForm .inputFeildasf .Imagelabel {
+  width: 100%;
+  height: 80px;
+  border: 2px dashed rgba(114, 124, 164, 0.75);
+  background-color: rgba(209, 212, 225, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 400;
+  gap: 10px;
 }/*# sourceMappingURL=style.css.map */
