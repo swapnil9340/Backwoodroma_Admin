@@ -40,7 +40,7 @@ export default function PopUp() {
     const inputRef = useRef(null);
      const classes = useStyles()
     const { dispatch } = useContext(Createcontext)
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(false);
     const [image, SetImage] = React.useState();
     const [SubCategory, setSubCategory] = React.useState([]);
     const [Category, setCategory] = React.useState([]);

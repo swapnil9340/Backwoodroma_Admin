@@ -14,10 +14,11 @@ import DeleteNews from "./DeleteNews"
 import useStyles from '../../Style';
 import { SlSocialDropbox } from "react-icons/sl";
 import {SectionCard} from '../../molecules/SectionCard/Index'
-
+import {useNavigate} from 'react-router-dom'
 export default function News() {
     const { state } = useContext(Createcontext)
     const classes = useStyles()
+    const navigate = useNavigate()
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [pageSize, setPageSize] = React.useState(10)
@@ -112,7 +113,9 @@ export default function News() {
                         <div className='d-flex justify-content-between align-items-center w-100 p-4'>
                             <h2 className='pagetitle'> <SlSocialDropbox color='#31B655' size={25}/> Latest News
                             </h2>
-                           {state?.Roles?.AddBlogs && <span> <h2> <Newspop></Newspop></h2></span> }
+                           {state?.Roles?.AddBlogs &&   <button className="topbutton" onClick={()=>{navigate('/addnews')}}>
+                + Add News
+            </button>}
                         </div>
                         <div className='col-12' >
                             <Box className={classes.DataTableBoxStyle} >

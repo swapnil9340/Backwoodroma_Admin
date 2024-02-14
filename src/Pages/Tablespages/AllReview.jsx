@@ -2,6 +2,7 @@ import  React,{useState , useEffect} from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import Cookies from "universal-cookie";
 import { ThemeProvider , Box ,createTheme } from "@mui/material";
+
 import { SlSocialDropbox } from "react-icons/sl";
 import Axios from 'axios'
 import { GoStarFill } from "react-icons/go";
@@ -14,6 +15,7 @@ import Deletepopup from '../../Components/Component/Deletepopup'
 import Successfullypopup from '../../Components/Component/Successfullypopup'
 import useStyles from '../../Style';
 import {useNavigate} from 'react-router-dom'
+import Reviewpopup from '../../Components/Component/Reviewpopup'
 const AllReview = () => {
     const classes = useStyles()
     const location = useLocation();
@@ -26,39 +28,39 @@ const AllReview = () => {
     const [sucsesopen , setsucsesopen] = useState(false)
     const [reviewid , setreviewid] = useState({})
     const navigate =  useNavigate()
+    const [isopen,setisopen]= React.useState({})
 
-            useEffect(()=>{
-                if(isdelete){
-                    Axios.post('https://api.cannabaze.com/AdminPanel/DeleteReviews/', reviewid ,{
+          useEffect(()=>{
+              if(isdelete){
+                  Axios.post('https://api.cannabaze.com/AdminPanel/DeleteReviews/', reviewid ,{
 
-                    headers: {
-                        'Authorization': `Bearer ${token_data}`
-                    }
-                    }).then((res)=>{
-                        
-                        Axios.post('https://api.cannabaze.com/AdminPanel/ReviewsByStore/', 
-                        {"SelectTime":"Year","StartDate":"2023-02-01","EndDate":"2024-02-02","StoreId":location.state.item.id},{
-                            headers: {
-                            'Authorization': `Bearer ${token_data}`
-                            }
-                        }).then((res) => {
-                            let a = res?.data?.map((item , index)=>{
-                            if("ProductName" in item){
-                                return {...item , mainID : index , reviewtype : {"productId":item?.id}}
-                            }else{
-                                return {...item , mainID : index , reviewtype : {"StoreId":item?.id} }
-                            } 
-                            })
-                            setRecentorder( a )
-                            setsucsesopen(true)
-                            setTimeout(() => {
-                                setsucsesopen(false)
-                            }, "3000");
-                        })
-                    })
-                }
-            },[isdelete])
-        
+                  headers: {
+                      'Authorization': `Bearer ${token_data}`
+                  }
+                  }).then((res)=>{
+                      
+                      Axios.post('https://api.cannabaze.com/AdminPanel/ReviewsByStore/', 
+                      {"SelectTime":"Year","StartDate":"2023-02-01","EndDate":"2024-02-02","StoreId":location.state.item.id},{
+                          headers: {
+                          'Authorization': `Bearer ${token_data}`
+                          }
+                      }).then((res) => {
+                          let a = res?.data?.map((item , index)=>{
+                          if("ProductName" in item){
+                              return {...item , mainID : index , reviewtype : {"productId":item?.id}}
+                          }else{
+                              return {...item , mainID : index , reviewtype : {"StoreId":item?.id} }
+                          } 
+                          })
+                          setRecentorder( a )
+                          setsucsesopen(true)
+                          setTimeout(() => {
+                              setsucsesopen(false)
+                          }, "3000");
+                      })
+                  })
+              }
+          },[isdelete])
           useEffect(() => {
             Axios.post('https://api.cannabaze.com/AdminPanel/ReviewsByStore/', 
             {"SelectTime":"Year","StartDate":"2023-02-02","EndDate":"2024-02-02","StoreId":location?.state?.item?.id},{
@@ -203,13 +205,12 @@ const AllReview = () => {
                 renderCell: (params) => {
                   
                     return <span className='d-flex gap-3'> <RiDeleteBin6Line onClick={()=>{ setreviewid(params.row.reviewtype); setdeleteoprn(true)}}  color='#31B655' size={24}/>
-                    <IoIosInformationCircleOutline color='#31B655' size={24}/>
+                       <IoIosInformationCircleOutline color='#31B655' size={24} onClick={()=>setisopen(()=>params.row)}/>
                     </span>
                   }
               },
           ];
           const rows = recentorder
-
   return (
     <div className=' my-4 '>
         <div className='py-4 section_card'>
@@ -249,24 +250,8 @@ const AllReview = () => {
 
         {   deleteoptn &&  <Deletepopup setdeleteoprn={setdeleteoprn} setsisDelete={setsisDelete} />}
         {   sucsesopen && <Successfullypopup setsucsesopen={setsucsesopen}/> }
-        {/* <div className='view_reviewModel'> 
-           <div className='viewReview_content'>
-               <div className='closeBtn'>X</div>
-                  <div>
-                    <span>{ 
-                            Array(4).fill().map(()=>{
-                               return <GoStarFill  size={18} color='rgba(0, 172, 79, 1)'/>
-                            }) }{
-                            Array(5- 4).fill().map(()=>{
-                                return <GoStarFill  size={18} color='rgba(0, 172, 79, 0.41)'/>
-
-                            })  }
-                     </span>
-                  </div>
-                  <h3>Review Title</h3>
-                  <p> hello world</p>
-           </div>
-        </div> */}
+        {  Boolean(Object.keys(isopen).length !== 0) &&   <Reviewpopup state={isopen} setisopen={setisopen}/>}
+       
     </div>
   )
 }

@@ -39,6 +39,7 @@ import AllReview from '../Pages/Tablespages/AllReview';
 import UserProfile from '../Pages/UserProfile/UserProfile';
 import TotalSales from '../Pages/Tablespages/TotalSales';
 import TopLocation from '../Pages/Tablespages/TopLocation';
+import Newspop from '../Pages/News/NewsPopup';
 // export default function Router() {;
 //   return (
     
@@ -235,6 +236,10 @@ const routesConfig = [
       {
         path:"/populerlocation",
         element:<Protected  Component={TopLocation}/>
+      },
+      {
+        path:"/addnews",
+        element:<Protected  Component={Newspop}/>
       },
     ],
   },

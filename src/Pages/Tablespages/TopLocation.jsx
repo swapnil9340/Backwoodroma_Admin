@@ -10,121 +10,15 @@ import Cookies from 'universal-cookie';
 import {Counterbox} from '../../molecules/Counterbox/Index'
 import axios from 'axios';
 const TopLocation = () => {
-    const location = useLocation()
-    const classes= useStyles()
+   
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [locationdata, setlocationdat]= React.useState([])
     const [topdata, settopdata]= React.useState({})
     const [locationgrapgdata, setlocationgrapgdata]= React.useState([])
     const [locationgrapglabel, setlocationgrapglabel]= React.useState([])
-    const columns = [
-   
-      { field: 'ProductImage', headerName: 'Product Image', minWidth: 120, 
-            renderCell:(params)=>{
-                return <span className='image_circle_tsp'><img src={params.row.Image}/></span> 
-            }
-      },
-      {
-        field: 'ProductName',
-        headerName: 'Product Name',
-        minWidth: 120,
-        editable: false,
-        sortable:false,
-        flex:1,
-        headerAlign: "left",
-        align: "left",
-      },
-      {
-        field: 'category',
-        headerName: 'Category',
-        minWidth: 120,
-        editable: false,
-        sortable:false,
-        flex:1,
-        headerAlign: "center",
-        align: "center",
-      },
-      {
-        field: 'ProductPrice',
-        headerName: 'Price',
-        minWidth: 120,
-        editable: false,
-        sortable:false,
-        flex:1,
-        headerAlign: "center",
-        align: "center",
-        valueFormatter: ({ value }) => `$${value}` 
-      },
-      {
-        field: 'ProductSalesCount',
-        headerName: 'Sale Unite',
-        sortable:false,
-        minWidth: 80,
-        editable: false,
-        flex:1,
-        headerAlign: "center",
-        align: "center",
-        valueFormatter: ({ value }) => `${value} Qty` 
-      },
-      {
-          field: 'Price',
-          headerName: 'Total Sale Price',
-          sortable:false,
-          minWidth: 80,
-          editable: false,
-          flex:1,
-          headerAlign: "center",
-          align: "center",
-          valueFormatter: ({ value }) => `$${value}` 
-      },
-      {
-        field: 'StoreName',
-        headerName: 'Store Name',
-        sortable:false,
-        minWidth: 80,
-        editable: false,
-        flex:1,
-        headerAlign: "center",
-        align: "center",
-    },
-    {
-        field: 'Stock',
-        headerName: 'Status',
-        sortable:false,
-        minWidth: 80,
-        editable: false,
-        flex:1,
-        headerAlign: "center",
-        align: "center",
-        renderCell: (params) => {
-            if (params.row.Stock === "IN Stock" ) {
-              return <span className='statusactive'>In Stock</span>
-            }else{
-              return <span className='statusinactive'>Out Of stock</span>
-            }
-        },
-    },
-  
-    ];
-    const rows = location?.state
-    const CustomFontTheme = createTheme({
-      typography: {
-          fontSize: 25
-      },
-      components: {
-          MuiContainer: {
-              styleOverrides: {
-                  root: {
-                      fontSize: 24,
-
-                  }
-              }
-          },
-      },
-
-    });
-    useEffect((items)=>{
+    
+    useEffect(()=>{
       axios.post('https://api.cannabaze.com/AdminPanel/PopularLocationGraphPage/',
       {"SelectTime":"Year","StartDate":"2024-01-07","EndDate":"2024-02-06","LastStartDate":"2023-02-07","EndStartDate":"2024-01-07"},
       {
