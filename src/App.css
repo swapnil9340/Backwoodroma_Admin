@@ -935,7 +935,7 @@ input:checked+.slider:before {
 .image_uploade {
   width: 190px;
   height: 150px;
-  border: 1px solid #BEBEBE;
+  /* border: 1px solid #BEBEBE; */
   border-radius: 20px;
 }
 .MdFileUpload {

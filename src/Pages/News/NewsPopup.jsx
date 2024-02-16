@@ -191,7 +191,7 @@ export default function Newspop() {
   const handleimage = (event) => {
     SetImage(event.target.files[0]);
     setmassage("");
-    seterror({ Image: "black" });
+    seterror({ Image: "white" });
   };
   const handleChange = (event) => {
     const value = event.target.value;
@@ -352,7 +352,7 @@ export default function Newspop() {
       document.querySelector(".file-name").textContent = fileNameAndSize;
     });
   }
-
+console.log(error.Image)
   React.useEffect(() => {
     setNews({
       ...News,
@@ -367,7 +367,7 @@ export default function Newspop() {
       <SectionCard className="row">
         <form onSubmit={handleSubmit(Submit)}>
           <div className="row justify-content-between">
-            <div className="col-lg-6">
+            <div className="col-lg-7  ">
               <div className="col-12 Add_Category center">
               
                   <h2> Add News</h2>
@@ -376,19 +376,21 @@ export default function Newspop() {
               <div className="addnewinputbox">
               
                   <label >
-                    <span className="required">*</span>
+                    <span className="required"></span>
                     Title:
                   </label>              
                   <TextField
                     type="Text"
+                    fullWidth
                     placeholder="Title"
                     id="outlined-basic"
                     name="Title"
                     InputProps={{
+                      disableUnderline: true,
                       startAdornment: (
                         <InputAdornment position="start"> </InputAdornment>
                       ),
-                      style: { fontSize: 14 },
+                      style: { fontSize: 14  , height:'56px'},
                     }}
                     label={massage.Title}
                     inputRef={register({
@@ -399,20 +401,25 @@ export default function Newspop() {
                   />
              
               </div>
-              <div className="row ">
-                <div className="addnewinputbox">
+              <div className="col  justify-content-between" style={{display:"flex"}}> 
+                <div className="col-5 addnewinputbox" >
                   <div className="">
                     <label >Category:</label>
                   </div>
                   <div className="">
                     <Select
+                    fullWidth
                       name="Category_id"
                       value={News.Category_id}
                       onChange={handleChange}
                       displayEmpty
                       size="small"
-                      inputProps={{ "aria-label": "Without label" }}
-                      style={{ minWidth: 120, fontSize: 15 }}
+                      inputProps={{  disableUnderline: true, "aria-label": "Without label" }}
+                      sx={{
+                        "& fieldset": {
+                          border: "none",
+                        },
+                      }}
                     >
                       <MenuItem value="" style={{ fontSize: 15 }}>
                         <em>Select option</em>
@@ -431,7 +438,7 @@ export default function Newspop() {
                     </Select>
                   </div>
                 </div>
-                <div className="addnewinputbox ">
+                <div className="col-5 addnewinputbox">
                 
                     <label >Sub Category:</label>
               
@@ -440,9 +447,15 @@ export default function Newspop() {
                       value={News.SubCategory_id}
                       onChange={handleChange}
                       displayEmpty
+                      fullWidth
                       size="small"
                       inputProps={{ "aria-label": "Without label" }}
                       style={{ minWidth: 130, fontSize: 15 }}
+                      sx={{
+                        "& fieldset": {
+                          border: "none",
+                        },
+                      }}
                     >
                       <MenuItem value="" style={{ fontSize: 15 }}>
                         <em>Select option</em>
@@ -475,8 +488,8 @@ export default function Newspop() {
                       width: "100%",
                     },
                     "& .rdw-editor-wrapper": {
-                      height: "200px",
-                      width: "600px",
+                      height: "240px",
+                      // width: "991px",
                     },
                     ".rdw-editor-main": {
                       background: "",
@@ -499,12 +512,13 @@ export default function Newspop() {
             
               </div>
             </div>
-            <div className="col-lg-5">
+            <div className="col-lg-4">      
                 <div className="  ">
-                    <div className="col ">
-                    {" "}
-                    <h2> SEO</h2>
-                    </div>
+                <div className="col-12 Add_Category center">
+              
+              <h2> SEO</h2>
+       
+          </div>
                 </div>
                 <div className=" addnewinputbox">
               
@@ -518,11 +532,13 @@ export default function Newspop() {
                     placeholder="Meta Title"
                     id="outlined-basic"
                     name="Meta_title"
-                    variant="outlined"
+                    // variant="outlined"
                     value={News.Meta_title}
-                    style={{ minWidth: 190, fontSize: 15 }}
+                    style={{ minWidth: 190, fontSize: 15 ,height:"56px"}}
                     onChange={handleChange}
+                    fullWidth
                     InputProps={{
+                      disableUnderline: true,
                         startAdornment: (
                         <InputAdornment position="start"> </InputAdornment>
                         ),
@@ -560,10 +576,11 @@ export default function Newspop() {
                     placeholder="Meta Description"
                     id="outlined-basic"
                     name="Meta_Description"
-                    variant="outlined"
+                    // variant="outlined"
                     // onChange={handleChange}
-                    style={{ minWidth: 190, fontSize: 15 }}
+                    style={{ minWidth: 190, fontSize: 15 , height:"56px" }}
                     InputProps={{
+                      disableUnderline: true,
                         startAdornment: (
                         <InputAdornment position="start"> </InputAdornment>
                         ),
@@ -607,10 +624,11 @@ export default function Newspop() {
                     name="Url_slug"
                     value={News.Url_slug}
                     id="outlined-basic"
-                    variant="outlined"
-                    style={{ minWidth: 190, fontSize: 15 }}
+                    // variant="outlined"
+                    style={{ minWidth: 190, fontSize: 15 , height:"56px" }}
                     onChange={handleChange}
                     InputProps={{
+                      disableUnderline: true,
                         startAdornment: (
                         <InputAdornment position="start"> </InputAdornment>
                         ),
@@ -644,8 +662,8 @@ export default function Newspop() {
                     </label>
                 
                     <div
-                    className=" col-2 image_uploade center"
-                    style={{ border: "1px solid " + error.Image }}
+                    className=" col-12 image_uploade center"
+                    style={{  border:  "1px solid " + error.Image }}
                     >
                     <div className="top MdFileUpload">
                         {Image ? (
@@ -702,9 +720,10 @@ export default function Newspop() {
                     placeholder="Add Alt Text"
                     name="Alt_Text"
                     id="outlined-basic"
-                    variant="outlined"
-                    style={{ minWidth: 190, fontSize: 15 }}
+                    // variant="outlined"
+                    style={{ minWidth: 190, fontSize: 15 , height:"56px" }}
                     InputProps={{
+                      disableUnderline: true,
                         startAdornment: (
                         <InputAdornment position="start"> </InputAdornment>
                         ),
