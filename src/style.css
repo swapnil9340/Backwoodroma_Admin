@@ -731,6 +731,7 @@
   border-radius: 4px;
 }
 .addnewinputbox label {
+  margin-left: 9px;
   display: block;
   font-family: "Poppins", sans-serif;
   font-size: 12px;
@@ -738,4 +739,6 @@
   line-height: 16px;
   letter-spacing: 0.200000003px;
   text-align: left;
+  top: 10px;
+  position: relative;
 }/*# sourceMappingURL=style.css.map */
