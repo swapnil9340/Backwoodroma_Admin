@@ -907,7 +907,26 @@ const useStyles = makeStyles(theme =>(
            border:'none',
         }
       },
+      addnewstext:{
+          width:'100%',
+          fontSize:' 14px',
+          fontWeight:' 400',
+          lineHeight: '21px',
+          letterSpacing: '0em',
+          textAlign: 'left',
+          "& .MuiInput-underline":{
+             "&::before":{
+              borderBottom:"none",
+             },
+             "&:hover":{
 
+             },
+          }
+      },
+      addnewselect:{
+        width:'100%',
+
+      }
   }
 ))
 export default useStyles

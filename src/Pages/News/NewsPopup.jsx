@@ -19,8 +19,8 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Createcontext from "../../Hooks/Context/Context";
 import Box from "@mui/material/Box";
 import { useForm } from "react-hook-form";
-// import { Controller } from "react-hook-form";
 import LoadingButton from "@mui/lab/LoadingButton";
+import useStyles from "../../Style";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
@@ -40,7 +40,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-function BootstrapDialogTitle(props) {}
 
 export default function Newspop() {
   const form = useForm({
@@ -49,7 +48,7 @@ export default function Newspop() {
       Meta_title: "",
     },
   });
-
+  const classes =useStyles()
   const { register, handleSubmit, formState, watch, reset } = form;
   const { errors } = formState;
   const { dispatch } = useContext(Createcontext);
@@ -182,12 +181,6 @@ export default function Newspop() {
   const handleEditorStateChange = (editorState) => {
     setEditorState(editorState);
   };
-
-  // React.useEffect(() => {
-  //     let html = convertToHTML(editorState.getCurrentContent());
-  //     setConvertedContent(html);
-  // }, [editorState]);
-
   const handleimage = (event) => {
     SetImage(event.target.files[0]);
     setmassage("");
@@ -203,30 +196,12 @@ export default function Newspop() {
     seterror("");
   };
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+
   const resetFileInput = () => {
     // resetting the input value
     inputRef.current.value = null;
     SetImage(null);
   };
-
-  const handleClose = () => {
-    setOpen(false);
-    setNews((Brand) => ({
-      ...Brand,
-      Title: "",
-      Link: "",
-      Meta_Description: "",
-      Meta_title: "",
-      Url_slug: "",
-      Alt_Text: "",
-    }));
-
-    SetImage("");
-  };
-
   React.useEffect(() => {
     axios("https://api.cannabaze.com/AdminPanel/Get-NewsCategory/", {
       headers: {
@@ -384,6 +359,7 @@ export default function Newspop() {
                     placeholder="Title"
                     id="outlined-basic"
                     name="Title"
+                    className={classes.addnewstext}
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start"> </InputAdornment>
@@ -412,7 +388,7 @@ export default function Newspop() {
                       displayEmpty
                       size="small"
                       inputProps={{ "aria-label": "Without label" }}
-                      style={{ minWidth: 120, fontSize: 15 }}
+                      className={classes.addnewselect}
                     >
                       <MenuItem value="" style={{ fontSize: 15 }}>
                         <em>Select option</em>
@@ -442,7 +418,7 @@ export default function Newspop() {
                       displayEmpty
                       size="small"
                       inputProps={{ "aria-label": "Without label" }}
-                      style={{ minWidth: 130, fontSize: 15 }}
+                      className={classes.addnewselect}
                     >
                       <MenuItem value="" style={{ fontSize: 15 }}>
                         <em>Select option</em>
@@ -518,7 +494,7 @@ export default function Newspop() {
                     placeholder="Meta Title"
                     id="outlined-basic"
                     name="Meta_title"
-                    variant="outlined"
+                    
                     value={News.Meta_title}
                     style={{ minWidth: 190, fontSize: 15 }}
                     onChange={handleChange}
@@ -529,22 +505,7 @@ export default function Newspop() {
                         style: { fontSize: 14 },
                     }}
                     label={massage.Meta_title}
-                    sx={{
-                        "& .MuiOutlinedInput-root": {
-                        "& fieldset": {
-                            borderColor: error.Meta_title,
-                            height: 55,
-                        },
-                        },
-                        "& label": {
-                        fontSize: 13,
-                        color: "red",
-                        "&.Mui-focused": {
-                            marginLeft: 0,
-                            color: "red",
-                        },
-                        },
-                    }}
+                    className={classes.addnewstext}
                     />
               
                 </div>
@@ -560,7 +521,7 @@ export default function Newspop() {
                     placeholder="Meta Description"
                     id="outlined-basic"
                     name="Meta_Description"
-                    variant="outlined"
+                    
                     // onChange={handleChange}
                     style={{ minWidth: 190, fontSize: 15 }}
                     InputProps={{
@@ -570,22 +531,7 @@ export default function Newspop() {
                         style: { fontSize: 14 },
                     }}
                     label={massage.Meta_Description}
-                    sx={{
-                        "& .MuiOutlinedInput-root": {
-                        "& fieldset": {
-                            borderColor: error.Meta_Description,
-                            height: 55,
-                        },
-                        },
-                        "& label": {
-                        fontSize: 13,
-                        color: "red",
-                        "&.Mui-focused": {
-                            marginLeft: 0,
-                            color: "red",
-                        },
-                        },
-                    }}
+                    className={classes.addnewstext}
                     inputRef={register({
                         required: "Meta_Description is Required",
                     })}
@@ -607,7 +553,7 @@ export default function Newspop() {
                     name="Url_slug"
                     value={News.Url_slug}
                     id="outlined-basic"
-                    variant="outlined"
+                   
                     style={{ minWidth: 190, fontSize: 15 }}
                     onChange={handleChange}
                     InputProps={{
@@ -617,22 +563,7 @@ export default function Newspop() {
                         style: { fontSize: 14 },
                     }}
                     label={massage.Url_slug}
-                    sx={{
-                        "& .MuiOutlinedInput-root": {
-                        "& fieldset": {
-                            borderColor: error.Url_slug,
-                            height: 55,
-                        },
-                        },
-                        "& label": {
-                        fontSize: 13,
-                        color: "red",
-                        "&.Mui-focused": {
-                            marginLeft: 0,
-                            color: "red",
-                        },
-                        },
-                    }}
+                    className={classes.addnewstext}
                     />
               
                 </div>
@@ -702,7 +633,7 @@ export default function Newspop() {
                     placeholder="Add Alt Text"
                     name="Alt_Text"
                     id="outlined-basic"
-                    variant="outlined"
+                   
                     style={{ minWidth: 190, fontSize: 15 }}
                     InputProps={{
                         startAdornment: (
@@ -711,22 +642,7 @@ export default function Newspop() {
                         style: { fontSize: 14 },
                     }}
                     label={massage.Alt_Text}
-                    sx={{
-                        "& .MuiOutlinedInput-root": {
-                        "& fieldset": {
-                            borderColor: error.Alt_Text,
-                            height: 55,
-                        },
-                        },
-                        "& label": {
-                        fontSize: 13,
-                        color: "red",
-                        "&.Mui-focused": {
-                            marginLeft: 0,
-                            color: "red",
-                        },
-                        },
-                    }}
+                    className={classes.addnewstext}
                     inputRef={register({
                         required: "Alt_Text is Required",
                     })}
