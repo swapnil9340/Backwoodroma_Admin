@@ -24,6 +24,7 @@ import Box from "@mui/material/Box";
 import { useForm } from "react-hook-form";
 import LoadingButton from "@mui/lab/LoadingButton";
 import useStyles from "../../Style";
+import {useNavigation} from 'react-router-dom'
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
@@ -50,6 +51,7 @@ export default function Newspop() {
     },
   });
   const classes =useStyles()
+  const navigate = useNavigation()
   const { register, handleSubmit, formState, watch, reset } = form;
   const { errors } = formState;
   const { dispatch } = useContext(Createcontext);
@@ -489,7 +491,7 @@ export default function Newspop() {
                 
                       <TextField
                       type="Text"
-                      placeholder="Meta Title"
+                      placeholder="Title... "
                       id="outlined-basic"
                       name="Meta_title"
                       value={News.Meta_title}
@@ -515,6 +517,38 @@ export default function Newspop() {
                     {News.Meta_title.length > 160 && <span className="required">Maximum limit is 160 Characters</span>}
                    
                   </div>
+                  <div className="  addnewinputbox ">
+                
+                <label >
+                <span className="required">*</span>
+                  Url slug :
+                </label>
+          
+                <TextField
+                type="Text"
+                placeholder="https\"
+                name="Url_slug"
+                value={News.Url_slug}
+                id="outlined-basic"
+                
+                onChange={handleChange}
+                InputProps={{
+                  disableUnderline: true,
+                    startAdornment: (
+                    <InputAdornment position="start"> </InputAdornment>
+                    ),
+                  
+                }}
+                label={massage.Url_slug}
+                className={classes.addnewstext}
+                inputRef={register({
+                  required: "Url Slug is Required",
+                })}
+                error={Boolean(errors?.Url_slug)}
+                helperText={errors?.Url_slug?.message}
+                />
+          
+            </div>
                   <div className=" addnewinputbox">
                 
                       <label >
@@ -524,7 +558,7 @@ export default function Newspop() {
                   
                       <TextField
                       type="Text"
-                      placeholder="Meta Description"
+                      placeholder="type"
                       id="outlined-basic"
                       name="Meta_Description"
                       InputProps={{
@@ -545,38 +579,7 @@ export default function Newspop() {
                       />
         
                   </div>
-                  <div className="  addnewinputbox ">
-                
-                      <label >
-                      <span className="required">*</span>
-                        Url slug :
-                      </label>
-                
-                      <TextField
-                      type="Text"
-                      placeholder=" Url slug"
-                      name="Url_slug"
-                      value={News.Url_slug}
-                      id="outlined-basic"
-                      
-                      onChange={handleChange}
-                      InputProps={{
-                        disableUnderline: true,
-                          startAdornment: (
-                          <InputAdornment position="start"> </InputAdornment>
-                          ),
-                        
-                      }}
-                      label={massage.Url_slug}
-                      className={classes.addnewstext}
-                      inputRef={register({
-                        required: "Url Slug is Required",
-                      })}
-                      error={Boolean(errors?.Url_slug)}
-                      helperText={errors?.Url_slug?.message}
-                      />
-                
-                  </div>
+               
                   <div className="mb-4">
                       <label >
                         Banner  <span className="required">*</span>
@@ -653,19 +656,34 @@ export default function Newspop() {
             </div>
          
 
-          <div className="col-12 center top">
+          <div className="col-12 d-flex justify-content-start gap-4 top">
+          <LoadingButton
+              loading={loading}
+              autoFocus
+              onClick={()=>{navigate('/News')}}
+              style={{
+                backgroundColor: "rgb(49, 182, 101)",
+                color: "white",
+                fontSize: "14px",
+              }}
+            >
+              Cancel
+            </LoadingButton>
             <LoadingButton
               loading={loading}
               autoFocus
               type="submit"
               style={{
-                backgroundColor: !loading && "rgb(49, 182, 101)",
-                color: "white",
+                backgroundColor:'white',
+                color: "rgb(49, 182, 101)",
                 fontSize: "14px",
+                border:'1px solid #31B655'
               }}
+             
             >
               Add News
             </LoadingButton>
+           
           </div>
         </form>
       </SectionCard>
