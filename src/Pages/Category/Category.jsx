@@ -15,7 +15,6 @@ import Eelete from "../Category/Delete";
 import {  AiOutlineEyeInvisible } from 'react-icons/ai';
 import { LuEye } from "react-icons/lu";
 import Tooltip from '@mui/material/Tooltip';
-import {SectionCard} from '../../molecules/SectionCard/Index'
 import  useStyles  from '../../Style';
 import Deletepopup from '../../Components/Component/Deletepopup';
 export default function Category(props) {
@@ -186,7 +185,7 @@ export default function Category(props) {
         }
     },[isdelete])
     return (
-        <SectionCard>
+        <div className="section_card">
             
                 <div className='col-12 p-0 Add_Category d-flex justify-content-between align-items-center px-4'>
                     <h2 className='d-flex align-items-center pagetitle'> <SlSocialDropbox color='#31B655' size={25}/>Category</h2>
@@ -213,6 +212,6 @@ export default function Category(props) {
                     </Box>
                 </div>
                 {   deleteoptn &&  <Deletepopup setdeleteoprn={setdeleteoprn} setsisDelete={setsisDelete} />}
-        </SectionCard>
+        </div>
     )
 }

@@ -5,7 +5,6 @@ import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 import axios from "axios";
 import Cookies from 'universal-cookie';
-import Newspop from "./NewsPopup"
 import NewsEdit from "./EditNews"
 import Select from '@mui/material/Select';
 import { BsThreeDotsVertical } from 'react-icons/bs';
@@ -36,7 +35,7 @@ export default function News() {
 
 
         })
-    }, [token_data, state])
+    }, [])
 
     const columns = [
        
