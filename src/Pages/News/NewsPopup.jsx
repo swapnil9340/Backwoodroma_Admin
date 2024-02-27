@@ -154,9 +154,9 @@ export default function Newspop() {
       "generic.cancel": "Cancel",
 
       "components.controls.blocktype.normal": "Normal",
-      "components.controls.blocktype.h2": "Heading 1",
-      "components.controls.blocktype.h3": "Heading 2",
-      "components.controls.blocktype.h4": "Heading 3",
+      "components.controls.blocktype.h1": "Heading 1",
+      "components.controls.blocktype.h2": "Heading 2",
+      "components.controls.blocktype.h3": "Heading 3",
       "components.controls.blocktype.blockquote": "Blockquote",
 
       "components.controls.embedded.embedded": "Embedded",
