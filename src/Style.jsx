@@ -865,9 +865,7 @@ const useStyles = makeStyles(theme =>(
         "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
           visibility: "hidden"
         },
-        "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-          width: "120px"
-        }
+       
 
       },
       popuptextfeild:{

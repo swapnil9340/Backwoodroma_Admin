@@ -694,6 +694,7 @@
 .userDetails .usersidebarprofile {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 12px;
 }
 .userDetails .usersidebarprofile .imagecircle {
@@ -701,6 +702,7 @@
   height: 40px;
   border-radius: 50%;
   overflow: hidden;
+  min-width: 40px;
 }
 .userDetails .usersidebarprofile .imagecircle img {
   width: 100%;

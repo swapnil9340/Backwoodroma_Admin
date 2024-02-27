@@ -715,12 +715,14 @@ cursor: pointer;
   .usersidebarprofile{
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     gap: 12px;
     .imagecircle{
       width: 40px;
       height: 40px;
       border-radius: 50%;
       overflow: hidden;
+      min-width: 40px;
       img{
         width: 100%;
       }
