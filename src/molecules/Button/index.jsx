@@ -10,7 +10,7 @@ font-family: 'Inter', sans-serif;
     text-align: center;
     border: 1px solid #31B655;
     background-color: #31B655;
-    color: #fff;
+    color: #fff !important;
     font-size: 14px;
     font-weight: 500;
     border-radius: 5px;
@@ -19,6 +19,6 @@ font-family: 'Inter', sans-serif;
 },
 &.MuiButton-root:hover{
     background-color: #fff;
-        color: #31B655;
+        color: #31B655 !important;
 }
 `;

@@ -2,6 +2,7 @@ import React , {useContext} from 'react'
 import Cookies from 'universal-cookie';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { ThemeProvider } from "@mui/material/styles";
+import { SlSocialDropbox } from "react-icons/sl";
 import { createTheme } from "@mui/material/styles";
 import Box from '@mui/material/Box';
 import axios from "axios";
@@ -15,6 +16,8 @@ import useStyles from '../../../Style'
 export default function NewsSubCategory() {
     const classes = useStyles()
     const { state} = useContext(Createcontext)
+    const cookies = new Cookies();
+    const token_data = cookies.get('Token_access')
     const CustomFontTheme = createTheme({
         typography: {
             fontSize: 25
@@ -33,8 +36,7 @@ export default function NewsSubCategory() {
 
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
-        const cookies = new Cookies();
-        const token_data = cookies.get('Token_access')
+     
         axios("https://api.cannabaze.com/AdminPanel/Get-NewsSubCategory", {
 
             headers: {
@@ -45,7 +47,7 @@ export default function NewsSubCategory() {
             setTotal(response.data.data)
 
         })
-    }, [state])
+    }, [])
     
     const columns = [
         { field: 'name', headerName: 'Name', maxWidth: 150, minWidth: 80, flex: 1,sortable:false, editable: true, headerClassName: 'super-app-theme--header',headerAlign: 'left', align:"", },
@@ -82,14 +84,14 @@ export default function NewsSubCategory() {
     const rows = totel
 return (
    
-        <div className='row'>
+        <div className='section_card'>
 
           
       
 
-                <div className='col-12 Add_Category m-2 mt-5 mb-5'>
-                    <div className="col"> <h2>News Sub Category</h2></div>
-                    <div className="col " >  <span> <h2> <AddNewsCategory></AddNewsCategory></h2></span></div>
+                <div className='col-12 p-3 d-flex justify-content-between align-items-center'>
+                    <h2 className='pagetitle'> <SlSocialDropbox color='#31B655' size={25}/>   News Sub Category</h2>
+                    <span> <h2> <AddNewsCategory></AddNewsCategory></h2></span>
                 </div>
 
                 <div className='col-12' >
@@ -111,6 +113,5 @@ return (
                     </Box>
                 </div>
         </div>
-
 )
 }

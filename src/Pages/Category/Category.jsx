@@ -1,28 +1,27 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useState ,useContext } from 'react'
 import Createcontext from "../../Hooks/Context/Context"
 import Cookies from 'universal-cookie';
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 import Categorypopup from './Categorypopup';
 import axios from "axios"
-import { FaEdit } from "react-icons/fa";
+import { RiDeleteBinLine } from "react-icons/ri";
 import { useSnackbar } from 'notistack';
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 import Box from '@mui/material/Box';
-import { BsThreeDotsVertical } from 'react-icons/bs';
-import Select from '@mui/material/Select';
 import CategoryEditbox from "./CategoryEdit"
 import { SlSocialDropbox } from "react-icons/sl";
 import Eelete from "../Category/Delete";
 import {  AiOutlineEyeInvisible } from 'react-icons/ai';
 import { LuEye } from "react-icons/lu";
 import Tooltip from '@mui/material/Tooltip';
-import {SectionCard} from '../../molecules/SectionCard/Index'
 import  useStyles  from '../../Style';
+import Deletepopup from '../../Components/Component/Deletepopup';
 export default function Category(props) {
     const classes = useStyles()
     const { state, dispatch } = useContext(Createcontext)
-
+    const [deleteoptn , setdeleteoprn] = useState(false)
+    const [isdelete , setsisDelete] = useState(false)
     const { enqueueSnackbar } = useSnackbar();
     const CustomFontTheme = createTheme({
         typography: {
@@ -43,6 +42,7 @@ export default function Category(props) {
     const [totel, setTotal] = React.useState([])
     const cookies = new Cookies();
     const [pageSize, setPageSize] = React.useState(10)
+    const [reviewid , setreviewid] = useState('')
     const token_data = cookies.get('Token_access')
     useEffect(() => {
 
@@ -151,7 +151,7 @@ export default function Category(props) {
                     >
                         
                           { state.Roles.EditCategory && <CategoryEditbox data={params.row} ></CategoryEditbox>}
-                          { state.Roles.DeleteCategory && <Eelete data={params.row}></Eelete> }
+                          { state.Roles.DeleteCategory && <RiDeleteBinLine onClick={()=>{setdeleteoprn(true) ; setreviewid(params.row.id)}}></RiDeleteBinLine> }
                        
 
                      
@@ -164,8 +164,28 @@ export default function Category(props) {
 
     ];
     const rows = totel
+
+    useEffect(()=>{
+        if(isdelete){
+            axios.delete(`https://api.cannabaze.com/AdminPanel/delete-Category/${reviewid}`, {
+            headers: {
+                'Authorization': `Bearer ${token_data}`
+            }
+            }).then(response => {
+                axios("https://api.cannabaze.com/AdminPanel/Get-Category/", {
+                    headers: {
+                        'Authorization': `Bearer ${token_data}`
+                    }
+                }).then(response => {
+                    setreviewid('')
+                    setTotal([...response.data])
+                })
+        
+            })
+        }
+    },[isdelete])
     return (
-        <SectionCard>
+        <div className="section_card">
             
                 <div className='col-12 p-0 Add_Category d-flex justify-content-between align-items-center px-4'>
                     <h2 className='d-flex align-items-center pagetitle'> <SlSocialDropbox color='#31B655' size={25}/>Category</h2>
@@ -191,7 +211,7 @@ export default function Category(props) {
                         </ThemeProvider>
                     </Box>
                 </div>
-        
-        </SectionCard>
+                {   deleteoptn &&  <Deletepopup setdeleteoprn={setdeleteoprn} setsisDelete={setsisDelete} />}
+        </div>
     )
 }

@@ -1,11 +1,12 @@
 import React, { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { FaHouseUser } from "react-icons/fa";
-import { MdLocalActivity, MdPreview, MdStorefront } from "react-icons/md";
+import { MdLocalActivity, MdPreview } from "react-icons/md";
 import { AiTwotoneSetting, AiOutlineAppstore } from "react-icons/ai";
 import { GrProductHunt } from "react-icons/gr";
 import { FiPackage } from "react-icons/fi";
-import { IoAnalytics } from "react-icons/io5";
+import Cookies from 'universal-cookie'
+import { IoIosArrowDown , IoIosArrowUp  } from "react-icons/io";
 import Icon from "@material-ui/core/Icon";
 import Createcontext from "../../Hooks/Context/Context";
 import "./Sidebar.css";
@@ -13,13 +14,21 @@ import useStyles from "../../Style";
 import { FaRegHand } from "react-icons/fa6";
 import { FaHandPaper } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
-
+import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 const Sidebar = ({ sidebaropen, setsidebaropen }) => {
+ 
   const { state } = useContext(Createcontext);
   const [openDropdown, setOpendropdown] = useState("");
+  const [logoutbtn, setlogoutbtn] = useState(false);
+  const cookies = new Cookies();
+  const token_data = cookies.get('Token_access')
   const [sideopen, Setsideopen] = useState(false);
+  const [userdata, setuserdata] = useState(false);
   const [stick, setStick] = useState(true);
   const classes = useStyles();
+  const navigate = useNavigate();
+
   const checkActive = (match, location) => {
     if (!location) return false;
     const { pathname } = location;
@@ -38,6 +47,20 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
     } else {
       setOpendropdown(value);
     }
+  }
+  React.useEffect(()=>{
+    axios.get(`https://api.cannabaze.com/AdminPanel/UserProfileAdminSideBar/`,{
+      headers: {
+        'Authorization': `Bearer ${token_data}`
+      }
+    }).then((res)=>{
+      setuserdata(res.data)
+    })
+  },[])
+
+  function logout(){
+    cookies.remove("Token_access")
+    navigate("/login");
   }
 
   return (
@@ -150,14 +173,7 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
             </li>
           </NavLink>
         }
-        {/* <NavLink to={"/Tax"} onClick={closebar} activeClassName="active">
-          <li button className={" active_bar "}>
-            <Icon className={classes.sidebarIcon + ""}>
-              <MdStorefront></MdStorefront>
-            </Icon>
-            <span className={" sidebar_text"}>Tax</span>
-          </li>
-        </NavLink> */}
+        
 
         {(state.Roles.ViewVendor || (state.Roles.AddVendor || state.Roles.DeleteVendor || state.Roles.EditVendor) )&&
         <NavLink to={"/Vendorlist"} onClick={closebar} activeClassName="active">
@@ -331,11 +347,7 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
           
               <NavLink to={"/addrole"} onClick={closebar} activeClassName="active">
                 <li button className={" active_bar  suboption"}>
-                  {/* <Icon
-                                    className={ classes.sidebarIcon + ' sidebar_text'}
-                                    >
-                                    <FaRegUser ></FaRegUser>
-                                    </Icon> */}
+                
                   <span className={" sidebar_text"}>Add Roles</span>
                 </li>
               </NavLink>}
@@ -357,7 +369,19 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
           </li>
         </NavLink>
       </ul>
-     
+      <div className="userDetails">
+        <div className="usersidebarprofile">
+          <div className="imagecircle">
+            <img src={userdata.Image} alt="Img" />
+          </div>
+          <div className="userdescription">
+            <h4> {userdata.UserName}</h4>
+            <h5> {userdata?.Designations?.join()}</h5>
+            { !logoutbtn && <h5 className="logoutbtn" onClick={logout}> Logout</h5>}
+          </div>
+          <span onClick={()=>{setlogoutbtn(!logoutbtn)}}> {logoutbtn ? <IoIosArrowDown size={22}/>: <IoIosArrowUp size={22}/>}</span>
+        </div>
+      </div>
     </div>
   );
 };

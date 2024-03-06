@@ -84,9 +84,9 @@ export default function NewsCategorypopup() {
 
     return (
         <div>
-            <Button variant="topbutton" onClick={handleClickOpen}>
+            <button className="topbutton" onClick={handleClickOpen}>
                 + Add Category
-            </Button>
+            </button>
             <BootstrapDialog
                 onClose={handleClose}
                 aria-labelledby="Customizeed-dialog-title"

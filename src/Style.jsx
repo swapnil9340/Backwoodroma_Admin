@@ -865,10 +865,80 @@ const useStyles = makeStyles(theme =>(
         "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
           visibility: "hidden"
         },
-        "&.MuiDataGrid-root .MuiDataGrid-columnHeaderDraggableContainer": {
-          width: "120px"
-        }
+       
 
+      },
+      popuptextfeild:{
+         width:'100%',
+         '& .MuiInputBase-input':{
+            padding:'7px',
+         }
+         ,"& .MuiInputBase-root":{
+            "&:hover":{
+              "& fieldset":{
+                borderColor:'#E0E0E0',
+              }
+            }
+         }
+      },
+      popupselectFeild:{
+        width:'100%',
+        fontSize:'15px',
+        fontWeight:'400',
+        "&.MuiInputBase-root":{
+           "&:hover":{
+            "& fieldset":{
+              borderColor:'#E0E0E0'
+            }
+           }
+        },
+        '& .MuiSelect-select':{
+           padding:'7px 20px',
+           fontSize:'15px',
+           "&:hover":{
+            "& fieldset":{
+              border:'none'
+            }
+           }
+        },
+        '& .MuiSelect-nativeInput':{
+           border:'none',
+        }
+      },
+      addnewstext:{
+          width:'100%',
+          "& .MuiInputBase-root":{
+            fontSize:' 14px ',
+            fontWeight:' 400 ',
+            lineHeight: '21px ',
+            letterSpacing: '0em ',
+            textAlign: 'left ',
+            color:'#000 ',
+            padding:'10px 0',
+          },
+       
+          "& .MuiInput-underline":{
+             "&::before":{
+              borderBottom:"none",
+             },
+             "&:hover":{
+
+             },
+          }
+      },
+      addnewselect:{
+        width:'100%',
+        fontFamily: 'Poppins !important',
+        fontSize: '14px !important',
+        fontWeight: '400 !important',
+        lineHeight: '21px !important',
+        letterSpacing: '0em !important',
+        textAlign: 'left !important',
+        color:'#000',
+
+        "& fieldset":{
+          border:'none !important'
+        },
       }
   }
 ))

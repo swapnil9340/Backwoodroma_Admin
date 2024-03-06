@@ -5,6 +5,7 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import axios from "axios"
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
+import { SlSocialDropbox } from "react-icons/sl";
 import Box from '@mui/material/Box';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import useStyles from '../../../Style';
@@ -16,6 +17,8 @@ export default function NewsCategory(props) {
 const classes = useStyles()
     const { state} = useContext(Createcontext)
     const [pageSize, setPageSize] = React.useState(10)
+    const cookies = new Cookies();
+    const token_data = cookies.get('Token_access')
     const CustomFontTheme = createTheme({
         typography: {
             fontSize: 25
@@ -36,21 +39,17 @@ const classes = useStyles()
     
     const [totel, setTotal] = React.useState([])  
     useEffect(() => {
-        const cookies = new Cookies();
-        const token_data = cookies.get('Token_access')
-
         axios("https://api.cannabaze.com/AdminPanel/Get-NewsCategory/", {
 
         headers: {
             'Authorization': `Bearer ${token_data}`
         }
-    }).then(response => {
+        }).then(response => {
 
-        setTotal([...response.data])
+            setTotal([...response.data])
 
-    })
-
-    },[state])
+        })
+    },[])
     const columns = [
         { field: 'name', headerName: 'Name', editable: true, maxWidth: 150, minWidth: 110,sortable:false, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'left', },
         {
@@ -94,11 +93,12 @@ const classes = useStyles()
     const rows = totel
 
     return (
-            <div className='row'>
-                    <div className='col-12 Add_Category m-2 mt-5 mb-5'>
-                        <div className="col"> <h2>News Category
-                        </h2></div>
-                        <div className="col" >   <span>{<AddNewsCategory></AddNewsCategory>}</span> </div>
+        <div className="section_card">
+        
+                    <div className='col-12 p-3 d-flex justify-content-between align-items-center'>
+                         <h2 className='pagetitle'><SlSocialDropbox color='#31B655' size={25}/> News Category
+                        </h2>
+                           <span>{<AddNewsCategory></AddNewsCategory>}</span>
                     </div>
                     <div className='col-12'>
                         <Box className={classes.DataTableBoxStyle}>
@@ -119,5 +119,6 @@ const classes = useStyles()
                         </Box>
                     </div>
             </div>
+      
     )
 }

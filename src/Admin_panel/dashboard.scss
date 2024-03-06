@@ -89,7 +89,7 @@ h3.graphtitle {
         padding: 0;
         height: 80%;
         margin: 0;
-        overflow-y: scroll;
+        overflow: hidden;
         -ms-overflow-style: none;
         scrollbar-width: none;
 
@@ -130,6 +130,10 @@ h3.graphtitle {
                     .list_title {
                         font-size: 13px;
                         font-weight: 600;
+                        overflow: hidden;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
                     }
 
                     .listunitSold {
@@ -228,7 +232,6 @@ h3.graphtitle {
             background-color: #13B8A6;
         }
     }
-
     .locationAmount {
         font-family: 'Roboto';
         font-size: 18px;
@@ -238,7 +241,9 @@ h3.graphtitle {
     }
 }
 
-.RecentOrderCard {
+.RecentOrderCard{
+    fill: #FFF;
+    filter: drop-shadow(0px 10px 60px rgba(226, 236, 249, 0.50));
     background-color: #fff;
     padding: 15px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -279,6 +284,8 @@ h3.graphtitle {
     .storeOwnerTable {
         flex: 1;
         background-color: #fff;
+        fill: #FFF;
+        filter: drop-shadow(0px 10px 60px rgba(226, 236, 249, 0.50));
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
           @media screen and (max-width: 768px) {
            flex: none;
@@ -328,8 +335,7 @@ h3.graphtitle {
         .locationContent {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-
+           
             .locationList {
                 width: 45%;
 

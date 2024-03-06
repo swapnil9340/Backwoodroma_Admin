@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 $border-color_1: #fff transparent transparent transparent;
 
 .section_card {
@@ -597,5 +598,170 @@ cursor: pointer;
     color: #fff;
     text-shadow: 2px 2px 4px #000000;
 
+  }
+}
+.popupTitle{
+  font-size: 20px;
+  font-weight: 600;
+  color: #31B655;
+  text-align: center;
+  line-height: 2;
+}
+.addSubcategoryForm{
+  width: 80%;
+  margin: 0 auto;
+  .inputFeildasf{
+    width: 100%;
+    text-align: start;
+    margin-bottom: 20px;
+    .label{
+      justify-content: flex-start;
+      margin: 0;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: #00000077;
+    }
+    .Imagelabel{
+      width: 100%;
+      height: 80px;
+      border: 2px dashed rgba(114, 124, 164, 0.75);
+      background-color: rgba(209, 212, 225, 0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 400;
+      gap: 10px;
+    }
+  }
+}
+.Reviewpopupcontainer{
+  background-color: hsla(0, 0%, 0%, 0.4);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  .reviewpopupcontent{
+    width: 380px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    .reviewpopuptitle{
+      color: #00AC4F;
+      font-family: "Poppins", sans-serif;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      letter-spacing: -0.22px;
+      margin-bottom: 20px;
+      clear: both;
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 100%;
+    }
+    .reviewBox{
+      border-radius: 16px;
+      background: #FAFAFA;
+      padding: 12px 25px;
+      margin-bottom: 17px;
+      .reviewTitle{
+        color: #000;
+        font-family: "Lato", sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: -0.403px;
+      }
+      .reviewnm{
+        color: #000;
+        font-family: "Lato", sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: -0.403px;
+      }
+      .reviewdescription{
+        color: #000;
+        font-family: 'Inter', sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px;
+      }
+      .reviewdate{
+        color: #838383;
+        font-family: "Lato", sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: -0.403px;
+        text-align: right;
+      }
+    }
+  }
+}
+.userDetails{
+  .usersidebarprofile{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    .imagecircle{
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      min-width: 40px;
+      img{
+        width: 100%;
+      }
+    }
+    .userdescription{
+      flex: 1;
+      h4{
+        font-family: "Poppins", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 21px;
+        letter-spacing: 0.01em;
+        text-align: left;
+      }
+      h5{
+        font-family: "Poppins", sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0.01em;
+        text-align: left;        
+      }
+    }
+  }
+}
+.addnewinputbox{
+  border: 1px solid #d9d9d9;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  label{
+    margin-left: 9px;
+    display: block;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0.200000003px;
+    text-align: left;
+    top: 10px;
+    position: relative;
   }
 }

@@ -12,8 +12,6 @@ import { DataGrid } from '@mui/x-data-grid';
 import TotalSales from './TotalSales'
 import Areagraph from './Areagraph'
 import Recentorder from './Recentorder';
-import { MdOutlineEmail } from "react-icons/md";
-import { BsTelephone } from "react-icons/bs";
 import {SectionCard} from '../molecules/SectionCard/Index'
 import axios from 'axios';
 import Cookies from 'universal-cookie'
@@ -26,6 +24,10 @@ export default function AdminPanel() {
   const [pageSize, setPageSize] = React.useState(10)
   const token_data = cookies.get('Token_access')
   const [recentorder, setRecentorder] = React.useState([])
+  const [locationdata, setlocationdat]= React.useState([])
+  const [topdata, settopdata]= React.useState({})
+  const [locationgrapgdata, setlocationgrapgdata]= React.useState([])
+  const [locationgrapglabel, setlocationgrapglabel]= React.useState([])
   const columns = [
 
     {
@@ -99,9 +101,10 @@ export default function AdminPanel() {
   });
   const locationchart = {
 
-    series: [14, 23, 21, 17, 15, 10, 12,],
+    series: locationgrapgdata,
     options: {
       colors: ["#1E40AF", "#1D4ED8", "#2563EB", "#3B82F6", "#60A5FA", "#93C5FD", "#BFDBFE"],
+      labels: locationgrapglabel,
       chart: {
         type: 'polarArea',
       },
@@ -143,11 +146,8 @@ export default function AdminPanel() {
   const lastmonthStartDate = new Date(date.getFullYear(), date.getMonth() - 1, 2).toISOString().split('T')[0]
   const firstDayOfCurrentMonth = new Date(date.getFullYear(), date.getMonth(), 1);
   const lastmonthLastDate = new Date(firstDayOfCurrentMonth - 1).toISOString().split('T')[0]
-  // End /////////////////
-  //    Week Calculate //////////////////////// 
   const WeekCalculate = date.getDate() - date.getDay() + (date.getDay() === 0 ? - 6 : 1);
   const StartDateWeek = new Date(date.setDate(WeekCalculate)).toISOString().split('T')[0]
-  // const previous =  new Date(date.setDate(date.getDate() - 1)).toISOString().split('T')[0]
   function GetpreviousWeekDate(d, j) {
     //   const today = new Date();
     const dayOfWeek = date.getDay();  // 0 (Sunday) to 6 (Saturday)
@@ -165,8 +165,6 @@ export default function AdminPanel() {
       day = ("0" + date.getDate()).slice(-2);
     return [date.getFullYear(), mnth, day].join("-");
   }
-
-
   function CalculateDays(date1) {
     if (date1 === "first") {
       const datefirst = new Date(state.CustomeStartDate)
@@ -262,7 +260,41 @@ export default function AdminPanel() {
 
     }
   }, [Data])
+  useEffect(()=>{
+    axios.post('https://api.cannabaze.com/AdminPanel/PopularLocationGraphPage/',
+    {"SelectTime":"Year","StartDate":"2024-01-07","EndDate":"2024-02-06","LastStartDate":"2023-02-07","EndStartDate":"2024-01-07"},
+    {
+      headers: {
+        'Authorization': `Bearer ${token_data}`
+      }
+    }
+    ).then((res)=>{
+     
+        let b= []
+        let c= []
+        let a = res.data.map((item , index)=>{
+        
+          return {
+            ...item, id : index+1
+          }
+        })
+  
+       let lastdata =  a.pop()
+       
+       settopdata(lastdata)
+     setlocationdat(a)
+     setlocationgrapgdata(b)
+     setlocationgrapglabel(c)
+     a.forEach((item , index)=>{
+      c.push(item.State)
+      b.push(item.TotalSale)
+  
+    })
+    })
 
+
+
+  },[])
   return (
     <div className='row dashboardSection'>
 
@@ -322,7 +354,7 @@ export default function AdminPanel() {
                 <span>Location</span>
                 <span>Amount</span>
               </div>
-              <div className='locationListItem'>
+              {/* <div className='locationListItem'>
 
                 <span className='locationName'>   <span className='colorCircle' style={{ backgroundColor: '#1E40AF' }}></span> New York</span>
                 <span className='locationAmount'>6,806</span>
@@ -356,7 +388,15 @@ export default function AdminPanel() {
 
                 <span className='locationName'>   <span className='colorCircle' style={{ backgroundColor: '#BFDBFE' }}></span> Oklahoma City </span>
                 <span className='locationAmount'>566</span>
-              </div>
+              </div> */}
+              {
+                        locationdata.map((item , index)=>{
+                         return    <div className='locationListItem'>
+                         <span className='locationName'>   <span className='colorCircle' style={{ backgroundColor: '#BFDBFE' }}></span> {item.State} </span>
+                         <span className='locationAmount'>{item.TotalSale}</span>
+                       </div>
+                        })
+                      } 
             </div>
             <div className='locationGrapharea'>
               <ReactApexChart options={locationchart.options} series={locationchart.series} type="polarArea" />
