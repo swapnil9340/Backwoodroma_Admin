@@ -31,7 +31,6 @@
   color: #fff;
   border-radius: 50%;
 }
-
 .storerating {
   position: absolute;
   top: 0;
@@ -569,8 +568,8 @@
   align-items: center;
 }
 .namecorcle span {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
   font-family: "Inter", sans-serif;
   color: #fff;
   text-shadow: 2px 2px 4px #000000;
