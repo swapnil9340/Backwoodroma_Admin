@@ -201,12 +201,11 @@ const classes = useStyles()
                                 </div>
                                 <div className='  label'>
                                         <div className='col top'>
-                                        <input  type="file" id="formFile" ref={inputRef} accept="image/*" className='d-none'  variant="outlined" style={{ Width: "10%", fontSize: 15 }}
+                                        <input  type="file" id="formFile" name='formFile' ref={inputRef} accept="image/*" className='d-none'  variant="outlined" style=  {{    Width: "10%", fontSize: 15 }}
                                             onChange={handleimage}
                                         />
-                                            <label className='text-center w-100' htmlFor='formFile'>
-                                               <Headerbutton>Upload Image</Headerbutton>
-                                            </label>
+                                        <label className='popupimagebutton' htmlFor='formFile'>Upload Image </label>
+                                           
                                         </div>
                                        
                                 </div>

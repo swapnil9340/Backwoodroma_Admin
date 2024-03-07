@@ -46,9 +46,9 @@ export default function UserDelete({data}) {
 
   return (
     <div>
-      <span color='topbutton' onClick={handleClickOpen}>
-      <BsTrashFill color='rgba(67, 80, 133, 0.5)' size={18}/> 
-      </span>
+    <span className='w-100 text-center'>
+        <BsTrashFill onClick={handleClickOpen} color='#31B655' size={18}/> </span>
+      
       <Dialog
         open={open}
         TransitionComponent={Transition}

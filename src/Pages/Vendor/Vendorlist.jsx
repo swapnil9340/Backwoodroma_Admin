@@ -148,7 +148,7 @@ const Vendorlist = () => {
         },
         {
             field: 'Edit',
-            headerName: 'Edit',
+            headerName: 'Action',
             editable: false,
             sortable: false, minWidth: 120, flex: 1,
             headerAlign: 'center', align: "center",
@@ -170,15 +170,23 @@ const Vendorlist = () => {
                             }}
                         >
                             <Select sx={{
-                                boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
-                                "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
-                                "&:hover": {
-                                    ".MuiSelect-icon": {
-                                        color: "#31B665"
-                                    }
-                                },
-                            }} IconComponent={BsThreeDotsVertical} labelId="">
-                            <UserDelete data={params.row}></UserDelete>
+                                    boxShadow: '',
+                                    '.MuiPaper-root':{
+                                       textAlign:'center',
+                                    },
+                                    '.MuiOutlinedInput-notchedOutline': { border: "0px" },
+                                    "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
+                                    "&:hover": {
+                                        ".MuiSelect-icon": {
+                                            color: "#31B665"
+                                        }
+                                    },
+
+                                }} 
+                                IconComponent={BsThreeDotsVertical}
+                                labelId=""
+                            >
+                              <UserDelete data={params.row}></UserDelete>
                             
                             </Select>
                         </Box>

@@ -6,6 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
+import { LuUpload } from "react-icons/lu";
 import MenuItem from '@mui/material/MenuItem';
 import Cookies from 'universal-cookie';
 import Axios from "axios"
@@ -16,6 +17,7 @@ import { convertToHTML } from 'draft-convert';
 import InputAdornment from '@mui/material/InputAdornment';
 import Createcontext from "../../Hooks/Context/Context"
 import Box from '@mui/material/Box';
+import useStyles from '../../Style';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -35,7 +37,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         },
     },
 }));
-
 function BootstrapDialogTitle(props) {
 
 }
@@ -45,6 +46,7 @@ export default function Brandpopup() {
     const inputRef = useRef(null);
     const [convertedContent, setConvertedContent] = React.useState(null);
     const [open, setOpen] = React.useState(false);
+    const classes = useStyles()
     const [image, SetImage] = React.useState('');
     const [Brand, setBrand] = React.useState({
         Link: "",
@@ -60,11 +62,6 @@ export default function Brandpopup() {
         name: "",
 
     })
-
-
-
-
-
     React.useEffect(() => {
         let html = convertToHTML(editorState.getCurrentContent());
         setConvertedContent(html);
@@ -98,9 +95,6 @@ export default function Brandpopup() {
         inputRef.current.value = null;
         SetImage(null)
     };
-
-
-
     const formdata = new FormData();
     formdata.append('Brand_Logo', image);
     formdata.append('Brand_description', convertedContent);
@@ -143,6 +137,18 @@ export default function Brandpopup() {
                 }
             )
     };
+    const handleDragOver = (event) => {
+        event.preventDefault()
+      }
+      
+      // Function to handle image drop
+      const handleDrop = (event) => {
+        event.preventDefault()
+        const file = event.dataTransfer.files[0]
+        if (file) {
+            SetImage(file)
+        }
+      }
     return (
         <div>
             <button className="topbutton" onClick={handleClickOpen}>
@@ -160,18 +166,12 @@ export default function Brandpopup() {
                             width: {
                                 xs: "100%",
                                 sm: "100%",
-                                md: "100%",
-                                lg: "70%",
-                                xl: "70%"
+                                md: "70%",
+                                lg: "60%",
+                                xl: "50%"
 
                             },
-                            height: {
-                                xs: "75%",
-                                sm: "75%",
-                                md: "75%",
-                                lg: "100%",
-                                xl: "100%"
-                            },
+                          
                             maxWidth: "none",  // Set your width here
                             border: "1px solid #31B665",
                             borderRadius: "15px"
@@ -187,72 +187,75 @@ export default function Brandpopup() {
 
                             <div className='col-12    ' >
 
-                                <div className='col-12 Add_State Add_Category center'>
-                                    <div className="col "> <h2> Brand
-                                    </h2>
-                                    </div>
+                                <div className='text-center'>
+                                  <h2 className='popupTitle'> Brand  </h2>
                                 </div>
-                                <div className='col-12 top label  con  '>
-                                    <div className='col m-2'>
+                                <div className='addSubcategoryForm'>
+                                <div className='inputFeildasf'>
+                                 
                                         <label className='label'>
                                             Brand Name:
                                         </label>
-                                    </div>
-                                    <div className='col'>
+                                 
                                         <TextField type="text" placeholder='Add Brand Name' id="outlined-basic" variant="outlined" name='name' value={Brand.name} style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                             label={massage.name}
-                                            sx={{
-                                                '& .MuiOutlinedInput-root': {
-                                                    '& fieldset': {
-                                                        borderColor: error.name,
-                                                        height: 55,
-                                                    },
-                                                },
-                                                "& label": {
-                                                    fontSize: 13,
-                                                    color: "red",
-                                                    "&.Mui-focused": {
-                                                        marginLeft: 0,
-                                                        color: "red",
-                                                    }
-                                                }
-                                            }}
+                                            className={classes.popuptextfeild} 
                                         />
-                                    </div>
+                                  
                                 </div>
 
-                                <div className='col-12 top label  con'>
-                                    <div className='col m-2'>
+                                <div className='inputFeildasf'>
+                                   
                                         <label className='label'>
                                             Brand Link:
                                         </label>
-                                    </div>
-                                    <div className='col'>
+                                   
 
                                         <TextField type="text" placeholder='Add LicenceNo' id="outlined-basic" variant="outlined" name='Link' value={Brand.Link}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
-
+                                            className={classes.popuptextfeild} 
                                         />
 
-                                    </div>
                                 </div>
+                                <div className='inputFeildasf'>
+                                   
+                                   <label className='label'>
+                                       Status:
+                                   </label>
+                             
+                                   <Select
+                                       name='Status'
+                                       value={Brand.Status}
+                                       onChange={handleChange}
+                                       displayEmpty
+                                       size='small'
+                                       inputProps={{ 'aria-label': 'Without label' }}
+                                       className={classes.popupselectFeild}
+                                   >
+                                       <MenuItem value={"Active"} style={{ fontSize: 15 }}>Active</MenuItem>
+                                       <MenuItem value={"Hide"} style={{ fontSize: 15 }}>Hide</MenuItem>
 
-                                <div className='col-12 top label  con'>
-                                    <div className='col m-2'>
+                                   </Select>
+                         
+
+                                </div>
+                                <div className='inputFeildasf'>
+                                    
                                         <label className='label'>
                                             Brand Logo:
                                         </label>
-                                    </div>
-                                    <div className='col'>
+                                   
 
-                                        <input type="file" ref={inputRef} onChange={handleimage} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }} />
-                                    </div>
-
-                                </div>
-                                <div className='col center'>
+                                        <input type="file" id='formFile' name='formFile' ref={inputRef} onChange={handleimage} variant="outlined" className='d-none'/>
+                                        <label className='Imagelabel' htmlFor='formFile'  onDragOver=
+                                    
+                                    
+                                    {handleDragOver} onDrop={handleDrop}>
+                                        <LuUpload  size={24} color='#31B655'/> Drop files here or click to upload
+                                     </label>
                                     {
                                         image && <>
                                             <img src={URL.createObjectURL(image)} alt="" style={{ width: "120px", height: "110px" }} />
@@ -262,7 +265,7 @@ export default function Brandpopup() {
                                 </div>
 
                               
-                                <div className='col-12 top label  con'>
+                                <div className='inputFeildasf'>
                                     <div className='col m-2'>
                                         <label className='label'>
                                             Brand Description:
@@ -291,34 +294,13 @@ export default function Brandpopup() {
                                         </Box>
                                     </div>
                                 </div>
-                                <div className='col-12 top label  con'>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            Status:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-                                        <Select
-                                            name='Status'
-                                            value={Brand.Status}
-                                            onChange={handleChange}
-                                            displayEmpty
-                                            size='small'
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}
-                                        >
-                                            <MenuItem value={"Active"} style={{ fontSize: 15 }}>Active</MenuItem>
-                                            <MenuItem value={"Hide"} style={{ fontSize: 15 }}>Hide</MenuItem>
-
-                                        </Select>
-                                    </div>
-
-                                </div>
+                              
                                 <div className='col-12 center top' >
                                     <button className='topbutton' autoFocus onClick={Submit} >
                                         Add Brand
                                     </button>
                                 </div>
-
+</div>
                             </div>
 
                         </div>

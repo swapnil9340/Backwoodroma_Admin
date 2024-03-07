@@ -142,6 +142,7 @@ const Vendor = () => {
                 sx={{
                   display: "flex",
                   alignItems: "center",
+                  justifyContent:'center',
                   gap: "5px",
                   "& .MuiOutlinedInput-root": {
                     "&.Mui-focused fieldset": {

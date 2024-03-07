@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
+import { LuUpload } from "react-icons/lu";
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
@@ -16,6 +17,7 @@ import { convertToHTML } from 'draft-convert';
 import htmlToDraft from 'html-to-draftjs';
 import Createcontext from "../../Hooks/Context/Context"
 import { FaEdit } from "react-icons/fa";
+import useStyles from '../../Style';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -62,6 +64,7 @@ export default function BrandEdit(props) {
     const [convertedContent, setConvertedContent] = React.useState(null);
     const [open, setOpen] = React.useState(false);
     const [image, SetImage] = React.useState('');
+    const classes = useStyles()
     const [Brand, setBrand] = React.useState({
         Link: props.data.Link,
         Status: props.data.Status,
@@ -128,11 +131,23 @@ export default function BrandEdit(props) {
             dispatch({ type: 'api', api: true })
         })
     };
+    const handleDragOver = (event) => {
+        event.preventDefault()
+      }
+      
+      // Function to handle image drop
+      const handleDrop = (event) => {
+        event.preventDefault()
+        const file = event.dataTransfer.files[0]
+        if (file) {
+            SetImage(file)
+        }
+      }
     return (
         <div>
-            <Button color='success' onClick={handleClickOpen}>
-                <FaEdit />
-            </Button>
+           
+                <FaEdit  onClick={handleClickOpen} size={20} color='#31B655'/>
+        
             <BootstrapDialog
                 onClose={handleClose}
                 aria-labelledby="Customizeed-dialog-title"
@@ -173,62 +188,88 @@ export default function BrandEdit(props) {
                             <div className='col-12' >
 
                                 <div className='col-12 Add_State  center'>
-                                    <div className="col "> <h2> Edit Brand
-                                    </h2>
-                                    </div>
+                                    <h2 className='popupTitle'> Edit Brand</h2>
+                                   
                                 </div>
-                                <div className='col-12 top label  con  '>
-                                    <div className='col m-2'>
+
+                                <div className='addSubcategoryForm'>
+
+                                <div className='inputFeildasf  '>
+                                
                                         <label className='label'>
                                             Brand Name:
                                         </label>
-                                    </div>
-                                    <div className='col'>
-                                        <TextField type="text" placeholder='Add Brand Name' id="outlined-basic" variant="outlined" name='name' value={Brand.name} style={{ minWidth: 190 }}
+                                 
+                                        <TextField type="text" placeholder='Add Brand Name' id="outlined-basic" variant="outlined" name='name' value={Brand.name} className={classes.popuptextfeild}
                                             onChange={handleChange} />
-                                    </div>
+                                 
                                 </div>
 
-                                <div className='col-12 top label  con'>
-                                    <div className='col m-2'>
+                                <div className='inputFeildasf'>
+                                
                                         <label className='label'>
                                             Brand Link:
                                         </label>
-                                    </div>
-                                    <div className='col'>
-
-                                        <TextField type="text" placeholder='Add LicenceNo' id="outlined-basic" variant="outlined" name='Link' value={Brand.Link} style={{ minWidth: 190, fontSize: 15 }}
+                                  
+                                        <TextField type="text" placeholder='Add LicenceNo' id="outlined-basic" variant="outlined" name='Link' value={Brand.Link} className={classes.popuptextfeild}
                                             onChange={handleChange} />
 
-                                    </div>
+                                </div>
+                                <div className='inputFeildasf'>
+                                   
+                                        <label className='label'>
+                                            Status:
+                                        </label>
+                                   
+                                        <Select
+                                            name='Status'
+                                            value={Brand.Status}
+                                            onChange={handleChange}
+                                            displayEmpty
+                                            size='small'
+                                            inputProps={{ 'aria-label': 'Without label' }}
+                                            className={classes.popupselectFeild}
+                                        >
+                                            <MenuItem value="" style={{ fontSize: 15 }}>
+                                                <em>Select option</em>
+                                            </MenuItem>
+                                            <MenuItem value={"Active"} style={{ fontSize: 15 }}>Active</MenuItem>
+                                            <MenuItem value={"Hide"} style={{ fontSize: 15 }}>Hide</MenuItem>
+
+                                        </Select>
+                                   
+
                                 </div>
 
-                                <div className='col-12 top label  con'>
-                                    <div className='col m-2'>
+                                <div className='inputFeildasf'>
+                                  
                                         <label className='label'>
                                             Brand Logo:
                                         </label>
-                                    </div>
-                                    <div className='col'>
-
-                                        <input type="file" ref={inputRef} onChange={handleimage} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }} />
-                                    </div>
-
+                                   
+                                        <input type="file" ref={inputRef} onChange={handleimage} id="formFile" name='formFile' variant="outlined" className='d-none' />
+                                   
+                                        <label className='Imagelabel' htmlFor='formFile'  onDragOver=
+                                    
+                                    
+                                    {handleDragOver} onDrop={handleDrop}>
+                                        <LuUpload  size={24} color='#31B655'/> Drop files here or click to upload
+                                     </label>
                                 </div>
                                 <div className='col  brand_edit_img'>
                                     {
-                                        image ? <><img src={URL.createObjectURL(image)} alt="" style={{ width: "50px", height: "50px" }} />
+                                        image ? <><img src={URL.createObjectURL(image)} alt="" style={{ width: "100px", height: "100px" }} />
                                             <Button onClick={resetFileInput} color='success' >Cancell </Button></>
                                             :
                                             <>
-                                                <img src={"http://backend.sweede.net/" + (Brand.Brand_Logo)} alt="" style={{ width: "50px", height: "50px" }} />
+                                                <img src={Brand.Brand_Logo} alt="" style={{ width: "50px", height: "50px" }} />
                                                 <Button name="Brand_Logo" value="" color='success' onClick={handleChange} >Cancell </Button>
                                             </>
                                     }
                                 </div>
 
 
-                                <div className='col-12 top label  con'>
+                                <div className='inputFeildasf'>
                                     <div className='col m-2'>
                                         <label className='label'>
                                             Brand Description:
@@ -245,37 +286,13 @@ export default function BrandEdit(props) {
                                         />
                                     </div>
                                 </div>
-                                <div className='col-12 top label  con'>
-                                    <div className='col m-2'>
-                                        <label className='label'>
-                                            Status:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-                                        <Select
-                                            name='Status'
-                                            value={Brand.Status}
-                                            onChange={handleChange}
-                                            displayEmpty
-                                            size='small'
-                                            inputProps={{ 'aria-label': 'Without label' }} style={{ minWidth: 120, fontSize: 15 }}
-                                        >
-                                            <MenuItem value="" style={{ fontSize: 15 }}>
-                                                <em>Select option</em>
-                                            </MenuItem>
-                                            <MenuItem value={"Active"} style={{ fontSize: 15 }}>Active</MenuItem>
-                                            <MenuItem value={"Hide"} style={{ fontSize: 15 }}>Hide</MenuItem>
-
-                                        </Select>
-                                    </div>
-
-                                </div>
+                           
                                 <div className='col-12 center top' >
                                     <button className='topbutton' autoFocus onClick={Submit} >
                                         Save changes
                                     </button>
                                 </div>
-
+</div>
                             </div>
 
                         </div>

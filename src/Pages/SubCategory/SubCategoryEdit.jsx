@@ -1,6 +1,8 @@
 import React, { useEffect,useContext , useRef } from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import { LuUpload } from "react-icons/lu";
+
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
@@ -13,6 +15,7 @@ import Axios from "axios"
 import Createcontext from "../../Hooks/Context/Context"
 import { useSnackbar } from 'notistack';
 import InputAdornment from '@mui/material/InputAdornment';
+import useStyles from '../../Style';
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
         padding: theme.spacing(2),
@@ -36,6 +39,7 @@ function BootstrapDialogTitle(props) {
 
 }
 export default function SubCategoryEdit(props) {
+    console.log(props ,'props')
     const inputRef = useRef(null);
     const [image, SetImage] = React.useState();
     const { enqueueSnackbar } = useSnackbar();
@@ -43,6 +47,7 @@ export default function SubCategoryEdit(props) {
     const [open, setOpen] = React.useState(false);
     const [error, seterror] = React.useState('')
     const [massage, setmassage] = React.useState()
+    const classes = useStyles()
     const [SubCategory, setSubCategory] = React.useState({
         id: props.data.id,
         Category_id: props.data.category_id,
@@ -126,7 +131,18 @@ export default function SubCategoryEdit(props) {
             }
         )
     };
-
+    const handleDragOver = (event) => {
+        event.preventDefault()
+      }
+      
+      // Function to handle image drop
+      const handleDrop = (event) => {
+        event.preventDefault()
+        const file = event.dataTransfer.files[0]
+        if (file) {
+            SetImage(file)
+        }
+      }
     return (
         <div>
             <Button color='success' onClick={handleClickOpen}>
@@ -173,122 +189,114 @@ export default function SubCategoryEdit(props) {
 
                             <div className='col-12    ' >
 
-                                <div className='col-12 Add_Category center'>
-                                    <div className="col "> <h2> Edit Sub Category
-                                    </h2>
-                                    </div>
+                                <div className='col-12  text-center'>
+                                   <h2 className='popupTitle'> Edit Sub Category </h2>
+                                  
                                 </div>
-                                <div className='col-12 top label  con  '>
-                                    <div className='col'>
-                                        <label className='label'>
-                                        <span className='required'>*</span>
-                                            Name:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-                                        <TextField type="text" placeholder='Add  Sub Category' id="outlined-basic" variant="outlined" name='name' value={SubCategory.name.toUpperCase()} 
-                                            InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
-                                            style={{ minWidth: "11vw" }} 
-                                            onChange={handleChange}
-                                            label={massage}
-                                            sx={{
-                                                '& .MuiOutlinedInput-root': {
-                                                    '& fieldset': {
-                                                        borderColor: error,
-                                                        height: 55,
-                                                    },
-                                                },
-                                                "& label": {
-                                                    fontSize: 13,
-                                                    color: "red",
-                                                    "&.Mui-focused": {
-                                                        marginLeft: 0,
-                                                        color: "red",
-                                                    }
-                                                }
-                                            }}
-                                             />
-                                    </div>
-                                </div>
-                                <div className='col-12 top label  con'>
-                                    <div className='col'>
-                                        <label className='label'>
-                                            Category Name:
-                                        </label>
-                                    </div>
-                                    <div className='col'>
-                                    <Select
-                                        name='Category_id'
-                                        value={SubCategory.Category_id}
-                                        onChange={handleChange}
-                                        displayEmpty
-                                        inputProps={{ 'aria-label': 'Without label' }} style={{minWidth: "40%", height: "5vh", fontSize: 15, }}
-                                    >
-                                        {
-                                            Category.map((category ,index)=>{
-                                               return(
-                                                <MenuItem key={index} value={category.id} style={{ fontSize:15}}>{category.name}</MenuItem>
-                                               )
-                                            })
-                                        }
-
-                                    </Select>
-                                    </div>
-                                </div>
-                                <div className='col-10 top label  con '>
-                                        <div className='col top'>
-
+                                <div className='addSubcategoryForm'>
+                                    <div className='inputFeildasf  '>
+                                    
                                             <label className='label'>
-                                                Image:
+                                              <span className='required'>*</span>
+                                                Name:
                                             </label>
-                                        </div>
-                                        <div className='col'>
-                                        <input  type="file" id="formFile" ref={inputRef} accept="image/*"  variant="outlined" style={{ Width: "10%", fontSize: 15 }}
-                                            onChange={handleimage}
-                                        />
-                                        </div>
+                                    
+                                    
+                                            <TextField type="text" placeholder='Add  Sub Category' id="outlined-basic" variant="outlined" name='name' value={SubCategory.name.toUpperCase()} 
+                                                InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
+                                                style={{ minWidth: "11vw" }} 
+                                                onChange={handleChange}
+                                                label={massage}
+                                                 className={classes.popuptextfeild}
+                                                />
+                                        
                                     </div>
-                                    <div className='col-10 top label  con center'>
-                                        <div className='col mt-4'>
-                                        {
-                                            image ? <> <img src={URL.createObjectURL(image)} alt="" style={{ width: "120px", height: "110px" }} />
-                                                <Button  onClick={resetFileInput} color='success' >Cancel </Button></>
-                                                :
-                                                <>
-                                                    <img src={"http://backend.sweede.net/" +SubCategory.SubCategoryImage} alt="" style={{ width: "120px", height: "110px" }} />
-                                                    <Button  name="SubCategoryImage" value="" color='success'onClick={handleChange} >Cancel </Button>
-                                                </>
-                                        }
-                                        </div>
+                                    <div className='inputFeildasf'>
+                                    
+                                            <label className='label'>
+                                                Category Name:
+                                            </label>
+                                    
+                                        <Select
+                                            name='Category_id'
+                                            value={SubCategory.Category_id}
+                                            onChange={handleChange}
+                                            displayEmpty
+                                            inputProps={{ 'aria-label': 'Without label' }} 
+                                            className={classes.popupselectFeild}
+                                        >
+                                            {
+                                                Category.map((category ,index)=>{
+                                                return(
+                                                    <MenuItem key={index} value={category.id} style={{ fontSize:15}}>{category.name}</MenuItem>
+                                                )
+                                                })
+                                            }
 
+                                        </Select>
                                     </div>
-                                <div className='col-12 top label  con'>
-                                    <div className='col'>
+                                    <div className='inputFeildasf'>
+                                        
+                                        
                                         <label className='label'>
                                             Status:
                                         </label>
-                                    </div>
-                                    <div className='col'>
+                                
+                                
                                         <Select
                                         name='Status'
                                         value={SubCategory.Status}
                                         onChange={handleChange}
                                         displayEmpty
-                                        inputProps={{ 'aria-label': 'Without label' }}  style={{minWidth: "40%", height: "5vh", fontSize: 15, }}
+                                        inputProps={{ 'aria-label': 'Without label' }}  
+                                        className={classes.popupselectFeild}
                                     >
                                         
                                         <MenuItem value={"Active"} style={{ fontSize:15}}>Active</MenuItem>
                                         <MenuItem value={"Hide"} style={{ fontSize:15}}>Hide</MenuItem>
 
                                     </Select>
+                                
                                     </div>
-                                </div>
-                                <div className='col-12 center top' >
-                                    <button className='topbutton' autoFocus onClick={Submit} >
-                                        Save changes
-                                    </button>
-                                </div>
+                                   
+                                    <div className='inputFeildasf'>
+                                     
 
+                                            <label className='label'>
+                                                Image:
+                                            </label>
+                                            <input  type="file" id="formFile" ref={inputRef} accept="image/*"  variant="outlined" className='d-none'
+                                                onChange={handleimage}
+                                            />
+                                           <label className='Imagelabel' htmlFor='formFile'  onDragOver= {handleDragOver} onDrop={handleDrop}>
+                                        <LuUpload  size={24} color='#31B655'/> Drop files here or click to upload
+                                     </label>
+
+
+                                   
+                                 
+                                        <div className='col mt-4'>
+                                        {
+                                            image ? <> <img src={URL.createObjectURL(image)} alt="" style={{ width: "120px", height: "110px" }} />
+                                                <Button  onClick={resetFileInput} color='success' >Cancel </Button></>
+                                                :
+                                                <>
+                                                    <img src={ SubCategory.SubCategoryImage} alt="" style={{ width: "120px", height: "110px" }} />
+                                                    <Button  name="SubCategoryImage" value="" color='success'onClick={handleChange} >Cancel </Button>
+                                                </>
+                                        }
+                                        </div>
+
+                                    </div>
+
+
+                                  
+                                        <div className='col-12 center top' >
+                                            <button className='topbutton' autoFocus onClick={Submit} >
+                                                Save changes
+                                            </button>
+                                        </div>
+</div>
                             </div>
 
                         </div>

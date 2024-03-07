@@ -46,9 +46,9 @@ export default function BrandDelete (props) {
 
   return (
     <div>
-      <Button color='success' onClick={handleClickOpen}>
-        <RiDeleteBin6Line />
-      </Button>
+
+        <RiDeleteBin6Line  onClick={handleClickOpen} size={20} color='#31B655'/>
+    
       <Dialog
         open={open}
         TransitionComponent={Transition}

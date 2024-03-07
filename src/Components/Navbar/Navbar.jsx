@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Createcontext from "../../Hooks/Context/Context"
 import { IoIosMenu } from "react-icons/io"
 import { HiExclamationCircle } from "react-icons/hi";
+import axios from 'axios'
 import { FaBell } from "react-icons/fa";
 import Filtermain from './Filtermain'
 import Sidebar from './Sidebar';
@@ -17,10 +18,11 @@ function Navbar({ sidebaropen, setsidebaropen }) {
   ]);
   const [navBg, setNavBg] = useState(false);
   const { dispatch } = useContext(Createcontext)
+  const [userdata, setuserdata] = useState('Admin');
   const islogin = useContext(Createcontext)
   const cookies = new Cookies();
   const navigate = useNavigate()
-
+  const token_data = cookies.get('Token_access')
   const changeNavBg = () => {
     window.scrollY >= 100 ? setNavBg(true) : setNavBg(false);
 
@@ -67,6 +69,17 @@ function Navbar({ sidebaropen, setsidebaropen }) {
       }
     });
   }
+  React.useEffect(()=>{
+    axios.get(`https://api.cannabaze.com/AdminPanel/UserProfileAdminSideBar/`,{
+      headers: {
+        'Authorization': `Bearer ${token_data}`
+      }
+    }).then((res)=>{
+      setuserdata(res.data)
+    })
+  },[])
+
+
   return (
 
     <>
@@ -89,7 +102,7 @@ function Navbar({ sidebaropen, setsidebaropen }) {
                     </div>
                     :
                     <div className='display'>
-                        <h3 className='navbarTitle'>Hello Admin 👋🏼,</h3>
+                        <h3 className='navbarTitle'>Hello {userdata?.UserName} 👋🏼,</h3>
                     </div>
                 }
               </div>

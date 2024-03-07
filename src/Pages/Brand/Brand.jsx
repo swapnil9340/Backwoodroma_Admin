@@ -63,7 +63,7 @@ export default function Brand() {
     };
 
 
-
+console.log(state ,'state')
 
     const columns = [
      
@@ -117,23 +117,20 @@ export default function Brand() {
                         (state.Roles.EditBrand ||  state.Roles.DeleteBrand ) && 
                         <Box
                             sx={{
-                                '& .MuiOutlinedInput-root': {
+                                display:'flex',
+                                gap:'10px',
+                                '& .MuiOutlinedInput-root': {                   
                                     '&.Mui-focused fieldset': {
-                                        borderWidth: "1px",
-                                        borderColor: 'black',
+                                      
                                     },
                                 },
                                 '& . MuiDataGrid-root .MuiDataGrid-cell:focus': {
-                                    outline: "solid #0f1010 1px"
+                                   
                                 }
                             }}
-
                         >
-                           
-                            
                                 { state.Roles.EditBrand  && <BrandEdit data={params.row} ></BrandEdit>}
                                 { state.Roles.DeleteBrand && <BrandDelete data={params.row} ></BrandDelete> }
-                           
                         </Box>
                     }
                 </>

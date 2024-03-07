@@ -184,13 +184,13 @@ export default function Categorypopup() {
                                     </div>
                                     <div className=''>
                                         
-                                        <div className='col'>
+                                        <div className='col text-center'>
                                         <input  type="file" id="formFile" ref={inputRef} className='d-none' accept="image/*"  variant="outlined" style={{ Width: "10%", fontSize: 15 }}
                                             onChange={handleimage}
                                         />
-                                          <label className='w-100 text-center' htmlFor='formFile'>
+                                          <label className='popupimagebutton' htmlFor='formFile'>
                                    
-                                              <Headerbutton>Upload Image</Headerbutton>
+                                             Upload Image
                                             </label>
                                         </div>
                                     </div>

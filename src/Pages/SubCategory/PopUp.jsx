@@ -5,7 +5,6 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import { LuUpload } from "react-icons/lu";
-
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
@@ -130,6 +129,17 @@ export default function PopUp() {
             }
         )
     };
+
+    const handleDragOver = (event) => {
+        event.preventDefault()
+      }
+      const handleDrop = (event) => {
+        event.preventDefault()
+        const file = event.dataTransfer.files[0]
+        if (file) {
+            SetImage(file)
+        }
+      }
     return (
         <div>
           
@@ -141,8 +151,7 @@ export default function PopUp() {
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
-                            // width: "50%",
-                            // height: "65%",
+                         
                             width: {
                                 xs: "80%",
                                 sm: "70%",
@@ -259,17 +268,20 @@ export default function PopUp() {
                                      <input  type="file" id="formFile" ref={inputRef} accept="image/*"  variant="outlined" style={{ display:'none' }}
                                          onChange={handleimage}
                                      />
-                                    <label className='Imagelabel' htmlFor='formFile'>
+                                    <label className='Imagelabel' htmlFor='formFile'  onDragOver=
+                                    
+                                    
+                                    {handleDragOver} onDrop={handleDrop}>
                                         <LuUpload  size={24} color='#31B655'/> Drop files here or click to upload
                                      </label>
                            
-                                 <div className=''>
-                                 {
-                                     image && <><img src={URL.createObjectURL(image)} alt="" style={{ width: "120px", height: "110px" }} />
-                                     <Button  onClick={resetFileInput}>Cancell </Button></>
-                                     
-                                 }
-                                 </div>
+                                    <div className=''>
+                                    {
+                                        image && <><img src={URL.createObjectURL(image)} alt="" style={{ width: "120px", height: "110px" }} />
+                                        <Button  onClick={resetFileInput}>Cancell </Button></>
+                                        
+                                    }
+                                    </div>
 
                                     </div>
                                     <div className='col-12 center top' >
