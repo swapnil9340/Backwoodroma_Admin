@@ -138,7 +138,7 @@ export default function AdminPanel() {
   const [Data, SetData] = useState({})
 
   let date = new Date()
-  const TodayDate = date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate()
+  const TodayDate = date.getFullYear() + "-" +( date.getMonth() + 1) + "-" + date.getDate()
   const currentYear = new Date().getFullYear();
   const lastYear = currentYear - 1;
   const monthStartDate = new Date(date.getFullYear(), date.getMonth(), 2).toISOString().split('T')[0]
@@ -158,6 +158,7 @@ export default function AdminPanel() {
   }
 
   let yesterday = new Date(TodayDate)
+
   yesterday.setDate(yesterday.getDate() - 1)
   function convert(str) {
     var date = new Date(str),
