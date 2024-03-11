@@ -392,7 +392,7 @@ export default function StatusBarCard({ title, id }) {
             ) : (
               <div>
                 <p className="card_hadding">{"Total Store"}</p>
-                <p className="Card_Total">{totel}+</p>
+                <p className="Card_Total">{totel}</p>
                 <p className="card_hadding">
                   <span
                     className="Card_Font"

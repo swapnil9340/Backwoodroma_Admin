@@ -214,7 +214,7 @@ const PromotionalBanner = () => {
                                                     </form>
                                                 </div>
                                                 <div className="feild_box  image_input_box">
-                                                    <label className="label_custom">Destop Image<sup className="requiesign">*</sup></label>
+                                                    <label className="label_custom">Desktop Image<sup className="requiesign">*</sup></label>
 
                                                     <form className="bannerImagebox row ">
                                                         <div className="col-12">

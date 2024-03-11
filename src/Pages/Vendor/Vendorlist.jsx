@@ -157,22 +157,23 @@ const Vendorlist = () => {
                 <React.Fragment>
                     {    state.Roles.DeleteVendor    &&
                         <Box
-                            sx={{
-                                '& .MuiOutlinedInput-root': {
-                                    '&.Mui-focused fieldset': {
-                                        borderWidth: "1px",
-                                        borderColor: 'black',
-                                    },
-                                },
-                                '& . MuiDataGrid-root .MuiDataGrid-cell:focus': {
-                                    outline: "#e0e0e0"
-                                }
-                            }}
+                        sx={{
+                            "& .MuiOutlinedInput-root": {
+                              "&.Mui-focused fieldset": {
+                                borderWidth: "1px",
+                                borderColor: "black",
+                              },
+                            },
+                            "& . MuiDataGrid-root .MuiDataGrid-cell:focus": {
+                              outline: "solid #0f1010 1px",
+                            },
+                          }}
                         >
                             <Select sx={{
                                     boxShadow: '',
                                     '.MuiPaper-root':{
                                        textAlign:'center',
+                                       justifyContent:'center',
                                     },
                                     '.MuiOutlinedInput-notchedOutline': { border: "0px" },
                                     "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },

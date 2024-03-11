@@ -610,6 +610,11 @@ cursor: pointer;
 .addSubcategoryForm{
   width: 80%;
   margin: 0 auto;
+  input[type="file"]{
+     &:hover{
+         
+     }
+  }
   .inputFeildasf{
     width: 100%;
     text-align: start;

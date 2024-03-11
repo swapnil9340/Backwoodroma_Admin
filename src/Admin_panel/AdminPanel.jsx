@@ -219,7 +219,7 @@ export default function AdminPanel() {
 
   useEffect(() => {
     if (Object.keys(Data)?.length !== 0) {
-      axios.post('https://api.cannabaze.com/AdminPanel/AllPendingStores/',
+        axios.post('https://api.cannabaze.com/AdminPanel/AllPendingStores/',
         Data
         , {
           headers: {
@@ -239,7 +239,9 @@ export default function AdminPanel() {
           SetData1(response.data)
   
         })
-      axios.post("https://api.cannabaze.com/AdminPanel/TopStore/",
+
+
+        axios.post("https://api.cannabaze.com/AdminPanel/TopStore/",
         Data,
         {
           headers: {
@@ -249,6 +251,8 @@ export default function AdminPanel() {
           SetTopStore(response.data)
   
         })
+
+
         axios.get('https://api.cannabaze.com/AdminPanel/AllRecentOrder/', {
           headers: {
             'Authorization': `Bearer ${token_data}`

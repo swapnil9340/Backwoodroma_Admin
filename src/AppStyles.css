@@ -36,9 +36,9 @@ input[type=checkbox] {
 }
 .cancel_btn{
     min-width: 140px;
-    border: 1px solid #31B655;
+    border: 1px solid #C00505;
     color: #ffffff;
-    background-color: #31B655;
+    background-color: #C00505;
     padding: 7px 10px;
     text-align: center;
     border-radius: 4px;
@@ -46,7 +46,11 @@ input[type=checkbox] {
     transition: all .3s ease;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.075);
     background-color: #fff;
-    color: #31B655;
+    color: #C00505;
+}
+.cancel_btn:hover{
+    color: #fff;
+    background-color: #C00505;
 }
 .topbutton:hover{
     background-color: #fff;
@@ -793,13 +797,15 @@ color:#3C3C3C
     font-size: 16px;
 }
 .logoutbtn{
-    font-family: Inter;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 15px;
+   cursor: pointer;
+   font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 22px;
     letter-spacing: 0em;
     text-align: left;
-   cursor: pointer;
+    color: #40444D;
+    margin-top: 10px;
 }
 /* end */
 /* PromotionalBanner */

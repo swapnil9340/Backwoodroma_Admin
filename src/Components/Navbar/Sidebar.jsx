@@ -6,8 +6,9 @@ import { AiTwotoneSetting, AiOutlineAppstore } from "react-icons/ai";
 import { GrProductHunt } from "react-icons/gr";
 import { FiPackage } from "react-icons/fi";
 import Cookies from 'universal-cookie'
-import { IoIosArrowDown , IoIosArrowUp  } from "react-icons/io";
+import {  IoIosArrowUp  } from "react-icons/io";
 import Icon from "@material-ui/core/Icon";
+import { BiLogIn } from "react-icons/bi";
 import Createcontext from "../../Hooks/Context/Context";
 import "./Sidebar.css";
 import useStyles from "../../Style";
@@ -20,7 +21,6 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
  
   const { state } = useContext(Createcontext);
   const [openDropdown, setOpendropdown] = useState("");
-  const [logoutbtn, setlogoutbtn] = useState(false);
   const cookies = new Cookies();
   const token_data = cookies.get('Token_access')
   const [sideopen, Setsideopen] = useState(false);
@@ -377,10 +377,11 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
           <div className="userdescription">
             <h4> {userdata.UserName}</h4>
             <h5> {userdata?.Designations?.join()}</h5>
-            { !logoutbtn && <h5 className="logoutbtn" onClick={logout}> Logout</h5>}
+           
           </div>
-          <span onClick={()=>{setlogoutbtn(!logoutbtn)}}> {logoutbtn ? <IoIosArrowDown size={22}/>: <IoIosArrowUp size={22}/>}</span>
+        
         </div>
+        <h5 className="logoutbtn" onClick={logout}><BiLogIn/>  <span>Sign Out </span></h5>
       </div>
     </div>
   );

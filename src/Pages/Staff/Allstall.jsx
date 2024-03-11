@@ -1,20 +1,63 @@
-import  React,{useState} from 'react';
+import  React,{useState ,useEffect} from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Link } from "react-router-dom";
 import useStyles from '../../Style';
 import Cookies from "universal-cookie";
+import { RiDeleteBinLine } from "react-icons/ri";
 import { ThemeProvider , Box ,createTheme } from "@mui/material";
 import { SlSocialDropbox } from "react-icons/sl";
+import Deletepopup from '../../Components/Component/Deletepopup'
+import Deletstaff from './Deletestaff';
+import Editstaff from './Editstaff';
 import axios from 'axios'
 import "./Stall.css"
 const Allstall = () => {
     const classes= useStyles()
     const cookies = new Cookies();
     const token_data = cookies.get("Token_access");
+    const [deleteoptn , setdeleteoprn] = useState(false)
+    const [isdelete , setsisDelete] = useState(false)
+    const [reviewid , setreviewid] = useState('')
     const [userdata , setuserdata]= useState([]);
     const [pageSize, setPageSize] = React.useState(5);
+    useEffect(()=>{
+      console.log(reviewid ,'reviewid')
+      if(isdelete){
+          axios.delete(`https://api.cannabaze.com/AdminPanel/Delete-User/${reviewid}`, {
+          headers: {
+              'Authorization': `Bearer ${token_data}`
+          }
+          }).then(response => {
+              
+            axios.get('https://api.cannabaze.com/AdminPanel/AllStaff/',{
+              headers: {
+                Authorization: `Bearer ${token_data}`,
+              },
+            }).then((res)=>{
+              setuserdata(res.data)
+            })
+      
+          })
+      }
+  },[isdelete])
     const columns = [
       { field: 'ID', headerName: 'User ID', width: 90 },
+      {
+        field: 'Roles',
+        headerName: 'Roles',
+        sortable:false,
+        minWidth: 80,
+        editable: false,
+        flex:1,
+        headerAlign: "center",
+        align: "center",
+        renderCell: (params) => {
+            const onClick = (e) => {
+              e.stopPropagation(); // don't select this row after clicking
+            };
+            return <span>{params.row.Roles.join()}</span>
+        }
+      },
       {
         field: 'Name',
         headerName: 'Name',
@@ -46,22 +89,6 @@ const Allstall = () => {
         align: "center",
       },
       {
-        field: 'Roles',
-        headerName: 'Roles',
-        sortable:false,
-        minWidth: 80,
-        editable: false,
-        flex:1,
-        headerAlign: "center",
-        align: "center",
-        renderCell: (params) => {
-            const onClick = (e) => {
-              e.stopPropagation(); // don't select this row after clicking
-            };
-            return <span>{params.row.Roles.join()}</span>
-        }
-      },
-      {
           field: 'Status',
           headerName: 'Status',
           sortable:false,
@@ -71,7 +98,30 @@ const Allstall = () => {
           headerAlign: "center",
           align: "center",
       },
- 
+      {
+        field: 'Edit', headerName: 'Action', type: 'button', minWidth: 80, flex: 1, editable: false, headerClassName: 'super-app-theme--header',sortable:false,
+        renderCell: (params) => (   
+                    
+                    <Box
+                        sx={{
+                            display:'flex',
+                            gap:'10px',
+                            '& .MuiOutlinedInput-root': {                   
+                                '&.Mui-focused fieldset': {
+                                  
+                                },
+                            },
+                            '& . MuiDataGrid-root .MuiDataGrid-cell:focus': {
+                               
+                            }
+                        }}
+                    >
+                           {/* <Deletstaff data={params.row} ></Deletstaff> */}
+                           <RiDeleteBinLine color='#31B655' size={22} onClick={()=>{setdeleteoprn(true) ; setreviewid(params.row.ID)}}></RiDeleteBinLine>
+                           <Editstaff data={params.row} ></Editstaff> 
+                    </Box>
+        )
+    },
     ];
     React.useEffect(()=>{
       axios.get('https://api.cannabaze.com/AdminPanel/AllStaff/',{
@@ -104,7 +154,7 @@ const Allstall = () => {
     <div className=' my-4 '>
             <div className='py-4 section_card'>
                 <div  className='d-flex justify-content-between align-content-center px-4'> 
-                    <h3 className='pagetitle'><SlSocialDropbox color='#31B655' size={25}/> All Staff</h3>
+                    <h3 className='pagetitle'><SlSocialDropbox color='#31B655' size={25}/> Staff Details</h3>
                     <div className='btnsgroup'>
                     <Link to={'/addstaff'}>
                         <button className="topbutton"> Add Staff</button>
@@ -146,6 +196,7 @@ const Allstall = () => {
                             </Box>
                 </div>
             </div>
+            {   deleteoptn &&  <Deletepopup setdeleteoprn={setdeleteoprn} setsisDelete={setsisDelete}  />}
     </div>
   )
 }

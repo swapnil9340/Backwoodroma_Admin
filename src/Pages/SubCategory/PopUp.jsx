@@ -278,7 +278,7 @@ export default function PopUp() {
                                     <div className=''>
                                     {
                                         image && <><img src={URL.createObjectURL(image)} alt="" style={{ width: "120px", height: "110px" }} />
-                                        <Button  onClick={resetFileInput}>Cancell </Button></>
+                                        <Button  onClick={resetFileInput}>Cancel </Button></>
                                         
                                     }
                                     </div>

@@ -11,9 +11,6 @@ export default function Forgot() {
     const [show, setOpen] = useState(false);
     const [isLoggedIn, loading] = useState(false)
     const [OTP, setotp] = useState("");
-
-
-
     const data = {
         email: inputs.Email
     }
@@ -47,7 +44,6 @@ export default function Forgot() {
     function alertFunc() {
         setOpen(false);
     }
-
     const handleClose = () => {
         setOpen(false);
     }
@@ -56,7 +52,6 @@ export default function Forgot() {
         const value = event.target.value;
         setotp(values => ({ ...values, [name]: value }))
     }
-
     const otp_send = () => {
         setotp("")
         setOpen(false);
@@ -69,7 +64,6 @@ export default function Forgot() {
 
         })
     };
-
     function password_show_hide() {
         var x = document.getElementById("password");
         var show_eye = document.getElementById("show_eye");

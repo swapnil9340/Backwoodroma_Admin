@@ -29,6 +29,7 @@ const Addusers = () => {
   const [status, setdatatus] = React.useState(true);
   const [roleoptions, Setroleoptions] = React.useState([]);
   const [showPassword, setShowPassword] = React.useState(false);
+  const [showcPassword, setShowcPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const cookies = new Cookies();
   const token_data = cookies.get("Token_access");
@@ -271,7 +272,7 @@ const Addusers = () => {
               variant="standard"
               placeholder="Confirm Password"
               fullWidth
-              type={showPassword ? "text" : "password"}
+              type={showcPassword ? "text" : "password"}
               name="cpassword"
               className={classes.StandardTextFieldStyle}
               InputProps={{
@@ -284,9 +285,9 @@ const Addusers = () => {
                   <InputAdornment position="end">
                     <IconButton
                       aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
+                      onClick={()=>setShowcPassword(!showcPassword)}
                     >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                      {showcPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
                 ),
@@ -319,7 +320,6 @@ const Addusers = () => {
                   <Select
                    multiple
                     className={classes.selectformbox}
-                    // renderValue={(selected) => selected.map(obj => names[obj - 1].value).join(", ")}
                     error={!Boolean(multipleroles?.length) && !!errors.Roles}
                     helperText={errors.Roles && errors.Roles.message}
                     value={multipleroles}
@@ -348,9 +348,9 @@ const Addusers = () => {
         
           </div>
           <div className="row newLogin_label d-flex justify-content-between align-items-center m-2">
-            {/* <h6 className="d-content">Status</h6> */}
+           <h6 className="d-content">Status</h6>
 
-            {/* <input type='checkbox' {...register("adduserstatus", { required: true })} /> */}
+           
                 <label className="switch">
                 <input
                     type="checkbox"

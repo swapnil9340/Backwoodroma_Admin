@@ -163,6 +163,19 @@ ul li path {
   height: 100vh; -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+.sidebarclose .userDetails .userdescription{
+  display: none;
+}
+.sidebarclose .userDetails .logoutbtn span {
+ display: none;
+}
+.sidebarclose .userDetails .usersidebarprofile{
+   justify-content: center;
+}
+.sidebarclose .userDetails .logoutbtn{
+  font-size: 30px;
+  text-align: center;
+}
 .sidebar::-webkit-scrollbar {
   display: none;
 }
@@ -1042,10 +1055,7 @@ color: #222529;
   color: #555;
 }
 
-input:hover+label,
-input:focus+label {
-  transform: scale(1.02);
-}
+
 
 /* Adding an outline to the label on focus */
 input:focus+label {

@@ -526,7 +526,7 @@ export default function Newspop() {
           
                 <TextField
                 type="Text"
-                placeholder="https\"
+                placeholder="https://"
                 name="Url_slug"
                 value={News.Url_slug}
                 id="outlined-basic"
@@ -558,7 +558,7 @@ export default function Newspop() {
                   
                       <TextField
                       type="Text"
-                      placeholder="type"
+                      placeholder="Meta description"
                       id="outlined-basic"
                       name="Meta_Description"
                       InputProps={{

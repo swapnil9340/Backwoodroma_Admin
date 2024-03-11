@@ -421,13 +421,13 @@ export default function StoreEdit(props) {
                                                     image ? 
                                                     <>
                                                     <img src={URL.createObjectURL(image)}  alt="" style={{ width: "120px", height: "110px" }} /> 
-                                                    <Button onClick={resetFileInput} color='success' >Cancell </Button>
+                                                    <Button onClick={resetFileInput} color='success' >Cancel </Button>
                                                     </>
                                                     
                                                     :  
                                                 <>
                                                     <img src={"http://backend.sweede.net/" + (Store.Store_Image)} alt="" style={{ width: "120px", height: "110px" }} />
-                                                    <Button name="Store_Image" value="" color='success' onClick={handleChange} >Cancell </Button>
+                                                    <Button name="Store_Image" value="" color='success' onClick={handleChange} >Cancel </Button>
                                                 </>
                                                 }
                                             </div>

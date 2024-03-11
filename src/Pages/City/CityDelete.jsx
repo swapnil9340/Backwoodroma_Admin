@@ -63,7 +63,7 @@ export default function CityDelete(props) {
         </DialogContent>
         <DialogActions>
         <Button onClick={Delete} sx={{ color: 'red'}}>yes</Button>
-          <Button onClick={handleClose} sx={{ color: '#31B665'}}>no?</Button>
+          <Button onClick={handleClose} sx={{ color: '#31B665'}}>No</Button>
         </DialogActions>
       </Dialog>
     </div>

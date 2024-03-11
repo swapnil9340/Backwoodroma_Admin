@@ -211,7 +211,7 @@ export default function BrandEdit(props) {
                                             Brand Link:
                                         </label>
                                   
-                                        <TextField type="text" placeholder='Add LicenceNo' id="outlined-basic" variant="outlined" name='Link' value={Brand.Link} className={classes.popuptextfeild}
+                                        <TextField type="text" placeholder='Edit Link' id="outlined-basic" variant="outlined" name='Link' value={Brand.Link} className={classes.popuptextfeild}
                                             onChange={handleChange} />
 
                                 </div>
@@ -259,11 +259,11 @@ export default function BrandEdit(props) {
                                 <div className='col  brand_edit_img'>
                                     {
                                         image ? <><img src={URL.createObjectURL(image)} alt="" style={{ width: "100px", height: "100px" }} />
-                                            <Button onClick={resetFileInput} color='success' >Cancell </Button></>
+                                            <Button onClick={resetFileInput} color='success' >Cancel </Button></>
                                             :
                                             <>
                                                 <img src={Brand.Brand_Logo} alt="" style={{ width: "50px", height: "50px" }} />
-                                                <Button name="Brand_Logo" value="" color='success' onClick={handleChange} >Cancell </Button>
+                                                <Button name="Brand_Logo" value="" color='success' onClick={handleChange} >Cancel </Button>
                                             </>
                                     }
                                 </div>
@@ -292,7 +292,7 @@ export default function BrandEdit(props) {
                                         Save changes
                                     </button>
                                 </div>
-</div>
+                              </div>
                             </div>
 
                         </div>

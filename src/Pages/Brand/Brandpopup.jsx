@@ -208,12 +208,10 @@ export default function Brandpopup() {
 
                                 <div className='inputFeildasf'>
                                    
-                                        <label className='label'>
-                                            Brand Link:
-                                        </label>
+                                        <label className='label'>  Brand Link: </label>
                                    
 
-                                        <TextField type="text" placeholder='Add LicenceNo' id="outlined-basic" variant="outlined" name='Link' value={Brand.Link}
+                                        <TextField type="text" placeholder='Add Brand Link' id="outlined-basic" variant="outlined" name='Link' value={Brand.Link}
                                             onChange={handleChange}
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                             className={classes.popuptextfeild} 
@@ -259,7 +257,7 @@ export default function Brandpopup() {
                                     {
                                         image && <>
                                             <img src={URL.createObjectURL(image)} alt="" style={{ width: "120px", height: "110px" }} />
-                                            <Button color='success' onClick={resetFileInput}>Cancell </Button>
+                                            <Button color='success' onClick={resetFileInput}>Cancel </Button>
                                         </>
                                     }
                                 </div>

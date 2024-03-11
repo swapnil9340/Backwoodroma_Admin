@@ -63,7 +63,7 @@ export default function Net_Wet_Delete(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={Delete}>yes</Button>
-          <Button onClick={handleClose}>no?</Button>
+          <Button onClick={handleClose}>No</Button>
         </DialogActions>
       </Dialog>
     </div>
