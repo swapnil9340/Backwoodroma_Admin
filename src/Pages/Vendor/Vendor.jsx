@@ -122,7 +122,7 @@ const Vendor = () => {
       headerAlign: "center",
       align: "center",
       renderCell: (params) => {
-        return `${params.row?.Prices[0]?.Price[0]?.Stock} Qty`;
+        return `${params.row?.Prices[0]?.Price[0]?.Stock} `;
       },
     },
     {
@@ -425,7 +425,7 @@ const Vendor = () => {
             </div>
             <div className="venderHeroDiv_card">
               <div className="coupon_card">
-                <h3 className="graphtitle">Coupen Code</h3>
+                <h3 className="graphtitle">Coupon Code</h3>
                 <h4 className="coupen_total">$ 90,000</h4>
                 <div className="colorLine">
                   {[...Array(7)].map((e, i) => (
