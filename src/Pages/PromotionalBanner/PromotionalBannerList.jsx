@@ -196,7 +196,7 @@ const PromotionalBannerList = () => {
             },
             {
             field: 'Status',
-            headerName: 'status',
+            headerName: 'Status',
             flex: 1,
             sortable: false,
             minWidth: 80,

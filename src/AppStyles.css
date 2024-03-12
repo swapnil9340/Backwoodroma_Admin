@@ -36,9 +36,9 @@ input[type=checkbox] {
 }
 .cancel_btn{
     min-width: 140px;
-    border: 1px solid #C00505;
+    border: 1px solid #31B655;
     color: #ffffff;
-    background-color: #C00505;
+    background-color: #31B655;
     padding: 7px 10px;
     text-align: center;
     border-radius: 4px;
@@ -46,11 +46,11 @@ input[type=checkbox] {
     transition: all .3s ease;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.075);
     background-color: #fff;
-    color: #C00505;
+    color: #31B566;
 }
 .cancel_btn:hover{
     color: #fff;
-    background-color: #C00505;
+    background-color: #31B655;
 }
 .topbutton:hover{
     background-color: #fff;

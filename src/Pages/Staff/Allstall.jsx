@@ -7,7 +7,6 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { ThemeProvider , Box ,createTheme } from "@mui/material";
 import { SlSocialDropbox } from "react-icons/sl";
 import Deletepopup from '../../Components/Component/Deletepopup'
-import Deletstaff from './Deletestaff';
 import Editstaff from './Editstaff';
 import axios from 'axios'
 import "./Stall.css"
@@ -21,7 +20,6 @@ const Allstall = () => {
     const [userdata , setuserdata]= useState([]);
     const [pageSize, setPageSize] = React.useState(5);
     useEffect(()=>{
-      console.log(reviewid ,'reviewid')
       if(isdelete){
           axios.delete(`https://api.cannabaze.com/AdminPanel/Delete-User/${reviewid}`, {
           headers: {
@@ -41,7 +39,9 @@ const Allstall = () => {
       }
   },[isdelete])
     const columns = [
-      { field: 'ID', headerName: 'User ID', width: 90 },
+      { field: 'sno', headerName: 'S No.', filterable: false,
+    
+       width: 90 },
       {
         field: 'Roles',
         headerName: 'Roles',
@@ -49,8 +49,8 @@ const Allstall = () => {
         minWidth: 80,
         editable: false,
         flex:1,
-        headerAlign: "center",
-        align: "center",
+        headerAlign: "left",
+        align: "left",
         renderCell: (params) => {
             const onClick = (e) => {
               e.stopPropagation(); // don't select this row after clicking
@@ -129,7 +129,10 @@ const Allstall = () => {
               Authorization: `Bearer ${token_data}`,
             },
       }).then((res)=>{
-        setuserdata(res.data)
+        let a = res.data.map((data , index)=>{
+          return {...data , sno:index+1}
+        })
+        setuserdata(a)
       })
     },[token_data])
     const rows = userdata

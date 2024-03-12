@@ -1,12 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useState , useContext, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
+import MuiPhoneNumber from "material-ui-phone-number";
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+
+import Successfullypopup from '../../Components/Component/Successfullypopup'
+import Unsuccesspopup from '../../Components/Component/Unsuccesspopup'
 import Cookies from 'universal-cookie';
 import Axios from "axios"
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
@@ -16,6 +20,7 @@ import htmlToDraft from 'html-to-draftjs';
 import Createcontext from "../../Hooks/Context/Context"
 import { FaEdit } from "react-icons/fa";
 import useStyles from '../../Style';
+import { fi } from 'date-fns/locale';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -35,23 +40,16 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         },
     },
 }));
-
 function BootstrapDialogTitle(props) {
-
 }
-
-
-
-
-
-
 export default function Editstaff(props) {
-    console.log(props)
     const cookies = new Cookies();
     const token_data = cookies.get("Token_access");
     const { dispatch } = useContext(Createcontext)
     const [open, setOpen] = React.useState(false);
     const [roleoptions, Setroleoptions] = React.useState([]);
+    const [sucsesopen , setsucsesopen] = useState(false)
+    const [unsucsesopen , setunsucsesopen] = useState(false)
     const classes = useStyles()
     const [Brand, setBrand] = React.useState({
         Roles: props.data.Roles ,
@@ -59,9 +57,6 @@ export default function Editstaff(props) {
         email: props.data.Email,
         Phone: props.data.MobileNo
     });
- 
-
-
     const handleChange = (event) => {
         const value = event.target.value;
         setBrand({
@@ -70,8 +65,6 @@ export default function Editstaff(props) {
         });
 
     };
-
-
     React.useEffect(() => {
         axios.get("https://api.cannabaze.com/AdminPanel/Get-RolesAndPermission/", {
             headers: {
@@ -85,8 +78,9 @@ export default function Editstaff(props) {
                if(Boolean(props?.data?.Roles.includes(item.RoleTitle))){
                  return item.id
                }
-            })
+            }).map((item)=>item.id)  
            
+            setBrand({...Brand , Roles:dataas})
           });
       }, []);
 
@@ -97,32 +91,29 @@ export default function Editstaff(props) {
         setOpen(false);
     };
 
-  
-    const formdata = new FormData();
-
-
-    formdata.append('Link', Brand.Link);
-    formdata.append('Status', Brand.Status);
-    formdata.append('name', Brand.name);
-
     const Submit = () => {
-        const cookies = new Cookies();
-        const token_data = cookies.get('Token_access')
-
         const config = {
             headers: { Authorization: `Bearer ${token_data}` }
         };
         Axios.post(
-            `https://api.cannabaze.com/AdminPanel/update-Brand/${props.data.id}`,
-            formdata,
+            `https://api.cannabaze.com/AdminPanel/UpdateAdminProfile/${props.data.ID}`,
+            Brand,
             config
         ).then(() => {
-            setOpen(false);
-
+           
+            setsucsesopen(true)
             dispatch({ type: 'api', api: true })
+        }).catch((error)=>{
+            setunsucsesopen(true)
         })
+        
     };
-   
+   useEffect(()=>{
+    console.log(sucsesopen , unsucsesopen )
+    if( !sucsesopen ){
+        setOpen(false)
+    }
+   },[sucsesopen , unsucsesopen])
     return (
         <div>
            
@@ -152,6 +143,8 @@ export default function Editstaff(props) {
                     },
                 }}
             >
+                  { sucsesopen && <Successfullypopup  setsucsesopen={setsucsesopen} link={'/allstaff'} popupset={setOpen}/>}
+                { unsucsesopen && <Unsuccesspopup setsucsesopen={setunsucsesopen} link={'/allstaff'} popupset={setOpen}/>}
                 <BootstrapDialogTitle id="Customizeed-dialog-title" onClose={handleClose}>
                     Modal title
                 </BootstrapDialogTitle>
@@ -218,9 +211,19 @@ export default function Editstaff(props) {
                                         Phone Number:
                                         </label>
                                 
-                                        <TextField type="text" placeholder='Phone Number' id="Phone" variant="outlined" name='Phone' value={Brand.Phone} className={classes.popuptextfeild}
-                                            onChange={handleChange} />
-                                
+                                        {/* <TextField type="text" placeholder='Phone Number' id="Phone" variant="outlined" name='Phone' value={Brand.Phone} className={classes.popuptextfeild}
+                                            onChange={handleChange} /> */}
+                                            <MuiPhoneNumber
+                                        name={'Phone'}
+                                        value={Brand.Phone}
+                                        size="small"
+                                        id="Phone"
+                                        defaultCountry={"us"}
+                                        style={{ width: "100%" }}
+                                        margin="normal"
+                                        onChange={(e)=>{setBrand({...Brand , Phone:e })}}
+                                        />
+                                                        
                                 </div>
                                
                              
@@ -243,6 +246,8 @@ export default function Editstaff(props) {
                     </Button>
                 </DialogActions>
             </BootstrapDialog>
+
+              
         </div>
     );
 }

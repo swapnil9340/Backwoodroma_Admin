@@ -5,10 +5,9 @@ import  ClickAwayListener  from '@mui/base/ClickAwayListener';
 const Deletepopup = ({setdeleteoprn ,setsisDelete}) => {
  
   return (
-    <div>
-       
+
+     <div className='deleteconfirmpopup'>
             <ClickAwayListener onClickAway={()=>{setdeleteoprn(false)}}>
-                <div className='deleteconfirmpopup'>
                     <div className='deletepopup'>
                         {/* <span className='closebtn'>X</span> */}
                         <div className='Iconsdelete'>
@@ -20,10 +19,9 @@ const Deletepopup = ({setdeleteoprn ,setsisDelete}) => {
                             <button className='flex-fill popupbtn' onClick={()=>{ setdeleteoprn(false)}}>Cancel</button>
                         </div>
                     </div>
-                </div>
             </ClickAwayListener>
-        
     </div>
+
   )
 }
 

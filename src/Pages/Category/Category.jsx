@@ -84,7 +84,7 @@ export default function Category(props) {
     const columns = [
         { field: 'name', headerName: 'Name', editable: false,  minWidth: 150,  headerClassName: 'super-app-theme--header', headerAlign: 'left', sortable:false },
         {
-            field: 'categoryImages', headerName: 'categoryImages', minWidth: 220,type: 'button', editable: false, sortable:false, headerClassName: 'super-app-theme--header', headerAlign: 'rigth',align:"rigth",
+            field: 'categoryImages', headerName: 'Category Images', minWidth: 220,type: 'button', editable: false, sortable:false, headerClassName: 'super-app-theme--header', headerAlign: 'rigth',align:"rigth",
             renderCell: (params) => (
                <div className='categoryTableImg'><img src={params?.row?.categoryImages} alt={"category image"} /></div>
             )
@@ -166,7 +166,10 @@ export default function Category(props) {
     const rows = totel
 
     useEffect(()=>{
-        if(isdelete){
+        console.log('isdelete')
+        if(Boolean(isdelete)){
+        console.log(reviewid ,'reviewid')
+
             axios.delete(`https://api.cannabaze.com/AdminPanel/delete-Category/${reviewid}`, {
             headers: {
                 'Authorization': `Bearer ${token_data}`

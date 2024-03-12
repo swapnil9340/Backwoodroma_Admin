@@ -1,5 +1,6 @@
-import React, { useContext, useRef } from "react";
-
+import React, { useContext,useState,useEffect,useRef } from "react";
+import Successfullypopup from '../../Components/Component/Successfullypopup'
+import Unsuccesspopup from '../../Components/Component/Unsuccesspopup'
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
@@ -15,7 +16,7 @@ import axios from "axios";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState, ContentState } from "draft-js";
-import { convertFromHTML, convertToRaw } from "draft-js";
+import { convertFromHTML } from "draft-js";
 import { MdFileUpload } from "react-icons/md";
 import Createcontext from "../../Hooks/Context/Context";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -60,6 +61,8 @@ const getInitialState = (defaultValue) => {
 export default function NewsEdit(props) {
   const defaultValue = props?.data?.Description;
   const { dispatch } = useContext(Createcontext);
+  const [sucsesopen , setsucsesopen] = useState(false)
+  const [unsucsesopen , setunsucsesopen] = useState(false)
   const [open, setOpen] = React.useState(false);
   const classes = useStyles()
   const cookies = new Cookies();
@@ -287,7 +290,7 @@ export default function NewsEdit(props) {
       config
     )
       .then(() => {
-        setOpen(false);
+        setsucsesopen(true)
         dispatch({ type: "api", api: true });
       })
       .catch(function (error) {
@@ -326,6 +329,7 @@ export default function NewsEdit(props) {
               return "foo";
           }
         }
+        setunsucsesopen(true)
       });
   };
 
@@ -357,6 +361,12 @@ export default function NewsEdit(props) {
         SetImage(file)
     }
   }
+  useEffect(()=>{
+    console.log(sucsesopen , unsucsesopen )
+    if( !sucsesopen ){
+        setOpen(false)
+    }
+   },[sucsesopen , unsucsesopen])
   return (
     <div>
       <Button color="success" onClick={handleClickOpen}>
@@ -734,6 +744,8 @@ export default function NewsEdit(props) {
             Exit
           </Button>
         </DialogActions>
+        { sucsesopen && <Successfullypopup  setsucsesopen={setsucsesopen} link={'/News'}  popupset={setOpen}   />}
+                { unsucsesopen && <Unsuccesspopup setsucsesopen={setunsucsesopen} link={'/News'}  popupset={setOpen}  />}
       </BootstrapDialog>
     </div>
   );

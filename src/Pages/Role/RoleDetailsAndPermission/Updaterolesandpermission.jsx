@@ -5,16 +5,19 @@ import './RoleAndPermission.css'
 import { FaAnglesLeft } from "react-icons/fa6";
 import { useForm ,FormProvider} from "react-hook-form"
 import Cookies from 'universal-cookie';
-import Successfullypopup from '../../../Components/Component/Successfullypopup'
 import Axios from 'axios';
-import {useNavigate} from 'react-router-dom'
-import Unsuccesspopup from "../../../Components/Component/Unsuccesspopup";
-const RoleDetailsAndPermission=()=>{
+import {useNavigate , useLocation} from 'react-router-dom'
+import Successfullypopup from '../../../Components/Component/Successfullypopup'
+import Unsuccesspopup from '../../../Components/Component/Successfullypopup'
+
+const Updaterolesandpermission=()=>{
     const navigate=useNavigate()
+    const location = useLocation()
     const cookies = new Cookies();
-    const token_data = cookies.get('Token_access')
     const [sucsesopen , setsucsesopen] = useState(false)
     const [unsucsesopen , setunsucsesopen] = useState(false)
+    const token_data = cookies.get('Token_access')
+    const [loading , setloading] = useState(false)
     const [descchceck , setdescchceck] = useState(false)
     const [rolepermision,setrolepermision]= useState({
         "RoleTitle": "",
@@ -87,23 +90,28 @@ const RoleDetailsAndPermission=()=>{
     const method = useForm()
 
     function Submitdata(data){
-      
-     
-          
-                Axios.post('https://api.cannabaze.com/AdminPanel/Add-RolesAndPermission/', rolepermision ,{
-                    headers: {
-                        'Authorization': `Bearer ${token_data}`
-                    }
-            
-                }).then((res)=>{
-                    setsucsesopen(true)
-                    // navigate('/Roles')
-                }).catch((error)=>{
-                    setunsucsesopen(true)
-                })
-          
+        setloading(true)
+        Axios.post(`https://api.cannabaze.com/AdminPanel/Update-RolesAndPermission/${location?.state?.id}`, rolepermision ,{
+            headers: {
+                'Authorization': `Bearer ${token_data}`
+            }
+    
+        }).then((res)=>{
+            setsucsesopen(true)
+       
+        }).catch((error)=>{
+            setunsucsesopen(true)
+        })
+         
     }
 
+    useEffect(()=>{
+    
+
+        setrolepermision(location?.state)
+       
+    },[location])
+   
     return(
             <div className="row">
                 <div className="RoleDetailsAndPermission_container">
@@ -113,7 +121,7 @@ const RoleDetailsAndPermission=()=>{
                             <RoleDetails setrolepermision={setrolepermision} rolepermision={rolepermision} descchceck={descchceck} />
                             <RolePermission setrolepermision={setrolepermision} rolepermision={rolepermision} setdescchceck={setdescchceck} descchceck={descchceck}/>
                             <div className="text-center py-5 gap-4">
-                                <button className="topbutton" type="submit">Save</button>
+                                <button className="topbutton" type="submit">    Update</button>
                                 <button className="cancel_btn mx-3">Cancel</button>
                             </div>
                         </form>
@@ -124,4 +132,4 @@ const RoleDetailsAndPermission=()=>{
             </div>
     )
 }
-export default RoleDetailsAndPermission
+export default Updaterolesandpermission

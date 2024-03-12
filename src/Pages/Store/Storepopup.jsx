@@ -72,7 +72,13 @@ export default function Storepopup() {
 
     })
 
-
+    function tomorrowdate(){
+        var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+        var day = currentDate.getDate()
+        var month = currentDate.getMonth() + 1
+        var year = currentDate.getFullYear()
+       return  `${year}-${month}-${day}` 
+  }
 
     const [Store, SetStore] = React.useState({
         Store_Name: "",
@@ -87,7 +93,7 @@ export default function Storepopup() {
         State_id: "",
         City_id: "",
         License_Type: "None",
-        expires: new Date().toISOString().slice(0, 16),
+        expires:'',
 
     });
 
@@ -173,7 +179,7 @@ export default function Storepopup() {
 
     }, [token_data, Store.Country_id, Store.State_id]);
 
-
+ 
 
        const formdata = new FormData();
         formdata.append('Store_Name', Store.Store_Name);
@@ -744,7 +750,7 @@ export default function Storepopup() {
                                     <div className="col-sm-6 lg_ip_feild">
                                         
                                                 <label>
-                                                    License Type:
+                                                    Licence Type:
                                                 </label>
                                                 <Select
                                                     name='License_Type'
@@ -800,10 +806,7 @@ export default function Storepopup() {
                                                 value={Store.expires}
                                                 name="expires"
                                                 onChange={handleChange}
-                                                type="datetime-local"
-                                                inputProps={{
-                                                    min: new Date().toISOString().slice(0, 16)
-                                                }}
+                                                type="date"
                                                 sx={{
                                                     width:'100%',
                                                     '& .MuiOutlinedInput-root': {
@@ -839,7 +842,7 @@ export default function Storepopup() {
 
                                 <div className='lg_ip_feild'>
                                  
-                                        <label> Store Image:  </label>
+                                        <label>Licence Image:  </label>
                                         <input type="file" placeholder='Add Store Image:' id="Licence" ref={Licence} className="file" variant="outlined" style={{    minWidth: 190, fontSize: 15 }}
                                             onChange={Licenseimage} />
                               

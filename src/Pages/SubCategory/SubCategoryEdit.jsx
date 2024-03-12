@@ -39,7 +39,6 @@ function BootstrapDialogTitle(props) {
 
 }
 export default function SubCategoryEdit(props) {
-    console.log(props ,'props')
     const inputRef = useRef(null);
     const [image, SetImage] = React.useState();
     const { enqueueSnackbar } = useSnackbar();

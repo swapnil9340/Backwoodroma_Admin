@@ -1,14 +1,30 @@
 import React from 'react'
-import  ClickAwayListener  from '@mui/base/ClickAwayListener';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
+import {useNavigate} from 'react-router-dom'
 
-const Successfullypopup = ({setsucsesopen}) => {
-    const [isopen , setisopen] = React.useState(false)
+const Successfullypopup = ({setsucsesopen ,link='' , popupset=''}) => {
+    let navigate=useNavigate()
+   
+    function closefun(){
+        setsucsesopen(false)
+     
+        if(link !== ''){
+            navigate(link)
+        }else if(popupset !== ''){
+            popupset(false)  
+        }
+    }
+    setTimeout(()=>{
+        closefun()
+    },4000)
+
   return (
     <div>
        
-    <ClickAwayListener onClickAway={()=>{setsucsesopen(false)}}>
+   
         <div className='sucsconfirmpopup'>
+        <ClickAwayListener onClickAway={()=>{  closefun()  }}>
             <div className='sucspopup'>
                 {/* <span className='closebtn'>X</span> */}
                 <div className='Iconssucs'>
@@ -17,13 +33,14 @@ const Successfullypopup = ({setsucsesopen}) => {
                 <p >successfully your Changes has been saved</p>
                 <div className='d-flex gap-4'>
                     {/* <button className='flex-fill popupbtn'>sucs</button> */}
-                    <button className='flex-fill popupbtn' onClick={()=>{setsucsesopen(false)}}>Done</button>
+                    <button className='flex-fill popupbtn' onClick={()=>{closefun(false)}}>Done</button>
                 </div>
             </div>
-        </div>
     </ClickAwayListener>
 
-</div>
+        </div>
+
+    </div>
   )
 }
 

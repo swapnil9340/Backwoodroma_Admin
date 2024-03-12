@@ -4,7 +4,7 @@ import { GoStarFill } from "react-icons/go";
 import { ClickAwayListener } from '@mui/base';
 
 const Reviewpopup = ({state ,setisopen}) => {
-    console.log(state ,'state')
+   
     function getdateformate(date){
         return `${new Date(date).getDate()}/${new Date(date).getMonth()+1}/${new Date(date).getFullYear()}`
     }

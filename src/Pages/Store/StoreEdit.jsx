@@ -412,7 +412,7 @@ export default function StoreEdit(props) {
                                 </div>
                                 <div className='col-12 lg_ip_feild'>
                                   
-                                        <label> Store Image:</label>
+                                        <label> Licence Image:</label>
                                         <input type="file" placeholder='Add Store Image:' ref={inputRef} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
                                                 onChange={handleimage} />
                                       

@@ -1,10 +1,10 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef,useState, useContext } from "react";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
 import { AiOutlineCloudUpload } from "react-icons/ai";
-
+import Successfullypopup from '../../Components/Component/Successfullypopup'
+import Unsuccesspopup from '../../Components/Component/Unsuccesspopup'
 import {SectionCard} from '../../molecules/SectionCard/Index'
 import { TextField } from "@material-ui/core";
 import Select from "@mui/material/Select";
@@ -16,7 +16,6 @@ import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState } from "draft-js";
-import { MdFileUpload } from "react-icons/md";
 import InputAdornment from "@mui/material/InputAdornment";
 import Createcontext from "../../Hooks/Context/Context";
 import { SlSocialDropbox } from "react-icons/sl";
@@ -25,24 +24,7 @@ import { useForm } from "react-hook-form";
 import LoadingButton from "@mui/lab/LoadingButton";
 import useStyles from "../../Style";
 import {useNavigation} from 'react-router-dom'
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiDialogContent-root": {
-    padding: theme.spacing(2),
-  },
-  "& .MuiDialogActions-root": {
-    padding: theme.spacing(1),
-  },
-  "& .MuiOutlinedInput-root": {
-    "&.Mui-focused fieldset": {
-      borderWidth: "1px",
-      borderColor: "black",
-    },
-    "& .MuiButtonBase-root": {
-      fontSize: "1.5625rem",
-      color: "#31B665",
-    },
-  },
-}));
+
 export default function Newspop() {
   const form = useForm({
     defaultValue: {
@@ -50,13 +32,14 @@ export default function Newspop() {
       Meta_title: "",
     },
   });
+  const [sucsesopen , setsucsesopen] = useState(false)
+  const [unsucsesopen , setunsucsesopen] = useState(false)
   const classes =useStyles()
   const navigate = useNavigation()
   const { register, handleSubmit, formState, watch, reset } = form;
   const { errors } = formState;
   const { dispatch } = useContext(Createcontext);
   const inputRef = useRef(null);
-  const [open, setOpen] = React.useState(false);
   const cookies = new Cookies();
   const token_data = cookies.get("Token_access");
   const [editorState, setEditorState] = React.useState(() =>
@@ -226,7 +209,6 @@ export default function Newspop() {
 
   const Submit = (data) => {
 
-    console.log(data ,News , Image , convertedContent ,'datadatadata')
     const formdata = new FormData();
     formdata.append("Title", data.Title);
     formdata.append("Category_id", News.Category_id);
@@ -253,7 +235,7 @@ export default function Newspop() {
       config
     ).then(() => {
         dispatch({ type: "api", api: true });
-        setOpen(false);
+      
         setNews((Brand) => ({
           ...Brand,
           Title: "",
@@ -268,9 +250,12 @@ export default function Newspop() {
         reset();
         SetImage("");
         Setloading(false);
+        setsucsesopen(true)
       })
       .catch(function (error) {
         Setloading(false);
+        setunsucsesopen(true)
+
         if (error.response.data.error) {
           setmassage({ Link: error.response.data.error.Link[0] });
           seterror({ Link: "red" });
@@ -656,7 +641,7 @@ export default function Newspop() {
             </div>
          
 
-          <div className="col-12 d-flex justify-content-start gap-4 top">
+          <div className="col-12 d-flex justify-content-start gap-4 mb-4 top">
           <LoadingButton
               loading={loading}
               autoFocus
@@ -687,6 +672,8 @@ export default function Newspop() {
           </div>
         </form>
       </SectionCard>
+                { sucsesopen && <Successfullypopup  setsucsesopen={setsucsesopen} link={'/News'} />}
+                { unsucsesopen && <Unsuccesspopup setsucsesopen={setunsucsesopen} link={'/News'}  />}
     </div>
   );
 }

@@ -86,7 +86,7 @@ export default function SubCategory() {
     },
     {
       field: "category_name",
-      headerName: "category",
+      headerName: "Category",
       minWidth: 90,
       sortable: false,
       flex: 1,

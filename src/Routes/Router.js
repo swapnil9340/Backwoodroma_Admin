@@ -40,6 +40,7 @@ import UserProfile from '../Pages/UserProfile/UserProfile';
 import TotalSales from '../Pages/Tablespages/TotalSales';
 import TopLocation from '../Pages/Tablespages/TopLocation';
 import Newspop from '../Pages/News/NewsPopup';
+import Updaterolesandpermission from '../Pages/Role/RoleDetailsAndPermission/Updaterolesandpermission';
 // export default function Router() {;
 //   return (
     
@@ -240,6 +241,10 @@ const routesConfig = [
       {
         path:"/addnews",
         element:<Protected  Component={Newspop}/>
+      },
+      {
+        path:"/updateroles",
+        element:<Protected  Component={Updaterolesandpermission}/>
       },
     ],
   },

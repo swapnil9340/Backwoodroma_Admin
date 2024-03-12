@@ -63,7 +63,6 @@ export default function Brand() {
     };
 
 
-console.log(state ,'state')
 
     const columns = [
      

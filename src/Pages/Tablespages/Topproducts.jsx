@@ -7,7 +7,6 @@ import {useLocation} from 'react-router-dom'
 // import "./Stall.css"
 const Topproducts = () => {
     const location = useLocation()
-    console.log(location ,'location')
     const classes= useStyles()
     const columns = [
    

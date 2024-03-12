@@ -205,7 +205,8 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
           </li>
         </NavLink>
        }
-        <li
+         {(state.Roles.ViewBlogs || (state.Roles.AddBlogs || state.Roles.EditBlogs || state.Roles.DeleteBlogs) )&&
+       <li
           button
           className={`${
             openDropdown === "News"
@@ -221,6 +222,7 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
           </Icon>
           <span className={"sidebar_text"}>News</span>
         </li>
+        }
         <div
           className={`submanusidebar ${
             openDropdown === "News" ? "d-block" : "d-none"
@@ -272,6 +274,8 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
             </li>
           </NavLink>
         </div>
+
+
         {(state.Roles.ViewStaff || (state.Roles.AddStaff || state.Roles.EditStaff || state.Roles.DeleteStaff) )&&
         <li
           button
