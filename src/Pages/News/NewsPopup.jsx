@@ -81,84 +81,47 @@ export default function Newspop() {
     Link: "",
   });
   const toolbar = {
-    options: [
-      "blockType",
-      "inline",
-      "list",
-      // "textAlign",
-      "link",
-      // "embedded",
-      "image",
-    ],
+    options: ['blockType', 'inline', 'list', 'colorPicker', 'link', 'image'],
     blockType: {
-      inDropdown: true,
-      options: ["H2", "H3", "H4", "Normal", "Blockquote"],
-      className: undefined,
-      component: undefined,
-      dropdownClassName: undefined,
+        inDropdown: true,
+        options: ['H2', 'H3', 'H4', 'Normal', 'Blockquote']
     },
     inline: {
-      inDropdown: false,
-      className: undefined,
-      component: undefined,
-      dropdownClassName: undefined,
-      options: ["bold", "italic", "underline"],
+        inDropdown: false,
+        options: ['bold', 'italic', 'underline']
     },
     link: {
-      options: ["link", "unlink"],
-      showOpenOptionOnHover: false,
+        defaultTargetOption: '_self',
+        options: ['link', 'unlink']
     },
-    list: {
-      options: ["ordered", "unordered"],
-    },
+    list: { options: ['ordered', 'unordered'] },
     image: {
-      className: undefined,
-      component: undefined,
-      popupClassName: undefined,
-      urlEnabled: true,
-      uploadEnabled: true,
-      alignmentEnabled: true,
-      uploadCallback: undefined,
-      previewImage: false,
-      inputAccept:
-        "application/pdf,text/plain,application/vnd.openxmlformatsofficedocument.wordprocessingml.document,application/msword,application/vnd.ms-excel",
-      alt: { present: true, mandatory: true },
-      defaultSize: {
-        height: "100",
-        width: "100",
-      },
-    },
-  };
+        urlEnabled: true,
+        uploadEnabled: true,
+        alignmentEnabled: true,
+        uploadCallback: undefined,
+        alt: { present: true, mandatory: true }
+    }
+};
 
-  const localization = {
-    locale: "en-us",
+const localization = {
+    locale: 'en-us',
     translations: {
-      "generic.add": "Add",
-      "generic.cancel": "Cancel",
-
-      "components.controls.blocktype.normal": "Normal",
-      "components.controls.blocktype.h1": "Heading 1",
-      "components.controls.blocktype.h2": "Heading 2",
-      "components.controls.blocktype.h3": "Heading 3",
-      "components.controls.blocktype.blockquote": "Blockquote",
-
-      "components.controls.embedded.embedded": "Embedded",
-      "components.controls.embedded.embeddedlink": "Embedded Link",
-      "components.controls.embedded.enterlink": "Enter link",
-
-      "components.controls.link.linkTitle": "Link Title",
-      "components.controls.link.linkTarget": "Link Target",
-      "components.controls.link.linkTargetOption": "Open link in new window",
-      "components.controls.link.link": "Link",
-      "components.controls.link.unlink": "Unlink",
-
-      "components.controls.image.image": "Image",
-      "components.controls.image.fileUpload": "File Upload",
-      "components.controls.image.byURL": "URL",
-      "components.controls.image.dropFileText":
-        "Drop the file or click to upload",
-    },
-  };
+        'generic.add': 'Add',
+        'generic.cancel': 'Cancel',
+        'components.controls.blocktype.normal': 'Normal',
+        'components.controls.blocktype.h2': 'Heading 2',
+        'components.controls.blocktype.h3': 'Heading 3',
+        'components.controls.blocktype.h4': 'Heading 4  ',
+        'components.controls.blocktype.blockquote': 'Blockquote',
+        'components.controls.link.link': 'Link',
+        'components.controls.link.unlink': 'Unlink',
+        'components.controls.image.image': 'Image',
+        'components.controls.image.fileUpload': 'File Upload',
+        'components.controls.image.byURL': 'URL',
+        'components.controls.image.dropFileText': 'Drop the file or click to upload'
+    }
+};
   const handleContentStateChange = (contentState) => {
     setConvertedContent(draftToHtml(contentState));
   };

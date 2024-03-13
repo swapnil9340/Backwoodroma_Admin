@@ -16,7 +16,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function DeleteNews(props) {
     const { enqueueSnackbar } = useSnackbar();
-  const { dispatch} = useContext(Createcontext)
+  const { state,  dispatch} = useContext(Createcontext)
+
     const cookies = new Cookies();
   const [open, setOpen] = React.useState(false);
   const token_data = cookies.get('Token_access')
@@ -38,7 +39,7 @@ export default function DeleteNews(props) {
            }
        }).then(response => {
         setOpen(false);
-        dispatch({type:'api',api: true})
+        dispatch({type:'api',api: !state.api})
         enqueueSnackbar(' News Delete success !', { variant: 'success' });
        })
    };

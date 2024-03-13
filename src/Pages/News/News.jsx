@@ -35,7 +35,7 @@ export default function News() {
 
 
         })
-    }, [])
+    }, [state.api])
 
     const columns = [
        
