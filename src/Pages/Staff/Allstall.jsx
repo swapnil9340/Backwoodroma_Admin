@@ -26,7 +26,7 @@ const Allstall = () => {
               'Authorization': `Bearer ${token_data}`
           }
           }).then(response => {
-              
+            setsisDelete(false)
             axios.get('https://api.cannabaze.com/AdminPanel/AllStaff/',{
               headers: {
                 Authorization: `Bearer ${token_data}`,

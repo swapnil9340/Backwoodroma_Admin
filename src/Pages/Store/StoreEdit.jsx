@@ -11,6 +11,7 @@ import Cookies from 'universal-cookie';
 import { FiEdit } from 'react-icons/fi';
 import axios from "axios"
 import Axios from "axios"
+import { AiOutlineCloudUpload } from "react-icons/ai";
 import htmlToDraft from 'html-to-draftjs';
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
@@ -55,6 +56,7 @@ export default function StoreEdit(props) {
     const [open, setOpen] = React.useState(false);
     const [Cities, setCities] = React.useState([]);
     const [image, SetImage] = React.useState('');
+    console.log(props ,'props')
     const [Store, setStore] = React.useState({
         Store_Name: props.data.Store_Name,
         city_id: props.data.City_id,
@@ -108,7 +110,18 @@ export default function StoreEdit(props) {
         inputRef.current.value = null;
         SetImage(null)
     };
-
+    const handleDragOver = (event) => {
+        event.preventDefault()
+      }
+      
+      // Function to handle image drop
+      const handleDrop = (event) => {
+        event.preventDefault()
+        const file = event.dataTransfer.files[0]
+        if (file) {
+            SetImage(file)
+        }
+      }
     const formdata = new FormData();
 
     image ? formdata.append('Store_Image',image)  :  Store.Store_Image ==="" &&  formdata.append('Store_Image',Store.Store_Image)
@@ -410,12 +423,52 @@ export default function StoreEdit(props) {
                                                 }
                                             }} />
                                 </div>
+                                <div className='col-sm-6 lg_ip_feild'>
+                                  
+                                  <label>  Status: </label>
+                                  <Select
+                                      name='Status'
+                                      value={Store.Status}
+                                      onChange={handleChange}
+                                      size="small"
+                                      displayEmpty
+                                      inputProps={{ 'aria-label': 'Without label' }}   sx={{
+                                          width:'100%',
+                                          '& .MuiOutlinedInput-root': {
+                                              fontSize:'16px',
+                                            
+                                              '& fieldset': {
+                                                  borderColor: 'black',
+                                              },
+                                          },
+                                          '& .MuiOutlinedInput-input':{
+                                          padding:' 10px',
+                                          },
+                                          "& label": {
+                                              fontSize: 13,
+                                              color: "red",
+                                              "&.Mui-focused": {
+                                                  marginLeft: 0,
+                                                  color: "red",
+                                              }
+                                          }
+                                      }}
+                                  >
+                                      <MenuItem value="" style={{ fontSize: 15 }}>
+                                          <em>Select option</em>
+                                      </MenuItem>
+                                      <MenuItem value={"Active"} style={{ fontSize: 15 }}>Active</MenuItem>
+                                      <MenuItem value={"Hide"} style={{ fontSize: 15 }}>Hide</MenuItem>
+
+                                  </Select>
+                              
+                                </div>
                                 <div className='col-12 lg_ip_feild'>
                                   
                                         <label> Licence Image:</label>
-                                        <input type="file" placeholder='Add Store Image:' ref={inputRef} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
+                                        <input type="file" placeholder='Add Store Image:' ref={inputRef} id="storeeditimage" className='d-none'
                                                 onChange={handleimage} />
-                                      
+                                        <label htmlFor='storeeditimage' onDragOver={handleDragOver} onDrop={handleDrop} className='imagelabelstore'> <AiOutlineCloudUpload  size={22} color='#31B655'/> Change Store Image</label>
                                             <div className=''>
                                                 {
                                                     image ? 
@@ -426,53 +479,14 @@ export default function StoreEdit(props) {
                                                     
                                                     :  
                                                 <>
-                                                    <img src={"http://backend.sweede.net/" + (Store.Store_Image)} alt="" style={{ width: "120px", height: "110px" }} />
+                                                    <img src={(Store.Store_Image)} alt="" style={{ width: "120px", height: "110px" }} />
                                                     <Button name="Store_Image" value="" color='success' onClick={handleChange} >Cancel </Button>
                                                 </>
                                                 }
                                             </div>
                                         
                                 </div>
-                                <div className='col-sm-6 lg_ip_feild'>
-                                  
-                                        <label>  Status: </label>
-                                        <Select
-                                            name='Status'
-                                            value={Store.Status}
-                                            onChange={handleChange}
-                                            size="small"
-                                            displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }}   sx={{
-                                                width:'100%',
-                                                '& .MuiOutlinedInput-root': {
-                                                    fontSize:'16px',
-                                                  
-                                                    '& fieldset': {
-                                                        borderColor: 'black',
-                                                    },
-                                                },
-                                                '& .MuiOutlinedInput-input':{
-                                                padding:' 10px',
-                                                },
-                                                "& label": {
-                                                    fontSize: 13,
-                                                    color: "red",
-                                                    "&.Mui-focused": {
-                                                        marginLeft: 0,
-                                                        color: "red",
-                                                    }
-                                                }
-                                            }}
-                                        >
-                                            <MenuItem value="" style={{ fontSize: 15 }}>
-                                                <em>Select option</em>
-                                            </MenuItem>
-                                            <MenuItem value={"Active"} style={{ fontSize: 15 }}>Active</MenuItem>
-                                            <MenuItem value={"Hide"} style={{ fontSize: 15 }}>Hide</MenuItem>
-
-                                        </Select>
-                                    
-                                </div>
+                           
                                 <div className='col-12 lg_ip_feild'>
                                
                                         <label  >  Stores Description: </label>

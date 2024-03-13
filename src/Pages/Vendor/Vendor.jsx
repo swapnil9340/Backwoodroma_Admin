@@ -180,7 +180,7 @@ const Vendor = () => {
   const [Data, SetData] = React.useState({})
 
   let date = new Date()
-  const TodayDate = date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate()
+  const TodayDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
   const currentYear = new Date().getFullYear();
   const lastYear = currentYear - 1;
   const monthStartDate = new Date(date.getFullYear(), date.getMonth(), 2).toISOString().split('T')[0]

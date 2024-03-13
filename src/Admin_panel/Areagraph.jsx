@@ -12,8 +12,6 @@ const Areagraph = ({ title, id }) => {
   const cookies = new Cookies();
   const token_data = cookies.get("Token_access");
   const [CharteDate, SetChartDate] = React.useState({});
-
-
   const [month, Setmonth] = React.useState({});
   const [timeintervalchart, settimeintervalchart] = React.useState("ThisYear");
   let date = new Date();
@@ -197,8 +195,6 @@ const Areagraph = ({ title, id }) => {
     }
   }, [state.datesSelect, state.CustomeStartDate, state.CustomeEndDate]);
 
-  //   .map((data, index) => Object.values(data))[0]
-  //   .map((d) => d))
 
 
   const Chartstate = {
@@ -346,8 +342,7 @@ const Areagraph = ({ title, id }) => {
 
     }
     else if (title === "Sales Performance") {
-      axios
-        .post(
+        axios.post(
           "https://api.cannabaze.com/AdminPanel/SalesPerformanceVendorGraph/",
           {
             SelectTime: timeintervalchart,
@@ -367,8 +362,7 @@ const Areagraph = ({ title, id }) => {
               Authorization: `Bearer ${token_data}`,
             },
           }
-        )
-        .then((res) => {
+        ).then((res) => {
           if (timeintervalchart === "ThisMonth") {
             res.data.map((data) => {
             
@@ -389,6 +383,8 @@ const Areagraph = ({ title, id }) => {
                   [data.Date]: [data.TotalPrice, data.UnitSold],
                 }));
               });
+            }else if(timeintervalchart === "Today"){
+      
             }
             else {
               res.data.map((data) => {
@@ -489,6 +485,8 @@ const Areagraph = ({ title, id }) => {
           Setmonth(month => ({ ...month, [i + 1]: [0, 0] }))
         }
         settimeintervalchart(e?.target?.value);
+      } else{
+        settimeintervalchart(e?.target?.value)
       }
     }
   }

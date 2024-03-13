@@ -7,7 +7,7 @@ import { MdOutlineDeleteOutline  } from "react-icons/md";
 import Successfullypopup from '../../Components/Component/Successfullypopup'
 import Unsuccesspopup from '../../Components/Component/Successfullypopup'
 import { FaEdit } from "react-icons/fa";
-import {Link , useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import Createcontext from '../../Hooks/Context/Context'
 import Cookies from 'universal-cookie';
 import axios from 'axios';
@@ -25,7 +25,7 @@ const Rolelist = () => {
     const [RoleData, SetRoleData] = useState([]);
     const classes = useStyles()
     const { state, dispatch } = useContext(Createcontext)
-    const Swal = require('sweetalert2')
+   
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const CustomFontTheme = createTheme({
@@ -78,32 +78,35 @@ const Rolelist = () => {
                     'Authorization': `Bearer ${token_data}`
                 }
             }).then((res)=>{
+                   setsisDelete(false)
                 axios.get('https://api.cannabaze.com/AdminPanel/Get-RolesAndPermission/',{
                     headers: {
                         'Authorization': `Bearer ${token_data}`
                     }
                 }).then((res)=>{
                     SetRoleData(res?.data)
-                   
                 })
             })
         }
     },[isdelete])
     useEffect(()=>{
+       
+       if(isdelete){
         axios.get('https://api.cannabaze.com/AdminPanel/Get-RolesAndPermission/',{
             headers: {
                 'Authorization': `Bearer ${token_data}`
             }
         }).then((res)=>{
-            SetRoleData(res?.data)
+            let a= res?.data.map((item,index)=>{return{...item,sno:(index+1)}})
+            SetRoleData(a)
         })
+       }
 
-
-    },[])
+    },[isdelete])
 
     const columns = [
         { 
-            field: 'id' , 
+            field: 'sno' , 
             headerName: 'S No.', 
             filterable: false,
             minWidth: 110,
@@ -167,8 +170,8 @@ const Rolelist = () => {
                
 
     </div>
-     { sucsesopen && <Successfullypopup  setsucsesopen={setsucsesopen} link={'/Roles'}/>}
-     { unsucsesopen && <Unsuccesspopup setsucsesopen={setunsucsesopen} link={'/Roles'}/>}
+     {   sucsesopen && <Successfullypopup  setsucsesopen={setsucsesopen} link={'/Roles'}/>}
+     {   unsucsesopen && <Unsuccesspopup setsucsesopen={setunsucsesopen} link={'/Roles'}/>}
      {   deleteoptn &&  <Deletepopup setdeleteoprn={setdeleteoprn} setsisDelete={setsisDelete} />}
      </React.Fragment>
   )

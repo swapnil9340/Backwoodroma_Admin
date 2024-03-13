@@ -38,7 +38,7 @@ const AllReview = () => {
                       'Authorization': `Bearer ${token_data}`
                   }
                   }).then((res)=>{
-                      
+                    setsisDelete(false)
                       Axios.post('https://api.cannabaze.com/AdminPanel/ReviewsByStore/', 
                       {"SelectTime":"Year","StartDate":"2023-02-01","EndDate":"2024-02-02","StoreId":location.state.item.id},{
                           headers: {

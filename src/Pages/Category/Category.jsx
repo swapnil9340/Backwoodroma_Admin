@@ -182,6 +182,7 @@ export default function Category(props) {
                 }).then(response => {
                     setreviewid('')
                     setTotal([...response.data])
+                    setsisDelete(false)
                 })
         
             })

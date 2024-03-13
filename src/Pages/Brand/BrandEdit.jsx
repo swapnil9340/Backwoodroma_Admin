@@ -249,10 +249,7 @@ export default function BrandEdit(props) {
                                    
                                         <input type="file" ref={inputRef} onChange={handleimage} id="formFile" name='formFile' variant="outlined" className='d-none' />
                                    
-                                        <label className='Imagelabel' htmlFor='formFile'  onDragOver=
-                                    
-                                    
-                                    {handleDragOver} onDrop={handleDrop}>
+                                        <label className='Imagelabel' htmlFor='formFile'  onDragOver={handleDragOver} onDrop={handleDrop}>
                                         <LuUpload  size={24} color='#31B655'/> Drop files here or click to upload
                                      </label>
                                 </div>

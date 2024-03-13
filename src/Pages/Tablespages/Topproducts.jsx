@@ -48,14 +48,14 @@ const Topproducts = () => {
       },
       {
         field: 'ProductSalesCount',
-        headerName: 'Sale Unite',
+        headerName: 'Sale Unit',
         sortable:false,
         minWidth: 80,
         editable: false,
         flex:1,
         headerAlign: "center",
         align: "center",
-        valueFormatter: ({ value }) => `${value} Qty` 
+        valueFormatter: ({ value }) => `${value}` 
       },
       {
           field: 'Price',
@@ -97,7 +97,7 @@ const Topproducts = () => {
     },
   
     ];
-  
+    console.log(location ,'location')
     const rows = location?.state
    
 

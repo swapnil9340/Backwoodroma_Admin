@@ -77,9 +77,6 @@ export default function Login_logout() {
     function alertFunc() {
         setOpen(false);
     }
-
-
-
     const otp_send = () => {
 
         setOpen(false);
@@ -92,7 +89,7 @@ export default function Login_logout() {
             }
             else {
 
-             
+             if(Boolean(response.data.permission.length !==0) ||  response?.data?.is_superuser ){
                 if(!response.data.is_superuser && Boolean(response.data.permission.lenght === 0 ) ){
                     navigate("/*");
                 }else{
@@ -101,11 +98,13 @@ export default function Login_logout() {
                     cookies.set('Token_access', response.data.tokens.access, { expires: date })
                     navigate("/");
                 }
+             }else{
+                window.alert("Your are not authorized user")
+             }
+              
             }
         })
     };
-
-
     const handleClose = () => {
         setOpen(false);
 
@@ -114,9 +113,6 @@ export default function Login_logout() {
     const handleClickShowPassword = () => {
         setValues({ ...values, showPassword: !values.showPassword });
     };
-
-
-   
     return (
          
             <div>

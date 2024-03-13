@@ -70,7 +70,15 @@ input[type=checkbox] {
     padding: 0px 15px;
     height: auto;
 }
-
+.imagelabelstore{
+    width: 100%;
+    
+    border: 2px dashed #666666;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .ReviewSearchBar_container {
     height: 120px;
     display: flex;

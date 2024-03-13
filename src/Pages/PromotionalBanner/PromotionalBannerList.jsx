@@ -160,7 +160,7 @@ const PromotionalBannerList = () => {
             },
             {
                 field: 'Banner',
-                headerName: 'Destop Banner',
+                headerName: 'Desktop Banner',
                 flex: 1,
                 sortable: false,
                 minWidth: 200,
