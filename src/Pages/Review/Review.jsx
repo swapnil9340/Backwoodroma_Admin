@@ -13,9 +13,8 @@ import { useLocation } from 'react-router-dom'
 import Deletepopup from '../../Components/Component/Deletepopup'
 import Successfullypopup from '../../Components/Component/Successfullypopup'
 import useStyles from '../../Style';
+import LazyLoad from 'react-lazyload'
 import { useNavigate } from 'react-router-dom'
-import LazyLoad from 'react-lazyload';
-
 const Review = () => {
   const classes = useStyles()
   const location = useLocation();
@@ -43,7 +42,6 @@ const Review = () => {
     let sd = ''
     if (a.length > 1) {
       sd = `${a[0][0].toUpperCase()}${a[1][0].toUpperCase()}`
-
     } else {
       sd = `${a[0][0].toUpperCase()}${a[0][1].toUpperCase()}`
     }
@@ -55,37 +53,45 @@ const Review = () => {
         console.trace(error)
       })
   }
+
+
+  const [imageError, setImageError] = useState(false);
+
+  const handleImageError = () => {
+    setImageError(true);
+    console.log("skdhfhdsfkjhdkfhd")
+  };
   useEffect(() => {
     if (isdelete) {
       Axios.post('https://api.cannabaze.com/AdminPanel/DeleteReviews/', reviewid, {
 
-            headers: {
-                'Authorization': `Bearer ${token_data}`
-            }
-            }).then((res)=>{
-                
-                Axios.post('https://api.cannabaze.com/AdminPanel/ReviewsByStore/', 
-                {"SelectTime":"Year","StartDate":"2023-02-01","EndDate":"2024-02-02","StoreId":location.state.item.id},{
-                    headers: {
-                    'Authorization': `Bearer ${token_data}`
-                    }
-                }).then((res) => {
-                    let a = res?.data?.map((item , index)=>{
-                    if("ProductName" in item){
-                        return {...item , mainID : index , reviewtype : {"productId":item?.id}}
-                    }else{
-                        return {...item , mainID : index , reviewtype : {"StoreId":item?.id} }
-                    } 
-                    })
-                    setRecentorder( a )
-                    setsucsesopen(true)
-                    setTimeout(() => {
-                        setsucsesopen(false)
-                    }, "3000");
-                })
-            })
+        headers: {
+          'Authorization': `Bearer ${token_data}`
         }
-    },[isdelete])
+      }).then((res) => {
+        setsisDelete(false)
+        Axios.post('https://api.cannabaze.com/AdminPanel/ReviewsByStore/',
+          { "SelectTime": "Year", "StartDate": "2023-02-01", "EndDate": "2024-02-02", "StoreId": location.state.item.id }, {
+          headers: {
+            'Authorization': `Bearer ${token_data}`
+          }
+        }).then((res) => {
+          let a = res?.data?.map((item, index) => {
+            if ("ProductName" in item) {
+              return { ...item, mainID: index, reviewtype: { "productId": item?.id } }
+            } else {
+              return { ...item, mainID: index, reviewtype: { "StoreId": item?.id } }
+            }
+          })
+          setRecentorder(a)
+          setsucsesopen(true)
+          setTimeout(() => {
+            setsucsesopen(false)
+          }, "3000");
+        })
+      })
+    }
+  }, [isdelete])
 
   useEffect(() => {
     Axios.post('https://api.cannabaze.com/AdminPanel/AllReviews/',
@@ -114,10 +120,6 @@ const Review = () => {
     },
 
   });
-
-  const handleImageError = () => {
-    console.log('Image loading failed');
-  };
   const columns = [
     {
       sortable: true,
@@ -155,19 +157,14 @@ const Review = () => {
           <div className='userImage'>
             <div className="imageCircle" >
               <div className='userImageCircle'>
-                <LazyImage
-                  src={params.row.userImage}
-                  alt="Description of the image"
-                  className="w-[100%] h-[100%]"
-                  onError={handleImageError}
-                />
-                {/* <img src={params.row.userImage} className="w-[100%] h-[100%]" /> */}
 
-                {/* <div  id={sd}>
-                              <div className='namecorcle' style={{backgroundColor:getRandomColor()}}>
-                                <span>{sd}</span>
-                              </div>
-                          </div> */}
+                <img src={params.row.userImage}  onError={(e) => e.target.style.display='none' } />
+
+                {/* <div id={sd}>
+                  <div className='namecorcle' style={{ backgroundColor: getRandomColor() }}>
+                    <span>{sd}</span>
+                  </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -270,6 +267,7 @@ const Review = () => {
     },
   ];
   const rows = recentorder
+  // console.log(rows)
   return (
     <div className=' my-4 '>
       <div className='py-4 section_card'>
