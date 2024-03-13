@@ -166,9 +166,9 @@ export default function Category(props) {
     const rows = totel
 
     useEffect(()=>{
-        console.log('isdelete')
+       
         if(Boolean(isdelete)){
-        console.log(reviewid ,'reviewid')
+      
 
             axios.delete(`https://api.cannabaze.com/AdminPanel/delete-Category/${reviewid}`, {
             headers: {

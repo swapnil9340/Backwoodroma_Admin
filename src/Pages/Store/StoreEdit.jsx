@@ -56,7 +56,7 @@ export default function StoreEdit(props) {
     const [open, setOpen] = React.useState(false);
     const [Cities, setCities] = React.useState([]);
     const [image, SetImage] = React.useState('');
-    console.log(props ,'props')
+
     const [Store, setStore] = React.useState({
         Store_Name: props.data.Store_Name,
         city_id: props.data.City_id,
@@ -112,9 +112,8 @@ export default function StoreEdit(props) {
     };
     const handleDragOver = (event) => {
         event.preventDefault()
-      }
+    }
       
-      // Function to handle image drop
       const handleDrop = (event) => {
         event.preventDefault()
         const file = event.dataTransfer.files[0]
@@ -154,7 +153,14 @@ export default function StoreEdit(props) {
             enqueueSnackbar('Edit Sub-Category  success !', { variant: 'success' });
         })
     };
-
+    function tomorrowdate(){
+        var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+        var day =  String(currentDate.getDate()).padStart(2, '0')
+        var month = String(currentDate.getMonth() + 1).padStart(2, '0')
+        
+        var year = currentDate.getFullYear()
+       return  `${year}-${month}-${day}` 
+  }
     return (
         <div>
             <Button color='success' onClick={handleClickOpen} sx={{
@@ -199,9 +205,6 @@ export default function StoreEdit(props) {
                 <DialogContent dividers>
                     <div className='container-fluid '>
                         <div className='row login_form_feild'>
-
-                           
-
                                 <div className='Add_Category center' style={{marginTop:"2%"}}><h2> Edit Store  </h2>  </div>
                                 <div className='col-sm-6 lg_ip_feild'>
                                         <label> Store Name: </label>
@@ -486,7 +489,6 @@ export default function StoreEdit(props) {
                                             </div>
                                         
                                 </div>
-                           
                                 <div className='col-12 lg_ip_feild'>
                                
                                         <label  >  Stores Description: </label>
@@ -500,6 +502,7 @@ export default function StoreEdit(props) {
                                         /></div>
                                    
                                 </div>
+                              
                                 <div className='col-12 center top' >
                                     <button className='topbutton' autoFocus onClick={Submit} >
                                         Save changes

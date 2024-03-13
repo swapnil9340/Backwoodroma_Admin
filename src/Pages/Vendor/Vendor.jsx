@@ -39,7 +39,7 @@ const Vendor = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [allstore, setAllstore] = React.useState([]);
-  const [selectedstore, setselectedstore] = React.useState(location.state.id);
+  const [selectedstore, setselectedstore] = React.useState(location?.state?.id);
   const [topsellproduct, settopsellproduct] = React.useState();
   const [totalsale, settotalsale] = React.useState({});
   const [orderstore, setorderstore] = React.useState({});
@@ -48,8 +48,6 @@ const Vendor = () => {
   const [pageSize, setPageSize] = React.useState(5);
   const [detailstype, setdetailstype] = React.useState(true);
   const token_data = cookies.get("Token_access");
-
-
   const columns = [
     {
       field: "ProductImage",
@@ -81,7 +79,7 @@ const Vendor = () => {
     },
     {
       field: "category_name",
-      headerName: "Store Type",
+      headerName: "Category Name",
       minWidth: 120,
       flex: 1,
       sortable: false,
@@ -89,7 +87,7 @@ const Vendor = () => {
     },
     {
       field: "Prices",
-      headerName: "Store Name",
+      headerName: "Price",
       type: "number",
       minWidth: 120,
       flex: 1,
@@ -114,7 +112,7 @@ const Vendor = () => {
     },
     {
       field: "Stock",
-      headerName: "Status",
+      headerName: "Stock",
       editable: false,
       sortable: false,
       minWidth: 120,
@@ -178,9 +176,8 @@ const Vendor = () => {
   ];
   const row = totalsale;
   const [Data, SetData] = React.useState({})
-
   let date = new Date()
-  const TodayDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
+  const TodayDate = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + date.getDate()
   const currentYear = new Date().getFullYear();
   const lastYear = currentYear - 1;
   const monthStartDate = new Date(date.getFullYear(), date.getMonth(), 2).toISOString().split('T')[0]
@@ -201,7 +198,6 @@ const Vendor = () => {
     startOfPreviousWeek.setDate(date.getDate() - diff);
     return startOfPreviousWeek.toISOString().split('T')[0];
   }
-
   let yesterday = new Date(TodayDate)
   yesterday.setDate(yesterday.getDate() - 1)
   function convert(str) {
@@ -340,6 +336,7 @@ const Vendor = () => {
         <div className="col-12">
           <dvi className="storelistcardWrapper">
             {allstore?.map((item) => {
+           
               return (
                 <div
                   className="storelistcard"
@@ -376,19 +373,15 @@ const Vendor = () => {
                     )
                     {item?.rating !== null ? (
                       <span className="">
-                        {Array(parseInt(item?.rating) + 1)
-                          .fill()
-                          .map(() => {
+                        {Array(parseInt(item?.rating) ).fill().map(() => {
                             return (
                               <AiFillStar
                                 size={12}
                                 color="rgba(252, 213, 3, 1)"
                               />
-                            );
+                             );
                           })}
-                        {Array(4 - parseInt(item?.rating))
-                          .fill()
-                          .map(() => {
+                        {Array(5   - parseInt(item?.rating)).fill().map(() => {
                             return (
                               <AiOutlineStar
                                 size={12}

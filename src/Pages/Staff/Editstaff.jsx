@@ -109,7 +109,6 @@ export default function Editstaff(props) {
         
     };
    useEffect(()=>{
-    console.log(sucsesopen , unsucsesopen )
     if( !sucsesopen ){
         setOpen(false)
     }

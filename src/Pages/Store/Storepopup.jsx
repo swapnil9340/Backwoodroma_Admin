@@ -74,8 +74,9 @@ export default function Storepopup() {
 
     function tomorrowdate(){
         var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-        var day = currentDate.getDate()
-        var month = currentDate.getMonth() + 1
+        var day =  String(currentDate.getDate()).padStart(2, '0')
+        var month = String(currentDate.getMonth() + 1).padStart(2, '0')
+        
         var year = currentDate.getFullYear()
        return  `${year}-${month}-${day}` 
   }
@@ -96,8 +97,6 @@ export default function Storepopup() {
         expires:'',
 
     });
-
-
     const handleChange = (event) => {
         const value = event.target.value;
         SetStore({
@@ -833,6 +832,7 @@ export default function Storepopup() {
                                                     }
                                                     
                                                 }}
+                                                InputProps={{inputProps: { min:tomorrowdate() , max: "2030-05-04"} }}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}

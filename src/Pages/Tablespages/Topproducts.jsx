@@ -97,7 +97,6 @@ const Topproducts = () => {
     },
   
     ];
-    console.log(location ,'location')
     const rows = location?.state
    
 

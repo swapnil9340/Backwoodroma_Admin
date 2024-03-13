@@ -26,7 +26,6 @@ function Context(props) {
   }
   }).then((response)=>{
     let rolesdata
-    console.log( response?.data.length)
     if( Boolean(response?.data.length === 1)){
       rolesdata={
         "RoleTitle": "",

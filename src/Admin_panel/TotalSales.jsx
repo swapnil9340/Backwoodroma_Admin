@@ -14,8 +14,8 @@ const TotalSales = ({type}) => {
   const [totel, setTotal] = React.useState([])
   //  Months//////////////////
   let date = new Date()
-  const TodayDate = date.getFullYear() + "-" +(date.getMonth() + 1) + "-" + date.getDate()
-  console.log(TodayDate ,'TodayDate')
+  const TodayDate = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + date.getDate()
+
   const currentYear = new Date().getFullYear();
   const lastYear = currentYear - 1;
   const monthStartDate = new Date(date.getFullYear(), date.getMonth(), 2).toISOString().split('T')[0]
@@ -109,7 +109,7 @@ const TotalSales = ({type}) => {
 
       })
     }else if(type === 'vendor'){
-      console.log(Data ,'Data Data Data Data Data')
+     
       axios.post("https://api.cannabaze.com/AdminPanel/TotalSalesVendorPieChart/",
       Data,
       {

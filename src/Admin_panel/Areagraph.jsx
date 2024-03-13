@@ -8,15 +8,13 @@ import Createcontext from "../Hooks/Context/Context";
 const Areagraph = ({ title, id }) => {
 
   const { state } = React.useContext(Createcontext);
-
   const cookies = new Cookies();
   const token_data = cookies.get("Token_access");
   const [CharteDate, SetChartDate] = React.useState({});
   const [month, Setmonth] = React.useState({});
   const [timeintervalchart, settimeintervalchart] = React.useState("ThisYear");
   let date = new Date();
-  const TodayDate =
-    date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+  const TodayDate = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + date.getDate();
   const [salesperformance, setSalesperformance] = React.useState({});
   const classes = useStyles();
 
@@ -194,9 +192,6 @@ const Areagraph = ({ title, id }) => {
       }
     }
   }, [state.datesSelect, state.CustomeStartDate, state.CustomeEndDate]);
-
-
-
   const Chartstate = {
     series: [
       {
@@ -346,7 +341,7 @@ const Areagraph = ({ title, id }) => {
           "https://api.cannabaze.com/AdminPanel/SalesPerformanceVendorGraph/",
           {
             SelectTime: timeintervalchart,
-            Storeid: id,
+            store: id,
             StartDate:
               timeintervalchart === "ThisYear"
                 ? date.getFullYear() + "-" + "01" + "-" + "01"
@@ -384,7 +379,12 @@ const Areagraph = ({ title, id }) => {
                 }));
               });
             }else if(timeintervalchart === "Today"){
-      
+              res.data.map((data) => {
+                SetChartDate((CharteDate) => ({
+                 
+                  [data.Date]: [data.TotalPrice, data.UnitSold],
+                }));
+              }); 
             }
             else {
               res.data.map((data) => {
