@@ -13,12 +13,10 @@ import { useLocation } from 'react-router-dom'
 import Deletepopup from '../../Components/Component/Deletepopup'
 import Successfullypopup from '../../Components/Component/Successfullypopup'
 import useStyles from '../../Style';
-import LazyLoad from 'react-lazyload'
 import { useNavigate } from 'react-router-dom'
 const Review = () => {
   const classes = useStyles()
   const location = useLocation();
-  var htmlToImage = require('html-to-image');
   const [recentorder, setRecentorder] = useState([])
   const cookies = new Cookies();
   const token_data = cookies.get("Token_access");

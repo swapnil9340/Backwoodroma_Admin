@@ -91,7 +91,7 @@ const Rolelist = () => {
     },[isdelete])
     useEffect(()=>{
        
-       if(isdelete){
+     
         axios.get('https://api.cannabaze.com/AdminPanel/Get-RolesAndPermission/',{
             headers: {
                 'Authorization': `Bearer ${token_data}`
@@ -100,9 +100,9 @@ const Rolelist = () => {
             let a= res?.data.map((item,index)=>{return{...item,sno:(index+1)}})
             SetRoleData(a)
         })
-       }
+       
 
-    },[isdelete])
+    },[])
 
     const columns = [
         { 
