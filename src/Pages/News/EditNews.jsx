@@ -1,4 +1,4 @@
-import React, { useContext,useState,useEffect,useRef } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import Successfullypopup from '../../Components/Component/Successfullypopup'
 import Unsuccesspopup from '../../Components/Component/Unsuccesspopup'
 import Button from "@mui/material/Button";
@@ -24,6 +24,7 @@ import Box from "@mui/material/Box";
 import htmlToDraft from "html-to-draftjs";
 import draftToHtml from "draftjs-to-html";
 import useStyles from "../../Style";
+import EditNewsEditer from "./EditNewsEditer";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
@@ -43,7 +44,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-function BootstrapDialogTitle(props) {}
+function BootstrapDialogTitle(props) { }
 const getInitialState = (defaultValue) => {
   if (defaultValue) {
     const blocksFromHtml = htmlToDraft(defaultValue);
@@ -60,21 +61,17 @@ const getInitialState = (defaultValue) => {
 
 export default function NewsEdit(props) {
   const defaultValue = props?.data?.Description;
-  const { dispatch } = useContext(Createcontext);
-  const [sucsesopen , setsucsesopen] = useState(false)
-  const [unsucsesopen , setunsucsesopen] = useState(false)
+
+  const { state, dispatch } = useContext(Createcontext);
+  const [sucsesopen, setsucsesopen] = useState(false)
+  const [unsucsesopen, setunsucsesopen] = useState(false)
   const [open, setOpen] = React.useState(false);
   const classes = useStyles()
   const cookies = new Cookies();
   const token_data = cookies.get("Token_access");
-  const [editorState, setEditorState] = React.useState(() => {
-    const contentState = ContentState?.createFromBlockArray(
-      convertFromHTML(defaultValue),
-      convertFromHTML("<p></p>")
-    );
-    return EditorState.createWithContent(contentState);
-  });
+
   const [convertedContent, setConvertedContent] = React.useState();
+
   const [Category, SetCategory] = React.useState([]);
   const [SubCategory, SetSubCategory] = React.useState([]);
   const [Image, SetImage] = React.useState("");
@@ -110,94 +107,7 @@ export default function NewsEdit(props) {
     Alt_Text: "",
     Link: "",
   });
-  const handleEditorStateChange = (editorState) => {
-    setEditorState(editorState);
-  };
-  const handleContentStateChange = (contentState) => {
-    setConvertedContent(draftToHtml(contentState));
-  };
 
-  const toolbar = {
-    options: [
-      "blockType",
-      "inline",
-      "list",
-      "colorPicker",
-      "link",
-      // "embedded",
-      "image",
-    ],
-    blockType: {
-      inDropdown: true,
-      options: ["H2", "H3", "H4", "Normal", "Blockquote"],
-      className: undefined,
-      component: undefined,
-      dropdownClassName: undefined,
-    },
-    inline: {
-      inDropdown: false,
-      className: undefined,
-      component: undefined,
-      dropdownClassName: undefined,
-      options: ["bold", "italic", "underline"],
-    },
-    link: {
-      defaultTargetOption: "_self",
-      popupClassName: "demo-popup-custom",
-      options: ["link", "unlink"],
-      component: undefined,
-      popupClassName: undefined,
-    },
-    list: {
-      options: ["ordered", "unordered"],
-    },
-    image: {
-      className: undefined,
-      component: undefined,
-      popupClassName: undefined,
-      urlEnabled: true,
-      uploadEnabled: true,
-      alignmentEnabled: true,
-      uploadCallback: undefined,
-      previewImage: false,
-      inputAccept: "image/gif,image/jpeg,image/jpg,image/png",
-      alt: { present: true, mandatory: true },
-      defaultSize: {
-        height: "100",
-        width: "100",
-      },
-    },
-  };
-
-  const localization = {
-    locale: "en-us",
-    translations: {
-      "generic.add": "Add",
-      "generic.cancel": "Cancel",
-
-      "components.controls.blocktype.normal": "Normal",
-      "components.controls.blocktype.h2": "Heading 1",
-      "components.controls.blocktype.h3": "Heading 2",
-      "components.controls.blocktype.h4": "Heading 3",
-      "components.controls.blocktype.blockquote": "Blockquote",
-
-      "components.controls.embedded.embedded": "Embedded",
-      "components.controls.embedded.embeddedlink": "Embedded Link",
-      "components.controls.embedded.enterlink": "Enter link",
-
-      "components.controls.link.linkTitle": "Link Title",
-      "components.controls.link.linkTarget": "Link Target",
-      "components.controls.link.linkTargetOption": "Open link in new window",
-      "components.controls.link.link": "Link",
-      "components.controls.link.unlink": "Unlink",
-
-      "components.controls.image.image": "Image",
-      "components.controls.image.fileUpload": "File Upload",
-      "components.controls.image.byURL": "URL",
-      "components.controls.image.dropFileText":
-        "Drop the file or click to upload",
-    },
-  };
 
   const handleimage = (event) => {
     SetImage(event.target.files[0]);
@@ -269,13 +179,13 @@ export default function NewsEdit(props) {
   formdata.append("Meta_title", News.Meta_title);
   formdata.append("SubCategory_id", News.SubCategory_id);
   formdata.append("Url_slug", News.Url_slug);
-  formdata.append("Alt_Text", News.Alt_Text);
+  formdata.append("Alt_Text", News.Alt_Text === undefined ? "" : News.Alt_Text);
   if (News.Image === "") {
     formdata.append("Image", News.Image);
   }
   Image && formdata.append("Image", Image);
 
-  formdata.append("Description", convertedContent);
+  formdata.append("Description", convertedContent === undefined ? defaultValue : convertedContent);
   formdata.append("Url_slug", News.Url_slug);
   const Submit = () => {
     const config = {
@@ -290,8 +200,8 @@ export default function NewsEdit(props) {
       config
     )
       .then(() => {
+        dispatch({ type: 'api', api: !state.api })
         setsucsesopen(true)
-        dispatch({ type: "api", api: true });
       })
       .catch(function (error) {
         if (error.response.data.error) {
@@ -352,21 +262,20 @@ export default function NewsEdit(props) {
   const handleDragOver = (event) => {
     event.preventDefault()
   }
-  
+
   // Function to handle image drop
   const handleDrop = (event) => {
     event.preventDefault()
     const file = event.dataTransfer.files[0]
     if (file) {
-        SetImage(file)
+      SetImage(file)
     }
   }
-  useEffect(()=>{
-    console.log(sucsesopen , unsucsesopen )
-    if( !sucsesopen ){
-        setOpen(false)
+  useEffect(() => {
+    if (!sucsesopen) {
+      setOpen(false)
     }
-   },[sucsesopen , unsucsesopen])
+  }, [sucsesopen, unsucsesopen])
   return (
     <div>
       <Button color="success" onClick={handleClickOpen}>
@@ -411,10 +320,10 @@ export default function NewsEdit(props) {
           <div className="container-fluid ">
             <div className="row ">
               <div className="col-12">
-              
-                 
-                  <h2 className="popupTitle"> Edit News</h2>{" "}
-             
+
+
+                <h2 className="popupTitle"> Edit News</h2>{" "}
+
                 <div className="addSubcategoryForm">
                   <div className="inputFeildasf">
                     <label className="label">Title:</label>
@@ -439,290 +348,249 @@ export default function NewsEdit(props) {
                     />
                   </div>
                   <div className="inputFeildasf">
-                   
-                      <label className="label">Meta Title:</label>
-                   
-                      <TextField
-                        type="Text"
-                        placeholder="Meta Title"
-                        id="outlined-basic"
-                        name="Meta_title"
-                        variant="outlined"
-                        value={News.Meta_title}
-                        style={{ minWidth: 190, fontSize: 15 }}
-                        onChange={handleChange}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start"> </InputAdornment>
-                          ),
-                          style: { fontSize: 14 },
-                        }}
-                        label={massage.Meta_title}
-                        className={classes.popuptextfeild}
-                      />
-                 
+
+                    <label className="label">Meta Title:</label>
+
+                    <TextField
+                      type="Text"
+                      placeholder="Meta Title"
+                      id="outlined-basic"
+                      name="Meta_title"
+                      variant="outlined"
+                      value={News.Meta_title}
+                      style={{ minWidth: 190, fontSize: 15 }}
+                      onChange={handleChange}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start"> </InputAdornment>
+                        ),
+                        style: { fontSize: 14 },
+                      }}
+                      label={massage.Meta_title}
+                      className={classes.popuptextfeild}
+                    />
+
                   </div>
                   <div className="inputFeildasf">
-                 
-                      <label className="label">Category:</label>
-                 
-                      <Select
-                        name="Category_id"
-                        value={News.Category_id}
-                        onChange={handleChange}
-                        displayEmpty
-                        inputProps={{ "aria-label": "Without label" }}
-                        className={classes.popupselectFeild}
-                        size="small"
-                      >
-                        <MenuItem value="" style={{ fontSize: 15 }}>
-                          <em>Select option</em>
-                        </MenuItem>
-                        {Category.map((Category, index) => {
-                          return (
-                            <MenuItem
-                              value={Category.id}
-                              style={{ fontSize: 15 }}
-                              key={index}
-                            >
-                              {Category.name}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
-                   
+
+                    <label className="label">Category:</label>
+
+                    <Select
+                      name="Category_id"
+                      value={News.Category_id}
+                      onChange={handleChange}
+                      displayEmpty
+                      inputProps={{ "aria-label": "Without label" }}
+                      className={classes.popupselectFeild}
+                      size="small"
+                    >
+                      <MenuItem value="" style={{ fontSize: 15 }}>
+                        <em>Select option</em>
+                      </MenuItem>
+                      {Category.map((Category, index) => {
+                        return (
+                          <MenuItem
+                            value={Category.id}
+                            style={{ fontSize: 15 }}
+                            key={index}
+                          >
+                            {Category.name}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+
                   </div>
                   <div className="inputFeildasf">
-                   
-                      <label className="label">Sub Category:</label>
-                  
-                      <Select
-                        name="SubCategory_id"
-                        value={News.SubCategory_id}
-                        onChange={handleChange}
-                        displayEmpty
-                        inputProps={{ "aria-label": "Without label" }}
-                        className={classes.popupselectFeild}
-                        size="small"
-                      >
-                        <MenuItem value="" style={{ fontSize: 15 }}>
-                          <em>Select option</em>
-                        </MenuItem>
-                        {SubCategory.map((SubCategory, index) => {
-                          return (
-                            <MenuItem
-                              value={SubCategory.id}
-                              style={{ fontSize: 15 }}
-                              key={index}
-                            >
-                              {SubCategory.name}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
-                   
+
+                    <label className="label">Sub Category:</label>
+
+                    <Select
+                      name="SubCategory_id"
+                      value={News.SubCategory_id}
+                      onChange={handleChange}
+                      displayEmpty
+                      inputProps={{ "aria-label": "Without label" }}
+                      className={classes.popupselectFeild}
+                      size="small"
+                    >
+                      <MenuItem value="" style={{ fontSize: 15 }}>
+                        <em>Select option</em>
+                      </MenuItem>
+                      {SubCategory.map((SubCategory, index) => {
+                        return (
+                          <MenuItem
+                            value={SubCategory.id}
+                            style={{ fontSize: 15 }}
+                            key={index}
+                          >
+                            {SubCategory.name}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+
                   </div>
                   <div className="inputFeildasf">
-              
-                      <label className="label">Featured Image:</label>
-                      <input
-                              type="file"
-                              id="file"
-                              ref={inputRef}
-                              className="file"
-                              onChange={handleimage}
-                            />
-                            {/* <label htmlFor="file">
+
+                    <label className="label">Featured Image:</label>
+                    <input
+                      type="file"
+                      id="file"
+                      ref={inputRef}
+                      className="file"
+                      onChange={handleimage}
+                    />
+                    {/* <label htmlFor="file">
                               UPLOAD
                               <p className="file-name"></p>
                             </label> */}
-                            <label className='Imagelabel' htmlFor='file'  onDragOver=
-                                    
-                                    
-                                    {handleDragOver} onDrop={handleDrop}>
-                                        <LuUpload  size={24} color='#31B655'/> Drop files here or click to upload
-                                     </label>
-                      {/* <div className=" col-2 image_uploade center">
-                        
-                        <div className="col-12 center  top Sku">
-                          <div className="file-input">
-                           
-                          </div>
+                    <label className='Imagelabel' htmlFor='file' onDragOver=
+
+
+                      {handleDragOver} onDrop={handleDrop}>
+                      <LuUpload size={24} color='#31B655' /> Drop files here or click to upload
+                    </label>
+                    <div className="w-100 text-center mt-3">
+                      {Image ? (
+                        <div >
+                          <img
+                            src={URL.createObjectURL(Image)}
+                            alt=""
+                            style={{
+                              width: "90px",
+                              height: "81px",
+                              borderRadius: "10px",
+                            }}
+                          />
+                          <Button onClick={resetFileInput} color="success">
+                            Cancel{" "}
+                          </Button>
                         </div>
-                      </div> */}
-                        <div className="w-100 text-center mt-3">
-                          {Image ? (
-                            <div >
-                              <img
-                                src={URL.createObjectURL(Image)}
-                                alt=""
-                                style={{
-                                  width: "90px",
-                                  height: "81px",
-                                  borderRadius: "10px",
-                                }}
-                              />
-                              <Button onClick={resetFileInput} color="success">
-                                Cancel{" "}
-                              </Button>
-                            </div>
-                          ) : News.Image !== "" ? (
-                            <div >
-                              <img
-                                src={News.Image}
-                                alt=""
-                                style={{
-                                  width: "90px",
-                                  height: "81px",
-                                  borderRadius: "10px",
-                                }}
-                              />
-                              <Button
-                                name="Image"
-                                value=""
-                                onClick={handleChange}
-                                color="success"
-                              >
-                                Cancel{" "}
-                              </Button>
-                            </div>
-                          ) : (
-                            <MdFileUpload
-                              style={{
-                                backgroundColor: "#31B665",
-                                borderradius: "66px",
-                              }}
-                            ></MdFileUpload>
-                          )}
+                      ) : News.Image !== "" ? (
+                        <div >
+                          <img
+                            src={News.Image}
+                            alt=""
+                            style={{
+                              width: "90px",
+                              height: "81px",
+                              borderRadius: "10px",
+                            }}
+                          />
+                          <Button
+                            name="Image"
+                            value=""
+                            onClick={handleChange}
+                            color="success"
+                          >
+                            Cancel{" "}
+                          </Button>
                         </div>
+                      ) : (
+                        <MdFileUpload
+                          style={{
+                            backgroundColor: "#31B665",
+                            borderradius: "66px",
+                          }}
+                        ></MdFileUpload>
+                      )}
+                    </div>
                   </div>
                   <div className="inputFeildasf">
-                   
-                      <label className="label">Alt Text:</label>
-                  
-                      <TextField
-                        type="text"
-                        placeholder="Add Alt Text"
-                        name="Alt_Text"
-                        value={News.Alt_Text}
-                        id="outlined-basic"
-                        variant="outlined"
-                        style={{ minWidth: 190, fontSize: 15 }}
-                        onChange={handleChange}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start"> </InputAdornment>
-                          ),
-                          style: { fontSize: 14 },
-                        }}
-                        label={massage.Alt_Text}
-                        className={classes.popuptextfeild}
-                      />
-                 
+
+                    <label className="label">Alt Text:</label>
+
+                    <TextField
+                      type="text"
+                      placeholder="Add Alt Text"
+                      name="Alt_Text"
+                      value={News.Alt_Text}
+                      id="outlined-basic"
+                      variant="outlined"
+                      style={{ minWidth: 190, fontSize: 15 }}
+                      onChange={handleChange}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start"> </InputAdornment>
+                        ),
+                        style: { fontSize: 14 },
+                      }}
+                      label={massage.Alt_Text}
+                      className={classes.popuptextfeild}
+                    />
+
                   </div>
-                  {/* <div className='inputFeildasf '>
-                                        <div className='col m-2'>
-                                            <label className='label'>
-                                                Link:
-                                            </label>
-                                        </div>
-                                        <div className='col'>
-                                            <TextField type="Text" placeholder='Add Link' name='Link' value={News.Link} id="outlined-basic" variant="outlined" style={{ minWidth: 190, fontSize: 15 }}
-                                                onChange={handleChange}
-                                                InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
-                                                label={massage.Link}
-                                                sx={{
-                                                    '& .MuiOutlinedInput-root': {
-                                                        '& fieldset': {
-                                                            borderColor: error.Link,
-                                                            height: 55,
-                                                        },
-                                                    },
-                                                    "& label": {
-                                                        fontSize: 13,
-                                                        color: "red",
-                                                        "&.Mui-focused": {
-                                                            marginLeft: 0,
-                                                            color: "red",
-                                                        }
-                                                    }
-                                                }}
-                                            />
-                                        </div>
-                                    </div> */}
+
+
                   <div className="inputFeildasf">
-                    
-                      <label className="label">Url slug :</label>
-                   
-                      <TextField
-                        type="Text"
-                        placeholder=" Url slug"
-                        name="Url_slug"
-                        value={News.Url_slug}
-                        id="outlined-basic"
-                        variant="outlined"
-                        style={{ minWidth: 190, fontSize: 15 }}
-                        onChange={handleChange}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start"> </InputAdornment>
-                          ),
-                          style: { fontSize: 14 },
-                        }}
-                        label={massage.Url_slug}
-                        className={classes.popuptextfeild}
-                      />
-                    
+
+                    <label className="label">Url slug :</label>
+
+                    <TextField
+                      type="Text"
+                      placeholder=" Url slug"
+                      name="Url_slug"
+                      value={News.Url_slug}
+                      id="outlined-basic"
+                      variant="outlined"
+                      style={{ minWidth: 190, fontSize: 15 }}
+                      onChange={handleChange}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start"> </InputAdornment>
+                        ),
+                        style: { fontSize: 14 },
+                      }}
+                      label={massage.Url_slug}
+                      className={classes.popuptextfeild}
+                    />
+
                   </div>
                   <div className="inputFeildasf">
-                      <label className="label">Meta Description :</label>
-                      <TextField
-                        type="Text"
-                        placeholder="Meta Description"
-                        id="outlined-basic"
-                        name="Meta_Description"
-                        variant="outlined"
-                        value={News.Meta_Description}
-                        style={{ minWidth: "100%", fontSize: 15 }}
-                        onChange={handleChange}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start"> </InputAdornment>
-                          ),
-                          style: { fontSize: 14 },
-                        }}
-                        label={massage.Meta_Description}
-                        className={classes.popuptextfeild}
-                      />
+                    <label className="label">Meta Description :</label>
+                    <TextField
+                      type="Text"
+                      placeholder="Meta Description"
+                      id="outlined-basic"
+                      name="Meta_Description"
+                      variant="outlined"
+                      value={News.Meta_Description}
+                      style={{ minWidth: "100%", fontSize: 15 }}
+                      onChange={handleChange}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start"> </InputAdornment>
+                        ),
+                        style: { fontSize: 14 },
+                      }}
+                      label={massage.Meta_Description}
+                      className={classes.popuptextfeild}
+                    />
                   </div>
                   <div className="inputFeildasf">
-                   
-                      <label className="label">Description:</label>
-                  
-                      <Box
-                        sx={{
-                          "& .rdw-editor-toolbar": {
-                            width: "100%",
-                          },
-                          ".rdw-editor-main": {
-                            background: "",
-                            border: "1px solid #c4c4c4",
-                            padding: "3px",
-                          },
-                        }}
-                      >
-                        <Editor
-                          editorState={editorState}
-                          onEditorStateChange={handleEditorStateChange}
-                          onContentStateChange={handleContentStateChange}
-                          toolbarClassName="toolbarClassName"
-                          wrapperClassName="wrapperClassName"
-                          editorClassName="editorClassName"
-                          toolbar={toolbar}
-                          localization={localization}
-                        />
-                      </Box>
-                   
+
+                    <label className="label">Description:</label>
+
+                    <Box
+                      sx={{
+                        "& .rdw-editor-toolbar": {
+                          width: "100%",
+                        },
+                        ".rdw-editor-main": {
+                          background: "",
+                          border: "1px solid #c4c4c4",
+                          padding: "3px",
+                        },
+                      }}
+                    >
+
+                      <EditNewsEditer
+                        defaultValue={defaultValue}
+                        convertedContent={convertedContent} setConvertedContent={setConvertedContent}
+                      ></EditNewsEditer>
+                    </Box>
+
                   </div>
                   <div className="col-12 center top">
                     <button
@@ -744,8 +612,8 @@ export default function NewsEdit(props) {
             Exit
           </Button>
         </DialogActions>
-        { sucsesopen && <Successfullypopup  setsucsesopen={setsucsesopen} link={'/News'}  popupset={setOpen}   />}
-                { unsucsesopen && <Unsuccesspopup setsucsesopen={setunsucsesopen} link={'/News'}  popupset={setOpen}  />}
+        {sucsesopen && <Successfullypopup setsucsesopen={setsucsesopen} link={'/News'} popupset={setOpen} />}
+        {unsucsesopen && <Unsuccesspopup setsucsesopen={setunsucsesopen} link={'/News'} popupset={setOpen} />}
       </BootstrapDialog>
     </div>
   );
