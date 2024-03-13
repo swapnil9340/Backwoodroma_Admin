@@ -19,9 +19,10 @@ export default function StatusBarCard({ title, id }) {
   const [Product, SetProduct] = useState();
   const [Customer, SetCustomer] = useState();
   const [Data, SetData] = useState({});
+  
   //  Months//////////////////
   let date = new Date();
-  const TodayDate = date.getFullYear() + "-" + (date.getMonth()+ 1) + "-" + date.getDate();
+  const TodayDate = date.getFullYear() + "-" +String((date.getMonth() + 1)).padStart(2, '0')+ "-" + date.getDate();
   const currentYear = new Date().getFullYear();
   const lastYear = currentYear - 1;
   const monthStartDate = new Date(date.getFullYear(), date.getMonth(), 2)
@@ -253,6 +254,7 @@ export default function StatusBarCard({ title, id }) {
           )
           .then((response) => {
             SetProduct(response.data[0]);
+            console.log(response.data[0])
           });
         axios
           .post(
@@ -344,7 +346,7 @@ export default function StatusBarCard({ title, id }) {
     }
   }, [Data, id]);
 
-
+console.log(Product ,'Product')
   return (
     <div className="dashboardTopCardWrapper ">
       <div className=" dashboardTopCard top col">
@@ -411,7 +413,8 @@ export default function StatusBarCard({ title, id }) {
           </div>
         </div>
       </div>
-      {title === "dashboard" && <div className=" dashboardTopCard top col">
+      {title === "dashboard" && 
+      <div className=" dashboardTopCard top col">
         <div className="col-12  d-flex justify-content-center gap-4 ">
           <div className=" Card_center_dashboard  ">
             <div className="cardbox ">
@@ -552,7 +555,7 @@ export default function StatusBarCard({ title, id }) {
 
           <div className="cardbox">
             <p className="card_hadding">{"Product"}</p>
-            <p className="Card_Total">{Product?.Totalproduct || Product?.TotalProduct}</p>
+            <p className="Card_Total">{(Product?.Totalproduct) ? Product?.Totalproduct : 0}</p>
             <p className="card_hadding">
               {Product?.Growth ? (
                 <span>
