@@ -46,7 +46,8 @@ export default function UserDelete({data}) {
 
   return (
     <div className='text-center'>
-      <span className='w-100 text-center mx-auto'>  <BsTrashFill onClick={handleClickOpen} color='#31B655' size={18}/> </span>
+      <span className='w-100 text-center mx-auto'>  <BsTrashFill onClick={handleClickOpen}   size={18}
+                    color={'#31B655'}/> </span>
       
       <Dialog
         open={open}

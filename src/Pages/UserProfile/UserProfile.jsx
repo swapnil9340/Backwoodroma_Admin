@@ -83,7 +83,8 @@ const UserProfile = () => {
 
     });
     const columns = [
-        { field: 'OrderId', headerName: 'Order ID', editable: false,  minWidth: 150,  headerClassName: 'super-app-theme--header', headerAlign: 'left', sortable:false },
+        { field: 'OrderId', headerName: 'Order ID', editable: false,  minWidth: 150,  valueGetter: (params) => `#${params.row.OrderId}`
+,        headerClassName: 'super-app-theme--header', headerAlign: 'left', sortable:false },
         {
             field: 'SellerName', headerName: 'Seller Name', minWidth: 220,type: 'button', editable: false, sortable:false, headerClassName: 'super-app-theme--header', headerAlign: 'rigth',align:"rigth",
            

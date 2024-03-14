@@ -17,7 +17,7 @@ const Areagraph = ({ title, id }) => {
   const TodayDate = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + date.getDate();
   const [salesperformance, setSalesperformance] = React.useState({});
   const classes = useStyles();
-
+console.log(month)
   React.useEffect(() => {
     if (title === "Total User") {
       SetChartDate({ Jan: 0, Feb: 0, Mar: 0, Apr: 0, May: 0, Jun: 0, Jul: 0, Aug: 0, Sep: 0, Oct: 0, Nov: 0, Dec: 0, })
@@ -59,7 +59,7 @@ const Areagraph = ({ title, id }) => {
             );
             return d.getDate();
           };
-          for (let i = 0; i < monthDays(); i++) {
+          for (let i = 1; i < monthDays(); i++) {
             k[i + 1] = 0
             Setmonth((month) => (k));
           }
@@ -287,8 +287,10 @@ const Areagraph = ({ title, id }) => {
         .then((res) => {
           if (timeintervalchart === "ThisMonth" || timeintervalchart === "Customics") {
             if (timeintervalchart === "ThisMonth") {
+              // console.log(data )
               res.data.map((data) => {
-                if (!data.Date.slice(3, data.Date?.length  - 3) > 10) {
+                if (!data.Date.slice(3, data.Date?.length  - 3)>10) {
+                  console.log(data.Date.slice(3, data.Date?.length  - 3) , data.Date.slice(4, data.Date?.length  - 3))
                   Setmonth((month) => ({ ...month, [data.Date.slice(4, data.Date?.length  - 3)]: data.User, }));
                 } else {
                   Setmonth((month) => ({
@@ -403,6 +405,8 @@ const Areagraph = ({ title, id }) => {
     }
   }, [timeintervalchart, state.CustomeStartDate, state.CustomeEndDate, id]);
 
+
+  console.log(month)
   function labelsgenerateds() {
     let labelsdat = Object.keys(salesperformance).map((item, index) => {
       return `${item} : $ ${Object.values(salesperformance)[index]}`;

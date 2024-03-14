@@ -1,4 +1,4 @@
-import React, { useState ,useContext } from 'react'
+import React, { useState ,useContext, useEffect } from 'react'
 import { RiFilter3Fill } from "react-icons/ri";
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
@@ -10,46 +10,49 @@ import { DateRangePicker , defaultStaticRanges } from 'react-date-range';
 import { ClickAwayListener } from '@material-ui/core';
 import Createcontext from "../../Hooks/Context/Context" 
 const Filtermain = () => {
-  const { state ,dispatch } = useContext(Createcontext)
-  const [value, setValue] = useState(state.datesSelect)
-  const [dpopen, setDpopen] = useState(false)
-  const [dateopen, setDateopen] = useState(false)
-  const [daterange, Setdaterange] = useState({
-    startDate: new Date(),
-    endDate:  addDays(new Date(), 7),
-    key: 'selection',
-  })
-
-  function handlechnage(e) {
-    setValue(e)
-    if (e === "Customize") {
-      setDateopen(true)
-      dispatch({ type: 'datesSelect', datesSelect: e })
-    } else {
-      setDateopen(false)
-      
-    dispatch({ type: 'datesSelect', datesSelect: e })
+    const { state ,dispatch } = useContext(Createcontext)
+    const [value, setValue] = useState(state.datesSelect)
+    const [value1, setValue1] = useState("Year")
+    const [dpopen, setDpopen] = useState(false)
+    const [dateopen, setDateopen] = useState(false)
+    const [daterange, Setdaterange] = useState({
+      startDate: new Date(),
+      endDate:  addDays(new Date(), 7),
+      key: 'selection',
+    })
+    useEffect(()=>{
+         setValue(value1)
+    },[state.CustomeStartDate ,state.CustomeEndDate])
+    function handlechnage(e) {
+    
+      if (e === "Customize") {
+        setDateopen(true)
+        setValue1(e)
+        dispatch({ type: 'datesSelect', datesSelect: e })
+      } else {
+        setDateopen(false)
+        setValue(e)
+        dispatch({ type: 'datesSelect', datesSelect: e })
+      }
     }
-  }
-  function handleSelect(ranges) {
-   
-    Setdaterange({
-      startDate: ranges?.selection?.startDate,
-      endDate: ranges?.selection?.endDate,
-      key: 'selection', }
-    )
-    function convert(str) {
-      var date = new Date(str),
-        mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-        day = ("0" + date.getDate()).slice(-2);
-      return [date.getFullYear(), mnth, day].join("-");
-    }
-    dispatch({ type: 'CustomeStartDate', CustomeStartDate: convert(ranges?.selection?.startDate)})
-    dispatch({ type: 'CustomeEndDate', CustomeEndDate: convert(ranges?.selection?.endDate)})
+    function handleSelect(ranges) {
+    
+      Setdaterange({
+        startDate: ranges?.selection?.startDate,
+        endDate: ranges?.selection?.endDate,
+        key: 'selection', }
+      )
+      function convert(str) {
+        var date = new Date(str),
+          mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+          day = ("0" + date.getDate()).slice(-2);
+        return [date.getFullYear(), mnth, day].join("-");
+      }
+      dispatch({ type: 'CustomeStartDate', CustomeStartDate: convert(ranges?.selection?.startDate)})
+      dispatch({ type: 'CustomeEndDate', CustomeEndDate: convert(ranges?.selection?.endDate)})
 
-  }
-  
-  const handleClickAway = () => { setDpopen(false); setDateopen(false) }
+    }
+    const handleClickAway = () => { setDpopen(false); setDateopen(false) }
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
       <div className='mainfilter'>

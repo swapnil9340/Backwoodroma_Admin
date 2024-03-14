@@ -161,11 +161,12 @@ const Vendor = () => {
                   )}/${params.row.id}`}
                 >
                   <MdOutlineRemoveRedEye
-                    color="rgba(67, 80, 133, 0.5)"
                     size={18}
+                    color={'#31B655'}
                   />
                 </a>
-                <TiEdit color="rgba(67, 80, 133, 0.5)" size={18} />
+                <TiEdit   size={18}
+                    color={'#31B655'} />
                 <UserDelete data={params.row}></UserDelete>
               </Box>
             )}

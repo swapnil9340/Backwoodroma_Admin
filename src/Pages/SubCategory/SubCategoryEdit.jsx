@@ -84,17 +84,17 @@ export default function SubCategoryEdit(props) {
       };
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
-    useEffect(() => {
+        useEffect(() => {
 
-        axios("https://api.cannabaze.com/AdminPanel/ActiveCategory/", {
+            axios("https://api.cannabaze.com/AdminPanel/ActiveCategory/", {
 
-            headers: {
-                'Authorization': `Bearer ${token_data}`
-            }
-        }).then(response => {
-            setCategory(response.data.data)
-        })
-    }, [token_data])
+                headers: {
+                    'Authorization': `Bearer ${token_data}`
+                }
+            }).then(response => {
+                setCategory(response.data.data)
+            })
+        }, [token_data])
 
     const Submit = () => {
         const cookies = new Cookies();
