@@ -86,166 +86,167 @@ const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloade
             aria-describedby="modal-modal-description"
         >
         <Box  className={classes.model_content_banner}>
-        <div className=" PromotionalMainContainer ">
+                <div className=" PromotionalMainContainer ">
 
-                            
-        <h2 className="promotionHeads">Update Banner</h2>
-        <div className="feild_box">
-            <div className="col-xxl-1  col-lg-2 col-md-3 col-3">
-                <label htmlFor="title" className="label_custom">Title</label>
-            </div>
-            <TextField id="title" onChange={(e)=>{setformdata({...fromdaa , title : e.target.value})}} className={classes.textFieldFocusBorderColor} variant="outlined" fullWidth size="small" />
-        </div>
-        <div className="feild_box ">
-        <label htmlFor="country" className="label_custom">Country</label>
-            <select className="promotionSelectWidth"  onChange={(e)=>{setformdata({...fromdaa , country : e.target.value})}} name="country" id="country">
-                <option value="India">India</option>
-                <option value="Aus">Aus</option>
-                <option value="SriLanka">SriLanka</option>
+                                    
+                <h2 className="promotionHeads">Update Banner</h2>
+                
+                <div className="feild_box">
+                    <div className="col-xxl-1  col-lg-2 col-md-3 col-3">
+                        <label htmlFor="title" className="label_custom">Title</label>
+                    </div>
+                    <TextField id="title" onChange={(e)=>{setformdata({...fromdaa , title : e.target.value})}} className={classes.textFieldFocusBorderColor} variant="outlined" fullWidth size="small" />
+                </div>
+                <div className="feild_box ">
+                    <label htmlFor="country" className="label_custom">Country</label>
+                    <select className="promotionSelectWidth"  onChange={(e)=>{setformdata({...fromdaa , country : e.target.value})}} name="country" id="country">
+                        <option value="India">India</option>
+                        <option value="Aus">Aus</option>
+                        <option value="SriLanka">SriLanka</option>
 
-            </select>
-        </div>
-        <div className="feild_box ">
-            <label htmlFor="state" className="label_custom">State</label>
-            <select className="promotionSelectWidth" onChange={(e)=>{setformdata({...fromdaa , state : e.target.value})}} name="state" id="state">
-                <option value="India">Uttar Pradesh</option>
-                <option value="India">Madhya Pradesh</option>
+                    </select>
+                </div>
+                <div className="feild_box ">
+                    <label htmlFor="state" className="label_custom">State</label>
+                    <select className="promotionSelectWidth" onChange={(e)=>{setformdata({...fromdaa , state : e.target.value})}} name="state" id="state">
+                        <option value="India">Uttar Pradesh</option>
+                        <option value="India">Madhya Pradesh</option>
 
 
-            </select>
-        </div>
-        <div className="feild_box ">
-            <label className="label_custom">Destop Image</label>
+                    </select>
+                </div>
+                <div className="feild_box ">
+                    <label className="label_custom">Destop Image</label>
 
-            <form className="bannerImagebox row ">
-                <div className="col-12">
-                    <div className="form-group">
-                        <input
-                            type="file"
-                            accept="image/*"
-                            disabled={fromdaa?.destop_immage?.length === 2}
-                            style={{ display: "none" }}
-                            onChange={uploaddestopFile}
-                            multiple
-                            id="file"
-                        />
+                    <div className="bannerImagebox row ">
+                        <div className="col-12">
+                            <div className="form-group">
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    disabled={fromdaa?.destop_immage?.length === 2}
+                                    style={{ display: "none" }}
+                                    onChange={uploaddestopFile}
+                                    multiple
+                                    id="file"
+                                />
 
-                        <label htmlFor="file" className="color"   >
-                            <div className='product_imagebox image_logosize1 mt-2'>
-                                {
-                                    <div className='col-12'>
-                                        <div className='col-12 center' >
-                                            <div className="color">
-                                                <MdOutlineCloudUpload ></MdOutlineCloudUpload>
+                                <label htmlFor="file" className="color"   >
+                                    <div className='product_imagebox image_logosize1 mt-2'>
+                                        {
+                                            <div className='col-12'>
+                                                <div className='col-12 center' >
+                                                    <div className="color">
+                                                        <MdOutlineCloudUpload ></MdOutlineCloudUpload>
+                                                    </div>
+                                                </div>
+                                                <div className='col-12  center'>
+                                                    <p>Upload</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className='col-12  center'>
-                                            <p>Upload</p>
-                                        </div>
+                                        }
                                     </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div className="col-12">
+                            <div className="form-group preview Display mt-4">
+                                {fromdaa?.destop_immage?.length > 0 ?
+                                    fromdaa?.destop_immage?.map((item, index) => {
+                                        return (
+                                            <div key={index} className="Display uploadedImg">
+                                                <img src={URL.createObjectURL(item)} alt=""  style={{width: "100px", height: "100px", borderRadius: "1px"  }} />
+                                                
+                                                <span className="removeUploadedImg">
+                                                    <IconButton onClick={() => deletedestopFile(index)}>
+                                                        <CloseIcon />
+                                                    </IconButton>
+                                                </span>
+                                            </div>
+                                        );
+                                    })
+                                    :
+                                    <div className="Display uploadedImg">
+                                    <img src={data.Banner} alt="" className={classes.modelImagedestop} />
+                                
+                                </div>
                                 }
                             </div>
-                        </label>
-                    </div>
-                </div>
-                <div className="col-12">
-                    <div className="form-group preview Display mt-4">
-                        {fromdaa?.destop_immage?.length > 0 ?
-                            fromdaa?.destop_immage?.map((item, index) => {
-                                return (
-                                    <div key={index} className="Display uploadedImg">
-                                        <img src={URL.createObjectURL(item)} alt=""  style={{width: "100px", height: "100px", borderRadius: "1px"  }} />
-                                        
-                                        <span className="removeUploadedImg">
-                                            <IconButton onClick={() => deletedestopFile(index)}>
-                                                <CloseIcon />
-                                            </IconButton>
-                                        </span>
-                                    </div>
-                                );
-                            })
-                            :
-                            <div className="Display uploadedImg">
-                            <img src={data.Banner} alt="" className={classes.modelImagedestop} />
-                         
+
                         </div>
-                        }
                     </div>
-
                 </div>
-            </form>
-        </div>
-        <div className="feild_box ">
-            <label className="label_custom">Mobile Image</label>
+                <div className="feild_box ">
+                    <label className="label_custom">Mobile Image</label>
 
-            <form className="bannerImagebox row ">
-                <div className="col-12">
-                    <div className="form-group">
-                        <input
-                            type="file"
-                            accept="image/*"
-                            disabled={fromdaa?.mobile_immage?.length === 5}
-                            style={{ display: "none" }}
-                            onChange={uploadSingleFile}
-                            id="mobilefile"
-                        />
+                    <form className="bannerImagebox row ">
+                        <div className="col-12">
+                            <div className="form-group">
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    disabled={fromdaa?.mobile_immage?.length === 5}
+                                    style={{ display: "none" }}
+                                    onChange={uploadSingleFile}
+                                    id="mobilefile"
+                                />
 
-                        <label htmlFor="mobilefile" className="color"   >
-                            <div className='product_imagebox image_logosize1 mt-2'>
-                                {
-                                    <div className='col-12'>
-                                        <div className='col-12 center' >
-                                            <div className="color">
-                                                <MdOutlineCloudUpload ></MdOutlineCloudUpload>
+                                <label htmlFor="mobilefile" className="color"   >
+                                    <div className='product_imagebox image_logosize1 mt-2'>
+                                        {
+                                            <div className='col-12'>
+                                                <div className='col-12 center' >
+                                                    <div className="color">
+                                                        <MdOutlineCloudUpload ></MdOutlineCloudUpload>
+                                                    </div>
+                                                </div>
+                                                <div className='col-12  center'>
+                                                    <p>Upload</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className='col-12  center'>
-                                            <p>Upload</p>
-                                        </div>
+                                        }
                                     </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div className="col-12">
+                            <div className="form-group preview Display mt-4">
+                                {fromdaa.mobile_immage?.length > 0 ?
+                                    fromdaa.mobile_immage?.map((item, index) => {
+                                        return (
+                                            <div key={index} className="Display uploadedImg">
+                                                <img src={URL.createObjectURL(item)} alt="" style={{ width: "100px", height: "100px", borderRadius: "1px" }} />
+                                                <span className="removeUploadedImg">
+                                                    <IconButton onClick={() => deleteFile(index)}>
+                                                        <CloseIcon />
+                                                    </IconButton>
+                                                </span>
+                                            </div>
+                                        );
+                                    }) :
+                                    <div  className="Display uploadedImg">
+                                    <img src={data.mobile} alt="" className={classes.modelImagemobile} />
+                                
+                                </div>
                                 }
                             </div>
-                        </label>
-                    </div>
-                </div>
-                <div className="col-12">
-                    <div className="form-group preview Display mt-4">
-                        {fromdaa.mobile_immage?.length > 0 ?
-                            fromdaa.mobile_immage?.map((item, index) => {
-                                return (
-                                    <div key={index} className="Display uploadedImg">
-                                        <img src={URL.createObjectURL(item)} alt="" style={{ width: "100px", height: "100px", borderRadius: "1px" }} />
-                                        <span className="removeUploadedImg">
-                                            <IconButton onClick={() => deleteFile(index)}>
-                                                <CloseIcon />
-                                            </IconButton>
-                                        </span>
-                                    </div>
-                                );
-                            }) :
-                            <div  className="Display uploadedImg">
-                            <img src={data.mobile} alt="" className={classes.modelImagemobile} />
-                           
+
                         </div>
-                        }
-                    </div>
+                    </form>
+                </div>
+                <div className="feild_box">
+                
+                    <label htmlFor="link" className="label_custom">Link</label>
+            
+                    <TextField id="link" className={classes.textFieldFocusBorderColor} onChange={(e)=>{setformdata({...fromdaa , link : e.target.value})}}  variant="outlined" fullWidth size="small" />
+                </div>
+                <div className="">
+                    <Box className={`w-100  ${classes.PromotionalBtn}`}>
+                        <LoadingButton onClick={submitFunction}>Update Banner</LoadingButton>
+                    </Box>
+                </div>
 
                 </div>
-            </form>
-        </div>
-        <div className="feild_box">
-        
-            <label htmlFor="link" className="label_custom">Link</label>
-    
-            <TextField id="link" className={classes.textFieldFocusBorderColor} onChange={(e)=>{setformdata({...fromdaa , link : e.target.value})}}  variant="outlined" fullWidth size="small" />
-        </div>
-        <div className="">
-            <Box className={`w-100  ${classes.PromotionalBtn}`}>
-                <LoadingButton onClick={submitFunction}>Update Banner</LoadingButton>
-            </Box>
-        </div>
-
-</div>
         </Box>
         </Modal>
    </div>

@@ -368,7 +368,7 @@ const useStyles = makeStyles(theme =>(
       },
       PromotionalBtn:{
         display:'flex',
-        justifyContent:'flex-start',
+        justifyContent:'center',
         alignItems:'center',
         gap:'10px',
         '& .MuiLoadingButton-root':{
@@ -405,14 +405,13 @@ const useStyles = makeStyles(theme =>(
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: "auto",
         backgroundColor: '#fff',
         borderRadius: '8px',
         boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
-        height:'90vh',
+        width:'800px',
         padding:'10px',
-        "@media(max-width:600px)":{
-          width: "90%",
+        "@media(max-width:992px)":{
+          width: "80%",
         },
       },
       modelImagedestop:{

@@ -220,7 +220,7 @@ const Allrecentorder = () => {
                                 disableColumnFilter
                                 disableColumnSelector
                                 autoHeight
-                                ={false}
+                               
                                 rowSelection={false}
                                 className={classes.DataTableStyle}
                             />

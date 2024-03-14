@@ -16,7 +16,6 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import useStyles from "../../Style";
 import { FormControl ,Checkbox ,ListItemText } from "@mui/material";
 import { SlSocialDropbox } from "react-icons/sl";
-
 import "./Stall.css";
 import axios from "axios";
 import {useNavigate} from 'react-router-dom';

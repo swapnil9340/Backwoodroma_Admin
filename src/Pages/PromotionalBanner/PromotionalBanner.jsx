@@ -5,6 +5,7 @@ import Box from "@mui/material/Box"
 import TextField from "@mui/material/TextField"
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
+import { useForm, Controller } from "react-hook-form";
 import CloseIcon from '@mui/icons-material/Close';
 import { MdOutlineCloudUpload } from "react-icons/md"
 import useStyles from "../../Style";
@@ -22,6 +23,10 @@ const PromotionalBanner = () => {
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [bannertpe,setbannertype]=useState("Promotional Banner")
+    const [mobileimage,setmobileimage]=useState(false)
+    const [desktopimage,setdesktopimage]=useState(false)
+    const { register, handleSubmit, watch, errors,setError,clearErrors,getValues,setValue, control } =   useForm();
+
    
     const [fromdaa ,setformdata] = useState({
         title:'',
@@ -39,17 +44,19 @@ const PromotionalBanner = () => {
     };
     function uploaddestopFile(e) {
     let ImagesArray=e.target.files;
-    
+    setdesktopimage(false)
+  
     if(ImagesArray[0].size/1000  > 50){
         new Compressor(ImagesArray[0], {
             quality: 0.8,
             success: (compressedResult) => {      
-            
+                clearErrors("destop_immage") 
                 setformdata({...fromdaa ,  destop_immage: [compressedResult]});
             },
         });
     }else{
         setformdata({...fromdaa ,  destop_immage: [ImagesArray[0]]});
+        clearErrors("destop_immage") 
     }
     
     }
@@ -57,7 +64,7 @@ const PromotionalBanner = () => {
         const s = fromdaa?.destop_immage?.filter((item, index) => index !== e);
         setformdata({...fromdaa , destop_immage:s});
     }
-    function submitFunction(){
+    function submitFunction(data){
     let baseurl =''
     if(bannertpe === 'Promotional Banner'){
         baseurl ='https://api.cannabaze.com/AdminPanel/Add-PromotionalBanners/' 
@@ -69,10 +76,10 @@ const PromotionalBanner = () => {
     if(fromdaa.destop_immage.length !==0 &&  fromdaa.mobile_immage.length !==0){
         Setloader(true)
         form_data.append('Banner', fromdaa?.destop_immage[0], fromdaa?.destop_immage[0].name);
-        form_data.append('Country', fromdaa.country);
-        form_data.append('Link' ,fromdaa.link);
-        form_data.append('State',fromdaa.state );
-        form_data.append('Title',fromdaa.title);
+        form_data.append('Country', data.country);
+        form_data.append('Link' ,data.link);
+        form_data.append('State',data.state );
+        form_data.append('Title',data.title);
         form_data.append('mobile', fromdaa?.mobile_immage[0], fromdaa?.mobile_immage[0].name);
         axios.post( baseurl , form_data , config).then((res)=>{
             Setloader(false)
@@ -94,46 +101,92 @@ const PromotionalBanner = () => {
     }
     }
     function uploadSingleFile(e) {
+        setmobileimage(false)
     let ImagesArray=e.target.files;
-    
+    clearErrors("mobile_immage")
     setformdata({...fromdaa ,mobile_immage: [...ImagesArray]});
     }
     function deleteFile(e) {
         const s = fromdaa?.mobile_immage?.filter((item, index) => index !== e);
         setformdata({...fromdaa , mobile_immage:s});
     }
+
+    const onSubmit = (data) => {
+        if(Boolean(fromdaa.mobile_immage.length === 0 ) || Boolean(fromdaa.destop_immage.length === 0 )){
+           if(Boolean(fromdaa.mobile_immage.length === 0 )){
+              setmobileimage(true)
+           }else{
+              setdesktopimage(true)
+           }
+        }else{
+            submitFunction(data)
+        }
+        // axios.post('https://api.cannabaze.com/AdminPanel/register/',{...data , Roles :multipleroles  ,  is_superuser: false, Status : status , user_type:"Admin"} ).then((res)=>{
+        //   navigate('/allstaff')
+        // }).catch((error)=>{
+        
+     
+        //   if ( error.response.data.error === "{'username': [ErrorDetail(string='user with this username already exists.', code='unique')], 'email': [ErrorDetail(string='user with this email already exists.', code='unique')]}") {
+        //     setError( 'username', {
+        //       type: "manual",
+        //       message:"username id already exists",
+        //     })
+        //     setError( 'email', {
+        //       type: "manual",
+        //       message:"email id already exists",
+        //     })
+        //   }
+        //   else if (error.response.data.error === "{'email': [ErrorDetail(string='user with this email already exists.', code='unique')]}") {
+        //     setError( 'email', {
+        //       type: "manual",
+        //       message:"email id already exists",
+        //     })
+        //   }
+        //   else if (error.response.data.error === "{'username': [ErrorDetail(string='user with this username already exists.', code='unique')]}") {
+        //     setError( 'username', {
+        //       type: "manual",
+        //       message:"username id already exists",
+        //     })
+        // }
+        // })
+      };
     return (
       <React.Fragment>
             <SectionCard className="p-5"> 
                
             <h2 className='d-flex align-items-center pagetitle'> <SlSocialDropbox color='#31B655' size={25}/>Banner Upload</h2>
                           
-                            <div className=" PromotionalMainContainer ">          
+                            <div className=" PromotionalMainContainer ">   
+                            <form onSubmit={handleSubmit((data)=>onSubmit(data))}>        
                                             <div className="feild_box">
                                                 <div className="col-xxl-1  col-lg-2 col-md-3 col-3">
                                                     <label htmlFor="title" className="label_custom">Title</label>
                                                 </div>
-                                                <TextField id="title" onChange={(e)=>{setformdata({...fromdaa , title : e.target.value})}} className={classes.textFieldFocusBorderColor} variant="outlined" fullWidth size="small" />
+                                                <TextField id="title" name="title" onChange={(e)=>{setformdata({...fromdaa , title : e.target.value})}} className={classes.textFieldFocusBorderColor} variant="outlined" fullWidth size="small"   inputRef={register({    })} />
                                             </div>
                                             <div className="feild_box ">
                                             <label htmlFor="country" className="label_custom">Country</label>
-                                                <select className="promotionSelectWidth"  onChange={(e)=>{setformdata({...fromdaa , country : e.target.value})}} name="country" id="country">
+                                                <select ref={register({ })} className="promotionSelectWidth" name='country'  onChange={(e)=>{setformdata({...fromdaa , country : e.target.value})}} id="country">
                                                     <option value="USA">USA</option>
                                                     <option value="cannada">Cannada</option>
                                                 </select>
                                             </div>
                                             <div className="feild_box ">
                                                 <label htmlFor="state" className="label_custom">State</label>
-                                                <select className="promotionSelectWidth" onChange={(e)=>{setformdata({...fromdaa , state : e.target.value})}} name="state" id="state">
+                                                <select ref={register({ })} className="promotionSelectWidth" onChange={(e)=>{setformdata({...fromdaa , state : e.target.value})}} name="state" id="state">
                                                     <option value="India">Uttar Pradesh</option>
                                                     <option value="India">Madhya Pradesh</option>
                                                 </select>
                                             </div>
                                             <div className="feild_box">
                                             
-                                            <label htmlFor="link" className="label_custom">Link</label>
+                                            <label htmlFor="link" className="label_custom">Link*</label>
                                     
-                                            <TextField id="link" type="link" className={classes.textFieldFocusBorderColor} onChange={(e)=>{setformdata({...fromdaa , link : e.target.value})}}  variant="outlined" fullWidth size="small" />
+                                            <TextField id="link" name='link' type="link" className={classes.textFieldFocusBorderColor} onChange={(e)=>{setformdata({...fromdaa , link : e.target.value})}}  variant="outlined" fullWidth size="small"   inputRef={register({
+                                                    required: "This Field is required*.",
+                                                })}
+                                                helperText={errors?.link?.message }
+                                                error={Boolean(errors?.link) }/>
                                             </div>
                                             <div className="feild_box">
                                                 
@@ -155,7 +208,7 @@ const PromotionalBanner = () => {
                                                 <div className="feild_box  image_input_box">
                                                     <label className="label_custom">Mobile Image<sup className="requiesign">*</sup></label>
 
-                                                    <form className="bannerImagebox row ">
+                                                    <div className="bannerImagebox row ">
                                                         <div className="col-12">
                                                             <div className="form-group">
                                                                 <input
@@ -166,6 +219,8 @@ const PromotionalBanner = () => {
                                                                     multiple
                                                                     id="mobilefile"
                                                                     accept="image/*"
+                                                                    name="mobile_immage"
+                                                                   
                                                                 />
 
                                                                 <label htmlFor="mobilefile"  >
@@ -211,12 +266,13 @@ const PromotionalBanner = () => {
                                                             </div>
 
                                                         </div> */}
-                                                    </form>
+                                                    </div>
+                                                    {(Boolean(fromdaa.mobile_immage.length === 0) && mobileimage) && <p className="text-danger" role="alert">This feild is required</p>}
                                                 </div>
                                                 <div className="feild_box  image_input_box">
                                                     <label className="label_custom">Desktop Image<sup className="requiesign">*</sup></label>
 
-                                                    <form className="bannerImagebox row ">
+                                                      <div className="bannerImagebox row ">
                                                         <div className="col-12">
                                                             <div className="form-group">
                                                                 <input
@@ -226,6 +282,8 @@ const PromotionalBanner = () => {
                                                                     multiple
                                                                     id="file"
                                                                     accept="image/*"
+                                                                    name="destop_immage"
+                                                                   
                                                                 />
 
                                                                 <label htmlFor="file"   >
@@ -259,16 +317,18 @@ const PromotionalBanner = () => {
                                                                 </label>
                                                             </div>
                                                         </div>
-                                                     
-                                                    </form>
+                                                       
+                                                    </div>
+                                                    {(Boolean(fromdaa.destop_immage.length  === 0 ) && desktopimage) && <p className="text-danger" role="alert">This feild is required</p>}
                                                 </div>
                                             </div>
                                             <div className="mt-3">
                                                 <Box className={` ${classes.PromotionalBtn}`}>
                                                     <button className="cancel_btn" onClick={()=>navigate("/PromotionalBannerList")}>Cancel</button>
-                                                    <button className="topbutton" onClick={submitFunction}>Add Banner</button>
+                                                    <button className="topbutton" type="submit">Add Banner</button>
                                                 </Box>
                                             </div>
+                                            </form>
                             </div>
             </SectionCard>
 

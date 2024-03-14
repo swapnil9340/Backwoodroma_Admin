@@ -183,15 +183,15 @@ const Allstall = () => {
                                         },
                                         }}
                                         pageSize={pageSize}
-                                onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                                rowsPerPageOptions={[5, 10, 20]}
-                                pagination
+                                        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                        rowsPerPageOptions={[5, 10, 20]}
+                                        pagination
                                         disableRowSelectionOnClick
                                         disableColumnMenu
                                         disableColumnFilter
                                         disableColumnSelector
                                         autoHeight
-                                        ={false}
+                                       
                                         rowSelection={false}
                                         className={classes.DataTableStyle}
                                     />
