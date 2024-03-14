@@ -145,7 +145,7 @@ const TotalSales = () => {
                                     disableColumnFilter
                                     disableColumnSelector
                                     autoHeight
-                                    checkboxSelection={false}
+                                 
                                     rowSelection={false}
                                      className={classes.DataTableStyle}
                                     

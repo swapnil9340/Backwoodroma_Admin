@@ -98,9 +98,7 @@ const Review = () => {
 
   });
   function getRandomColor() {
-    // Array of predefined colors
-    const colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple']; // Add more colors as needed
-    // Select a random color from the array
+    const colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple'];
     return colors[Math.floor(Math.random() * colors.length)];
   }
   
@@ -132,18 +130,17 @@ const Review = () => {
             <div className="imageCircle" >
               <div className='userImageCircle'>
 
-                <img src={params.row.userImage}
-                  onError={(e) => {
-                    e.target.style.display = 'none'; // Hide the image
+                <img src={params.row.userImage}   onError={(e) => {
+                    e.target.style.display = 'none'; 
                     const parentContainer = e.target.parentNode;
                     const errorText = document.createElement('p');
-                    errorText.textContent =  params.row.username.slice(0,1); // Text to be displayed
-                    errorText.style.backgroundColor = getRandomColor(); // Background color for error text
-                    errorText.style.height = '100%'; // Set height to 100%
-                    errorText.style.display = 'flex'; // Use flexbox
-                    errorText.style.justifyContent = 'center'; // Center horizontally
-                    errorText.style.alignItems = 'center'; // Center vertically
-                    parentContainer.appendChild(errorText); // Append er
+                    errorText.textContent =  params.row.username.slice(0,1);
+                    errorText.style.backgroundColor = getRandomColor(); 
+                    errorText.style.height = '100%'; 
+                    errorText.style.display = 'flex'; 
+                    errorText.style.justifyContent = 'center'; 
+                    errorText.style.alignItems = 'center';
+                    parentContainer.appendChild(errorText);
                   }}
                 />
               </div>
@@ -248,7 +245,6 @@ const Review = () => {
     },
   ];
   const rows = recentorder
-  // console.log(rows)
   return (
     <div className=' my-4 '>
       <div className='py-4 section_card'>
@@ -277,7 +273,6 @@ const Review = () => {
                 disableColumnFilter
                 disableColumnSelector
                 autoHeight
-                checkboxSelection={false}
                 rowSelection={false}
                 className={classes.DataTableStyle}
               />

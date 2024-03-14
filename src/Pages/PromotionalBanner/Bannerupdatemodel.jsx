@@ -80,11 +80,10 @@ const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloade
       }
   return (
     <div>
-        <Modal
-        open={openupdate}
-        onClose={()=>{setOpenupdate(false)}}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        <Modal  open={openupdate}
+            onClose={()=>{setOpenupdate(false)}}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
         >
         <Box  className={classes.model_content_banner}>
         <div className=" PromotionalMainContainer ">

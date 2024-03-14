@@ -229,7 +229,7 @@ const classes = useStyles()
                                 </div>
                                 <div className='center' >
                                     <Headerbutton  onClick={SubmitEditData}>
-                                       {loadingbtn ? <div class="lds-ring"><div></div><div></div><div></div><div></div></div>: "Save"} 
+                                       {loadingbtn ? <div className="lds-ring"><div></div><div></div><div></div><div></div></div>: "Save"} 
                                     </Headerbutton>
                                 </div>
 

@@ -2,7 +2,7 @@ import React, { useEffect,useContext , useRef } from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import { LuUpload } from "react-icons/lu";
-
+import { FaEdit } from "react-icons/fa";
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
@@ -144,9 +144,9 @@ export default function SubCategoryEdit(props) {
       }
     return (
         <div>
-            <Button color='success' onClick={handleClickOpen}>
-                Edit
-            </Button>
+            <span color='success' onClick={handleClickOpen}>
+             <FaEdit size={22} color='#31B655'/>
+             </span>
             <BootstrapDialog
                 onClose={handleClose}
                 aria-labelledby="Customizeed-dialog-title"

@@ -169,7 +169,8 @@ const Vendorlist = () => {
                             },
                           }}
                         >
-                            <Select sx={{
+                               <UserDelete data={params.row}></UserDelete>
+                            {/* <Select sx={{
                                     boxShadow: '',
                                     '.MuiPaper-root':{
                                        textAlign:'center',
@@ -187,9 +188,9 @@ const Vendorlist = () => {
                                 IconComponent={BsThreeDotsVertical}
                                 labelId=""
                             >
-                              <UserDelete data={params.row}></UserDelete>
+                           
                             
-                            </Select>
+                            </Select> */}
                         </Box>
                     }
                 </React.Fragment>

@@ -3,6 +3,7 @@ import Successfullypopup from '../../Components/Component/Successfullypopup'
 import Unsuccesspopup from '../../Components/Component/Unsuccesspopup'
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
+import { FaEdit } from "react-icons/fa";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import { LuUpload } from "react-icons/lu";
@@ -13,16 +14,13 @@ import MenuItem from "@mui/material/MenuItem";
 import Cookies from "universal-cookie";
 import Axios from "axios";
 import axios from "axios";
-import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState, ContentState } from "draft-js";
-import { convertFromHTML } from "draft-js";
 import { MdFileUpload } from "react-icons/md";
 import Createcontext from "../../Hooks/Context/Context";
 import InputAdornment from "@mui/material/InputAdornment";
 import Box from "@mui/material/Box";
 import htmlToDraft from "html-to-draftjs";
-import draftToHtml from "draftjs-to-html";
 import useStyles from "../../Style";
 import EditNewsEditer from "./EditNewsEditer";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -278,9 +276,12 @@ export default function NewsEdit(props) {
   }, [sucsesopen, unsucsesopen])
   return (
     <div>
-      <Button color="success" onClick={handleClickOpen}>
-        Edit
-      </Button>
+      <span color="success" onClick={handleClickOpen}>
+     
+<FaEdit size={22} color='#31B655'/>
+
+
+      </span>
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="Customizeed-dialog-title"

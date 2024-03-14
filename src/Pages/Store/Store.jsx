@@ -107,26 +107,32 @@ export default function Store() {
             }
         },
         {
-            field: 'Edit', headerName: 'Edit', editable: false, minWidth: 80, flex: 1,sortable:false, headerClassName: 'super-app-theme--header',
+            field: 'Edit', headerName: 'Edit', editable: false, minWidth: 80, maxWidth:'100px',  flex: 1,sortable:false, headerClassName: 'super-app-theme--header',
             renderCell: (params) => (
                 <>
                 {( state.Roles.EditStore ||  state.Roles.DeleteStore || state.Roles.ViewStore) &&
-                    <Box >
-                        <Select
-                            sx={{
-                                boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
-                                "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
-                                "&:hover": {
-                                    ".MuiSelect-icon": {
-                                        color: "#31B665"
-                                    }
-                                },
-                            }}
-                            IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label"   >
+                    <Box  sx={{
+                        "&.MuiBox-root":{
+                           display:'flex',
+                           justifyContent:'center',
+                           alignItems:'center',
+                           gap:'10px'
+                        },
+                        '& .MuiOutlinedInput-root': {
+                            '&.Mui-focused fieldset': {
+                                borderWidth: "1px",
+                                borderColor: 'black',
+                            },
+                        },
+                        '& . MuiDataGrid-root .MuiDataGrid-cell:focus': {
+                            outline: "#e0e0e0"
+                        }
+                    }} >
+                       
                                         {   state.Roles.EditStore && <StoreEdit data={params.row}></StoreEdit> }
                                         {   state.Roles.DeleteStore && <StoreDelete data={params.row} ></StoreDelete> }
                                         {   state.Roles.ViewStore && <StoreView></StoreView> }
-                        </Select>
+                     
                     </Box>
                 }
                 </> 
@@ -174,7 +180,7 @@ export default function Store() {
                             <Box>
                                 <ThemeProvider theme={CustomFontTheme}>
                                     <div style={{ width: '100%', }}>
-                                        <DataGrid autoHeight rows={rows} editable={false}  columns={columns}  checkboxSelection
+                                        <DataGrid autoHeight rows={rows} editable={false}  columns={columns}  
                                         pageSize={pageSize}
                                         disableColumnMenu
                                         disableColumnFilter

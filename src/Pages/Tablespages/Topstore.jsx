@@ -184,7 +184,7 @@ const Topstore = () => {
                                 disableColumnFilter
                                 disableColumnSelector
                                 autoHeight
-                                checkboxSelection={false}
+                                ={false}
                                 rowSelection={false}
                                 className={classes.DataTableStyle}
                             />

@@ -806,7 +806,7 @@ color:#3C3C3C
 }
 .logoutbtn{
    cursor: pointer;
-   font-family: 'Inter', sans-serif;
+   font-family: 'Inter', sans-serif !important;
     font-size: 18px;
     font-weight: 700;
     line-height: 22px;

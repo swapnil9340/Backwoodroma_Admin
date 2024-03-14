@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
+import { RiDeleteBin6Line } from "react-icons/ri";
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
@@ -48,15 +49,10 @@ export default function StoreDelete (props) {
 
   return (
     <div>
-      <Button color='success' onClick={handleClickOpen} sx={{
-                              
-                               fontSize:'14px',
-                               textTransform:'capitalize',
-                               gap:'3px',
-                               textAlign:'start',
-                            }}>
-         <BsTrashFill/>  Delete
-      </Button>
+      <span color='success' onClick={handleClickOpen}>
+       <RiDeleteBin6Line size={22} color='#31B655'/>
+
+      </span>
       <Dialog
         open={open}
         TransitionComponent={Transition}

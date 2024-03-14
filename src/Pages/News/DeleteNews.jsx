@@ -2,6 +2,7 @@ import  React ,{useContext} from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
+import { RiDeleteBin6Line } from "react-icons/ri";
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -46,9 +47,10 @@ export default function DeleteNews(props) {
 
   return (
     <div>
-      <Button color='success' onClick={handleClickOpen}>
-      Delete
-      </Button>
+      <span color='success' onClick={handleClickOpen}>
+      
+<RiDeleteBin6Line size={22} color='#31B655'/>
+      </span>
       <Dialog
         open={open}
         TransitionComponent={Transition}

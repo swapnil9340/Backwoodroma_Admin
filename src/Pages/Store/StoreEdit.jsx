@@ -3,6 +3,8 @@ import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
+import { FaEdit } from "react-icons/fa";
+
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
@@ -163,13 +165,10 @@ export default function StoreEdit(props) {
   }
     return (
         <div>
-            <Button color='success' onClick={handleClickOpen} sx={{
-                               fontSize:'14px',
-                               textTransform:'capitalize',
-                               gap:'3px',
-                            }}>
-               <FiEdit/> Edit
-            </Button>
+            <span color='success' onClick={handleClickOpen}>
+             <FaEdit size={22} color='#31B655'/>
+
+            </span>
             <BootstrapDialog
                 onClose={handleClose}
                 aria-labelledby="Customizeed-dialog-title"

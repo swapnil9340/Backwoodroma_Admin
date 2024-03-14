@@ -6,14 +6,14 @@ import { createTheme } from "@mui/material/styles";
 import axios from "axios";
 import Cookies from 'universal-cookie';
 import NewsEdit from "./EditNews"
-import Select from '@mui/material/Select';
 import { BsThreeDotsVertical } from 'react-icons/bs';
+import { FiEye } from "react-icons/fi";
 import Createcontext from "../../Hooks/Context/Context"
 import DeleteNews from "./DeleteNews"
 import useStyles from '../../Style';
 import { SlSocialDropbox } from "react-icons/sl";
 import {SectionCard} from '../../molecules/SectionCard/Index'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate ,Link} from 'react-router-dom'
 export default function News() {
     const { state } = useContext(Createcontext)
     const classes = useStyles()
@@ -21,7 +21,26 @@ export default function News() {
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [pageSize, setPageSize] = React.useState(10)
-
+    function modifystr(str) {
+        str = str.replace(/[^a-zA-Z0-9/ ]/g, "-");
+        str = str.trim().replaceAll(' ', "-");
+        let a = 0;
+        while (a < 1) {
+            if (str.includes("--")) {
+                str = str.replaceAll("--", "-")
+            } else if (str.includes("//")) {
+                str = str.replaceAll("//", "/")
+            } else if (str.includes("//")) {
+                str = str.replaceAll("-/", "/")
+            } else if (str.includes("//")) {
+                str = str.replaceAll("/-", "/")
+            } else {
+                a++
+            }
+        }
+    
+        return str.toLowerCase()
+    }
     const [totel, setTotal] = React.useState([])
     React.useEffect(() => {
         axios("https://api.cannabaze.com/AdminPanel/Get-News/", {
@@ -44,45 +63,43 @@ export default function News() {
             field: 'created', headerName: 'Publish Date', editable: false, minWidth: 80, flex: 1,sortable:false, headerClassName: 'super-app-theme--header',
             renderCell: (params) => params.row.created.slice(0, 10)
         },
-        { field: 'Status', headerName: 'Views', editable: false,  minWidth: 80, flex: 1,sortable:false, headerClassName: 'super-app-theme--header'},
+        { field: 'Status', headerName: 'Views', editable: false,  minWidth: 80, flex: 1,sortable:false, headerClassName: 'super-app-theme--header' ,  renderCell: (params) => (
+            <span>
+               <a target='blank' href={`https://www.weedx.io/cannabis-news/${modifystr(params.row.Title)}/${params.row.id}`}> <FiEye color='#31B655' size={22} /></a>
+            </span>
+
+        )},
         {
             field: 'Edit', headerName: 'Edit', editable: false, minWidth: 80, flex: 1,sortable:false, headerClassName: 'super-app-theme--header',
-            renderCell: (params) => (
-                <>
-                { (state.Roles.EditBlogs || state.Roles.DeleteBlogs ) &&
-                    <Box
-                        sx={{
-                            '& .MuiOutlinedInput-root': {
-                                '&.Mui-focused fieldset': {
-                                    borderWidth: "1px",
-                                    borderColor: 'black',
-                                },
+            renderCell: (params) => {
+                return (<>
+                       { (state.Roles.EditBlogs || state.Roles.DeleteBlogs ) &&
+                    <Box   sx={{
+                        "&.MuiBox-root":{
+                           display:'flex',
+                           justifyContent:'center',
+                           alignItems:'center',
+                           gap:'10px'
+                        },
+                        '& .MuiOutlinedInput-root': {
+                            '&.Mui-focused fieldset': {
+                                borderWidth: "1px",
+                                borderColor: 'black',
                             },
-                            '& . MuiDataGrid-root .MuiDataGrid-cell:focus': {
-                                outline: "solid #0f1010 1px"
-                            }
-                        }}
-
-                    >
-                        <Select
-                            sx={{
-                                boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
-                                "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
-                                "&:hover": {
-                                    ".MuiSelect-icon": {
-                                        color: "#31B665"
-                                    }
-                                },
-                            }}
-                            IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
+                        },
+                        '& . MuiDataGrid-root .MuiDataGrid-cell:focus': {
+                            outline: "#e0e0e0"
+                        }
+                      }} >
+                       
                             {state.Roles.EditBlogs &&<NewsEdit data={params?.row}></NewsEdit>}
                            {state.Roles.DeleteBlogs && <DeleteNews data={params?.row}></DeleteNews>}
-                        </Select>
+                     
                     </Box>
                     }
-                </>
+                </>)
 
-            )
+            }
         },
 
     ];
@@ -120,7 +137,7 @@ export default function News() {
                             <Box className={classes.DataTableBoxStyle} >
                                 <ThemeProvider theme={CustomFontTheme}>
                                  
-                                        <DataGrid rows={rows} columns={columns} checkboxSelection
+                                        <DataGrid rows={rows} columns={columns} 
                                             disableColumnMenu
                                             disableColumnFilter
                                             disableColumnSelector

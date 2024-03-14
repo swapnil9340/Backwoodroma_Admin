@@ -223,7 +223,7 @@ export default function Categorypopup() {
                                     <div className='col center top' >
                                         <Headerbutton onClick={handlechanges}>
                                             
-                                            {loadingbtn ? <div class="lds-ring"><div></div><div></div><div></div><div></div></div>: "Add Category"}
+                                            {loadingbtn ? <div className="lds-ring"><div></div><div></div><div></div><div></div></div>: "Add Category"}
                                         </Headerbutton>
                                     </div>
                                 </div>

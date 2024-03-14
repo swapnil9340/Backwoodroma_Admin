@@ -151,7 +151,7 @@ export default function Category(props) {
                     >
                         
                           { state.Roles.EditCategory && <CategoryEditbox data={params.row} ></CategoryEditbox>}
-                          { state.Roles.DeleteCategory && <RiDeleteBinLine onClick={()=>{setdeleteoprn(true) ; setreviewid(params.row.id)}}></RiDeleteBinLine> }
+                          { state.Roles.DeleteCategory && <RiDeleteBinLine size={22} color='#31B655' onClick={()=>{setdeleteoprn(true) ; setreviewid(params.row.id)}}></RiDeleteBinLine> }
                        
 
                      

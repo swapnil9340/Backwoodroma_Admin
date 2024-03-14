@@ -213,7 +213,6 @@ const AllReview = () => {
     },
   ];
   const rows = recentorder
-  console.log(rows)
   return (
     <div className=' my-4 '>
       <div className='py-4 section_card'>
@@ -242,7 +241,7 @@ const AllReview = () => {
                 disableColumnFilter
                 disableColumnSelector
                 autoHeight
-                checkboxSelection={false}
+                ={false}
                 rowSelection={false}
                 className={classes.DataTableStyle}
               />

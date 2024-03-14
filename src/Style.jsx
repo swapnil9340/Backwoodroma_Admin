@@ -77,12 +77,7 @@ const useStyles = makeStyles(theme =>(
           },
         }
       },
-      orderEditListIcon:{
-        fontSize:'18px !important',
-        height:'25px !important',
-        padding:'0 !important',
-        verticalAlign: "start",
-      },
+   
       signuproleSelectDropdown: {
         "&.MuiFormControl-root": {
           width: "42%"

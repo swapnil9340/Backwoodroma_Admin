@@ -16,7 +16,7 @@ import {SectionCard} from "../../molecules/SectionCard/Index"
 import { useNavigate } from "react-router-dom"
 import { DataGrid  } from '@mui/x-data-grid';
 import { FaEdit } from 'react-icons/fa';
-import { AiFillDelete } from 'react-icons/ai';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 import Icon from "@material-ui/core/Icon";
 import Bannerupdatemodel from "./Bannerupdatemodel"
 import Cookies from 'universal-cookie';
@@ -224,52 +224,46 @@ const Offeredlist = ({Setloader}) => {
                     return (
                         <>
                           {   (state.Roles.EditBanners || state.Roles.DeleteBanners  )   &&
-                            <Select
-
-                                IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label"
-                                sx={{
-                                    boxShadow: "none",
-                                    ".MuiOutlinedInput-notchedOutline": { border: 0 },
-                                    "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
-                                    {
-                                        border: 0,
-                                        outline: "none"
-
-                                    },
-                                    "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-                                    {
-                                        border: 0,
-                                        outline: "none"
-                                    },
-                                    "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
-                                    "&:hover": {
-                                        ".MuiSelect-icon": {
-                                            color: "#31B665"
-                                        }
-                                    },
-                                }}
-                            >
-                                <List className={classes.orderEditList}>
+                           
+                           <Box
+                           sx={{
+                               "&.MuiBox-root":{
+                                  display:'flex',
+                                  justifyContent:'center',
+                                  alignItems:'center',
+                                  gap:'10px'
+                               },
+                               '& .MuiOutlinedInput-root': {
+                                   '&.Mui-focused fieldset': {
+                                       borderWidth: "1px",
+                                       borderColor: 'black',
+                                   },
+                               },
+                               '& . MuiDataGrid-root .MuiDataGrid-cell:focus': {
+                                   outline: "#e0e0e0"
+                               }
+                           }}
+                       >
 
                                 {   state.Roles.EditBanners    &&
-                                    <ListItem button className={classes.orderEditListitem} onClick={()=>{editdat(params.row)}} >
                                     
-                                       <Icon className={classes.orderEditListIcon }><FaEdit  color='31B665'/> </Icon>
                                     
-                                        Edit
-                                    </ListItem>}
+                                  <FaEdit  color='31B665' onClick={()=>{editdat(params.row)}}  size={22}/> 
+                                    
+                                      
+                                   }
                                      {   state.Roles.DeleteBanners    &&
-                                           <ListItem button className={classes.orderEditListitem} onClick={(e)=>{ Deletebanner(params.row.id)}}>
+                                         
                                     
-                                    <Icon className={classes.orderEditListIcon }><AiFillDelete color='31B665'/> </Icon>
-                                    Delete
-                                    </ListItem>}
+                                      <RiDeleteBin6Line color='31B665' onClick={(e)=>{ Deletebanner(params.row.id)}} size={22}/>
+                                   
+                                    }
                                 
                             
-
+</Box>
                             
-                                </List>
-                            </Select>
+                            
+                           
                           }
                         </>
                     )

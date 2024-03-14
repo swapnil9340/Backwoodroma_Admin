@@ -164,7 +164,7 @@ export default function Tax() {
 
                         <ThemeProvider theme={CustomFontTheme}>
                           
-                                <DataGrid rows={rows} columns={columns}  checkboxSelection
+                                <DataGrid rows={rows} columns={columns}  
                                 pageSize={pageSize}
                                 onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                                 rowsPerPageOptions={[5, 10, 20]}

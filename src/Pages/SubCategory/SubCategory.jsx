@@ -164,35 +164,28 @@ export default function SubCategory() {
         <>
         { (state.Roles.EditSubcategory ||  state.Roles.DeleteSubcategory) &&
           <Box
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                "&.Mui-focused fieldset": {
-                  borderWidth: "1px",
-                  borderColor: "black",
+              sx={{
+                "&.MuiBox-root":{
+                   display:'flex',
+                   justifyContent:'center',
+                   alignItems:'center',
+                   gap:'10px'
                 },
-              },
-              "& . MuiDataGrid-root .MuiDataGrid-cell:focus": {
-                outline: "solid #0f1010 1px",
-              },
+                '& .MuiOutlinedInput-root': {
+                    '&.Mui-focused fieldset': {
+                        borderWidth: "1px",
+                        borderColor: 'black',
+                    },
+                },
+                '& . MuiDataGrid-root .MuiDataGrid-cell:focus': {
+                    outline: "#e0e0e0"
+                }
             }}
           >
-            <Select
-              sx={{
-                boxShadow: "",
-                ".MuiOutlinedInput-notchedOutline": { border: "0px" },
-                "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
-                "&:hover": {
-                  ".MuiSelect-icon": {
-                    color: "#31B665",
-                  },
-                },
-              }}
-              IconComponent={BsThreeDotsVertical}
-              labelId="demo-simple-select-error-label"
-            >
+           
                 { state.Roles.EditSubcategory &&  <SubCategoryEdit data={params.row}></SubCategoryEdit>}
                 { state.Roles.DeleteSubcategory &&  <SubCategoryDelete data={params.row}></SubCategoryDelete>}
-            </Select>
+           
           </Box>
         }
         </>

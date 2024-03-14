@@ -274,7 +274,7 @@ const PromotionalBanner = () => {
 
            
             {loader && <div className="loadercontainer">
-              <div class="loader4"></div>
+              <div className="loader4"></div>
             </div>}
             </React.Fragment>
     )

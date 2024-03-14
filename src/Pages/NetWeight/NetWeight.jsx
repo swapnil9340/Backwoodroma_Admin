@@ -170,7 +170,7 @@ export default function State() {
                             <ThemeProvider theme={CustomFontTheme}>
                                 <div style={{ height: 400, width: '100%', }}>
                                     <DataGrid rows={rows} columns={columns} 
-                                        checkboxSelection 
+                                         
                                         disableColumnMenu
                                         disableColumnFilter
                                         disableColumnSelector 

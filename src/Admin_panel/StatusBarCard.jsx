@@ -254,7 +254,7 @@ export default function StatusBarCard({ title, id }) {
           )
           .then((response) => {
             SetProduct(response.data[0]);
-            console.log(response.data[0])
+           
           });
         axios
           .post(
@@ -346,7 +346,6 @@ export default function StatusBarCard({ title, id }) {
     }
   }, [Data, id]);
 
-console.log(Product ,'Product')
   return (
     <div className="dashboardTopCardWrapper ">
       <div className=" dashboardTopCard top col">

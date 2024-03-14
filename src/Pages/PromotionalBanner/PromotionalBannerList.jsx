@@ -90,7 +90,7 @@ const PromotionalBannerList = () => {
 
                         </SectionCard>
                         {loader && <div className="loadercontainer">
-                        <div class="loader4"></div>
+                        <div className="loader4"></div>
                         </div>}
                         <Bannerupdatemodel openupdate={openupdate} bannertype={bannertype} setOpenupdate={setOpenupdate} Setloader={Setloader} data={editdata}/>
         </div>
