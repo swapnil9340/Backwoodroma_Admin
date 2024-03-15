@@ -1,9 +1,10 @@
-import React from 'react'
+import React,{useState , useEffect} from 'react'
 import axios from 'axios'
 import Cookies from 'universal-cookie'
 import { AiFillEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
+import { BsTrashFill } from 'react-icons/bs';
 import { DataGrid } from '@mui/x-data-grid';
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
@@ -12,6 +13,9 @@ import UserDelete from './DeleteVendor'
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import Createcontext from "../../Hooks/Context/Context"
 import {Select , MenuItem} from '@mui/material';
+import Successfullypopup from '../../Components/Component/Successfullypopup'
+import Unsuccesspopup from '../../Components/Component/Unsuccesspopup'
+import Deletepopup from '../../Components/Component/Deletepopup'
 import { LuEye } from "react-icons/lu";
 import useStyles from '../../Style';
 import {Link} from 'react-router-dom'
@@ -38,8 +42,47 @@ const Vendorlist = () => {
     const token_data = cookies.get('Token_access')
     const [pageSize, setPageSize] = React.useState(5)
     const { state, dispatch } = React.useContext(Createcontext)
+    const [sucsesopen , setsucsesopen] = useState(false)
+    const [unsucsesopen , setunsucsesopen] = useState(false)
+    const [deleteoptn , setdeleteoprn] = useState(false)
+    const [isdelete , setsisDelete] = useState(false)
+    const [deleteid , setdeleteid] = useState('')
     const { enqueueSnackbar } = useSnackbar();
+    useEffect(()=>{
+        if(Boolean(isdelete)){
+        
+      
+          axios.delete(`https://api.cannabaze.com/AdminPanel/Delete-User/${deleteid}`, {
     
+              headers: {
+                  'Authorization': `Bearer ${token_data}`
+              }
+          }).then(response => {
+            axios("https://api.cannabaze.com/AdminPanel/Get-AllVendor/", {
+
+            headers: {
+                'Authorization': `Bearer ${token_data}`
+            }
+            }).then(response => {
+                let newdata = response.data.data.map((item,index)=>{
+                
+                    var mydate = new Date(item.RegisterDate);
+                    var month = ["January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"][mydate.getMonth()];
+                    var str =  mydate.getDate()+ ' ' + month + ' ' + mydate.getFullYear();
+                
+                    return {
+                        id: index,
+                        registerDate:str,
+                        ...item
+                    }
+                })
+            
+                setTotal(newdata)
+            })
+          })
+        }
+    },[isdelete])
      React.useEffect(() => {
 
         axios("https://api.cannabaze.com/AdminPanel/Get-AllVendor/", {
@@ -169,28 +212,9 @@ const Vendorlist = () => {
                             },
                           }}
                         >
-                               <UserDelete data={params.row}></UserDelete>
-                            {/* <Select sx={{
-                                    boxShadow: '',
-                                    '.MuiPaper-root':{
-                                       textAlign:'center',
-                                       justifyContent:'center',
-                                    },
-                                    '.MuiOutlinedInput-notchedOutline': { border: "0px" },
-                                    "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
-                                    "&:hover": {
-                                        ".MuiSelect-icon": {
-                                            color: "#31B665"
-                                        }
-                                    },
-
-                                }} 
-                                IconComponent={BsThreeDotsVertical}
-                                labelId=""
-                            >
-                           
-                            
-                            </Select> */}
+                               {/* <UserDelete data={params.row}></UserDelete> */}
+                               <BsTrashFill onClick={()=>{setdeleteoprn(true) ; setdeleteid(params.row.id)}}   size={18}
+                    color={'#31B655'}/> 
                         </Box>
                     }
                 </React.Fragment>
@@ -272,6 +296,9 @@ const Vendorlist = () => {
                                 </ThemeProvider>
                             </Box>
         </div>
+        {   sucsesopen && <Successfullypopup  setsucsesopen={setsucsesopen} link={'/Roles'}/>}
+     {   unsucsesopen && <Unsuccesspopup setsucsesopen={setunsucsesopen} link={'/Roles'}/>}
+     {   deleteoptn &&  <Deletepopup setdeleteoprn={setdeleteoprn} setsisDelete={setsisDelete} />}
     </div>
   )
 }

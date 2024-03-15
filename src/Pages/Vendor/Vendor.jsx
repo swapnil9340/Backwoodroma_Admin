@@ -1,14 +1,14 @@
-import * as React from "react";
+import React, {useState ,useEffect} from "react";
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 import useStyles from "../../Style";
+import { BsTrashFill } from 'react-icons/bs';
 import axios from "axios";
 import { TiEdit } from "react-icons/ti";
 import Cookies from "universal-cookie";
 import Createcontext from "../../Hooks/Context/Context";
-import { useSnackbar } from "notistack";
 import UserDelete from "./DeleteVendor";
 import StatusBarCard from "../../Admin_panel/StatusBarCard";
 import Areagraph from "../../Admin_panel/Areagraph";
@@ -20,6 +20,10 @@ import Recentorder from "../../Admin_panel/Recentorder";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { useLocation, useNavigate } from "react-router-dom";
+import Successfullypopup from '../../Components/Component/Successfullypopup'
+import Unsuccesspopup from '../../Components/Component/Unsuccesspopup'
+import Deletepopup from '../../Components/Component/Deletepopup'
+
 const CustomFontTheme = createTheme({
   typography: {
     fontSize: 25,
@@ -48,6 +52,12 @@ const Vendor = () => {
   const [pageSize, setPageSize] = React.useState(5);
   const [detailstype, setdetailstype] = React.useState(true);
   const token_data = cookies.get("Token_access");
+  const [sucsesopen , setsucsesopen] = useState(false)
+  const [unsucsesopen , setunsucsesopen] = useState(false)
+  const [deleteoptn , setdeleteoprn] = useState(false)
+  const [isdelete , setsisDelete] = useState(false)
+  const [deleteid , setdeleteid] = useState('')
+
   const columns = [
     {
       field: "ProductImage",
@@ -167,7 +177,10 @@ const Vendor = () => {
                 </a>
                 <TiEdit   size={18}
                     color={'#31B655'} />
-                <UserDelete data={params.row}></UserDelete>
+                    
+                {/* <UserDelete data={params.row}></UserDelete> */}
+                <BsTrashFill onClick={()=>{setdeleteoprn(true) ; setdeleteid(params.row.id)}}   size={18}
+                    color={'#31B655'}/> 
               </Box>
             )}
           </React.Fragment>
@@ -237,7 +250,7 @@ const Vendor = () => {
 
 
   }
-  React.useEffect(() => {
+  useEffect(() => {
     if (state.datesSelect === "Customize") {
       if (state.CustomeStartDate !== "" && state.CustomeEndDate !== "") {
         SetData({
@@ -259,11 +272,7 @@ const Vendor = () => {
       })
     }
   }, [state.datesSelect, state.CustomeStartDate, state.CustomeEndDate])
-
-
-
-
-  React.useEffect(() => {
+  useEffect(() => {
     axios
       .post(
         `https://api.cannabaze.com/AdminPanel/TopSaleProductVendor/`,
@@ -279,7 +288,7 @@ const Vendor = () => {
       });
   }, [selectedstore, Data]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (detailstype) {
       axios
         .post(
@@ -312,7 +321,7 @@ const Vendor = () => {
     }
   }, [selectedstore, detailstype]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     axios
       .get(
         `https://api.cannabaze.com/AdminPanel/AllStoresVendor/${location.state.id}`,
@@ -328,6 +337,32 @@ const Vendor = () => {
       });
   }, [location.state.id, Data]);
 
+
+
+  useEffect(()=>{
+    if(Boolean(isdelete)){
+      // const id = data.id
+      // axios.delete(`https://api.cannabaze.com/AdminPanel/DeleteProductById/${id}`, {
+
+      //     headers: {
+      //         'Authorization': `Bearer ${token_data}`
+      //     }
+      // }).then(response => {
+      //  setOpen(false);
+      //  dispatch({type:'api',api: true})
+      //  enqueueSnackbar(' Tax Delete success !', { variant: 'success' });
+      // })
+  
+      axios.delete(`https://api.cannabaze.com/AdminPanel/DeleteProductById/${deleteid}`, {
+
+          headers: {
+              'Authorization': `Bearer ${token_data}`
+          }
+      }).then(response => {
+     
+      })
+    }
+},[isdelete])
   return (
     <div className="venderSection">
       <div className="row">
@@ -581,6 +616,9 @@ const Vendor = () => {
           )}
         </div>
       </div>
+      {   sucsesopen && <Successfullypopup  setsucsesopen={setsucsesopen} link={'/Roles'}/>}
+     {   unsucsesopen && <Unsuccesspopup setsucsesopen={setunsucsesopen} link={'/Roles'}/>}
+     {   deleteoptn &&  <Deletepopup setdeleteoprn={setdeleteoprn} setsisDelete={setsisDelete} />}
     </div>
   );
 };

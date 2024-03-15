@@ -96,8 +96,10 @@ const Signup = () => {
                                         </div>
                                         <MuiPhoneNumber
                                             className={classes.signupMuiPhone}
-                                            defaultCountry={'in'}
+                                            defaultCountry={'us'}
                                             id="phoneNo"
+                                          
+
                                         />
                                     </div>
                                     <div className="col-12 userEmialFieldCol">

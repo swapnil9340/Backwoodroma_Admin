@@ -70,7 +70,7 @@ const Recentorder = ({ title, order }) => {
       }
     },
     {
-      field: 'SellerName',
+      field: 'StoreName',
       headerName: 'Store Name',
       type: 'number',
       minWidth: 150,

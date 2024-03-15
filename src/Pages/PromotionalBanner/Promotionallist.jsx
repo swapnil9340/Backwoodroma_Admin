@@ -90,11 +90,6 @@ const Promotionallist = ({Setloader}) => {
                 }
             });
         }
-
-
-
-
-
         function handelstatus( data){
             let sts = data.status === "Active"? "Hide":"Active"
             Setloader(true)
@@ -116,13 +111,6 @@ const Promotionallist = ({Setloader}) => {
                 });
             })
         }
-
-
-
-
-
-
-
         function editdat(data){
             Seteditdata(data)
             setOpenupdate(true)

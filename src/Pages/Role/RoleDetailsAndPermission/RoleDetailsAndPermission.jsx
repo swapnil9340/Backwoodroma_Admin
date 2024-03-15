@@ -114,7 +114,7 @@ const RoleDetailsAndPermission=()=>{
                             <RolePermission setrolepermision={setrolepermision} rolepermision={rolepermision} setdescchceck={setdescchceck} descchceck={descchceck}/>
                             <div className="text-center py-5 gap-4">
                                 <button className="topbutton" type="submit">Save</button>
-                                <button className="cancel_btn mx-3">Cancel</button>
+                                <button className="cancel_btn mx-3" type="reset" onClick={()=>{navigate(-1)}}>Cancel</button>
                             </div>
                         </form>
                     </FormProvider>
