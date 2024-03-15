@@ -54,7 +54,7 @@ const Promotionallist = ({Setloader}) => {
         function Deletebanner(id){
             Swal.fire({
                 title: "Are you sure?",
-                text: "You won't be able to Delete this Banner!",
+                text: "You want to Delete this Banner!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#31B655",
