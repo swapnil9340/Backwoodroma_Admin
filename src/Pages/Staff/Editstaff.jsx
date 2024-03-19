@@ -41,7 +41,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 function BootstrapDialogTitle(props) {
 }
 export default function Editstaff(props) {
-    console.log(props.data.Roles)
+
     const { register, handleSubmit, watch, errors,setError,clearErrors,getValues,setValue, control } =   useForm();
     const cookies = new Cookies();
     const token_data = cookies.get("Token_access");
@@ -186,7 +186,7 @@ export default function Editstaff(props) {
    },[sucsesopen , unsucsesopen])
 
    const onSubmit = (data) => {
-     console.log(data)
+   
         const config = {
             headers: { Authorization: `Bearer ${token_data}` }
         };
@@ -212,7 +212,6 @@ export default function Editstaff(props) {
             setunsucsesopen(true)
         })
   };
-  console.log(defaulrole ,'multipleroles')
 
     return (
         <div>

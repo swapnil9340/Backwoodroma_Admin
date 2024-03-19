@@ -236,7 +236,6 @@ const Vendorlist = () => {
 
     ];
      const rows = totel
-     console.log(rows)
      function SubmitEditData(params) {
         const form = {
             "status": params.formattedValue === "Active" ? "Hide" : "Active"
