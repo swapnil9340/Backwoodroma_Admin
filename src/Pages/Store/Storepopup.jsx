@@ -561,8 +561,8 @@ export default function Storepopup() {
                                            <div className="col-sm-6">
                                                 <div className='lg_ip_feild    '>
                                                 
-                                                <label > Stores Website: </label>
-                                                <TextField type="text" placeholder='Add Stores Website:' id="outlined-basic" variant="outlined" name='Stores_Website' value={Store.Stores_Website} style={{ minWidth: 120, fontSize: 15 }}
+                                                <label > Store Website: </label>
+                                                <TextField type="text" placeholder='Add Store Website:' id="outlined-basic" variant="outlined" name='Stores_Website' value={Store.Stores_Website} style={{ minWidth: 120, fontSize: 15 }}
                                                     onChange={handleChange}
                                                     InputProps={{ style: { fontSize: 14 } }}
                                                     sx={{
@@ -597,8 +597,8 @@ export default function Storepopup() {
                                             </div>
                                             <div className="col-sm-6">
                                                     <div className='lg_ip_feild'>           
-                                                        <label >   Stores MobileNo:   </label>
-                                                        <TextField type="text" placeholder='Add Stores MobileNo:' id="outlined-basic" variant="outlined" name='Stores_MobileNo' value={Store.Stores_MobileNo} style={{ minWidth: 120 }}
+                                                        <label >   Store MobileNo:   </label>
+                                                        <TextField type="text" placeholder='Add Store MobileNo:' id="outlined-basic" variant="outlined" name='Stores_MobileNo' value={Store.Stores_MobileNo} style={{ minWidth: 120 }}
                                                             onChange={handleChange}
                                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
                                                             label={massage.Stores_MobileNo}
@@ -636,7 +636,7 @@ export default function Storepopup() {
 
                                 <div className='lg_ip_feild'>
                                   
-                                        <label> Stores Description:   </label>
+                                        <label> Store Description:   </label>
                                         <Box
                                             sx={{
                                                 "& .rdw-editor-toolbar": {
@@ -832,7 +832,7 @@ export default function Storepopup() {
                                                     }
                                                     
                                                 }}
-                                                InputProps={{inputProps: { min:tomorrowdate() , max: "2030-05-04"} }}
+                                                InputProps={{inputProps: { min:tomorrowdate() } }}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}

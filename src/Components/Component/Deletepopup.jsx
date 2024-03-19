@@ -1,5 +1,4 @@
 import React from 'react'
-import { RiDeleteBin6Line } from "react-icons/ri";
 import { RxCrossCircled } from "react-icons/rx";
 import  ClickAwayListener  from '@mui/base/ClickAwayListener';
 const Deletepopup = ({setdeleteoprn ,setsisDelete}) => {

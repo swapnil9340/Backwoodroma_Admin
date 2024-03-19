@@ -175,6 +175,7 @@ export default function Countries() {
                                      disableColumnFilter
                                      disableColumnSelector
                                      className={classes.DataTableStyle}
+                                     disableSelectionOnClick 
                                      pageSize={pageSize}
                                      onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                                      rowsPerPageOptions={[ 10, 20]}

@@ -179,6 +179,7 @@ export default function Brand() {
                                 disableColumnMenu
                                 disableColumnFilter
                                 disableColumnSelector
+                                disableSelectionOnClick 
                                 className={classes.DataTableStyle}
                             />
                         </div>

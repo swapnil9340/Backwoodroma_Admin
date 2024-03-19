@@ -14,7 +14,7 @@ import Cookies from "universal-cookie";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import useStyles from "../../Style";
-import { FormControl ,Checkbox ,ListItemText } from "@mui/material";
+import { FormControl } from "@mui/material";
 import { SlSocialDropbox } from "react-icons/sl";
 import "./Stall.css";
 import axios from "axios";

@@ -23,7 +23,7 @@ import Box from "@mui/material/Box";
 import { useForm } from "react-hook-form";
 import LoadingButton from "@mui/lab/LoadingButton";
 import useStyles from "../../Style";
-import {useNavigation} from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
 
 export default function Newspop() {
   const form = useForm({
@@ -35,7 +35,7 @@ export default function Newspop() {
   const [sucsesopen , setsucsesopen] = useState(false)
   const [unsucsesopen , setunsucsesopen] = useState(false)
   const classes =useStyles()
-  const navigate = useNavigation()
+  const navigate = useNavigate()
   const { register, handleSubmit, formState, watch, reset } = form;
   const { errors } = formState;
   const { dispatch } = useContext(Createcontext);

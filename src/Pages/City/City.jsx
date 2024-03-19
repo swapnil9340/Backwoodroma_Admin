@@ -167,10 +167,12 @@ export default function City() {
 
                             <ThemeProvider theme={CustomFontTheme}>
                                 <div style={{ height: 400, width: '100%', }}>
-                                    import  useStyles  rows={rows} columns={columns} 
+                            
+                                    <DataGrid  rows={rows} columns={columns} 
                                      disableColumnMenu
                                      disableColumnFilter
                                      disableColumnSelector
+                                     disableSelectionOnClick 
                                      className={classes.DataTableStyle}
                                     />
                                 </div>

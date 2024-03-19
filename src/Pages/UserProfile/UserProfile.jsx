@@ -212,6 +212,7 @@ const UserProfile = () => {
                                                     disableColumnFilter
                                                     disableColumnSelector
                                                     className={classes.DataTableStyle}
+                                                    disableSelectionOnClick 
                                                     autoHeight
                                         />
                                     </div>
@@ -231,6 +232,7 @@ const UserProfile = () => {
                                                     disableColumnMenu
                                                     disableColumnFilter
                                                     disableColumnSelector
+                                                    disableSelectionOnClick 
                                                     className={classes.DataTableStyle}
                                                     autoHeight
                                             />

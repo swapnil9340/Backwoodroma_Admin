@@ -174,6 +174,7 @@ export default function State() {
                                         disableColumnMenu
                                         disableColumnFilter
                                         disableColumnSelector 
+                                        disableSelectionOnClick 
                                         className={classes.DataTableStyle}
                                         pageSize={pageSize}
                                         onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}

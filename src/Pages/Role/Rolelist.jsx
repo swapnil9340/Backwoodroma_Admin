@@ -161,6 +161,7 @@ const Rolelist = () => {
                                                 disableColumnSelector
                                                 className={classes.DataTableStyle}
                                                 autoHeight
+                                                disableSelectionOnClick 
                                     />
                                 </div>
                             </ThemeProvider>

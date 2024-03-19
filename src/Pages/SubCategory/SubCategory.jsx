@@ -225,6 +225,7 @@ export default function SubCategory() {
                   rowsPerPageOptions={[ 10, 20]}
                   pagination
                 className={classes.DataTableStyle}
+                disableSelectionOnClick 
                 />
               </div>
             </ThemeProvider>

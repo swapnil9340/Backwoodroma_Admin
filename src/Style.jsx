@@ -830,6 +830,26 @@ const useStyles = makeStyles(theme =>(
         "&.MuiDataGrid-root .MuiDataGrid-row.Mui-selected:hover": {
           backgroundColor: '#fff',
         },
+        "& .MuiToolbar-root":{
+            "& .MuiTablePagination-selectLabel":{
+              fontSize:'14px',
+            },
+            "& .MuiInputBase-root":{
+              fontSize:'14px',
+            },
+            "& .MuiTablePagination-displayedRows":{
+              fontSize:'14px',
+            },
+            "& .MuiTablePagination-actions":{
+              "& .MuiButtonBase-root":{
+                "& .MuiSvgIcon-root":{
+                  width:'20px',
+                  height:'20px',  
+
+                }
+              }
+            }
+        }, 
         width: '100%',
         "@media(max-width:768px)": {
           ".MuiDataGrid-toolbarContainer": {
@@ -859,7 +879,7 @@ const useStyles = makeStyles(theme =>(
         "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
           visibility: "hidden"
         },
-       
+    
 
       },
       popuptextfeild:{
@@ -918,6 +938,9 @@ const useStyles = makeStyles(theme =>(
              "&:hover":{
 
              },
+          },
+          "& .MuiFormHelperText-root":{
+            fontSize:'12px'
           }
       },
       addnewselect:{

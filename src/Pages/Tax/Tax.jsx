@@ -174,6 +174,7 @@ export default function Tax() {
                                 disableColumnSelector
                                 className={classes.DataTableStyle}
                                 autoHeight
+                                disableSelectionOnClick 
                                 />
                  
                         </ThemeProvider>

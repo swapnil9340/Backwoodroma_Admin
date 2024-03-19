@@ -147,6 +147,7 @@ export default function News() {
                                             rowsPerPageOptions={[ 10, 20]}
                                             pagination
                                             autoHeight
+                                            disableSelectionOnClick 
                                         />
                                    
                                 </ThemeProvider>

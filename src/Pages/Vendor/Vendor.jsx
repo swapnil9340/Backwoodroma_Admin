@@ -9,7 +9,6 @@ import axios from "axios";
 import { TiEdit } from "react-icons/ti";
 import Cookies from "universal-cookie";
 import Createcontext from "../../Hooks/Context/Context";
-import UserDelete from "./DeleteVendor";
 import StatusBarCard from "../../Admin_panel/StatusBarCard";
 import Areagraph from "../../Admin_panel/Areagraph";
 import TotalSales from "../../Admin_panel/TotalSales";

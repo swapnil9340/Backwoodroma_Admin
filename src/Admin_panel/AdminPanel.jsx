@@ -338,7 +338,9 @@ export default function AdminPanel() {
                     disableColumnMenu
                     disableColumnFilter
                     disableColumnSelector
+                    disableSelectionOnClick 
                     className={classes.DataTableStyle}
+                    
                   />
                 </div>
               </ThemeProvider>

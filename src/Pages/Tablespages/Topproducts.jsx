@@ -150,7 +150,7 @@ const Topproducts = () => {
                                         disableColumnFilter
                                         disableColumnSelector
                                         autoHeight
-                                       
+                                        disableSelectionOnClick 
                                         rowSelection={false}
                                          className={classes.DataTableStyle}
                                     />

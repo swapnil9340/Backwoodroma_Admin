@@ -113,6 +113,7 @@ const classes = useStyles()
                                      onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                                      rowsPerPageOptions={[ 10, 20]}
                                      pagination
+                                     disableSelectionOnClick 
                                     />
                                 </div>
                             </ThemeProvider>

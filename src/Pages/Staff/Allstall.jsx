@@ -118,7 +118,7 @@ const Allstall = () => {
                     >
                            {/* <Deletstaff data={params.row} ></Deletstaff> */}
                            <RiDeleteBinLine color='#31B655' size={22} onClick={()=>{setdeleteoprn(true) ; setreviewid(params.row.ID)}}></RiDeleteBinLine>
-                           <Editstaff data={params.row} ></Editstaff> 
+                           <Editstaff data={params.row} setuserdata={setuserdata} ></Editstaff> 
                     </Box>
         )
     },
@@ -194,6 +194,7 @@ const Allstall = () => {
                                        
                                         rowSelection={false}
                                         className={classes.DataTableStyle}
+                                        disableSelectionOnClick 
                                     />
                                 </ThemeProvider>
                             </Box>

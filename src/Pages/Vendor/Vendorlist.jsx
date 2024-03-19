@@ -9,10 +9,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 import { useSnackbar } from 'notistack';
-import UserDelete from './DeleteVendor'
-import { BsThreeDotsVertical } from 'react-icons/bs';
 import Createcontext from "../../Hooks/Context/Context"
-import {Select , MenuItem} from '@mui/material';
 import Successfullypopup from '../../Components/Component/Successfullypopup'
 import Unsuccesspopup from '../../Components/Component/Unsuccesspopup'
 import Deletepopup from '../../Components/Component/Deletepopup'
@@ -40,7 +37,7 @@ const Vendorlist = () => {
     const cookies = new Cookies();
     const classes = useStyles()
     const token_data = cookies.get('Token_access')
-    const [pageSize, setPageSize] = React.useState(5)
+    const [pageSize, setPageSize] = React.useState(10)
     const { state, dispatch } = React.useContext(Createcontext)
     const [sucsesopen , setsucsesopen] = useState(false)
     const [unsucsesopen , setunsucsesopen] = useState(false)
@@ -91,6 +88,7 @@ const Vendorlist = () => {
                 'Authorization': `Bearer ${token_data}`
             }
         }).then(response => {
+           
             let newdata = response.data.data.map((item,index)=>{
                
                 var mydate = new Date(item.RegisterDate);
@@ -99,7 +97,7 @@ const Vendorlist = () => {
                 var str =  mydate.getDate()+ ' ' + month + ' ' + mydate.getFullYear();
              
                 return {
-                    id: index,
+                    Sno: index+1,
                     registerDate:str,
                     ...item
                 }
@@ -238,6 +236,7 @@ const Vendorlist = () => {
 
     ];
      const rows = totel
+     console.log(rows)
      function SubmitEditData(params) {
         const form = {
             "status": params.formattedValue === "Active" ? "Hide" : "Active"
@@ -268,31 +267,33 @@ const Vendorlist = () => {
                                className={classes.DataTableBoxStyle}
                             >
                                 <ThemeProvider theme={CustomFontTheme}>
-
+                                     <div className='w-100'>
                                     <DataGrid
-                                        rows={rows}
-                                        columns={columns}
-                                        autoHeight
-                                        initialState={{
+                                            rows={rows}
+                                            columns={columns}
+                                            getRowId={(row) => row.Sno}
+                                            initialState={{
                                             pagination: {
                                                 paginationModel: {
-                                                    pageSize: 5,
+                                                pageSize: 10,
                                                 },
                                             },
-                                        }}
-                                        getRowId={(row) =>
-                                        row?.id
-                                        }
-                                        pageSize={pageSize}
-                                        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                                        rowsPerPageOptions={[5, 10, 20]}
-                                        pagination
-                                        disableRowSelectionOnClick
-                                        disableColumnMenu
-                                        disableColumnFilter
-                                        disableColumnSelector
-                                        className={classes.DataTableStyle}
+                                            }}
+                                            pageSize={pageSize}
+                                            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                            rowsPerPageOptions={[5, 10, 20]}
+                                            pagination
+                                            disableRowSelectionOnClick
+                                            disableColumnMenu
+                                            disableColumnFilter
+                                            disableColumnSelector
+                                            autoHeight
+                                           
+                                            rowSelection={false}
+                                            className={classes.DataTableStyle}
+                                            disableSelectionOnClick 
                                     />
+                                    </div>
                                 </ThemeProvider>
                             </Box>
         </div>

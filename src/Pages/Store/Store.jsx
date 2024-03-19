@@ -189,6 +189,7 @@ export default function Store() {
                                         rowsPerPageOptions={[5, 10, 20]}
                                         pagination
                                         className={classes.DataTableStyle}
+                                        disableSelectionOnClick 
 
                                         />
                                     </div>

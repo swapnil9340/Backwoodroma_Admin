@@ -204,6 +204,7 @@ const Recentorder = ({ title, order }) => {
               disableColumnFilter
               disableColumnSelector
               hideFooter={true}
+              disableSelectionOnClick 
               getRowId={(row) => row.OrderId}
               //  autoHeight
               slotProps={{

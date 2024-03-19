@@ -208,6 +208,7 @@ export default function Category(props) {
                                             disableColumnMenu
                                             disableColumnFilter
                                             disableColumnSelector
+                                            disableSelectionOnClick 
                                             className={classes.DataTableStyle}
                                             autoHeight
                                 />

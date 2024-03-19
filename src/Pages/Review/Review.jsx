@@ -275,6 +275,7 @@ const Review = () => {
                 autoHeight
                 rowSelection={false}
                 className={classes.DataTableStyle}
+                disableSelectionOnClick 
               />
             </ThemeProvider>
           </Box>

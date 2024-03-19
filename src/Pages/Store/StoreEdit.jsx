@@ -372,11 +372,11 @@ export default function StoreEdit(props) {
                                 <div className='col-sm-6 lg_ip_feild'>
                                   
                                         <label  >
-                                            Stores Website:
+                                            Store Website:
                                         </label>
                                  
 
-                                        <TextField type="text" placeholder='Add Stores Website:' id="outlined-basic" variant="outlined" name='Stores_Website' value={Store.Stores_Website} style={{ minWidth: 190, fontSize: 15 }}
+                                        <TextField type="text" placeholder='Add  Store Website:' id="outlined-basic" variant="outlined" name='Stores_Website' value={Store.Stores_Website} style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange}   sx={{
                                                 width:'100%',
                                                 '& .MuiOutlinedInput-root': {
@@ -401,8 +401,8 @@ export default function StoreEdit(props) {
                                     
                                 </div>
                                 <div className='col-sm-6 lg_ip_feild'>
-                                        <label  >  Stores MobileNo: </label>
-                                        <TextField type="text" placeholder='Add Stores MobileNo:' id="outlined-basic" variant="outlined" name='Stores_MobileNo' value={Store.Stores_MobileNo} style={{ minWidth: 190, fontSize: 15 }}
+                                        <label  >  Store MobileNo: </label>
+                                        <TextField type="text" placeholder='Add Store MobileNo:' id="outlined-basic" variant="outlined" name='Stores_MobileNo' value={Store.Stores_MobileNo} style={{ minWidth: 190, fontSize: 15 }}
                                             onChange={handleChange}   sx={{
                                                 width:'100%',
                                                 '& .MuiOutlinedInput-root': {
@@ -467,7 +467,7 @@ export default function StoreEdit(props) {
                                 </div>
                                 <div className='col-12 lg_ip_feild'>
                                   
-                                        <label> Licence Image:</label>
+                                        <label> Store Image:</label>
                                         <input type="file" placeholder='Add Store Image:' ref={inputRef} id="storeeditimage" className='d-none'
                                                 onChange={handleimage} />
                                         <label htmlFor='storeeditimage' onDragOver={handleDragOver} onDrop={handleDrop} className='imagelabelstore'> <AiOutlineCloudUpload  size={22} color='#31B655'/> Change Store Image</label>
@@ -490,7 +490,7 @@ export default function StoreEdit(props) {
                                 </div>
                                 <div className='col-12 lg_ip_feild'>
                                
-                                        <label  >  Stores Description: </label>
+                                        <label  >  Store Description: </label>
                                         <div className='text_editor'>
                                         <Editor
                                             editorState={editorState}
@@ -501,7 +501,6 @@ export default function StoreEdit(props) {
                                         /></div>
                                    
                                 </div>
-                              
                                 <div className='col-12 center top' >
                                     <button className='topbutton' autoFocus onClick={Submit} >
                                         Save changes

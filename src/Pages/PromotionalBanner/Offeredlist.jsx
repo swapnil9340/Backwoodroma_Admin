@@ -9,6 +9,9 @@ import Box from "@mui/material/Box"
 import List from "@material-ui/core/List";
 import { FaEyeSlash } from "react-icons/fa";
 import ListItem from "@material-ui/core/ListItem";
+import Successfullypopup from '../../Components/Component/Successfullypopup'
+import Unsuccesspopup from '../../Components/Component/Unsuccesspopup'
+import Deletepopup from '../../Components/Component/Deletepopup'
 import axios from "axios";
 import { IoEyeSharp } from "react-icons/io5";
 import useStyles from "../../Style"
@@ -33,7 +36,11 @@ const Offeredlist = ({Setloader}) => {
     const [openupdate, setOpenupdate] = React.useState(false);
     const PromotionListRef = React.useRef(null)
     const [SelectId, SetSelectedId] = React.useState()
- 
+    const [sucsesopen , setsucsesopen] = useState(false)
+    const [unsucsesopen , setunsucsesopen] = useState(false)
+    const [deleteoptn , setdeleteoprn] = useState(false)
+    const [isdelete , setsisDelete] = useState(false)
+    const [deleteid , setdeleteid] = useState('')
     const config = {
         headers: { Authorization: `Bearer ${token_data}` }
     };
@@ -91,11 +98,6 @@ const Offeredlist = ({Setloader}) => {
                 }
             });
         }
-
-
-
-
-
         function handelstatus( data){
             let sts = data.status === "Active"? "Hide":"Active"
             Setloader(true)
@@ -255,7 +257,7 @@ const Offeredlist = ({Setloader}) => {
                                      {   state.Roles.DeleteBanners    &&
                                          
                                     
-                                      <RiDeleteBin6Line color='31B665' onClick={(e)=>{ Deletebanner(params.row.id)}} size={22}/>
+                                      <RiDeleteBin6Line color='31B665' onClick={(e)=>{ setdeleteoprn(true) ; setdeleteid(params.row.id)}}  size={22}/>
                                    
                                     }
                                 
@@ -288,31 +290,48 @@ const Offeredlist = ({Setloader}) => {
        
         const getRowSpacing = React.useCallback((params) => {
             return {
-              top: params.isFirstVisible ? 0 : 5,
-              bottom: params.isLastVisible ? 0 : 5,
+            top: params.isFirstVisible ? 0 : 5,
+            bottom: params.isLastVisible ? 0 : 5,
             };
-          }, []);
-   
+        }, []);
+        React.useEffect(()=>{
+            if(isdelete){
+                axios.delete(`https://api.cannabaze.com/AdminPanel/delete-HomePageBanner/${deleteid}`, config).then((res)=>{
+                    setsucsesopen(true)          
+                axios.get('https://api.cannabaze.com/AdminPanel/Get-HomePageBanner/' , config ).then((response) => {
+                    Setdatatable(response.data);
+                    Setloader(false)
+                });
+            
+            }).catch((error)=>{
+                setunsucsesopen(true)
+            })
+        
+            }
+        },[isdelete])
   return (
     <div>
-    <Box className={classes.DataTableBoxStyle} >
-    <DataGrid
-        rows={rows}
-        columns={columns}
-        getRowSpacing={getRowSpacing}
-        disableColumnMenu
-        disableColumnFilter
-        disableColumnSelector
-        disableSelectionOnClick
-        autoHeight
-        pageSize={pageSize}
-        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-        rowsPerPageOptions={[ 10, 20]}
-        pagination
-        className={classes.DataTableStyle}
-    />
-</Box>
-<Bannerupdatemodel openupdate={openupdate} bannertype={bannertype} setOpenupdate={setOpenupdate} Setloader={Setloader} data={editdata}/>
+            <Box className={classes.DataTableBoxStyle} >
+            <DataGrid
+                rows={rows}
+                columns={columns}
+                getRowSpacing={getRowSpacing}
+                disableColumnMenu
+                disableColumnFilter
+                disableColumnSelector
+                disableSelectionOnClick
+                autoHeight
+                pageSize={pageSize}
+                onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                rowsPerPageOptions={[ 10, 20]}
+                pagination
+                className={classes.DataTableStyle}
+            />
+            </Box>
+            <Bannerupdatemodel openupdate={openupdate} bannertype={bannertype} setOpenupdate={setOpenupdate} Setloader={Setloader} data={editdata}/>
+            {   sucsesopen && <Successfullypopup  setsucsesopen={setsucsesopen} />}
+            {   unsucsesopen && <Unsuccesspopup setsucsesopen={setunsucsesopen} />}
+            {   deleteoptn &&  <Deletepopup setdeleteoprn={setdeleteoprn} setsisDelete={setsisDelete} />}
 </div>
   )
 }

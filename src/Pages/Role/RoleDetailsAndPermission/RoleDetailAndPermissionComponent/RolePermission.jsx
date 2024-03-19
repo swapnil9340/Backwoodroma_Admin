@@ -31,7 +31,7 @@ const RolePermission = ({rolepermision , setrolepermision ,setdescchceck ,descch
                         <h2 className="roleDetailsSechaedings">Permissions</h2>
                         <p className="roleDetailsSechaedings">People with this role can perform the following actions.</p>
                     </div>
-                    <div className=" col-5 roles_permission_Searchbar">
+                    {/* <div className=" col-5 roles_permission_Searchbar">
                         <TextField
                             className={`${classes.RoleAndPermissionSearchBarTextfield}`}
                             InputProps={{
@@ -42,7 +42,7 @@ const RolePermission = ({rolepermision , setrolepermision ,setdescchceck ,descch
                                 )
                             }}
                             type="text" size="small" />
-                    </div>
+                    </div> */}
 
                 </div>
                 <div className="col-12 rolePermissionLists_container">

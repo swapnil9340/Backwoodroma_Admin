@@ -1,31 +1,23 @@
-import { BsThreeDotsVertical } from "react-icons/bs"
-import { SlSocialDropbox } from "react-icons/sl";
+
 import React ,{useState ,useContext} from "react"
-import { LoadingButton } from "@mui/lab"
-import Select from '@mui/material/Select';
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
 import Box from "@mui/material/Box"
-import List from "@material-ui/core/List";
 import { FaEyeSlash } from "react-icons/fa";
-import ListItem from "@material-ui/core/ListItem";
 import axios from "axios";
 import { IoEyeSharp } from "react-icons/io5";
 import useStyles from "../../Style"
-import {SectionCard} from "../../molecules/SectionCard/Index"
-import { useNavigate } from "react-router-dom"
 import { DataGrid  } from '@mui/x-data-grid';
 import { FaEdit } from 'react-icons/fa';
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import Icon from "@material-ui/core/Icon";
 import Bannerupdatemodel from "./Bannerupdatemodel"
 import Cookies from 'universal-cookie';
+import Successfullypopup from '../../Components/Component/Successfullypopup'
+import Unsuccesspopup from '../../Components/Component/Unsuccesspopup'
+import Deletepopup from '../../Components/Component/Deletepopup'
 import Createcontext from '../../Hooks/Context/Context'
 const Promotionallist = ({Setloader}) => {
     const classes = useStyles()
-    const navigate=useNavigate()
     const Swal = require('sweetalert2')
-    const { state, dispatch } = useContext(Createcontext);
+    const { state } = useContext(Createcontext);
     const [pageSize, setPageSize] = React.useState(10)
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
@@ -33,14 +25,16 @@ const Promotionallist = ({Setloader}) => {
     const [openupdate, setOpenupdate] = React.useState(false);
     const PromotionListRef = React.useRef(null)
     const [SelectId, SetSelectedId] = React.useState()
+    const [sucsesopen , setsucsesopen] = useState(false)
+    const [unsucsesopen , setunsucsesopen] = useState(false)
+    const [deleteoptn , setdeleteoprn] = useState(false)
+    const [isdelete , setsisDelete] = useState(false)
+    const [deleteid , setdeleteid] = useState('')
     const config = {
         headers: { Authorization: `Bearer ${token_data}` }
     };
-  
     const [datatable, Setdatatable] = React.useState([])
-
     const [editdata, Seteditdata] = React.useState([])
-  
         React.useEffect(() => {
 
          
@@ -49,47 +43,6 @@ const Promotionallist = ({Setloader}) => {
                 Setdatatable(a);
             });
         }, []);
-     
-     
-        function Deletebanner(id){
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You want to Delete this Banner!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#31B655",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Setloader(true)
-                  
-                    axios.delete(`https://api.cannabaze.com/AdminPanel/delete-PromotionalBanners/${id}`, config).then((res)=>{
-                        
-                        axios.get('https://api.cannabaze.com/AdminPanel/Get-PromotionalBanners/' , config ).then((response) => {
-                            Setdatatable(response.data);
-                            Setloader(false)
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your file has been deleted.",
-                                icon: "success"
-                            });
-                        });
-                    
-                    }).catch((error)=>{
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "Something went wrong!",
-                            footer: '<a href="#">Why do I have this issue?</a>'
-                        }).then(()=>{
-                            Setloader(false)
-                        });
-                    })
-                
-                }
-            });
-        }
         function handelstatus( data){
             let sts = data.status === "Active"? "Hide":"Active"
             Setloader(true)
@@ -234,10 +187,8 @@ const Promotionallist = ({Setloader}) => {
                                   }
                               }}
                           >
-                              
-
                                 {   state.Roles.EditBanners    &&  <FaEdit  color='31B665' onClick={()=>{editdat(params.row)}} size={22}/>   }
-                                {   state.Roles.DeleteBanners    && <RiDeleteBin6Line color='31B665'  onClick={(e)=>{ Deletebanner(params.row.id)}} size={22}/> }
+                                {   state.Roles.DeleteBanners    && <RiDeleteBin6Line color='31B665'  onClick={(e)=>{ setdeleteoprn(true) ; setdeleteid(params.row.id)}} size={22}/> }
                                 
                             
 </Box>
@@ -270,28 +221,49 @@ const Promotionallist = ({Setloader}) => {
               bottom: params.isLastVisible ? 0 : 5,
             };
           }, []);
- 
+       
+
+       React.useEffect(()=>{
+        if(isdelete){
+            axios.delete(`https://api.cannabaze.com/AdminPanel/delete-PromotionalBanners/${deleteid}`, config).then((res)=>{
+                setsucsesopen(true)          
+            axios.get('https://api.cannabaze.com/AdminPanel/Get-PromotionalBanners/' , config ).then((response) => {
+                Setdatatable(response.data);
+                Setloader(false)
+              
+            });
+        
+        }).catch((error)=>{
+            setunsucsesopen(true)
+        })
+    
+        }
+       },[isdelete])
   return (
     <div>
 
-<Box className={classes.DataTableBoxStyle} >
-    <DataGrid
-        rows={rows}
-        columns={columns}
-        getRowSpacing={getRowSpacing}
-        disableColumnMenu
-        disableColumnFilter
-        disableColumnSelector
-        disableSelectionOnClick
-        autoHeight
-        pageSize={pageSize}
-        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-        rowsPerPageOptions={[ 10, 20]}
-        pagination
-        className={classes.DataTableStyle}
-    />
-   </Box>
-<Bannerupdatemodel openupdate={openupdate} bannertype={bannertype} setOpenupdate={setOpenupdate} Setloader={Setloader} data={editdata}/>
+            <Box className={classes.DataTableBoxStyle} >
+                <DataGrid
+                    rows={rows}
+                    columns={columns}
+                    getRowSpacing={getRowSpacing}
+                    disableColumnMenu
+                    disableColumnFilter
+                    disableColumnSelector
+                    disableSelectionOnClick
+                    autoHeight
+                    pageSize={pageSize}
+                    onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                    rowsPerPageOptions={[ 10, 20]}
+                    pagination
+                    className={classes.DataTableStyle}
+                   
+                />
+            </Box>
+            <Bannerupdatemodel openupdate={openupdate} bannertype={bannertype} setOpenupdate={setOpenupdate} Setloader={Setloader} data={editdata}/>
+            {   sucsesopen && <Successfullypopup  setsucsesopen={setsucsesopen} />}
+            {   unsucsesopen && <Unsuccesspopup setsucsesopen={setunsucsesopen} />}
+            {   deleteoptn &&  <Deletepopup setdeleteoprn={setdeleteoprn} setsisDelete={setsisDelete} />}
     </div>
    
   )

@@ -241,7 +241,7 @@ const AllReview = () => {
                 disableColumnFilter
                 disableColumnSelector
                 autoHeight
-               
+                disableSelectionOnClick 
                 rowSelection={false}
                 className={classes.DataTableStyle}
               />

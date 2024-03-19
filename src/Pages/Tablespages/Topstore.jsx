@@ -156,6 +156,7 @@ const Topstore = () => {
     ];
     const classes = useStyles()
     const rows = location?.state
+    
   return (
     <div className=' my-4 '>
     <div className='py-4 section_card'>
@@ -178,13 +179,13 @@ const Topstore = () => {
                                 pageSize={pageSize}
                                 onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                                 pageSizeOptions={[ 10, 25, 50]}
+                                disableSelectionOnClick 
                                 pagination
                                 disableRowSelectionOnClick
                                 disableColumnMenu
                                 disableColumnFilter
                                 disableColumnSelector
                                 autoHeight
-                               
                                 rowSelection={false}
                                 className={classes.DataTableStyle}
                             />

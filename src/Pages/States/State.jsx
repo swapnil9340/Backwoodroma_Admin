@@ -174,6 +174,7 @@ export default function State() {
                                             disableColumnFilter
                                             disableColumnSelector
                                             className={classes.DataTableStyle}
+                                            disableSelectionOnClick 
                                     />
                                 </div>
                             </ThemeProvider>
