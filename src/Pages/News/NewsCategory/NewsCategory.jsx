@@ -1,125 +1,103 @@
-import React, { useEffect,useContext } from 'react'
-import Createcontext from "../../../Hooks/Context/Context"
-import Cookies from 'universal-cookie';
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import axios from "axios"
-import { ThemeProvider } from "@mui/material/styles";
-import { createTheme } from "@mui/material/styles";
+import React, { useEffect,useContext } from "react";
+import Cookies from "universal-cookie";
+import axios from "axios";
 import { SlSocialDropbox } from "react-icons/sl";
-import Box from '@mui/material/Box';
-import { BsThreeDotsVertical } from 'react-icons/bs';
-import useStyles from '../../../Style';
-import Select from '@mui/material/Select';
-import AddNewsCategory  from "./AddNewsCategory"
-import NewsCategoryEditbox from "./EditNewsCategory"
-import NewsCategoryDelete  from "./DelectnewsCategory"
+import Createcontext from '../../../Hooks/Context/Context'
+import AddNewsCategory from "./AddNewsCategory";
+import Button from '@mui/material/Button';
+import { RiDeleteBin6Line } from "react-icons/ri";
+import Deletepopup from '../../../Components/Component/Deletepopup';
+import Successfullypopup from '../../../Components/Component/Successfullypopup';
+import NewsCategoryEditbox from './EditNewsCategory'
+import Unsuccesspopup from '../../../Components/Component/Unsuccesspopup';
 export default function NewsCategory(props) {
-const classes = useStyles()
-    const { state} = useContext(Createcontext)
-    const [pageSize, setPageSize] = React.useState(10)
-    const cookies = new Cookies();
-    const token_data = cookies.get('Token_access')
-    const CustomFontTheme = createTheme({
-        typography: {
-            fontSize: 25
-        },
-        components: {
-            MuiContainer: {
-                styleOverrides: {
-                    root: {
-                        fontSize: 24,
-
-                    }
-                }
-            },
-
-
-        }
+  const [deleteoptn , setdeleteoprn] = React.useState(false)
+  const [isdelete , setsisDelete] = React.useState(false)
+  const { state ,dispatch } = useContext(Createcontext)
+  const [categoryid , Setcategoryid] = React.useState('')
+  const [sucsesopen , setsucsesopen] = React.useState(false)
+  const [unsucsesopen , setunsucsesopen] = React.useState(false)
+  const cookies = new Cookies();
+  const token_data = cookies.get("Token_access");
+  const [totel, setTotal] = React.useState([]);
+  useEffect(() => {
+    axios("https://api.cannabaze.com/AdminPanel/Get-NewsCategory/", {
+      headers: {
+        Authorization: `Bearer ${token_data}`,
+      },
+    }).then((response) => {
+      setTotal([...response.data]);
     });
-    
-    const [totel, setTotal] = React.useState([])  
-    useEffect(() => {
-        axios("https://api.cannabaze.com/AdminPanel/Get-NewsCategory/", {
-
+  }, []);
+  useEffect(()=>{
+    if(isdelete){
+     
+        axios.delete(`https://api.cannabaze.com/AdminPanel/delete-NewsCategory/${categoryid}`, {
         headers: {
             'Authorization': `Bearer ${token_data}`
         }
         }).then(response => {
-
-            setTotal([...response.data])
-
+          setsucsesopen(true)
+          axios("https://api.cannabaze.com/AdminPanel/Get-NewsCategory/", {
+            headers: {
+              Authorization: `Bearer ${token_data}`,
+            },
+          }).then((response) => {
+            setTotal([...response.data]);
+          });
+        }).catch((error)=>{
+          setunsucsesopen(true)
         })
-    },[])
-    const columns = [
-        { field: 'name', headerName: 'Name', editable: true, maxWidth: 150, minWidth: 110,sortable:false, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'left', },
-        {
-            field: 'Edit', headerName: 'Edit', type: 'button', editable: false,maxWidth: 150,sortable:false, minWidth: 110, flex: 1, headerClassName: 'super-app-theme--header', headerAlign: 'left',
-            renderCell: (params) => (
-                <>
-                    <Box
-                    sx={{
-                        '& .MuiOutlinedInput-root': {
-                            '&.Mui-focused fieldset': {
-                                borderWidth: "1px",
-                                borderColor: 'black',
-                            },
-                        },
-                        '& . MuiDataGrid-root .MuiDataGrid-cell:focus': {
-                            outline: "solid #0f1010 1px"
-                        }
-                    }}
-                     >
-                        <Select
-                        sx={{
-                            boxShadow: '', '.MuiOutlinedInput-notchedOutline': { border: "0px" },
-                            "&.Mui-focused .MuiSelect-icon": { color: "#31B665" },
-                            "&:hover": {
-                                ".MuiSelect-icon": {
-                                    color: "#31B665"
-                                }
-                            },
-                        }}
-                        IconComponent={BsThreeDotsVertical} labelId="demo-simple-select-error-label">
-                           <NewsCategoryEditbox data={params.row}></NewsCategoryEditbox>
-                           <NewsCategoryDelete data={params.row}></NewsCategoryDelete>
-                        </Select>
-                    </Box>
-                </>
-
-            )
-        },
-
-    ];
-    const rows = totel
-
-    return (
+    }
+  },[isdelete])
+  useEffect(() => {
+    axios("https://api.cannabaze.com/AdminPanel/Get-NewsCategory/", {
+      headers: {
+        Authorization: `Bearer ${token_data}`,
+      },
+    }).then((response) => {
+      setTotal([...response.data]);
+    });
+  }, [state.api]);
+  return (
+    <div>
         <div className="section_card">
-        
-                    <div className='col-12 p-3 d-flex justify-content-between align-items-center'>
-                         <h2 className='pagetitle'><SlSocialDropbox color='#31B655' size={25}/> News Category
-                        </h2>
-                           <span>{<AddNewsCategory></AddNewsCategory>}</span>
+        <div className="col-12 p-3 d-flex justify-content-between align-items-center">
+          <h2 className="pagetitle">
+            <SlSocialDropbox color="#31B655" size={25} /> News Category
+          </h2>
+          <span>{<AddNewsCategory></AddNewsCategory>}</span>
+        </div>
+        </div>
+        <div className="col-12">
+          <div className="listtable">
+            <ul>
+              {totel.map((item) => {
+             
+                return (
+                  <li>
+                    <div className="listitems">
+                        <p>{item.name}</p>
+                      <div className="gap-3 d-flex">
+                        <span >
+                            <NewsCategoryEditbox  data={item} />
+                        </span>
+                        <span onClick={()=>{setdeleteoprn(true) ;Setcategoryid(item.id)}}>
+                            <RiDeleteBin6Line  size={16} />
+                        </span>
+                      </div>
                     </div>
-                    <div className='col-12'>
-                        <Box className={classes.DataTableBoxStyle}>
-                            <ThemeProvider theme={CustomFontTheme}>
-                                <div style={{ height: 400, width: '100%' }}>
-                                    <DataGrid rows={rows} columns={columns} 
-                                     disableColumnMenu
-                                     disableColumnFilter
-                                     disableColumnSelector
-                                     className={classes.DataTableStyle}
-                                     pageSize={pageSize}
-                                     onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                                     rowsPerPageOptions={[ 10, 20]}
-                                     pagination
-                                     disableSelectionOnClick 
-                                    />
-                                </div>
-                            </ThemeProvider>
-                        </Box>
-                    </div>
-            </div>
-      
-    )
+                  </li>
+                );
+              })}
+              <li></li>
+            </ul>
+          </div>
+        </div>
+
+        {   deleteoptn &&  <Deletepopup setdeleteoprn={setdeleteoprn} setsisDelete={setsisDelete} />}
+        {   sucsesopen && <Successfullypopup  setsucsesopen={setsucsesopen} link={''}/>}
+        {   unsucsesopen && <Unsuccesspopup setsucsesopen={setunsucsesopen} link={''}/>}
+   </div>
+  );
 }

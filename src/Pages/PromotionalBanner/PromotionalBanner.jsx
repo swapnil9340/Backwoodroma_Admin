@@ -10,7 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { MdOutlineCloudUpload } from "react-icons/md"
 import useStyles from "../../Style";
 import Cookies from 'universal-cookie';
-import { useNavigate } from "react-router-dom"
+import { useNavigate  } from "react-router-dom"
 import axios from "axios";
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
@@ -26,8 +26,6 @@ const PromotionalBanner = () => {
     const [mobileimage,setmobileimage]=useState(false)
     const [desktopimage,setdesktopimage]=useState(false)
     const { register, handleSubmit, watch, errors,setError,clearErrors,getValues,setValue, control } =   useForm();
-
-   
     const [fromdaa ,setformdata] = useState({
         title:'',
         country:"",

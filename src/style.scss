@@ -371,7 +371,6 @@ cursor: pointer;
   }
 
 }
-
 .sucsconfirmpopup{
   position: fixed;
   top: 0;
@@ -414,7 +413,7 @@ cursor: pointer;
       }
     }
     p{
-       font-size: 24px;
+       font-size: 18px;
        font-weight:500 ;
        line-height: 36px;
        color: #222529;
@@ -442,7 +441,6 @@ cursor: pointer;
   }
 
 }
-
 .UserProfile{
   .UserProfileWrapper{
     display: flex;
@@ -539,7 +537,6 @@ cursor: pointer;
     }
   }
 }
-
 .alllocationlist{
   .locationContent {
     display: flex;
@@ -584,7 +581,6 @@ cursor: pointer;
     }
 }
 }
-
 .namecorcle{
   width: 30px;
   height: 30px;
@@ -770,5 +766,38 @@ cursor: pointer;
     text-align: left;
     top: 10px;
     position: relative;
+  }
+}
+.listtable{
+  width: 350px;
+  margin: 0 auto;
+  margin-top: 30px;
+  border-radius: 20px;
+  padding: 20px;
+  background-color: #fff;
+  min-height: 500px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  ul{
+    list-style-type: none;
+    padding: 0;
+    li{
+.listitems{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #00297036;
+  padding: 10px 0;
+  p{
+    font-size: 16px;
+    font-weight: 600;
+    color: #002970;
+    line-height: 1.4;
+    margin: 0;
+  }
+  span{
+    cursor: pointer;
+  }
+}
+    }
   }
 }

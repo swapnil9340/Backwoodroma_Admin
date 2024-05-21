@@ -14,7 +14,7 @@ const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloade
         title:data.Title,
         country:data.Country,
         state:data.State,
-        link :data.Link,
+        link :data?.Link,
         mobile_immage:[],
         destop_immage:[],
     })
@@ -238,7 +238,7 @@ const Bannerupdatemodel = ({openupdate ,setOpenupdate ,data ,bannertype,Setloade
                 
                     <label htmlFor="link" className="label_custom">Link</label>
             
-                    <TextField id="link" className={classes.textFieldFocusBorderColor} onChange={(e)=>{setformdata({...fromdaa , link : e.target.value})}}  variant="outlined" fullWidth size="small" />
+                    <TextField id="link" className={classes.textFieldFocusBorderColor} value={fromdaa?.link} onChange={(e)=>{setformdata({...fromdaa , link : e.target.value})}}  variant="outlined" fullWidth size="small" />
                 </div>
                 <div className="">
                     <Box className={`w-100  ${classes.PromotionalBtn}`}>

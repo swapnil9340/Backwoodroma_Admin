@@ -9,6 +9,7 @@ import TextField from '@mui/material/TextField';
 import Cookies from 'universal-cookie';
 import Createcontext from "../../../Hooks/Context/Context"
 import InputAdornment from '@mui/material/InputAdornment';
+import useStyles from '../../../Style';
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
         padding: theme.spacing(2),
@@ -30,6 +31,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 export default function NewsCategorypopup() {
     const { dispatch} = useContext(Createcontext)
+    const classes = useStyles()
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [open, setOpen] = React.useState(false);
@@ -95,48 +97,39 @@ export default function NewsCategorypopup() {
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {
                             width: {
-                                xs: "60%",
-                                sm: "60%",
-                                md: "50%",
-                                lg: "40%",
-                                xl: "40%"
+                                xs: "70%",
+                                sm: "70%",
+                                md: "400px",
+                            
 
                             },
-                            height: {
-                                xs: "40%",
-                                sm: "40%",
-                                md: "50%",
-                                lg: "50%",
-                                xl: "50%"
-                            },
-                            maxWidth: "none",  // Set your width here
+                         
+                            maxWidth: "none", 
                             borderRadius: "15px",
                             overflowX: "hidden",
                             border: "1px solid #31B665"
                         },
                     },
-                }}>
+                }}
+                >
                 <DialogContent dividers>
                     <div className='container-fluid '>
                         <div className='row'>
-                            <div className='col-12' style={{marginTop:"10%"}}>
+                            <div className='col-12' >
                                 <div className='col-12 Add_Category center'>
                                     <div className="col "> <h2> Add News Category
                                     </h2>
                                     </div>
                                 </div>
-                                <div className='col-8 top label  con'>
-                                    <div className='col'>
-                                        <label className='label'>
-                                        <span className='required'>*</span>
-                                            Name:
+                                <div className='col-10'>
+                                   
+                                        <label className='label'> Name<span className='required'>*</span>:
                                         </label>
-                                    </div>
-                                    <div className='col'>
+                                
                                         <TextField placeholder='Add Category' id="outlined-basic" variant="outlined" value={NameCategory || ""}
                                             onChange={handleName} style={{ minWidth: 170, fontSize: 15, }} 
                                             InputProps={{ startAdornment: <InputAdornment position="start"> </InputAdornment>, style: { fontSize: 14 } }}
-                                            label={massage}
+                                            label={massage}  className={classes.textFieldFocusBorderColor}
                                             sx={{
                                                 '& .MuiOutlinedInput-root': {
                                                     '& fieldset': {
@@ -155,7 +148,7 @@ export default function NewsCategorypopup() {
                                             }}
                                             
                                             />
-                                    </div>
+                                   
                                 </div>
                               
                                 <div className='col-12 center top'>

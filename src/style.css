@@ -408,7 +408,7 @@
   color: #00AC4F;
 }
 .sucsconfirmpopup .sucspopup p {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 500;
   line-height: 36px;
   color: #222529;
@@ -747,4 +747,36 @@
   text-align: left;
   top: 10px;
   position: relative;
+}
+
+.listtable {
+  width: 350px;
+  margin: 0 auto;
+  margin-top: 30px;
+  border-radius: 20px;
+  padding: 20px;
+  background-color: #fff;
+  min-height: 500px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.listtable ul {
+  list-style-type: none;
+  padding: 0;
+}
+.listtable ul li .listitems {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 41, 112, 0.2117647059);
+  padding: 10px 0;
+}
+.listtable ul li .listitems p {
+  font-size: 16px;
+  font-weight: 600;
+  color: #002970;
+  line-height: 1.4;
+  margin: 0;
+}
+.listtable ul li .listitems span {
+  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */

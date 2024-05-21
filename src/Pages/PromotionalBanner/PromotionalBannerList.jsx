@@ -79,7 +79,7 @@ const PromotionalBannerList = () => {
                                 {   state.Roles.AddBanners    &&
                                 <div className="col-sm-5  col-6">
                                     <Box className={` promotionalAddBannerListBtnCol  ${classes.promotionalListBtnss}`}>
-                                        <button className="topbutton" onClick={()=>navigate("/PromotionalBanner")}>+ Add Banner</button>
+                                        <button className="topbutton" onClick={()=>navigate("/PromotionalBanner" , { state: { detailstype } })}>+ Add Banner</button>
                                     </Box>
                                 </div>}
                             </div>

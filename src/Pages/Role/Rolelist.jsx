@@ -24,8 +24,7 @@ const Rolelist = () => {
     const [iddelete , setisdDelete] = useState('')
     const [RoleData, SetRoleData] = useState([]);
     const classes = useStyles()
-    const { state, dispatch } = useContext(Createcontext)
-   
+    const { state } = useContext(Createcontext)
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const CustomFontTheme = createTheme({

@@ -1,13 +1,17 @@
 import React from 'react'
 import { RxCrossCircled } from "react-icons/rx";
 import  ClickAwayListener  from '@mui/base/ClickAwayListener';
+import Aos from "aos";
+import "aos/dist/aos.css";
 const Deletepopup = ({setdeleteoprn ,setsisDelete}) => {
- 
+  React.useEffect(function () {
+    Aos.init({ duration: 5000 });
+  }, []);
   return (
 
      <div className='deleteconfirmpopup'>
             <ClickAwayListener onClickAway={()=>{setdeleteoprn(false)}}>
-                    <div className='deletepopup'>
+                    <div className='deletepopup' data-aos={'zoom-in'}>
                         {/* <span className='closebtn'>X</span> */}
                         <div className='Iconsdelete'>
                             <span className='dangericon'> <RxCrossCircled/></span>

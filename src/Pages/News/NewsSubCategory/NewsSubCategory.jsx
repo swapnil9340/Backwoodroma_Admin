@@ -82,36 +82,62 @@ export default function NewsSubCategory() {
     ]
 
     const rows = totel
+ console.log(totel)
 return (
-   
-        <div className='section_card'>
+        <div>
+                <div className='section_card'>
 
-          
-      
+                
+            
 
-                <div className='col-12 p-3 d-flex justify-content-between align-items-center'>
-                    <h2 className='pagetitle'> <SlSocialDropbox color='#31B655' size={25}/>   News Sub Category</h2>
-                    <span> <h2> <AddNewsCategory></AddNewsCategory></h2></span>
+                        <div className='col-12 p-3 d-flex justify-content-between align-items-center'>
+                            <h2 className='pagetitle'> <SlSocialDropbox color='#31B655' size={25}/>   News Sub Category</h2>
+                            <span> <h2> <AddNewsCategory></AddNewsCategory></h2></span>
+                        </div>
+
+                        {/* <div className='col-12' >
+                            <Box className={classes.DataTableBoxStyle} >
+                                <ThemeProvider theme={CustomFontTheme}>
+                                    <div style={{ height: 400, width: '100%', }}>
+                                        <DataGrid rows={rows} columns={columns}
+                                        disableColumnMenu
+                                        disableColumnFilter
+                                        disableColumnSelector
+                                        className={classes.DataTableStyle}
+                                        pageSize={pageSize}
+                                        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                                        rowsPerPageOptions={[ 10, 20]}
+                                        pagination
+                                        disableSelectionOnClick 
+                                        />
+                                    </div>
+                                </ThemeProvider>
+                            </Box>
+                        </div> */}
                 </div>
-
-                <div className='col-12' >
-                    <Box className={classes.DataTableBoxStyle} >
-                        <ThemeProvider theme={CustomFontTheme}>
-                            <div style={{ height: 400, width: '100%', }}>
-                                <DataGrid rows={rows} columns={columns}
-                                 disableColumnMenu
-                                 disableColumnFilter
-                                 disableColumnSelector
-                                 className={classes.DataTableStyle}
-                                 pageSize={pageSize}
-                                 onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                                 rowsPerPageOptions={[ 10, 20]}
-                                 pagination
-                                 disableSelectionOnClick 
-                                />
-                            </div>
-                        </ThemeProvider>
-                    </Box>
+                <div className="col-12">
+                    <div className="listtable">
+                        <ul>
+                        {totel.map((item) => {
+                    
+                            return (
+                            <li>
+                                <div className="listitems">
+                                <p>{item.name}</p>  
+                                <p>{item.category_name}</p>
+                                <div className="gap-3 d-flex">
+                                    {/* <span >   <x  data={item} />  </span> */}
+                                    {/* <span onClick={()=>{setdeleteoprn(true) ;Setcategoryid(item.id)}}>
+                                        <RiDeleteBin6Line  size={16} />
+                                    </span> */}
+                                </div>
+                                </div>
+                            </li>
+                            );
+                        })}
+                        <li></li>
+                        </ul>
+                    </div>
                 </div>
         </div>
 )

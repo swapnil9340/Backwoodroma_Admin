@@ -250,11 +250,11 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
               <span className={" sidebar_text"}>Review</span>
             </li>
           </NavLink>
-          <NavLink to={"/aboutus"} onClick={closebar} activeClassName="active">
+          {/* <NavLink to={"/aboutus"} onClick={closebar} activeClassName="active">
             <li button className={" active_bar suboption"}>
               <span className={" sidebar_text"}>About us</span>
             </li>
-          </NavLink>
+          </NavLink> */}
           <NavLink
             to={"/NewsCategory"}
             onClick={closebar}

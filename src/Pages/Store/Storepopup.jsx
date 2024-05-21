@@ -46,13 +46,13 @@ export default function Storepopup() {
     const Licence = useRef(null);
     const cookies = new Cookies();
     const inputRef = useRef(null);
-   
     const token_data = cookies.get('Token_access')
     const [open, setOpen] = React.useState(false);
     const [editorState, setEditorState] = React.useState(() => EditorState.createEmpty());
     const [convertedContent, setConvertedContent] = React.useState(null);
     const [image, SetImage] = React.useState('');
     const [country, Setcountry] = React.useState([])
+    const [vendorlist, setvendorlist] = React.useState([])
     const [State, SetState] = React.useState([]);
     const [City, SetCity] = React.useState([]);
     const [LicenceImage, SetLicenceImage] = React.useState('');
@@ -95,7 +95,7 @@ export default function Storepopup() {
         City_id: "",
         License_Type: "None",
         expires:'',
-
+        created_by:''
     });
     const handleChange = (event) => {
         const value = event.target.value;
@@ -133,9 +133,8 @@ export default function Storepopup() {
         SetImage(null)
     };
 
-
+    console.log(vendorlist)
     React.useEffect(() => {
-
 
         axios("https://api.cannabaze.com/AdminPanel/ActiveCountry/", {
 
@@ -173,7 +172,16 @@ export default function Storepopup() {
                 SetStore(Store => ({ ...Store, city_id: response.data.data[0].id }))
             })
         }
+        axios.get('https://api.cannabaze.com/AdminPanel/Get-AllVendor/',{
+            headers: {
+                'Authorization': `Bearer ${token_data}`
+            }
 
+        }).then((res)=>{
+            setvendorlist(res.data.data)
+        }).catch((error)=>{
+            console.trace(error)
+        })
 
 
     }, [token_data, Store.Country_id, Store.State_id]);
@@ -191,6 +199,7 @@ export default function Storepopup() {
         formdata.append('Stores_MobileNo', Store.Stores_MobileNo);
         formdata.append('Status', Store.Status);
         formdata.append('Stores_Description', convertedContent);
+        formdata.append('created_by', Store.created_by);
             const Submit = () => {
 
                 const config = {
@@ -253,7 +262,7 @@ export default function Storepopup() {
                         "& .MuiPaper-root": {
                             width: "800px",
                             height: "100%",
-                            maxWidth: "none",  // Set your width here
+                            maxWidth: "none",
                             border: "1px solid #31B665",
                             borderRadius: "15px",
                             overflowY: "hidden",
@@ -870,7 +879,6 @@ export default function Storepopup() {
 
                                             <p className="file-name"></p>
                                         </div>
-                                   
                                 </div>
                                 <div className='lg_ip_feild'>
                                     <label>  Status:   </label>
@@ -912,6 +920,57 @@ export default function Storepopup() {
 
                                     </Select>
                                 </div>
+                                <div className="lg_ip_feild">
+                                        <label>   Vendor Panel: </label>
+                                        <Select
+
+                                            name='created_by'
+                                            value={Store.created_by}
+                                            onChange={handleChange}
+                                            displayEmpty
+
+                                            fullWidth
+                                            inputProps={{ 'aria-label': 'Without label' }} style={{ fontSize: 15 }}
+                                            sx={{
+                                                width:'100%',
+                                                '& .MuiOutlinedInput-root': {
+                                                    fontSize:'16px',
+                                                  
+                                                    '& fieldset': {
+                                                        borderColor: error.Store_Name,
+                                                    },
+                                                },
+                                                '& .MuiOutlinedInput-input':{
+                                                padding:' 10px',
+                                                },
+                                                "& label": {
+                                                    fontSize: 13,
+                                                    color: "red",
+                                                    "&.Mui-focused": {
+                                                        marginLeft: 0,
+                                                        color: "red",
+                                                    }
+                                                },
+                                                '& .MuiSelect-select':{
+                                                    fontSize:'16px',
+                                                    color:'rgb(133, 133, 133)',
+                                                }
+                                                
+                                            }}
+                                        >
+                                            <MenuItem disabled value="" style={{ fontSize: 15 }}>
+                                                <em>Select</em>
+                                            </MenuItem>
+
+                                            {
+                                                vendorlist?.map((data, index) => {
+                                                    return (
+                                                        <MenuItem key={index} value={data?.id} style={{ fontSize: 15 }}>{data?.Name} ({data?.email})</MenuItem>
+                                                    )
+                                                })
+                                            }
+                                        </Select>
+                                  </div>
                                
                                 <div className='lg_ip_feild center top' >
                                     <button className='topbutton' autoFocus onClick={Submit} >

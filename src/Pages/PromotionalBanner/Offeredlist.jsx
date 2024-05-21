@@ -32,7 +32,7 @@ const Offeredlist = ({Setloader}) => {
     const [pageSize, setPageSize] = React.useState(10)
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
-    const [bannertype , Setbannertype] = useState("Promotional Banner")
+    const [bannertype , Setbannertype] = useState("Home Banner")
     const [openupdate, setOpenupdate] = React.useState(false);
     const PromotionListRef = React.useRef(null)
     const [SelectId, SetSelectedId] = React.useState()
