@@ -29,6 +29,7 @@
     "caniuse-lite": "^1.0.30001517",
     "canvasjs-react-charts": "^1.0.5",
     "compressorjs": "^1.2.1",
+    "country-state-city": "^3.2.1",
     "date-fns": "^3.3.1",
     "dotenv": "^16.0.3",
     "draft-convert": "^2.1.13",
@@ -54,6 +55,8 @@
     "react-multiple-image-uploader": "^1.0.3",
     "react-router-dom": "^6.4.5",
     "react-scripts": "5.0.1",
+    "react-select": "^5.8.0",
+    "react-select-country-list": "^2.2.3",
     "styled-components": "^5.3.11",
     "sweetalert2": "^11.10.1",
     "web-vitals": "^2.1.4"
