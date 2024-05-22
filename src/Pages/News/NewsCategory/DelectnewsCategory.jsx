@@ -15,18 +15,19 @@ export default function NewsCategoryDelete(props) {
   useEffect(()=>{
     if(isdelete){
      
-      axios.delete(`https://api.cannabaze.com/AdminPanel/delete-NewsCategory/${props.data.id}`, {
+       axios.delete(`https://api.cannabaze.com/AdminPanel/delete-NewsCategory/${props.data.id}`, {
 
       headers: {
           'Authorization': `Bearer ${token_data}`
       }
   }).then(response => {
-  
+    setsisDelete(false)
    dispatch({type:'api',api: true})
    enqueueSnackbar('Delete Category success !', { variant: 'success' });
   })
     }
   },[isdelete])
+  console.log(isdelete)
   return (
     <React.Fragment>
     <div>
