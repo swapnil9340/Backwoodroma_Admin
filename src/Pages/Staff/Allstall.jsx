@@ -38,6 +38,8 @@ const Allstall = () => {
           })
       }
   },[isdelete])
+
+                            
     const columns = [
       { field: 'sno', headerName: 'S No.', filterable: false,
     

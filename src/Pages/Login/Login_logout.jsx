@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState ,useContext } from 'react'
+import React, { useState, useContext,useEffect } from 'react'
 import IconButton from '@mui/material/IconButton';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -15,239 +15,276 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import useStyles from '../../Style'
 import Createcontext from "../../Hooks/Context/Context"
 import { LoadingButton } from '@mui/lab';
-
+import { useForm, Controller } from "react-hook-form";
 
 export default function Login_logout() {
     const navigate = useNavigate();
     const cookies = new Cookies();
-    const [otpvalid, setotpvalid] = useState({});
-    const [inputs, setInputs] = useState({});
+    const { register, handleSubmit, errors, reset } = useForm();
+    const [otpvalid, setotpvalid] = useState("");
+    const [inputs, setInputs] = useState({ username: '', Email: '', password: '' });
     const [show, setOpen] = useState(false);
-    const [isLoggedIn, loading] = useState(false)
+    const [isLoggedIn, setLoading] = useState(false);
     const [OTP, setotp] = useState("");
-    const { state ,dispatch } = useContext(Createcontext)
     const [values, setValues] = React.useState({
         password: "",
         showPassword: false,
     });
-    const classes = useStyles()
-    const data = {
-        email: inputs.Email,
-        username: inputs.username,
-        password: inputs.password
-    }
-    const otp_data = {
-        email: inputs.Email,
-        OTP: OTP.OTP,
-    }
+    const classes = useStyles();
+
+    // Load saved username and email from cookies if they exist
+    useEffect(() => {
+        const savedUsername = cookies.get('username') || '';
+        const savedEmail = cookies.get('email') || '';
+        const rememberMe = cookies.get('rememberMe') || false;
+        setInputs({ username: savedUsername, Email: savedEmail, password: '' , rememberMe: rememberMe });
+    }, []);
+
     const handleChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setInputs(values => ({ ...values, [name]: value }))
-    }
+        console.log( event.target.value)
+        const { name, value } = event.target;
+        setInputs((prevInputs) => ({ ...prevInputs, [name]: value }));
+    };
+
     const handleotp = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setotp(values => ({ ...values, [name]: value }))
-    }
-    const handleSubmit = (event) => {
-        event.preventDefault();
+        const { name, value } = event.target;
+        setotp((prevOtp) => ({ ...prevOtp, [name]: value }));
+    };
 
-        axios.post("https://api.cannabaze.com/AdminPanel/Login/", data,
+    const onSubmit = (data) => {
+        setLoading(true);
+        axios.post("https://api.cannabaze.com/AdminPanel/Login/", {
+            email: inputs.Email,
+            username: inputs.username,
+            password: inputs.password
+        })
+        .then((response) => {
+            setLoading(false);
+            alert(response.data.message);
+            setOpen(true);
 
-            loading(true)
-        ).then((response) => {
-            loading(false)
-            alert(response.data.message)
-            setOpen(true)
-            loading(false)
-
-
-        }).catch((error) => {
-            if (error) {
-                alert(
-                    "Invalid credentials"
-                )
-                loading(false)
-
+            if (Boolean(inputs.rememberMe)) {
+                let date = new Date();
+                date.setTime(date.getTime() + (60 * 60 * 8000));
+                cookies.set('username', inputs.username, { expires: date });
+                cookies.set('email', inputs.Email, { expires: date });
+                cookies.set('rememberMe', true, { expires: date });
+            } else {
+                cookies.remove('username');
+                cookies.remove('email');
+                cookies.remove('rememberMe');
             }
         })
-        setTimeout(alertFunc, 5 * 60 * 1000)
-    }
-    function alertFunc() {
-        setOpen(false);
-    }
+        .catch((error) => {
+            if (error) {
+                alert("Invalid credentials");
+                setLoading(false);
+            }
+        });
+        setTimeout(alertFunc, 5 * 60 * 1000);
+    };
+
     const otp_send = () => {
-
         setOpen(false);
-        axios.post("https://api.cannabaze.com/AdminPanel/VerifyOtp/", otp_data,
-
-        ).then((response) => {
+        axios.post("https://api.cannabaze.com/AdminPanel/VerifyOtp/", { email: inputs.Email, OTP: OTP })
+        .then((response) => {
             if (response.data.data === "invalid Otp") {
                 setOpen(true);
-                setotpvalid(response.data.data)
-            }
-            else {
-
-             if(Boolean(response.data.permission.length !==0) ||  response?.data?.is_superuser ){
-                if(!response.data.is_superuser && Boolean(response.data.permission.lenght === 0 ) ){
-                    navigate("/*");
-                }else{
-                    let date = new Date();
-                    date.setTime(date.getTime() + (60 * 60 * 8000))
-                    cookies.set('Token_access', response.data.tokens.access, { expires: date })
-                    navigate("/");
+                setotpvalid(response.data.data);
+            } else {
+                if (Boolean(response.data.permission.length !== 0) || response?.data?.is_superuser) {
+                    if (!response.data.is_superuser && Boolean(response.data.permission.length === 0)) {
+                        navigate("/*");
+                    } else {
+                        let date = new Date();
+                        date.setTime(date.getTime() + (60 * 60 * 8000));
+                        cookies.set('Token_access', response.data.tokens.access, { expires: date });
+                        navigate("/");
+                    }
+                } else {
+                    window.alert("You are not an authorized user");
                 }
-             }else{
-                window.alert("Your are not authorized user")
-             }
-              
             }
-        })
+        });
     };
+
     const handleClose = () => {
         setOpen(false);
+    };
 
-
-    }
     const handleClickShowPassword = () => {
         setValues({ ...values, showPassword: !values.showPassword });
     };
+
+    const alertFunc = () => {
+        setOpen(false);
+    };
     return (
-         
-            <div>
-                    <div className='login_logout_center'>
 
-                        <div className="login_form_container">
-                           
-                                <p className="Login_title">ADMIN PANEL</p>
-                                <p className='login_description'> Login to access your account</p>
-                           
-                            <div className='login_form_feild'>
+        <div>
+            <div className='login_logout_center'>
 
-                                <div className='lg_ip_feild'>
-                                   
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="login_form_container">
 
-                                        <label htmlFor='name'>
-                                            Name<span className='required '>*</span>:
-                                        </label>
-                                 
-                                        <TextField placeholder='User Name'
-                                            fullWidth
-                                            id="name" variant="outlined"
-                                            name="username" inputProps={{ style: { fontSize: 15, height: 5 } }}
-                                            onChange={handleChange}
-                                            value={inputs.username || ""}
-                                            className={classes.Username}
-                                        />
-                                </div>
-                              
-                                <div className='lg_ip_feild'>
-                                  
-                                        <label  htmlFor='email'>
-                                            Email<span className='required'>*</span>:
-                                        </label>
-                                        <TextField placeholder='Email Address'
-                                            fullWidth
-                                            id="email" variant="outlined" name="Email"
-                                            type="email" style={{ fontSize: 15 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
-                                            value={inputs.Email || ""}
-                                            onChange={handleChange}
-                                            className={classes.Username}
-                                        />
-                                    </div>
-                            
-                                <div className='lg_ip_feild'>
-                                   
+                        <p className="Login_title">ADMIN PANEL</p>
+                        <p className='login_description'> Login to access your account</p>
 
-                                        <label  htmlFor='password'>
-                                            Password<span className='required'>*</span>:
-                                        </label>
-                                  
-                                        <TextField placeholder='Password' type={values.showPassword ? "text" : "password"} id="password" variant="outlined"
-                                            name="password" fullWidth inputProps={{ style: { fontSize: 15, height: 5 } }}
-                                            onChange={handleChange}
-                                            className={classes.Username}
-                                            InputProps={{
-                                                endAdornment: (
-                                                    <InputAdornment position='end'>
-                                                        <IconButton
-                                                            aria-label="toggle password visibility"
-                                                            onClick={handleClickShowPassword}
-                                                        >
-                                                            {values.showPassword ? <AiFillEye size={20} color='#747474' /> : <AiFillEyeInvisible size={20} color='#747474' />}
-                                                        </IconButton>
-                                                    </InputAdornment>
+                        <div className='login_form_feild'>
 
-                                                )
-                                            }}
+                            <div className='lg_ip_feild'>
 
-                                            value={inputs.password || ""}
 
-                                        />
+                                <label htmlFor='name'>
+                                    Name<span className='required '>*</span>:
+                                </label>
 
-                                 
-                                </div>
-                                <div className='lg_ip_feild d-flex w-100 justify-content-between align-items-center'>
-                                   <div className='d-flex gap-1 align-items-center'>
-                                        <input type="checkbox" name='checkbox' id='rememberme' value={inputs.checkbox || ""} onChange={handleChange} />
-                                        <label className='RememberMeCheckBox' htmlFor='rememberme'>
-                                            Remember me
-                                        </label>
-                                    </div>
-                                    <div>
-                                       <Link to={"/Forgot"} className='RememberMeCheckBox'> Forgot Password?</Link>
-                                    </div>
-                                </div>
-                                <div className={classes.SubmitLoginButton}>
-
-                                    <LoadingButton
-                                        loading={isLoggedIn}
-                                        loadingPosition="start"
-                                        onClick={handleSubmit}> Submit </LoadingButton>
-
-                                </div>
-                             
-                            </div>
-                        </div>
-
-                    </div>
-                    <div>
-
-                        <Dialog open={show} onClose={handleClose} disableEscapeKeyDown>
-                            <DialogTitle>Enter Otp</DialogTitle>
-                            <DialogContent>
-                                <DialogContentText>
-
-                                    {
-                                        otpvalid === "invalid Otp" &&
-
-                                        <div className='col-12 center colorotp'>
-                                            <p>{otpvalid}</p>
-                                        </div>
+                                <TextField placeholder='User Name'
+                                    fullWidth
+                                    // id="name"
+                                    type='text'
+                                    variant="outlined"
+                                    name="username"
+                                    defaultValue={''}
+                                    inputProps={{ style: { fontSize: 15, height: 5 } }}
+                                    onChange={(e)=>handleChange(e)}
+                                    value={inputs.username}
+                                    className={classes.Username}
+                                    inputRef={register({
+                                        required: "username is required*.",
+                                        minLength: {
+                                            value: 1,
+                                            message: "Please enter valid name",
+                                        },
+                                        maxLength: {
+                                            value: 150,
+                                            message: "Please enter shot valid name",
+                                        },
+                                    })}
+                                    helperText={errors.username?.message}
+                                    error={
+                                        Boolean(errors?.username)
                                     }
-                                    Please Enter Otp Which Is Sent On Your Register Email
+                                />
+                            </div>
+
+                            <div className='lg_ip_feild'>
+
+                                <label htmlFor='email'>
+                                    Email<span className='required'>*</span>:
+                                </label>
+                                <TextField placeholder='Email Address'
+                                    fullWidth
+                                    id="email" variant="outlined" name="Email"
+                                    type="email" style={{ fontSize: 15 }} inputProps={{ style: { fontSize: 15, height: 5 } }}
+                                    value={inputs.Email}
+                                    onChange={(e)=>handleChange(e)}
+                                    className={classes.Username}
+                                    inputRef={register({
+                                        required: "email  is required*.",
+                                      })}
+                                      helperText={errors.Email?.message}
+                                      error={Boolean(errors?.Email)}
+                                />
+                            </div>
+
+                            <div className='lg_ip_feild'>
 
 
-                                </DialogContentText>
+                                <label htmlFor='password'>
+                                    Password<span className='required'>*</span>:
+                                </label>
+
+                                <TextField placeholder='Password' type={values.showPassword ? "text" : "password"} id="password" variant="outlined"
+                                    name="password" fullWidth inputProps={{ style: { fontSize: 15, height: 5 } }}
+                                    onChange={(e)=>handleChange(e)}
+                                    className={classes.Username}
+                                    InputProps={{
+                                        endAdornment: (
+                                            <InputAdornment position='end'>
+                                                <IconButton
+                                                    aria-label="toggle password visibility"
+                                                    onClick={handleClickShowPassword}
+                                                >
+                                                    {values.showPassword ? <AiFillEye size={20} color='#747474' /> : <AiFillEyeInvisible size={20} color='#747474' />}
+                                                </IconButton>
+                                            </InputAdornment>
+
+                                        )
+                                    }}
+
+                                    value={inputs.password || ""}
+                                    inputRef={register({
+                                        required: "password  is required*.",
+                                      })}
+                                      helperText={errors.password?.message}
+                                      error={Boolean(errors?.password)}
+                                />
 
 
-                                <input className='otp' placeholder='Enter Otp' type="number" id="otp" name="OTP" min="4" max="4" value={OTP.OTP || ""} onChange={handleotp} />
-                            </DialogContent>
-                            <DialogActions>
-                                {
-                                    otpvalid === "invalid Otp" ? <p>
-                                        <button className='topbutton size ' onClick={handleSubmit}>resend</button>
-                                        <button className='topbutton  size' onClick={otp_send}>Verify</button>
-                                    </p>
-                                        : <button className='topbutton  size' onClick={otp_send}>Verify</button>
-                                }
+                            </div>
+                            <div className='lg_ip_feild d-flex w-100 justify-content-between align-items-center'>
+                                <div className='d-flex gap-1 align-items-center'>
+                                <input type="checkbox" name='rememberMe' id='rememberme' checked={inputs.rememberMe} onChange={()=>{ setInputs((prevInputs) => ({ ...prevInputs, "rememberMe": !prevInputs.rememberMe }));}} />
+                                    <label className='RememberMeCheckBox' htmlFor='rememberme'>
+                                        Remember me
+                                    </label>
+                                </div>
+                                <div>
+                                    <Link to={"/Forgot"} className='RememberMeCheckBox'> Forgot Password?</Link>
+                                </div>
+                            </div>
+                            <div className={classes.SubmitLoginButton}>
 
+                                <LoadingButton style={{  backgroundColor: isLoggedIn && '#fff'}}
+                                    loading={isLoggedIn}
+                                    // loadingPosition="start"
+                                    type='submit'
+                                > Submit </LoadingButton>
 
-                            </DialogActions>
-                        </Dialog>
+                            </div>
+
+                        </div>
                     </div>
+                </form>
 
-                    </div>
-            )
+            </div>
+            <div>
+
+                <Dialog open={show} onClose={handleClose} disableEscapeKeyDown>
+                    <DialogTitle>Enter Otp</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+
+                            {
+                                otpvalid === "invalid Otp" &&
+
+                                <div className='col-12 center colorotp'>
+                                    <p>{otpvalid}</p>
+                                </div>
+                            }
+                            Please Enter Otp Which Is Sent On Your Register Email
+
+
+                        </DialogContentText>
+
+
+                        <input className='otp' placeholder='Enter Otp' type="number" id="otp" name="OTP" min="4" max="4" value={OTP.OTP || ""} onChange={handleotp} />
+                    </DialogContent>
+                    <DialogActions>
+                        {
+                            otpvalid === "invalid Otp" ? <p>
+                                <button className='topbutton size ' onClick={handleSubmit}>resend</button>
+                                <button className='topbutton  size' onClick={otp_send}>Verify</button>
+                            </p>
+                                : <button className='topbutton  size' onClick={otp_send}>Verify</button>
+                        }
+
+
+                    </DialogActions>
+                </Dialog>
+            </div>
+
+        </div>
+    )
 }

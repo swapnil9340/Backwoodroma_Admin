@@ -52,4 +52,8 @@
   color: red;
   cursor: pointer;
   font-size: 18px;
+}
+
+.MuiPopper-root {
+  display: none !important;
 }/*# sourceMappingURL=Webcontent.css.map */
