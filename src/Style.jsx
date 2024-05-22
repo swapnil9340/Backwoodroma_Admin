@@ -879,8 +879,10 @@ const useStyles = makeStyles(theme =>(
         "&.MuiDataGrid-root .MuiDataGrid-columnSeparator": {
           visibility: "hidden"
         },
-    
-
+        "&.MuiDataGrid-root  .MuiDataGrid-footerContainer p":{
+          marginBottom:'0',
+        }
+  
       },
       popuptextfeild:{
          width:'100%',
@@ -956,6 +958,46 @@ const useStyles = makeStyles(theme =>(
         "& fieldset":{
           border:'none !important'
         },
+      },
+      faqtextfeild:{
+          width:'100%', 
+          fontSize:'16px',
+          marginBottom:'20px !important',
+          "& .MuiOutlinedInput-root": {
+            fontSize:'15px',
+            " &.Mui-focused fieldset": {
+              borderColor: "#31B665",
+            },
+            '&:hover fieldset': {
+              borderColor: '#31B665', // - Set the Input border when parent has :hover
+            },
+          }
+      },
+      faqselectBox:{
+        fontSize:'14px !important',
+         "&.Mui-focused":{
+              "& .MuiOutlinedInput-notchedOutline":{
+                  borderColor:'#31B655 !important'
+              }, 
+         },
+         '& #my-simple-select': {
+          fontSize: '2rem',
+       }
+      },
+      faqtitlelistitem:{
+        "&.MuiMenuItem-root":{
+          fontSize:'14px',
+        },
+      }
+      ,
+      faqautofeild:{
+              "&.Mui-focused":{
+                  "& .MuiOutlinedInput-notchedOutline":{
+                    borderColor:'#31B655 !important'
+                }},
+                "& .MuiOutlinedInput-root":{
+  fontSize:'14px'
+                }
       }
   }
 ))

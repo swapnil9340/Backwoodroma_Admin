@@ -16,7 +16,7 @@ import Deletepopup from '../../Components/Component/Deletepopup'
 import { Headerbutton } from '../../molecules/Button/index'
 const Rolelist = () => {
     let navigate = useNavigate();
-    const [pageSize, setPageSize] = useState(5);
+    const [pageSize, setPageSize] = useState(10);
     const [sucsesopen , setsucsesopen] = useState(false)
     const [unsucsesopen , setunsucsesopen] = useState(false)
     const [deleteoptn , setdeleteoprn] = useState(false)

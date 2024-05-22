@@ -496,7 +496,7 @@ const localization = {
                 helperText={errors?.Url_slug?.message}
                 />
           
-            </div>
+                  </div>
                   <div className=" addnewinputbox">
                 
                       <label >

@@ -7,6 +7,7 @@ import { GrProductHunt } from "react-icons/gr";
 import { FiPackage } from "react-icons/fi";
 import Cookies from 'universal-cookie'
 import {  IoIosArrowUp  } from "react-icons/io";
+import { MdContentPaste } from "react-icons/md";
 import Icon from "@material-ui/core/Icon";
 import { BiLogIn } from "react-icons/bi";
 import Createcontext from "../../Hooks/Context/Context";
@@ -139,9 +140,6 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
           </NavLink>
         }
         </div>
-
-        
-
         {(state.Roles.ViewStore || (state.Roles.AddStore || state.Roles.EditStore || state.Roles.DeleteStore) )&&
           <NavLink
             to={"/Store"}
@@ -157,7 +155,6 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
             </li>
           </NavLink>
         }
-
         {(state.Roles.ViewBrand || (state.Roles.AddBrand || state.Roles.DeleteBrand || state.Roles.EditBrand) )&&
           <NavLink
             to={"/Brand"}
@@ -173,8 +170,6 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
             </li>
           </NavLink>
         }
-        
-
         {(state.Roles.ViewVendor || (state.Roles.AddVendor || state.Roles.DeleteVendor || state.Roles.EditVendor) )&&
         <NavLink to={"/Vendorlist"} onClick={closebar} activeClassName="active">
           <li button className={" active_bar "}>
@@ -187,8 +182,6 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
           </li>
         </NavLink>
         }
-
-
         {(state.Roles.ViewBanners || (state.Roles.AddBanners || state.Roles.DeleteBanners || state.Roles.EditBanners) )&&
         <NavLink
           to={"/PromotionalBannerList"}
@@ -204,24 +197,24 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
             </span>
           </li>
         </NavLink>
-       }
+        }
          {(state.Roles.ViewBlogs || (state.Roles.AddBlogs || state.Roles.EditBlogs || state.Roles.DeleteBlogs) )&&
-       <li
-          button
-          className={`${
-            openDropdown === "News"
-              ? "sidebarDropdown dropright"
-              : "sidebarDropdown dropdownarroe"
-          } ''`}
-          onClick={() => {
-            manuchange("News");
-          }}
-        >
-          <Icon className={classes.sidebarIcon + ""}>
-            <FaHouseUser></FaHouseUser>{" "}
-          </Icon>
-          <span className={"sidebar_text"}>News</span>
-        </li>
+          <li
+            button
+            className={`${
+              openDropdown === "News"
+                ? "sidebarDropdown dropright"
+                : "sidebarDropdown dropdownarroe"
+            } ''`}
+            onClick={() => {
+              manuchange("News");
+            }}
+          >
+            <Icon className={classes.sidebarIcon + ""}>
+              <FaHouseUser></FaHouseUser>{" "}
+            </Icon>
+            <span className={"sidebar_text"}>News</span>
+          </li>
         }
         <div
           className={`submanusidebar ${
@@ -274,8 +267,6 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
             </li>
           </NavLink>
         </div>
-
-
         {(state.Roles.ViewStaff || (state.Roles.AddStaff || state.Roles.EditStaff || state.Roles.DeleteStaff) )&&
         <li
           button
@@ -324,7 +315,6 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
           </NavLink>}
        
         </div>
-
         {(state.Roles.ViewRoles || (state.Roles.EditRoles || state.Roles.AddRoles || state.Roles.DeleteRoles) )&&
         <li
           button
@@ -364,6 +354,14 @@ const Sidebar = ({ sidebaropen, setsidebaropen }) => {
                 </li>
               </NavLink>}
         </div>
+        <NavLink to={"/webcontent"} onClick={closebar} activeClassName="active">
+          <li button className={" active_bar "}>
+            <Icon className={classes.sidebarIcon + ""}>
+              <MdContentPaste></MdContentPaste>
+            </Icon>
+            <span className={" sidebar_text"}>Web Content</span>
+          </li>
+        </NavLink>
         <NavLink to={"/Settings"} onClick={closebar} activeClassName="active">
           <li button className={" active_bar "}>
             <Icon className={classes.sidebarIcon + ""}>

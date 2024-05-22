@@ -18,7 +18,7 @@ const Allstall = () => {
     const [isdelete , setsisDelete] = useState(false)
     const [reviewid , setreviewid] = useState('')
     const [userdata , setuserdata]= useState([]);
-    const [pageSize, setPageSize] = React.useState(5);
+    const [pageSize, setPageSize] = React.useState(10);
     useEffect(()=>{
       if(isdelete){
           axios.delete(`https://api.cannabaze.com/AdminPanel/Delete-User/${reviewid}`, {

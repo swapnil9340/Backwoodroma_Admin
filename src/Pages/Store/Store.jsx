@@ -6,8 +6,6 @@ import { createTheme } from "@mui/material/styles";
 import axios from "axios";
 import Cookies from 'universal-cookie';
 import Storepopup from "./Storepopup"
-import { BsThreeDotsVertical } from 'react-icons/bs';
-import Select from '@mui/material/Select';
 import StoreEdit from './StoreEdit';
 import StoreView from "./StoreView"
 import StoreDelete from "./StoreDelete"
@@ -23,7 +21,7 @@ export default function Store() {
     const cookies = new Cookies();
     const token_data = cookies.get('Token_access')
     const [totel, setTotal] = React.useState([])
-    const [pageSize, setPageSize] = React.useState(5)
+    const [pageSize, setPageSize] = React.useState(10)
     React.useEffect(() => {
         axios("https://api.cannabaze.com/AdminPanel/Get-Stores/", {
 

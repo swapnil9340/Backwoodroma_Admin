@@ -36,6 +36,7 @@ import Topproducts from '../Pages/Tablespages/Topproducts';
 import Allrecentorder from '../Pages/Tablespages/Allrecentorder'
 import Topstore from '../Pages/Tablespages/Topstore';
 import AllReview from '../Pages/Tablespages/AllReview';
+import WebContent from '../Pages/WebContent/WebContent'
 import UserProfile from '../Pages/UserProfile/UserProfile';
 import TotalSales from '../Pages/Tablespages/TotalSales';
 import TopLocation from '../Pages/Tablespages/TopLocation';
@@ -225,6 +226,10 @@ const routesConfig = [
       {
         path:"/allreview",
         element:<Protected  Component={AllReview}/>
+      },
+      {
+        path:"/webcontent",
+        element:<Protected  Component={WebContent}/>
       },
       {
         path:"/userprofile/:id",

@@ -12,7 +12,7 @@ const Deletepopup = ({setdeleteoprn ,setsisDelete}) => {
      <div className='deleteconfirmpopup'>
             <ClickAwayListener onClickAway={()=>{setdeleteoprn(false)}}>
                     <div className='deletepopup' data-aos={'zoom-in'}>
-                        {/* <span className='closebtn'>X</span> */}
+                       
                         <div className='Iconsdelete'>
                             <span className='dangericon'> <RxCrossCircled/></span>
                         </div>
