@@ -86,7 +86,8 @@ export default function Login_logout() {
 
     const otp_send = () => {
         setOpen(false);
-        axios.post("https://api.cannabaze.com/AdminPanel/VerifyOtp/", { email: inputs.Email, OTP: OTP })
+        console.log(OTP)
+        axios.post("https://api.cannabaze.com/AdminPanel/VerifyOtp/", { email: inputs.Email,OTP:OTP.OTP, })
         .then((response) => {
             if (response.data.data === "invalid Otp") {
                 setOpen(true);
